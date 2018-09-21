@@ -1,0 +1,367 @@
+//colors
+
+$color_mystic_approx: #e5e9ed;
+$white: #fff;
+$black_14: rgba(0, 0, 0, 0.14);
+$color_tundora_approx: #444;
+$color_mountain_mist_approx: #999;
+$color_gallery_approx: #eee;
+$color_tapa_approx: #777;
+$color_bismark_approx: #506a85;
+$color_red_orange_approx: #f74933;
+$color_forest_green_approx: #05ae0e;
+$color_royal_blue_approx: #3472f7;
+$color_dodger_blue_approx: #2c93ff;
+$color_mine_shaft_approx: #333;
+$color_storm_dust_approx: #666;
+$color_fuscous_gray_approx: #555;
+
+//fonts
+$font_0: "Helvetica Nueue";
+$font_1: "Arial";
+$font_2: "Verdana";
+$font_3: "sans-serif";
+
+//@extend-elements
+%flip {
+  -webkit-transform: rotateY(180deg);
+  -moz-transform: rotateY(180deg);
+  -o-transform: rotateY(180deg);
+  transform: rotateY(180deg);
+}
+
+%quiet {
+  -webkit-transform: none;
+  -moz-transform: none;
+  -o-transform: none;
+  transform: none;
+}
+
+//original selectors .front, .back
+%hide {
+  -webkit-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
+  -o-backface-visibility: hidden;
+  backface-visibility: hidden;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: $white;
+  box-shadow: 0 1px 3px 0 $black_14;
+}
+
+.btn {
+  margin: 1px 1px;
+
+  &:hover {
+    outline: 0 !important;
+  }
+  &:focus {
+    outline: 0 !important;
+  }
+  &:active {
+    outline: 0 !important;
+  }
+}
+
+.img-circle {
+  border-radius: 50% !important;
+}
+
+.card-container {
+  -webkit-perspective: 800px;
+  -moz-perspective: 800px;
+  -o-perspective: 800px;
+  perspective: 800px;
+  margin-bottom: 25px;
+  width: 100%;
+  height: 420px;
+  border-radius: 4px;
+  &.static {
+    &:hover .rotating-card {
+      @extend %quiet;
+    }
+    &.hover .rotating-card {
+      @extend %quiet;
+    }
+  }
+  &:not(.manual-flip):hover .rotating-card {
+    @extend %flip;
+  }
+  &.hover.manual-flip .card {
+    @extend %flip;
+  }
+}
+
+.rotating-card {
+  -webkit-transition: -webkit-transform .5s;
+  -moz-transition: -moz-transform .5s;
+  -o-transition: -o-transform .5s;
+  transition: transform .5s;
+  -webkit-transform-style: preserve-3d;
+  -moz-transform-style: preserve-3d;
+  -o-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+  position: relative;
+
+  .cover {
+    height: 105px;
+    overflow: hidden;
+    border-radius: 4px 4px 0 0;
+
+    img {
+      width: 100%;
+    }
+  }
+
+  .user {
+    border-radius: 50%;
+    display: block;
+    height: 120px;
+    margin: -55px auto 0;
+    overflow: hidden;
+    width: 120px;
+    img {
+      background: none repeat scroll 0 0 $white;
+      border: 3px solid $white;
+      width: 100%;
+    }
+  }
+
+  .card-content {
+    background-color: rgba(0, 0, 0, 0);
+    box-shadow: none;
+    padding: 10px 20px 20px;
+    .principale {
+      min-height: 160px;
+    }
+  }
+
+  .name {
+    font-size: 22px;
+    line-height: 28px;
+    margin: 10px 0 0;
+    text-align: center;
+    text-transform: capitalize;
+  }
+
+  h5 {
+    margin: 5px 0;
+    font-weight: 400;
+    line-height: 20px;
+  }
+
+  .username  {
+    color: $color_mountain_mist_approx;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  hr {
+    margin: 5px 15px;
+  }
+
+  .bootom-rcard {
+    color: $color_mountain_mist_approx;
+    margin: 25px 0 0;
+    padding: 10px 0 0;
+    text-align: center;
+    .social-links {
+      font-size: 18px;
+      a {
+        margin: 0 7px;
+      }
+    }
+    .btn-simple {
+      margin-top: -6px;
+    }
+  }
+
+  .header-card {
+    padding: 15px 20px;
+    height: 90px;
+  }
+
+  .motto {
+    border-bottom: 1px solid $color_gallery_approx;
+    color: $color_mountain_mist_approx;
+    font-size: 14px;
+    font-weight: 400;
+    padding-bottom: 10px;
+    text-align: center;
+  }
+
+  .stats-container {
+    width: 100%;
+    margin-top: 50px;
+  }
+
+  .stats {
+    display: block;
+    float: left;
+    width: 33.333333%;
+    text-align: center;
+    &:first-child {
+      border-right: 1px solid $color_gallery_approx;
+    }
+    &:last-child {
+      border-left: 1px solid $color_gallery_approx;
+    }
+    h4 {
+      font-weight: 300;
+      margin-bottom: 5px;
+    }
+    p {
+      color: $color_tapa_approx;
+    }
+  }
+
+  .back .card-content .principale {
+    height: 215px;
+  }
+}
+
+.front {
+  @extend %hide;
+  z-index: 2;
+  width: 100%;
+  height: 460px;
+  border-radius: 4px;
+}
+
+.back {
+  @extend %hide;
+  -webkit-transform: rotateY(180deg);
+  -moz-transform: rotateY(180deg);
+  -o-transform: rotateY(180deg);
+  transform: rotateY(180deg);
+  z-index: 3;
+  width: 100%;
+  height: 460px;
+  border-radius: 4px;
+  .btn-simple {
+    position: absolute;
+    left: 0;
+    bottom: 4px;
+  }
+}
+
+.card {
+  background: none repeat scroll 0 0 $white;
+  border-radius: 4px;
+  color: $color_tundora_approx;
+}
+
+.solapinTitle {
+  color: $color_bismark_approx;
+  text-align: center;
+  font-weight: 300;
+  font-size: 44px;
+  margin-bottom: 90px;
+  line-height: 90%;
+  small {
+    font-size: 17px;
+    color: $color_mountain_mist_approx;
+    text-transform: uppercase;
+    margin: 0;
+  }
+}
+
+.space-30 {
+  height: 30px;
+  display: block;
+}
+
+.space-50 {
+  height: 50px;
+  display: block;
+}
+
+.space-200 {
+  height: 200px;
+  display: block;
+}
+
+.white-board {
+  background-color: $white;
+  min-height: 200px;
+  padding: 60px 60px 20px;
+}
+
+.ct-heart {
+  color: $color_red_orange_approx;
+}
+
+.atv {
+  color: $color_forest_green_approx;
+}
+
+.str {
+  color: $color_forest_green_approx;
+}
+
+.tag {
+  color: $color_royal_blue_approx;
+}
+
+.pln {
+  color: $color_royal_blue_approx;
+}
+
+.kwd {
+  color: $color_royal_blue_approx;
+}
+
+.atn {
+  color: $color_dodger_blue_approx;
+}
+
+.com {
+  color: $color_mountain_mist_approx;
+}
+
+.btn-simple {
+  opacity: .8;
+  color: $color_storm_dust_approx;
+  background-color: transparent;
+
+  &:hover {
+    background-color: transparent;
+    box-shadow: none;
+    opacity: 1;
+  }
+
+  &:focus {
+    background-color: transparent;
+    box-shadow: none;
+    opacity: 1;
+  }
+
+  i {
+    font-size: 20px;
+  }
+}
+
+@media screen and(-ms-high-contrast: active), (-ms-high-contrast: none) {
+  .front {
+    -ms-backface-visibility: visible;
+    backface-visibility: visible;
+    z-index: 4;
+  }
+  .back {
+    -ms-backface-visibility: visible;
+    backface-visibility: visible;
+    visibility: hidden;
+    -ms-transition: all 0.2s cubic-bezier(.92, .01, .83, .67);
+  }
+  .card-container {
+    &:not(.manual-flip):hover .back {
+      z-index: 5;
+      visibility: visible;
+    }
+    &.manual-flip.hover .back {
+      z-index: 5;
+      visibility: visible;
+    }
+  }
+}
