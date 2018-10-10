@@ -13,6 +13,4 @@ class MainController extends Controller
         $raffles = Raffle::almostsoldraffles();
         return view('main',compact('raffles'));
     }
-
-
 }
