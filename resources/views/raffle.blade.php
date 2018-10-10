@@ -261,14 +261,13 @@
 
         $('.slickVertical').slick({
             autoplay: true,
-            arows: true,
             vertical: true,
             verticalSwiping: true,
             slidesToShow: 2,
             slidesToScroll: 4,
             arrows: false,
             swipeToSlide: true,
-
+            infinite: true,
             draggable: true,
             centerMode: true,
             centerPadding: '50%',
