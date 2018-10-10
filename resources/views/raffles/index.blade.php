@@ -15,6 +15,7 @@
                     Descr: {{ $raffle->description }} <br>
                     Categ: {{ $raffle->getCategory->category }} <br>
                     Statu: {{ $raffle->getStatus->status }} <br>
+                    Image: <img src="{{ asset($raffle->image) }}"> <br>
                     Followers: {{ count($raffle->getFollowers) }} <br>
                     Location: <img src="{{ asset('pics/countries/'. $raffle->getLocation->name .'.png') }}"> <br>
                     <a href="{{ route('raffles.follow',['raffleId' => $raffle->id]) }}">Follow</a>

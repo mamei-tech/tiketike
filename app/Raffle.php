@@ -15,7 +15,8 @@ class Raffle extends Model
     protected $fillable = [
         'title',
         'description',
-        'price'
+        'price',
+        'image'
     ];
 
     /*public function __construct(array $attributes = [])
@@ -366,5 +367,14 @@ class Raffle extends Model
         $tickets = Ticket::where('tickets.raffle', $this->id)->get();
         $length = $tickets->count();
         return $tickets[mt_rand(0, $length - 1)]->code;
+    }
+
+    public static function getTicketsSold($id)
+    {
+        $tickets = Raffle::join('tickets', 'raffles.id', '=', 'tickets.raffle')
+            ->select('raffles.tickets_price')
+            ->where('raffles.id',$id)
+            ->first();
+        return $tickets;
     }
 }

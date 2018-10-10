@@ -51,6 +51,16 @@ Route::group(['prefix' => 'raffles',
     Route::post('/{raffleId}/comments/{commentId}/responses', 'CommentsController@respondComment')->name('raffle.respondComment');
 });
 
+Route::group(['prefix' => 'payments',
+    'namespace' => 'Admin',
+    'middleware' => ['auth']
+], function () {
+    Route::get('/executed/list', 'PaymentController@executed')->name('payment.executed');
+    Route::get('/pending/list', 'PaymentController@pending_list')->name('payment.pending.list');
+    Route::post('/pending/pay', 'PaymentController@pending_pay')->name('payment.pending.pay');
+        Route::post('/pending/details', 'PaymentController@pending_details')->name('payment.pending.details');
+});
+
 Route::group(['prefix' => 'users',
     'middleware' => ['auth']
 ], function () {

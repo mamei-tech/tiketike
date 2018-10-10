@@ -39,6 +39,7 @@ class CreateRafflesTable extends Migration
             $table->float('price');
             $table->unsignedInteger('tickets_count')->default(0);
             $table->float('tickets_price') ->nullable();
+            $table->string('image') ->default("pics/common/rotating_card_profile.png");
             $table->unsignedtinyInteger('profit')->nullable();
             $table->float('commissions')->nullable();
             $table->date('activation_date')->nullable();
