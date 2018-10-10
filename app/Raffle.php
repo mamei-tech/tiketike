@@ -15,8 +15,7 @@ class Raffle extends Model
     protected $fillable = [
         'title',
         'description',
-        'price',
-        'image'
+        'price'
     ];
 
     /*public function __construct(array $attributes = [])
@@ -307,7 +306,7 @@ class Raffle extends Model
                 'raffles.price',
                 'raffles.profit'
             )
-            ->paginate(2);
+            ->paginate(10);
     }
 
     /**

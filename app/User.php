@@ -42,6 +42,7 @@ class User extends Authenticatable
         return $this->hasOne('App\UserProfile', 'user', 'id');
     }
 
+
     /**
      * Retrieve user's cards.
      *

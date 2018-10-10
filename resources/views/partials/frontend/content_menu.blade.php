@@ -16,11 +16,11 @@
                         class="ti-ticket  margin-right5 rotar  texto16"></span>Rifas</a></li>
         <li><a href="" class="text-uppercase colorB sinkinSans300L icon"><span
                         class="ti-comments margin-right5 texto16 "></span>Chat</a></li>
+        @if(\Auth::user() != null)
         <li class="active padding-left650">
-            <a href="usuario.php" class="colorB sinkinSans300L">Jane Doe<img src="{{ asset('pics/front/user.jpg') }}"
-                                                                             alt="Ringo"
-                                                                             class="imgUsuarioMenu sombraImgUserMenu margin-left5"></a>
+            <a href="{{route('profile.info',['userid'=> \Auth::User()->id])}}" class="colorB sinkinSans300L"> {{\Auth::User()->name}} <img src="{{ asset('pics/front/user.jpg') }}" alt="Ringo" class="imgUsuarioMenu sombraImgUserMenu margin-left5"></a>
         </li>
+        @endif
         <li class="notifica">
             <a class="text-uppercase colorB icon" data-toggle="modal" href="#notificaciones" title="Notificaciones">
                 <span class="ti-bell texto20"></span>
