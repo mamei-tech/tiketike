@@ -50,8 +50,26 @@ let mix = require('laravel-mix');
     ],
     'public/css/vendor/log-viewer.css').sourceMaps();
 
+    mix.styles([
+            'resources/assets/css/front/bootstrap.css',
+            'resources/assets/css/front/slick-theme.css',
+            'resources/assets/css/front/slick.css',
+            'resources/assets/css/front/carousel.css',
+            'resources/assets/css/front/font-awesome.min.css',
+            'resources/assets/css/front/layout.css',
+            'resources/assets/css/front/custom.css',
+            'resources/assets/css/front/plugins.css',
+            'resources/assets/css/front/themify-icons.css',
+            'resources/assets/css/front/style_general.css',
+            'resources/assets/css/front/style-responsive.css'
+        ],
+        'public/css/front/app.css').sourceMaps();
+
     /* CSS Webfonts folder */
     mix.copyDirectory('resources/assets/css/webfonts', 'public/css/webfonts');
+    mix.copyDirectory('resources/assets/css/front', 'public/css/front');
+    mix.copyDirectory('resources/assets/js/front', 'public/js/front');
+    mix.copyDirectory('resources/assets/pics/front', 'public/pics/front');
 
     /* --- General App Section --- */
     mix.js('resources/assets/js/app.js', 'public/js')
@@ -107,6 +125,8 @@ let mix = require('laravel-mix');
     mix.js('resources/assets/js/admin/views/admin/uraffles.js', 'public/js/admin/uraffles.js').sourceMaps();
     /* Admin | views | anulled raffles */
     mix.js('resources/assets/js/admin/views/admin/araffles.js', 'public/js/admin/araffles.js').sourceMaps();
+/* Admin | views | anulled raffles */
+mix.js('resources/assets/js/admin/views/admin/payment.js', 'public/js/admin/payment.js').sourceMaps();
     /* Admin | views | configs raffles */
     mix.js('resources/assets/js/admin/views/admin/configs/configraffles.js', 'public/js/admin/configraffles.js').sourceMaps();
 

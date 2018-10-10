@@ -179,6 +179,36 @@
             </li>
 
 
+            {{--payments controll--}}
+            <li class="">
+                <a class="" data-toggle="collapse" href="#payment_section" aria-expanded="false">
+                    <i class="now-ui-icons business_money-coins"></i>
+                    <p> Payments
+                        <b class="caret"></b>
+                    </p>
+                </a>
+
+                <div class="collapse @isset($div_showPromo) {{ $div_showPromo }} @endisset" id="payment_section">
+                    <ul class="nav">
+
+                        <li class="@isset($li_activePromoList) {{ $li_activePromoList }} @endisset">
+                            <a href="{{ route('payment.executed') }}">
+                                <span class="sidebar-mini-icon"> E </span>
+                                <span class="sidebar-normal"> Executed </span>
+                            </a>
+                        </li>
+
+                        <li class="@isset($li_activePromoClients) {{ $li_activePromoClients }} @endisset">
+                            <a href="{{ route('payment.pending.list') }}">
+                                <span class="sidebar-mini-icon"> P </span>
+                                <span class="sidebar-normal"> Pending  </span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+
+
             {{-- LOGS SECC --}}
             <li class="">
                 <a class="" data-toggle="collapse" href="#logs_section" aria-expanded="false">

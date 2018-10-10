@@ -22,8 +22,10 @@ class RafflesController extends Controller
      */
     public function index()
     {
-        $raffles = Raffle::paginate(10);
-        return view('raffles.index')->with('raffles', $raffles);
+        $raffles = Raffle::paginate(3);
+//        var_dump($raffles->first()->getOwner->lastname);
+//        die();
+        return view('raffles')->with('raffles', $raffles);
     }
 
     /**

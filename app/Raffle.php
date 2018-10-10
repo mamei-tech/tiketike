@@ -306,7 +306,7 @@ class Raffle extends Model
                 'raffles.price',
                 'raffles.profit'
             )
-            ->paginate(2);
+            ->paginate(10);
     }
 
     /**
@@ -366,5 +366,13 @@ class Raffle extends Model
         $tickets = Ticket::where('tickets.raffle', $this->id)->get();
         $length = $tickets->count();
         return $tickets[mt_rand(0, $length - 1)]->code;
+    }
+
+    public static function getTicketsSold($id){
+        $tickets = Raffle::join('tickets','raffles.id','=','tickets.raffle')
+            ->select('raffles.tickets_price')
+            ->where('raffles.id',$id)
+            ->first();
+        return $tickets;
     }
 }
