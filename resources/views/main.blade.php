@@ -171,14 +171,16 @@
         </div>
     </div>
     <!-- Promo block END -->
+
     <!--menu-->
     <div id="menu" class="navbar-inverse bg_menu header ">
-        <div class="container ">
+        <div class="container">
             @include('partials.frontend.content_menu')
         </div>
         <div class="morado-bottom"></div>
     </div>
     <!--fin menu-->
+
     <!--Rifas por culminas-->
     <section class="rifasporculminar padding-top-60 padding-bottom20">
         <div class="container">
