@@ -30,6 +30,13 @@
                 <span class="ti-bell texto20"></span>
                 <span class="badge badge-default">
 					7 </span></a>
+        @if(\Auth::user() != null)
+            <li>
+                <a href="{{ route('admin.index') }}" class="colorB sinkinSans300L">
+                    <span class="ti-dashboard texto20"></span>
+                </a>
+            </li>
+        @endif
             <!-- Modal -->
             <div class="modal fade" id="notificaciones" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
                  aria-hidden="true">

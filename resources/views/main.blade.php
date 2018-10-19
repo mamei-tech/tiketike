@@ -11,10 +11,10 @@
                 <div class="col-sm-5 col-md-4 col-lg-3 hidden-xs">
                     <ul class="list-inline padding-top-20 padding-left20">
                         <li class="margin-left-20 ">
-                            <a data-toggle="modal" href="#myModal" title="Autenticarse"
+                            <a data-toggle="modal" href="#loginModal" title="Autenticarse"
                                class="colorB texto16 sinkinSans500M">Autenticarse</a>
                             <!-- Modal-->
-                            <div class="modal fade" id="myModal" tabindex="-1" role="dialog"
+                            <div class="modal fade" id="loginModal" tabindex="-1" role="dialog"
                                  aria-labelledby="myModalLabel"
                                  aria-hidden="true">
                                 <div class="modal-dialog">
@@ -31,21 +31,81 @@
                                             <form class="form-signin" action="login" method="POST">
                                                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                                 <label for="selector" class="colorN italic">Nombre</label>
-                                                <input type="email" class="form-control form-control-new " id="inputEm" name="email">
+                                                <input type="email" class="form-control form-control-new " id="inputEm"
+                                                       name="email">
                                                 <label for="selector"
                                                        class="colorN italic padding-top-20">Contraseña</label>
                                                 <input type="password" class="form-control form-control-new "
                                                        id="inputPassword" name="password">
                                                 <div class="row padding-top-20">
                                                     <div class="col-xs-7">
+                                                        <a href="#registerModal" onclick="
+                                                        $('#loginModal').modal('hide');
+                                                                " data-toggle="modal"
+                                                           class="texto16"><span
+                                                                    class="italic colorGreen floatRight">Regístrate</span></a>
                                                     </div>
                                                     <div class="col-xs-5">
                                                         <button type="submit" class="btn btn-sm btn-primary btn-block">
-                                                            Entrar</button>
+                                                            Entrar
+                                                        </button>
                                                     </div>
                                                 </div>
                                             </form>
-                                            <h5>orbienve</h5>
+
+                                            <!-- TODO Aqui van los enlaces morrongueros del fi para acceder por las redes sociales -->
+                                        </div>
+                                    </div>
+                                    <!-- /.modal-content -->
+                                </div>
+                                <!-- /.modal-dialog -->
+                            </div>
+                            <!-- /.modal -->
+                            <!-- Modal-->
+                            <div class="modal fade" id="registerModal" tabindex="-1" role="dialog"
+                                 aria-labelledby="myModalLabel"
+                                 aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header form-signin padding-left-0">
+                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                                                <span class="ti-angle-right"></span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="col-md-12 "></div>
+                                            <h5 class="modal-title text-uppercase textoCenter padding-top-20">Inicio de
+                                                sesión</h5>
+                                            <form class="form-signin" action="login" method="POST">
+                                                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                                <label for="selector" class="colorN italic">Nombre</label>
+                                                <input type="text" class="form-control form-control-new " id="inputEm"
+                                                       name="name">
+                                                <label for="selector" class="colorN italic">Email</label>
+                                                <input type="text" class="form-control form-control-new " id="inputEm"
+                                                       name="email">
+                                                <label for="selector"
+                                                       class="colorN italic padding-top-20">Contraseña</label>
+                                                <input type="password" class="form-control form-control-new "
+                                                       id="inputPassword" name="password">
+                                                <label for="selector"
+                                                       class="colorN italic padding-top-20">Repita la contraseña</label>
+                                                <input type="re-password" class="form-control form-control-new "
+                                                       id="inputPassword" name="re-password">
+                                                <div class="row padding-top-20">
+                                                    <div class="col-xs-7">
+                                                    </div>
+
+                                                    <!-- TODO Aqui van los botones cagados del fi -->
+                                                    <div class="col-xs-5">
+                                                        <button type="submit" class="btn btn-sm btn-primary btn-block">
+                                                            Registrarme
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </form>
+
+                                            <!-- TODO Aqui van los enlaces morrongueros del fi para acceder por las redes sociales -->
                                         </div>
                                     </div>
                                     <!-- /.modal-content -->
@@ -79,7 +139,8 @@
             </div>
             <div class="col-md-12 margin-bottom-30 padding-top-10">
                 <div class="flecha-bajar text-center">
-                    <a data-scroll="" href="#menu"><img src="{{ asset('pics/front/flecha-bajar.png') }}" class="dimenFlechaBajar"
+                    <a data-scroll="" href="#menu"><img src="{{ asset('pics/front/flecha-bajar.png') }}"
+                                                        class="dimenFlechaBajar"
                                                         alt=""></a>
                 </div>
             </div>
@@ -92,7 +153,8 @@
                 <ul>
                     <li data-transition="fade" data-slotamount="5" data-masterspeed="700" data-delay="9400"
                         class="slider-item-1">
-                        <img src="{{ asset('pics/front/slide1.jpg') }}" alt="" data-bgfit="cover" style="opacity:0.4 !important;"
+                        <img src="{{ asset('pics/front/slide1.jpg') }}" alt="" data-bgfit="cover"
+                             style="opacity:0.4 !important;"
                              data-bgposition="center center" data-bgrepeat="no-repeat">
                         <div class="tp-caption large_text customin customout start"
                              data-x="center"
@@ -121,7 +183,8 @@
                     </li>
                     <li data-transition="fadefromright" data-slotamount="5" data-masterspeed="700" data-delay="9400"
                         class="slider-item-2">
-                        <img src="{{ asset('pics/front/slide2.jpg') }}" alt="slidebg2" data-bgfit="cover" data-bgposition="center center"
+                        <img src="{{ asset('pics/front/slide2.jpg') }}" alt="slidebg2" data-bgfit="cover"
+                             data-bgposition="center center"
                              data-bgrepeat="no-repeat">
                         <div class="tp-caption large_bold_white fade"
                              data-x="center"
@@ -161,24 +224,26 @@
                 <div class="col-md-12">
                     <div class="slicklanding">
                         @foreach($raffles as $raffle)
-                        <div class="paddingImgCarousel itemImg">
-                            <img src="{{ asset('pics/front/habana2.png') }}" class="dimenImgCarousel" alt="Owl Image"/>
-                            <a class="valign-center" href="#">
-                                <div class="imginline"
-                                     style="position: absolute; top: 45%; margin-top: -55.5px;  height: 81px;">
-                                    <strong class="padding-top-10 sinkinSans600SB text-center"><span
-                                                class=" texto16">@if( \App\Raffle::getTicketsSold($raffle->id) > 0){{ $raffle->tickets_count / \App\Raffle::getTicketsSold($raffle->id) }} @else 0 @endif%</span><br>{{ $raffle->title }}
-                                    </strong>
-                                </div>
-                            </a>
-                            <div class="porciento">
-                                <div class=" text-center">
+                            <div class="paddingImgCarousel itemImg">
+                                <img src="{{ asset('pics/front/habana2.png') }}" class="dimenImgCarousel"
+                                     alt="Owl Image"/>
+                                <a class="valign-center" href="#">
+                                    <div class="imginline"
+                                         style="position: absolute; top: 45%; margin-top: -55.5px;  height: 81px;">
+                                        <strong class="padding-top-10 sinkinSans600SB text-center"><span
+                                                    class=" texto16">@if( \App\Raffle::getTicketsSold($raffle->id) > 0){{ $raffle->tickets_count / \App\Raffle::getTicketsSold($raffle->id) }} @else
+                                                    0 @endif%</span><br>{{ $raffle->title }}
+                                        </strong>
+                                    </div>
+                                </a>
+                                <div class="porciento">
+                                    <div class=" text-center">
                                 <span class="chartB chart-porcientoB" data-percent="80">
                                     <span class="percentB">80%</span>
                                 </span>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
                         @endforeach
                     </div>
                 </div>
@@ -203,7 +268,8 @@
                     </div>
                     <div class="row">
                         <div class="col-xs-12 padding-left-0">
-                            <p class="colorB texto24 sinkinSans300LI padding-top-20 centerR">Estás viendo el Top 10 de los
+                            <p class="colorB texto24 sinkinSans300LI padding-top-20 centerR">Estás viendo el Top 10 de
+                                los
                                 usuarios más destacados
                                 del sitio
                             </p>
@@ -214,26 +280,30 @@
                     <div class="col-xs-12 paddingLeft0 padding-rigth-0 visible-xs padding-top-20">
                         <div class="col-xs-4 ">
                             <div class="img-contenedor padding-bottom5">
-                                <img src="{{ asset('pics/front/user.jpg') }}" alt="Ringo" class="dimenUsuarioG sombraImgUser img-popover">
+                                <img src="{{ asset('pics/front/user.jpg') }}" alt="Ringo"
+                                     class="dimenUsuarioG sombraImgUser img-popover">
                             </div>
                             <span class="text-center sinkinSans600SB texto14 padding-left10">1ro</span>
                         </div>
                         <div class="col-xs-4">
                             <div class="img-contenedor padding-bottom5">
-                                <img src="{{ asset('pics/front/user.jpg') }}" alt="Ringo" class="dimenUsuarioG sombraImgUser img-popover">
+                                <img src="{{ asset('pics/front/user.jpg') }}" alt="Ringo"
+                                     class="dimenUsuarioG sombraImgUser img-popover">
                             </div>
                             <span class="text-center sinkinSans600SB texto14 padding-left10">2do</span>
                         </div>
                         <div class="col-xs-4 ">
                             <div class="img-contenedor padding-bottom5">
-                                <img src="{{ asset('pics/front/user.jpg') }}" alt="Ringo" class="dimenUsuarioG sombraImgUser img-popover">
+                                <img src="{{ asset('pics/front/user.jpg') }}" alt="Ringo"
+                                     class="dimenUsuarioG sombraImgUser img-popover">
                             </div>
                             <span class="text-center sinkinSans600SB texto14 padding-left10">3ro</span>
                         </div>
                     </div>
                     <div class="col-xs-12 bg-popover visible-xs">
                         <div class="colorV visible-xs text-center texto14 padding-top-30"><span
-                                    class="sinkinSans600SB text-uppercase">Jane Doe /</span> <span class="sinkinSans300LI">Pais</span>
+                                    class="sinkinSans600SB text-uppercase">Jane Doe /</span> <span
+                                    class="sinkinSans300LI">Pais</span>
                         </div>
                         <div class="col-xs-12 padding-top-20 sinkinSans400R">
                             <span class="colorN padding-top-20 margin-right40">Rifas ganadas:</span>
@@ -262,7 +332,8 @@
                         <div class="col-md-12 borderBotDis hidden-lg"></div>
                         <div class="row padding-top-20">
                             <div class="col-xs-4 col-sm-5 col-md-3">
-                                <img src="{{ asset('pics/front/user.jpg') }}" class="dimenUsuario margin-right-20 sombraImgUser pull-left"
+                                <img src="{{ asset('pics/front/user.jpg') }}"
+                                     class="dimenUsuario margin-right-20 sombraImgUser pull-left"
                                      alt="usuario">
                             </div>
                             <div class="col-xs-8 col-sm-7 col-md-9 padding-left-0">
@@ -275,7 +346,8 @@
                         <div class="col-md-12 borderBotDis hidden-lg"></div>
                         <div class="row padding-top-20">
                             <div class="col-xs-4 col-sm-5 col-md-3">
-                                <img src="{{ asset('pics/front/user2.jpg') }}" class="dimenUsuario margin-right-20 sombraImgUser pull-left"
+                                <img src="{{ asset('pics/front/user2.jpg') }}"
+                                     class="dimenUsuario margin-right-20 sombraImgUser pull-left"
                                      alt="usuario">
                             </div>
                             <div class="col-xs-8 col-sm-7 col-md-9 padding-left-0">
@@ -295,7 +367,8 @@
                     <div class="information padding-top-20">
                         <div class="pull-left margin-right-15">
                             <div class="img-contenedor">
-                                <img src="{{ asset('pics/front/user.jpg') }}" alt="Ringo" class="dimenUsuarioG sombraImgUser">
+                                <img src="{{ asset('pics/front/user.jpg') }}" alt="Ringo"
+                                     class="dimenUsuarioG sombraImgUser">
                             </div>
                         </div>
                         <div class="pull-left padding-top-10">
@@ -305,7 +378,8 @@
                     <div class="information padding-top-40">
                         <div class="pull-left margin-right-15">
                             <div class="img-contenedor">
-                                <img src="{{ asset('pics/front/user.jpg') }}" alt="Ringo" class="dimenUsuarioG sombraImgUser">
+                                <img src="{{ asset('pics/front/user.jpg') }}" alt="Ringo"
+                                     class="dimenUsuarioG sombraImgUser">
                             </div>
                         </div>
                         <div class="pull-left padding-top-10">
@@ -315,7 +389,8 @@
                     <div class="information padding-top-40">
                         <div class="pull-left margin-right-15">
                             <div class="img-contenedor">
-                                <img src="{{ asset('pics/front/user.jpg') }}" alt="Ringo" class="dimenUsuarioG sombraImgUser">
+                                <img src="{{ asset('pics/front/user.jpg') }}" alt="Ringo"
+                                     class="dimenUsuarioG sombraImgUser">
                             </div>
                         </div>
                         <div class="pull-left padding-top-10">
