@@ -128,6 +128,8 @@ class User extends Authenticatable
 
     public function routeNotificationForMail( $notification )
     {
-        return 'acuevas1605@gmail.com';
+        return $this->email;
     }
+
+
 }

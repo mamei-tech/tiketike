@@ -17,6 +17,9 @@
                     <label for="selector" class="colorN italic">Nombre</label>
                     <input type="text" class="form-control form-control-new " id="inputEm"
                            name="name">
+                    <label for="selector" class="colorN italic">Apellidos</label>
+                    <input type="text" class="form-control form-control-new " id="inputEm"
+                           name="lastname">
                     <label for="selector" class="colorN italic">Email</label>
                     <input type="text" class="form-control form-control-new " id="inputEm"
                            name="email">
