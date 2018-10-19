@@ -62,6 +62,13 @@ return [
             'visibility' => 'public',
         ],
 
+        'raffles' => [
+            'driver' => 'local',
+            'root' => public_path('/pics/raffles/'),
+            'url' => env('APP_URL') . '/public/pics/raffles',
+            'visibility' => 'public',
+        ],
+
         's3' => [
             'driver' => 's3',
             'key' => env('AWS_ACCESS_KEY_ID'),

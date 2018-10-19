@@ -224,4 +224,15 @@ $(document).ready(function () {
             $('#mdal_addRaffle').modal('show');
         }, 30);
     });
+
+    /* ATACHING EVENTS */
+    $("input#f_image").change(function () {
+
+        let reader = new FileReader();
+
+        reader.onload = function (e) {
+            $('img#promo-img').attr('src', e.target.result).fadeIn('slow');
+        };
+        reader.readAsDataURL(this.files[0]);
+    });
 });

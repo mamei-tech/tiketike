@@ -270,11 +270,11 @@
                              aria-labelledby="headingThree" aria-expanded="true" style="">
                             <div class="panel-body">
                                 <ul class="padding-top-20 nav nav-tabs sinkinSans600SB padding-left150" id="myTab">
-                                    <li><a data-toggle="tab" class="ticket text-uppercase colorN" href="#todas"
-                                           aria-expanded="false">todas</a></li>
-                                    <li class="active"><a data-toggle="tab" class="ticket text-uppercase colorN"
+                                    <li class="active"><a data-toggle="tab" class="ticket text-uppercase colorN" href="#todas"
+                                           aria-expanded="true">todas</a></li>
+                                    <li class=""><a data-toggle="tab" class="ticket text-uppercase colorN"
                                                           href="#creadas"
-                                                          aria-expanded="true">creadas</a></li>
+                                                          aria-expanded="false">creadas</a></li>
                                     <li class=""><a data-toggle="tab" class="ticket text-uppercase colorN"
                                                     href="#participo"
                                                     aria-expanded="false">participo</a></li>
@@ -282,8 +282,19 @@
                                            aria-expanded="false">siguiendo</a></li>
                                 </ul>
                                 <div class="tab-content">
-                                    <div class="tab-pane " id="todas">...</div>
-                                    <div class="tab-pane active in" id="creadas">
+                                    <div class="tab-pane active in" id="todas">
+                                        <div class="col-xs-6 col-lg-3 col-sm-4 padding-top-15">
+                                            <img src="img/habana2.png" class="imgRifas">
+                                            <div class="porciento">
+                                                <div class=" text-center">
+                                                <span class="chartB chart-porcientoR" data-percent="80">
+                                                    <span class="percentR">80%</span>
+                                                </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane " id="creadas">
                                         <div class="col-xs-6 col-lg-3 col-sm-4 padding-top-15">
                                             <img src="img/habana2.png" class="imgRifas">
                                             <div class="porciento">

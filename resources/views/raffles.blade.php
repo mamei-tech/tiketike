@@ -214,7 +214,7 @@
                             <div class="row padding20 bg-rifas1 center-block">
                                 <div class="col-xs-4 col-md-6">
                                     <div class="hidden-lg visible-xs padding-top-20 padding-left-0">
-                                        <img src="{{ asset('pics/front/habana2.png') }}" class="dimenImgCarouselR"
+                                        <img src="{{ $raffle->image }}" class="dimenImgCarouselR"
                                              alt="">
                                     </div>
                                     <div id="myCarousel" class="carousel carouselRifas slide hidden-xs "

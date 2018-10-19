@@ -70,6 +70,31 @@
     </div>
 
     <div class="row">
+
+        <div class="col-md-4">
+            <div class="form-group basic">
+                <label for="image">Image</label>
+                <br>
+                <span class="btn btn-simple btn-round">
+                    <i class="now-ui-icons design_image"></i>
+                    <input id="f_image" type="file" class="form-control" name="image[]">
+                    Select Image
+                </span>
+            </div>
+        </div>
+
+        <div class="col-md-8">
+            <div class="fileinput fileinput-new text-center" data-provides="fileinput">
+                <div class="fileinput thumbnailpromo">
+                    <img id="promo-img" src="{{ asset('pics/common/image_placeholder.jpg') }}" alt="">
+                </div>
+                <div class="fileinput-preview fileinput-exists thumbnail" style=""></div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="row">
         <button id="btn_rolescreatesubmt" class="btn btn-primary btn-round" type="submit" value="add">
             <i class="now-ui-icons ui-1_simple-add"></i>
             Add

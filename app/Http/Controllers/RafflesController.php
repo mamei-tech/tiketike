@@ -23,6 +23,8 @@ class RafflesController extends Controller
     public function index()
     {
         $raffles = Raffle::paginate(3);
+//        var_dump($raffles->first()->media);
+//        die();
         return view('raffles')->with('raffles', $raffles);
     }
 

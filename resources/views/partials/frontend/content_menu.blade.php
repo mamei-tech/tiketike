@@ -21,7 +21,7 @@
             <a href="{{route('profile.info',['userid'=> \Auth::User()->id])}}" class="colorB sinkinSans300L"> {{\Auth::User()->name}} <img src="{{ asset('pics/front/user.jpg') }}" alt="Ringo" class="imgUsuarioMenu sombraImgUserMenu margin-left5"></a>
         </li>
         @endif
-        <li class="notifica">
+        <li class="notifica ">
             <a class="text-uppercase colorB icon" data-toggle="modal" href="#notificaciones" title="Notificaciones">
                 <span class="ti-bell texto20"></span>
                 <span class="badge badge-default">

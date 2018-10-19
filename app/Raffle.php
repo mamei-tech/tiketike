@@ -6,10 +6,15 @@ use App\Http\Aux\CodesGenerator;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\Collection;
+use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
+use Spatie\MediaLibrary\HasMedia\HasMedia;
+use Spatie\MediaLibrary\File;
 
 
-class Raffle extends Model
+class Raffle extends Model implements HasMedia
 {
+    use HasMediaTrait;
+
     protected $table = 'raffles';
     protected $primaryKey = 'id';
     protected $fillable = [
@@ -375,5 +380,29 @@ class Raffle extends Model
             ->where('raffles.id',$id)
             ->first();
         return $tickets;
+    }
+
+    /* Only jpg or png files are allowed */
+    public function registerMediaCollections()
+    {
+        $this
+            ->addMediaCollection('raffles')
+            ->acceptsFile(function (File $file) {
+
+                // Checking if the file already exist in the database
+                $exists = DB::table('media')
+                    ->where('file_name', '=' ,$file->name)
+                    ->where('mime_type', '=' ,$file->mimeType)
+                    ->where('disk', '=' ,'raffles')
+                    ->where('size', '=' ,$file->size)
+                    ->exists();
+
+                if ($exists)
+                    return false;
+                if (!($file->mimeType === 'image/jpeg') or !($file->mimeType !== 'image/png'))
+                    return false;
+                else
+                    return true;
+            });
     }
 }
