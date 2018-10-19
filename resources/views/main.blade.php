@@ -9,11 +9,7 @@
                     </div>
                 </div>
                 <div class="col-sm-5 col-md-4 col-lg-3 hidden-xs">
-                    <ul class="list-inline padding-top-20">
-                        <li class="margin-right-20 ">
-                            <a data-toggle="modal" href="#myModal2" title="Registrarse"
-                               class="colorB texto16 sinkinSans500M">Regístrate</a>
-                        </li>
+                    <ul class="list-inline padding-top-20 padding-left20">
                         <li class="margin-left-20 ">
                             <a data-toggle="modal" href="#myModal" title="Autenticarse"
                                class="colorB texto16 sinkinSans500M">Autenticarse</a>
@@ -27,55 +23,29 @@
                                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
                                                 <span class="ti-angle-right"></span>
                                             </button>
-                                            <ul class="list-unstyled list-inline pull-right">
-                                                <li><a href="rifas.php" class="text-uppercase colorN" title="Rifas"><span
-                                                                class="ti-ticket dimenIconos padding-left10"></span></a>
-                                                </li>
-                                                <li class="borderLeft"><a href="" class="text-uppercase colorN"
-                                                                          title="Rifas"><span
-                                                                class="ti-comments dimenIconos padding-left10 margin-right5"></span></a>
-                                                </li>
-                                                <li class=""><img class="dimenBandera padding-left10" src="{{ asset('pics/front/ban2.jpg') }}"
-                                                                  alt=""></li>
-                                                <li class="colorN">
-                                                    <a href="#" class="icon" title="Buscar"><span
-                                                                class="ti-search dimenIconos search-btn show-search-icon colorN padding-left10"></span></a>
-                                                    <div class="search-box" style="display: none;">
-                                                        <form action="#">
-                                                            <div class="input-group">
-                                                                <input placeholder="Search" class="form-control"
-                                                                       type="text">
-                                                                <span class="input-group-btn">
-                                    <button class="btn btn-search btn-primary" type="submit">Search</button>
-                                </span>
-                                                            </div>
-                                                        </form>
-                                                    </div>
-                                                </li>
-                                            </ul>
                                         </div>
                                         <div class="modal-body">
                                             <div class="col-md-12 "></div>
                                             <h5 class="modal-title text-uppercase textoCenter padding-top-20">Inicio de
                                                 sesión</h5>
-                                            <form class="form-signin">
+                                            <form class="form-signin" action="login" method="POST">
+                                                <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                                 <label for="selector" class="colorN italic">Nombre</label>
-                                                <input type="email" class="form-control form-control-new " id="inputEm">
+                                                <input type="email" class="form-control form-control-new " id="inputEm" name="email">
                                                 <label for="selector"
                                                        class="colorN italic padding-top-20">Contraseña</label>
                                                 <input type="password" class="form-control form-control-new "
-                                                       id="inputPassword">
+                                                       id="inputPassword" name="password">
                                                 <div class="row padding-top-20">
                                                     <div class="col-xs-7">
-                                                        <a href="#" class="texto16"><span
-                                                                    class="italic colorGreen floatRight">Regístrate</span></a>
                                                     </div>
                                                     <div class="col-xs-5">
-                                                        <a type="submit" class="btn btn-sm btn-primary btn-block">
-                                                            Entrar</a>
+                                                        <button type="submit" class="btn btn-sm btn-primary btn-block">
+                                                            Entrar</button>
                                                     </div>
                                                 </div>
                                             </form>
+                                            <h5>orbienve</h5>
                                         </div>
                                     </div>
                                     <!-- /.modal-content -->

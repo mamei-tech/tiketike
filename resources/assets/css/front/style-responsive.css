@@ -1023,7 +1023,7 @@
     }
     .modal-header {
         height: 15px;
-        border-bottom: #000000 2px dashed;
+        /*border-bottom: #000000 2px dashed;*/
         padding-bottom: 30px;
     }
     .style{
@@ -1431,7 +1431,7 @@
     }
     .modal-header {
         height: 15px;
-        border-bottom: #000000 2px dashed;
+        /*border-bottom: #000000 2px dashed;*/
         padding-bottom: 30px;
     }
     .style{
@@ -1838,7 +1838,7 @@
 
     .modal-header {
         height: 15px;
-        border-bottom: #000000 2px dashed;
+        /*border-bottom: #000000 2px dashed;*/
         padding-bottom: 30px;
     }
     .style{
@@ -2253,7 +2253,7 @@
     }
     .modal-header {
         height: 15px;
-        border-bottom: #000000 2px dashed;
+        /*border-bottom: #000000 2px dashed;*/
         padding-bottom: 30px;
     }
     .style{

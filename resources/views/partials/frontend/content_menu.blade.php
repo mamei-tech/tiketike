@@ -6,8 +6,9 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
     </button>
-    <a href="{{ route('main') }}" class="padding-left"><img src="{{ asset('pics/front/logoPeque.svg') }}" class="dimenLogoPeque"
-                                                    alt=""></a>
+    <a href="{{ route('main') }}" class="padding-left"><img src="{{ asset('pics/front/logoPeque.svg') }}"
+                                                            class="dimenLogoPeque"
+                                                            alt=""></a>
     <img class="styleBorderL padding-left30 hidden-xs" src="{{ asset('pics/front/borderLeft.svg') }}" alt="">
 </div>
 <nav id="main-menu" class="navbar-collapse bs-navbar-collapse collapse" role="navigation">
@@ -17,9 +18,12 @@
         <li><a href="" class="text-uppercase colorB sinkinSans300L icon"><span
                         class="ti-comments margin-right5 texto16 "></span>Chat</a></li>
         @if(\Auth::user() != null)
-        <li class="active padding-left650">
-            <a href="{{route('profile.info',['userid'=> \Auth::User()->id])}}" class="colorB sinkinSans300L"> {{\Auth::User()->name}} <img src="{{ asset('pics/front/user.jpg') }}" alt="Ringo" class="imgUsuarioMenu sombraImgUserMenu margin-left5"></a>
-        </li>
+            <li class="active padding-left650">
+                <a href="{{route('profile.info',['userid'=> \Auth::User()->id])}}"
+                   class="colorB sinkinSans300L"> {{\Auth::User()->name}} <img src="{{ asset('pics/front/user.jpg') }}"
+                                                                               alt="Ringo"
+                                                                               class="imgUsuarioMenu sombraImgUserMenu margin-left5"></a>
+            </li>
         @endif
         <li class="notifica">
             <a class="text-uppercase colorB icon" data-toggle="modal" href="#notificaciones" title="Notificaciones">
@@ -36,12 +40,8 @@
                                 <span class="ti-angle-right"></span>
                             </button>
                             <ul class="list-unstyled list-inline pull-right">
-                                <li><a href="rifas.php" class="text-uppercase colorN" title="Rifas"><span
+                                <li><a href="{{ route('raffles.index') }}" class="text-uppercase colorN" title="Rifas"><span
                                                 class="ti-ticket dimenIconos padding-left10"></span></a>
-                                </li>
-                                <li class="borderLeft"><a href="" class="text-uppercase colorN"
-                                                          title="Rifas"><span
-                                                class="ti-comments dimenIconos padding-left10 margin-right5"></span></a>
                                 </li>
                                 <li class=""><img class="dimenBandera padding-left10"
                                                   src="{{ asset('pics/front/ban2.jpg') }}"
