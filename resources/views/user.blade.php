@@ -21,10 +21,10 @@
                         <div class="col-xs-7 col-md-7 padding-top-20 padding0">
                             <span class="texto20 sinkinSans600SB colorN margin-right-15">{{$user->name}}</span>
                             @if($user->id == \Auth::User()->id)
-                            <a href=""><span class="ti-marker-alt texto20 colorN"></span></a>
+                            <a href="{{route('profile.edit',['userid'=> \Auth::User()->id])}}"><span class="ti-marker-alt texto20 colorN"></span></a>
                             @endif
                             <br>
-                            <span class="sinkinSans500MI texto16">Pais</span>
+                            <span class="sinkinSans500MI texto16">{{$user->getProfile->getCity->getCountry->name}}</span>
                         </div>
                     </div>
                     <div class="row hidden-xs padding-top-20">
