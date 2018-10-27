@@ -15,7 +15,8 @@
                         <div class="col-xs-8 col-md-9 texto14 sinkinSans600SB padding0">
                             <span class="colorN">{{ $raffle->getOwner->name }} {{ $raffle->getOwner->lastname }}</span>
                             <span class="ti-location-pin"></span>
-                            <span class=""><img class="img img-responsive img-circle" style="align-self: left" src="{{ asset('pics/countries/'. $raffle->getLocation->name .'.png') }}">{{ $raffle->getLocation->name }}</span>
+                            <span class=""><img class="img img-responsive img-circle" style="align-self: left"
+                                                src="{{ asset('pics/countries/'. $raffle->getLocation->name .'.png') }}">{{ $raffle->getLocation->name }}</span>
                             <p class="texto18 text-uppercase texto-negrita colorN padding-top-10"
                                style="font-family: sinkinSans700Bold">{{ $raffle->title }}</p>
                         </div>
@@ -24,16 +25,22 @@
                         <div id="myCarousel" class="carousel carouselTicket slide" data-ride="carousel">
                             <!-- Indicators -->
                             <div class="carousel-inner" role="listbox">
-                                <div class="item active">
-                                    <img src="{{ asset('pics/front/slide1.jpg') }}" class="dimenImgCarouselTicket" alt="First slide">
-                                </div>
-                                <div class="item">
-                                    <img src="{{ asset('pics/front/Slide2_bg.jpg') }}" class="dimenImgCarouselTicket" alt="Second slide">
-                                </div>
+                                <?php $count = 0; ?>
+                                @foreach($raffle->getMedia('raffles') as $media)
+                                    <div class="item @if($count == 0) active @endif">
+                                        <img src="{{ $media->getUrl() }}" class="dimenImgCarouselTicket"
+                                             alt="First slide">
+                                    </div>
+                                    <?php $count++; ?>
+                                @endforeach
                             </div>
+                            <?php $count = 0;?>
                             <ol class="carousel-indicators carousel-indicatorsTicket">
-                                <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-                                <li data-target="#myCarousel" data-slide-to="1" class=""></li>
+                                @while($count < count($raffle->getmedia('raffles')))
+                                    <li data-target="#myCarousel" data-slide-to="{{ $count }}"
+                                        class="@if($count == 0) active @endif"></li>
+                                    <?php $count++; ?>
+                                @endwhile
                             </ol>
                         </div>
                     </div>
@@ -59,7 +66,8 @@
                                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
                                                 &times;
                                             </button>
-                                            <h6 class="modal-title textoCenter text-uppercase sinkinSans600SB colorN">Mis
+                                            <h6 class="modal-title textoCenter text-uppercase sinkinSans600SB colorN">
+                                                Mis
                                                 Tickets
                                                 comprados</h6>
                                         </div>
@@ -117,7 +125,8 @@
                         <div class="comments">
                             <div class="media">
                                 <a href="#" class="pull-left  margin-right-20">
-                                    <img src="{{ asset('pics/front/user.jpg') }}" alt="Ringo" class="imgUsuario sombraImgUser2">
+                                    <img src="{{ asset('pics/front/user.jpg') }}" alt="Ringo"
+                                         class="imgUsuario sombraImgUser2">
                                 </a>
                                 <div class="media-body">
                                     <div class="margin-bottom-20 sinkinSans400R texto10 ">
@@ -126,7 +135,8 @@
                                         <span class="colorN">País</span>
                                         <a href="#" class="colorV texto8 sinkinSans400I pull-right margin-right-15">responder...</a>
                                     </span>
-                                        <p class="texto10 sinkinSans300L">Donec id elit non mi porta gravida at eget metus.
+                                        <p class="texto10 sinkinSans300L">Donec id elit non mi porta gravida at eget
+                                            metus.
                                             Fusce dapibus,
                                             tellus ac cursus commodo, tortor mauris condimentum nibh,
                                             ut fermentum massa justo sit amet risus.
@@ -136,7 +146,8 @@
                                     <!-- Nested media object -->
                                     <div class="media">
                                         <a href="#" class="pull-left margin-right-20">
-                                            <img src="{{ asset('pics/front/user2.jpg') }}" alt="Ringo" class="imgUsuario2 sombraImgUser2">
+                                            <img src="{{ asset('pics/front/user2.jpg') }}" alt="Ringo"
+                                                 class="imgUsuario2 sombraImgUser2">
                                         </a>
                                         <div class="media-body">
                                             <div class="margin-bottom-20 sinkinSans400R texto10">
@@ -146,7 +157,8 @@
                                                  <a href="#"
                                                     class="colorV texto8 sinkinSans400I pull-right margin-right-15">responder...</a>
                                               </span>
-                                                <p class="texto10 sinkinSans300L">Donec id elit non mi porta gravida at eget
+                                                <p class="texto10 sinkinSans300L">Donec id elit non mi porta gravida at
+                                                    eget
                                                     metus. Fusce dapibus,
                                                     tellus ac cursus commodo, tortor mauris condimentum nibh,
                                                     ut fermentum massa justo sit amet risus.
@@ -161,7 +173,8 @@
                             <!--end media-->
                             <div class="media">
                                 <a href="#" class="pull-left margin-right-20">
-                                    <img src="{{ asset('pics/front/user.jpg') }}" alt="Ringo" class="imgUsuario sombraImgUser2">
+                                    <img src="{{ asset('pics/front/user.jpg') }}" alt="Ringo"
+                                         class="imgUsuario sombraImgUser2">
                                 </a>
                                 <div class="media-body">
                                     <div class="margin-bottom-20 sinkinSans400R texto10">
@@ -170,7 +183,8 @@
                                         <span class="colorN">País</span>
                                         <a href="#" class="colorV texto8 sinkinSans400I pull-right margin-right-15">responder...</a>
                                     </span>
-                                        <p class="texto10 sinkinSans300L">Donec id elit non mi porta gravida at eget metus.
+                                        <p class="texto10 sinkinSans300L">Donec id elit non mi porta gravida at eget
+                                            metus.
                                             Fusce dapibus,
                                             tellus ac cursus commodo, tortor mauris condimentum nibh,
                                             ut fermentum massa justo sit amet risus.
@@ -214,14 +228,14 @@
                     <div class="row padding-top-20 padding-left30">
                         <div class="centerM slickVertical sinkinSans400R text-uppercase  ">
                             @foreach($tickets as $ticket)
-                            <div>
-                                <div class="padding-top-15  bg-prueba pull-left">
-                                    <span class="padding-top-20 padding-left25 text-uppercase colorB margin-right-10">{{ $ticket->code }}</span>
+                                <div>
+                                    <div class="padding-top-15  bg-prueba pull-left">
+                                        <span class="padding-top-20 padding-left25 text-uppercase colorB margin-right-10">{{ $ticket->code }}</span>
+                                    </div>
+                                    <div class="padding-top-30">
+                                        <input class="margin-left15 " type="checkbox">
+                                    </div>
                                 </div>
-                                <div class="padding-top-30">
-                                    <input class="margin-left15 " type="checkbox">
-                                </div>
-                            </div>
                             @endforeach
                         </div>
                     </div>

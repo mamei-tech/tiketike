@@ -130,6 +130,7 @@ class URaffleController extends Controller
     public function store(Request $request)
     {
         $raffle = new Raffle;
+
         $raffle->id = CodesGenerator::newRaffleId();
         $id = $raffle->id;
         $raffle->owner = $request->owner;
@@ -139,36 +140,17 @@ class URaffleController extends Controller
         $raffle->description = $request->description;
         $raffle->price = $request->price;
         $raffle->location = $request->location;
+
         $raffle->save();
+
         $raffle = Raffle::find($id);
-
-
-        // checking & saving promo img
-        if ($request->has('image') and $request->file('image')->isValid()) {
-            try {
-
-                $raffle->addMediaFromRequest('image')->toMediaCollection("raffles", 'raffles');  // Second parameters is the defaul filesystem, optional
-//                $raffle->image = $request->image->getClientOriginalName();
-
-                // Saving the image name
-//                $raffle->save();
-
-                return redirect()->route('unpublished.index',
-                    [
-                        'div_showRaffles' => 'show',
-                        'li_activeURaffles' => 'active',
-                    ],
-                    '303')
-                    ->with('success', 'Raffle created successfully');
-
-            } catch (Exception $e) {
-
-                $raffle->delete();
-                return redirect()->back()->withErrors($e->getMessage()); //"Something went wrong uploading the image."
+        foreach ($request->all()['avatar'] as $item)
+        {
+            if ($request->has('avatar') and $item->isValid()) {
+                $raffle->addMedia($item)->toMediaCollection('raffles','raffles');
             }
-        }
-        $raffle->save();
 
+        }
         return redirect()->route('unpublished.index',
             [
                 'div_showRaffles' => 'show',
