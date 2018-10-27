@@ -50,62 +50,7 @@
 					7 </span>
                 </a>
 
-                <!-- Modal -->
-                <div class="modal fade" id="notificaciones" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-                     aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header form-signin padding-left-0 padding-bottom20">
-                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                                    <span class="ti-angle-right"></span>
-                                </button>
-                                <ul class="list-unstyled list-inline pull-right">
-                                    <li><a href="rifas.php" class="text-uppercase colorN" title="Rifas"><span
-                                                    class="ti-ticket dimenIconos padding-left10"></span></a>
-                                    </li>
-                                    <li class="borderLeft"><a href="" class="text-uppercase colorN"
-                                                              title="Rifas"><span
-                                                    class="ti-comments dimenIconos padding-left10 margin-right5"></span></a>
-                                    </li>
-                                    <li class=""><img class="dimenBandera padding-left10"
-                                                      src="{{ asset('pics/front/ban2.jpg') }}"
-                                                      alt=""></li>
-                                    <li class="colorN">
-                                        <a href="#" class="icon" title="Buscar"><span
-                                                    class="ti-search dimenIconos search-btn show-search-icon colorN padding-left10"></span></a>
-                                        <div class="search-box" style="display: none;">
-                                            <form action="#">
-                                                <div class="input-group">
-                                                    <input placeholder="Search" class="form-control"
-                                                           type="text">
-                                                    <span class="input-group-btn">
-                                    <button class="btn btn-search btn-primary" type="submit">Search</button>
-                                </span>
-                                                </div>
-                                            </form>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="modal-body">
-                                <div class="text-center">
-                                    <img src="{{ asset('pics/front/user.jpg') }}" alt="Ringo"
-                                         class="imgUsuario sombraImgUser2"><br>
-                                    <div class="padding-top-10">
-                                        <span class="sinkinSans300L colorN margin-right-15 padding-top5">Jane Doe</span><br>
-                                        <span class="sinkinSans200LI texto10">Pais</span>
-                                    </div>
-                                </div>
-                                <div class="borderBottomG padding-top-40">
-                                    <span class="text-uppercase sinkinSans400R">notificaciones</span>
-                                    <div>
-                                        <strong></strong>
-                                    </div>
-                                </div>
-                            </div>
-                        </div><!-- /.modal-content -->
-                    </div><!-- /.modal-dialog -->
-                </div>
+            @include('partials.front_modals.notification_modal')
 
             <li class="hidden-xs"><img class="styleBorderL colorB" src="{{ asset('pics/front/borderLeft.svg') }}" alt="">
             </li>
@@ -125,7 +70,6 @@
                 </div>
             </li>
 
-            </li>
         </ul>
     </div>
 
