@@ -16,7 +16,7 @@
 </body>
 
 @section('footerScripts')
-    <script src="#"></script>
+    <script src="{{ asset('js/generalfrontscript.min.js') }}"></script>
 @show
 
 </html>
