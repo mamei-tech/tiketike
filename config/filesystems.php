@@ -55,6 +55,13 @@ return [
             'visibility' => 'public',
         ],
 
+        'raffles' => [
+            'driver' => 'local',
+            'root' => public_path('/pics/raffles/'),
+            'url' => env('APP_URL') . '/public/pics/raffles',
+            'visibility' => 'public',
+        ],
+
         'promos' => [
             'driver' => 'local',
             'root' => public_path('/pics/promos/'),

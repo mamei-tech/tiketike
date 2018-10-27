@@ -131,6 +131,7 @@ class URaffleController extends Controller
         $raffle = new Raffle;
 
         $raffle->id = CodesGenerator::newRaffleId();
+        $id = $raffle->id;
         $raffle->owner = $request->owner;
         $raffle->category = $request->category;
         $raffle->status = RaffleStatus::where('status', 'Unpublished')->first()->id;    // Unpublished by default.
@@ -140,6 +141,15 @@ class URaffleController extends Controller
         $raffle->location = $request->location;
 
         $raffle->save();
+
+        $raffle = Raffle::find($id);
+        foreach ($request->all()['avatar'] as $item)
+        {
+            if ($request->has('avatar') and $item->isValid()) {
+                $raffle->addMedia($item)->toMediaCollection('raffles','raffles');
+            }
+
+        }
         return redirect()->route('unpublished.index',
             [
                 'div_showRaffles' => 'show',

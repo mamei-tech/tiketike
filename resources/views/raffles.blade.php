@@ -217,25 +217,29 @@
                                         <img src="{{ asset('pics/front/habana2.png') }}" class="dimenImgCarouselR"
                                              alt="">
                                     </div>
-                                    <div id="myCarousel" class="carousel carouselRifas slide hidden-xs "
+                                    <div id="myCarousel{{ $raffle->id }}"
+                                         class="carousel carouselRifas slide hidden-xs "
                                          data-ride="carousel">
                                         <!-- Indicators -->
                                         <div class="carousel-inner" role="listbox">
-                                            <div class="item active">
-                                                <img src="{{ asset('pics/front/proyecto1.jpg') }}"
-                                                     class="dimenImgCarouselR"
-                                                     alt="First slide">
-                                            </div>
-                                            <div class="item">
-                                                <img src="{{ asset('pics/front/habana2.png') }}"
-                                                     class="dimenImgCarouselR"
-                                                     alt="Second slide">
-                                            </div>
+                                            <?php $count = 0;?>
+                                            @foreach($raffle->getMedia('raffles') as $media)
+                                                <div class="item @if($count == 0) active @endif">
+                                                    <img src="{{ $media->getUrl() }}"
+                                                         class="dimenImgCarouselR"
+                                                         alt="First slide">
+                                                </div>
+                                                <?php $count++; ?>
+                                            @endforeach
                                         </div>
+                                        <?php $count = 0; ?>
                                         <ol class="carousel-indicators">
-                                            <li data-target="#myCarousel" data-slide-to="0" class=""></li>
-                                            <li data-target="#myCarousel" data-slide-to="1" class=""></li>
-                                            <li data-target="#myCarousel" data-slide-to="2" class="active"></li>
+                                            @while($count < count($raffle->getMedia('raffles')))
+                                                <li data-target="#myCarousel{{ $raffle->id }}"
+                                                    data-slide-to="{{ $count }}"
+                                                    class="@if($count == 0) active @endif"></li>
+                                                <?php $count++; ?>
+                                            @endwhile
                                         </ol>
                                     </div>
                                 </div>
@@ -244,9 +248,12 @@
                                     <span class="texto14 colorN pull-left sinkinSans600SB texto14">{{ $raffle->getOwner->name }} {{ $raffle->getOwner->lastname }}</span>
                                     <span class="ti-location-pin texto16 padding-left10 colorN"></span>
                                     <!-- TODO Buscar como poner el texto al lado de la imagen sin hacerla flotar -->
-                                    <span class="texto14 padding-left10 sinkinSans600SB texto14 colorN"><img class="img img-responsive img-circle" style="align-self: left" src="{{ asset('pics/countries/'. $raffle->getLocation->name .'.png') }}">{{ $raffle->getLocation->name }}</span>
+                                    <span class="texto14 padding-left10 sinkinSans600SB texto14 colorN"><img
+                                                class="img img-responsive img-circle" style="align-self: left"
+                                                src="{{ asset('pics/countries/'. $raffle->getLocation->name .'.png') }}">{{ $raffle->getLocation->name }}</span>
                                     <h4 class=" text-uppercase sinkinSans400R textoR">
-                                        <a class="colorN" href="{{ route('raffle.tickets.available',['raffleId' => $raffle->id]) }}">{{ $raffle->title }}</a>
+                                        <a class="colorN"
+                                           href="{{ route('raffle.tickets.available',['raffleId' => $raffle->id]) }}">{{ $raffle->title }}</a>
                                     </h4>
                                     <div class="hidden-lg texto8">
                                         <span class="sinkinSans300L ">Costo:</span>
@@ -254,7 +261,8 @@
                                     </div>
                                     <div class="costo hidden-xs">
                                         <div class="pull-left porcientoCompletado">
-                                            <span class="texto35 sinkinSans600SB colorN">@if( \App\Raffle::getTicketsSold($raffle->id) > 0){{ $raffle->tickets_count / \App\Raffle::getTicketsSold($raffle->id) }} @else 0 @endif%</span><br>
+                                            <span class="texto35 sinkinSans600SB colorN">@if( \App\Raffle::getTicketsSold($raffle->id) > 0){{ $raffle->tickets_count / \App\Raffle::getTicketsSold($raffle->id) }} @else
+                                                    0 @endif%</span><br>
                                             <span class="sinkinSans400R">completado</span>
                                         </div>
                                         <div class="pull-left padding-top-20 padding-left30">
@@ -286,24 +294,24 @@
                                     </ul>
                                 </div>
                             </div>
-                        @endforeach
-                    @endif
-                    {{ $raffles->links() }}
-                    {{--<div class="row padding-top-30 text-center colorN paginado">--}}
-                        {{--<div id="pagination" class="center">--}}
-                            {{--<ul class="pagination sinkinSans600SB  ">--}}
-                                {{--<li><a href="#"><span class="ti-angle-left"></span></a></li>--}}
-                                {{--<li><a href="#">1</a></li>--}}
-                                {{--<li><a href="#">2</a></li>--}}
-                                {{--<li><a href="#">3</a></li>--}}
+                    @endforeach
+                @endif
+                {{ $raffles->links() }}
+                {{--<div class="row padding-top-30 text-center colorN paginado">--}}
+                {{--<div id="pagination" class="center">--}}
+                {{--<ul class="pagination sinkinSans600SB  ">--}}
+                {{--<li><a href="#"><span class="ti-angle-left"></span></a></li>--}}
+                {{--<li><a href="#">1</a></li>--}}
+                {{--<li><a href="#">2</a></li>--}}
+                {{--<li><a href="#">3</a></li>--}}
 
-                                {{--<li><a href="#"><span class="ti-angle-right"></span></a></li>--}}
-                            {{--</ul>--}}
+                {{--<li><a href="#"><span class="ti-angle-right"></span></a></li>--}}
+                {{--</ul>--}}
 
 
-                        {{--</div>--}}
-                    {{--</div>--}}
-                    <!--Fin Espacio para el paginado-->
+                {{--</div>--}}
+                {{--</div>--}}
+                <!--Fin Espacio para el paginado-->
                 </div>
 
             </div>
