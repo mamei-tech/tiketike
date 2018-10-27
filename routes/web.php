@@ -66,8 +66,8 @@ Route::group(['prefix' => 'users',
 ], function () {
     Route::get('/billing/{userid}', 'BillingController@getBillingInfo')->name('billing.info');
     Route::patch('/billing/{userid}', 'BillingController@saveBillingInfo')->name('billing.saveinfo');
-    Route::get('/profile/{userid}', 'UserController@getProfile')->name('profile.info');
-    Route::get('/profile/edit/{userid}', 'UserController@edit')->name('profile.edit');
+    Route::get('/profile/{userid}/', 'UserController@getProfile')->name('profile.info');
+//    Route::get('/profile/edit/{userid}', 'UserController@edit')->name('profile.edit');
 });
 
 /* ADMIN ROUTES | MIX NAMESPACE */

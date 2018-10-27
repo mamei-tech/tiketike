@@ -101,13 +101,14 @@ class Raffle extends Model implements HasMedia
 
     public function getFollowers()
     {
-        return $this->belongsToMany(User::class,'follow');
+        return $this->belongsToMany(User::class, 'follow');
     }
 
     public function getLocation()
     {
-        return $this->hasOne(Country::class,'id','location');
+        return $this->hasOne(Country::class, 'id', 'location');
     }
+
     /**
      * Perform a tickets buy
      *
@@ -117,26 +118,22 @@ class Raffle extends Model implements HasMedia
      * @param null $referralId If not null is the referral id
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function  buyTickets($user, $ticketIds, $url, $referralId = null)
+    public function buyTickets($user, $ticketIds, $url, $referralId = null)
     {
-        if ($this->getStatus->status != 'Published')
-        {
+        if ($this->getStatus->status != 'Published') {
             //TODO return some error view
             echo "UNPUBLISHED RAFFLE";
             die();
         }
         $ticketsBuyed = [];
-        foreach ($ticketIds as $tid)
-        {
+        foreach ($ticketIds as $tid) {
             $ticket = Ticket::where('raffle', $this->id)->where('code', $tid)->first();
-            if ($ticket == null)
-            {
+            if ($ticket == null) {
                 //TODO return some error view
                 echo "UNKNOW TICKET";
                 die();
             }
-            if ($ticket->sold)
-            {
+            if ($ticket->sold) {
                 //TODO return some error view
                 echo "TICKETS HAS BEEN SOLD";
                 die();
@@ -154,15 +151,13 @@ class Raffle extends Model implements HasMedia
         if ($referralId != null) //Ticket buyed by a referral.
         {
             $referralUser = User::find($referralId);
-            if ($referralUser == null)
-            {
+            if ($referralUser == null) {
                 //TODO return some error view
                 echo "USER NOT FOUND";
                 die();
             }
             $referralsBuys = [];
-            foreach ($ticketsBuyed as $ticket)
-            {
+            foreach ($ticketsBuyed as $ticket) {
                 $refBuy = new ReferralsBuys;
                 $refBuy->comisionist = $referralId;
                 $refBuy->ticket = $ticket->id;
@@ -186,8 +181,9 @@ class Raffle extends Model implements HasMedia
      * @param $tcount
      * @param $trpice
      */
-    public function publish($profit, $comision, $tcount, $trpice){
-        if($this->status == 1){
+    public function publish($profit, $comision, $tcount, $trpice)
+    {
+        if ($this->status == 1) {
 
             // Setting new raffle data
             $this->profit = $profit;
@@ -219,7 +215,8 @@ class Raffle extends Model implements HasMedia
     }
 
     /* TODO Enhance this method for situation like is the raffle is published already */
-    public function anullate() {
+    public function anullate()
+    {
         $this->status = 3;                    // ID for anulled status
         $this->save();
     }
@@ -319,7 +316,8 @@ class Raffle extends Model implements HasMedia
      *
      * @return Collection
      */
-    public static function almostsoldraffles() {
+    public static function almostsoldraffles()
+    {
 
         $rafflesdbquery = Raffle::join('rafflestatus', 'raffles.status', '=', 'rafflestatus.id')
             ->join('tickets', 'raffles.id', '=', 'tickets.raffle')
@@ -343,14 +341,13 @@ class Raffle extends Model implements HasMedia
                 'raffles.activation_date'
 
             )
-            ->take(35)                  // Limit the query to 35 raffles
+            ->take(35)// Limit the query to 35 raffles
             ->paginate(10);
 
         $almostsoldraffles = new Collection();
 
         $break = 0;
-        foreach ($rafflesdbquery as $key => $raffle)
-        {
+        foreach ($rafflesdbquery as $key => $raffle) {
             // Checking if the progress of the raffle is higher than 80 %
             $progres = ($raffle->solds_tickets * 100) / $raffle->tickets_count;
             if ($progres >= 80)
@@ -366,6 +363,36 @@ class Raffle extends Model implements HasMedia
         return $almostsoldraffles;
     }
 
+
+    public static function getProgress($id)
+    {
+
+        $rafflesdbquery = Raffle::join('rafflestatus', 'raffles.status', '=', 'rafflestatus.id')
+            ->join('tickets', 'raffles.id', '=', 'tickets.raffle')
+            ->select(
+                'raffles.id',
+                'raffles.tickets_price',
+                DB::raw('sum(tickets.sold) as solds_tickets'),
+                'raffles.tickets_count')
+            ->where('rafflestatus.status', 'Published')
+            ->where('raffles.id', $id)
+            ->groupBy(
+                'raffles.id',
+                'raffles.tickets_price',
+                'raffles.tickets_count'
+            );
+
+
+        $raffle= $rafflesdbquery->first();
+
+
+            $progress = ($raffle->solds_tickets * 100) / $raffle->tickets_count;
+
+
+        return $progress;
+    }
+
+
     public function suflee()
     {
         $tickets = Ticket::where('tickets.raffle', $this->id)->get();
@@ -377,7 +404,7 @@ class Raffle extends Model implements HasMedia
     {
         $tickets = Raffle::join('tickets', 'raffles.id', '=', 'tickets.raffle')
             ->select('raffles.tickets_price')
-            ->where('raffles.id',$id)
+            ->where('raffles.id', $id)
             ->first();
         return $tickets;
     }
@@ -391,10 +418,10 @@ class Raffle extends Model implements HasMedia
 
                 // Checking if the file already exist in the database
                 $exists = DB::table('media')
-                    ->where('file_name', '=' ,$file->name)
-                    ->where('mime_type', '=' ,$file->mimeType)
-                    ->where('disk', '=' ,'raffles')
-                    ->where('size', '=' ,$file->size)
+                    ->where('file_name', '=', $file->name)
+                    ->where('mime_type', '=', $file->mimeType)
+                    ->where('disk', '=', 'raffles')
+                    ->where('size', '=', $file->size)
                     ->exists();
 
                 if ($exists)

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 
+use App\Raffle;
 use App\User;
 use Illuminate\Support\Facades\DB;
 use App\Country;
@@ -21,9 +22,11 @@ class UserController extends Controller
     {
 
         $user = User::find($userid)->with('getProfile')->first();
+        $raffles = Raffle::getPublishedRaffles();
 
         return view('user', [
             'user' => $user,
+            'raffles'=> $raffles
         ]);
     }
 
@@ -34,22 +37,22 @@ class UserController extends Controller
      * @param  int $userid
      * @return \Illuminate\Http\Response
      */
-    public function edit($userid)
-    {
-        $user = User::with('getProfile')->findOrFail($userid);
-
-        $countries = Country::paginate(10);
-        $countrycities = DB::table('cities')
-            ->select('cities.*')
-            ->where('cities.country', $user->getProfile->getCity->getCountry->id)
-            ->get();
-
-        return view('userprofilefront', [
-            'user' => $user,
-            'countries' => $countries,
-            'countrycities' => $countrycities
-        ]);
-    }
+//    public function edit($userid)
+//    {
+//        $user = User::with('getProfile')->findOrFail($userid);
+//
+//        $countries = Country::paginate(10);
+//        $countrycities = DB::table('cities')
+//            ->select('cities.*')
+//            ->where('cities.country', $user->getProfile->getCity->getCountry->id)
+//            ->get();
+//
+//        return view('partials.front_modals.register_modal', [
+//            'user' => $user,
+//            'countries' => $countries,
+//            'countrycities' => $countrycities
+//        ]);
+//    }
 
 
 
