@@ -4,10 +4,10 @@
         <h6 class="text-uppercase sinkinSans600SB borderBottomV padding-bottom5">Sugerencias</h6>
         <div class="row">
             <div class="col-md-8">
-                <img src="{{ asset('pics/front/proyecto1.jpg') }}" class="imgSugerencias" alt="">
+                <img src="{{ asset('pics/front/proyecto1.jpg') }}" class="imgRifas" alt="">
             </div>
             <div class="col-md-4">
-                <div class="text-center">
+                <div class="publicityPercent">
                     <span class="chart chart-porciento" data-percent="85">
                         <span class="percent sinkinSans600SB">85%</span>
                     </span>
@@ -18,10 +18,10 @@
         </div>
         <div class="row padding-top-20">
             <div class="col-md-8">
-                <img src="{{ asset('pics/front/proyecto1.jpg') }}" class="imgSugerencias" alt="">
+                <img src="{{ asset('pics/front/proyecto1.jpg') }}" class="imgRifas" alt="">
             </div>
             <div class="col-md-4">
-                <div class=" text-center">
+                <div class=" publicityPercent">
                     <span class="chart chart-porciento" data-percent="50">
                         <span class="percent sinkinSans600SB">50%</span>
 
@@ -33,10 +33,10 @@
         </div>
         <div class="row padding-top-20">
             <div class="col-md-8">
-                <img src="{{ asset('pics/front/proyecto1.jpg') }}" class="imgSugerencias" alt="">
+                <img src="{{ asset('pics/front/proyecto1.jpg') }}" class="imgRifas" alt="">
             </div>
             <div class="col-md-4">
-                <div class=" text-center">
+                <div class=" publicityPercent" >
                     <span class="chart chart-porciento" data-percent="70">
                         <span class="percent sinkinSans600SB">70%</span>
                         <canvas height="80" width="80"></canvas>
@@ -49,9 +49,9 @@
     </div>
     <div class="publicidad padding-top-20">
         <h6 class="text-uppercase sinkinSans600SB borderBottomV padding-bottom5">publicidad</h6>
-        <img src="{{ asset('pics/front/proyecto1.jpg') }}" class="imgPublicidad img-responsive" alt="">
-        <img src="{{ asset('pics/front/proyecto1.jpg') }}" class="imgPublicidad padding-top-20" alt="">
-        <img src="{{ asset('pics/front/proyecto1.jpg') }}" class="imgPublicidad padding-top-20" alt="">
+        <img src="{{ asset('pics/front/proyecto1.jpg') }}" class=" img-responsive" alt="">
+        <img src="{{ asset('pics/front/proyecto1.jpg') }}" class="img-responsive padding-top-20" alt="">
+        <img src="{{ asset('pics/front/proyecto1.jpg') }}" class="img-responsive padding-top-20" alt="">
     </div>
 
 </div>

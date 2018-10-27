@@ -21,10 +21,14 @@
                         <div class="col-xs-7 col-md-7 padding-top-20 padding0">
                             <span class="texto20 sinkinSans600SB colorN margin-right-15">{{$user->name}}</span>
                             @if($user->id == \Auth::User()->id)
-                            <a href=""><span class="ti-marker-alt texto20 colorN"></span></a>
+                                {{--<a href="{{route('profile.edit',['userid'=> \Auth::User()->id])}}"><span class="ti-marker-alt texto20 colorN"></span></a>--}}
+                                @include('partials.front_modals.profile_modal')
+                                <a data-toggle="modal" href="#profileModal"><span
+                                            class="ti-marker-alt texto20 colorN"></span></a>
                             @endif
                             <br>
-                            <span class="sinkinSans500MI texto16">Pais</span>
+
+                            <span class="sinkinSans500MI texto16">{{$user->getProfile->getCity->getCountry->name}}</span>
                         </div>
                     </div>
                     <div class="row hidden-xs padding-top-20">
@@ -270,11 +274,12 @@
                              aria-labelledby="headingThree" aria-expanded="true" style="">
                             <div class="panel-body">
                                 <ul class="padding-top-20 nav nav-tabs sinkinSans600SB padding-left150" id="myTab">
-                                    <li class="active"><a data-toggle="tab" class="ticket text-uppercase colorN" href="#todas"
-                                           aria-expanded="true">todas</a></li>
+                                    <li class="active"><a data-toggle="tab" class="ticket text-uppercase colorN"
+                                                          href="#todas"
+                                                          aria-expanded="true">todas</a></li>
                                     <li class=""><a data-toggle="tab" class="ticket text-uppercase colorN"
-                                                          href="#creadas"
-                                                          aria-expanded="false">creadas</a></li>
+                                                    href="#creadas"
+                                                    aria-expanded="false">creadas</a></li>
                                     <li class=""><a data-toggle="tab" class="ticket text-uppercase colorN"
                                                     href="#participo"
                                                     aria-expanded="false">participo</a></li>
@@ -283,20 +288,25 @@
                                 </ul>
                                 <div class="tab-content">
                                     <div class="tab-pane active in" id="todas">
+                                        @if (count($raffles) > 0)
+                                            @foreach($raffles as $raffle)
                                         <div class="col-xs-6 col-lg-3 col-sm-4 padding-top-15">
-                                            <img src="img/habana2.png" class="imgRifas">
-                                            <div class="porciento">
-                                                <div class=" text-center">
-                                                <span class="chartB chart-porcientoR" data-percent="80">
-                                                    <span class="percentR">80%</span>
+                                                    <img src="{{ asset('pics/front/proyecto1.jpg') }}" class="imgRifas">
+                                                    <div class="porciento">
+                                                        <div class=" text-center">
+                                                <span class="chartB chart-porcientoR" data-percent="{{\App\Raffle::getProgress($raffle->id)}}">
+                                                    <span class="percentR">{{\App\Raffle::getProgress($raffle->id)}}%</span>
                                                 </span>
-                                                </div>
-                                            </div>
+                                                        </div>
+                                                    </div>
+
                                         </div>
+                                            @endforeach
+                                        @endif
                                     </div>
                                     <div class="tab-pane " id="creadas">
                                         <div class="col-xs-6 col-lg-3 col-sm-4 padding-top-15">
-                                            <img src="img/habana2.png" class="imgRifas">
+                                            <img src="{{ asset('pics/front/proyecto1.jpg') }}" class="imgRifas">
                                             <div class="porciento">
                                                 <div class=" text-center">
                                                 <span class="chartB chart-porcientoR" data-percent="80">
@@ -306,7 +316,7 @@
                                             </div>
                                         </div>
                                         <div class="col-xs-6 col-lg-3 col-sm-4 padding-top-15">
-                                            <img src="img/habana2.png" class="imgRifas">
+                                            <img src="{{ asset('pics/front/proyecto1.jpg') }}" class="imgRifas">
                                             <div class="porciento">
                                                 <div class=" text-center">
                                                 <span class="chartB chart-porcientoR" data-percent="80">
@@ -316,7 +326,7 @@
                                             </div>
                                         </div>
                                         <div class="col-xs-6 col-lg-3 col-sm-4 padding-top-15">
-                                            <img src="img/habana2.png" class="imgRifas">
+                                            <img src="{{ asset('pics/front/proyecto1.jpg') }}" class="imgRifas">
                                             <div class="porciento">
                                                 <div class=" text-center">
                                                 <span class="chartB chart-porcientoR" data-percent="80">
@@ -326,7 +336,7 @@
                                             </div>
                                         </div>
                                         <div class="col-xs-6 col-lg-3 col-sm-4 padding-top-15">
-                                            <img src="img/habana2.png" class="imgRifas">
+                                            <img src="{{ asset('pics/front/proyecto1.jpg') }}" class="imgRifas">
                                             <div class="porciento">
                                                 <div class=" text-center">
                                                 <span class="chartB chart-porcientoR" data-percent="80">
@@ -336,7 +346,7 @@
                                             </div>
                                         </div>
                                         <div class="col-xs-6 col-lg-3 col-sm-4 padding-top-15">
-                                            <img src="img/habana2.png" class="imgRifas">
+                                            <img src="{{ asset('pics/front/proyecto1.jpg') }}" class="imgRifas">
                                             <div class="porciento">
                                                 <div class=" text-center">
                                                 <span class="chartB chart-porcientoR" data-percent="80">
@@ -346,7 +356,7 @@
                                             </div>
                                         </div>
                                         <div class="col-xs-6 col-lg-3 col-sm-4 padding-top-15">
-                                            <img src="img/habana2.png" class="imgRifas">
+                                            <img src="{{ asset('pics/front/proyecto1.jpg') }}" class="imgRifas">
                                             <div class="porciento">
                                                 <div class=" text-center">
                                                 <span class="chartB chart-porcientoR" data-percent="80">
@@ -393,7 +403,7 @@
                                     <div class="tab-pane active in" id="vendidos">
                                         <div class="col-xs-6 col-lg-3 col-sm-4 padding-top-15 paddingLeft0 padding-rigth-0">
                                             <div class="pull-left">
-                                                <img src="img/habana2.png" class="imgTicket">
+                                                <img src="{{ asset('pics/front/proyecto1.jpg') }}" class="imgTicket">
                                             </div>
                                             <div class="pull-left bg-b colorV textoCenter">
                                                 <h4 class="sinkinSans600SB">2</h4>
@@ -402,7 +412,7 @@
                                         </div>
                                         <div class="col-xs-6 col-lg-3 col-sm-4 padding-top-15 paddingLeft0 padding-rigth-0">
                                             <div class="pull-left">
-                                                <img src="img/habana2.png" class="imgTicket">
+                                                <img src="{{ asset('pics/front/proyecto1.jpg') }}" class="imgTicket">
                                             </div>
                                             <div class="pull-left bg-b colorV textoCenter">
                                                 <h4 class="sinkinSans600SB">2</h4>
@@ -411,7 +421,7 @@
                                         </div>
                                         <div class="col-xs-6 col-lg-3 col-sm-4 padding-top-15 paddingLeft0 padding-rigth-0">
                                             <div class="pull-left">
-                                                <img src="img/habana2.png" class="imgTicket">
+                                                <img src="{{ asset('pics/front/proyecto1.jpg') }}" class="imgTicket">
                                             </div>
                                             <div class="pull-left bg-b colorV textoCenter">
                                                 <h4 class="sinkinSans600SB">2</h4>
@@ -420,7 +430,7 @@
                                         </div>
                                         <div class="col-xs-6 col-lg-3 col-sm-4 padding-top-15 paddingLeft0 padding-rigth-0">
                                             <div class="pull-left">
-                                                <img src="img/habana2.png" class="imgTicket">
+                                                <img src="{{ asset('pics/front/proyecto1.jpg') }}" class="imgTicket">
                                             </div>
                                             <div class="pull-left bg-b colorV textoCenter">
                                                 <h4 class="sinkinSans600SB">2</h4>
@@ -469,37 +479,37 @@
                                             <div class="col-md-12">
                                                 <div class="slickUsuario">
                                                     <div class="paddingImgCarousel">
-                                                        <img src="img/user.jpg" class="imgUsuario sombraImgUser2"
+                                                        <img src="{{ asset('pics/front/user.jpg') }}" class="imgUsuario sombraImgUser2"
                                                              alt="imgUser">
                                                         <h6 class="hidden-xs sinkinSans600SB">Jane Doe</h6>
                                                         <span class="texto10 sinkinSans500MI padding-left10 hidden-xs">Brasil</span>
                                                     </div>
                                                     <div class="paddingImgCarousel">
-                                                        <img src="img/user.jpg" class="imgUsuario sombraImgUser2"
+                                                        <img src="{{ asset('pics/front/user.jpg') }}" class="imgUsuario sombraImgUser2"
                                                              alt="imgUser">
                                                         <h6 class="hidden-xs sinkinSans600SB">Jane Doe</h6>
                                                         <span class="texto10 sinkinSans500MI padding-left10 hidden-xs">Brasil</span>
                                                     </div>
                                                     <div class="paddingImgCarousel">
-                                                        <img src="img/user.jpg" class="imgUsuario sombraImgUser2"
+                                                        <img src="{{ asset('pics/front/user.jpg') }}" class="imgUsuario sombraImgUser2"
                                                              alt="imgUser">
                                                         <h6 class="hidden-xs sinkinSans600SB">Jane Doe</h6>
                                                         <span class="texto10 sinkinSans500MI padding-left10 hidden-xs">Brasil</span>
                                                     </div>
                                                     <div class="paddingImgCarousel">
-                                                        <img src="img/user.jpg" class="imgUsuario sombraImgUser2"
+                                                        <img src="{{ asset('pics/front/user.jpg') }}" class="imgUsuario sombraImgUser2"
                                                              alt="imgUser">
                                                         <h6 class="hidden-xs sinkinSans600SB">Jane Doe</h6>
                                                         <span class="texto10 sinkinSans500MI padding-left10 hidden-xs">Brasil</span>
                                                     </div>
                                                     <div class="paddingImgCarousel">
-                                                        <img src="img/user.jpg" class="imgUsuario sombraImgUser2"
+                                                        <img src="{{ asset('pics/front/user.jpg') }}" class="imgUsuario sombraImgUser2"
                                                              alt="imgUser">
                                                         <h6 class="hidden-xs sinkinSans600SB">Jane Doe</h6>
                                                         <span class="texto10 sinkinSans500MI padding-left10 hidden-xs">Brasil</span>
                                                     </div>
                                                     <div class="paddingImgCarousel">
-                                                        <img src="img/user.jpg" class="imgUsuario sombraImgUser2"
+                                                        <img src="{{ asset('pics/front/user.jpg') }}" class="imgUsuario sombraImgUser2"
                                                              alt="imgUser">
                                                         <h6 class="hidden-xs sinkinSans600SB">Jane Doe</h6>
                                                         <span class="texto10 sinkinSans500MI padding-left10 hidden-xs">Brasil</span>

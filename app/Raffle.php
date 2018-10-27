@@ -6,8 +6,8 @@ use App\Http\Aux\CodesGenerator;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\Collection;
-use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 use Spatie\MediaLibrary\HasMedia\HasMedia;
+use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 use Spatie\MediaLibrary\File;
 
 
@@ -366,6 +366,36 @@ class Raffle extends Model implements HasMedia
         return $almostsoldraffles;
     }
 
+
+    public static function getProgress($id)
+    {
+
+        $rafflesdbquery = Raffle::join('rafflestatus', 'raffles.status', '=', 'rafflestatus.id')
+            ->join('tickets', 'raffles.id', '=', 'tickets.raffle')
+            ->select(
+                'raffles.id',
+                'raffles.tickets_price',
+                DB::raw('sum(tickets.sold) as solds_tickets'),
+                'raffles.tickets_count')
+            ->where('rafflestatus.status', 'Published')
+            ->where('raffles.id', $id)
+            ->groupBy(
+                'raffles.id',
+                'raffles.tickets_price',
+                'raffles.tickets_count'
+            );
+
+
+        $raffle= $rafflesdbquery->first();
+
+
+            $progress = ($raffle->solds_tickets * 100) / $raffle->tickets_count;
+
+
+        return $progress;
+    }
+
+
     public function suflee()
     {
         $tickets = Ticket::where('tickets.raffle', $this->id)->get();
@@ -393,7 +423,7 @@ class Raffle extends Model implements HasMedia
                 $exists = DB::table('media')
                     ->where('file_name', '=' ,$file->name)
                     ->where('mime_type', '=' ,$file->mimeType)
-                    ->where('disk', '=' ,'raffles')
+                    ->where('disk', '=' ,'avatars')
                     ->where('size', '=' ,$file->size)
                     ->exists();
 
