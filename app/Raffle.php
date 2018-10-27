@@ -357,8 +357,8 @@ class Raffle extends Model implements HasMedia
 
         $solds_tickets = $this->getTicketsSold();
         $progress = ($solds_tickets * 100) / $this->tickets_count;
-
         return $progress;
+
     }
 
 
