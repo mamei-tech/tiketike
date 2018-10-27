@@ -11,7 +11,12 @@
 @section('footer')
     @include('partials.frontend.footer')
 @show
+
 @yield('additional_scripts')
 </body>
+
+@section('footerScripts')
+    <script src="#"></script>
+@show
 
 </html>
