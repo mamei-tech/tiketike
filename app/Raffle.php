@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Collection;
 use Spatie\MediaLibrary\HasMedia\HasMedia;
 use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 use Spatie\MediaLibrary\File;
+use Illuminate\Database\Eloquent\Builder;
 
 
 class Raffle extends Model implements HasMedia
@@ -263,29 +264,13 @@ class Raffle extends Model implements HasMedia
      */
     public static function getPublishedRaffles()
     {
-        return DB::table('raffles')
-            ->join('rafflestatus', 'raffles.status', '=', 'rafflestatus.id')
-            ->join('tickets', 'raffles.id', '=', 'tickets.raffle')
-            ->select(
-                'raffles.id',
-                'raffles.title',
-                'raffles.price',
-                'raffles.profit',
-                'raffles.tickets_price',
-                DB::raw('sum(tickets.sold) as solds_tickets'),
-                'raffles.tickets_count',
-                'raffles.activation_date')
-            ->where('rafflestatus.status', 'Published')
-            ->groupBy(
-                'raffles.id',
-                'raffles.title',
-                'raffles.price',
-                'raffles.profit',
-                'raffles.tickets_price',
-                'raffles.tickets_count',
-                'raffles.activation_date'
-            )
+        $status = "Published";
+        $raffles = Raffle::with('getStatus')
+            ->whereHas('getStatus', function (Builder $q) use ($status) {
+                $q->where('status',$status);
+            })
             ->paginate(10);
+        return $raffles;
     }
 
 

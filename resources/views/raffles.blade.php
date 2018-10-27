@@ -261,7 +261,7 @@
                                     </div>
                                     <div class="costo hidden-xs">
                                         <div class="pull-left porcientoCompletado">
-                                            <span class="texto35 sinkinSans600SB colorN">{{ $raffle->getProgress() }} %</span><br>
+                                            <span class="texto35 sinkinSans600SB colorN">{{ \App\Raffle::getProgress($raffle->id) }} %</span><br>
                                             <span class="sinkinSans400R">completado</span>
                                         </div>
                                         <div class="pull-left padding-top-20 padding-left30">
