@@ -34,15 +34,15 @@
     </thead>
 
     <tbody>
-    @foreach ($raffles as $key => $raffle)
+    @foreach ($raffles as $raffle)
         <tr>
             <td>{{ $raffle->id }}</td>
             <td>{{ $raffle->title }}</td>
             <td>{{ $raffle->price }}</td>
             <td>{{ $raffle->profit }}</td>
             <td>{{ $raffle->tickets_price }}</td>
-            <td>{{ $raffle->solds_tickets }}</td>
-            <td>{{ $raffle->tickets_count}}</td>
+            <td>{{ $raffle->getTicketsSold() }}</td>
+            <td>{{ count($raffle->getTickets)}}</td>
             <td>{{ $raffle->activation_date }}</td>
             {{--<td>???</td>--}}
             <td class="text-right">

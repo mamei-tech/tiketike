@@ -25,9 +25,6 @@ abstract class BuysController extends Controller
             die();
         }
 
-        var_dump($raffle->getMedia('raffles')->first()->getUrl());
-        die();
-
         $tickets = Ticket::where('tickets.raffle', $raffleId)->where('tickets.sold', false)->get();
         return view('raffle', ['raffleId' => $raffleId, 'tickets' => $tickets, 'url' => $request->fullUrl(), 'raffle' => $raffle]);
     }
