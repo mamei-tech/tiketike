@@ -15,9 +15,12 @@
             <div class="col-xs-12 col-sm-5 col-md-4 col-lg-3 padding-rigth-0">
                 <div class="bg-grisU paddingLateralGris">
                     <div class="row padding-top-30">
+                        @if($user->getProfile->getMedia('avatars')->first() != null)
+
                         <div class="col-xs-5 col-md-5">
-                            <img src="{{$user->avatar}}" alt="Ringo" class="imgUsuario sombraImgUser2">
+                            <img src="{{$user->getProfile->getMedia('avatars')->first()}}" alt="Ringo" class="imgUsuario sombraImgUser2">
                         </div>
+                        @endif
                         <div class="col-xs-7 col-md-7 padding-top-20 padding0">
                             <span class="texto20 sinkinSans600SB colorN margin-right-15">{{$user->name}}</span>
                             @if($user->id == \Auth::User()->id)
@@ -294,8 +297,8 @@
                                                     <img src="{{ asset('pics/front/proyecto1.jpg') }}" class="imgRifas">
                                                     <div class="porciento">
                                                         <div class=" text-center">
-                                                <span class="chartB chart-porcientoR" data-percent="{{\App\Raffle::getProgress($raffle->id)}}">
-                                                    <span class="percentR">{{\App\Raffle::getProgress($raffle->id)}}%</span>
+                                                <span class="chartB chart-porcientoR" data-percent="{{$raffle->getProgress()}}">
+                                                    <span class="percentR">{{$raffle->getProgress()}}%</span>
                                                 </span>
                                                         </div>
                                                     </div>

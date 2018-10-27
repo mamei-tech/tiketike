@@ -367,30 +367,12 @@ class Raffle extends Model implements HasMedia
     }
 
 
-    public static function getProgress($id)
+    public function getProgress()
     {
 
-        $rafflesdbquery = Raffle::join('rafflestatus', 'raffles.status', '=', 'rafflestatus.id')
-            ->join('tickets', 'raffles.id', '=', 'tickets.raffle')
-            ->select(
-                'raffles.id',
-                'raffles.tickets_price',
-                DB::raw('sum(tickets.sold) as solds_tickets'),
-                'raffles.tickets_count')
-            ->where('rafflestatus.status', 'Published')
-            ->where('raffles.id', $id)
-            ->groupBy(
-                'raffles.id',
-                'raffles.tickets_price',
-                'raffles.tickets_count'
-            );
-
-
-        $raffle= $rafflesdbquery->first();
-
-
-            $progress = ($raffle->solds_tickets * 100) / $raffle->tickets_count;
-
+        $solds_tickets = $this->getTicketsSold();
+        $tickets_count = count($this->getTickets()->all());
+        $progress = ($solds_tickets * 100) / $tickets_count;
 
         return $progress;
     }
@@ -403,12 +385,13 @@ class Raffle extends Model implements HasMedia
         return $tickets[mt_rand(0, $length - 1)]->code;
     }
 
-    public static function getTicketsSold($id)
+    private function getTicketsSold()
     {
         $tickets = Raffle::join('tickets', 'raffles.id', '=', 'tickets.raffle')
-            ->select('raffles.tickets_price')
-            ->where('raffles.id',$id)
-            ->first();
+            ->select('tickets.id')
+            ->where('raffles.id',$this->id)
+            ->where('tickets.sold',1)
+            ->count();
         return $tickets;
     }
 
