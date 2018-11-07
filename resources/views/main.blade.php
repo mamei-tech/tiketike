@@ -8,7 +8,7 @@
                         <img src="{{ asset('pics/front/logo.svg') }}" class="img-responsive" alt="Logo tikeTike">
                     </div>
                 </div>
-                <div class="col-sm-5 col-md-4 col-lg-3 hidden-xs">
+                <div class="col-sm-5 col-md-4 col-lg-3">
                     <ul class="list-inline padding-top-20 padding-left20">
                         <li class="margin-left-20 ">
                             <a data-toggle="modal" href="#loginModal" title="Autenticarse"

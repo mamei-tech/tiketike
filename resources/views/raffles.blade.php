@@ -214,7 +214,7 @@
                             <div class="row padding20 bg-rifas1 center-block">
                                 <div class="col-xs-4 col-md-6">
                                     <div class="hidden-lg visible-xs padding-top-20 padding-left-0">
-                                        <img src="{{ $raffle->image }}" class="dimenImgCarouselR"
+                                        <img src="@if(count($raffle->getMedia('raffles')) > 0){{ $raffle->getMedia('raffles')->first()->getUrl() }} @endif" class="dimenImgCarouselR"
                                              alt="">
                                     </div>
                                     <div id="myCarousel{{ $raffle->id }}"
@@ -248,9 +248,7 @@
                                     <span class="texto14 colorN pull-left sinkinSans600SB texto14">{{ $raffle->getOwner->name }} {{ $raffle->getOwner->lastname }}</span>
                                     <span class="ti-location-pin texto16 padding-left10 colorN"></span>
                                     <!-- TODO Buscar como poner el texto al lado de la imagen sin hacerla flotar -->
-                                    <span class="texto14 padding-left10 sinkinSans600SB texto14 colorN"><img
-                                                class="img img-responsive img-circle" style="align-self: left"
-                                                src="{{ asset('pics/countries/'. $raffle->getLocation->name .'.png') }}">{{ $raffle->getLocation->name }}</span>
+                                    <span class="texto14 padding-left10 sinkinSans600SB texto14 colorN">{{ $raffle->getLocation->name }}</span>
                                     <h4 class=" text-uppercase sinkinSans400R textoR">
                                         <a class="colorN"
                                            href="{{ route('raffle.tickets.available',['raffleId' => $raffle->id]) }}">{{ $raffle->title }}</a>
@@ -315,7 +313,7 @@
 
             </div>
             <!--FIN Contenido rifas-->
-            @include('partials.frontend.promotions')
+            @include('partials.frontend.promotions',['suggested' => $suggested])
         </div>
     </div>
 @stop

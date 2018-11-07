@@ -4,6 +4,7 @@ namespace App;
 
 use App\Http\Aux\CodesGenerator;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\Collection;
 use Spatie\MediaLibrary\HasMedia\HasMedia;
@@ -402,5 +403,23 @@ class Raffle extends Model implements HasMedia
                 else
                     return true;
             });
+    }
+
+    public function getSuggestions()
+    {
+        $user = Auth::user()->id;
+        $raffles = Raffle::with(['getTickets','getFollowers','getOwner'])
+            ->whereHas('getTickets',function (Builder $q) use ($user) {
+                $q->where('buyer','<>',$user);
+                $q->groupBy('raffle');
+            })
+            ->whereHas('getFollowers',function (Builder $q) use ($user) {
+                $q->where('user_id','<>',$user);
+                $q->groupBy('raffle_id');
+            })
+            ->where('owner','<>',$user)
+            ->limit(3)
+            ->get();
+        return $raffles;
     }
 }

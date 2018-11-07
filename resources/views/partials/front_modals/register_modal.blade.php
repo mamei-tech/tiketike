@@ -12,7 +12,7 @@
             <div class="modal-body">
                 <div class="col-md-12 "></div>
                 <h5 class="modal-title text-uppercase textoCenter padding-top-20">Registro</h5>
-                <form class="form-signin" action="login" method="POST">
+                <form class="form-signin" action="register" method="POST">
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
                     <label for="selector" class="colorN italic">Nombre</label>
                     <input type="text" class="form-control form-control-new " id="inputEm"
@@ -29,7 +29,7 @@
                            id="inputPassword" name="password">
                     <label for="selector"
                            class="colorN italic padding-top-20">Repita la contraseña</label>
-                    <input type="re-password" class="form-control form-control-new "
+                    <input type="password" class="form-control form-control-new "
                            id="inputPassword" name="re-password">
                     <div class="row padding-top-20">
                         <div class="col-xs-7">
