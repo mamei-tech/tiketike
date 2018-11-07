@@ -1,4 +1,5 @@
 @extends('layouts.base')
+@extends('layouts.base')
 @section('content')
     @include('partials.frontend.header')
     @include('partials.front_modals.filters')
@@ -72,7 +73,7 @@
                 <div class="col-md-6 ">
                     <div class="form-group basic">
                         <label>@lang('aUserprofile.brdate')</label>
-                        <input name="birthdate" type="text" placeholder="" class="form-control datepicker"
+                        <input name="birthdate" type="date" placeholder="" class="form-control datepicker"
                                value="{{ date('d-m-Y', strtotime($user->getProfile->birthdate)) }}">
                     </div>
                 </div>
