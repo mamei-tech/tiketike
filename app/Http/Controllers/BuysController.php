@@ -32,7 +32,7 @@ abstract class BuysController extends Controller
             ->limit(3)
             ->get();
         $raffle = Raffle::find($raffleId);
-        $promos = Promo::where('type',1)->where('status',1)->get();
+        $promos = Promo::where('type',1)->where('status',2)->get();
         if ($raffle == null)
         {
             //TODO return some error view
