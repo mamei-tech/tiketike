@@ -289,7 +289,7 @@ class Raffle extends Model implements HasMedia
     public static function getFollowsRaffles()
     {
         $status = "Published";
-        $raffles = Raffle::with('getStatus') //testing
+        $raffles = Raffle::with('getStatus')
             ->whereHas('getStatus', function (Builder $q) use ($status) {
                 $q->where('status',$status);
             })
