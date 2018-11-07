@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Aux\CodesGenerator;
+use App\Promo;
 use App\RaffleStatus;
 use App\User;
 use Illuminate\Http\Request;
@@ -10,6 +11,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Raffle;
 use App\RaffleCategory;
 use App\Http\Requests\StoreRaffleRequest;
+use Illuminate\Database\Eloquent\Builder;
 
 
 class RafflesController extends Controller
@@ -22,8 +24,20 @@ class RafflesController extends Controller
      */
     public function index()
     {
+        $user = Auth::user()->id;
+        $suggested = Raffle::with(['getTickets','getFollowers','getOwner'])
+            ->whereDoesntHave('getFollowers',function (Builder $q) use ($user) {
+                $q->where('user_id',$user);
+            })
+            ->whereDoesntHave('getTickets',function (Builder $q) use ($user) {
+                $q->where('buyer',$user);
+            })
+            ->where('owner','<>',$user)
+            ->limit(3)
+            ->get();
+        $promos = Promo::where('type',1)->where('status',1)->get();
         $raffles = Raffle::paginate(3);
-        return view('raffles')->with('raffles', $raffles);
+        return view('raffles',compact('raffles','suggested','promos'));
     }
 
     /**
