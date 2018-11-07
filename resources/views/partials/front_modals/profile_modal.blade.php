@@ -5,7 +5,7 @@
     <div class="modal-dialog" style="width: 80% !important;">
         <div class="modal-content" style="width: 100% !important;">
             <div class="modal-header padding-left-0">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true" style="padding-left: 5%">
                     <span class="ti-close"></span>
                 </button>
                 <h5 class="modal-title text-uppercase textoCenter padding-top-20">EDITAR PERFIL</h5>
@@ -113,7 +113,6 @@
                             </div>
                         </div>
 
-
                         <div class="col-md-6">
                             <div class="form-group basic">
                                 <label>@lang('aUserprofile.interlang')</label>
@@ -133,6 +132,42 @@
                             </div>
                         </div>
 
+                        <div class="col-md-6">
+                            <div class="form-group basic">
+                                <label>@lang('aDashboard.country')</label>
+                                {{--TODO internazionalization for countries names--}}
+                                <br>
+                                <select name="country" class="selectpicker" data-style="btn btn-neutral btn-round"
+                                        title="Country" tabindex="-98">
+                                    <option class="bs-title-option" value="">Country</option>
+
+                                    @foreach ($countries as $country)
+                                        <option value="{{ $country->id }}" {{ $country->name == $user->getProfile->getCity->getCountry->name ? 'selected' : '' }}>
+                                            {{ $country->name }}</option>
+                                    @endforeach
+
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="form-group basic">
+                                <label>@lang('aDashboard.city')</label>
+                                <br>
+                                <select name="city" class="selectpicker" data-style="btn btn-neutral btn-round"
+                                        title="City" tabindex="-98">
+                                    <option class="bs-title-option" value="">City</option>
+
+                                    @foreach($countrycities as $city)
+                                        <option value="{{ $city->id }}" {{ $city->name == $user->getProfile->getCity->name ? 'selected' : '' }}>
+                                            {{ $city->name }}</option>
+                                    @endforeach
+
+                                </select>
+
+                            </div>
+                        </div>
+
                         <div class="col-md-8">
                             <div class="form-group basic">
                                 <label for="selector"
@@ -141,81 +176,43 @@
                                        value="{{ $user->getProfile->zipcode }}">
                             </div>
                         </div>
+                    </div>
 
-                        <div class="col-md-12">
+                    <div class="col-md-12">
+                        <div class="col-md-8">
                             <div class="form-group basic">
                                 <label for="selector"
                                        class="colorN italic padding-top-40"> @lang('aUserprofile.address')</label>
+
                                 <input name="address" type="text" class="form-control" placeholder="Home Address"
                                        value="{{ $user->getProfile->addrss }}">
                             </div>
                         </div>
 
                         {{-- BIO --}}
-                        <div class="col-md-12">
+                        <div class="col-md-8">
                             <div class="form-group basic">
                                 <label for="selector"
                                        class="colorN italic padding-top-20">Bio</label>
+
                                 <input name="bio" type="text" class="form-control" placeholder="Bio"
                                        value="{{ $user->getProfile->bio }}">
                             </div>
 
 
                         </div>
-
                     </div>
 
 
-                    {{-- CITY ¦ COUNTRY ¦ POSTAL CODE --}}
-                    {{--<div class="row">--}}
-                    {{--<div class="col-md-4">--}}
-                    {{--<div class="form-group basic">--}}
-                    {{--<label>@lang('aDashboard.country')</label>--}}
-                    {{--TODO internazionalization for countries names--}}
-
-                    {{--<select name="country" class="selectpicker" data-style="btn btn-neutral btn-round"--}}
-                    {{--title="Country" tabindex="-98">--}}
-                    {{--<option class="bs-title-option" value="">Country</option>--}}
-
-                    {{--@foreach ($countries as $country)--}}
-                    {{--<option value="{{ $country->id }}" {{ $country->name == $user->getProfile->getCity->getCountry->name ? 'selected' : '' }}>--}}
-                    {{--{{ $country->name }}</option>--}}
-                    {{--@endforeach--}}
-
-                    {{--</select>--}}
-                    {{--</div>--}}
-                    {{--</div>--}}
-                    {{--<div class="col-md-4">--}}
-                    {{--<div class="form-group basic">--}}
-                    {{--<label>@lang('aDashboard.city')</label>--}}
-
-                    {{--<select name="city" class="selectpicker" data-style="btn btn-neutral btn-round"--}}
-                    {{--title="City" tabindex="-98">--}}
-                    {{--<option class="bs-title-option" value="">City</option>--}}
-
-                    {{--@foreach($countrycities as $city)--}}
-                    {{--<option value="{{ $city->id }}" {{ $city->name == $user->getProfile->getCity->name ? 'selected' : '' }}>--}}
-                    {{--{{ $city->name }}</option>--}}
-                    {{--@endforeach--}}
-
-                    {{--</select>--}}
-
-                    {{--</div>--}}
-                    {{--</div>--}}
-                    {{----}}
-                    {{--</div>--}}
-
-                    {{-- ADDRESS --}}
-
-
-                    <div class="row padding-top-20">
-                        <div class="col-xs-5">
-                            <button type="submit" class="btn btn-sm btn-primary btn-block">
-                                Update
-                            </button>
+                    <div class="col-md-2">
+                        <div class="row padding-top-20">
+                            <div class="col-xs-5">
+                                <button type="submit" class="btn btn-sm btn-primary btn-block">
+                                    Update
+                                </button>
+                            </div>
                         </div>
                     </div>
-
                 </form>
 
                 <!-- TODO Aqui van los enlaces morrongueros del fi para acceder por las redes sociales -->

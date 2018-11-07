@@ -101,6 +101,11 @@ class Raffle extends Model implements HasMedia
         return $this->hasMany('App\Ticket', 'raffle');
     }
 
+    public function getTicketsByUser($user_id)
+    {
+        return $this->hasMany('App\Ticket', 'raffle');
+    }
+
     public function getFollowers()
     {
         return $this->belongsToMany(User::class,'follow');
@@ -273,6 +278,26 @@ class Raffle extends Model implements HasMedia
             ->paginate(10);
         return $raffles;
     }
+
+
+
+    /**
+     * Retrieve all the Published raffles
+     *
+     * @return mixed
+     */
+    public static function getFollowsRaffles()
+    {
+        $status = "Published";
+        $raffles = Raffle::with('getStatus')
+            ->whereHas('getStatus', function (Builder $q) use ($status) {
+                $q->where('status',$status);
+            })
+            ->paginate(10);
+        return $raffles;
+    }
+
+
 
 
     /**

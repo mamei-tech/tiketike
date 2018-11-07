@@ -17,16 +17,17 @@
                     <div class="row padding-top-30">
                         @if($user->getProfile->getMedia('avatars')->first() != null)
 
-                        <div class="col-xs-5 col-md-5">
-                            <img src="{{$user->getProfile->getMedia('avatars')->first()}}" alt="Ringo" class="imgUsuario sombraImgUser2">
-                        </div>
+                            <div class="col-xs-5 col-md-5">
+                                <img src="{{$user->getProfile->getMedia('avatars')->first()}}" alt="Ringo"
+                                     class="imgUsuario sombraImgUser2">
+                            </div>
                         @endif
                         <div class="col-xs-7 col-md-7 padding-top-20 padding0">
                             <span class="texto20 sinkinSans600SB colorN margin-right-15">{{$user->name}}</span>
                             @if($user->id == \Auth::User()->id)
                                 {{--<a href="{{route('profile.edit',['userid'=> \Auth::User()->id])}}"><span class="ti-marker-alt texto20 colorN"></span></a>--}}
-                                @include('partials.front_modals.profile_modal')
-                                <a data-toggle="modal" href="#profileModal"><span
+
+                                <a href="{{route('profile.edit',$user->id)}}"><span
                                             class="ti-marker-alt texto20 colorN"></span></a>
                             @endif
                             <br>
@@ -277,12 +278,10 @@
                              aria-labelledby="headingThree" aria-expanded="true" style="">
                             <div class="panel-body">
                                 <ul class="padding-top-20 nav nav-tabs sinkinSans600SB padding-left150" id="myTab">
+
                                     <li class="active"><a data-toggle="tab" class="ticket text-uppercase colorN"
-                                                          href="#todas"
-                                                          aria-expanded="true">todas</a></li>
-                                    <li class=""><a data-toggle="tab" class="ticket text-uppercase colorN"
-                                                    href="#creadas"
-                                                    aria-expanded="false">creadas</a></li>
+                                                          href="#creadas"
+                                                          aria-expanded="true">creadas</a></li>
                                     <li class=""><a data-toggle="tab" class="ticket text-uppercase colorN"
                                                     href="#participo"
                                                     aria-expanded="false">participo</a></li>
@@ -290,87 +289,69 @@
                                            aria-expanded="false">siguiendo</a></li>
                                 </ul>
                                 <div class="tab-content">
-                                    <div class="tab-pane active in" id="todas">
+                                    <div class="tab-pane " id="todas">
+
+                                    </div>
+                                    <div class="tab-pane active in" id="creadas">
+
                                         @if (count($raffles) > 0)
                                             @foreach($raffles as $raffle)
-                                        <div class="col-xs-6 col-lg-3 col-sm-4 padding-top-15">
+                                                <div class="col-xs-6 col-lg-3 col-sm-4 padding-top-15">
                                                     <img src="{{ asset('pics/front/proyecto1.jpg') }}" class="imgRifas">
                                                     <div class="porciento">
                                                         <div class=" text-center">
-                                                <span class="chartB chart-porcientoR" data-percent="{{$raffle->getProgress()}}">
+                                                <span class="chartB chart-porcientoR"
+                                                      data-percent="{{$raffle->getProgress()}}">
                                                     <span class="percentR">{{$raffle->getProgress()}}%</span>
                                                 </span>
                                                         </div>
                                                     </div>
 
-                                        </div>
+                                                </div>
                                             @endforeach
                                         @endif
+
                                     </div>
-                                    <div class="tab-pane " id="creadas">
-                                        <div class="col-xs-6 col-lg-3 col-sm-4 padding-top-15">
-                                            <img src="{{ asset('pics/front/proyecto1.jpg') }}" class="imgRifas">
-                                            <div class="porciento">
-                                                <div class=" text-center">
-                                                <span class="chartB chart-porcientoR" data-percent="80">
-                                                    <span class="percentR">80%</span>
+                                    <div class="tab-pane" id="participo">
+
+                                        @if (count($rafflesbuyed) > 0)
+                                            @foreach($rafflesbuyed as $raffle)
+                                                <div class="col-xs-6 col-lg-3 col-sm-4 padding-top-15">
+                                                    <img src="{{ asset('pics/front/proyecto1.jpg') }}" class="imgRifas">
+                                                    <div class="porciento">
+                                                        <div class=" text-center">
+                                                <span class="chartB chart-porcientoR"
+                                                      data-percent="{{$raffle->getProgress()}}">
+                                                    <span class="percentR">{{$raffle->getProgress()}}%</span>
                                                 </span>
+                                                        </div>
+                                                    </div>
+
                                                 </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-xs-6 col-lg-3 col-sm-4 padding-top-15">
-                                            <img src="{{ asset('pics/front/proyecto1.jpg') }}" class="imgRifas">
-                                            <div class="porciento">
-                                                <div class=" text-center">
-                                                <span class="chartB chart-porcientoR" data-percent="80">
-                                                    <span class="percentR">80%</span>
-                                                </span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-xs-6 col-lg-3 col-sm-4 padding-top-15">
-                                            <img src="{{ asset('pics/front/proyecto1.jpg') }}" class="imgRifas">
-                                            <div class="porciento">
-                                                <div class=" text-center">
-                                                <span class="chartB chart-porcientoR" data-percent="80">
-                                                    <span class="percentR">80%</span>
-                                                </span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-xs-6 col-lg-3 col-sm-4 padding-top-15">
-                                            <img src="{{ asset('pics/front/proyecto1.jpg') }}" class="imgRifas">
-                                            <div class="porciento">
-                                                <div class=" text-center">
-                                                <span class="chartB chart-porcientoR" data-percent="80">
-                                                    <span class="percentR">80%</span>
-                                                </span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-xs-6 col-lg-3 col-sm-4 padding-top-15">
-                                            <img src="{{ asset('pics/front/proyecto1.jpg') }}" class="imgRifas">
-                                            <div class="porciento">
-                                                <div class=" text-center">
-                                                <span class="chartB chart-porcientoR" data-percent="80">
-                                                    <span class="percentR">80%</span>
-                                                </span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-xs-6 col-lg-3 col-sm-4 padding-top-15">
-                                            <img src="{{ asset('pics/front/proyecto1.jpg') }}" class="imgRifas">
-                                            <div class="porciento">
-                                                <div class=" text-center">
-                                                <span class="chartB chart-porcientoR" data-percent="80">
-                                                    <span class="percentR">80%</span>
-                                                </span>
-                                                </div>
-                                            </div>
-                                        </div>
+                                            @endforeach
+                                        @endif
+
                                     </div>
-                                    <div class="tab-pane" id="participo">aqui</div>
-                                    <div class="tab-pane" id="siguiendo">aqui</div>
+                                    <div class="tab-pane" id="siguiendo">
+
+                                        @if (count($rafflesfollowed) > 0)
+                                            @foreach($rafflesfollowed as $raffle)
+                                                <div class="col-xs-6 col-lg-3 col-sm-4 padding-top-15">
+                                                    <img src="{{ asset('pics/front/proyecto1.jpg') }}" class="imgRifas">
+                                                    <div class="porciento">
+                                                        <div class=" text-center">
+                                                <span class="chartB chart-porcientoR"
+                                                      data-percent="{{$raffle->getProgress()}}">
+                                                    <span class="percentR">{{$raffle->getProgress()}}%</span>
+                                                </span>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            @endforeach
+                                        @endif
+
+                                    </div>
                                 </div>
 
                             </div>
@@ -385,15 +366,13 @@
                             </div>
                             <div class="tools pull-right">
                                 <a class="collapsed paddingCollapse" data-toggle="collapse" data-parent="#accordion"
-                                   href="#ticket" aria-expanded="false" aria-controls="collapseThree"></a>
+                                   href="#ticket" aria-expanded="true" aria-controls="collapseThree"></a>
                             </div>
                         </div>
                         <div id="ticket" class="panel-collapse collapse" role="tabpanel"
                              aria-labelledby="headingThree" aria-expanded="false" style="">
                             <div class="panel-body">
                                 <ul class="padding-top-20 nav nav-tabs sinkinSans600SB padding-left150" id="myTab">
-                                    <li><a data-toggle="tab" class="ticket text-uppercase colorN" href="#todos"
-                                           aria-expanded="false">todos</a></li>
                                     <li class="active"><a data-toggle="tab" class="ticket text-uppercase colorN"
                                                           href="#vendidos"
                                                           aria-expanded="true">vendidos</a></li>
@@ -402,44 +381,27 @@
                                                     aria-expanded="false">comprados</a></li>
                                 </ul>
                                 <div class="tab-content">
-                                    <div class="tab-pane " id="todos">...</div>
+
                                     <div class="tab-pane active in" id="vendidos">
-                                        <div class="col-xs-6 col-lg-3 col-sm-4 padding-top-15 paddingLeft0 padding-rigth-0">
-                                            <div class="pull-left">
-                                                <img src="{{ asset('pics/front/proyecto1.jpg') }}" class="imgTicket">
-                                            </div>
-                                            <div class="pull-left bg-b colorV textoCenter">
-                                                <h4 class="sinkinSans600SB">2</h4>
-                                                <h5 class="text-uppercase texto10 sinkinSans300L">tickets</h5>
-                                            </div>
-                                        </div>
-                                        <div class="col-xs-6 col-lg-3 col-sm-4 padding-top-15 paddingLeft0 padding-rigth-0">
-                                            <div class="pull-left">
-                                                <img src="{{ asset('pics/front/proyecto1.jpg') }}" class="imgTicket">
-                                            </div>
-                                            <div class="pull-left bg-b colorV textoCenter">
-                                                <h4 class="sinkinSans600SB">2</h4>
-                                                <h5 class="text-uppercase texto10 sinkinSans300L">tickets</h5>
-                                            </div>
-                                        </div>
-                                        <div class="col-xs-6 col-lg-3 col-sm-4 padding-top-15 paddingLeft0 padding-rigth-0">
-                                            <div class="pull-left">
-                                                <img src="{{ asset('pics/front/proyecto1.jpg') }}" class="imgTicket">
-                                            </div>
-                                            <div class="pull-left bg-b colorV textoCenter">
-                                                <h4 class="sinkinSans600SB">2</h4>
-                                                <h5 class="text-uppercase texto10 sinkinSans300L">tickets</h5>
-                                            </div>
-                                        </div>
-                                        <div class="col-xs-6 col-lg-3 col-sm-4 padding-top-15 paddingLeft0 padding-rigth-0">
-                                            <div class="pull-left">
-                                                <img src="{{ asset('pics/front/proyecto1.jpg') }}" class="imgTicket">
-                                            </div>
-                                            <div class="pull-left bg-b colorV textoCenter">
-                                                <h4 class="sinkinSans600SB">2</h4>
-                                                <h5 class="text-uppercase texto10 sinkinSans300L">tickets</h5>
-                                            </div>
-                                        </div>
+
+                                        @if (count($rafflesbuyed) > 0)
+                                            @foreach($rafflesbuyed as $raffle)
+
+                                                <div class="col-xs-6 col-lg-3 col-sm-4 padding-top-15 paddingLeft0 padding-rigth-0">
+                                                    <div class="pull-left">
+                                                        @if(count($raffle->getMedia('raffles')) > 0)
+                                                            <img src="{{$raffle->getMedia('raffles')->first()->getUrl()}}"
+                                                                 class="imgTicket">
+                                                        @endif
+                                                    </div>
+                                                    <div class="pull-left bg-b colorV textoCenter">
+                                                        <h4 class="sinkinSans600SB">{{count($user->getTicketsByRaffle($raffle->id))}}</h4>
+                                                        <h5 class="text-uppercase texto10 sinkinSans300L">tickets</h5>
+                                                    </div>
+                                                </div>
+
+                                            @endforeach
+                                        @endif
                                     </div>
                                     <div class="tab-pane" id="comprados">aqui</div>
                                 </div>
@@ -482,37 +444,43 @@
                                             <div class="col-md-12">
                                                 <div class="slickUsuario">
                                                     <div class="paddingImgCarousel">
-                                                        <img src="{{ asset('pics/front/user.jpg') }}" class="imgUsuario sombraImgUser2"
+                                                        <img src="{{ asset('pics/front/user.jpg') }}"
+                                                             class="imgUsuario sombraImgUser2"
                                                              alt="imgUser">
                                                         <h6 class="hidden-xs sinkinSans600SB">Jane Doe</h6>
                                                         <span class="texto10 sinkinSans500MI padding-left10 hidden-xs">Brasil</span>
                                                     </div>
                                                     <div class="paddingImgCarousel">
-                                                        <img src="{{ asset('pics/front/user.jpg') }}" class="imgUsuario sombraImgUser2"
+                                                        <img src="{{ asset('pics/front/user.jpg') }}"
+                                                             class="imgUsuario sombraImgUser2"
                                                              alt="imgUser">
                                                         <h6 class="hidden-xs sinkinSans600SB">Jane Doe</h6>
                                                         <span class="texto10 sinkinSans500MI padding-left10 hidden-xs">Brasil</span>
                                                     </div>
                                                     <div class="paddingImgCarousel">
-                                                        <img src="{{ asset('pics/front/user.jpg') }}" class="imgUsuario sombraImgUser2"
+                                                        <img src="{{ asset('pics/front/user.jpg') }}"
+                                                             class="imgUsuario sombraImgUser2"
                                                              alt="imgUser">
                                                         <h6 class="hidden-xs sinkinSans600SB">Jane Doe</h6>
                                                         <span class="texto10 sinkinSans500MI padding-left10 hidden-xs">Brasil</span>
                                                     </div>
                                                     <div class="paddingImgCarousel">
-                                                        <img src="{{ asset('pics/front/user.jpg') }}" class="imgUsuario sombraImgUser2"
+                                                        <img src="{{ asset('pics/front/user.jpg') }}"
+                                                             class="imgUsuario sombraImgUser2"
                                                              alt="imgUser">
                                                         <h6 class="hidden-xs sinkinSans600SB">Jane Doe</h6>
                                                         <span class="texto10 sinkinSans500MI padding-left10 hidden-xs">Brasil</span>
                                                     </div>
                                                     <div class="paddingImgCarousel">
-                                                        <img src="{{ asset('pics/front/user.jpg') }}" class="imgUsuario sombraImgUser2"
+                                                        <img src="{{ asset('pics/front/user.jpg') }}"
+                                                             class="imgUsuario sombraImgUser2"
                                                              alt="imgUser">
                                                         <h6 class="hidden-xs sinkinSans600SB">Jane Doe</h6>
                                                         <span class="texto10 sinkinSans500MI padding-left10 hidden-xs">Brasil</span>
                                                     </div>
                                                     <div class="paddingImgCarousel">
-                                                        <img src="{{ asset('pics/front/user.jpg') }}" class="imgUsuario sombraImgUser2"
+                                                        <img src="{{ asset('pics/front/user.jpg') }}"
+                                                             class="imgUsuario sombraImgUser2"
                                                              alt="imgUser">
                                                         <h6 class="hidden-xs sinkinSans600SB">Jane Doe</h6>
                                                         <span class="texto10 sinkinSans500MI padding-left10 hidden-xs">Brasil</span>

@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Spatie\Permission\Traits\HasRoles;
+use Illuminate\Database\Eloquent\Builder;
 
 class User extends Authenticatable
 {
@@ -42,7 +43,6 @@ class User extends Authenticatable
         return $this->hasOne('App\UserProfile', 'user', 'id');
     }
 
-
     /**
      * Retrieve user's cards.
      *
@@ -63,6 +63,17 @@ class User extends Authenticatable
         return $this->hasMany('App\Raffle', 'owner');
     }
 
+    public function getRafflesFollowed()
+    {
+        return $this->belongsToMany(Raffle::class,'follow');
+    }
+
+    public function getRafflesBuyed()
+    {
+       return $this->belongsToMany(Raffle::class,'tickets','buyer','raffle');
+    }
+
+
     /**
      * Retrieve user's tickets.
      *
@@ -71,6 +82,18 @@ class User extends Authenticatable
     public function getTickets()
     {
         return $this->hasMany('App\Ticket', 'buyer');
+    }
+
+
+    public function getTicketsByRaffle($raffle_id)
+    {
+        $tickets = Ticket::with('getBuyer')
+            ->whereHas('getBuyer', function (Builder $q) use ($raffle_id) {
+                $q->where('raffle',$raffle_id);
+                $q->where('buyer',$this->id);
+            })
+            ->get();
+        return $tickets;
     }
 
     /**
