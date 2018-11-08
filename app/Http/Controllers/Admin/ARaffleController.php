@@ -57,6 +57,7 @@ class ARaffleController extends Controller
         // We can only delete if raffle status is Anulled or Unpublished
         if($raffle->status == 1 || $raffle->status == 3)
         {
+            $raffle->clearMediaCollection('raffles');
             $raffle->delete();
 
 

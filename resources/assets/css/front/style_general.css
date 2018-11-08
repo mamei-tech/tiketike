@@ -600,7 +600,7 @@ div .search-box {
     min-height: 55px;
     padding: 0;
     box-shadow: 0 1px 4px rgba(228, 228, 228, 0.95);
-    z-index: 9999;
+    z-index: 1;
 }
 .fixNav {
     position: fixed !important;
