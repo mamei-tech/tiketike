@@ -96,7 +96,7 @@
         </div>
 
         <div class="col-md-8">
-            <div class="fileinput fileinput-new text-center" data-provides="fileinput[]">
+            <div class="fileinput fileinput-new text-center" data-provides="fileinput">
                 <div class="fileinput thumbnailpromo">
                     <img id="promo-img" src="{{ asset('pics/common/image_placeholder.jpg') }}" alt="">
                 </div>
