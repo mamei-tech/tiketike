@@ -68,35 +68,35 @@
             </div>
         </div>
     </div>
-    <div class="row">
-        <label class="col-sm-3 col-form-label">Raffle Location</label>
-        <div class="col-sm-9">
-            <div class="form-group">
-                <span class="btn btn-simple btn-round">
-                    <input id="avatar" type="file" class="form-control" name="avatar[]" multiple="multiple">
-                    <i class="now-ui-icons users_circle-08"></i>
-                    Avatar
-                </span>
-            </div>
-        </div>
-    </div>
+    {{--<div class="row">--}}
+        {{--<label class="col-sm-3 col-form-label">Raffle Location</label>--}}
+        {{--<div class="col-sm-9">--}}
+            {{--<div class="form-group">--}}
+                {{--<span class="btn btn-simple btn-round">--}}
+                    {{--<input id="avatar" type="file" class="form-control" name="avatar[]" multiple="multiple">--}}
+                    {{--<i class="now-ui-icons users_circle-08"></i>--}}
+                    {{--Avatar--}}
+                {{--</span>--}}
+            {{--</div>--}}
+        {{--</div>--}}
+    {{--</div>--}}
 
     <div class="row">
 
         <div class="col-md-4">
             <div class="form-group basic">
-                <label for="image">Image</label>
+                <label for="image">Images</label>
                 <br>
                 <span class="btn btn-simple btn-round">
                     <i class="now-ui-icons design_image"></i>
-                    <input id="f_image" type="file" class="form-control" name="image[]">
+                    <input id="f_image" type="file" class="form-control" name="avatar[]" multiple="multiple">
                     Select Image
                 </span>
             </div>
         </div>
 
         <div class="col-md-8">
-            <div class="fileinput fileinput-new text-center" data-provides="fileinput">
+            <div class="fileinput fileinput-new text-center" data-provides="fileinput[]">
                 <div class="fileinput thumbnailpromo">
                     <img id="promo-img" src="{{ asset('pics/common/image_placeholder.jpg') }}" alt="">
                 </div>
