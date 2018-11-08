@@ -3,11 +3,13 @@
 namespace App\Http\Controllers;
 
 
+use App\Promo;
 use App\Raffle;
 use App\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use App\Country;
+use Illuminate\Database\Eloquent\Builder;
 
 
 class UserController extends Controller
@@ -26,6 +28,17 @@ class UserController extends Controller
         $rafflesfollowed = User::find($userid)->getRafflesFollowed;
         $rafflesbuyed = User::find($userid)->getRafflesBuyed;
         $tickets_buys = User::find($userid)->getTickets;
+        $suggested = Raffle::with(['getTickets','getFollowers','getOwner'])
+        ->whereDoesntHave('getFollowers',function (Builder $q) use ($user) {
+            $q->where('user_id','<>',$user);
+        })
+        ->whereDoesntHave('getTickets',function (Builder $q) use ($user) {
+            $q->where('buyer','<>',$user);
+        })
+        ->where('owner','<>',$user)
+        ->limit(3)
+        ->get();
+        $promos = Promo::where('type',1)->where('status',1)->get();
 
 
 
@@ -44,7 +57,9 @@ class UserController extends Controller
             'rafflesfollowed'=> $rafflesfollowed,
             'raffles'=>$raffles,
             'rafflesbuyed'=>$rafflesbuyed,
-            'tickets_buys'=>$tickets_buys
+            'tickets_buys'=>$tickets_buys,
+            'suggested' => $suggested,
+            'promos' => $promos
         ]);
     }
 
