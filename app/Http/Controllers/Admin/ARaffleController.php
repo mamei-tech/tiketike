@@ -59,6 +59,7 @@ class ARaffleController extends Controller
         {
             $raffle->delete();
 
+
             // Anulled
             if($raffle->status == 3) {
                 return redirect()

@@ -1,4 +1,5 @@
 @extends('layouts.base')
+
 @section('content')
     @include('partials.frontend.header')
     @include('partials.front_modals.filters')
@@ -317,3 +318,8 @@
         </div>
     </div>
 @stop
+
+@section('footerScripts')
+    @parent
+    <script src="{{ asset('js/raffles.min.js') }}"></script>
+@endsection
