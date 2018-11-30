@@ -32,7 +32,7 @@ class StoreUserprofileRequest extends FormRequest
 //            'birthdate' => 'date_format:d-m-Y|max:10',              // TODO add limits to validation, not pass date allowed
 //            'gender' => 'required|not_in:0|min:1',                  // TODO check is Male or Female
 //            'languaje'=> 'required|not_in:0|min:1',
-            'name'=> 'required|string|min:3|max:30',
+            'firstname'=> 'required|string|min:3|max:30',
             'lastname'=> 'required|string|min:6|max:30',
 //            'password' => ['nullable', 'string', 'confirmed', new StrongEvalR()],
 //            'address'=> 'required|string|min:12|max:60',

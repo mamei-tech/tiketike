@@ -23,7 +23,7 @@ class UserProfile extends Model implements HasMedia
      * @var array
      */
     protected $fillable = [
-        'langcode', 'bio', 'addrss', 'zipcode',
+        'langcode', 'bio', 'addrss', 'phone', 'zipcode', 'balance',
     ];
 
     public function user()

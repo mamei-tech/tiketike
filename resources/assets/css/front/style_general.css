@@ -460,6 +460,7 @@ ul li{
 .btn-lg, .btn-group-lg > .btn {
     padding: 10px 30px;
 }
+
 .styleFlechaD{
     font-size: 24px;
     padding-top: 5px;
@@ -1593,6 +1594,7 @@ Full screen Modal
     margin-top: 20px;
 
 }
+
 
 @media (max-width: 768px) {
 

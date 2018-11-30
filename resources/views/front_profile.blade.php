@@ -1,14 +1,13 @@
 @extends('layouts.base')
-@extends('layouts.base')
 @section('content')
     @include('partials.frontend.header')
     @include('partials.front_modals.filters')
     @include('partials.front_modals.mobile_suggest')
     <div class=" container margin-top-70">
-        <form class="col-md-12 margin-top60" action="register" method="POST">
+        <form class="col-md-12 margin-top60" id="ftm_profileUpdate" action="{{ route('profile.update', Auth::id()) }}" method="POST" >
             <div class="col-md-4">
                 {{-- FIRST NAME ¦ LASTNAME --}}
-
+{{csrf_field()}}
                 <div class="col-md-6 pr-1">
                     <div class="form-group basic">
                         <label>@lang('aUserprofile.firstname')</label>
@@ -32,24 +31,26 @@
                            name="email" value="{{ $user->email }}">
                 </div>
 
+
+
                 <div class="col-md-8">
                     <label for="selector"
                            class="colorN italic padding-top-20">Contraseña</label>
                     <input type="password" class="form-control form-control-new "
-                           id="inputPassword" name="password">
+                           id="inputPassword" name="password" placeholder="Password">
                 </div>
 
                 <div class="col-md-8">
                     <label for="selector"
                            class="colorN italic padding-top-20">Repita la contraseña</label>
                     <input type="password" class="form-control form-control-new "
-                           id="inputPassword" name="password">
+                           id="inputPassword" name="password" placeholder="Password Repeat">
                 </div>
 
             </div>
 
 
-            <div class="col-md-4" style="text-align: center">
+            <div class="col-md-4" style="text-align: center ">
                 <label for="selector" class="colorN italic padding-top-20">Avatar</label>
                 <br>
 
@@ -67,7 +68,7 @@
             </div>
 
 
-            <div class="col-md-4">
+            <div class="col-md-4" style="margin-top: 30px" >
                 {{-- BIRTHDATE ¦ GENDER ¦ LANG --}}
 
                 <div class="col-md-6 ">
@@ -197,11 +198,13 @@
             </div>
 
 
+
             <div class="col-md-2 floatRight">
                 <div class="row padding-top-20">
-                    <div class="col-md-5">
-                        <button type="submit" class="btn btn-sm btn-primary btn-block">
-                            Update
+                    <div class="col-md-5 form-group basic">
+                        <button id="btn-submit" type="submit" class="btn btn-success btn-round" value="add">
+                            <i class="now-ui-icons ui-1_simple-add"></i>
+                            @lang('buttons.update')
                         </button>
                     </div>
                 </div>
@@ -210,5 +213,7 @@
     </div>
 @stop
 @section('additional_scripts')
+    {{--<script src="{{asset('js/admin/userprofile.js')}}"></script>--}}
+    <script src="{{asset('js/front/front_profile.js')}}"></script>
 
 @stop

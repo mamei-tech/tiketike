@@ -191,7 +191,7 @@
         <div class="col-md-12">
             <div class="form-group basic">
                 <label>Bio</label>
-                <input name="bio" type="text" class="form-control" placeholder="Bio" value="{{ $user->getProfile->bio }}">
+                <input name="bio" type="text" class="form-control" placeholder="Bio" value="{{ $user->getProfile->bio }} ">
             </div>
         </div>
     </div>

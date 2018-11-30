@@ -70,22 +70,27 @@
                         <div class="col-xs-12 padding-top-20">
                             <h5 class="borderBottomG colorN sinkinSans600SB"><span
                                         class="ti-agenda texto14 padding-top5 margin-right-10"></span>Contactos</h5>
+
+                            @if($user->getProfile->phone)
                             <div class="phone sinkinSans500M padding-top-20">
                                 <span class="ti-mobile colorV"></span>
-                                +534518478
+                                {{$user->getProfile->phone}}
                             </div>
+                            @endif
                             <div class="correo sinkinSans500M padding-top-20">
                                 <span class="ti-email colorV  margin-right-10"></span>
-                                janedoe@nauta.com.cu
+                                {{$user->email}}
                             </div>
-                            <div class="facebook sinkinSans500M padding-top-20">
-                                <span class="ti-facebook colorV texto14 margin-right-10"></span>
-                                janedoe
-                            </div>
-                            <div class="twitter sinkinSans500M padding-top-20">
-                                <span class="ti-twitter colorV texto14 margin-right-10"></span>
-                                @janedoe
-                            </div>
+
+                            {{--TODO Made Social Info--}}
+                            {{--<div class="facebook sinkinSans500M padding-top-20">--}}
+                                {{--<span class="ti-facebook colorV texto14 margin-right-10"></span>--}}
+                                {{--janedoe--}}
+                            {{--</div>--}}
+                            {{--<div class="twitter sinkinSans500M padding-top-20">--}}
+                                {{--<span class="ti-twitter colorV texto14 margin-right-10"></span>--}}
+                                {{--@janedoe--}}
+                            {{--</div>--}}
                         </div>
                         <div class="col-xs-12 padding-top-20">
                             <h5 class="borderBottomG colorN sinkinSans600SB"><span
@@ -95,7 +100,7 @@
                             <div class="margin-bottom-40 padding-top5">
                                 <div class="pull-left padding-top5">
                                     <span class="ti-money colorV margin-right5"></span>
-                                    <span class="borderDashed sinkinSans500M padding15">450.00 USD</span>
+                                    <span class="borderDashed sinkinSans500M padding15">{{$user->getProfile->balance}}</span>
                                 </div>
                                 <div class="pull-right">
                                     <button type="button"
@@ -425,8 +430,7 @@
                              aria-labelledby="headingThree" aria-expanded="false" style="">
                             <div class="panel-body">
                                 <ul class="padding-top-20 nav nav-tabs sinkinSans600SB padding-left150" id="myTab">
-                                    <li><a data-toggle="tab" class="ticket text-uppercase colorN" href="#todos2"
-                                           aria-expanded="true">todos</a></li>
+
                                     <li class=""><a data-toggle="tab" class="ticket text-uppercase colorN"
                                                     href="#seguidos"
                                                     aria-expanded="false">seguidos</a></li>
@@ -436,7 +440,6 @@
                                 </ul>
 
                                 <div class="tab-content">
-                                    <div class="tab-pane " id="todos2">...</div>
                                     <div class="tab-pane " id="seguidos">
                                     </div>
                                     <div class="tab-pane active in" id="mesiguen">

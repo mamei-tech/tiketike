@@ -114,6 +114,8 @@ class UserController extends Controller
      */
     public function update(StoreUserprofileRequest $request, $userid)
     {
+        var_dump($request->all());
+        die();
         // Get the user instance
         $user = User::with('getProfile')->findOrFail($userid);
 //        var_dump($user->getProfile);

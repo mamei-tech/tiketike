@@ -54,6 +54,7 @@ class CreateUsersTable extends Migration
             $table->string('avatarname')->default('default');               // TODO Check if this is working properly
             $table->string('bio', 116)->nullable();
             $table->string('addrss', 60);
+            $table->string('phone', 15)->nullable();
             $table->float('balance')->default(0);
             $table->unsignedInteger('zipcode', false);
             $table->timestamps();
