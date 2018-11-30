@@ -27,10 +27,11 @@
                     <span class="colorB texto24 sinkinSans300LI">Texto de bienvenida del sitio y de orientación al usuario</span>
                 </div>
                 <div class="col-md-3 padding-top-20 center-textR">
-                    <a href="#" class="btn btn-primary btn-lg texto24 bg_green padding10">
+                    <a href="#createRaffleModal" data-toggle="modal" class="btn btn-primary btn-lg texto24 bg_green padding10">
                         <span class="margin-right-15 padding-left10 sinkinSans300L">Crear rifa</span>
                         <span aria-hidden="true" class="ti-angle-right styleFlechaD"></span>
                     </a>
+                    @include('partials.front_modals.create_raffle_modal')
                     <div class="padding-top50 margin-left15">
                         <a href="#" class="texto24 colorB padding10">
                             <span class="margin-right-15 sinkinSans300L">Participa</span>

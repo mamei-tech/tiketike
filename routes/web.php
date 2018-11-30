@@ -100,6 +100,7 @@ Route::group([
 
     // Users Management
     Route::resource('/users', 'UserController', ['except' => [ 'show']]);
+    Route::put('/users.updateadmin/{userid}', 'UserController@updateadmin')->name('users.updateadmin');
 
     // Roles Management
     Route::resource('/roles', 'RoleController', ['except' => [ 'show']]);
@@ -117,6 +118,8 @@ Route::group([
         Route::post('/publish/{id}', 'URaffleController@publish')->name('unpublished.publish');
         Route::get('/anulled', 'ARaffleController@index')->name('arraffle.index');
         Route::delete('/destroy/{id}', 'ARaffleController@destroy')->name('arraffle.destroy');
+
+        Route::resource('/categories', 'CategoriesController', ['except' => ['edit', 'show', 'destroy']]);
 
         // TODO Change the name for two these views
         Route::get('/config', 'AdminConfigController@showraffleconfig')->name('admin.raffle.showconfig');

@@ -26,5 +26,6 @@ return [
     'rpublished' => 'Published',
     'runpublished' => 'Unpublished',
     'ranulled' => 'Cancelled',
+    'categories' => 'Categories'
 
 ];

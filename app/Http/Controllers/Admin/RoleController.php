@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Aux\LogsMsgs;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreRoleRequest;
+use Illuminate\Support\Facades\Log;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
 use Illuminate\Support\Facades\Notification;
@@ -28,10 +30,10 @@ class RoleController extends Controller
 
         /* TODO: Check what this is for, how to use it */
         // Authorization
-            $this->middleware('permission:list roles');
-            $this->middleware('permission:create role', ['only' => ['create', 'store']]);
-            $this->middleware('permission:edit role', ['only' => ['edit', 'update']]);
-            $this->middleware('permission:delete role', ['only' => ['destroy']]);
+        $this->middleware('permission:list roles');
+        $this->middleware('permission:create role', ['only' => ['create', 'store']]);
+        $this->middleware('permission:edit role', ['only' => ['edit', 'update']]);
+        $this->middleware('permission:delete role', ['only' => ['destroy']]);
     }
 
 
@@ -80,12 +82,13 @@ class RoleController extends Controller
      */
     public function store(StoreRoleRequest $request)
     {
-        Role::create([
+        $role = Role::create([
             'name' => $request->name,
             'guard_name' => $request->description,
         ]);
 
         $roles = DB::table('roles')->get();
+        Log::info(LogsMsgs::$role['created'], [$role->name, $role->id]);
 
         // TODO Try redirect with compact
         return redirect()->route('roles.index',
@@ -114,7 +117,7 @@ class RoleController extends Controller
         $role->guard_name = $request->get('description');
         $role->save();
         $perms = array();
-        DB::table('role_has_permissions')->where('role_id',$role->id)->delete();
+        DB::table('role_has_permissions')->where('role_id', $role->id)->delete();
         if ($permissions_request != null) {
             foreach ($permissions_request as $permission) {
                 $result = Permission::where('id', '=', $permission)->first()->name;
@@ -126,6 +129,7 @@ class RoleController extends Controller
 
         $roles = DB::table('roles')->get();
         $permissions = DB::table('permissions')->get();
+        Log::info(LogsMsgs::$role['updated'], [$role->name, $role->id]);
 
         // TODO Try redirect with compact
         return redirect()->route('roles.index',
@@ -148,8 +152,12 @@ class RoleController extends Controller
     public function destroy($id)
     {
         //TODO Think in a validation, maybe add a custom Request parameter
-        $role = Role::findById($id);
+        $role = Role::find($id);
+//        var_dump($role);
+//        die();
+        $name = $role->name;
         $role->delete();
+        Log::info(LogsMsgs::$role['deleted'], [$name, $id]);
 
         $roles = DB::table('roles')->get();
 
