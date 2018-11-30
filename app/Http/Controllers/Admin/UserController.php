@@ -114,10 +114,10 @@ class UserController extends Controller
      */
     public function update(StoreUserprofileRequest $request, $userid)
     {
+//        var_dump($request->get('roles'));
+//        die();
         // Get the user instance
         $user = User::with('getProfile')->findOrFail($userid);
-//        var_dump($user->getProfile);
-//        die();
 
         // Avatar ops
         if ($request->has('avatar') and $request->file('avatar')->isValid()) {
@@ -130,7 +130,7 @@ class UserController extends Controller
         }
 
         // Filling all the user inputs form
-        $user->name = $request->get('name');
+        $user->name = $request->get('firstname');
         $user->lastname = $request->get('lastname');
         $user->email = $request->get('email');
 
@@ -154,7 +154,7 @@ class UserController extends Controller
         $user->save();
         $roles = array();
         foreach (array_get($request->all(), 'roles', []) as $role) {
-            array_push($roles,$role);
+            array_push($roles, $role);
         }
         $user->syncRoles($roles);
 
@@ -175,6 +175,30 @@ class UserController extends Controller
                 'countrycities' => $countrycities
             ],
             '303')
+            ->with('success', 'User "' . $user->getProfile->username . '" updated successfully');
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param Request $request
+     * @param  int $userid
+     * @return \Illuminate\Http\Response
+     */
+    public function updateadmin(Request $request, $userid)
+    {
+        $user = User::with('getProfile')->findOrFail($userid);
+        $user->name = $request->get('name');
+        $user->lastname = $request->get('lastname');
+        $user->email = $request->get('email');
+        $user->save();
+        $roles = array();
+        foreach (array_get($request->all(), 'roles', []) as $role) {
+            array_push($roles, $role);
+        }
+        $user->syncRoles($roles);
+        Log::info(LogsMsgs::$msgs['accepted'], [$user->getProfile->username, $userid]);
+        return redirect()->route('users.index')
             ->with('success', 'User "' . $user->getProfile->username . '" updated successfully');
     }
 

@@ -1,4 +1,4 @@
-<form class="form-horizontal" method="post" action="{{route('users.update','')}}"
+<form class="form-horizontal" method="post" action="{{route('users.updateadmin','')}}"
       accept-charset="UTF-8" enctype="multipart/form-data">
     {{ csrf_field() }}
     <input name="_method" type="hidden" value="PUT">

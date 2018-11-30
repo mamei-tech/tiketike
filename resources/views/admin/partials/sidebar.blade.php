@@ -21,14 +21,11 @@
         {{-- USER SECTION --}}
         <div class="user">
             <div class="photo">
-                {{--@if(Auth::user()->avatar != null)--}}
-                    {{--<img class="img-circle" src='{!! Auth::user()->avatar !!}'/>--}}
-                {{--@endif--}}
-                {{--@if(Auth::user()->profile->avatarname == 'default')--}}
-                    {{--<img class="img-circle" src={{ asset('pics/common/default-avatar.png') }}/>--}}
-                {{--@else--}}
-                    {{--<img class="img-circle" src="{{ Auth::user()->profile->getMedia('avatars')->first()->getUrl() }}">--}}
-                {{--@endif--}}
+                @if(Auth::user()->getProfile->avatarname == 'default')
+                    <img class="img-circle" src={{ asset('pics/common/default-avatar.png') }}/>
+                @else
+                    <img class="img-circle" src="{{ Auth::user()->getProfile->getMedia('avatars')->first()->getUrl() }}">
+                @endif
             </div>
             <div class="info">
                 <a data-toggle="collapse" href="#usrProfile" class="collapsed">
@@ -136,6 +133,13 @@
                             <a href="{{ route('arraffle.index') }}">
                                 <span class="sidebar-mini-icon"> A </span>
                                 <span class="sidebar-normal"> @lang('aSidebar.ranulled') </span>
+                            </a>
+                        </li>
+
+                        <li class="@isset($li_activeRCategories) {{ $li_activeRCategories }} @endisset">
+                            <a href="{{ route('categories.index') }}">
+                                <span class="sidebar-mini-icon"> Ca </span>
+                                <span class="sidebar-normal"> @lang('Categories') </span>
                             </a>
                         </li>
 

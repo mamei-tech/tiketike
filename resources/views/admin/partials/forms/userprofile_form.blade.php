@@ -4,6 +4,8 @@
     {{ csrf_field() }}
 
     <input name="_method" type="hidden" value="PUT">
+    <?php $count = 1; ?>
+    <input type="hidden" name="roles[]" id="roles[]" value="@foreach($user->roles as $role) {{ $role->name }} @if($count < count($user->roles)),@endif <?php $count++; ?> @endforeach">
 
     {{-- EMAIL ¦ USERNAME ¦ AVATAR --}}
     <div class="row">
