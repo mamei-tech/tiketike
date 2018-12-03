@@ -27,7 +27,7 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
 
-       $schedule->command('update:ranking')->everyFiveMinutes();
+       $schedule->command('update:ranking')->everyMinute()->sendOutputTo('/opt/lampp/htdocs/tiketike/storage/logs/job.txt');
     }
 
     /**

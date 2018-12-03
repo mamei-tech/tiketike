@@ -2,7 +2,9 @@
 
 namespace App\Console\Commands;
 
+use App\User;
 use Illuminate\Console\Command;
+use Illuminate\Database\Eloquent\Builder;
 
 class UpdateRanking extends Command
 {
@@ -41,8 +43,8 @@ class UpdateRanking extends Command
             $users = User::all();
             foreach ($users as $user)
             {
-                $created_raffles = count($user->getRaffles());
-                $buyed_tickets = count($user->getTickets());
+                $created_raffles = count($user->getRaffles);
+                $buyed_tickets = count($user->getTickets);
                 $tickets = User::with('getTickets')
                     ->whereHas('getTickets', function (Builder $q) use ($user){
                         $q->where('bingo',0);
@@ -50,12 +52,11 @@ class UpdateRanking extends Command
                     })
                     ->get();
                 $times_winner = count($tickets);
-                $raferals = count($user->getReferralsBuys());
-                $comments = count($user->getComments());
+                $raferals = count($user->getReferralsBuys);
+                $comments = count($user->getComments);
                 $ranking = $created_raffles*0.3 + $buyed_tickets*0.05 + $times_winner*0.3 + $raferals*0.3 + $comments*0.05;
-                User::update([
-                    'ranking' => $ranking
-                ],$user);
+                $user->ranking = $ranking;
+                $user->save();
             }
 
     }

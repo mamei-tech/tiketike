@@ -182,6 +182,7 @@
                     </div>
                     <!--TOP de ganadores visibles solo en vista movil-->
                     <div class="col-xs-12 paddingLeft0 padding-rigth-0 visible-xs padding-top-20">
+
                         <div class="col-xs-4 ">
                             <div class="img-contenedor padding-bottom5">
                                 <img src="{{ asset('pics/front/user.jpg') }}" alt="Ringo"
@@ -206,7 +207,7 @@
                     </div>
                     <div class="col-xs-12 bg-popover visible-xs">
                         <div class="colorV visible-xs text-center texto14 padding-top-30"><span
-                                    class="sinkinSans600SB text-uppercase">Jane Doe /</span> <span
+                                    class="sinkinSans600SB text-uppercase">{{$top_users}} /</span> <span
                                     class="sinkinSans300LI">Pais</span>
                         </div>
                         <div class="col-xs-12 padding-top-20 sinkinSans400R">
