@@ -207,7 +207,7 @@
                     </div>
                     <div class="col-xs-12 bg-popover visible-xs">
                         <div class="colorV visible-xs text-center texto14 padding-top-30"><span
-                                    class="sinkinSans600SB text-uppercase">{{$top_users}} /</span> <span
+                                    class="sinkinSans600SB text-uppercase">Jane Doe /</span> <span
                                     class="sinkinSans300LI">Pais</span>
                         </div>
                         <div class="col-xs-12 padding-top-20 sinkinSans400R">
@@ -268,42 +268,65 @@
                     <!--FIN Usuarios Opinan-->
                 </div>
                 <!--TOP usuarios ganadores solo visible en desktop-->
-                <div class="col-sm-3 col-md-3 col-lg-2 user padding-top-20 hidden-xs ">
-                    <div class="information padding-top-20">
-                        <div class="pull-left margin-right-15">
-                            <div class="img-contenedor">
-                                <img src="{{ asset('pics/front/user.jpg') }}" alt="Ringo"
-                                     class="dimenUsuarioG sombraImgUser">
-                            </div>
-                        </div>
-                        <div class="pull-left padding-top-10">
-                            <h3 class="sinkinSans600SB">1ro</h3>
-                        </div>
-                    </div>
-                    <div class="information padding-top-40">
-                        <div class="pull-left margin-right-15">
-                            <div class="img-contenedor">
-                                <img src="{{ asset('pics/front/user.jpg') }}" alt="Ringo"
-                                     class="dimenUsuarioG sombraImgUser">
-                            </div>
-                        </div>
-                        <div class="pull-left padding-top-10">
-                            <h3 class="sinkinSans600SB">2do</h3>
-                        </div>
-                    </div>
-                    <div class="information padding-top-40">
-                        <div class="pull-left margin-right-15">
-                            <div class="img-contenedor">
-                                <img src="{{ asset('pics/front/user.jpg') }}" alt="Ringo"
-                                     class="dimenUsuarioG sombraImgUser">
-                            </div>
-                        </div>
-                        <div class="pull-left padding-top-10">
-                            <h3 class="sinkinSans600SB">3ro</h3>
-                        </div>
-                    </div>
 
+                <div id="scene">
+                    <div id="left-zone">
+                        <ul class="list">
+                            @foreach($top_users as $top_user)
+
+
+                            <li class="item">
+                                <input type="radio" id="{{$top_user->id}}" name="basic_carousel" value="{{$top_user->id}}" checked="checked"/>
+                                <label class="label_strawberry" for="{{$top_user->id}}">strawberry</label>
+                                <div class="content content_strawberry"><span class="picto"></span>
+                                    <h1>strawberry</h1>
+                                    <p>Aki va la informacion del usuario</p>
+                                </div>
+                            </li>
+
+                            @endforeach
+                        </ul>
+                    </div>
+                    <div id="middle-border"></div>
+                    <div id="right-zone"></div>
                 </div>
+
+                {{--<div class="col-sm-3 col-md-3 col-lg-2 user padding-top-20 hidden-xs ">--}}
+                    {{--<div class="information padding-top-20">--}}
+                        {{--<div class="pull-left margin-right-15">--}}
+                            {{--<div class="img-contenedor">--}}
+                                {{--<img src="{{ asset('pics/front/user.jpg') }}" alt="Ringo"--}}
+                                     {{--class="dimenUsuarioG sombraImgUser">--}}
+                            {{--</div>--}}
+                        {{--</div>--}}
+                        {{--<div class="pull-left padding-top-10">--}}
+                            {{--<h3 class="sinkinSans600SB">1ro</h3>--}}
+                        {{--</div>--}}
+                    {{--</div>--}}
+                    {{--<div class="information padding-top-40">--}}
+                        {{--<div class="pull-left margin-right-15">--}}
+                            {{--<div class="img-contenedor">--}}
+                                {{--<img src="{{ asset('pics/front/user.jpg') }}" alt="Ringo"--}}
+                                     {{--class="dimenUsuarioG sombraImgUser">--}}
+                            {{--</div>--}}
+                        {{--</div>--}}
+                        {{--<div class="pull-left padding-top-10">--}}
+                            {{--<h3 class="sinkinSans600SB">2do</h3>--}}
+                        {{--</div>--}}
+                    {{--</div>--}}
+                    {{--<div class="information padding-top-40">--}}
+                        {{--<div class="pull-left margin-right-15">--}}
+                            {{--<div class="img-contenedor">--}}
+                                {{--<img src="{{ asset('pics/front/user.jpg') }}" alt="Ringo"--}}
+                                     {{--class="dimenUsuarioG sombraImgUser">--}}
+                            {{--</div>--}}
+                        {{--</div>--}}
+                        {{--<div class="pull-left padding-top-10">--}}
+                            {{--<h3 class="sinkinSans600SB">3ro</h3>--}}
+                        {{--</div>--}}
+                    {{--</div>--}}
+
+                {{--</div>--}}
                 <div class="col-sm-5 col-md-4 col-lg-4 bg-popoverLanding padding-top-50 hidden-xs padding-left-0">
                     <span class="colorV text-uppercase sinkinSans600SB texto24">Jane Doe</span><br>
                     <span class="colorV sinkinSans300LI texto20">Pais</span><br>
