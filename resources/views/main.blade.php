@@ -277,10 +277,29 @@
 
                             <li class="item">
                                 <input type="radio" id="{{$top_user->id}}" name="basic_carousel" value="{{$top_user->id}}" checked="checked"/>
-                                <label class="label_strawberry" for="{{$top_user->id}}">strawberry</label>
+                                <label class="label_strawberry" for="{{$top_user->id}}">{{$top_user->name}}</label>
                                 <div class="content content_strawberry"><span class="picto"></span>
-                                    <h1>strawberry</h1>
-                                    <p>Aki va la informacion del usuario</p>
+                                    <span class="colorV text-uppercase sinkinSans600SB texto24">{{$top_user->name}}</span><br>
+                                    <span class="colorV sinkinSans300LI texto20">{{$top_user->getProfile->getCity->getCountry->name}}</span><br>
+                                    <div class="row sinkinSans200L texto14 padding-top-20 paddingLeft0">
+                                        <div class="col-xs-12 padding-top-20 paddingLeft0">
+                                            <div class="col-xs-9"><span class="colorN margin-right-20">Rifas creadas:</span></div>
+                                            <div class="col-xs-3"><strong class="colorV sinkinSans600SB">20%</strong><br></div>
+                                        </div>
+                                        <div class="col-xs-12 padding-top-20 paddingLeft0">
+                                            <div class="col-xs-9"><span class="colorN margin-right-20">Rifas ganadas:</span></div>
+                                            <div class="col-xs-3"><strong class="colorV sinkinSans600SB">100%</strong><br></div>
+                                        </div>
+                                        <div class="col-xs-12 padding-top-20 paddingLeft0">
+                                            <div class="col-xs-9"><span class="colorN margin-right-20">Rifas compartidas:</span></div>
+                                            <div class="col-xs-3"><strong class="colorV sinkinSans600SB">20%</strong><br></div>
+                                        </div>
+                                        <div class="col-xs-12 padding-top-20 paddingLeft0">
+                                            <div class="col-xs-9"><span class="colorN margin-right-20">Tickets vendidos:</span></div>
+                                            <div class="col-xs-3"><strong class="colorV sinkinSans600SB">20%</strong><br></div>
+                                        </div>
+                                    </div>
+
                                 </div>
                             </li>
 
