@@ -9,7 +9,7 @@ class RaffleCategory extends Model
 {
     protected $table = 'rafflecategories';
     protected $primaryKey = 'id';
-    protected $fillable = ['category'];
+    protected $fillable = ['category','icon'];
 
     /**
      * Retrieve category's raffles.

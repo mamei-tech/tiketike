@@ -1,7 +1,7 @@
 <?php
 
 
-namespace App\Http\Aux\Cfg;
+namespace App\Http\TkTk\Cfg;
 
 use Illuminate\Support\Facades\DB;
 

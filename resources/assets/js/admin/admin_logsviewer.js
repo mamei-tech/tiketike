@@ -8,7 +8,7 @@ require('../plugins/moment.min');
 /* Custom Components */
 require('./component/navbar');
 require('./component/messagebox_notifications');
-require('./component/aux');
+require('./component/tktk');
 
 /* Plugins */
 require('chart.js');

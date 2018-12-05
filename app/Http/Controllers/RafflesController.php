@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Aux\CodesGenerator;
+use App\Http\TkTk\CodesGenerator;
 use App\Promo;
 use App\RaffleStatus;
 use App\User;

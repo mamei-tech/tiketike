@@ -12,23 +12,28 @@ class RaffleCategoryTableSeeder extends Seeder
     public function run()
     {
         DB::table('rafflecategories')->insert([
-            'category' => 'Computers'
+            'category' => 'Computers',
+            'icon' => 'tech_laptop'
         ]);
 
         DB::table('rafflecategories')->insert([
-            'category' => 'Phones'
+            'category' => 'Phones',
+            'icon' => 'tech_mobile'
         ]);
 
         DB::table('rafflecategories')->insert([
-            'category' => 'Cars'
+            'category' => 'Cars',
+            'icon' => 'transportation_bus-front-12'
         ]);
 
         DB::table('rafflecategories')->insert([
-            'category' => 'TVs'
+            'category' => 'TVs',
+            'icon' => 'tech_tv'
         ]);
 
         DB::table('rafflecategories')->insert([
-            'category' => 'Clocks'
+            'category' => 'Clocks',
+            'icon' => 'tech_watch-time'
         ]);
     }
 }

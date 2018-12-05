@@ -12,7 +12,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Notification;
 use App\User;
 use App\Notifications\GeneralNotification;
-use App\Http\Aux\CodesGenerator;
+use App\Http\TkTk\CodesGenerator;
 use Exception;
 
 

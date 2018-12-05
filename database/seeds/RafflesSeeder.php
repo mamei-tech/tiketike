@@ -14,7 +14,7 @@ class RafflesSeeder extends Seeder
     {
         //Seeding raffles
         DB::table('raffles')->insert([
-                'id' => \App\Http\Aux\CodesGenerator::newRaffleId(),
+                'id' => \App\Http\TkTk\CodesGenerator::newRaffleId(),
                 'owner' => \App\User::all()->first()->id,
                 'category' => \App\RaffleCategory::where('category', 'Phones')->first()->id,
                 'status' => \App\RaffleStatus::where('status', 'Unpublished')->first()->id,
@@ -26,7 +26,7 @@ class RafflesSeeder extends Seeder
         );
 
         DB::table('raffles')->insert([
-                'id' => \App\Http\Aux\CodesGenerator::newRaffleId(),
+                'id' => \App\Http\TkTk\CodesGenerator::newRaffleId(),
                 'owner' => \App\User::all()->first()->id,
                 'category' => \App\RaffleCategory::where('category', 'Computers')->first()->id,
                 'status' => \App\RaffleStatus::where('status', 'Unpublished')->first()->id,
@@ -38,7 +38,7 @@ class RafflesSeeder extends Seeder
         );
 
         DB::table('raffles')->insert([
-                'id' => \App\Http\Aux\CodesGenerator::newRaffleId(),
+                'id' => \App\Http\TkTk\CodesGenerator::newRaffleId(),
                 'owner' => \App\User::all()->first()->id,
                 'category' => \App\RaffleCategory::where('category', 'Computers')->first()->id,
                 'status' => \App\RaffleStatus::where('status', 'Unpublished')->first()->id,
@@ -50,7 +50,7 @@ class RafflesSeeder extends Seeder
         );
 
         DB::table('raffles')->insert([
-                'id' => \App\Http\Aux\CodesGenerator::newRaffleId(),
+                'id' => \App\Http\TkTk\CodesGenerator::newRaffleId(),
                 'owner' => \App\User::all()->first()->id,
                 'category' => \App\RaffleCategory::where('category', 'TVs')->first()->id,
                 'status' => \App\RaffleStatus::where('status', 'Unpublished')->first()->id,
@@ -62,7 +62,7 @@ class RafflesSeeder extends Seeder
         );
 
         DB::table('raffles')->insert([
-                'id' => \App\Http\Aux\CodesGenerator::newRaffleId(),
+                'id' => \App\Http\TkTk\CodesGenerator::newRaffleId(),
                 'owner' => \App\User::all()->first()->id,
                 'category' => \App\RaffleCategory::where('category', 'TVs')->first()->id,
                 'status' => \App\RaffleStatus::where('status', 'Unpublished')->first()->id,

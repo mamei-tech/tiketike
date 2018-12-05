@@ -17,7 +17,9 @@ class CategoriesController extends Controller
 {
     public function index()
     {
+        $categories = RaffleCategory::all();
         return view('admin.categories', [
+            'categories' => $categories,
             'div_showRaffles' => 'show',
             'li_activeRCategories' => 'active',
         ]);
@@ -25,12 +27,16 @@ class CategoriesController extends Controller
 
     public function store(Request $request)
     {
+        RaffleCategory::create($request->all());
+        return redirect()->route('categories.index')
+            ->with('success', 'Category created successfully');
 
     }
 
     public function update(Request $request, $category)
     {
-
+        var_dump($request->all());
+        die();
     }
 
     public function delete($id)

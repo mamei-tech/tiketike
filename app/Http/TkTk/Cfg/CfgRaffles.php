@@ -6,7 +6,7 @@
  * Time: 2:29 AM
  */
 
-namespace App\Http\Aux\Cfg;
+namespace App\Http\TkTk\Cfg;
 
 
 class CfgRaffles extends CfgHandler

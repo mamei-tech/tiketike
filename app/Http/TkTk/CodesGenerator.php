@@ -6,7 +6,7 @@
  * Time: 8:17 PM
  */
 
-namespace App\Http\Aux;
+namespace App\Http\TkTk;
 
 use App\Raffle;
 use App\Ticket;

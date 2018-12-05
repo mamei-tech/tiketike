@@ -116,6 +116,8 @@ mix.js('resources/assets/js/admin/admin_views.js', 'public/js/admin/admin_views.
 mix.js('resources/assets/js/admin/views/admin/userbilling.js', 'public/js/admin/userbilling.js').sourceMaps();
 /* Admin | views | userprofile */
 mix.js('resources/assets/js/admin/views/admin/userprofile.js', 'public/js/admin/userprofile.js').sourceMaps();
+/* Admin | views | categories */
+mix.js('resources/assets/js/admin/views/admin/categories.js', 'public/js/admin/categories.js').sourceMaps();
 /* Admin | views | roles */
 mix.js('resources/assets/js/admin/views/admin/roles.js', 'public/js/admin/roles.js').sourceMaps();
 /* Admin | views | users */
