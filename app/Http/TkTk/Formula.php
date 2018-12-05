@@ -1,7 +1,7 @@
 <?php
 
 
-namespace App\Http\Aux;
+namespace App\Http\TkTk;
 
 
 class Formula

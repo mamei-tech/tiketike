@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\RaffleConfigRequest;
-use App\Http\Aux\Cfg\CfgRaffles;
+use App\Http\TkTk\Cfg\CfgRaffles;
 
 
 class AdminConfigController extends Controller

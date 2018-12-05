@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 
-use App\Http\Aux\LogsMsgs;
+use App\Http\TkTk\LogsMsgs;
 use App\Http\Requests\StoreUserprofileRequest;
 use App\Promo;
 use App\Raffle;

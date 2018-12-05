@@ -35,13 +35,13 @@
 
                     <div class="toolbar">
                         {{--Here you can write extra buttons/actions for the toolbar--}}
-                        <button id="btn_addraffle" class="btn btn-primary btn-round btn-icon">
+                        <button id="btn_addcategory" class="btn btn-primary btn-round btn-icon">
                             <i class="now-ui-icons ui-1_simple-add"></i>
                         </button>
                     </div>
 
 
-{{--                    @include('admin.partials.tables.uraffle_table')--}}
+                    @include('admin.partials.tables.categories_table')
 
 {{--                    {{ $raffles->links() }}--}}
                 </div>
@@ -50,8 +50,8 @@
 
         {{--Create Role Modal --}}
         {{--@include('admin.partials.modals.rafflepublish_modal')--}}
-        {{--@include('admin.partials.modals.araffledelete_modal')--}}
-        {{--@include('admin.partials.modals.urafflecreate_modal')--}}
+        @include('admin.partials.modals.categoriesedit_modal')
+        @include('admin.partials.modals.categoriescreate_modal')
 
     </div>
 
@@ -60,5 +60,5 @@
 @section('footerScripts')
     @parent
     <script src="{{ asset('js/admin/admin_views.js') }}" defer></script>
-    <script src="{{ asset('js/admin/uraffles.js') }}" defer></script>
+    <script src="{{ asset('js/admin/categories.js') }}" defer></script>
 @endsection

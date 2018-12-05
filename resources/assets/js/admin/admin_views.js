@@ -6,7 +6,7 @@ require('./now-ui-dashboard');
 /* Custom Components */
 require('./component/navbar');
 require('./component/messagebox_notifications');
-require('./component/aux');
+require('./component/tktk');
 
 /* Plugins */
 require('../plugins/jquery.validate.min');

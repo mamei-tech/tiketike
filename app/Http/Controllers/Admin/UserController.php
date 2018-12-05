@@ -10,7 +10,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreUserprofileRequest;
 use App\User;
 use App\Country;
-use App\Http\Aux\LogsMsgs;
+use App\Http\TkTk\LogsMsgs;
 
 class UserController extends Controller
 {

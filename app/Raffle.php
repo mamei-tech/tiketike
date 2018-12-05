@@ -2,7 +2,7 @@
 
 namespace App;
 
-use App\Http\Aux\CodesGenerator;
+use App\Http\TkTk\CodesGenerator;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;

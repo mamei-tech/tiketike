@@ -4,8 +4,8 @@ namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Controllers\Api\ApiController;
 use App\Http\Requests\ChkRPublishRequest;
-use App\Http\Aux\Cfg\CfgRaffles;
-use App\Http\Aux\Formula;
+use App\Http\TkTk\Cfg\CfgRaffles;
+use App\Http\TkTk\Formula;
 use Illuminate\Http\Response;
 use App\Raffle;
 

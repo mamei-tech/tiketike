@@ -16,6 +16,7 @@ class CreateRafflesTable extends Migration
         Schema::create('rafflecategories', function (Blueprint $table) {
             $table->increments('id');      //PK
             $table->string('category', 25)->unique();
+            $table->string('icon');
             $table->timestamps();
         });
 
