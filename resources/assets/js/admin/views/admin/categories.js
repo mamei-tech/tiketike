@@ -6,8 +6,13 @@ function popultDeleteForm(id, category, icon) {
     let deleteForm = $('div#frm_deleteCategories form');
 
     deleteForm.find('input#tb_id').val(id);
-    deleteForm.find('input#tb_title').val(category);
-    deleteForm.find('input#tb_price').val(icon);
+    deleteForm.find('input#tb_name').val(category);
+    var iconelement = document.getElementById('icondiv');
+    var itag = icon.split(' ');
+    var elementClass = itag[2].split('"');
+    var element = document.createElement("i");
+    element.className = "now-ui-icons "+elementClass[0];
+    iconelement.appendChild(element);
 }
 
 function populateEditForm(id, category, icon) {
@@ -16,7 +21,10 @@ function populateEditForm(id, category, icon) {
 
     editForm.find('input#tb_id').val(id);
     editForm.find('input#tb_category').val(category);
-    editForm.find('input#tb_icon').val(icon);
+    var itag = icon.split(' ');
+    var elementClass = itag[2].split('"');
+    var inputelement = editForm.find('input#icon[value="'+elementClass[0]+'"]');
+    inputelement.attr('checked',true);
 }
 
 /* DEFINITION -- MODALS */
