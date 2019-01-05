@@ -8,7 +8,7 @@
             </script>, Designed by
             <a href="https://www.invisionapp.com" target="_blank">Invision</a>. Developed by
             {{--TODO Change the name if need it--}}
-            <a href="#" target="_blank">ELECTROTECH</a>. A template form
+            <a href="#" target="_blank">MAMEI</a>. A template form
             <a href="https://www.creative-tim.com" target="_blank">Creative Tim</a>.
         </div>
 

@@ -105,6 +105,13 @@ $(document).ready(function () {
         e.preventDefault();
     });
 
+    // Delete a record
+    table.on('click', '.like', function (e) {
+        console.log('am here');
+
+        e.preventDefault();
+    });
+
     /* BUTTONS INTERACTION -- MODAL FORMS */
     publishForm.find('button#publishBtn').click(function () {
         if (publishForm.valid())

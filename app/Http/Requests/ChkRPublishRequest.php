@@ -11,10 +11,7 @@ class ChkRPublishRequest extends FormRequest
      *
      * @return bool
      */
-    public function authorize()
-    {
-        //TODO: Do the correct this here, right now i don't know what is that for
-        //return false;
+    public function authorize() {
         return true;
     }
 
@@ -26,12 +23,12 @@ class ChkRPublishRequest extends FormRequest
     public function rules()
     {
         return [
-            'id' => 'integer|exists:raffles,id',
-            'profit' => 'required|integer|between:0,200',
-            'commissions' => 'required|integer|between:0,50',
-            'criteria' => ['required', 'regex:/^(tcount)$|^(tprice)$/us'],
-            'tkcount' => 'numeric',
-            'tprice' => 'numeric',
+            'id'            => 'exists:raffles,id',
+            'profit'        => 'required|integer|between:0,200',
+            'commissions'   => 'required|integer|between:0,50',
+            'criteria'      => ['required', 'regex:/^(tcount)$|^(tprice)$/us'],
+            'tkcount'       => 'numeric',
+            'tprice'        => 'numeric',
         ];
     }
 
