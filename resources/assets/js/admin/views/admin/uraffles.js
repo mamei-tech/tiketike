@@ -56,6 +56,7 @@ $(document).ready(function () {
     // gettings the forms
     let deleteForm = $('div#frm_deleteRaffle form');
     let publishForm = $('div#frm_publishRaffle form');
+    let editForm = $('div#frm_editRaffle form');
 
     //These are the actions of both forms when are loaded
     let originalDeleteFormAction = deleteForm.attr('action');
@@ -105,6 +106,24 @@ $(document).ready(function () {
         e.preventDefault();
     });
 
+    // Delete a record
+    table.on('click', '.btn-info', function (e) {
+        e.preventDefault();
+        let tr = $(this).closest('tr');
+        let row = table.row(tr).data();
+        axios.post(route('v1.uraffle.fetch'), {
+            id: row[0]                                 // Can be 'tcount' or 'tprice'
+        }).then(function (response) {
+            inputs['id'].val(response.data['id']);
+            inputs['title'].val(response.data['title']);
+            inputs['description'].val(response.data['description']);
+            $('#mdal_editRaffle').modal('show');
+        }).catch(function (error) {
+            // console.log(error);
+            showajaxerror('#mdal_editRaffle',  error.response.data.error['message']);
+        });
+    });
+
     /* BUTTONS INTERACTION -- MODAL FORMS */
     publishForm.find('button#publishBtn').click(function () {
         if (publishForm.valid())
@@ -125,7 +144,13 @@ $(document).ready(function () {
         'commissions': publishForm.find('input#tb_commissions'),
         'tCount': publishForm.find('input#tb_tcount'),
         'tPrice': publishForm.find('input#tb_tprice'),
-        'criteria': publishForm.find('input#tb_criteria')
+        'criteria': publishForm.find('input#tb_criteria'),
+        'title': editForm.find('input#tb_title'),
+        'description': editForm.find('input#tb_description'),
+        'price': editForm.find('input#tb_price'),
+        'owner': editForm.find('input#tb_owner'),
+        'category': editForm.find('input#tb_category'),
+        'location': editForm.find('input#tb_location'),
     };
 
     //Publish a raffle
