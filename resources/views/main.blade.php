@@ -272,7 +272,7 @@
                 <!--TOP usuarios ganadores solo visible en desktop-->
 
                 <div class=" slick-vertical col-sm-3 col-md-3 col-lg-2 user padding-top-20 hidden-xs ">
-                    <div class="information padding-top-20">
+                    <div class="slick-list information padding-top-20">
                         <div class="pull-left margin-right-15">
                             <div class="img-contenedor">
                                 <img src="{{ asset('pics/front/user.jpg') }}" alt="Ringo"
@@ -283,7 +283,7 @@
                             <h3 class="sinkinSans600SB">1ro</h3>
                         </div>
                     </div>
-                    <div class="information padding-top-40">
+                    <div class="slick-list information padding-top-40">
                         <div class="pull-left margin-right-15">
                             <div class="img-contenedor">
                                 <img src="{{ asset('pics/front/user.jpg') }}" alt="Ringo"
@@ -294,7 +294,7 @@
                             <h3 class="sinkinSans600SB">2do</h3>
                         </div>
                     </div>
-                    <div class="information padding-top-40">
+                    <div class="slick-list information padding-top-40">
                         <div class="pull-left margin-right-15">
                             <div class="img-contenedor">
                                 <img src="{{ asset('pics/front/user.jpg') }}" alt="Ringo"
@@ -306,7 +306,7 @@
                         </div>
                     </div>
 
-                    <div class="information padding-top-40">
+                    <div class="slick-list information padding-top-40">
                         <div class="pull-left margin-right-15">
                             <div class="img-contenedor">
                                 <img src="{{ asset('pics/front/user.jpg') }}" alt="Ringo"
@@ -318,7 +318,7 @@
                         </div>
                     </div>
 
-                    <div class="information padding-top-40">
+                    <div class="slick-list information padding-top-40">
                         <div class="pull-left margin-right-15">
                             <div class="img-contenedor">
                                 <img src="{{ asset('pics/front/user.jpg') }}" alt="Ringo"
@@ -330,7 +330,7 @@
                         </div>
                     </div>
 
-                    <div class="information padding-top-40">
+                    <div class="slick-list information padding-top-40">
                         <div class="pull-left margin-right-15">
                             <div class="img-contenedor">
                                 <img src="{{ asset('pics/front/user.jpg') }}" alt="Ringo"
@@ -342,7 +342,7 @@
                         </div>
                     </div>
 
-                    <div class="information padding-top-40">
+                    <div class="slick-list information padding-top-40">
                         <div class="pull-left margin-right-15">
                             <div class="img-contenedor">
                                 <img src="{{ asset('pics/front/user.jpg') }}" alt="Ringo"
@@ -354,7 +354,7 @@
                         </div>
                     </div>
 
-                    <div class="information padding-top-40">
+                    <div class="slick-list information padding-top-40">
                         <div class="pull-left margin-right-15">
                             <div class="img-contenedor">
                                 <img src="{{ asset('pics/front/user.jpg') }}" alt="Ringo"
@@ -366,7 +366,7 @@
                         </div>
                     </div>
 
-                    <div class="information padding-top-40">
+                    <div class="slick-list information padding-top-40">
                         <div class="pull-left margin-right-15">
                             <div class="img-contenedor">
                                 <img src="{{ asset('pics/front/user.jpg') }}" alt="Ringo"
