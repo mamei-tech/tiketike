@@ -6,6 +6,7 @@ use App\Http\Controllers\Api\ApiController;
 use App\Http\Requests\ChkRPublishRequest;
 use App\Http\TkTk\Cfg\CfgRaffles;
 use App\Http\TkTk\Formula;
+use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use App\Raffle;
 
@@ -89,5 +90,22 @@ class URaffleController extends ApiController
             // Payload
             $request->criteria => $missingValue,
         ])->cookie('azeroth', encrypt($rafflePublishData), 1);
+    }
+
+    public function fetchRaffle(Request $request)
+    {
+        $id = $request->get('id');
+        $raffle = Raffle::find($id);
+        return $this->respond([
+            'status' => 'success',
+            'status_code' => Response::HTTP_OK,
+            'id' => "$id",
+            'title' => "$raffle->title",
+            'description' => "$raffle->description",
+            'price' => $raffle->price,
+            'owner' => $raffle->getOwner->id,
+            'category' => $raffle->getCategory->id,
+            'location' => $raffle->getLocation->id
+        ])->cookie('azeroth', encrypt($raffle->toArray()), 1);
     }
 }

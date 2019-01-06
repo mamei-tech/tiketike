@@ -52,6 +52,7 @@
         @include('admin.partials.modals.rafflepublish_modal')
         @include('admin.partials.modals.araffledelete_modal')
         @include('admin.partials.modals.urafflecreate_modal')
+        @include('admin.partials.modals.uraffleedit_modal')
 
     </div>
 
