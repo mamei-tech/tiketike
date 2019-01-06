@@ -61,6 +61,7 @@ $(document).ready(function () {
     //These are the actions of both forms when are loaded
     let originalDeleteFormAction = deleteForm.attr('action');
     let originalPubFormAction = publishForm.attr('action');
+    let originalEditFormAction = editForm.attr('action');
 
     /*  SETTING UP AXIOS HEADERS  */
     axios.defaults.headers.common['Authorization'] = "Bearer " + $('meta[name=access-token]').attr('content');
@@ -116,8 +117,17 @@ $(document).ready(function () {
         }).then(function (response) {
             inputs['id'].val(response.data['id']);
             inputs['title'].val(response.data['title']);
-            inputs['description'].val(response.data['description']);
-            $('#mdal_editRaffle').modal('show');
+            var description = document.createTextNode(response.data['description']);
+            document.getElementById('tb_editdescription').appendChild(description);
+            inputs['eprice'].val(response.data['price']);
+            var owner = response.data['owner'];
+            $('#tb_eowner').val(owner).trigger('change');
+            $('#tb_ecategory').val(response.data['category']).trigger('change');
+            $('#tb_elocation').val(response.data['location']).trigger('change');
+            editForm.attr('action', originalEditFormAction + '/' + response.data['id']);
+            setTimeout(function () {
+                $('#mdal_editRaffle').modal('show');
+            }, 30);
         }).catch(function (error) {
             // console.log(error);
             showajaxerror('#mdal_editRaffle',  error.response.data.error['message']);
@@ -146,8 +156,8 @@ $(document).ready(function () {
         'tPrice': publishForm.find('input#tb_tprice'),
         'criteria': publishForm.find('input#tb_criteria'),
         'title': editForm.find('input#tb_title'),
-        'description': editForm.find('input#tb_description'),
-        'price': editForm.find('input#tb_price'),
+        'description': editForm.find('input#tb_editdescription'),
+        'eprice': editForm.find('input#tb_price'),
         'owner': editForm.find('input#tb_owner'),
         'category': editForm.find('input#tb_category'),
         'location': editForm.find('input#tb_location'),
