@@ -16,13 +16,9 @@ class CreateTicketsTable extends Migration
         Schema::create('tickets', function (Blueprint $table) {
 
             $table->increments('id');
-
             $table->string('code', 5);
-
             $table->unsignedBigInteger('raffle');          //FK of raffles
-
             $table->unsignedInteger('buyer')->nullable();  //FK of users
-
             $table->boolean('sold')->default(false);
             $table->boolean('bingo')->default(false);
             $table->timestamps();
@@ -30,6 +26,7 @@ class CreateTicketsTable extends Migration
             $table->foreign('raffle')
                 ->references('id')
                 ->on('raffles')
+                ->onUpdate('cascade')
                 ->onDelete('cascade');
 
             $table->foreign('buyer')

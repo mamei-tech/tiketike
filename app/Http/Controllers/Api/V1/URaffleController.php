@@ -56,7 +56,7 @@ class URaffleController extends ApiController
         }
         else if ($request->criteria == 'tprice')
         {
-            $missingValue = Formula::calcTicketsPrice(
+            $missingValue = Formula::calcTicketsPrice (
                 $raffleprice,
                 $request->profit,
                 $request->commissions,

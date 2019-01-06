@@ -17,7 +17,7 @@ class Ticket extends Model
      */
     public function getRaffle()
     {
-        return $this->belongsTo('App\Raffle', 'raffle');
+        return $this->belongsTo('App\Raffle', 'raffle', 'id');
     }
 
     /**

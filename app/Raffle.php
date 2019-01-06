@@ -98,7 +98,7 @@ class Raffle extends Model implements HasMedia
      */
     public function getTickets()
     {
-        return $this->hasMany('App\Ticket', 'raffle');
+        return $this->hasMany('App\Ticket', 'raffle', 'id');
     }
 
     public function getTicketsByUser($user_id)
@@ -262,7 +262,6 @@ class Raffle extends Model implements HasMedia
             ->paginate(10);
     }
 
-
     /**
      * Retrieve all the Published raffles
      *
@@ -296,9 +295,6 @@ class Raffle extends Model implements HasMedia
             ->paginate(10);
         return $raffles;
     }
-
-
-
 
     /**
      * Retrieve all the unpublished raffles

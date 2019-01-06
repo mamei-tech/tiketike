@@ -14,6 +14,7 @@ class DatabaseSeeder extends Seeder
         $this->call([
             RaffleCategoryTableSeeder::class,       //rafflecategories
             RafflestatusTableSeeder::class,         //rafflestatus
+            CityTableSeeder::class,                 //city
             UsersTableSeeder::class,                //User
             RafflesSeeder::class,                   //raffles
             PromoSeeder::class,                     //Promo & Ads and also Promo Clients

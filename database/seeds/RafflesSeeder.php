@@ -3,6 +3,9 @@
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
+use App\Raffle;
+use App\Http\TkTk\Formula;
+
 class RafflesSeeder extends Seeder
 {
     /**
@@ -12,6 +15,9 @@ class RafflesSeeder extends Seeder
      */
     public function run()
     {
+        $moreraffles2create = 25;
+        $totlar             = $moreraffles2create + 5;       // There are 5 raffles creation by default written her below so, ...
+
         //Seeding raffles
         DB::table('raffles')->insert([
                 'id' => \App\Http\TkTk\CodesGenerator::newRaffleId(),
@@ -72,5 +78,21 @@ class RafflesSeeder extends Seeder
                 'location' => \App\Country::all()->first()->id,
             ]
         );
+
+        factory(\App\Raffle::class, $moreraffles2create)->create();
+
+        //Publishing some raffles
+        $someupublished = Raffle::where('status', 1)->take($totlar/3)->get();                          // Publishing only the 1/3 of the total
+
+        foreach ($someupublished as $raffle) {
+
+            $tcount     = mt_rand(20, $raffle->price / 2);
+            $profit     = 20;
+            $commision  = 15;
+            $transfee   = 10;
+            $tprice     = Formula::calcTicketsPrice($raffle->price, $profit, $commision, $tcount, $transfee);
+
+            $raffle->publish($profit, $commision, $tcount, $tprice);
+        }
     }
 }
