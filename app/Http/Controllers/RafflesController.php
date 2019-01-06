@@ -42,8 +42,9 @@ class RafflesController extends Controller
     {
         $suggested = $this->raffleRepository->getSuggested();
         $promos = Promo::where('type',1)->where('status',1)->get();
+        $categories = RaffleCategory::all();
         $raffles = Raffle::paginate(3);
-        return view('raffles',compact('raffles','suggested','promos'));
+        return view('raffles',compact('raffles','suggested','promos','categories'));
     }
 
     /**

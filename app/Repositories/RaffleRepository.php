@@ -36,4 +36,15 @@ class RaffleRepository
             return Raffle::orderBy('updated_at','DESC')->limit(3)->get();
         }
     }
+
+    public function getRaflesByCategory($category)
+    {
+        $raffles = Raffle::with('getCategory')
+            ->whereHas('getCategory', function (Builder $q) use ($category) {
+                $q->where('category', $category);
+            })
+            ->orderBy('updated_at')
+            ->paginate(3);
+        return $raffles;
+    }
 }

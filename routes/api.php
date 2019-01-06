@@ -28,3 +28,11 @@ Route::group([
     Route::post('/casckit', 'PromoController@promodata')->name('v1.promo.promodata');
     Route::post('/fetch', 'URaffleController@fetchRaffle')->name('v1.uraffle.fetch');
 });
+
+Route::group([
+    'namespace' => 'Api\V1',
+],function () {
+    Route::post('/filterByCategory', 'RaffleFrontController@filterByCategory')->name('filter.by.category');
+    Route::post('/filterByPercent', 'RaffleFrontController@filterByPercent')->name('filter.by.percent');
+    Route::post('/filterByPrice', 'RaffleFrontController@filterByPrice')->name('filter.by.price');
+});
