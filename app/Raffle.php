@@ -118,7 +118,6 @@ class Raffle extends Model implements HasMedia
      *
      * @param $user - User that buy
      * @param $ticketIds - Ids of tickets
-     * @param $url - Url from that the buy is performed
      * @param null $referralId
      * @return bool
      */
@@ -276,7 +275,6 @@ class Raffle extends Model implements HasMedia
             ->paginate(10);
         return $raffles;
     }
-
 
 
     /**
