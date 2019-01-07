@@ -103,7 +103,7 @@ class URaffleController extends Controller
         // TODO Try redirect with compact
         return redirect()->route('unpublished.index',
             [
-                'raffles' => Raffle::getUnpublishedRaffles(),
+                'raffles' => $this->raffleRepository->getTenUnpublishedRaffles(),
                 'div_showRaffles' => 'show',
                 'li_activeURaffles' => 'active',
             ],

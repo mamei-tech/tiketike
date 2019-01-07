@@ -4,11 +4,24 @@ namespace App\Http\Controllers\Admin;
 
 use App\Payment;
 use App\Raffle;
+use App\Repositories\RaffleRepository;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 class PaymentController extends Controller
 {
+
+    private $raffleRepository;
+
+
+    /**
+     * PaymentController constructor.
+     */
+    public function __construct(RaffleRepository $raffleRepository)
+    {
+        $this->raffleRepository = $raffleRepository;
+    }
+
     public function executed()
     {
         $payments = Payment::where('status','=','executed')->get();
@@ -34,7 +47,7 @@ class PaymentController extends Controller
             $response['user'] = $user->name." ".$user->lastname.";";
         }else {
             $raffle = $payment->getRaffle->first();
-            $tickets = Raffle::getTicketsSold($raffle->id);
+            $tickets = $raffle->getTicketsSold();
             $response['amount'] = count($tickets)*$raffle->tickets_price;
             $users = "";
             foreach ($tickets as $ticket) {

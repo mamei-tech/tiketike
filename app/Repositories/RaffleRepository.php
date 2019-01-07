@@ -269,46 +269,14 @@ class RaffleRepository
 
     }
 
-
-    public function suflee()
-    {
-        $tickets = Ticket::where('tickets.raffle', $this->id)->get();
-        $length = $tickets->count();
-        return $tickets[mt_rand(0, $length - 1)]->code;
-    }
-
-    public function getTicketsSold()
+    public function getTicketsSold($id)
     {
         $tickets = Raffle::join('tickets', 'raffles.id', '=', 'tickets.raffle')
             ->select('tickets.id')
-            ->where('raffles.id',$this->id)
+            ->where('raffles.id',$id)
             ->where('tickets.sold',1)
             ->count();
         return $tickets;
-    }
-
-    /* Only jpg or png files are allowed */
-    public function registerMediaCollections()
-    {
-        $this
-            ->addMediaCollection('raffles')
-            ->acceptsFile(function (File $file) {
-
-                // Checking if the file already exist in the database
-                $exists = DB::table('media')
-                    ->where('file_name', '=' ,$file->name)
-                    ->where('mime_type', '=' ,$file->mimeType)
-                    ->where('disk', '=' ,'avatars')
-                    ->where('size', '=' ,$file->size)
-                    ->exists();
-
-                if ($exists)
-                    return false;
-                if (!($file->mimeType === 'image/jpeg') or !($file->mimeType !== 'image/png'))
-                    return false;
-                else
-                    return true;
-            });
     }
 
     public function getSuggestions()
