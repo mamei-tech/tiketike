@@ -277,8 +277,6 @@ class Raffle extends Model implements HasMedia
         return $raffles;
     }
 
-
-
     /**
      * Retrieve all the Published raffles
      *
