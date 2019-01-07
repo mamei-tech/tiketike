@@ -191,7 +191,20 @@ class URaffleController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $raffle = Raffle::find($id);
+        $raffle->title = $request->get('title');
+        $raffle->description = $request->get('description');
+        $raffle->price = $request->get('price');
+        $raffle->category = $request->get('category');
+        $raffle->location = $request->get('location');
+        $raffle->save();
+        return redirect()->route('unpublished.index',
+            [
+                'div_showRaffles' => 'show',
+                'li_activeURaffles' => 'active',
+            ],
+            '303')
+            ->with('success', 'Raffle updated successfully');
     }
 
     /**

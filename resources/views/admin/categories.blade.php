@@ -49,7 +49,7 @@
         </div>
 
         {{--Create Role Modal --}}
-        {{--@include('admin.partials.modals.rafflepublish_modal')--}}
+        @include('admin.partials.modals.categoriesdelete_modal')
         @include('admin.partials.modals.categoriesedit_modal')
         @include('admin.partials.modals.categoriescreate_modal')
 
