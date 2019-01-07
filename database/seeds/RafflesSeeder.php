@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use App\Repositories\RaffleRepository;
 
 use App\Raffle;
 use App\User;
@@ -19,6 +20,7 @@ class RafflesSeeder extends Seeder
     {
         $moreraffles2create = 55;
         $totalr             = $moreraffles2create + 5;       // There are 5 raffles creation by default written her below so, ...
+        $rpostry            = new RaffleRepository();
 
         //Seeding raffles
         DB::table('raffles')->insert([
@@ -119,12 +121,12 @@ class RafflesSeeder extends Seeder
 
             if(mt_rand(0,1) == 0) continue;
 
-            $publishedraffles = Raffle::getPublishedRaffles();
-
-            // TODO Working here
-
+            $publishedraffles = $rpostry->getPublishedRaffles();
+            foreach ($publishedraffles as $praffles) {
 
 
+
+            }
         }
     }
 }

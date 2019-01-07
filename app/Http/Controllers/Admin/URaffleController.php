@@ -14,16 +14,16 @@ use Illuminate\Support\Facades\Notification;
 use App\User;
 use App\Notifications\GeneralNotification;
 use App\Http\TkTk\CodesGenerator;
-use Exception;
 
 
 class URaffleController extends Controller
 {
     private $raffleRepository;
+
     /**
      * Create a new controller instance.
      *
-     * @return void
+     * @param RaffleRepository $raffleRepository
      */
     public function __construct(RaffleRepository $raffleRepository)
     {

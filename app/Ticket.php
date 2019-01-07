@@ -9,15 +9,14 @@ class Ticket extends Model
     protected $table        = 'tickets';
     protected $primaryKey   = 'id';
 
-    protected $fillable = ['raffle', 'code'];
+    protected $fillable     = ['raffle', 'code'];
 
     /**
      * Retrieve ticket's raffle.
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function getRaffle()
-    {
+    public function getRaffle() {
         return $this->belongsTo('App\Raffle', 'raffle', 'id');
     }
 

@@ -1,13 +1,6 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Alex
- * Date: 2/1/2019
- * Time: 02:27
- */
 
 namespace App\Repositories;
-
 
 use App\Raffle;
 use Illuminate\Database\Eloquent\Builder;

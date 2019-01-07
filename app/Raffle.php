@@ -237,7 +237,6 @@ class Raffle extends Model implements HasMedia
 
     }
 
-
     public function suflee()
     {
         $tickets = Ticket::where('tickets.raffle', $this->id)->get();
