@@ -227,7 +227,7 @@
                     <div class="col-xs-12 borderBottomDashed"></div>
                     <div class="row padding-top-20 padding-left30">
                         <div class="centerM slickVertical sinkinSans400R text-uppercase  ">
-                            @foreach($tickets as $ticket)
+                            @foreach($raffle->getTicketsAvailable as $ticket)
                                 <div>
                                     <div class="padding-top-15  bg-prueba pull-left">
                                         <span class="padding-top-20 padding-left25 text-uppercase colorB margin-right-10">{{ $ticket->code }}</span>

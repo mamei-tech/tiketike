@@ -280,22 +280,4 @@ class RaffleRepository
             ->count();
         return $tickets;
     }
-
-    public function getSuggestions()
-    {
-        $user = Auth::user()->id;
-        $raffles = Raffle::with(['getTickets','getFollowers','getOwner'])
-            ->whereHas('getTickets',function (Builder $q) use ($user) {
-                $q->where('buyer','<>',$user);
-                $q->groupBy('raffle');
-            })
-            ->whereHas('getFollowers',function (Builder $q) use ($user) {
-                $q->where('user_id','<>',$user);
-                $q->groupBy('raffle_id');
-            })
-            ->where('owner','<>',$user)
-            ->limit(3)
-            ->get();
-        return $raffles;
-    }
 }

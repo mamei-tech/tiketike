@@ -283,11 +283,6 @@ class Raffle extends Model implements HasMedia
     }
 
     public function getTicketsAvailable() {
-        $tickets = Raffle::join('tickets', 'raffles.id', '=', 'tickets.raffle')
-            ->select('tickets.id')
-            ->where('raffles.id',$this->id)
-            ->where('tickets.sold',0)
-            ->count();
-        return $tickets;
+        return $this->hasMany('App\Ticket', 'raffle', 'id')->where('sold','=',false);
     }
 }
