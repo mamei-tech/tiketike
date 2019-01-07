@@ -12,6 +12,8 @@ namespace App\Repositories;
 use App\Raffle;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Database\Eloquent\Collection;
 
 class RaffleRepository
 {
