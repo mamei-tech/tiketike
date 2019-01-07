@@ -277,4 +277,11 @@ class Raffle extends Model implements HasMedia
                     return true;
             });
     }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany with raffle available tickets
+     */
+    public function getTicketsAvailable() {
+        return $this->hasMany('App\Ticket', 'raffle', 'id')->where('sold','=',false);
+    }
 }
