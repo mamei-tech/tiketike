@@ -25,13 +25,11 @@ class Ticket extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function getBuyer()
-    {
+    public function getBuyer() {
         return $this->belongsTo('App\User', 'buyer');
     }
 
-    public function getReferralsBuys()
-    {
+    public function getReferralsBuys() {
         return $this->hasOne('App\ReferralsBuys', 'ticket');
     }
 }

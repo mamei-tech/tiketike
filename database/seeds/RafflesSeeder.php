@@ -113,19 +113,35 @@ class RafflesSeeder extends Seeder
             $raffle->publish($profit, $commision, $tcount, $tprice);
         }
 
-        // Buying Tickets
+        // Buying Tickets, Making directs buys
+        $publishedraffles = $rpostry->getPublishedRaffles();                            // Getting all the raffles
         $users = User::all();
 
-        // Making directs buys
-        foreach ($users as $user) {
+        foreach ($users as $user) {                                                     // Getting all users
 
-            if(mt_rand(0,1) == 0) continue;
+            if(mt_rand(0,1) == 0) continue;                                             // Passing some of them
 
-            $publishedraffles = $rpostry->getPublishedRaffles();
-            foreach ($publishedraffles as $praffles) {
+            foreach ($publishedraffles as $praffle) {                                   // Iterating over published raffles
 
+                if(mt_rand(0,1) == 0) continue;                                         // Passing some of those
 
+                $tkavailable = $praffle->getTicketsAvailable;                           // Getting available tickets for buying
+                $tktotal     = $tkavailable->count();                                   // Getting the total of them
 
+                if ($tktotal >= 10) {                                                   // If we have at least 10 so
+
+                    for ($i = 1; $i <= 10; $i++) {                                      // Doing that 10 times
+
+                        if(mt_rand(0,1) == 0) continue;                                 // passing some of the tks
+
+                        $tk = $tkavailable->random();                                   // Getin one tk ramdomly
+
+                        //TOOD Something is wrong here
+                        if (!$tk->sold && $tk->getRaffle->getOwner->id != $user->id)    // If the tk is not sold already and the user is not the raffle owner so
+                            $praffle->buyTickets($user, [$tk->code]);                   // Buying the tk
+
+                    }
+                }
             }
         }
     }

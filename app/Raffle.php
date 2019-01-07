@@ -137,7 +137,7 @@ class Raffle extends Model implements HasMedia
                 echo "UNKNOW TICKET";
                 die();
             }
-            if ($ticket->sold)
+            if ($ticket->sold == 1)
             {
                 //TODO return some error view
                 echo "TICKETS HAS BEEN SOLD";
@@ -145,6 +145,7 @@ class Raffle extends Model implements HasMedia
             }
             $ticket->buyer = $user->id;
             $ticket->sold = true;
+            $ticket->save();
             array_push($ticketsBuyed, $ticket);
         }
 
