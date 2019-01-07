@@ -124,7 +124,7 @@ class Raffle extends Model implements HasMedia
      * @param null $referralId If not null is the referral id
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function  buyTickets($user, $ticketIds, $url, $referralId = null)
+    public function buyTickets($user, $ticketIds, $url, $referralId = null)
     {
         if ($this->getStatus->status != 'Published')
         {
