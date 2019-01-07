@@ -271,6 +271,11 @@ class RaffleRepository
 
     }
 
+    /**
+     * @param $id
+     * @return mixed
+     * Return raffle available tickets
+     */
     public function getTicketsSold($id)
     {
         $tickets = Raffle::join('tickets', 'raffles.id', '=', 'tickets.raffle')
