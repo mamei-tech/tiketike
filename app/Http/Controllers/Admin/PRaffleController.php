@@ -27,9 +27,6 @@ class PRaffleController extends Controller
         $this->middleware('permission:create raffle', ['only' => ['create', 'store']]);
         $this->middleware('permission:edit raffle', ['only' => ['edit', 'update']]);
         $this->middleware('permission:delete raffle', ['only' => ['destroy']]);
-
-        /* TODO: Check what this is for, how to use it */
-        // Authorization
     }
 
     /**
@@ -40,7 +37,6 @@ class PRaffleController extends Controller
     public function index()
     {
         $raffles = Raffle::getPublishedRaffles();
-
 
         return view('admin.praffles', [
             'raffles' => $raffles,

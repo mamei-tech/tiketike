@@ -28,10 +28,11 @@ Route::group(['prefix' => 'raffles'], function () {
     Route::get('/', 'RafflesController@index')->name('raffles.index');
 });
 
-/* USER SECTION -- */
+/*-- USER SECTION -- */
 Route::group(['prefix' => 'raffles',
     'middleware' => ['auth']
 ], function () {
+
     Route::get('/add', 'RafflesController@create')->name('raffles.create');
     Route::post('/add', 'RafflesController@store')->name('raffles.store');
     Route::get('/edit/{raffleId}', 'RafflesController@edit')->name('raffles.edit');
