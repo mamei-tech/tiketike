@@ -112,16 +112,17 @@ class Raffle extends Model implements HasMedia
     {
         return $this->hasOne(Country::class,'id','location');
     }
+
     /**
      * Perform a tickets buy
      *
-     * @param $user             - User that buy
-     * @param $ticketIds        - Ids of tickets
-     * @param $url              - Url from that the buy is performed
-     * @param null              - $referralId If not null is the referral id
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @param $user - User that buy
+     * @param $ticketIds - Ids of tickets
+     * @param $url - Url from that the buy is performed
+     * @param null $referralId
+     * @return bool
      */
-    public function buyTickets ($user, $ticketIds, $url, $referralId = null) {
+    public function buyTickets ($user, $ticketIds, $referralId = null) {
 
         if ($this->getStatus->status != 'Published')
         {
@@ -178,7 +179,7 @@ class Raffle extends Model implements HasMedia
             $referralUser->getReferralsBuys()->saveMany($referralsBuys);
         }
 
-        return redirect($url, 303);
+        return true;
     }
 
     /**

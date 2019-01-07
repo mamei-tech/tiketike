@@ -13,13 +13,15 @@ class ReferralsBuysController extends BuysController
      *
      * @param $raffleId             - Tickets's raffle id.
      * @param $referralId           - Referral id.
-     * @param Request $request      - Data with tickets ids.
+     * @param Request               - $request data with tickets ids.
      * @return mixed
      */
     public function buyTickets($raffleId, $referralId, Request $request)
     {
         $raffle = Raffle::findOrFail($raffleId);
 
-        return $raffle->buyTickets(Auth::user(), $request->availabletickets, $request->fullUrl(), $referralId);
+        $raffle->buyTickets(Auth::user(), $request->availabletickets, $referralId);
+
+        return redirect($request->fullUrl(), 303);
     }
 }

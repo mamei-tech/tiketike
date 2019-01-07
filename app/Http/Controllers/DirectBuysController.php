@@ -19,6 +19,8 @@ class DirectBuysController extends BuysController
     {
         $raffle = Raffle::findOrFail($raffleId);
 
-        return $raffle->buyTickets(Auth::user(), $request->availabletickets, $request->fullUrl());
+        $raffle->buyTickets(Auth::user(), $request->availabletickets);
+
+        return redirect($request->fullUrl(), 303);
     }
 }
