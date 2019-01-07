@@ -350,7 +350,7 @@ class Raffle extends Model implements HasMedia
                 'raffles.activation_date'
 
             )
-            ->take(35)                  // Limit the query to 35 raffles
+            ->take(3)                  // Limit the query to 35 raffles
             ->paginate(10);
 
         $almostsoldraffles = new Collection();

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\TkTk\CodesGenerator;
 use App\Promo;
 use App\RaffleStatus;
+use App\Repositories\RaffleRepository;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -16,6 +17,21 @@ use Illuminate\Database\Eloquent\Builder;
 
 class RafflesController extends Controller
 {
+    /**
+     * @var RaffleRepository
+     */
+    private $raffleRepository;
+
+    /**
+     * RafflesController constructor.
+     * @param RaffleRepository $raffleRepository
+     */
+    public function __construct(RaffleRepository $raffleRepository)
+    {
+        $this->raffleRepository = $raffleRepository;
+    }
+
+
     // TODO Identify which methods apply to convert to rest method !!!!
     /**
      * Display a listing of the resource.
@@ -24,20 +40,11 @@ class RafflesController extends Controller
      */
     public function index()
     {
-        $user = Auth::user()->id;
-        $suggested = Raffle::with(['getTickets','getFollowers','getOwner'])
-            ->whereDoesntHave('getFollowers',function (Builder $q) use ($user) {
-                $q->where('user_id',$user);
-            })
-            ->whereDoesntHave('getTickets',function (Builder $q) use ($user) {
-                $q->where('buyer',$user);
-            })
-            ->where('owner','<>',$user)
-            ->limit(3)
-            ->get();
+        $suggested = $this->raffleRepository->getSuggested();
         $promos = Promo::where('type',1)->where('status',1)->get();
+        $categories = RaffleCategory::all();
         $raffles = Raffle::paginate(3);
-        return view('raffles',compact('raffles','suggested','promos'));
+        return view('raffles',compact('raffles','suggested','promos','categories'));
     }
 
     /**
