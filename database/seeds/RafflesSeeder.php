@@ -80,7 +80,7 @@ class RafflesSeeder extends Seeder
         );
 
         factory(\App\Raffle::class, $moreraffles2create)->create();
-
+/*
         //Publishing some raffles
         $someupublished = Raffle::where('status', 1)->take($totlar/3)->get();                          // Publishing only the 1/3 of the total
 
@@ -94,5 +94,6 @@ class RafflesSeeder extends Seeder
 
             $raffle->publish($profit, $commision, $tcount, $tprice);
         }
+*/
     }
 }

@@ -88,7 +88,7 @@ class URaffleController extends Controller
             || $apiFormData['tprice']       != $request ->tprice) {
 
             // The form data don't match with the data sended to the api previously
-            return redirect()->back()->withErrors(trans('validation.forminvalid --'));
+            return redirect()->back()->withErrors(trans('validation.forminvalid --'));          // TODO Check this translation
         }
 
         // Everithing is OK, then Publising the raffle
