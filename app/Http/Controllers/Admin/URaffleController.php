@@ -124,30 +124,28 @@ class URaffleController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
-        $raffle = new Raffle;
+    public function store(Request $request)    {
 
-        $raffle->id = CodesGenerator::newRaffleId();
-        $id = $raffle->id;
-        $raffle->owner = $request->owner;
-        $raffle->category = $request->category;
-        $raffle->status = RaffleStatus::where('status', 'Unpublished')->first()->id;    // Unpublished by default.
-        $raffle->title = $request->title;
-        $raffle->description = $request->description;
-        $raffle->price = $request->price;
-        $raffle->location = $request->location;
+        $raffle                 = new Raffle;
+
+        $raffle->id             = CodesGenerator::newRaffleId();
+        $raffle->owner          = $request->owner;
+        $raffle->category       = $request->category;
+        $raffle->status         = RaffleStatus::where('status', 'Unpublished')->first()->id;    // Unpublished by default.
+        $raffle->title          = $request->title;
+        $raffle->description    = $request->description;
+        $raffle->price          = $request->price;
+        $raffle->location       = $request->location;
 
         $raffle->save();
 
-        $raffle = Raffle::find($id);
-        foreach ($request->all()['avatar'] as $item)
-        {
-            if ($request->has('avatar') and $item->isValid()) {
-                $raffle->addMedia($item)->toMediaCollection('raffles','raffles');
-            }
+        // TODO validate this for only two images
+        foreach ($request->all()['avatar'] as $item) {
 
+            if ($request->has('avatar') and $item->isValid())
+                $raffle->addMedia($item)->toMediaCollection('raffles','raffles');
         }
+
         return redirect()->route('unpublished.index',
             [
                 'div_showRaffles' => 'show',

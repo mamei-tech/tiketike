@@ -31,7 +31,10 @@ class SeederExtension {
         'Mercedes Benz', 
         'Asus', 
         'Zusuki', 
-        'Yutong'
+        'Yutong',
+        'Okley',
+        'Batos',
+        'Fantini',
     ];
 
     public static $color = [
@@ -39,6 +42,11 @@ class SeederExtension {
         'carmelita', 
         'naranja', 
         'negro',
+        'carmesi',
+        'fusia',
+        'canela',
+        'rojo',
+        'verde',
     ];
 
     public static $countries = [

@@ -17,19 +17,16 @@ class Raffle extends Model implements HasMedia
 {
     use HasMediaTrait;
 
-    protected $table = 'raffles';
-    protected $primaryKey = 'id';
+    protected $table        = 'raffles';
+    protected $primaryKey   = 'id';
+
+    public $incrementing    = false;
+
     protected $fillable = [
         'title',
         'description',
-        'price'
+        'price',
     ];
-
-    /*public function __construct(array $attributes = [])
-    {
-        $this->id = CodesGenerator::newRaffleId();
-        parent::__construct($attributes);
-    }*/
 
     /**
      * Retrieve the raffle owner user.
@@ -118,14 +115,14 @@ class Raffle extends Model implements HasMedia
     /**
      * Perform a tickets buy
      *
-     * @param $user             User that buy
-     * @param $ticketIds        Ids of tickets
-     * @param $url              Url from that the buy is performed
-     * @param null $referralId If not null is the referral id
+     * @param $user             - User that buy
+     * @param $ticketIds        - Ids of tickets
+     * @param $url              - Url from that the buy is performed
+     * @param null              - $referralId If not null is the referral id
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function buyTickets($user, $ticketIds, $url, $referralId = null)
-    {
+    public function buyTickets ($user, $ticketIds, $url, $referralId = null) {
+
         if ($this->getStatus->status != 'Published')
         {
             //TODO return some error view
@@ -207,6 +204,7 @@ class Raffle extends Model implements HasMedia
             $this->status = 2;          // 2 is published status
 
             // Saving the raffle
+
             $this->save();
 
             //Generate tickets for the published raffle
@@ -392,7 +390,7 @@ class Raffle extends Model implements HasMedia
         return $tickets[mt_rand(0, $length - 1)]->code;
     }
 
-    private function getTicketsSold()
+    public function getTicketsSold()
     {
         $tickets = Raffle::join('tickets', 'raffles.id', '=', 'tickets.raffle')
             ->select('tickets.id')

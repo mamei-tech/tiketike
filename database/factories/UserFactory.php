@@ -61,8 +61,8 @@ $factory->define(App\Raffle::class, function (Faker $faker) {
         'category'          => $faker->numberBetween(1, 5),
         'status'            => 1,
         'location'          => $faker->numberBetween(1, 5),
-        'title'             => SeederExtension::$obj2sell[rand(0,10)].' '.SeederExtension::$brand[rand(0,7)].' color '.SeederExtension::$color[rand(0,3)],
+        'title'             => SeederExtension::$obj2sell[rand(0,10)].' '.SeederExtension::$brand[rand(0,10)].' color '.SeederExtension::$color[rand(0,8)],
         'description'       => $faker->text(255),
-        'price'             => $faker->numberBetween(25, 1000),
+        'price'             => $faker->numberBetween(30, 1000),
     ];
 });

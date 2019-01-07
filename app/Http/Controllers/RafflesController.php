@@ -73,13 +73,13 @@ class RafflesController extends Controller
     {
         $raffle = new Raffle;
 
-        $raffle->id = CodesGenerator::newRaffleId();
-        $raffle->owner = Auth::id();
-        $raffle->category = $request->category;
-        $raffle->status = RaffleStatus::where('status', 'Unpublished')->first()->id;    // Unpublished by default.
-        $raffle->title = $request->title;
-        $raffle->description = $request->description;
-        $raffle->price = $request->price;
+        $raffle->id         = CodesGenerator::newRaffleId();
+        $raffle->owner      = Auth::id();
+        $raffle->category   = $request->category;
+        $raffle->status     = RaffleStatus::where('status', 'Unpublished')->first()->id;    // Unpublished by default.
+        $raffle->title      = $request->title;
+        $raffle->description= $request->description;
+        $raffle->price      = $request->price;
 
         $raffle->save();
 
@@ -105,6 +105,7 @@ class RafflesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    // TODO Need validation, the raffle must own of the current user
     public function edit($id)
     {
         $raffle = Raffle::find($id);
@@ -123,6 +124,7 @@ class RafflesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    // TODO Need validation on a custom reques class, the raffle must own of the current user
     public function update(Request $request, $id)
     {
         $raffle = Raffle::find($id);
@@ -134,7 +136,6 @@ class RafflesController extends Controller
         return redirect()
             ->route('raffles.index',null, '303')
             ->with('success','Raffle updated successfully');
-
     }
 
     /**

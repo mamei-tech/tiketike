@@ -40,8 +40,7 @@ class CodesGenerator
      */
     public static function newRaffleId()
     {
-        do
-        {
+        do {
             $id = CodesGenerator::longRand();
         } while (Raffle::find($id) != null);
         return $id;

@@ -15,8 +15,8 @@ class RafflesSeeder extends Seeder
      */
     public function run()
     {
-        $moreraffles2create = 25;
-        $totlar             = $moreraffles2create + 5;       // There are 5 raffles creation by default written her below so, ...
+        $moreraffles2create = 55;
+        $totalr             = $moreraffles2create + 5;       // There are 5 raffles creation by default written her below so, ...
 
         //Seeding raffles
         DB::table('raffles')->insert([
@@ -80,9 +80,23 @@ class RafflesSeeder extends Seeder
         );
 
         factory(\App\Raffle::class, $moreraffles2create)->create();
-/*
-        //Publishing some raffles
-        $someupublished = Raffle::where('status', 1)->take($totlar/3)->get();                          // Publishing only the 1/3 of the total
+
+        // Adding images to the raffles
+        $imgnum = [1,2,3];
+
+        $raffles = Raffle::all();
+
+        foreach ($raffles as $raffle) {
+
+            shuffle($imgnum);
+
+            $raffle->addMediaFromUrl('http://localhost/pics/common/'.$imgnum[0].'.jpg')->toMediaCollection('raffles','raffles');
+            $raffle->addMediaFromUrl('http://localhost/pics/common/'.$imgnum[1].'.jpg')->toMediaCollection('raffles','raffles');
+            $raffle->addMediaFromUrl('http://localhost/pics/common/'.$imgnum[2].'.jpg')->toMediaCollection('raffles','raffles');
+        }
+
+        // Publishing some raffles
+        $someupublished = Raffle::where('status', 1)->take($totalr - $totalr/4)->get();           // Publishing only the 1/3 of the total
 
         foreach ($someupublished as $raffle) {
 
@@ -94,6 +108,10 @@ class RafflesSeeder extends Seeder
 
             $raffle->publish($profit, $commision, $tcount, $tprice);
         }
-*/
+
+        // Buying Tickets
+
+
+
     }
 }
