@@ -4,10 +4,12 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Raffle;
+use App\Repositories\RaffleRepository;
 
 
 class ARaffleController extends Controller
 {
+    private $raffleRepository;
     // TODO Identify which methods apply to convert to rest method !!!!
 
     /**
@@ -15,7 +17,7 @@ class ARaffleController extends Controller
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(RaffleRepository $raffleRepository)
     {
         // I think this is not needed because I have this in the route middleware
         // Authentication
@@ -24,6 +26,7 @@ class ARaffleController extends Controller
         $this->middleware('permission:create raffle', ['only' => ['create', 'store']]);
         $this->middleware('permission:edit raffle', ['only' => ['edit', 'update']]);
         $this->middleware('permission:delete raffle', ['only' => ['destroy']]);
+        $this->raffleRepository = $raffleRepository;
 
         /* TODO: Check what this is for, how to use it */
         // Authorization
@@ -35,7 +38,7 @@ class ARaffleController extends Controller
      */
     public function index()
     {
-        $uraffles = Raffle::getAnulleddRaffles();
+        $uraffles = $this->raffleRepository->getTenAnulleddRaffles();
 
         return view('admin.araffles', [
             'raffles' => $uraffles,

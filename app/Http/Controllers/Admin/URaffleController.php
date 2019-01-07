@@ -8,6 +8,7 @@ use App\Raffle;
 use App\Http\Requests\ChkRPublishRequest;
 use App\RaffleCategory;
 use App\RaffleStatus;
+use App\Repositories\RaffleRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Notification;
 use App\User;
@@ -18,12 +19,13 @@ use Exception;
 
 class URaffleController extends Controller
 {
+    private $raffleRepository;
     /**
      * Create a new controller instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(RaffleRepository $raffleRepository)
     {
         // I think this is not needed because I have this in the route middleware
         $this->middleware('auth');
@@ -31,6 +33,7 @@ class URaffleController extends Controller
         $this->middleware('permission:create raffle', ['only' => ['create', 'store']]);
         $this->middleware('permission:edit raffle', ['only' => ['edit', 'update']]);
         $this->middleware('permission:delete raffle', ['only' => ['destroy']]);
+        $this->raffleRepository = $raffleRepository;
     }
 
     /**
@@ -40,7 +43,7 @@ class URaffleController extends Controller
      */
     public function index()
     {
-        $uraffles = Raffle::getUnpublishedRaffles();
+        $uraffles = $this->raffleRepository->getTenUnpublishedRaffles();
         $users = User::all();
         $catefories = RaffleCategory::all();
         $countries = Country::all();
@@ -100,7 +103,7 @@ class URaffleController extends Controller
         // TODO Try redirect with compact
         return redirect()->route('unpublished.index',
             [
-                'raffles' => Raffle::getUnpublishedRaffles(),
+                'raffles' => $this->raffleRepository->getTenUnpublishedRaffles(),
                 'div_showRaffles' => 'show',
                 'li_activeURaffles' => 'active',
             ],
