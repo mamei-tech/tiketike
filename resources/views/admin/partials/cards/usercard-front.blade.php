@@ -6,6 +6,7 @@
     <div class="user">
 
         @if($user->getProfile->avatarname == 'default')
+
             <img id="profile-pic-card" class="img-circle" src={{ asset('pics/common/default-avatar.png') }}>
         @else
             <img id="profile-pic-card" class="img-circle" src="{{ $user->getProfile->getMedia('avatars')->first()->getUrl() }}">

@@ -88,7 +88,7 @@ demo = {
             viewRender: function(view, element) {
                 // We make sure that we activate the perfect scrollbar when the view isn't on Month
                 if (view.name != 'month'){
-                    $(element).find('.fc-scroller').perfectScrollbar();
+                    // $(element).find('.fc-scroller').perfectScrollbar();
                 }
             },
             header: {

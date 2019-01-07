@@ -3,6 +3,20 @@
 $(function () {
 
 
+    $('.slick-vertical').slick({
+        infinite: true,
+        adaptiveHeight: true,
+        slidesToShow: 3,
+        arrows:false,
+        slidesToScroll: 1,
+        vertical: true,
+        autoplay:true,
+        autoplaySpeed: 2000,
+        pauseOnHover: true,
+        initialSlide: 0,
+        zIndex: 2000
+    });
+
     // Check screen size for fixing the navbar
     if(window.screen.width * window.devicePixelRatio <= 1199) {
         let $div = $('div#navdiv-rightcolum');

@@ -9,6 +9,8 @@ class City extends Model
     // Explicit table definition for the model
     protected $table = 'cities';
 
+    public $timestamps = false;
+
     /**
      * The attributes that are mass assignable.
      *
@@ -20,7 +22,7 @@ class City extends Model
         return $this->belongsTo('App\Country', 'country', 'id');
     }
 
-    public function getUserProfiles(){
+    public function getUserProfiles() {
         return $this->hasMany('App\UserProfile', 'city', 'id');
     }
 

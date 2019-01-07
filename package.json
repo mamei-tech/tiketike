@@ -14,13 +14,16 @@
         "bootstrap": "^4.0.0",
         "cross-env": "^5.2.0",
         "jquery": "^3.2",
-        "laravel-mix": "^2.0",
+        "laravel-mix": "^3.0.0",
         "lodash": "^4.17.4",
-        "popper.js": "^1.14.3"
+        "popper.js": "^1.14.3"        
     },
     "dependencies": {
         "ajv": "^6.4.0",
         "chart.js": "^2.7.2",
+        "datatables.net": "^1.10.19",
+        "datatables.net-bs4": "^1.10.19",
+        "datatables.net-responsive": "^2.2.3",
         "font-awesome": "^4.7.0",
         "laravel-echo": "^1.4.0",
         "nprogress": "^0.2.0",
