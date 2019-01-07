@@ -19,6 +19,7 @@ class Raffle extends Model implements HasMedia
 
     protected $table = 'raffles';
     protected $primaryKey = 'id';
+    public $incrementing = false;
     protected $fillable = [
         'title',
         'description',

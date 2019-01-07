@@ -1,5 +1,4 @@
 @extends('layouts.base')
-
 @section('content')
     @include('partials.frontend.header')
     @include('partials.front_modals.filters')
@@ -291,7 +290,6 @@
                 @endif
                 {{ $raffles->links() }}
                 </div>
-
             </div>
             <!--FIN Contenido rifas-->
             @include('partials.frontend.promotions',['suggested' => $suggested])
