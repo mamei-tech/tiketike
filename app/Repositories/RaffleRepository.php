@@ -238,7 +238,7 @@ class RaffleRepository
 
             )
             ->take(3)                  // Limit the query to 35 raffles
-            ->paginate(10);
+            ->get();
 
         $almostsoldraffles = new Collection();
 
@@ -271,11 +271,6 @@ class RaffleRepository
 
     }
 
-    /**
-     * @param $id
-     * @return mixed
-     * Return raffle available tickets
-     */
     public function getTicketsSold($id)
     {
         $tickets = Raffle::join('tickets', 'raffles.id', '=', 'tickets.raffle')
