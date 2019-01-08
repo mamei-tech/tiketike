@@ -302,12 +302,12 @@
                                         @if (count($raffles) > 0)
                                             @foreach($raffles as $raffle)
                                                 <div class="col-xs-6 col-lg-3 col-sm-4 padding-top-15">
-                                                    <img src="{{ asset('pics/front/proyecto1.jpg') }}" class="imgRifas">
+                                                    <img src="{{ $raffle->getMedia('raffles')->first()->getUrl() }}" class="imgRifas">
                                                     <div class="porciento">
                                                         <div class=" text-center">
                                                 <span class="chartB chart-porcientoR"
-                                                      data-percent="{{$raffle->getProgress()}}">
-                                                    <span class="percentR">{{$raffle->getProgress()}}%</span>
+                                                      data-percent="{{round($raffle->getProgress())}}">
+                                                    <span class="percentR">{{round($raffle->getProgress())}}%</span>
                                                 </span>
                                                         </div>
                                                     </div>
@@ -322,12 +322,12 @@
                                         @if (count($rafflesbuyed) > 0)
                                             @foreach($rafflesbuyed as $raffle)
                                                 <div class="col-xs-6 col-lg-3 col-sm-4 padding-top-15">
-                                                    <img src="{{ asset('pics/front/proyecto1.jpg') }}" class="imgRifas">
+                                                    <img src="{{ $raffle->getMedia('raffles')->first()->getUrl() }}" class="imgRifas">
                                                     <div class="porciento">
                                                         <div class=" text-center">
                                                 <span class="chartB chart-porcientoR"
-                                                      data-percent="{{$raffle->getProgress()}}">
-                                                    <span class="percentR">{{$raffle->getProgress()}}%</span>
+                                                      data-percent="{{round($raffle->getProgress())}}">
+                                                    <span class="percentR">{{round($raffle->getProgress())}}%</span>
                                                 </span>
                                                         </div>
                                                     </div>
@@ -342,12 +342,12 @@
                                         @if (count($rafflesfollowed) > 0)
                                             @foreach($rafflesfollowed as $raffle)
                                                 <div class="col-xs-6 col-lg-3 col-sm-4 padding-top-15">
-                                                    <img src="{{ asset('pics/front/proyecto1.jpg') }}" class="imgRifas">
+                                                    <img src="{{ $raffle->getMedia('raffles')->first()->getUrl() }}" class="imgRifas">
                                                     <div class="porciento">
                                                         <div class=" text-center">
                                                 <span class="chartB chart-porcientoR"
-                                                      data-percent="{{$raffle->getProgress()}}">
-                                                    <span class="percentR">{{$raffle->getProgress()}}%</span>
+                                                      data-percent="{{round($raffle->getProgress())}}">
+                                                    <span class="percentR">{{round($raffle->getProgress())}}%</span>
                                                 </span>
                                                         </div>
                                                     </div>
