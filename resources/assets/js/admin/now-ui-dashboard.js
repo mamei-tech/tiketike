@@ -10,7 +10,7 @@
 
  * Designed by www.invisionapp.com Coded by www.creative-tim.com
  *
- * MOD BY ELECTROTECH
+ * MOD BY MAMEI
  *
  *
  =========================================================

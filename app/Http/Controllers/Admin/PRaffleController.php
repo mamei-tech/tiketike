@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Raffle;
+use App\Repositories\RaffleRepository;
 use App\Ticket;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -11,6 +12,7 @@ use App\Http\Controllers\Controller;
 
 class PRaffleController extends Controller
 {
+    private $raffleRepository;
     // TODO Identify which methods apply to convert to rest method !!!!
 
     /**
@@ -18,7 +20,7 @@ class PRaffleController extends Controller
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(RaffleRepository $raffleRepository)
     {
         // I think this is not needed because I have this in the route middleware
         // Authentication
@@ -27,9 +29,7 @@ class PRaffleController extends Controller
         $this->middleware('permission:create raffle', ['only' => ['create', 'store']]);
         $this->middleware('permission:edit raffle', ['only' => ['edit', 'update']]);
         $this->middleware('permission:delete raffle', ['only' => ['destroy']]);
-
-        /* TODO: Check what this is for, how to use it */
-        // Authorization
+        $this->raffleRepository = $raffleRepository;
     }
 
     /**
@@ -39,8 +39,7 @@ class PRaffleController extends Controller
      */
     public function index()
     {
-        $raffles = Raffle::getPublishedRaffles();
-
+        $raffles = $this->raffleRepository->getTenPublishedRaffles();
 
         return view('admin.praffles', [
             'raffles' => $raffles,

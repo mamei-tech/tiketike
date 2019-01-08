@@ -4,32 +4,27 @@ namespace App;
 
 use App\Http\TkTk\CodesGenerator;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Database\Eloquent\Collection;
 use Spatie\MediaLibrary\HasMedia\HasMedia;
 use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 use Spatie\MediaLibrary\File;
-use Illuminate\Database\Eloquent\Builder;
+
 
 
 class Raffle extends Model implements HasMedia
 {
     use HasMediaTrait;
 
-    protected $table = 'raffles';
-    protected $primaryKey = 'id';
+    protected $table        = 'raffles';
+    protected $primaryKey   = 'id';
+
+    public $incrementing    = false;
+
     protected $fillable = [
         'title',
         'description',
-        'price'
+        'price',
     ];
-
-    /*public function __construct(array $attributes = [])
-    {
-        $this->id = CodesGenerator::newRaffleId();
-        parent::__construct($attributes);
-    }*/
 
     /**
      * Retrieve the raffle owner user.
@@ -98,7 +93,7 @@ class Raffle extends Model implements HasMedia
      */
     public function getTickets()
     {
-        return $this->hasMany('App\Ticket', 'raffle');
+        return $this->hasMany('App\Ticket', 'raffle', 'id');
     }
 
     public function getTicketsByUser($user_id)
@@ -115,17 +110,17 @@ class Raffle extends Model implements HasMedia
     {
         return $this->hasOne(Country::class,'id','location');
     }
+
     /**
      * Perform a tickets buy
      *
-     * @param $user             User that buy
-     * @param $ticketIds        Ids of tickets
-     * @param $url              Url from that the buy is performed
-     * @param null $referralId If not null is the referral id
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @param $user - User that buy
+     * @param $ticketIds - Ids of tickets
+     * @param null $referralId
+     * @return bool
      */
-    public function  buyTickets($user, $ticketIds, $url, $referralId = null)
-    {
+    public function buyTickets ($user, $ticketIds, $referralId = null) {
+
         if ($this->getStatus->status != 'Published')
         {
             //TODO return some error view
@@ -142,7 +137,7 @@ class Raffle extends Model implements HasMedia
                 echo "UNKNOW TICKET";
                 die();
             }
-            if ($ticket->sold)
+            if ($ticket->sold == 1)
             {
                 //TODO return some error view
                 echo "TICKETS HAS BEEN SOLD";
@@ -150,6 +145,7 @@ class Raffle extends Model implements HasMedia
             }
             $ticket->buyer = $user->id;
             $ticket->sold = true;
+            $ticket->save();
             array_push($ticketsBuyed, $ticket);
         }
 
@@ -181,7 +177,7 @@ class Raffle extends Model implements HasMedia
             $referralUser->getReferralsBuys()->saveMany($referralsBuys);
         }
 
-        return redirect($url, 303);
+        return true;
     }
 
     /**
@@ -207,6 +203,7 @@ class Raffle extends Model implements HasMedia
             $this->status = 2;          // 2 is published status
 
             // Saving the raffle
+
             $this->save();
 
             //Generate tickets for the published raffle
@@ -231,153 +228,6 @@ class Raffle extends Model implements HasMedia
         $this->save();
     }
 
-
-    /**
-     * Retrieve all the Anulled raffles
-     *
-     * @return mixed
-     */
-    public static function getAnulleddRaffles()
-    {
-        return DB::table('raffles')
-            ->join('rafflestatus', 'raffles.status', '=', 'rafflestatus.id')
-            ->join('tickets', 'raffles.id', '=', 'tickets.raffle')
-            ->select(
-                'raffles.id',
-                'raffles.title',
-                'raffles.price',
-                'raffles.profit',
-                DB::raw('sum(tickets.sold) as solds_tickets'),
-                'raffles.tickets_count',
-                'raffles.activation_date')
-            ->where('rafflestatus.status', 'Cancelled')
-            ->groupBy(
-                'raffles.id',
-                'raffles.title',
-                'raffles.price',
-                'raffles.profit',
-                'raffles.tickets_count',
-                'raffles.activation_date'
-            )
-            ->paginate(10);
-    }
-
-
-    /**
-     * Retrieve all the Published raffles
-     *
-     * @return mixed
-     */
-    public static function getPublishedRaffles()
-    {
-        $status = "Published";
-        $raffles = Raffle::with('getStatus')
-            ->whereHas('getStatus', function (Builder $q) use ($status) {
-                $q->where('status',$status);
-            })
-            ->paginate(10);
-        return $raffles;
-    }
-
-
-
-    /**
-     * Retrieve all the Published raffles
-     *
-     * @return mixed
-     */
-    public static function getFollowsRaffles()
-    {
-        $status = "Published";
-        $raffles = Raffle::with('getStatus')
-            ->whereHas('getStatus', function (Builder $q) use ($status) {
-                $q->where('status',$status);
-            })
-            ->paginate(10);
-        return $raffles;
-    }
-
-
-
-
-    /**
-     * Retrieve all the unpublished raffles
-     *
-     * @return mixed
-     */
-    public static function getUnpublishedRaffles()
-    {
-        return DB::table('raffles')
-            ->join('rafflestatus', 'raffles.status', '=', 'rafflestatus.id')
-            ->select(
-                'raffles.id',
-                'raffles.title',
-                'raffles.price',
-                'raffles.profit'
-            )
-            ->where('rafflestatus.status', 'Unpublished')
-            ->groupBy(
-                'raffles.id',
-                'raffles.title',
-                'raffles.price',
-                'raffles.profit'
-            )
-            ->paginate(10);
-    }
-
-    /**
-     * Retrieve the raffles that are almost sold, all his tickets I mean.
-     *
-     * @return Collection
-     */
-    public static function almostsoldraffles() {
-
-        $rafflesdbquery = Raffle::join('rafflestatus', 'raffles.status', '=', 'rafflestatus.id')
-            ->join('tickets', 'raffles.id', '=', 'tickets.raffle')
-            ->select(
-                'raffles.id',
-                'raffles.title',
-                'raffles.price',
-                'raffles.profit',
-                'raffles.tickets_price',
-                DB::raw('sum(tickets.sold) as solds_tickets'),
-                'raffles.tickets_count',
-                'raffles.activation_date')
-            ->where('rafflestatus.status', 'Published')
-            ->groupBy(
-                'raffles.id',
-                'raffles.title',
-                'raffles.price',
-                'raffles.profit',
-                'raffles.tickets_price',
-                'raffles.tickets_count',
-                'raffles.activation_date'
-
-            )
-            ->take(35)                  // Limit the query to 35 raffles
-            ->paginate(10);
-
-        $almostsoldraffles = new Collection();
-
-        $break = 0;
-        foreach ($rafflesdbquery as $key => $raffle)
-        {
-            // Checking if the progress of the raffle is higher than 80 %
-            $progres = ($raffle->solds_tickets * 100) / $raffle->tickets_count;
-            if ($progres >= 80)
-                $almostsoldraffles->add($raffle);
-
-            // Braking the habit
-            if ($break == 23)                                   // 0 ~ 23  count 24
-                break;
-
-            $break++;
-        }
-
-        return $almostsoldraffles;
-    }
-
-
     public function getProgress()
     {
         if($this->tickets_count == 0)
@@ -388,7 +238,6 @@ class Raffle extends Model implements HasMedia
 
     }
 
-
     public function suflee()
     {
         $tickets = Ticket::where('tickets.raffle', $this->id)->get();
@@ -396,7 +245,7 @@ class Raffle extends Model implements HasMedia
         return $tickets[mt_rand(0, $length - 1)]->code;
     }
 
-    private function getTicketsSold()
+    public function getTicketsSold()
     {
         $tickets = Raffle::join('tickets', 'raffles.id', '=', 'tickets.raffle')
             ->select('tickets.id')
@@ -430,21 +279,10 @@ class Raffle extends Model implements HasMedia
             });
     }
 
-    public function getSuggestions()
-    {
-        $user = Auth::user()->id;
-        $raffles = Raffle::with(['getTickets','getFollowers','getOwner'])
-            ->whereHas('getTickets',function (Builder $q) use ($user) {
-                $q->where('buyer','<>',$user);
-                $q->groupBy('raffle');
-            })
-            ->whereHas('getFollowers',function (Builder $q) use ($user) {
-                $q->where('user_id','<>',$user);
-                $q->groupBy('raffle_id');
-            })
-            ->where('owner','<>',$user)
-            ->limit(3)
-            ->get();
-        return $raffles;
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany with raffle available tickets
+     */
+    public function getTicketsAvailable() {
+        return $this->hasMany('App\Ticket', 'raffle', 'id')->where('sold','=',false);
     }
 }

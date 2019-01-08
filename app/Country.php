@@ -11,6 +11,8 @@ class Country extends Model
     // Explicit primary key definition for the model
     protected $primaryKey = 'id';
 
+    public $timestamps = false;
+
     /**
      * The attributes that are mass assignable.
      *
@@ -19,8 +21,7 @@ class Country extends Model
     protected $fillable = ['name'];
 
 
-    public function cities()
-    {
+    public function cities() {
         return $this->hasMany('App\City', 'country', 'id');
     }
 

@@ -28,19 +28,19 @@ class CreateRafflesTable extends Migration
 
         Schema::create('raffles', function (Blueprint $table) {
 
-            $table->unsignedBigInteger('id');     //PK
+            $table->unsignedBigInteger('id');       //PK
 
             $table->unsignedInteger('owner');       //FK of users
             $table->unsignedInteger('category');    //FK of categories
             $table->unsignedInteger('status');      //FK of status
-            $table->unsignedInteger('location');      //FK of location
+            $table->unsignedInteger('location');    //FK of location
 
-            $table->string('title', 30);
-            $table->string('description');
+            $table->string('title', 60);
+            $table->text('description');
             $table->float('price');
             $table->unsignedInteger('tickets_count')->default(0);
-            $table->float('tickets_price') ->nullable();
-            $table->string('image') ->default("pics/common/rotating_card_profile.png");
+            $table->float('tickets_price')->nullable();
+            $table->string('image')->default("pics/common/rotating_card_profile.png");
             $table->unsignedtinyInteger('profit')->nullable();
             $table->float('commissions')->nullable();
             $table->date('activation_date')->nullable();
@@ -59,12 +59,12 @@ class CreateRafflesTable extends Migration
                 ->on('rafflecategories')
                 ->onDelete('restrict');
 
-            $table->foreign('status') //FK
+            $table->foreign('status')   //FK
             ->references('id')
                 ->on('rafflestatus')
                 ->onDelete('restrict');
 
-            $table->foreign('location') //FK
+            $table->foreign('location')  //FK
             ->references('id')
                 ->on('countries')
                 ->onDelete('restrict');
