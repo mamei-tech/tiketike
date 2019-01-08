@@ -64,7 +64,7 @@
                                 <div class="col-xs-9 col-sm-8 col-lg-7"><span class="colorV margin-right-20">Tickets vendidos:</span>
                                 </div>
                                 <div class="col-xs-3 col-sm-4 col-lg-5"><strong
-                                            class="colorN sinkinSans600SB">{{ $user->getSoldTickets() }}</strong><br></div>
+                                            class="colorN sinkinSans600SB">{{ $user->getSoldTicketsCount() }}</strong><br></div>
                             </div>
                         </div>
                         <div class="col-xs-12 padding-top-20">
@@ -382,24 +382,26 @@
                                 <div class="tab-content">
 
                                     <div class="tab-pane active in" id="vendidos">
-                                            @foreach($user->getRafflesBuyed as $raffle)
 
-                                                <div class="col-xs-6 col-lg-3 col-sm-4 padding-top-15 paddingLeft0 padding-rigth-0">
-                                                    <div class="pull-left">
-                                                        @if(count($raffle->getMedia('raffles')) > 0)
-                                                            <img src="{{$raffle->getMedia('raffles')->first()->getUrl()}}"
-                                                                 class="imgTicket">
-                                                        @endif
-                                                    </div>
-                                                    <div class="pull-left bg-b colorV textoCenter">
-                                                        <h4 class="sinkinSans600SB">{{count($user->getTicketsByRaffle($raffle->id))}}</h4>
-                                                        <h5 class="text-uppercase texto10 sinkinSans300L">tickets</h5>
-                                                    </div>
-                                                </div>
-
-                                            @endforeach
                                     </div>
-                                    <div class="tab-pane" id="comprados">aqui</div>
+                                    <div class="tab-pane" id="comprados">
+                                        @foreach($user->getRafflesBuyed as $raffle)
+
+                                            <div class="col-xs-6 col-lg-3 col-sm-4 padding-top-15 paddingLeft0 padding-rigth-0">
+                                                <div class="pull-left">
+                                                    @if(count($raffle->getMedia('raffles')) > 0)
+                                                        <img src="{{$raffle->getMedia('raffles')->first()->getUrl()}}"
+                                                             class="imgTicket">
+                                                    @endif
+                                                </div>
+                                                <div class="pull-left bg-b colorV textoCenter">
+                                                    <h4 class="sinkinSans600SB">{{count($user->getTicketsByRaffle($raffle->id))}}</h4>
+                                                    <h5 class="text-uppercase texto10 sinkinSans300L">tickets</h5>
+                                                </div>
+                                            </div>
+
+                                        @endforeach
+                                    </div>
                                 </div>
 
                             </div>

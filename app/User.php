@@ -164,7 +164,7 @@ class User extends Authenticatable
             })->get();
     }
 
-    public function getSoldTickets()
+    public function getSoldTicketsCount()
     {
         $total = 0;
         foreach ($this->getRaffles() as $raffle) {

@@ -31,7 +31,7 @@ class UserController extends Controller
 
     public function getProfile($userid)
     {
-        $current = User::find(intval($userid))->with('getProfile')->first();
+        $current = User::findOrFail(intval($userid));
         $suggested = $this->raffleRepository->getSuggested();
         $promos = Promo::where('type',1)->where('status',1)->get();
         return view('user', [
