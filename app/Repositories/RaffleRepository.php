@@ -14,17 +14,16 @@ class RaffleRepository
     {
         if (Auth::user() != null) {
             $user = Auth::user()->id;
-            $raffles = Raffle::with(['getTickets', 'getFollowers', 'getOwner'])
-                ->whereHas('getTickets', function (Builder $q) use ($user) {
-                    $q->where('buyer', '<>', $user);
-                    $q->groupBy('raffle');
+            $raffles = Raffle::with(['getTickets','getFollowers','getOwner'])
+                ->whereDoesntHave('getFollowers',function (Builder $q) use ($user) {
+                    $q->where('user_id','<>',$user);
                 })
-                ->whereHas('getFollowers', function (Builder $q) use ($user) {
-                    $q->where('user_id', '<>', $user);
-                    $q->groupBy('raffle_id');
+                ->whereDoesntHave('getTickets',function (Builder $q) use ($user) {
+                    $q->where('buyer','<>',$user);
                 })
-                ->where('owner', '<>', $user)
+                ->where('owner','<>',$user)
                 ->limit(3)
+//                ->orderBy('activation_date','DESC')
                 ->get();
             return $raffles;
         }else{

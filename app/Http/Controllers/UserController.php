@@ -7,6 +7,7 @@ use App\Http\TkTk\LogsMsgs;
 use App\Http\Requests\StoreUserprofileRequest;
 use App\Promo;
 use App\Raffle;
+use App\Repositories\RaffleRepository;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -19,56 +20,24 @@ use Illuminate\Support\Facades\Log;
 class UserController extends Controller
 {
 
-    public function __construct()
+    private $raffleRepository;
+    public function __construct(RaffleRepository $raffleRepository)
     {
         // I think this is not needed because I have this in the route middleware
         $this->middleware('auth');
         $this->middleware('permission:edit user', ['only' => ['edit', 'update']]);
+        $this->raffleRepository = $raffleRepository;
     }
 
     public function getProfile($userid)
     {
         $user = User::find($userid)->with('getProfile')->first();
-//        var_dump($user);
-//        var_dump($userid);die();
-        $raffles = User::find($userid)->getRaffles;
-        $rafflesfollowed = User::find($userid)->getRafflesFollowed;
-        $rafflesbuyed = User::find($userid)->getRafflesBuyed;
-        $tickets_buys = User::find($userid)->getTickets;
-
-        $suggested = Raffle::with(['getTickets','getFollowers','getOwner'])
-        ->whereDoesntHave('getFollowers',function (Builder $q) use ($user) {
-            $q->where('user_id','<>',$user);
-        })
-        ->whereDoesntHave('getTickets',function (Builder $q) use ($user) {
-            $q->where('buyer','<>',$user);
-        })
-        ->where('owner','<>',$user)
-        ->limit(3)
-        ->get();
+        $suggested = $this->raffleRepository->getSuggested();
         $promos = Promo::where('type',1)->where('status',1)->get();
-
-
-
-
-        $countries = Country::paginate(10);
-
-        $countrycities = DB::table('cities')
-            ->select('cities.*')
-            ->where('cities.country', $user->getProfile->getCity->getCountry->id)
-            ->get();
-
         return view('user', [
             'user' => $user,
-            'countries' => $countries,
-            'countrycities' => $countrycities,
-            'rafflesfollowed'=> $rafflesfollowed,
-            'raffles'=>$raffles,
-            'rafflesbuyed'=>$rafflesbuyed,
-            'tickets_buys'=>$tickets_buys,
             'suggested' => $suggested,
             'promos' => $promos,
-
         ]);
     }
 

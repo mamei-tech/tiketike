@@ -46,13 +46,13 @@
                                 <div class="col-xs-9 col-sm-8 col-lg-7"><span class="colorV margin-right-20">Rifas creadas:</span>
                                 </div>
                                 <div class="col-xs-3 col-sm-4 col-lg-5"><strong
-                                            class="colorN sinkinSans600SB">100%</strong><br></div>
+                                            class="colorN sinkinSans600SB">{{ count($user->getRaffles) }}</strong><br></div>
                             </div>
                             <div class="padding-top-20">
                                 <div class="col-xs-9 col-sm-8 col-lg-7"><span class="colorV margin-right-20">Rifas ganadas:</span>
                                 </div>
                                 <div class="col-xs-3 col-sm-4 col-lg-5"><strong
-                                            class="colorN sinkinSans600SB">100%</strong><br></div>
+                                            class="colorN sinkinSans600SB">{{ count($user->WinnedRaffles()) }}</strong><br></div>
                             </div>
                             <div class="padding-top-20">
                                 <div class="col-xs-9 col-sm-8 col-lg-7"><span class="colorV margin-right-20">Rifas compartidas:</span>
@@ -72,10 +72,10 @@
                                         class="ti-agenda texto14 padding-top5 margin-right-10"></span>Contactos</h5>
 
                             @if($user->getProfile->phone)
-                            <div class="phone sinkinSans500M padding-top-20">
-                                <span class="ti-mobile colorV"></span>
-                                {{$user->getProfile->phone}}
-                            </div>
+                                <div class="phone sinkinSans500M padding-top-20">
+                                    <span class="ti-mobile colorV"></span>
+                                    {{$user->getProfile->phone}}
+                                </div>
                             @endif
                             <div class="correo sinkinSans500M padding-top-20">
                                 <span class="ti-email colorV  margin-right-10"></span>
@@ -84,12 +84,12 @@
 
                             {{--TODO Made Social Info--}}
                             {{--<div class="facebook sinkinSans500M padding-top-20">--}}
-                                {{--<span class="ti-facebook colorV texto14 margin-right-10"></span>--}}
-                                {{--janedoe--}}
+                            {{--<span class="ti-facebook colorV texto14 margin-right-10"></span>--}}
+                            {{--janedoe--}}
                             {{--</div>--}}
                             {{--<div class="twitter sinkinSans500M padding-top-20">--}}
-                                {{--<span class="ti-twitter colorV texto14 margin-right-10"></span>--}}
-                                {{--@janedoe--}}
+                            {{--<span class="ti-twitter colorV texto14 margin-right-10"></span>--}}
+                            {{--@janedoe--}}
                             {{--</div>--}}
                         </div>
                         <div class="col-xs-12 padding-top-20">
@@ -298,11 +298,10 @@
 
                                     </div>
                                     <div class="tab-pane active in" id="creadas">
-
-                                        @if (count($raffles) > 0)
-                                            @foreach($raffles as $raffle)
+                                            @foreach($user->getRaffles as $raffle)
                                                 <div class="col-xs-6 col-lg-3 col-sm-4 padding-top-15">
-                                                    <img src="{{ $raffle->getMedia('raffles')->first()->getUrl() }}" class="imgRifas">
+                                                    <img src="{{ $raffle->getMedia('raffles')->first()->getUrl() }}"
+                                                         class="imgRifas">
                                                     <div class="porciento">
                                                         <div class=" text-center">
                                                 <span class="chartB chart-porcientoR"
@@ -314,15 +313,13 @@
 
                                                 </div>
                                             @endforeach
-                                        @endif
 
                                     </div>
                                     <div class="tab-pane" id="participo">
-
-                                        @if (count($rafflesbuyed) > 0)
-                                            @foreach($rafflesbuyed as $raffle)
+                                            @foreach($user->getRafflesBuyed as $raffle)
                                                 <div class="col-xs-6 col-lg-3 col-sm-4 padding-top-15">
-                                                    <img src="{{ $raffle->getMedia('raffles')->first()->getUrl() }}" class="imgRifas">
+                                                    <img src="{{ $raffle->getMedia('raffles')->first()->getUrl() }}"
+                                                         class="imgRifas">
                                                     <div class="porciento">
                                                         <div class=" text-center">
                                                 <span class="chartB chart-porcientoR"
@@ -334,15 +331,13 @@
 
                                                 </div>
                                             @endforeach
-                                        @endif
 
                                     </div>
                                     <div class="tab-pane" id="siguiendo">
-
-                                        @if (count($rafflesfollowed) > 0)
-                                            @foreach($rafflesfollowed as $raffle)
+                                            @foreach($user->getRafflesFollowed as $raffle)
                                                 <div class="col-xs-6 col-lg-3 col-sm-4 padding-top-15">
-                                                    <img src="{{ $raffle->getMedia('raffles')->first()->getUrl() }}" class="imgRifas">
+                                                    <img src="{{ $raffle->getMedia('raffles')->first()->getUrl() }}"
+                                                         class="imgRifas">
                                                     <div class="porciento">
                                                         <div class=" text-center">
                                                 <span class="chartB chart-porcientoR"
@@ -354,7 +349,6 @@
 
                                                 </div>
                                             @endforeach
-                                        @endif
 
                                     </div>
                                 </div>
@@ -388,9 +382,7 @@
                                 <div class="tab-content">
 
                                     <div class="tab-pane active in" id="vendidos">
-
-                                        @if (count($rafflesbuyed) > 0)
-                                            @foreach($rafflesbuyed as $raffle)
+                                            @foreach($user->getRafflesBuyed as $raffle)
 
                                                 <div class="col-xs-6 col-lg-3 col-sm-4 padding-top-15 paddingLeft0 padding-rigth-0">
                                                     <div class="pull-left">
@@ -406,7 +398,6 @@
                                                 </div>
 
                                             @endforeach
-                                        @endif
                                     </div>
                                     <div class="tab-pane" id="comprados">aqui</div>
                                 </div>
