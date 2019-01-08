@@ -71,7 +71,7 @@ class RaffleFrontController extends ApiController
             $response .= '</div>'.PHP_EOL;
             $response .= '</div>'.PHP_EOL;
             $response .= '<div class="col-xs-8 col-md-6 padding-top10R">'.PHP_EOL;
-            $response .= '<span class="texto16 colorV hidden-lg visible-xs pull-left margin-right-10 sinkinSans600SB">'.$raffle->getProgress().'</span>'.PHP_EOL;
+            $response .= '<span class="texto16 colorV hidden-lg visible-xs pull-left margin-right-10 sinkinSans600SB">'.round($raffle->getProgress()).'</span>'.PHP_EOL;
             $response .= '<span class="texto14 colorN pull-left sinkinSans600SB texto14">'.$raffle->getOwner->name.' '.$raffle->getOwner->lastname.'</span>'.PHP_EOL;
             $response .= '<span class="ti-location-pin texto16 padding-left10 colorN"></span>'.PHP_EOL;
             $response .= '<span class="texto14 padding-left10 sinkinSans600SB texto14 colorN">'.$raffle->getLocation->name.'</span>'.PHP_EOL;
@@ -84,7 +84,7 @@ class RaffleFrontController extends ApiController
             $response .= '</div>'.PHP_EOL;
             $response .= '<div class="costo hidden-xs">'.PHP_EOL;
             $response .= '<div class="pull-left porcientoCompletado">'.PHP_EOL;
-            $response .= '<span class="texto35 sinkinSans600SB colorN">'.$raffle->getProgress().' %</span><br>'.PHP_EOL;
+            $response .= '<span class="texto35 sinkinSans600SB colorN">'.round($raffle->getProgress()).' %</span><br>'.PHP_EOL;
             $response .= '<span class="sinkinSans400R">completado</span>'.PHP_EOL;
             $response .= '</div>'.PHP_EOL;
             $response .= '<div class="pull-left padding-top-20 padding-left30">'.PHP_EOL;
@@ -160,7 +160,7 @@ class RaffleFrontController extends ApiController
             $response .= '</div>'.PHP_EOL;
             $response .= '</div>'.PHP_EOL;
             $response .= '<div class="col-xs-8 col-md-6 padding-top10R">'.PHP_EOL;
-            $response .= '<span class="texto16 colorV hidden-lg visible-xs pull-left margin-right-10 sinkinSans600SB">'.$raffle->getProgress().'</span>'.PHP_EOL;
+            $response .= '<span class="texto16 colorV hidden-lg visible-xs pull-left margin-right-10 sinkinSans600SB">'.round($raffle->getProgress()).'</span>'.PHP_EOL;
             $response .= '<span class="texto14 colorN pull-left sinkinSans600SB texto14">'.$raffle->getOwner->name.' '.$raffle->getOwner->lastname.'</span>'.PHP_EOL;
             $response .= '<span class="ti-location-pin texto16 padding-left10 colorN"></span>'.PHP_EOL;
             $response .= '<span class="texto14 padding-left10 sinkinSans600SB texto14 colorN">'.$raffle->getLocation->name.'</span>'.PHP_EOL;
@@ -173,7 +173,7 @@ class RaffleFrontController extends ApiController
             $response .= '</div>'.PHP_EOL;
             $response .= '<div class="costo hidden-xs">'.PHP_EOL;
             $response .= '<div class="pull-left porcientoCompletado">'.PHP_EOL;
-            $response .= '<span class="texto35 sinkinSans600SB colorN">'.$raffle->getProgress().' %</span><br>'.PHP_EOL;
+            $response .= '<span class="texto35 sinkinSans600SB colorN">'.round($raffle->getProgress()).' %</span><br>'.PHP_EOL;
             $response .= '<span class="sinkinSans400R">completado</span>'.PHP_EOL;
             $response .= '</div>'.PHP_EOL;
             $response .= '<div class="pull-left padding-top-20 padding-left30">'.PHP_EOL;
@@ -249,7 +249,7 @@ class RaffleFrontController extends ApiController
             $response .= '</div>'.PHP_EOL;
             $response .= '</div>'.PHP_EOL;
             $response .= '<div class="col-xs-8 col-md-6 padding-top10R">'.PHP_EOL;
-            $response .= '<span class="texto16 colorV hidden-lg visible-xs pull-left margin-right-10 sinkinSans600SB">'.$raffle->getProgress().'</span>'.PHP_EOL;
+            $response .= '<span class="texto16 colorV hidden-lg visible-xs pull-left margin-right-10 sinkinSans600SB">'.round($raffle->getProgress()).'</span>'.PHP_EOL;
             $response .= '<span class="texto14 colorN pull-left sinkinSans600SB texto14">'.$raffle->getOwner->name.' '.$raffle->getOwner->lastname.'</span>'.PHP_EOL;
             $response .= '<span class="ti-location-pin texto16 padding-left10 colorN"></span>'.PHP_EOL;
             $response .= '<span class="texto14 padding-left10 sinkinSans600SB texto14 colorN">'.$raffle->getLocation->name.'</span>'.PHP_EOL;
@@ -262,7 +262,7 @@ class RaffleFrontController extends ApiController
             $response .= '</div>'.PHP_EOL;
             $response .= '<div class="costo hidden-xs">'.PHP_EOL;
             $response .= '<div class="pull-left porcientoCompletado">'.PHP_EOL;
-            $response .= '<span class="texto35 sinkinSans600SB colorN">'.$raffle->getProgress().' %</span><br>'.PHP_EOL;
+            $response .= '<span class="texto35 sinkinSans600SB colorN">'.round($raffle->getProgress()).' %</span><br>'.PHP_EOL;
             $response .= '<span class="sinkinSans400R">completado</span>'.PHP_EOL;
             $response .= '</div>'.PHP_EOL;
             $response .= '<div class="pull-left padding-top-20 padding-left30">'.PHP_EOL;

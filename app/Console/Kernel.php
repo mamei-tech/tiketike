@@ -26,6 +26,7 @@ class Kernel extends ConsoleKernel
     {
         // $schedule->command('inspire')
         //          ->hourly();
+        $schedule->command('update:ranking')->everyMinute()->sendOutputTo('C:\xampp\htdocs\tiketike\storage\logs\job.txt');
     }
 
     /**
