@@ -64,7 +64,7 @@
                                 <div class="col-xs-9 col-sm-8 col-lg-7"><span class="colorV margin-right-20">Tickets vendidos:</span>
                                 </div>
                                 <div class="col-xs-3 col-sm-4 col-lg-5"><strong
-                                            class="colorN sinkinSans600SB">100%</strong><br></div>
+                                            class="colorN sinkinSans600SB">{{ $user->getSoldTickets() }}</strong><br></div>
                             </div>
                         </div>
                         <div class="col-xs-12 padding-top-20">

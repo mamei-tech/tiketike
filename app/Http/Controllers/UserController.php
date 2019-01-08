@@ -31,11 +31,11 @@ class UserController extends Controller
 
     public function getProfile($userid)
     {
-        $user = User::find($userid)->with('getProfile')->first();
+        $current = User::find(intval($userid))->with('getProfile')->first();
         $suggested = $this->raffleRepository->getSuggested();
         $promos = Promo::where('type',1)->where('status',1)->get();
         return view('user', [
-            'user' => $user,
+            'user' => $current,
             'suggested' => $suggested,
             'promos' => $promos,
         ]);

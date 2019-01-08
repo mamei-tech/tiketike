@@ -70,7 +70,7 @@ class User extends Authenticatable
 
     public function getRafflesBuyed()
     {
-       return $this->belongsToMany(Raffle::class,'tickets','buyer','raffle');
+       return $this->belongsToMany(Raffle::class,'tickets','buyer','raffle')->groupBy('raffles.id');
     }
 
 
@@ -162,5 +162,14 @@ class User extends Authenticatable
                 $q->where('sold',1);
                 $q->where('bingo',1);
             })->get();
+    }
+
+    public function getSoldTickets()
+    {
+        $total = 0;
+        foreach ($this->getRaffles() as $raffle) {
+            $total += $raffle->getTickets->where('sold',1)->get();
+        }
+        return $total;
     }
 }
