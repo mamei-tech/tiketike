@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class UsersTableSeeder extends Seeder
 {
@@ -67,6 +68,5 @@ class UsersTableSeeder extends Seeder
 
         factory(\App\User::class, 30)->create();
         factory(\App\UserProfile::class, 30)->create();
-
     }
 }
