@@ -125,21 +125,19 @@ class RafflesSeeder extends Seeder
 
                 if(mt_rand(0,1) == 0) continue;                                         // Passing some of those
 
-                $tkavailable = $praffle->getTicketsAvailable;                           // Getting available tickets for buying
+                $tkavailable = $praffle->getTicketsAvailable()->get();                  // Getting available tickets for buying
                 $tktotal     = $tkavailable->count();                                   // Getting the total of them
 
-                if ($tktotal >= 10) {                                                   // If we have at least 10 so
+                for ($i = 1; $i <= 10 && $tktotal >= 10; $i++) {                        // Doing that 10 times when total is more or equal to 10
+                    //if(mt_rand(0,1) == 0) continue;                                     // passing some of the tks
 
-                    for ($i = 1; $i <= 10; $i++) {                                      // Doing that 10 times
+                    $tk = $tkavailable->random();                                       // Getting one tk ramdomly
 
-                        if(mt_rand(0,1) == 0) continue;                                 // passing some of the tks
+                    if (!$tk->sold && $tk->getRaffle->getOwner->id != $user->id) {      // If the tk is not sold already and the user is not the raffle owner so
+                        $praffle->buyTickets($user, [$tk->code]);                       // Buying the tk
 
-                        $tk = $tkavailable->random();                                   // Getin one tk ramdomly
-
-                        //TOOD Something is wrong here
-                        if (!$tk->sold && $tk->getRaffle->getOwner->id != $user->id)    // If the tk is not sold already and the user is not the raffle owner so
-                            $praffle->buyTickets($user, [$tk->code]);                   // Buying the tk
-
+                        $tkavailable = $praffle->getTicketsAvailable()->get();          // Refreshing tickets for buying
+                        $tktotal     = $tkavailable->count();                           // Refreshing total count
                     }
                 }
             }
