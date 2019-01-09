@@ -113,8 +113,7 @@ class RafflesSeeder extends Seeder
             $raffle->publish($profit, $commision, $tcount, $tprice);
         }
 
-        /*
-        // Buying Tickets, Making directs buys
+        // Buying Tickets
         $publishedraffles = $rpostry->getPublishedRaffles();                            // Getting all the raffles
         $users = User::all();
 
@@ -128,20 +127,35 @@ class RafflesSeeder extends Seeder
 
                 $tkavailable = $praffle->getTicketsAvailable()->get();                  // Getting available tickets for buying
                 $tktotal     = $tkavailable->count();                                   // Getting the total of them
+                $buys        = mt_rand(3, 10);                                          // Making a random iterator count
 
-                for ($i = 1; $i <= 10 && $tktotal >= 10; $i++) {                        // Doing that 10 times when total is more or equal to 10
-                    //if(mt_rand(0,1) == 0) continue;                                     // passing some of the tks
+                if ($tktotal < $buys) continue;                                         // If there is not enough available tickets then continue to the next published raffle
+
+                for ($i = 1; $i <= $buys; $i++) {                                       // Doing that 10 times when total is more or equal to 10
+                    //if(mt_rand(0,1) == 0) continue;                                   // passing some of the tks
 
                     $tk = $tkavailable->random();                                       // Getting one tk ramdomly
 
-                    if (!$tk->sold && $tk->getRaffle->getOwner->id != $user->id) {      // If the tk is not sold already and the user is not the raffle owner so
-                        $praffle->buyTickets($user, [$tk->code]);                       // Buying the tk
-
-                        $tkavailable = $praffle->getTicketsAvailable()->get();          // Refreshing tickets for buying
-                        $tktotal     = $tkavailable->count();                           // Refreshing total count
+                    // Directs Buys
+                    if (mt_rand(0, 100) >= 35) {
+                        if (!$tk->sold && $tk->getRaffle->getOwner->id != $user->id) {  // If the tk is not sold already and the user is not the raffle owner so
+                            $praffle->buyTickets($user, [$tk->code]);                   // Buying the tk
+                            $tkavailable = $praffle->getTicketsAvailable()->get();      // Refreshing tickets for buying
+                        }
+                    }
+                    // Referasl Buys
+                    else {
+                        if (!$tk->sold && $tk->getRaffle->getOwner->id != $user->id) {  // Buying the tk through referal
+                            $praffle->buyTickets(
+                                $user,
+                                [$tk->code],
+                                $tk->getRaffle->getOwner->id
+                            );
+                            $tkavailable = $praffle->getTicketsAvailable()->get();      // Refreshing tickets for buying
+                        }
                     }
                 }
             }
-        }*/
+        }
     }
 }

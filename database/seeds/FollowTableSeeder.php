@@ -18,12 +18,12 @@ class FollowTableSeeder extends Seeder
         $raffles    = Raffle::all();
         $users      = User::all();
 
-        // Seeding root comments by interatin in to all raffles list
+        // Seeding root comments by iterating in to all raffles list
         foreach ($raffles as $raffle) {
 
             foreach ($users as $user) {
 
-                if (mt_rand(0, 100) >= 40) continue;                   // Pasing some user
+                if (mt_rand(0, 100) >= 35) continue;                   // Pasing some user
 
                 DB::table('follow')->insert([
                     'user_id'       => $user->id,
