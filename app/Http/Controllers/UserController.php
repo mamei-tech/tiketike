@@ -28,9 +28,9 @@ class UserController extends Controller
 
     public function getProfile($userid)
     {
+
         $user = User::find($userid)->with('getProfile')->first();
-//        var_dump($user);
-//        var_dump($userid);die();
+
         $raffles = User::find($userid)->getRaffles;
         $rafflesfollowed = User::find($userid)->getRafflesFollowed;
         $rafflesbuyed = User::find($userid)->getRafflesBuyed;
