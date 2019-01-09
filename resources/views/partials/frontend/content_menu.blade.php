@@ -8,7 +8,7 @@
     </button>
 
     <a href="{{ route('main') }}" class="padding-left">
-        <img src="{{ asset('pics/front/logoPeque.svg') }}" class="navbar-log" alt="">
+        <img src="{{ asset('pics/front/logonv.png') }}" class="navbar-log" alt="">
     </a>
 
     <img class="styleBorderL padding-left30 hidden-xs" src="{{ asset('pics/front/borderLeft.svg') }}" alt="">
