@@ -130,20 +130,20 @@
                     <div class="slicklanding">
                         @foreach($raffles as $raffle)
                             <div class="paddingImgCarousel itemImg">
-                                <img src="{{ asset('pics/front/habana2.png') }}" class="dimenImgCarousel"
+                                <img src="{{ $raffle->getMedia('raffles')->first()->getUrl() }}" class="dimenImgCarousel"
                                      alt="Owl Image"/>
                                 <a class="valign-center" href="#">
                                     <div class="imginline"
                                          style="position: absolute; top: 45%; margin-top: -55.5px;  height: 81px;">
                                         <strong class="padding-top-10 sinkinSans600SB text-center"><span
-                                                    class=" texto16">{{ $raffle->getProgress() }} %</span><br>{{ $raffle->title }}
+                                                    class=" texto16">{{ round($raffle->progress) }} %</span><br>{{ $raffle->title }}
                                         </strong>
                                     </div>
                                 </a>
                                 <div class="porciento">
                                     <div class=" text-center">
-                                <span class="chartB chart-porcientoB" data-percent="{{ $raffle->getProgress() }}">
-                                    <span class="percentB">{{ $raffle->getProgress() }}%</span>
+                                <span class="chartB chart-porcientoB" data-percent="{{ round($raffle->progress) }}">
+                                    <span class="percentB">{{ round($raffle->progress) }}%</span>
                                 </span>
                                     </div>
                                 </div>
