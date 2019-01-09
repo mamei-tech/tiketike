@@ -18,6 +18,7 @@ class DatabaseSeeder extends Seeder
             UsersTableSeeder::class,                //User
             RafflesSeeder::class,                   //raffles
             CommentsTableSeeder::class,             //comments
+            FollowTableSeeder::class,               //followers
             PromoSeeder::class,                     //Promo & Ads and also Promo Clients
             ConfigsSeeder::class,                   //configs
             PermissionsTableSeeder::class,
