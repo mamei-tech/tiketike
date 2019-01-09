@@ -113,6 +113,7 @@ class RafflesSeeder extends Seeder
             $raffle->publish($profit, $commision, $tcount, $tprice);
         }
 
+        /*
         // Buying Tickets, Making directs buys
         $publishedraffles = $rpostry->getPublishedRaffles();                            // Getting all the raffles
         $users = User::all();
@@ -141,6 +142,6 @@ class RafflesSeeder extends Seeder
                     }
                 }
             }
-        }
+        }*/
     }
 }
