@@ -23,7 +23,7 @@ class FollowTableSeeder extends Seeder
 
             foreach ($users as $user) {
 
-                if (mt_rand(0, 100) >= 35 ) continue;                   // Pasing some user
+                if (mt_rand(0, 100) >= 40) continue;                   // Pasing some user
 
                 DB::table('follow')->insert([
                     'user_id'       => $user->id,
