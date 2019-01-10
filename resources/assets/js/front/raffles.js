@@ -16,6 +16,7 @@ $(document).ready(function () {
             console.log(error);
         });
     });
+
     $('.filters').on('click',function (e) {
         e.preventDefault();
         var category = $(e.target).html();
@@ -29,6 +30,7 @@ $(document).ready(function () {
             console.log(error);
         });
     });
+
     $('#percent').on('click',function (e) {
         e.preventDefault();
         axios.post('api/filterByPercent').then(function (response) {
@@ -38,6 +40,7 @@ $(document).ready(function () {
             console.log(error);
         });
     });
+
     $('#price').on('click',function (e) {
         e.preventDefault();
         axios.post('api/filterByPrice').then(function (response) {

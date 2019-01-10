@@ -61,7 +61,7 @@ class RaffleFrontController extends ApiController
             $count = 0;
             $response .= '<ol class="carousel-indicators">'.PHP_EOL;
             while($count < count($raffle->getMedia('raffles'))) {
-                $response .= '<li data-target="#myCarousel '.$raffle->id.'" data-slide-to="'.$count.'" class="';
+                $response .= '<li data-target="#myCarousel'.$raffle->id.'" data-slide-to="'.$count.'" class="';
                 if($count == 0)
                     $response .= 'active';
                 $response .= '"></li>'.PHP_EOL;
@@ -150,7 +150,7 @@ class RaffleFrontController extends ApiController
             $count = 0;
             $response .= '<ol class="carousel-indicators">'.PHP_EOL;
             while($count < count($raffle->getMedia('raffles'))) {
-                $response .= '<li data-target="#myCarousel '.$raffle->id.'" data-slide-to="'.$count.'" class="';
+                $response .= '<li data-target="#myCarousel'.$raffle->id.'" data-slide-to="'.$count.'" class="';
                 if($count == 0)
                     $response .= 'active';
                 $response .= '"></li>'.PHP_EOL;
@@ -239,7 +239,7 @@ class RaffleFrontController extends ApiController
             $count = 0;
             $response .= '<ol class="carousel-indicators">'.PHP_EOL;
             while($count < count($raffle->getMedia('raffles'))) {
-                $response .= '<li data-target="#myCarousel '.$raffle->id.'" data-slide-to="'.$count.'" class="';
+                $response .= '<li data-target="#myCarousel'.$raffle->id.'" data-slide-to="'.$count.'" class="';
                 if($count == 0)
                     $response .= 'active';
                 $response .= '"></li>'.PHP_EOL;

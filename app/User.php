@@ -70,7 +70,7 @@ class User extends Authenticatable
 
     public function getRafflesBuyed()
     {
-       return $this->belongsToMany(Raffle::class,'tickets','buyer','raffle');
+       return $this->belongsToMany(Raffle::class,'tickets','buyer','raffle')->groupBy('raffles.id');
     }
 
 
@@ -88,10 +88,8 @@ class User extends Authenticatable
     public function getTicketsByRaffle($raffle_id)
     {
         $tickets = Ticket::with('getBuyer')
-            ->whereHas('getBuyer', function (Builder $q) use ($raffle_id) {
-                $q->where('raffle',$raffle_id);
-                $q->where('buyer',$this->id);
-            })
+            ->where('buyer',$this->id)
+            ->where('raffle',$raffle_id)
             ->get();
         return $tickets;
     }
@@ -154,5 +152,24 @@ class User extends Authenticatable
         return $this->email;
     }
 
+    public function WinnedRaffles()
+    {
+        $id = $this->id;
+        return $this->hasMany('App\Raffle', 'owner')
+            ->with('getTickets')
+            ->whereHas('getTickets',function (Builder $q) use ($id) {
+                $q->where('buyer',$id);
+                $q->where('sold',1);
+                $q->where('bingo',1);
+            })->get();
+    }
 
+    public function getSoldTicketsCount()
+    {
+        $total = 0;
+        foreach ($this->getRaffles() as $raffle) {
+            $total += $raffle->getTickets->where('sold',1)->get();
+        }
+        return $total;
+    }
 }

@@ -24,146 +24,14 @@
                         <label class="colorB styleEncabezado sinkinSans300L">paises</label>
                     </div>
                     <div class="paddingFiltrar">
-                        <div class="america">
-                            <div class="panel-heading" role="tab" id="">
-                                <div class="subtPais caption checkbox sinkinSans300L">
-                                    <label>
-                                        <input class="letra-naranja" type="checkbox">
-                                        América
-                                    </label>
-                                </div>
-                                <div class="tools">
-                                    <a class="paddingCollapse" data-toggle="collapse" data-parent="#accordion"
-                                       href="#collapseThree" aria-expanded="true" aria-controls="collapseThree"></a>
-                                </div>
-
-                            </div>
-                            <div id="collapseThree" class="panel-collapse collapse in" role="tabpanel"
-                                 aria-labelledby="headingThree" aria-expanded="true" style="">
-                                <div class="panel-body">
-                                    <div class="row">
-                                        <div class="col-xs-6 texto10 sinkinSans300L">
-                                            <div class="checkbox">
-                                                <label class="texto10">
-                                                    <input value="remember-me" type="checkbox">EEUU
-                                                </label>
-                                            </div>
-                                            <div class="checkbox">
-                                                <label class="texto10">
-                                                    <input value="remember-me" type="checkbox">Canadá
-                                                </label>
-                                            </div>
-                                        </div>
-                                        <div class="col-xs-6 texto10 sinkinSans300L">
-                                            <div class="checkbox">
-                                                <label class="texto10">
-                                                    <input class="" type="checkbox">
-                                                    Colombia
-                                                </label>
-                                            </div>
-                                            <div class="checkbox">
-                                                <label class="texto10">
-                                                    <input value="remember-me" type="checkbox">Brasil
-                                                </label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="europa">
-                            <div class="panel-heading" role="tab" id="">
-                                <div class="subtPais caption checkbox sinkinSans300L">
-                                    <label>
-                                        <input class="letra-naranja" type="checkbox">
-                                        Europa
-                                    </label>
-                                </div>
-                                <div class="tools">
-                                    <a class="collapsed paddingCollapse" data-toggle="collapse" data-parent="#accordion"
-                                       href="#europa" aria-expanded="true" aria-controls="collapseThree"></a>
-                                </div>
-
-                            </div>
-                            <div id="europa" class="panel-collapse collapse" role="tabpanel"
-                                 aria-labelledby="headingThree" aria-expanded="true" style="">
-                                <div class="panel-body">
-                                    <div class="row">
-                                        <div class="col-xs-6 texto10 sinkinSans300L">
-                                            <div class="checkbox">
-                                                <label class="texto10">
-                                                    <input value="remember-me" type="checkbox">EEUU
-                                                </label>
-                                            </div>
-                                            <div class="checkbox">
-                                                <label class="texto10">
-                                                    <input value="remember-me" type="checkbox">Canadá
-                                                </label>
-                                            </div>
-                                        </div>
-                                        <div class="col-xs-6 texto10 sinkinSans300L">
-                                            <div class="checkbox">
-                                                <label class="texto10">
-                                                    <input class="" type="checkbox">
-                                                    Colombia
-                                                </label>
-                                            </div>
-                                            <div class="checkbox">
-                                                <label class="texto10">
-                                                    <input value="remember-me" type="checkbox">Brasil
-                                                </label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="asia">
-                            <div class="panel-heading" role="tab" id="">
-                                <div class="subtPais caption checkbox sinkinSans300L">
-                                    <label>
-                                        <input class="letra-naranja" type="checkbox">
-                                        Asia
-                                    </label>
-                                </div>
-                                <div class="tools">
-                                    <a class="collapsed paddingCollapse" data-toggle="collapse" data-parent="#accordion"
-                                       href="#asia" aria-expanded="true" aria-controls="collapseThree"></a>
-                                </div>
-
-                            </div>
-                            <div id="asia" class="panel-collapse collapse" role="tabpanel"
-                                 aria-labelledby="headingThree" aria-expanded="true" style="">
-                                <div class="panel-body">
-                                    <div class="row">
-                                        <div class="col-xs-6 texto10 sinkinSans300L">
-                                            <div class="checkbox">
-                                                <label class="texto10">
-                                                    <input value="remember-me" type="checkbox">EEUU
-                                                </label>
-                                            </div>
-                                            <div class="checkbox">
-                                                <label class="texto10">
-                                                    <input value="remember-me" type="checkbox">Canadá
-                                                </label>
-                                            </div>
-                                        </div>
-                                        <div class="col-xs-6 texto10 sinkinSans300L">
-                                            <div class="checkbox">
-                                                <label class="texto10">
-                                                    <input class="" type="checkbox">
-                                                    Colombia
-                                                </label>
-                                            </div>
-                                            <div class="checkbox">
-                                                <label class="texto10">
-                                                    <input value="remember-me" type="checkbox">Brasil
-                                                </label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                        <div class="text-uppercase margin-bottom-20">
+                            <label class="colorN styleEncabezado sinkinSans300L">Seleccione uno o varios países</label>
+                            <select class="select2 margin-bottom-20" name="filterByCountry" id="filterByCountry" multiple="multiple" style="width: 100%"> <!-- TODO llevar el estilo este a css -->
+                                <option disabled>Seleccione uno o varios paises</option>
+                                @foreach($countries as $country)
+                                    <option id="{{ $country->name }}" value="{{ $country->name }}">{{ $country->name }}</option>
+                                @endforeach
+                            </select>
                         </div>
                     </div>
                     <div class="bg_V text-uppercase">
@@ -300,4 +168,9 @@
 @section('footerScripts')
     @parent
     <script src="{{ asset('js/raffles.min.js') }}" defer></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('.select2').select2();
+        });
+    </script>
 @endsection
