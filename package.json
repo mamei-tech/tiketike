@@ -16,7 +16,7 @@
         "jquery": "^3.2",
         "laravel-mix": "^3.0.0",
         "lodash": "^4.17.4",
-        "popper.js": "^1.14.3"        
+        "popper.js": "^1.14.3"
     },
     "dependencies": {
         "ajv": "^6.4.0",
