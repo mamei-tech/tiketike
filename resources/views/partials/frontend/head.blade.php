@@ -18,5 +18,6 @@
     <link href="{{ asset('js/front/plugins/carousel-owl-carousel/owl-carousel/owl.carousel.css') }}" rel="stylesheet">
     <link href="{{ asset('js/front/plugins/carousel-owl-carousel/owl-carousel/owl.theme.css') }}" rel="stylesheet">
     <link href="{{ asset('js/front/plugins/slider-revolution-slider/rs-plugin/css/settings.css') }}" rel="stylesheet">
+    <link href="{{ asset('js/front/plugins/select2/select2.min.css') }}" rel="stylesheet">
     <title> {{ config('app.name', 'TikeTike') }} | @yield('title', 'Home') </title>
 </head>

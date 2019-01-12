@@ -10,8 +10,8 @@
             </div>
             <div class="col-md-4">
                 <div class="publicityPercent">
-                    <span class="chart chart-porciento" data-percent="{{ $item->getProgress() }}">
-                        <span class="percent sinkinSans600SB">{{ $item->getProgress() }}%</span>
+                    <span class="chart chart-porciento" data-percent="{{ round($item->getProgress()) }}">
+                        <span class="percent sinkinSans600SB">{{ round($item->getProgress()) }}%</span>
                     </span>
                 </div>
                 <a href="{{ route('raffle.tickets.available',['raffleId' => $item->id]) }}" type="button" class="btn btn-info btnSiguiente"><span class="ti-arrow-right"></span>

@@ -15,10 +15,10 @@ class CreateCommentsTable extends Migration
     {
         Schema::create('comments', function (Blueprint $table) {
 
-            $table->increments('id');       //PK
+            $table->increments('id');                   //PK
 
-            $table->unsignedInteger('user');        //FK of users
-            $table->unsignedBigInteger('raffle');   //FK of raffles
+            $table->unsignedInteger('user');            //FK of users
+            $table->unsignedBigInteger('raffle');       //FK of raffles
 
             $table->unsignedInteger('parent')->nullable();
             $table->string('text');

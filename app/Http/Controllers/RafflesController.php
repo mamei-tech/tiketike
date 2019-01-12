@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Country;
 use App\Http\TkTk\CodesGenerator;
 use App\Promo;
 use App\RaffleStatus;
+use App\Repositories\RaffleRepository;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -16,6 +18,21 @@ use Illuminate\Database\Eloquent\Builder;
 
 class RafflesController extends Controller
 {
+    /**
+     * @var RaffleRepository
+     */
+    private $raffleRepository;
+
+    /**
+     * RafflesController constructor.
+     * @param RaffleRepository $raffleRepository
+     */
+    public function __construct(RaffleRepository $raffleRepository)
+    {
+        $this->raffleRepository = $raffleRepository;
+    }
+
+
     // TODO Identify which methods apply to convert to rest method !!!!
     /**
      * Display a listing of the resource.
@@ -24,20 +41,12 @@ class RafflesController extends Controller
      */
     public function index()
     {
-        $user = Auth::user()->id;
-        $suggested = Raffle::with(['getTickets','getFollowers','getOwner'])
-            ->whereDoesntHave('getFollowers',function (Builder $q) use ($user) {
-                $q->where('user_id',$user);
-            })
-            ->whereDoesntHave('getTickets',function (Builder $q) use ($user) {
-                $q->where('buyer',$user);
-            })
-            ->where('owner','<>',$user)
-            ->limit(3)
-            ->get();
+        $suggested = $this->raffleRepository->getSuggested();
         $promos = Promo::where('type',1)->where('status',1)->get();
+        $categories = RaffleCategory::all();
         $raffles = Raffle::paginate(3);
-        return view('raffles',compact('raffles','suggested','promos'));
+        $countries = Country::all();
+        return view('raffles',compact('raffles','suggested','promos','categories','countries'));
     }
 
     /**
@@ -66,13 +75,13 @@ class RafflesController extends Controller
     {
         $raffle = new Raffle;
 
-        $raffle->id = CodesGenerator::newRaffleId();
-        $raffle->owner = Auth::id();
-        $raffle->category = $request->category;
-        $raffle->status = RaffleStatus::where('status', 'Unpublished')->first()->id;    // Unpublished by default.
-        $raffle->title = $request->title;
-        $raffle->description = $request->description;
-        $raffle->price = $request->price;
+        $raffle->id         = CodesGenerator::newRaffleId();
+        $raffle->owner      = Auth::id();
+        $raffle->category   = $request->category;
+        $raffle->status     = RaffleStatus::where('status', 'Unpublished')->first()->id;    // Unpublished by default.
+        $raffle->title      = $request->title;
+        $raffle->description= $request->description;
+        $raffle->price      = $request->price;
 
         $raffle->save();
 
@@ -98,6 +107,7 @@ class RafflesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    // TODO Need validation, the raffle must own of the current user
     public function edit($id)
     {
         $raffle = Raffle::find($id);
@@ -116,6 +126,7 @@ class RafflesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    // TODO Need validation on a custom reques class, the raffle must own of the current user
     public function update(Request $request, $id)
     {
         $raffle = Raffle::find($id);
@@ -127,7 +138,6 @@ class RafflesController extends Controller
         return redirect()
             ->route('raffles.index',null, '303')
             ->with('success','Raffle updated successfully');
-
     }
 
     /**

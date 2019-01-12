@@ -15,12 +15,15 @@ class CreateTableFollowcontrol extends Migration
     {
         Schema::create('follow', function (Blueprint $table) {
             $table->bigIncrements('id');
+
             $table->unsignedBigInteger('raffle_id');
             $table->unsignedInteger('user_id');
+
             $table->foreign('user_id')
                 ->references('id')
                 ->on('users')
                 ->onDelete('cascade');
+
             $table->foreign('raffle_id')
                 ->references('id')
                 ->on('raffles')

@@ -28,10 +28,11 @@ Route::group(['prefix' => 'raffles'], function () {
     Route::get('/', 'RafflesController@index')->name('raffles.index');
 });
 
-/* USER SECTION -- */
+/*-- USER SECTION -- */
 Route::group(['prefix' => 'raffles',
     'middleware' => ['auth']
 ], function () {
+
     Route::get('/add', 'RafflesController@create')->name('raffles.create');
     Route::post('/add', 'RafflesController@store')->name('raffles.store');
     Route::get('/edit/{raffleId}', 'RafflesController@edit')->name('raffles.edit');
@@ -119,7 +120,7 @@ Route::group([
         Route::get('/anulled', 'ARaffleController@index')->name('arraffle.index');
         Route::delete('/destroy/{id}', 'ARaffleController@destroy')->name('arraffle.destroy');
 
-        Route::resource('/categories', 'CategoriesController', ['except' => ['edit', 'show', 'destroy']]);
+        Route::resource('/categories', 'CategoriesController', ['except' => ['edit', 'show']]);
 
         // TODO Change the name for two these views
         Route::get('/config', 'AdminConfigController@showraffleconfig')->name('admin.raffle.showconfig');

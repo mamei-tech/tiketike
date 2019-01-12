@@ -10,7 +10,7 @@
 
  * Designed by www.invisionapp.com Coded by www.creative-tim.com
  *
- * MOD BY ELECTROTECH
+ * MOD BY MAMEI
  *
  *
  =========================================================
@@ -52,7 +52,7 @@ debounce = function debounce(func, wait, immediate) {
 
     if (isWindows) {
         // if we are on windows OS we activate the perfectScrollbar function
-        $('.sidebar .sidebar-wrapper, .main-panel').perfectScrollbar();
+        // $('.sidebar .sidebar-wrapper, .main-panel').perfectScrollbar();
 
         $('html').addClass('perfect-scrollbar-on');
     } else {

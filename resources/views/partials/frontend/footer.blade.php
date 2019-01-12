@@ -26,6 +26,7 @@
 <script src="{{ asset('js/front/jquery.easypiechart.min.js') }}"></script>
 <script src="{{ asset('js/front/chart.js') }}"></script>
 <script src="{{ asset('js/front/slick.js') }}"></script>
+<script src="{{ asset('js/front/plugins/select2/select2.min.js') }}"></script>
 
 <script>
     $(document).ready(function () {

@@ -90,6 +90,7 @@ mix.copyDirectory('resources/assets/pics/front', 'public/pics/front');
 
 mix.js('resources/assets/js/front/generalfrontscript.js', 'public/js/generalfrontscript.min.js').sourceMaps();
 mix.js('resources/assets/js/front/raffles.js', 'public/js/raffles.min.js').sourceMaps();
+mix.js('resources/assets/js/front/raffle.js', 'public/js/raffle.min.js').sourceMaps();
 mix.js('resources/assets/js/front/front_profile.js', 'public/js/front_profile.min.js').sourceMaps();
 
 /*

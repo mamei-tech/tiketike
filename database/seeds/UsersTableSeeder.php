@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class UsersTableSeeder extends Seeder
 {
@@ -11,7 +12,7 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
-        //Seeding users
+        //Seeding custom user
         DB::table('users')->insert([
             'name' => 'Administrator',
             'lastname' => 'Admin Last Name',
@@ -31,38 +32,7 @@ class UsersTableSeeder extends Seeder
             'created_at' => date('Y-m-d H:i:s'),
         ]);
 
-
-        //Seeding countries
-        DB::table('countries')->insert([
-            'name' => 'Cuba',
-        ]);
-
-        DB::table('countries')->insert([
-            'name' => 'Colombia',
-        ]);
-
-        //Seeding cities
-        DB::table('cities')->insert([
-            'name' => 'La Havana',
-            'country' => 1,
-        ]);
-
-        DB::table('cities')->insert([
-            'name' => 'Matanzas',
-            'country' => 1,
-        ]);
-
-        DB::table('cities')->insert([
-            'name' => 'La Paz',
-            'country' => 2,
-        ]);
-
-        DB::table('cities')->insert([
-            'name' => 'Medellin',
-            'country' => 2,
-        ]);
-
-        //Seeding users's profile
+        //Seeding custom users's profile
         DB::table('usersprofiles')->insert([
             'username' => 'admin',
             'birthdate' => date('Y-m-d', strtotime('1989-11-06')),
@@ -92,5 +62,11 @@ class UsersTableSeeder extends Seeder
             'bio' => 'The bio goes here, add a field for this and set a word word limits for keeps the right look in this yea already',
             'created_at' => date('Y-m-d H:i:s'),
         ]);
+
+        //Seeding other users & usersprofiles
+        (new Faker\Generator)->seed(123);
+
+        factory(\App\User::class, 30)->create();
+        factory(\App\UserProfile::class, 30)->create();
     }
 }

@@ -6,18 +6,18 @@ use Illuminate\Database\Eloquent\Model;
 
 class Ticket extends Model
 {
-    protected $table = 'tickets';
-    protected $primaryKey = 'id';
-    protected $fillable = [];
+    protected $table        = 'tickets';
+    protected $primaryKey   = 'id';
+
+    protected $fillable     = ['raffle', 'code'];
 
     /**
      * Retrieve ticket's raffle.
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function getRaffle()
-    {
-        return $this->belongsTo('App\Raffle', 'raffle');
+    public function getRaffle() {
+        return $this->belongsTo('App\Raffle', 'raffle', 'id');
     }
 
     /**
@@ -25,13 +25,11 @@ class Ticket extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function getBuyer()
-    {
+    public function getBuyer() {
         return $this->belongsTo('App\User', 'buyer');
     }
 
-    public function getReferralsBuys()
-    {
+    public function getReferralsBuys() {
         return $this->hasOne('App\ReferralsBuys', 'ticket');
     }
 }
