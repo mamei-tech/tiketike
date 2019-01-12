@@ -17,7 +17,6 @@
                             @include('partials.front_modals.register_modal')
                         </li>
                     </ul>
-
                 </div>
             </div>
             <div class="row padding-left65">
@@ -255,30 +254,28 @@
                 </div>
                 <!--TOP usuarios ganadores solo visible en desktop-->
 
-                <div class=" slick-vertical col-sm-3 col-md-3 col-lg-2 user padding-top-20 hidden-xs ">
-                    <div class="slick-list information padding-top-20">
+                <div class=" slick-vertical col-sm-3 col-md-3 col-lg-2 user hidden-xs " >
+                    <div class="slick-list information " style="padding-top: 20px ; padding-bottom: 20px">
                         <div class="pull-left margin-right-15">
                             <div class="img-contenedor">
                                 <img src="{{ asset('pics/front/user.jpg') }}" alt="Ringo"
-                                     class="dimenUsuarioG sombraImgUser">
+                                     class="dimenUsuarioG sombraImgUser" >
                             </div>
                         </div>
                         <div class="pull-left padding-top-10">
                             <h3 class="sinkinSans600SB">1ro</h3>
                         </div>
                     </div>
-                    <div class="slick-list information padding-top-40">
-                        <div class="pull-left margin-right-15">
-                            <div class="img-contenedor">
-                                <img src="{{ asset('pics/front/user.jpg') }}" alt="Ringo"
+                    <div class="slick-list information " style="padding-top: 20px ; padding-bottom: 20px">
+                           <div class="img-contenedor pull-left margin-right-15">
+                                <img  src="{{ asset('pics/front/user.jpg') }}" alt="Ringo"
                                      class="dimenUsuarioG sombraImgUser">
                             </div>
-                        </div>
                         <div class="pull-left padding-top-10">
                             <h3 class="sinkinSans600SB">2do</h3>
                         </div>
                     </div>
-                    <div class="slick-list information padding-top-40">
+                    <div class="slick-list information "style="padding-top: 20px ; padding-bottom: 20px">
                         <div class="pull-left margin-right-15">
                             <div class="img-contenedor">
                                 <img src="{{ asset('pics/front/user.jpg') }}" alt="Ringo"
@@ -290,7 +287,7 @@
                         </div>
                     </div>
 
-                    <div class="slick-list information padding-top-40">
+                    <div class="slick-list information " style="padding-top: 20px ; padding-bottom: 20px">
                         <div class="pull-left margin-right-15">
                             <div class="img-contenedor">
                                 <img src="{{ asset('pics/front/user.jpg') }}" alt="Ringo"
@@ -302,7 +299,7 @@
                         </div>
                     </div>
 
-                    <div class="slick-list information padding-top-40">
+                    <div class="slick-list information "style="padding-top: 20px ; padding-bottom: 20px">
                         <div class="pull-left margin-right-15">
                             <div class="img-contenedor">
                                 <img src="{{ asset('pics/front/user.jpg') }}" alt="Ringo"
@@ -314,7 +311,7 @@
                         </div>
                     </div>
 
-                    <div class="slick-list information padding-top-40">
+                    <div class="slick-list information "style="padding-top: 20px ; padding-bottom: 20px">
                         <div class="pull-left margin-right-15">
                             <div class="img-contenedor">
                                 <img src="{{ asset('pics/front/user.jpg') }}" alt="Ringo"
@@ -326,7 +323,7 @@
                         </div>
                     </div>
 
-                    <div class="slick-list information padding-top-40">
+                    <div class="slick-list information"style="padding-top: 20px ; padding-bottom: 20px">
                         <div class="pull-left margin-right-15">
                             <div class="img-contenedor">
                                 <img src="{{ asset('pics/front/user.jpg') }}" alt="Ringo"
@@ -338,7 +335,7 @@
                         </div>
                     </div>
 
-                    <div class="slick-list information padding-top-40">
+                    <div class="slick-list information " style="padding-top: 20px ; padding-bottom: 20px">
                         <div class="pull-left margin-right-15">
                             <div class="img-contenedor">
                                 <img src="{{ asset('pics/front/user.jpg') }}" alt="Ringo"
@@ -350,7 +347,7 @@
                         </div>
                     </div>
 
-                    <div class="slick-list information padding-top-40">
+                    <div class="slick-list information " style="padding-top: 20px ; padding-bottom: 20px">
                         <div class="pull-left margin-right-15">
                             <div class="img-contenedor">
                                 <img src="{{ asset('pics/front/user.jpg') }}" alt="Ringo"
