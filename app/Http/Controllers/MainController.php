@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Promo;
 use App\Raffle;
 use App\Repositories\RaffleRepository;
 use App\User;
@@ -26,9 +27,8 @@ class MainController extends Controller
     public function index(){
         $raffles = $this->raffleRepository->almostsoldraffles();
         $top_users = User::orderBy('ranking','DESC')->limit(3)->get();
-//        var_dump($top_users);
-//        die();
-        return view('main',compact('raffles','top_users'));
+        $promos = Promo::where('status',1)->where('type',0)->get();
+        return view('main',compact('raffles','top_users','promos'));
 
     }
 }

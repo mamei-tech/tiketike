@@ -18,7 +18,7 @@ class Promo extends Model implements HasMedia
     protected $primaryKey = 'id';
 
     protected $fillable = [
-        'name', 'type', 'active', 'status', 'expdate', 'client', 'alternative', 'website'
+        'name', 'type', 'status', 'expdate', 'client', 'alternative', 'website'
     ];
 
     public function getClient(){

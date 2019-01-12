@@ -17,7 +17,6 @@
                             @include('partials.front_modals.register_modal')
                         </li>
                     </ul>
-
                 </div>
             </div>
             <div class="row padding-left65">
@@ -54,9 +53,10 @@
         <div class="tp-banner-container">
             <div class="tp-banner">
                 <ul>
+                    @foreach($promos as $promo)
                     <li data-transition="fade" data-slotamount="5" data-masterspeed="700" data-delay="9400"
                         class="slider-item-1">
-                        <img src="{{ asset('pics/front/slide1.jpg') }}" alt="" data-bgfit="cover"
+                        <img src="{{ $promo->getMedia('promos')->first()->getUrl() }}" alt="" data-bgfit="cover"
                              style="opacity:0.4 !important;"
                              data-bgposition="center center" data-bgrepeat="no-repeat">
                         <div class="tp-caption large_text customin customout start"
@@ -84,24 +84,7 @@
                              style="z-index: 6">
                         </div>
                     </li>
-                    <li data-transition="fadefromright" data-slotamount="5" data-masterspeed="700" data-delay="9400"
-                        class="slider-item-2">
-                        <img src="{{ asset('pics/front/slide2.jpg') }}" alt="slidebg2" data-bgfit="cover"
-                             data-bgposition="center center"
-                             data-bgrepeat="no-repeat">
-                        <div class="tp-caption large_bold_white fade"
-                             data-x="center"
-                             data-y="center"
-                             data-voffset="-10"
-                             data-speed="300"
-                             data-start="1700"
-                             data-easing="Power4.easeOut"
-                             data-endspeed="500"
-                             data-endeasing="Power1.easeIn"
-                             data-captionhidden="off"
-                             style="z-index: 6">
-                        </div>
-                    </li>
+                    @endforeach
                 </ul>
             </div>
         </div>
@@ -130,20 +113,20 @@
                     <div class="slicklanding">
                         @foreach($raffles as $raffle)
                             <div class="paddingImgCarousel itemImg">
-                                <img src="{{ asset('pics/front/habana2.png') }}" class="dimenImgCarousel"
+                                <img src="{{ $raffle->getMedia('raffles')->first()->getUrl() }}" class="dimenImgCarousel"
                                      alt="Owl Image"/>
-                                <a class="valign-center" href="#">
+                                <a class="valign-center" href="{{ route('raffle.tickets.available',['raffleId' => $raffle->id]) }}">
                                     <div class="imginline"
                                          style="position: absolute; top: 45%; margin-top: -55.5px;  height: 81px;">
                                         <strong class="padding-top-10 sinkinSans600SB text-center"><span
-                                                    class=" texto16">{{ $raffle->getProgress() }} %</span><br>{{ $raffle->title }}
+                                                    class=" texto16">{{ round($raffle->progress) }} %</span><br>{{ $raffle->title }}
                                         </strong>
                                     </div>
                                 </a>
                                 <div class="porciento">
                                     <div class=" text-center">
-                                <span class="chartB chart-porcientoB" data-percent="{{ $raffle->getProgress() }}">
-                                    <span class="percentB">{{ $raffle->getProgress() }}%</span>
+                                <span class="chartB chart-porcientoB" data-percent="{{ round($raffle->progress) }}">
+                                    <span class="percentB">{{ round($raffle->progress) }}%</span>
                                 </span>
                                     </div>
                                 </div>
@@ -271,30 +254,28 @@
                 </div>
                 <!--TOP usuarios ganadores solo visible en desktop-->
 
-                <div class=" slick-vertical col-sm-3 col-md-3 col-lg-2 user padding-top-20 hidden-xs ">
-                    <div class="information padding-top-20">
+                <div class=" slick-vertical col-sm-3 col-md-3 col-lg-2 user hidden-xs " >
+                    <div class="slick-list information " style="padding-top: 20px ; padding-bottom: 20px">
                         <div class="pull-left margin-right-15">
                             <div class="img-contenedor">
                                 <img src="{{ asset('pics/front/user.jpg') }}" alt="Ringo"
-                                     class="dimenUsuarioG sombraImgUser">
+                                     class="dimenUsuarioG sombraImgUser" >
                             </div>
                         </div>
                         <div class="pull-left padding-top-10">
                             <h3 class="sinkinSans600SB">1ro</h3>
                         </div>
                     </div>
-                    <div class="information padding-top-40">
-                        <div class="pull-left margin-right-15">
-                            <div class="img-contenedor">
-                                <img src="{{ asset('pics/front/user.jpg') }}" alt="Ringo"
+                    <div class="slick-list information " style="padding-top: 20px ; padding-bottom: 20px">
+                           <div class="img-contenedor pull-left margin-right-15">
+                                <img  src="{{ asset('pics/front/user.jpg') }}" alt="Ringo"
                                      class="dimenUsuarioG sombraImgUser">
                             </div>
-                        </div>
                         <div class="pull-left padding-top-10">
                             <h3 class="sinkinSans600SB">2do</h3>
                         </div>
                     </div>
-                    <div class="information padding-top-40">
+                    <div class="slick-list information "style="padding-top: 20px ; padding-bottom: 20px">
                         <div class="pull-left margin-right-15">
                             <div class="img-contenedor">
                                 <img src="{{ asset('pics/front/user.jpg') }}" alt="Ringo"
@@ -306,7 +287,7 @@
                         </div>
                     </div>
 
-                    <div class="information padding-top-40">
+                    <div class="slick-list information " style="padding-top: 20px ; padding-bottom: 20px">
                         <div class="pull-left margin-right-15">
                             <div class="img-contenedor">
                                 <img src="{{ asset('pics/front/user.jpg') }}" alt="Ringo"
@@ -318,7 +299,7 @@
                         </div>
                     </div>
 
-                    <div class="information padding-top-40">
+                    <div class="slick-list information "style="padding-top: 20px ; padding-bottom: 20px">
                         <div class="pull-left margin-right-15">
                             <div class="img-contenedor">
                                 <img src="{{ asset('pics/front/user.jpg') }}" alt="Ringo"
@@ -330,7 +311,7 @@
                         </div>
                     </div>
 
-                    <div class="information padding-top-40">
+                    <div class="slick-list information "style="padding-top: 20px ; padding-bottom: 20px">
                         <div class="pull-left margin-right-15">
                             <div class="img-contenedor">
                                 <img src="{{ asset('pics/front/user.jpg') }}" alt="Ringo"
@@ -342,7 +323,7 @@
                         </div>
                     </div>
 
-                    <div class="information padding-top-40">
+                    <div class="slick-list information"style="padding-top: 20px ; padding-bottom: 20px">
                         <div class="pull-left margin-right-15">
                             <div class="img-contenedor">
                                 <img src="{{ asset('pics/front/user.jpg') }}" alt="Ringo"
@@ -354,7 +335,7 @@
                         </div>
                     </div>
 
-                    <div class="information padding-top-40">
+                    <div class="slick-list information " style="padding-top: 20px ; padding-bottom: 20px">
                         <div class="pull-left margin-right-15">
                             <div class="img-contenedor">
                                 <img src="{{ asset('pics/front/user.jpg') }}" alt="Ringo"
@@ -366,7 +347,7 @@
                         </div>
                     </div>
 
-                    <div class="information padding-top-40">
+                    <div class="slick-list information " style="padding-top: 20px ; padding-bottom: 20px">
                         <div class="pull-left margin-right-15">
                             <div class="img-contenedor">
                                 <img src="{{ asset('pics/front/user.jpg') }}" alt="Ringo"

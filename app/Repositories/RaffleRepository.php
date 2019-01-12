@@ -207,7 +207,7 @@ class RaffleRepository
      */
     public function almostsoldraffles() {
 
-        $rafflesdbquery = Raffle::join('rafflestatus', 'raffles.status', '=', 'rafflestatus.id')
+        return Raffle::join('rafflestatus', 'raffles.status', '=', 'rafflestatus.id')
             ->join('tickets', 'raffles.id', '=', 'tickets.raffle')
             ->select(
                 'raffles.id',
@@ -215,8 +215,7 @@ class RaffleRepository
                 'raffles.price',
                 'raffles.profit',
                 'raffles.tickets_price',
-                DB::raw('sum(tickets.sold) as solds_tickets'),
-                'raffles.tickets_count',
+                DB::raw('ABS((sum(tickets.sold) * 100) / count(tickets.id)) as progress'),
                 'raffles.activation_date')
             ->where('rafflestatus.status', 'Published')
             ->groupBy(
@@ -225,51 +224,12 @@ class RaffleRepository
                 'raffles.price',
                 'raffles.profit',
                 'raffles.tickets_price',
-                'raffles.tickets_count',
                 'raffles.activation_date'
-
             )
-            ->take(3)                  // Limit the query to 35 raffles
+            ->orderBy('progress','DESC')
+            ->having('progress','<',100)
+            ->having('progress','>',79)
+            ->take(32)
             ->get();
-
-        $almostsoldraffles = new Collection();
-
-        $break = 0;
-        foreach ($rafflesdbquery as $key => $raffle)
-        {
-            // Checking if the progress of the raffle is higher than 80 %
-            $progres = ($raffle->solds_tickets * 100) / $raffle->tickets_count;
-            if ($progres >= 80)
-                $almostsoldraffles->add($raffle);
-
-            // Braking the habit
-            if ($break == 23)                                   // 0 ~ 23  count 24
-                break;
-
-            $break++;
-        }
-
-        return $almostsoldraffles;
-    }
-
-
-    public function getProgress()
-    {
-        if($this->tickets_count == 0)
-            return 0;
-        $solds_tickets = $this->getTicketsSold();
-        $progress = ($solds_tickets * 100) / $this->tickets_count;
-        return $progress;
-
-    }
-
-    public function getTicketsSold($id)
-    {
-        $tickets = Raffle::join('tickets', 'raffles.id', '=', 'tickets.raffle')
-            ->select('tickets.id')
-            ->where('raffles.id',$id)
-            ->where('tickets.sold',1)
-            ->count();
-        return $tickets;
     }
 }

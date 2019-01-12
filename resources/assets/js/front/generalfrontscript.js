@@ -5,7 +5,6 @@ $(function () {
 
     $('.slick-vertical').slick({
         infinite: true,
-        adaptiveHeight: true,
         slidesToShow: 3,
         arrows:false,
         slidesToScroll: 1,
@@ -13,8 +12,8 @@ $(function () {
         autoplay:true,
         autoplaySpeed: 2000,
         pauseOnHover: true,
-        initialSlide: 0,
-        zIndex: 2000
+        initialSlide: 8,
+
     });
 
     // Check screen size for fixing the navbar

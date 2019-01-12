@@ -36,6 +36,21 @@
                         </div>
 
                         <!-- TODO Aqui van los botones cagados del fi -->
+                        <div class="col-xs-12">
+                           <h3 class="row">Login With</h3>
+                            <a class="btn btn-facebook" href="">
+                             <span class="ti-facebook texto-negrita colorV margin-right-5 texto16"></span>
+                            </a>
+                            <a class="btn btn-twitter" href="">
+                                <span class="ti-twitter texto-negrita colorV margin-right-5 texto16"></span>
+                            </a>
+                            <a class="btn btn-google" href="">
+                                <span class="ti-google texto-negrita colorV margin-right-5 texto16"></span>
+                            </a>
+                            <a class="btn btn-linkedin" href="">
+                                <span class="ti-linkedin texto-negrita colorV margin-right-5 texto16"></span>
+                            </a>
+                        </div>
                         <div class="col-xs-5">
                             <button type="submit" class="btn btn-sm btn-primary btn-block">
                                 Registrarme

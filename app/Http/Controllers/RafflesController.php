@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Country;
 use App\Http\TkTk\CodesGenerator;
 use App\Promo;
 use App\RaffleStatus;
@@ -44,7 +45,8 @@ class RafflesController extends Controller
         $promos = Promo::where('type',1)->where('status',1)->get();
         $categories = RaffleCategory::all();
         $raffles = Raffle::paginate(3);
-        return view('raffles',compact('raffles','suggested','promos','categories'));
+        $countries = Country::all();
+        return view('raffles',compact('raffles','suggested','promos','categories','countries'));
     }
 
     /**

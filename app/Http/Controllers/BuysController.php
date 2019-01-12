@@ -37,6 +37,6 @@ abstract class BuysController extends Controller
         $suggested = $this->raffleRepository->getSuggested();
         $raffle = Raffle::find($raffleId);
         $promos = Promo::where('type',1)->where('status',1)->get();
-        return view('raffle', ['raffleId' => $raffleId,'promos'=>$promos, 'tickets' => $tickets, 'url' => $request->fullUrl(), 'raffle' => $raffle,'suggested' => $suggested]);
+        return view('raffle', ['raffleId' => $raffleId,'promos'=>$promos, 'url' => $request->fullUrl(), 'raffle' => $raffle,'suggested' => $suggested]);
     }
 }
