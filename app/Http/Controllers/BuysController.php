@@ -33,7 +33,6 @@ abstract class BuysController extends Controller
      */
     public function availableTickets($raffleId, Request $request)
     {
-        $user = Auth::user()->id;
         $suggested = $this->raffleRepository->getSuggested();
         $raffle = Raffle::find($raffleId);
         $promos = Promo::where('type',1)->where('status',1)->get();

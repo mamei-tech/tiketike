@@ -38,11 +38,7 @@ Route::group(['prefix' => 'raffles',
     Route::get('/edit/{raffleId}', 'RafflesController@edit')->name('raffles.edit');
     Route::post('/{raffleId}', 'RafflesController@update')->name('raffles.update');
     Route::get('{raffleId}/follow', 'RafflesController@follow')->name('raffles.follow');
-
-    Route::get('/{raffleId}/tickets/buy', 'DirectBuysController@availableTickets')->name('raffle.tickets.available');
     Route::post('/{raffleId}/tickets/buy', 'DirectBuysController@buyTickets')->name('raffle.tickets.buy');
-
-    Route::get('/{raffleId}/{referralId}', 'ReferralsBuysController@availableTickets')->name('referrals.tickets.available');
     Route::post('/{raffleId}/{referralId}', 'ReferralsBuysController@buyTickets')->name('referrals.tickets.buy');
 
     Route::get('/add', 'RafflesController@create')->name('raffles.create');     // TODO Protect
@@ -140,3 +136,12 @@ Route::group([
 
 Route::get('auth/{provider}', 'Auth\SocialAuthController@redirectToProvider')->name('social.auth');
 Route::get('auth/{provider}/callback', 'Auth\SocialAuthController@handleProviderCallback');
+
+
+Route::group(['prefix' => 'raffles'
+], function () {
+//publishing raffle access route
+    Route::get('/{raffleId}/tickets/buy', 'DirectBuysController@availableTickets')->name('raffle.tickets.available');
+
+    Route::get('/{raffleId}/{referralId}', 'ReferralsBuysController@availableTickets')->name('referrals.tickets.available');
+});

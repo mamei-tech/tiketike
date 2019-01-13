@@ -53,7 +53,7 @@
                             <!-- Button trigger modal Mis compras de Ticket-->
                             <a class="icon" data-toggle="modal" href="#misCompras" title="Mis Tickets">
                                 <span class="ti-ticket colorV dimenIconos"></span>
-                                <span class="badge badge-default">{{ count(Auth::user()->getTicketsByRaffle($raffle->id)) }}</span>
+                                <span class="badge badge-default">@if(Auth::user() != null){{ count(Auth::user()->getTicketsByRaffle($raffle->id)) }} @else 0 @endif</span>
                             </a>
                             <!-- Modal -->
                             <div class="modal fullscreen-modal fade" id="misCompras" tabindex="-1" role="dialog"
@@ -73,12 +73,14 @@
                                         <div class="modal-body">
                                             <div class="listadoTickets padding-left50">
                                                 <ul class="nav sinkinSans400R">
-                                                    @foreach(Auth::user()->getTicketsByRaffle($raffle->id) as $ticket)
-                                                    <li class="padding-top-15 margin-top5 bg-prueba">
+                                                    @if(Auth::user() != null)
+                                                        @foreach(Auth::user()->getTicketsByRaffle($raffle->id) as $ticket)
+                                                            <li class="padding-top-15 margin-top5 bg-prueba">
                                                     <span
                                                             class="padding-top-20 padding-left20 text-uppercase colorB margin-right-10">{{ $ticket->code }}</span>
-                                                    </li>
-                                                    @endforeach
+                                                            </li>
+                                                        @endforeach
+                                                    @endif
                                                 </ul>
                                             </div>
                                         </div>
@@ -109,66 +111,44 @@
                         <strong class="colorN text-uppercase sinkinSans600SB">comentarios</strong>
                         <div class="comments">
                             @foreach($raffle->getComments as $comment)
-                            <div class="media">
-                                <a href="#" class="pull-left  margin-right-20">
-                                    <img src="{{ asset('pics/front/user.jpg') }}" alt="Ringo"
-                                         class="imgUsuario sombraImgUser2">
-                                </a>
-                                <div class="media-body">
-                                    <div class="margin-bottom-20 sinkinSans400R texto10 ">
-                                    <span class="media-heading"><span class="colorN">{{ $comment->getUser->name }} {{ $comment->getUser->lastname }}</span>
+                                <div class="media">
+                                    <a href="#" class="pull-left  margin-right-20">
+                                        <img src="{{ asset('pics/front/user.jpg') }}" alt="Ringo"
+                                             class="imgUsuario sombraImgUser2">
+                                    </a>
+                                    <div class="media-body">
+                                        <div class="margin-bottom-20 sinkinSans400R texto10 ">
+                                    <span class="media-heading"><span
+                                                class="colorN">{{ $comment->getUser->name }} {{ $comment->getUser->lastname }}</span>
                                         <a href="#" class="colorV texto8 sinkinSans400I pull-right margin-right-15">responder...</a>
                                     </span>
-                                        <p class="texto10 sinkinSans300L">
-                                            {{ $comment->text }}
-                                        </p>
-                                    </div>
-                                    @foreach($comment->getChilds as $child)
-                                    <!-- Nested media object -->
-                                    <div class="media">
-                                        <a href="#" class="pull-left margin-right-20">
-                                            <img src="{{ asset('pics/front/user2.jpg') }}" alt="Ringo"
-                                                 class="imgUsuario2 sombraImgUser2">
-                                        </a>
-                                        <div class="media-body">
-                                            <div class="margin-bottom-20 sinkinSans400R texto10">
-                                             <span class="media-heading"><span class="colorN">{{ $child->getUser->name }} {{ $child->getUser->lastname }}</span>
-                                              </span>
-                                                <p class="texto10 sinkinSans300L">
-                                                    {{ $child->text }}
-                                                </p>
-                                            </div>
+                                            <p class="texto10 sinkinSans300L">
+                                                {{ $comment->text }}
+                                            </p>
                                         </div>
+                                    @foreach($comment->getChilds as $child)
+                                        <!-- Nested media object -->
+                                            <div class="media">
+                                                <a href="#" class="pull-left margin-right-20">
+                                                    <img src="{{ asset('pics/front/user2.jpg') }}" alt="Ringo"
+                                                         class="imgUsuario2 sombraImgUser2">
+                                                </a>
+                                                <div class="media-body">
+                                                    <div class="margin-bottom-20 sinkinSans400R texto10">
+                                             <span class="media-heading"><span
+                                                         class="colorN">{{ $child->getUser->name }} {{ $child->getUser->lastname }}</span>
+                                              </span>
+                                                        <p class="texto10 sinkinSans300L">
+                                                            {{ $child->text }}
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!--end media-->
+                                        @endforeach
                                     </div>
-                                    <!--end media-->
-                                    @endforeach
                                 </div>
-                            </div>
                             @endforeach
-                            {{--<!--end media-->--}}
-                            {{--<div class="media">--}}
-                                {{--<a href="#" class="pull-left margin-right-20">--}}
-                                    {{--<img src="{{ asset('pics/front/user.jpg') }}" alt="Ringo"--}}
-                                         {{--class="imgUsuario sombraImgUser2">--}}
-                                {{--</a>--}}
-                                {{--<div class="media-body">--}}
-                                    {{--<div class="margin-bottom-20 sinkinSans400R texto10">--}}
-                                      {{--<span class="media-heading"><span class="colorN">Usuario</span>--}}
-                                        {{--<span class="colorN">/</span>--}}
-                                        {{--<span class="colorN">País</span>--}}
-                                        {{--<a href="#" class="colorV texto8 sinkinSans400I pull-right margin-right-15">responder...</a>--}}
-                                    {{--</span>--}}
-                                        {{--<p class="texto10 sinkinSans300L">Donec id elit non mi porta gravida at eget--}}
-                                            {{--metus.--}}
-                                            {{--Fusce dapibus,--}}
-                                            {{--tellus ac cursus commodo, tortor mauris condimentum nibh,--}}
-                                            {{--ut fermentum massa justo sit amet risus.--}}
-                                            {{--Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.--}}
-                                        {{--</p>--}}
-                                    {{--</div>--}}
-                                {{--</div>--}}
-                            {{--</div>--}}
-                            {{--<!--end media-->--}}
                         </div>
                         <div class="post-comment padding-top-30">
                             <strong class="colorN sinkinSans600SB text-uppercase">comenta</strong>
@@ -208,18 +188,20 @@
                                         <span class="padding-top-20 padding-left25 text-uppercase colorB margin-right-10">{{ $ticket->code }}</span>
                                     </div>
                                     <div class="padding-top-30">
-                                        <input name="tickets" id="tickets" class="margin-left15 tickets" value="{{ $ticket->code }}" type="checkbox">
+                                        <input name="tickets" id="tickets" class="margin-left15 tickets"
+                                               value="{{ $ticket->code }}" type="checkbox">
                                     </div>
                                 </div>
                             @endforeach
-                                <input type="hidden" id="raffle" value="{{ $raffle->id }}">
+                            <input type="hidden" id="raffle" value="{{ $raffle->id }}">
                         </div>
                     </div>
                     <div class="btn btn-info btnShufle center-block "><span class="ti-control-shuffle"></span>
                     </div>
                     <div class="borderTopDashed padding-bottom20">
                         <div class="pull-left">
-                            <strong class="sinkinSans600SB colorV texto24 pull-left margin-right-10" id="countTickets">0</strong>
+                            <strong class="sinkinSans600SB colorV texto24 pull-left margin-right-10"
+                                    id="countTickets">0</strong>
                             <div class="pull-left colorV texto8 sinkinSans300LI padding-top5">
                                 <span>Tikects</span><br>
                                 <span> Seleccionados</span>
@@ -227,7 +209,8 @@
                         </div>
                         <div class="pull-right colorV padding-top-10">
                             <button type="button"
-                                    class="btn btn-primary bg_green extraer sinkinSans700B text-uppercase" id="buyTickets">Comprar
+                                    class="btn btn-primary bg_green extraer sinkinSans700B text-uppercase"
+                                    id="buyTickets">Comprar
                             </button>
                         </div>
                     </div>

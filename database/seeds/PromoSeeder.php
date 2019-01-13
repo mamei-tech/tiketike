@@ -50,7 +50,7 @@ class PromoSeeder extends Seeder
             ]
         );
 
-        DB::table('promos')->insert([
+        $lezcano = DB::table('promos')->insertGetId([
                 'name'          => 'Lezcano 02',
                 'type'          => 0,
                 'status'        => 1,
@@ -66,6 +66,8 @@ class PromoSeeder extends Seeder
                 'website'       => 'http://www.lezcano.com'
             ]
         );
+
+        \App\Promo::find($lezcano)->addMediaFromUrl('http://localhost/pics/front/slide1.jpg')->toMediaCollection('promos','promos');
 
         DB::table('promos')->insert([
                 'name'          => 'Girls Pics',
