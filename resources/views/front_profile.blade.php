@@ -4,10 +4,12 @@
     @include('partials.front_modals.filters')
     @include('partials.front_modals.mobile_suggest')
     <div class=" container margin-top-70">
-        <form class="col-md-12 margin-top60" id="ftm_profileUpdate" action="{{ route('profile.update', Auth::id()) }}" method="POST" >
+        <form class="col-md-12 margin-top60" id="ftm_profileUpdate" action="{{ route('profile.update', $user->id) }}"
+              method="post">
+            {{csrf_field()}}
+            {{method_field('patch')}}
             <div class="col-md-4">
                 {{-- FIRST NAME ¦ LASTNAME --}}
-{{csrf_field()}}
                 <div class="col-md-6 pr-1">
                     <div class="form-group basic">
                         <label>@lang('aUserprofile.firstname')</label>
@@ -32,19 +34,18 @@
                 </div>
 
 
-
                 <div class="col-md-8">
                     <label for="selector"
                            class="colorN italic padding-top-20">Contraseña</label>
                     <input type="password" class="form-control form-control-new "
-                           id="inputPassword" name="password" placeholder="Password">
+                           id="password" name="password" placeholder="Password">
                 </div>
 
                 <div class="col-md-8">
                     <label for="selector"
                            class="colorN italic padding-top-20">Repita la contraseña</label>
                     <input type="password" class="form-control form-control-new "
-                           id="inputPassword" name="password" placeholder="Password Repeat">
+                           id="password_confirm" name="password" placeholder="Password Repeat">
                 </div>
 
             </div>
@@ -53,32 +54,24 @@
             <div class="col-md-4" style="text-align: center ">
                 <label for="selector" class="colorN italic padding-top-20">Avatar</label>
                 <br>
+                <img id="profile-pic-card" class="img-circle"
+                     src="{{ $user->getMedia('avatars')->first()->getUrl() }}">
 
-                @if($user->getProfile->avatarname == 'default')
-                    <img id="profile-pic-card" class="img-circle"
-                         src={{ asset('pics/common/default-avatar.png') }}>
-                @else
-                    <img id="profile-pic-card" class="img-circle"
-                         src="{{ $user->getProfile->getMedia('avatars')->first()->getUrl() }}">
-                @endif
 
-                <input id="avatar" type="file" class="padding-top-20" name="avatar">
+                <input id="avatar" type="file" value="{{ $user->getMedia('avatars')->first()->getUrl() }}" class="padding-top-20" name="avatar">
 
 
             </div>
 
 
-
-
-
-            <div class="col-md-4" style="margin-top: 30px" >
+            <div class="col-md-4" style="margin-top: 30px">
                 {{-- BIRTHDATE ¦ GENDER ¦ LANG --}}
 
                 <div class="col-md-6 ">
                     <div class="form-group basic">
                         <label>@lang('aUserprofile.brdate')</label>
                         <input name="birthdate" type="date" placeholder="" class="form-control datepicker"
-                               value="{{ date('d-m-Y', strtotime($user->getProfile->birthdate)) }}">
+                               value="{{ date('Y-m-d', strtotime($user->getProfile->birthdate)) }}">
                     </div>
                 </div>
                 <div class="col-md-6">
@@ -201,11 +194,10 @@
             </div>
 
 
-
             <div class="col-md-2 floatRight">
                 <div class="row padding-top-20">
                     <div class="col-md-5 form-group basic">
-                        <button id="btn-submit" type="submit" class="btn btn-success btn-round" value="add">
+                        <button  type="submit" class="btn btn-success btn-round">
                             <i class="now-ui-icons ui-1_simple-add"></i>
                             @lang('buttons.update')
                         </button>

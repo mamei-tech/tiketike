@@ -12,9 +12,11 @@ $(function () {
         autoplay:true,
         autoplaySpeed: 2000,
         pauseOnHover: true,
-        initialSlide: 8,
+        initialSlide: 9,
 
     });
+
+
 
     // Check screen size for fixing the navbar
     if(window.screen.width * window.devicePixelRatio <= 1199) {
@@ -46,3 +48,16 @@ $(function () {
     });
 
 });
+
+var password = document.getElementById("password")
+    , confirm_password = document.getElementById("confirm_password");
+
+function validatePassword() {
+    if(password.value != confirm_password.value) {
+        confirm_password.setCustomValidity("Password Don't Match");
+
+    }else {
+        confirm_password.setCustomValidity('');
+    }
+
+}
