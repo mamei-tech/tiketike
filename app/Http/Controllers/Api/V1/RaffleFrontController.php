@@ -32,11 +32,11 @@ class RaffleFrontController extends ApiController
     public function filterByCategory(Request $request)
     {
         $raffles = null;
-        $response = '<div class="row">'.PHP_EOL.'<div class="row padding-bottom20 ">'.PHP_EOL.'<div class="floatRight padding-rigth80 sinkinSans600SB hidden-xs">'.PHP_EOL.'<span class=" text-uppercase pull-left margin-right-15">ordenar por:</span>'.PHP_EOL.'<button type="button" class="btn btn-info padding0 pull-left margin-right-15">'.PHP_EOL.'<span>%</span>'.PHP_EOL.'</button>'.PHP_EOL.'<button type="button" class="btn btn-info padding0 pull-left">'.PHP_EOL.'<span class="ti-money"></span>'.PHP_EOL.'</button>'.PHP_EOL.'</div>'.PHP_EOL.'</div>';
+        $response = '';
         if ($request->get('category') == 'Todos')
-            $raffles = Raffle::paginate(3);
+            $raffles = Raffle::paginate(10);
         else
-            $raffles = $this->raffleRepository->getRaflesByCategory($request->get('category'));
+            $raffles = $this->raffleRepository->getRafflesByCategory($request->get('category'));
         foreach ($raffles as $raffle) {
             $response .= '<div class="row padding20 bg-rifas1 center-block '.$raffle->id.'">'.PHP_EOL;
             $response .= '<div class="col-xs-4 col-md-6">'.PHP_EOL;
@@ -121,11 +121,11 @@ class RaffleFrontController extends ApiController
     public function filterByPercent(Request $request)
     {
         $raffles = null;
-        $response = '<div class="row">'.PHP_EOL.'<div class="row padding-bottom20 ">'.PHP_EOL.'<div class="floatRight padding-rigth80 sinkinSans600SB hidden-xs">'.PHP_EOL.'<span class=" text-uppercase pull-left margin-right-15">ordenar por:</span>'.PHP_EOL.'<button type="button" class="btn btn-info padding0 pull-left margin-right-15">'.PHP_EOL.'<span>%</span>'.PHP_EOL.'</button>'.PHP_EOL.'<button type="button" class="btn btn-info padding0 pull-left">'.PHP_EOL.'<span class="ti-money"></span>'.PHP_EOL.'</button>'.PHP_EOL.'</div>'.PHP_EOL.'</div>';
+        $response = '';
         if ($request->get('category') == 'Todos')
-            $raffles = Raffle::paginate(3);
+            $raffles = Raffle::paginate(10);
         else
-            $raffles = $this->raffleRepository->getRaflesByCategory($request->get('category'));
+            $raffles = $this->raffleRepository->getRafflesByCategory($request->get('category'),$request->get('criteria'));
         foreach ($raffles as $raffle) {
             $response .= '<div class="row padding20 bg-rifas1 center-block '.$raffle->id.'">'.PHP_EOL;
             $response .= '<div class="col-xs-4 col-md-6">'.PHP_EOL;
@@ -210,9 +210,9 @@ class RaffleFrontController extends ApiController
     public function filterByPrice(Request $request)
     {
         $raffles = null;
-        $response = '<div class="row">'.PHP_EOL.'<div class="row padding-bottom20 ">'.PHP_EOL.'<div class="floatRight padding-rigth80 sinkinSans600SB hidden-xs">'.PHP_EOL.'<span class=" text-uppercase pull-left margin-right-15">ordenar por:</span>'.PHP_EOL.'<button type="button" class="btn btn-info padding0 pull-left margin-right-15">'.PHP_EOL.'<span>%</span>'.PHP_EOL.'</button>'.PHP_EOL.'<button type="button" class="btn btn-info padding0 pull-left">'.PHP_EOL.'<span class="ti-money"></span>'.PHP_EOL.'</button>'.PHP_EOL.'</div>'.PHP_EOL.'</div>';
+        $response = '';
         if ($request->get('category') == 'Todos')
-            $raffles = Raffle::paginate(3);
+            $raffles = Raffle::paginate(10);
         else
             $raffles = $this->raffleRepository->getRaflesByCategory($request->get('category'));
         foreach ($raffles as $raffle) {

@@ -66,7 +66,15 @@ class LoginController extends Controller
             $user = Auth::user();
             $user->generateApiToken();
 
-            return $this->sendLoginResponse($request);
+            $request->session()->regenerate();
+
+            $this->clearLoginAttempts($request);
+
+
+            return $this->authenticated($request, $this->guard()->user())
+                ? redirect()->back(): redirect()->back();
+
+//            return $this->sendLoginResponse($request);
         }
 
         // If the login attempt was unsuccessful we will increment the number of attempts
