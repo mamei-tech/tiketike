@@ -51,28 +51,21 @@ return [
         'avatars' => [
             'driver' => 'local',
             'root' => public_path('/pics/avatars/'),
-            'url' => env('APP_URL') . '/public/pics/avatars',
+            'url' => env('APP_URL') . '/pics/avatars',
             'visibility' => 'public',
         ],
 
         'raffles' => [
             'driver' => 'local',
             'root' => public_path('/pics/raffles/'),
-            'url' => env('APP_URL') . '/public/pics/raffles',
+            'url' => env('APP_URL') . '/pics/raffles',
             'visibility' => 'public',
         ],
 
         'promos' => [
             'driver' => 'local',
             'root' => public_path('/pics/promos/'),
-            'url' => env('APP_URL') . '/public/pics/promos',
-            'visibility' => 'public',
-        ],
-
-        'raffles' => [
-            'driver' => 'local',
-            'root' => public_path('/pics/raffles/'),
-            'url' => env('APP_URL') . '/public/pics/raffles',
+            'url' => env('APP_URL') . '/pics/promos',
             'visibility' => 'public',
         ],
 
