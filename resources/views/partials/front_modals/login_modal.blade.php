@@ -13,7 +13,23 @@
                 <div class="col-md-12 "></div>
                 <h5 class="modal-title text-uppercase textoCenter padding-top-20">Inicio de
                     sesión</h5>
-                <form class="form-signin" action="{{ route('login') }}" method="POST">
+
+                <div class="col-xs-12 text-center margin-bottom-40">
+                    <a class="btn btn-facebook" href="{{ route('social.auth', 'facebook') }}">
+                        <span class="ti-facebook texto-negrita colorV margin-right-5 texto16" title="Facebook"></span>
+                    </a>
+                    <a class="btn btn-twitter" href="{{ route('social.auth', 'twitter') }}">
+                        <span class="ti-twitter texto-negrita colorV margin-right-5 texto16" title="Twitter"></span>
+                    </a>
+                    <a class="btn btn-google" href="{{ route('social.auth', 'google') }}">
+                        <span class="ti-google texto-negrita colorV margin-right-5 texto16" title="Google"></span>
+                    </a>
+                    <a class="btn btn-linkedin" href="{{ route('social.auth', 'linkedin') }}">
+                        <span class="ti-linkedin texto-negrita colorV margin-right-5 texto16" title="Linkedin"></span>
+                    </a>
+                </div>
+
+                <form class="form-signin" action="login" method="POST">
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
                     <label for="selector" class="colorN italic">Nombre</label>
                     <input type="email" class="form-control form-control-new " id="inputEm"

@@ -26,7 +26,7 @@ class MainController extends Controller
 
     public function index(){
         $raffles = $this->raffleRepository->almostsoldraffles();
-        $top_users = User::orderBy('ranking','DESC')->limit(3)->get();
+        $top_users = User::orderBy('ranking','DESC')->limit(10)->get();
         $promos = Promo::where('status',1)->where('type',0)->get();
         return view('main',compact('raffles','top_users','promos'));
 

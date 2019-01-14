@@ -17,7 +17,6 @@
                             @include('partials.front_modals.register_modal')
                         </li>
                     </ul>
-
                 </div>
             </div>
             <div class="row padding-left65">
@@ -27,7 +26,8 @@
                     <span class="colorB texto24 sinkinSans300LI">Texto de bienvenida del sitio y de orientación al usuario</span>
                 </div>
                 <div class="col-md-3 padding-top-20 center-textR">
-                    <a href="#createRaffleModal" data-toggle="modal" class="btn btn-primary btn-lg texto24 bg_green padding10">
+                    <a href="#createRaffleModal" data-toggle="modal"
+                       class="btn btn-primary btn-lg texto24 bg_green padding10">
                         <span class="margin-right-15 padding-left10 sinkinSans300L">Crear rifa</span>
                         <span aria-hidden="true" class="ti-angle-right styleFlechaD"></span>
                     </a>
@@ -55,36 +55,36 @@
             <div class="tp-banner">
                 <ul>
                     @foreach($promos as $promo)
-                    <li data-transition="fade" data-slotamount="5" data-masterspeed="700" data-delay="9400"
-                        class="slider-item-1">
-                        <img src="{{ $promo->getMedia('promos')->first()->getUrl() }}" alt="" data-bgfit="cover"
-                             style="opacity:0.4 !important;"
-                             data-bgposition="center center" data-bgrepeat="no-repeat">
-                        <div class="tp-caption large_text customin customout start"
-                             data-x="center"
-                             data-hoffset="0"
-                             data-y="center"
-                             data-voffset="140"
-                             data-customin="x:0;y:0;z:0;rotationX:90;rotationY:0;rotationZ:0;scaleX:1;scaleY:1;skewX:0;skewY:0;opacity:0;transformPerspective:200;transformOrigin:50% 0%;"
-                             data-customout="x:0;y:0;z:0;rotationX:0;rotationY:0;rotationZ:0;scaleX:0.75;scaleY:0.75;skewX:0;skewY:0;opacity:0;transformPerspective:600;transformOrigin:50% 50%;"
-                             data-speed="1000"
-                             data-start="500"
-                             data-easing="Back.easeInOut"
-                             data-endspeed="300">
-                        </div>
-                        <div class="tp-caption large_bold_white fade"
-                             data-x="center"
-                             data-y="center"
-                             data-voffset="-10"
-                             data-speed="300"
-                             data-start="1700"
-                             data-easing="Power4.easeOut"
-                             data-endspeed="500"
-                             data-endeasing="Power1.easeIn"
-                             data-captionhidden="off"
-                             style="z-index: 6">
-                        </div>
-                    </li>
+                        <li data-transition="fade" data-slotamount="5" data-masterspeed="700" data-delay="9400"
+                            class="slider-item-1">
+                            <img src="{{ $promo->getMedia('promos')->first()->getUrl() }}" alt="" data-bgfit="cover"
+                                 style="opacity:0.4 !important;"
+                                 data-bgposition="center center" data-bgrepeat="no-repeat">
+                            <div class="tp-caption large_text customin customout start"
+                                 data-x="center"
+                                 data-hoffset="0"
+                                 data-y="center"
+                                 data-voffset="140"
+                                 data-customin="x:0;y:0;z:0;rotationX:90;rotationY:0;rotationZ:0;scaleX:1;scaleY:1;skewX:0;skewY:0;opacity:0;transformPerspective:200;transformOrigin:50% 0%;"
+                                 data-customout="x:0;y:0;z:0;rotationX:0;rotationY:0;rotationZ:0;scaleX:0.75;scaleY:0.75;skewX:0;skewY:0;opacity:0;transformPerspective:600;transformOrigin:50% 50%;"
+                                 data-speed="1000"
+                                 data-start="500"
+                                 data-easing="Back.easeInOut"
+                                 data-endspeed="300">
+                            </div>
+                            <div class="tp-caption large_bold_white fade"
+                                 data-x="center"
+                                 data-y="center"
+                                 data-voffset="-10"
+                                 data-speed="300"
+                                 data-start="1700"
+                                 data-easing="Power4.easeOut"
+                                 data-endspeed="500"
+                                 data-endeasing="Power1.easeIn"
+                                 data-captionhidden="off"
+                                 style="z-index: 6">
+                            </div>
+                        </li>
                     @endforeach
                 </ul>
             </div>
@@ -114,9 +114,11 @@
                     <div class="slicklanding">
                         @foreach($raffles as $raffle)
                             <div class="paddingImgCarousel itemImg">
-                                <img src="{{ $raffle->getMedia('raffles')->first()->getUrl() }}" class="dimenImgCarousel"
+                                <img src="{{ $raffle->getMedia('raffles')->first()->getUrl() }}"
+                                     class="dimenImgCarousel"
                                      alt="Owl Image"/>
-                                <a class="valign-center" href="{{ route('raffle.tickets.available',['raffleId' => $raffle->id]) }}">
+                                <a class="valign-center"
+                                   href="{{ route('raffle.tickets.available',['raffleId' => $raffle->id]) }}">
                                     <div class="imginline"
                                          style="position: absolute; top: 45%; margin-top: -55.5px;  height: 81px;">
                                         <strong class="padding-top-10 sinkinSans600SB text-center"><span
@@ -255,112 +257,26 @@
                 </div>
                 <!--TOP usuarios ganadores solo visible en desktop-->
 
-                <div class=" slick-vertical col-sm-3 col-md-3 col-lg-2 user padding-top-20 hidden-xs ">
-                    <div class="information padding-top-20">
-                        <div class="pull-left margin-right-15">
-                            <div class="img-contenedor">
-                                <img src="{{ asset('pics/front/user.jpg') }}" alt="Ringo"
-                                     class="dimenUsuarioG sombraImgUser">
-                            </div>
-                        </div>
-                        <div class="pull-left padding-top-10">
-                            <h3 class="sinkinSans600SB">1ro</h3>
-                        </div>
-                    </div>
-                    <div class="information padding-top-40">
-                        <div class="pull-left margin-right-15">
-                            <div class="img-contenedor">
-                                <img src="{{ asset('pics/front/user.jpg') }}" alt="Ringo"
-                                     class="dimenUsuarioG sombraImgUser">
-                            </div>
-                        </div>
-                        <div class="pull-left padding-top-10">
-                            <h3 class="sinkinSans600SB">2do</h3>
-                        </div>
-                    </div>
-                    <div class="information padding-top-40">
-                        <div class="pull-left margin-right-15">
-                            <div class="img-contenedor">
-                                <img src="{{ asset('pics/front/user.jpg') }}" alt="Ringo"
-                                     class="dimenUsuarioG sombraImgUser">
-                            </div>
-                        </div>
-                        <div class="pull-left padding-top-10">
-                            <h3 class="sinkinSans600SB">3ro</h3>
-                        </div>
-                    </div>
+                <div class=" slick-vertical col-sm-3 col-md-3 col-lg-2 user hidden-xs ">
+                    <?php
+                    $nf = new \NumberFormatter(app()->getLocale(), \NumberFormatter::ORDINAL);
+                    $count = 1;
+                    ?>
+                    @foreach($top_users as $top_user)
 
-                    <div class="information padding-top-40">
-                        <div class="pull-left margin-right-15">
-                            <div class="img-contenedor">
-                                <img src="{{ asset('pics/front/user.jpg') }}" alt="Ringo"
-                                     class="dimenUsuarioG sombraImgUser">
+                        <div class="slick-list information " style="padding-top: 20px ; padding-bottom: 20px">
+                            <div class="pull-left margin-right-15">
+                                <div class="img-contenedor">
+                                    <img src="{{$top_user->getMedia('avatars')->first()->getUrl()}}" alt="Ringo"
+                                         class="dimenUsuarioG sombraImgUser">
+                                </div>
+                            </div>
+                            <div class="pull-left padding-top-10">
+                                <h3 class="sinkinSans600SB">{{$nf->format($count)}}</h3>
                             </div>
                         </div>
-                        <div class="pull-left padding-top-10">
-                            <h3 class="sinkinSans600SB">4to</h3>
-                        </div>
-                    </div>
-
-                    <div class="information padding-top-40">
-                        <div class="pull-left margin-right-15">
-                            <div class="img-contenedor">
-                                <img src="{{ asset('pics/front/user.jpg') }}" alt="Ringo"
-                                     class="dimenUsuarioG sombraImgUser">
-                            </div>
-                        </div>
-                        <div class="pull-left padding-top-10">
-                            <h3 class="sinkinSans600SB">5to</h3>
-                        </div>
-                    </div>
-
-                    <div class="information padding-top-40">
-                        <div class="pull-left margin-right-15">
-                            <div class="img-contenedor">
-                                <img src="{{ asset('pics/front/user.jpg') }}" alt="Ringo"
-                                     class="dimenUsuarioG sombraImgUser">
-                            </div>
-                        </div>
-                        <div class="pull-left padding-top-10">
-                            <h3 class="sinkinSans600SB">6to</h3>
-                        </div>
-                    </div>
-
-                    <div class="information padding-top-40">
-                        <div class="pull-left margin-right-15">
-                            <div class="img-contenedor">
-                                <img src="{{ asset('pics/front/user.jpg') }}" alt="Ringo"
-                                     class="dimenUsuarioG sombraImgUser">
-                            </div>
-                        </div>
-                        <div class="pull-left padding-top-10">
-                            <h3 class="sinkinSans600SB">7mo</h3>
-                        </div>
-                    </div>
-
-                    <div class="information padding-top-40">
-                        <div class="pull-left margin-right-15">
-                            <div class="img-contenedor">
-                                <img src="{{ asset('pics/front/user.jpg') }}" alt="Ringo"
-                                     class="dimenUsuarioG sombraImgUser">
-                            </div>
-                        </div>
-                        <div class="pull-left padding-top-10">
-                            <h3 class="sinkinSans600SB">8vo</h3>
-                        </div>
-                    </div>
-
-                    <div class="information padding-top-40">
-                        <div class="pull-left margin-right-15">
-                            <div class="img-contenedor">
-                                <img src="{{ asset('pics/front/user.jpg') }}" alt="Ringo"
-                                     class="dimenUsuarioG sombraImgUser">
-                            </div>
-                        </div>
-                        <div class="pull-left padding-top-10">
-                            <h3 class="sinkinSans600SB">9no</h3>
-                        </div>
-                    </div>
+                        <?php $count++; ?>
+                    @endforeach
 
                 </div>
                 <div class="col-sm-5 col-md-4 col-lg-4 bg-popoverLanding padding-top-50 hidden-xs padding-left-0">

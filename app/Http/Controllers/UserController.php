@@ -50,6 +50,7 @@ class UserController extends Controller
      */
     public function edit($userid)
     {
+        var_dump('lallala');die();
         $user = User::with('getProfile')->findOrFail($userid);
 
         $countries = Country::paginate(10);
@@ -66,19 +67,20 @@ class UserController extends Controller
     }
 
 
-    public function update(StoreUserprofileRequest $request, $userid)
+
+    public function update(Request $request, $userid)
     {
-        var_dump($request->get('avatar'));
-        die();
+
+
 
         // Get the user instance
         $user = User::with('getProfile')->findOrFail($userid);
 
         // Avatar ops
-        if ($request->has('avatar') and $request->file('avatar')->isValid()) {
-            $user->getProfile->clearMediaCollection('avatars');
-            $user->getProfile->addMediaFromRequest('avatar')->toMediaCollection('avatars', 'avatars');  // Second parameters is de defaul filesystem, optional
-            $user->getProfile->avatarname = $request->avatar->getClientOriginalName();
+        if ($request->has('avatar') and $request->file('avatar') != null) {
+            $user->clearMediaCollection('avatars');
+            $user->addMediaFromRequest('avatar')->toMediaCollection('avatars', 'avatars');  // Second parameters is de defaul filesystem, optional
+//            $user->getProfile->avatarname = $request->avatar->getClientOriginalName();
         }
 
         if ($request->has('password') && $request->get('password') != '') {

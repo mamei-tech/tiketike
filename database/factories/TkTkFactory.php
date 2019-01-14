@@ -14,6 +14,7 @@ use App\Http\TkTk\SeederExtension;
 |
 */
 
+
 $factory->define(App\User::class, function (Faker $faker) {
     return [
         'name'              => $faker->name,

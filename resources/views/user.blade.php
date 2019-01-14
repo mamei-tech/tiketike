@@ -5,28 +5,27 @@
     @include('partials.front_modals.mobile_suggest')
 
 
-    <div class="container-fluid bg-notificacion">
-        <div class="text-center padding-top-20">
-            <span class="sinkinSans400I texto10">Has enviado un mensaje...</span>
-        </div>
-    </div>
+    {{--<div class="container-fluid bg-notificacion">--}}
+        {{--<div class="text-center padding-top-20">--}}
+            {{--<span class="sinkinSans400I texto10">Has enviado un mensaje...</span>--}}
+        {{--</div>--}}
+    {{--</div>--}}
     <div class="container margin-top60">
         <div class="row">
             <div class="col-xs-12 col-sm-5 col-md-4 col-lg-3 padding-rigth-0">
                 <div class="bg-grisU paddingLateralGris">
                     <div class="row padding-top-30">
-                        @if($user->getProfile->getMedia('avatars')->first() != null)
+
 
                             <div class="col-xs-5 col-md-5">
-                                <img src="{{$user->getProfile->getMedia('avatars')->first()}}" alt="Ringo"
+                                <img src="{{$user->getMedia('avatars')->first()->getUrl()}}" alt="Ringo"
                                      class="imgUsuario sombraImgUser2">
                             </div>
-                        @endif
+
                         <div class="col-xs-7 col-md-7 padding-top-20 padding0">
                             <span class="texto20 sinkinSans600SB colorN margin-right-15">{{$user->name}}</span>
                             @if($user->id == \Auth::User()->id)
                                 {{--<a href="{{route('profile.edit',['userid'=> \Auth::User()->id])}}"><span class="ti-marker-alt texto20 colorN"></span></a>--}}
-
                                 <a href="{{route('profile.edit',$user->id)}}"><span
                                             class="ti-marker-alt texto20 colorN"></span></a>
                             @endif

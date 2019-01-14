@@ -5,7 +5,6 @@ $(function () {
 
     $('.slick-vertical').slick({
         infinite: true,
-        adaptiveHeight: true,
         slidesToShow: 3,
         arrows:false,
         slidesToScroll: 1,
@@ -13,9 +12,11 @@ $(function () {
         autoplay:true,
         autoplaySpeed: 2000,
         pauseOnHover: true,
-        initialSlide: 0,
-        zIndex: 2000
+        initialSlide: 9,
+
     });
+
+
 
     // Check screen size for fixing the navbar
     if(window.screen.width * window.devicePixelRatio <= 1199) {
@@ -47,3 +48,16 @@ $(function () {
     });
 
 });
+
+var password = document.getElementById("password")
+    , confirm_password = document.getElementById("confirm_password");
+
+function validatePassword() {
+    if(password.value != confirm_password.value) {
+        confirm_password.setCustomValidity("Password Don't Match");
+
+    }else {
+        confirm_password.setCustomValidity('');
+    }
+
+}
