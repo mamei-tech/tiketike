@@ -25,7 +25,7 @@
         <h6 class="text-uppercase sinkinSans600SB borderBottomV padding-bottom5">publicidad</h6>
         @foreach($promos as $promo)
         <div class="col-md-12 padding-left-0 padding-rigth-0 padding-bottom20">
-            <a href="{{ $promo->website }}"><img src="@if(count($promo->getMedia('promos')) > 0){{ $promo->getMedia('promos')->first()->getUrl() }} @endif" class="img-responsive" alt=""></a>
+            <a href="{{ $promo->website }}"><img src="@if(count($promo->getMedia('promos')) > 0){{ $promo->getMedia('promos')->first()->getUrl() }} @endif" class="img-responsive imgPublicidad" alt=""></a>
         </div>
         @endforeach
     </div>

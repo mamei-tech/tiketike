@@ -3,6 +3,7 @@
     @include('partials.frontend.header')
     @include('partials.front_modals.filters')
     @include('partials.front_modals.mobile_suggest')
+    @include('partials.front_modals.login_modal')
     <div class="container margin-top60">
         <div class="row">
             <!--Contenido ticket-->
@@ -10,7 +11,7 @@
                 <div class="contenidoTicket" id="scrollContent">
                     <div class="col-xs-12">
                         <div class="col-xs-4 col-md-3">
-                            <img src="{{ asset('pics/front/user.jpg') }}" alt="Ringo" class="imgUsuario sombraImgUser2">
+                            <img src="{{ $raffle->getOwner->getMedia('avatars')->first()->getUrl() }}" alt="Ringo" class="imgUsuario sombraImgUser2">
                         </div>
                         <div class="col-xs-8 col-md-9 texto14 sinkinSans600SB padding0">
                             <span class="colorN">{{ $raffle->getOwner->name }} {{ $raffle->getOwner->lastname }}</span>
@@ -208,10 +209,9 @@
                             </div>
                         </div>
                         <div class="pull-right colorV padding-top-10">
-                            <button type="button"
-                                    class="btn btn-primary bg_green extraer sinkinSans700B text-uppercase"
-                                    id="buyTickets">Comprar
-                            </button>
+                            <a @if(Auth::user() == null)  data-toggle="modal" href="#loginModal" @else id="buyTickets" @endif type="button"
+                                    class="btn btn-primary bg_green extraer sinkinSans700B text-uppercase">Comprar
+                            </a>
                         </div>
                     </div>
                 </div>

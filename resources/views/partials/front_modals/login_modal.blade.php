@@ -13,7 +13,7 @@
                 <div class="col-md-12 "></div>
                 <h5 class="modal-title text-uppercase textoCenter padding-top-20">Inicio de
                     sesión</h5>
-                <form class="form-signin" action="login" method="POST">
+                <form class="form-signin" action="{{ route('login') }}" method="POST">
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
                     <label for="selector" class="colorN italic">Nombre</label>
                     <input type="email" class="form-control form-control-new " id="inputEm"

@@ -24,11 +24,6 @@
                     <span class="ti-ticket  margin-right5 rotar  texto16"></span>Rifas
                 </a>
             </li>
-            <li>
-                <a href="" class="text-uppercase colorB sinkinSans300L icon">
-                    <span class="ti-comments margin-right5 texto16 "></span>Chat
-                </a>
-            </li>
         </ul>
     </div>
 
@@ -38,7 +33,7 @@
             @if(\Auth::user() != null)
                 <li class="">
                     <a id="logged-user-name" href="{{route('profile.info',['userid'=> \Auth::User()->id])}}"
-                       class="colorB sinkinSans300L"> {{\Auth::User()->name}} <img src="{{ asset('pics/front/user.jpg') }}"
+                       class="colorB sinkinSans300L"> {{\Auth::User()->name}} <img src="{{ Auth::user()->getMedia('avatars')->first()->getUrl() }}"
                                                                                    alt="Ringo"
                                                                                    class="imgUsuarioMenu sombraImgUserMenu margin-left5"></a>
                 </li>
