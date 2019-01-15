@@ -44,10 +44,7 @@ class RafflesController extends Controller
         $suggested = $this->raffleRepository->getSuggested();
         $promos = Promo::where('type',1)->where('status',1)->get();
         $categories = RaffleCategory::all();
-//        $raffles = Raffle::orderBy('activation_date','ASC')->paginate(10);
-        $raffles = $this->raffleRepository->getRafflesByCategory('Computers','percent');
-        var_dump($raffles);
-        die();
+        $raffles = Raffle::where('progress','<',100)->orderBy('activation_date','ASC')->paginate(10);
         $countries = Country::all();
         return view('raffles',compact('raffles','suggested','promos','categories','countries'));
     }

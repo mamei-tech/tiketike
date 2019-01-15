@@ -69,8 +69,8 @@ class UsersTableSeeder extends Seeder
         factory(\App\User::class, 30)->create();
         factory(\App\UserProfile::class, 30)->create();
 
-        $users= \App\User::all();
-        $values = [0 => 'user', 1 => 'user2'];
+        $users = \App\User::all();
+        $values = [0 => 'user', 1=> 'user2'];
         foreach ($users as $user)
         {
             $img = rand(0,1);

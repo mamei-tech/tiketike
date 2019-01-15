@@ -15,48 +15,51 @@ class RaffleRepository
     {
         if (Auth::user() != null) {
             $user = Auth::user()->id;
-            $raffles = Raffle::with(['getTickets','getFollowers','getOwner'])
-                ->whereHas('getFollowers',function (Builder $q) use ($user) {
-                    $q->where('user_id','<>',$user);
+            $raffles = Raffle::with(['getTickets', 'getFollowers', 'getOwner'])
+                ->whereHas('getFollowers', function (Builder $q) use ($user) {
+                    $q->where('user_id', '<>', $user);
                 })
-                ->whereHas('getTickets',function (Builder $q) use ($user) {
-                    $q->where('buyer','<>',$user);
+                ->whereHas('getTickets', function (Builder $q) use ($user) {
+                    $q->where('buyer', '<>', $user);
                 })
-                ->where('owner','<>',$user)
+                ->where('owner', '<>', $user)
                 ->limit(3)
-                ->orderBy('activation_date','DESC')
+                ->orderBy('activation_date', 'DESC')
                 ->get();
             return $raffles;
-        }else{
-            return Raffle::where('activation_date','<>',null)->orderBy('activation_date','DESC')->limit(3)->get();
+        } else {
+            return Raffle::where('activation_date', '<>', null)->orderBy('activation_date', 'DESC')->limit(3)->get();
         }
     }
 
-    public function getRafflesByCategory($category,$filter = null)
+    public function getRafflesByCategory($category, $filter = null)
     {
-        $raffles = null;
-        if ($filter != null)
-        {
-            if ($filter == 'percent')
-                $raffles = $this->getAllProgress()->with('getCategory')
-                    ->whereHas('getCategory',function (Builder $q) use ($category)
-                    {
-                        $q->where('category',$category);
+        if ($filter != null) {
+            if ($filter == 'percent') {
+                return Raffle::with('getCategory')
+                    ->whereHas('getCategory', function (Builder $q) use ($category) {
+                        $q->where('category', $category);
                     })
-                    ->orderBy('progress','DESC')
-                    ->toSql();
-            else
-                $raffles = Raffle::with('getCategory')
-                    ->whereHas('getCategory',function (Builder $q) use ($category)
-                    {
-                        $q->where('category',$category);
+                    ->where('progress','<',100)
+                    ->orderBy('progress', 'DESC')
+                    ->paginate(10);
+            } else {
+                return Raffle::with('getCategory')
+                    ->whereHas('getCategory', function (Builder $q) use ($category) {
+                        $q->where('category', $category);
                     })
-                    ->orderBy('price','DESC')
-                    ->toSql();
-        }else
-            $raffles = Raffle::all();
-
-        return $raffles;
+                    ->where('progress','<',100)
+                    ->orderBy('price', 'DESC')
+                    ->paginate(10);
+            }
+        } else {
+            return Raffle::with('getCategory')
+                ->whereHas('getCategory', function (Builder $q) use ($category) {
+                    $q->where('category', $category);
+                })
+                ->where('progress','<',100)
+                ->paginate(10);
+        }
     }
 
     /**
@@ -129,7 +132,7 @@ class RaffleRepository
         $status = "Published";
         $raffles = Raffle::with('getStatus')
             ->whereHas('getStatus', function (Builder $q) use ($status) {
-                $q->where('status',$status);
+                $q->where('status', $status);
             })
             ->paginate(10);
         return $raffles;
@@ -145,7 +148,7 @@ class RaffleRepository
         $status = "Published";
         $raffles = Raffle::with('getStatus')
             ->whereHas('getStatus', function (Builder $q) use ($status) {
-                $q->where('status',$status);
+                $q->where('status', $status);
             })
             ->get();
         return $raffles;
@@ -161,7 +164,7 @@ class RaffleRepository
         $status = "Published";
         $raffles = Raffle::with('getStatus')
             ->whereHas('getStatus', function (Builder $q) use ($status) {
-                $q->where('status',$status);
+                $q->where('status', $status);
             })
             ->paginate(10);
         return $raffles;
@@ -222,7 +225,8 @@ class RaffleRepository
      *
      * @return Collection
      */
-    public function almostsoldraffles() {
+    public function almostsoldraffles()
+    {
 
         return Raffle::join('rafflestatus', 'raffles.status', '=', 'rafflestatus.id')
             ->join('tickets', 'raffles.id', '=', 'tickets.raffle')
@@ -243,9 +247,9 @@ class RaffleRepository
                 'raffles.tickets_price',
                 'raffles.activation_date'
             )
-            ->orderBy('progress','DESC')
-            ->having('progress','<',100)
-            ->having('progress','>',79)
+            ->orderBy('progress', 'DESC')
+            ->having('progress', '<', 100)
+            ->having('progress', '>', 79)
             ->take(32)
             ->get();
     }

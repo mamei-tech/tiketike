@@ -38,7 +38,8 @@
             @if(\Auth::user() != null)
                 <li class="">
                     <a id="logged-user-name" href="{{route('profile.info',['userid'=> \Auth::User()->id])}}"
-                       class="colorB sinkinSans300L"> {{\Auth::User()->name}} <img src="{{ \Auth::User()->getMedia('avatars')->first()->getUrl() }}"
+                       class="colorB sinkinSans300L"> {{\Auth::User()->name}} <img src="{{ Auth::user()->getMedia('avatars')->first()->getUrl() }}"
+
                                                                                    alt="Ringo"
                                                                                    class="imgUsuarioMenu sombraImgUserMenu margin-left5"></a>
                 </li>
