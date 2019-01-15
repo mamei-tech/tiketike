@@ -140,6 +140,8 @@ class RafflesSeeder extends Seeder
                     if (mt_rand(0, 100) >= 35) {
                         if (!$tk->sold && $tk->getRaffle->getOwner->id != $user->id) {  // If the tk is not sold already and the user is not the raffle owner so
                             $praffle->buyTickets($user, [$tk->code]);                   // Buying the tk
+                            $praffle->progress = $praffle->getProgress();
+                            $praffle->save();
                             $tkavailable = $praffle->getTicketsAvailable()->get();      // Refreshing tickets for buying
                         }
                     }
@@ -151,6 +153,8 @@ class RafflesSeeder extends Seeder
                                 [$tk->code],
                                 $tk->getRaffle->getOwner->id
                             );
+                            $praffle->progress = $praffle->getProgress();
+                            $praffle->save();
                             $tkavailable = $praffle->getTicketsAvailable()->get();      // Refreshing tickets for buying
                         }
                     }

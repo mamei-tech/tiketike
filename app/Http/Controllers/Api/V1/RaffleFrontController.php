@@ -123,7 +123,7 @@ class RaffleFrontController extends ApiController
         $raffles = null;
         $response = '';
         if ($request->get('category') == 'Todos')
-            $raffles = Raffle::paginate(10);
+            $raffles = Raffle::where('progress','<',100)->orderBy('progress','DESC')->paginate(10);
         else
             $raffles = $this->raffleRepository->getRafflesByCategory($request->get('category'),$request->get('criteria'));
         foreach ($raffles as $raffle) {
@@ -212,7 +212,7 @@ class RaffleFrontController extends ApiController
         $raffles = null;
         $response = '';
         if ($request->get('category') == 'Todos')
-            $raffles = Raffle::paginate(10);
+            $raffles = Raffle::where('progress','<',100)->orderBy('price','DESC')->paginate(10);
         else
             $raffles = $this->raffleRepository->getRaflesByCategory($request->get('category'));
         foreach ($raffles as $raffle) {

@@ -24,6 +24,7 @@ class Raffle extends Model implements HasMedia
         'title',
         'description',
         'price',
+        'progress'
     ];
 
     /**
