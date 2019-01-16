@@ -5,7 +5,7 @@
             <div class="row">
                 <div class="col-sm-7 col-md-4 col-lg-9">
                     <div class="logo padding-left65">
-                        <img src="{{ asset('pics/front/logo.svg') }}" class="img-responsive" alt="Logo tikeTike">
+                        <img src="{{ asset('pics/front/logonv.png') }}" class="img-responsive" alt="Logo tikeTike">
                     </div>
                 </div>
                 <div class="col-sm-5 col-md-4 col-lg-3">

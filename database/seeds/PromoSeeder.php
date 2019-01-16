@@ -102,5 +102,20 @@ class PromoSeeder extends Seeder
                 'website'       => 'http://www.mamaei.com'
             ]
         );
+
+        // Main
+        $promoa = \App\Promo::find(2);
+        $promob = \App\Promo::find(3);
+
+        $promoa->addMediaFromUrl('http://localhost/pics/common/psample_1.jpg')->toMediaCollection('promos', 'promos');
+        $promob->addMediaFromUrl('http://localhost/pics/common/psample_2.jpg')->toMediaCollection('promos', 'promos');
+
+
+        // Sec
+        $promoc = \App\Promo::find(1);
+        $promod = \App\Promo::find(4);
+
+        $promoc->addMediaFromUrl('http://localhost/pics/common/psample_3.jpg')->toMediaCollection('promos', 'promos');
+        $promod->addMediaFromUrl('http://localhost/pics/common/psample_4.jpg')->toMediaCollection('promos', 'promos');
     }
 }

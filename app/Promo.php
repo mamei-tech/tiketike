@@ -43,7 +43,7 @@ class Promo extends Model implements HasMedia
 
                 if ($exists)
                     return false;
-                if (!($file->mimeType === 'image/jpeg') or !($file->mimeType !== 'image/png'))
+                if ($file->mimeType !== 'image/jpeg' && $file->mimeType !== 'image/png')
                     return false;
                 else
                     return true;
