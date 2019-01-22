@@ -300,7 +300,7 @@
                             <div class="col-xs-3"><strong class="colorV sinkinSans600SB" id="sold_tickets">20%</strong><br></div>
                         </div>
                     </div>
-                    <a href="" class="floatRight sinkinSans200LI padding-top-50 colorN">ir al perfil
+                    <a href="" class="floatRight sinkinSans200LI padding-top-50 colorN" id="link_to_profile">ir al perfil
                         <span class="ti-angle-right texto16 colorN texto-negrita padding-top5"></span></a>
                 </div>
             </div>
