@@ -264,7 +264,7 @@
                     ?>
                     @foreach($top_users as $top_user)
 
-                        <div class="slick-list information " style="padding-top: 20px ; padding-bottom: 20px">
+                        <div class="slick-list information " id="{{$top_user->id}}" style="padding-top: 20px ; padding-bottom: 20px">
                             <div class="pull-left margin-right-15">
                                 <div class="img-contenedor">
                                     <img src="{{$top_user->getMedia('avatars')->first()->getUrl()}}" alt="Ringo"
@@ -285,11 +285,11 @@
                     <div class="row sinkinSans200L texto14 padding-top-20 paddingLeft0">
                         <div class="col-xs-12 padding-top-20 paddingLeft0">
                             <div class="col-xs-9"><span class="colorN margin-right-20">Rifas creadas:</span></div>
-                            <div class="col-xs-3"><strong class="colorV sinkinSans600SB">20%</strong><br></div>
+                            <div class="col-xs-3"><strong class="colorV sinkinSans600SB" id="created_raffles">20%</strong><br></div>
                         </div>
                         <div class="col-xs-12 padding-top-20 paddingLeft0">
                             <div class="col-xs-9"><span class="colorN margin-right-20">Rifas ganadas:</span></div>
-                            <div class="col-xs-3"><strong class="colorV sinkinSans600SB">100%</strong><br></div>
+                            <div class="col-xs-3"><strong class="colorV sinkinSans600SB" id="winned_raffles">100%</strong><br></div>
                         </div>
                         <div class="col-xs-12 padding-top-20 paddingLeft0">
                             <div class="col-xs-9"><span class="colorN margin-right-20">Rifas compartidas:</span></div>
@@ -297,7 +297,7 @@
                         </div>
                         <div class="col-xs-12 padding-top-20 paddingLeft0">
                             <div class="col-xs-9"><span class="colorN margin-right-20">Tickets vendidos:</span></div>
-                            <div class="col-xs-3"><strong class="colorV sinkinSans600SB">20%</strong><br></div>
+                            <div class="col-xs-3"><strong class="colorV sinkinSans600SB" id="sold_tickets">20%</strong><br></div>
                         </div>
                     </div>
                     <a href="" class="floatRight sinkinSans200LI padding-top-50 colorN">ir al perfil
@@ -309,4 +309,7 @@
     </section>
 
     <div class="bottomUsuariosTop"></div>
+@stop
+@section('additional_scripts')
+    <script src="{{ asset('js/main.min.js') }}"></script>
 @stop

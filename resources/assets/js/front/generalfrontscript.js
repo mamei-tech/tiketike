@@ -12,8 +12,7 @@ $(function () {
         autoplay:true,
         autoplaySpeed: 2000,
         pauseOnHover: true,
-        initialSlide: 9,
-
+        initialSlide: 9
     });
 
 
