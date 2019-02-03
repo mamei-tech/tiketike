@@ -3,7 +3,6 @@
 namespace App\Repositories;
 
 use App\Raffle;
-use function foo\func;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
