@@ -257,6 +257,9 @@ body {
 .padding-left10{
     padding-left: 10px;
 }
+.padding-left-top-users{
+    padding-left: 7%;
+}
 .padding-left20{
     padding-left: 20px;
 }
@@ -310,6 +313,10 @@ body {
 }
 .padding-left65{
     padding-left: 65px;
+}
+
+.margin-right-4percent {
+    margin-left: 4%;
 }
 
 .margin-right100{
@@ -939,7 +946,7 @@ input[type="radio"], input[type="checkbox"] {
     display: inline-block;
 }
 .carousel {
-    
+
     margin-bottom: 30px;
 }
 .imgUsuario{
