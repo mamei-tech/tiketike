@@ -86,17 +86,18 @@ class RafflesSeeder extends Seeder
         factory(\App\Raffle::class, $moreraffles2create)->create();
 
         // Adding images to the raffles
-        $imgnum = [1,2,3];
+        $imgnum = [1,2,3,4,5,6,7,8,9,10,11,12,13];
 
         $raffles = Raffle::all();
 
         foreach ($raffles as $raffle) {
 
-            shuffle($imgnum);
+            shuffle($imgnum);shuffle($imgnum);
 
-            $raffle->addMediaFromUrl('http://localhost/pics/common/'.$imgnum[0].'.jpg')->toMediaCollection('raffles','raffles');
-            $raffle->addMediaFromUrl('http://localhost/pics/common/'.$imgnum[1].'.jpg')->toMediaCollection('raffles','raffles');
-            $raffle->addMediaFromUrl('http://localhost/pics/common/'.$imgnum[2].'.jpg')->toMediaCollection('raffles','raffles');
+            $raffle->addMediaFromUrl('http://localhost/pics/common/rsample_'.$imgnum[0].'.jpg')->toMediaCollection('raffles','raffles');
+            $raffle->addMediaFromUrl('http://localhost/pics/common/rsample_'.$imgnum[1].'.jpg')->toMediaCollection('raffles','raffles');
+            $raffle->addMediaFromUrl('http://localhost/pics/common/rsample_'.$imgnum[2].'.jpg')->toMediaCollection('raffles','raffles');
+
         }
 
         // Publishing some raffles
@@ -127,7 +128,7 @@ class RafflesSeeder extends Seeder
 
                 $tkavailable = $praffle->getTicketsAvailable()->get();                  // Getting available tickets for buying
                 $tktotal     = $tkavailable->count();                                   // Getting the total of them
-                $buys        = mt_rand(10,35);                                          // Making a random iterator count
+                $buys        = mt_rand(10, 35);                                         // Making a random iterator count
 
                 if ($tktotal < $buys) continue;                                         // If there is not enough available tickets then continue to the next published raffle
 
