@@ -213,6 +213,13 @@ class URaffleController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Raffle::destroy($id);
+        return redirect()->route('unpublished.index',
+            [
+                'div_showRaffles' => 'show',
+                'li_activeURaffles' => 'active',
+            ],
+            '303')
+            ->with('success', 'Raffle deleted successfully');
     }
 }
