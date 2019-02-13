@@ -24,11 +24,6 @@
                     <span class="ti-ticket  margin-right5 rotar  texto16"></span>Rifas
                 </a>
             </li>
-            <li>
-                <a href="" class="text-uppercase colorB sinkinSans300L icon">
-                    <span class="ti-comments margin-right5 texto16 "></span>Chat
-                </a>
-            </li>
         </ul>
     </div>
 
