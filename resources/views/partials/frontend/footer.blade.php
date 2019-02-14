@@ -27,9 +27,12 @@
 <script src="{{ asset('js/front/chart.js') }}"></script>
 <script src="{{ asset('js/front/slick.js') }}"></script>
 <script src="{{ asset('js/front/plugins/select2/select2.min.js') }}"></script>
+<script src="{{ asset('js/front/uploader/modernizr.min.js') }}"></script>
+<script src="{{ asset('js/front/uploader/uploadHBR.min.js') }}"></script>
 
 <script>
     $(document).ready(function () {
+        $('.select2').select2();
         Agencia.init();
 
         $("#owl-demo").owlCarousel({
