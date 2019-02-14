@@ -51,10 +51,10 @@
                         <div class="col-md-4 pr-1">
                             <label for="localization"
                                    class="colorN italic padding-top-20">Localización</label>
-                            <select class="form-control form-control-new" name="localization" id="localization">
+                            <select class="form-control form-control-new selectpicker" name="localization" id="localization">
                                 <option disabled selected>Select a country</option>
                                 @foreach($countries as $country)
-                                    <option value="{{ $country->id }}">{{ $country->name }}</option>
+                                    <option data-thumbnail="http://icons.iconarchive.com/icons/tinylab/android-lollipop-apps/24/Foursquare-icon.png" value="{{ $country->id }}">{{ $country->name }}</option>
                                 @endforeach
                             </select>
                         </div>
