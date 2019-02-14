@@ -1,4 +1,5 @@
 import axios from 'axios';
+import {Ziggy} from "../ziggy";
 
 $(document).ready(function () {
     $('.select2').select2();
@@ -14,11 +15,14 @@ $(document).ready(function () {
             $('#created_raffles').html('');
             $('#winned_raffles').html('');
             $('#sold_tickets').html('');
+            $('#name').html(response.data['name']);
+            $('#country').html(response.data['country']);
             $('#created_raffles').html(response.data['created_raffles']);
             $('#winned_raffles').html(response.data['winned_raffles']);
             $('#sold_tickets').html(response.data['sold_tickets']);
             $('#link_to_profile').href = '';
-            $('#link_to_profile').attr('href','users/profile/'+userid+'/');
+            $('#link_to_profile').attr('href', route('profile.info',{userid}));
+            $('.field-item .even')
         }).catch(function (error) {
             console.log(error);
         })

@@ -1,5 +1,6 @@
 let mix = require('laravel-mix');
 
+
 /*
  |--------------------------------------------------------------------------
  | Mix Asset Management
@@ -149,6 +150,7 @@ mix.js('resources/assets/js/admin/views/admin/araffles.js', 'public/js/admin/ara
 mix.js('resources/assets/js/admin/views/admin/payment.js', 'public/js/admin/payment.js').sourceMaps();
 /* Admin | views | configs raffles */
 mix.js('resources/assets/js/admin/views/admin/configs/configraffles.js', 'public/js/admin/configraffles.js').sourceMaps();
+
 
 /* TODO use nprogres lib in the admin theme section */
 

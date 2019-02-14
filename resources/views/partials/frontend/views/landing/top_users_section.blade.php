@@ -1,3 +1,4 @@
+
 <div class="topUsuariosTop"></div>
 <section class="usuariostop">
     <div class="container">
@@ -135,8 +136,8 @@
 
             </div>
             <div class="col-sm-5 col-md-4 col-lg-4 bg-popoverLanding padding-top-50 hidden-xs padding-left-0">
-                <span class="colorV text-uppercase sinkinSans600SB texto24">Jane Doe</span><br>
-                <span class="colorV sinkinSans300LI texto20">Pais</span><br>
+                <span class="colorV text-uppercase sinkinSans600SB texto20" id="name">Jane Doe</span><br>
+                <span class="colorV sinkinSans300LI texto20"id="country">Pais</span><br>
                 <div class="row sinkinSans200L texto14 padding-top-20 paddingLeft0">
                     <div class="col-xs-12 padding-top-20 paddingLeft0">
                         <div class="col-xs-9"><span class="colorN margin-right-20">Rifas creadas:</span></div>
