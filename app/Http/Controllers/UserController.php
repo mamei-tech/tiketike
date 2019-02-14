@@ -50,7 +50,7 @@ class UserController extends Controller
      */
     public function edit($userid)
     {
-//        var_dump('lallala');die();
+
         $user = User::with('getProfile')->findOrFail($userid);
 
         $countries = Country::paginate(10);
