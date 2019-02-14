@@ -23,12 +23,17 @@ class RaffleRepository
                     $q->where('buyer', '<>', $user);
                 })
                 ->where('owner', '<>', $user)
+                ->where('progress','<',100)
                 ->limit(3)
-                ->orderBy('activation_date', 'DESC')
+                ->orderBy('progress', 'DESC')
                 ->get();
             return $raffles;
         } else {
-            return Raffle::where('activation_date', '<>', null)->orderBy('activation_date', 'DESC')->limit(3)->get();
+            return Raffle::where('activation_date', '<>', null)
+                ->where('progress','<',100)
+                ->orderBy('progress', 'DESC')
+                ->limit(3)
+                ->get();
         }
     }
 
@@ -250,7 +255,7 @@ class RaffleRepository
             ->orderBy('progress', 'DESC')
             ->having('progress', '<', 100)
             ->having('progress', '>', 79)
-            ->take(32)
+            ->take(8)
             ->get();
     }
 

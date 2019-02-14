@@ -13,7 +13,8 @@
                         <ul class="nav sinkinSans400R">
                             <li class="active"><a href="#" class="colorN text-uppercase" id="all">Todos</a></li>
                             @foreach($categories as $category)
-                                <li><a href="#" id="{{ $category->category }}" class="colorN text-uppercase filters">{{$category->category}}</a></li>
+                                <li><a href="#" id="{{ $category->category }}"
+                                       class="colorN text-uppercase filters">{{$category->category}}</a></li>
                             @endforeach
                         </ul>
                     </div>
@@ -164,6 +165,8 @@
                                 </div>
                             @endforeach
                         @endif
+                    </div>
+                    <div class="col-md-12 text-center">
                         {{ $raffles->links() }}
                     </div>
                 </div>

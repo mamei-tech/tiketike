@@ -13,12 +13,11 @@ $(document).ready(function () {
             $('#created_raffles').html('');
             $('#winned_raffles').html('');
             $('#sold_tickets').html('');
-            // $('#created_raffles').html(response.data['created_raffles']);
-            // $('#winned_raffles').html(response.data['winned_raffles']);
-            // $('#sold_tickets').html(response.data['sold_tickets']);
             $('#created_raffles').html(response.data['created_raffles']);
             $('#winned_raffles').html(response.data['winned_raffles']);
             $('#sold_tickets').html(response.data['sold_tickets']);
+            $('#link_to_profile').href = '';
+            $('#link_to_profile').attr('href','users/profile/'+userid+'/');
         }).catch(function (error) {
             console.log(error);
         })
