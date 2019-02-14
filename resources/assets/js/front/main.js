@@ -1,6 +1,4 @@
 import axios from 'axios';
-import {Ziggy} from "../ziggy";
-
 $(document).ready(function () {
     /*  SETTING UP AXIOS HEADERS  */
     axios.defaults.headers.common['Authorization'] = "Bearer " + $('meta[name=access-token]').attr('content');
