@@ -29,6 +29,7 @@
         "datatables.net-bs4": "^1.10.19",
         "datatables.net-responsive": "^2.2.3",
         "font-awesome": "^4.7.0",
+        "gsap": "^2.0.2",
         "laravel-echo": "^1.4.0",
         "nprogress": "^0.2.0",
         "pusher-js": "^4.3.0",

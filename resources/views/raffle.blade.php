@@ -16,7 +16,7 @@
                         <div class="col-xs-8 col-md-9 texto14 sinkinSans600SB padding0">
                             <span class="colorN">{{ $raffle->getOwner->name }} {{ $raffle->getOwner->lastname }}</span>
                             <span class="ti-location-pin"></span>
-                            <span class="">{{ $raffle->getLocation->name }}</span>
+                            <span class=""><img src="{{ asset('pics/countries/'.$raffle->getLocation->name.'.png') }}">{{ $raffle->getLocation->name }}</span>
                             <p class="texto18 text-uppercase texto-negrita colorN padding-top-10"
                                style="font-family: sinkinSans700Bold">{{ $raffle->title }}</p>
                         </div>

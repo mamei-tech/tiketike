@@ -1,5 +1,6 @@
 import axios from 'axios';
 $(document).ready(function () {
+    $('.select2').select2();
     /*  SETTING UP AXIOS HEADERS  */
     axios.defaults.headers.common['Authorization'] = "Bearer " + $('meta[name=access-token]').attr('content');
 
@@ -23,5 +24,16 @@ $(document).ready(function () {
         }).catch(function (error) {
             console.log(error);
         })
+    });
+
+    uploadHBR.init({
+        "target": "#uploads",
+        "max": 3,
+        "textNew": "ADD",
+        "textTitle": "Click here or drag to upload an imagem",
+        "textTitleRemove": "Click here remove the imagem"
+    });
+    $('#reset').click(function () {
+        uploadHBR.reset('#uploads');
     });
 });

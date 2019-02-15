@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Promo;
+use App\RaffleCategory;
 use App\Repositories\RaffleRepository;
 use Illuminate\Http\Request;
 use App\Raffle;
@@ -36,6 +37,7 @@ abstract class BuysController extends Controller
         $suggested = $this->raffleRepository->getSuggested();
         $raffle = Raffle::find($raffleId);
         $promos = Promo::where('type',1)->where('status',1)->get();
-        return view('raffle', ['raffleId' => $raffleId,'promos'=>$promos, 'url' => $request->fullUrl(), 'raffle' => $raffle,'suggested' => $suggested]);
+        $categories = RaffleCategory::all();
+        return view('raffle', ['raffleId' => $raffleId,'promos'=>$promos, 'url' => $request->fullUrl(), 'raffle' => $raffle,'suggested' => $suggested,'categories' => $categories]);
     }
 }
