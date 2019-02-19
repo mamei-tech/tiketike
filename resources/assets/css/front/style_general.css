@@ -687,7 +687,8 @@ div .search-box {
 }
 .modal-content {
     background: url("../../pics/front/bg-registrarse.png")repeat center center;
-    background-size: cover;
+    background-size: 203px 403px;
+    background-repeat: repeat;
 }
 .modal-dialog {
     margin: 0px auto;
