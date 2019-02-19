@@ -9,7 +9,7 @@
             <!--Contenido ticket-->
             <div class="col-xs-12 col-sm-7 col-sm-push-5 col-lg-7 col-lg-push-3 padding-top-20 paddingLeft0 padding-rigth-0">
                 <div class="contenidoTicket" id="scrollContent">
-                    <div class="col-xs-12">
+                    <div class="col-xs-12 ">
                         <div class="col-xs-4 col-md-3">
                             <img src="{{ $raffle->getOwner->getMedia('avatars')->first()->getUrl() }}" alt="Ringo" class="imgUsuario sombraImgUser2">
                         </div>
@@ -21,7 +21,7 @@
                                style="font-family: sinkinSans700Bold">{{ $raffle->title }}</p>
                         </div>
                     </div>
-                    <div class="col-xs-12 ">
+                    <div class="col-xs-12 padding-top-20">
                         <div id="myCarousel" class="carousel carouselTicket slide" data-ride="carousel">
                             <!-- Indicators -->
                             <div class="carousel-inner" role="listbox">
