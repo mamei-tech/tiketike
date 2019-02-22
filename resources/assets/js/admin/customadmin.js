@@ -88,7 +88,7 @@ demo = {
             viewRender: function(view, element) {
                 // We make sure that we activate the perfect scrollbar when the view isn't on Month
                 if (view.name != 'month'){
-                    // $(element).find('.fc-scroller').perfectScrollbar();
+                    $(element).find('.fc-scroller').perfectScrollbar();
                 }
             },
             header: {
@@ -672,7 +672,20 @@ demo = {
                     fill: true,
                     backgroundColor: gradientFill,
                     borderWidth: 2,
-                    data: [50, 150, 100, 190, 130, 90, 150, 160, 120, 140, 190, 95]
+                    data: [
+                        $("#jan").attr("value"),
+                        $("#feb").attr("value"),
+                        $("#mar").attr("value"),
+                        $("#apr").attr("value"),
+                        $("#may").attr("value"),
+                        $("#jun").attr("value"),
+                        $("#jul").attr("value"),
+                        $("#aug").attr("value"),
+                        $("#sep").attr("value"),
+                        $("#oct").attr("value"),
+                        $("#nov").attr("value"),
+                        $("#dec").attr("value")
+                    ]
                 }]
             },
             options: {
@@ -734,40 +747,111 @@ demo = {
             }
         });
 
-        var cardStatsMiniLineColor = "#fff",
-            cardStatsMiniDotColor = "#fff";
-
         ctx = document.getElementById('activeUsers').getContext("2d");
 
-        gradientStroke = ctx.createLinearGradient(500, 0, 100, 0);
-        gradientStroke.addColorStop(0, '#80b6f4');
-        gradientStroke.addColorStop(1, chartColor);
-
-        gradientFill = ctx.createLinearGradient(0, 170, 0, 50);
-        gradientFill.addColorStop(0, "rgba(128, 182, 244, 0)");
-        gradientFill.addColorStop(1, "rgba(249, 99, 59, 0.40)");
+        // myChart = new Chart(ctx, {
+        //     type: 'line',
+        //     data: {
+        //         labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+        //         datasets: [{
+        //             label: "Active Users",
+        //             borderColor: "#f96332",
+        //             pointBorderColor: "#FFF",
+        //             pointBackgroundColor: "#f96332",
+        //             pointBorderWidth: 2,
+        //             pointHoverRadius: 4,
+        //             pointHoverBorderWidth: 1,
+        //             pointRadius: 4,
+        //             fill: true,
+        //             backgroundColor: gradientFill,
+        //             borderWidth: 2,
+        //             data: [542, 480, 430, 550, 530, 453, 380, 434, 568, 610, 700, 630]
+        //         }]
+        //     },
+        //     options: gradientChartOptionsConfiguration
+        // });
 
         myChart = new Chart(ctx, {
             type: 'line',
             data: {
-                labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+                labels: ["23", "22", "21", "20", "19", "18", "17", "16", "15", "14", "13", "12", "11", "10", "9", "8", "7", "6", "5", "4", "3", "2", "1", "0"],
                 datasets: [{
                     label: "Active Users",
-                    borderColor: "#f96332",
-                    pointBorderColor: "#FFF",
-                    pointBackgroundColor: "#f96332",
-                    pointBorderWidth: 2,
-                    pointHoverRadius: 4,
-                    pointHoverBorderWidth: 1,
-                    pointRadius: 4,
-                    fill: true,
-                    backgroundColor: gradientFill,
+                    borderColor: chartColor,
+                    pointBorderColor: chartColor,
+                    pointBackgroundColor: "rgba(0, 180, 0, 0.5)",
+                    pointHoverBackgroundColor: "rgba(0, 180, 0, 0.5)",
+                    pointHoverBorderColor: chartColor,
+                    pointBorderWidth: 1,
+                    pointHoverRadius: 7,
+                    pointHoverBorderWidth: 2,
+                    pointRadius: 5,
+                    fill: false,
+                    backgroundColor: transparent,
                     borderWidth: 2,
-                    data: [542, 480, 430, 550, 530, 453, 380, 434, 568, 610, 700, 630]
+                    data: [10, 5, 50, 100, 32, 67, 89, 12, 23, 61, 89, 70, 10, 5, 50, 100, 32, 67, 89, 12, 23, 61, 89, 70]
                 }]
             },
-            options: gradientChartOptionsConfiguration
+            options: {
+                layout: {
+                    padding: {
+                        left: 20,
+                        right: 20,
+                        top: 0,
+                        bottom: 0
+                    }
+                },
+                maintainAspectRatio: false,
+                tooltips: {
+                    backgroundColor: '#fff',
+                    titleFontColor: '#333',
+                    bodyFontColor: '#666',
+                    bodySpacing: 4,
+                    xPadding: 12,
+                    mode: "nearest",
+                    intersect: 0,
+                    position: "nearest"
+                },
+                legend: {
+                    position: "bottom",
+                    fillStyle: "#FFF",
+                    display: false
+                },
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            fontColor: "rgba(255,255,255, 0.8)",
+                            fontStyle: "bold",
+                            beginAtZero: true,
+                            maxTicksLimit: 5,
+                            padding: 10
+                        },
+                        gridLines: {
+                            drawTicks: true,
+                            drawBorder: false,
+                            display: true,
+                            color: "rgba(255,255,255, 0.2)",
+                            zeroLineColor: "transparent"
+                        }
+
+                    }],
+                    xAxes: [{
+                        gridLines: {
+                            zeroLineColor: "transparent",
+                            display: false,
+
+                        },
+                        ticks: {
+                            padding: 10,
+                            fontColor: "rgba(255,255,255, 0.8)",
+                            fontStyle: "bold"
+                        }
+                    }]
+                }
+            }
         });
+
+        //___________________________________
 
 
         ctx = document.getElementById('emailsCampaignChart').getContext("2d");
