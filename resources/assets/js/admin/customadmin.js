@@ -1,5 +1,4 @@
 
-//import {AxiosInstance as axios} from "axios";
 
 demo = {
     initPickColor: function(){
@@ -752,58 +751,24 @@ demo = {
 
         ctx = document.getElementById('activeUsers').getContext("2d");
 
-        // myChart = new Chart(ctx, {
-        //     type: 'line',
-        //     data: {
-        //         labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
-        //         datasets: [{
-        //             label: "Active Users",
-        //             borderColor: "#f96332",
-        //             pointBorderColor: "#FFF",
-        //             pointBackgroundColor: "#f96332",
-        //             pointBorderWidth: 2,
-        //             pointHoverRadius: 4,
-        //             pointHoverBorderWidth: 1,
-        //             pointRadius: 4,
-        //             fill: true,
-        //             backgroundColor: gradientFill,
-        //             borderWidth: 2,
-        //             data: [542, 480, 430, 550, 530, 453, 380, 434, 568, 610, 700, 630]
-        //         }]
-        //     },
-        //     options: gradientChartOptionsConfiguration
-        // });
+        axios.get(route('v1.customadmin.activeusers')).then(function (response) {
+            //this chart show users's traffic in a period (actually 30 days)
+            let maleTraffic     = response['data']['male_users'];
+            let femaleTraffic   = response['data']['female_users'];
+            let totalTraffic  = Array(30);
 
-        //this chart show users's traffic in a period (actually 30 days)
-        let maleTraffic   = [50, 55, 54,  10, 75, 45, 19, 82, 89, 56, 23, 24, 100, 57, 65,  10, 29, 74, 92, 57, 13, 78, 18, 97, 34, 56, 12, 94, 74, 56];
-        let femaleTraffic = [50,  5, 50, 100, 32, 67, 89, 12, 23, 61, 89, 70,  10,  5, 50, 100, 32, 67, 89, 12, 23, 61, 89, 70, 23, 76, 90, 12, 54, 83];
+            for (let i = 0; i < maleTraffic.length; i++)
+                totalTraffic[i] = maleTraffic[i] + femaleTraffic[i];
 
-        axios.post(route('v1.uraffle.computetval'), {
-            id: inputs['id'].val(),
-            profit: parseFloat(inputs['profit'].val()),
-            tcount: parseInt(this.value),
-            commissions: parseInt(inputs['commissions'].val()),
-            criteria: 'tprice'                                              // Can be 'tcount' or 'tprice'
-        }).then(function (response) {
-            //Set the ticket price input to the price computed by the server
-            inputs['tPrice'].val(response.data['tprice']);
-        }).catch(function (error) {
-            // console.log(error);
-            showajaxerror('#mdal_publishRaffle',  error.response.data.error['message']);
-        });
-
-        let totalTraffic  = Array(30);
-        for (let i = 0; i < maleTraffic.length; i++)
-            totalTraffic[i] = maleTraffic[i] + femaleTraffic[i];
-        myChart = new Chart(ctx, {
-            type: 'bar',
-            data: {
-                labels: [
-                    "29", "28", "27", "26", "25", "24", "23", "22", "21", "20",
-                    "19", "18", "17", "16", "15", "14", "13", "12", "11", "10",
-                     "9",  "8",  "7",  "6",  "5",  "4",  "3",  "2",  "1",  "0",
-                ],
-                datasets: [{
+            myChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: [
+                        "29", "28", "27", "26", "25", "24", "23", "22", "21", "20",
+                        "19", "18", "17", "16", "15", "14", "13", "12", "11", "10",
+                        "9",  "8",  "7",  "6",  "5",  "4",  "3",  "2",  "1",  "0",
+                    ],
+                    datasets: [{
                         label: "Active Male Users",
                         borderColor: chartColor,
                         fill: false,
@@ -812,101 +777,101 @@ demo = {
                         borderWidth: 1,
                         data: maleTraffic,
                     },
-                    {
-                        label: "Active Female Users",
-                        borderColor: chartColor,
-                        fill: false,
-                        backgroundColor: "rgba(230, 0, 100, 0.5)",
-                        hoverBackgroundColor: "rgba(230, 0, 100, 0.8)",
-                        borderWidth: 1,
-                        data: femaleTraffic,
+                        {
+                            label: "Active Female Users",
+                            borderColor: chartColor,
+                            fill: false,
+                            backgroundColor: "rgba(230, 0, 100, 0.5)",
+                            hoverBackgroundColor: "rgba(230, 0, 100, 0.8)",
+                            borderWidth: 1,
+                            data: femaleTraffic,
+                        },
+                        {
+                            label: "Active Users",
+                            borderColor: "rgba(255, 255, 255, 1)",
+                            pointBorderColor: chartColor,
+                            pointBackgroundColor: "rgba(0, 200, 0, 0.8)",
+                            pointHoverBackgroundColor: "rgba(0, 200, 0, 1)",
+                            pointHoverBorderColor: chartColor,
+                            pointBorderWidth: 1,
+                            pointHoverRadius: 6,
+                            pointHoverBorderWidth: 2,
+                            pointRadius: 4,
+                            fill: false,
+                            borderWidth: 1.5,
+                            data: totalTraffic,
+                            type: 'line',
+                        }]
+                },
+                options: {
+                    title: {
+                        text: "Active users in the last 30 days",
+                        display: true,
+                        fontSize: 18,
+                        fontColor: "rgba(0, 0, 0, 1)",
                     },
-                    {
-                        label: "Active Users",
-                        borderColor: "rgba(255, 255, 255, 1)",
-                        pointBorderColor: chartColor,
-                        pointBackgroundColor: "rgba(0, 200, 0, 0.8)",
-                        pointHoverBackgroundColor: "rgba(0, 200, 0, 1)",
-                        pointHoverBorderColor: chartColor,
-                        pointBorderWidth: 1,
-                        pointHoverRadius: 6,
-                        pointHoverBorderWidth: 2,
-                        pointRadius: 4,
-                        fill: false,
-                        borderWidth: 1.5,
-                        data: totalTraffic,
-                        type: 'line',
-                    }
-                ]
-            },
-            options: {
-                title: {
-                    text: "Active users in the last 30 days",
-                    display: true,
-                    fontSize: 18,
-                    fontColor: "rgba(0, 0, 0, 1)",
-                },
-                layout: {
-                    padding: {
-                        left: 20,
-                        right: 20,
-                        top: 0,
-                        bottom: 0
-                    }
-                },
-                maintainAspectRatio: false,
-                tooltips: {
-                    backgroundColor: '#fff',
-                    titleFontColor: '#333',
-                    bodyFontColor: '#666',
-                    bodySpacing: 4,
-                    xPadding: 12,
-                    mode: "nearest",
-                    intersect: 0,
-                    position: "nearest"
-                },
-                legend: {
-                    position: "bottom",
-                    fillStyle: "#FFF",
-                    display: false
-                },
-                scales: {
-                    yAxes: [{
-                        ticks: {
-                            fontColor: "rgba(255,255,255, 0.8)",
-                            fontStyle: "bold",
-                            beginAtZero: true,
-                            maxTicksLimit: 5,
-                            padding: 10
-                        },
-                        gridLines: {
-                            drawTicks: true,
-                            drawBorder: false,
-                            display: true,
-                            color: "rgba(255,255,255, 0.2)",
-                            zeroLineColor: "transparent"
-                        },
-                        stacked: true
-                    }],
-                    xAxes: [{
-                        gridLines: {
-                            zeroLineColor: "transparent",
-                            display: false,
+                    layout: {
+                        padding: {
+                            left: 20,
+                            right: 20,
+                            top: 0,
+                            bottom: 0
+                        }
+                    },
+                    maintainAspectRatio: false,
+                    tooltips: {
+                        backgroundColor: '#fff',
+                        titleFontColor: '#333',
+                        bodyFontColor: '#666',
+                        bodySpacing: 4,
+                        xPadding: 12,
+                        mode: "nearest",
+                        intersect: 0,
+                        position: "nearest"
+                    },
+                    legend: {
+                        position: "bottom",
+                        fillStyle: "#FFF",
+                        display: false
+                    },
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                                fontColor: "rgba(255,255,255, 0.8)",
+                                fontStyle: "bold",
+                                beginAtZero: true,
+                                maxTicksLimit: 5,
+                                padding: 10
+                            },
+                            gridLines: {
+                                drawTicks: true,
+                                drawBorder: false,
+                                display: true,
+                                color: "rgba(255,255,255, 0.2)",
+                                zeroLineColor: "transparent"
+                            },
+                            stacked: true
+                        }],
+                        xAxes: [{
+                            gridLines: {
+                                zeroLineColor: "transparent",
+                                display: false,
 
-                        },
-                        ticks: {
-                            padding: 10,
-                            fontColor: "rgba(255,255,255, 0.8)",
-                            fontStyle: "bold"
-                        },
-                        stacked: true
-                    }]
+                            },
+                            ticks: {
+                                padding: 10,
+                                fontColor: "rgba(255,255,255, 0.8)",
+                                fontStyle: "bold"
+                            },
+                            stacked: true
+                        }]
+                    }
                 }
-            }
+            });
+        }).catch(function (error) {
+            console.log(error);
+            //showajaxerror('#mdal_publishRaffle',  error.response.data.error['message']);
         });
-
-        //___________________________________
-
 
         ctx = document.getElementById('emailsCampaignChart').getContext("2d");
 

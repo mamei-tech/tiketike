@@ -27,7 +27,6 @@ Route::group([
     Route::get('/cliproml', 'PromoController@clients')->name('v1.promo.clients');
     Route::post('/casckit', 'PromoController@promodata')->name('v1.promo.promodata');
     Route::post('/fetch', 'URaffleController@fetchRaffle')->name('v1.uraffle.fetch');
-    Route::get('/activeusers', 'ActiveUsersController@active')->name('v1.customadmin.activeusers');
 });
 
 Route::group([
@@ -37,4 +36,5 @@ Route::group([
     Route::post('/filterByPercent', 'RaffleFrontController@filterByPercent')->name('filter.by.percent');
     Route::post('/filterByPrice', 'RaffleFrontController@filterByPrice')->name('filter.by.price');
     Route::post('/getUser', 'UserFrontController@getUser')->name('get.user');
+    Route::get('/activeusers', 'ActiveUsersController@activeUsers')->name('v1.customadmin.activeusers');
 });
