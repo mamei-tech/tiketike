@@ -1,3 +1,6 @@
+
+//import {AxiosInstance as axios} from "axios";
+
 demo = {
     initPickColor: function(){
         $('.pick-class-label').click(function(){
@@ -771,28 +774,78 @@ demo = {
         //     options: gradientChartOptionsConfiguration
         // });
 
+        //this chart show users's traffic in a period (actually 30 days)
+        let maleTraffic   = [50, 55, 54,  10, 75, 45, 19, 82, 89, 56, 23, 24, 100, 57, 65,  10, 29, 74, 92, 57, 13, 78, 18, 97, 34, 56, 12, 94, 74, 56];
+        let femaleTraffic = [50,  5, 50, 100, 32, 67, 89, 12, 23, 61, 89, 70,  10,  5, 50, 100, 32, 67, 89, 12, 23, 61, 89, 70, 23, 76, 90, 12, 54, 83];
+
+        axios.post(route('v1.uraffle.computetval'), {
+            id: inputs['id'].val(),
+            profit: parseFloat(inputs['profit'].val()),
+            tcount: parseInt(this.value),
+            commissions: parseInt(inputs['commissions'].val()),
+            criteria: 'tprice'                                              // Can be 'tcount' or 'tprice'
+        }).then(function (response) {
+            //Set the ticket price input to the price computed by the server
+            inputs['tPrice'].val(response.data['tprice']);
+        }).catch(function (error) {
+            // console.log(error);
+            showajaxerror('#mdal_publishRaffle',  error.response.data.error['message']);
+        });
+
+        let totalTraffic  = Array(30);
+        for (let i = 0; i < maleTraffic.length; i++)
+            totalTraffic[i] = maleTraffic[i] + femaleTraffic[i];
         myChart = new Chart(ctx, {
-            type: 'line',
+            type: 'bar',
             data: {
-                labels: ["23", "22", "21", "20", "19", "18", "17", "16", "15", "14", "13", "12", "11", "10", "9", "8", "7", "6", "5", "4", "3", "2", "1", "0"],
+                labels: [
+                    "29", "28", "27", "26", "25", "24", "23", "22", "21", "20",
+                    "19", "18", "17", "16", "15", "14", "13", "12", "11", "10",
+                     "9",  "8",  "7",  "6",  "5",  "4",  "3",  "2",  "1",  "0",
+                ],
                 datasets: [{
-                    label: "Active Users",
-                    borderColor: chartColor,
-                    pointBorderColor: chartColor,
-                    pointBackgroundColor: "rgba(0, 180, 0, 0.5)",
-                    pointHoverBackgroundColor: "rgba(0, 180, 0, 0.5)",
-                    pointHoverBorderColor: chartColor,
-                    pointBorderWidth: 1,
-                    pointHoverRadius: 7,
-                    pointHoverBorderWidth: 2,
-                    pointRadius: 5,
-                    fill: false,
-                    backgroundColor: transparent,
-                    borderWidth: 2,
-                    data: [10, 5, 50, 100, 32, 67, 89, 12, 23, 61, 89, 70, 10, 5, 50, 100, 32, 67, 89, 12, 23, 61, 89, 70]
-                }]
+                        label: "Active Male Users",
+                        borderColor: chartColor,
+                        fill: false,
+                        backgroundColor: "rgba(0, 0, 230, 0.5)",
+                        hoverBackgroundColor: "rgba(0, 0, 230, 0.8)",
+                        borderWidth: 1,
+                        data: maleTraffic,
+                    },
+                    {
+                        label: "Active Female Users",
+                        borderColor: chartColor,
+                        fill: false,
+                        backgroundColor: "rgba(230, 0, 100, 0.5)",
+                        hoverBackgroundColor: "rgba(230, 0, 100, 0.8)",
+                        borderWidth: 1,
+                        data: femaleTraffic,
+                    },
+                    {
+                        label: "Active Users",
+                        borderColor: "rgba(255, 255, 255, 1)",
+                        pointBorderColor: chartColor,
+                        pointBackgroundColor: "rgba(0, 200, 0, 0.8)",
+                        pointHoverBackgroundColor: "rgba(0, 200, 0, 1)",
+                        pointHoverBorderColor: chartColor,
+                        pointBorderWidth: 1,
+                        pointHoverRadius: 6,
+                        pointHoverBorderWidth: 2,
+                        pointRadius: 4,
+                        fill: false,
+                        borderWidth: 1.5,
+                        data: totalTraffic,
+                        type: 'line',
+                    }
+                ]
             },
             options: {
+                title: {
+                    text: "Active users in the last 30 days",
+                    display: true,
+                    fontSize: 18,
+                    fontColor: "rgba(0, 0, 0, 1)",
+                },
                 layout: {
                     padding: {
                         left: 20,
@@ -832,8 +885,8 @@ demo = {
                             display: true,
                             color: "rgba(255,255,255, 0.2)",
                             zeroLineColor: "transparent"
-                        }
-
+                        },
+                        stacked: true
                     }],
                     xAxes: [{
                         gridLines: {
@@ -845,7 +898,8 @@ demo = {
                             padding: 10,
                             fontColor: "rgba(255,255,255, 0.8)",
                             fontStyle: "bold"
-                        }
+                        },
+                        stacked: true
                     }]
                 }
             }

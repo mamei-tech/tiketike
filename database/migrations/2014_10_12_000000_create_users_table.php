@@ -93,6 +93,15 @@ class CreateUsersTable extends Migration
                 ->on('users')
                 ->onDelete('cascade');
         });
+
+        Schema::create('activeusers', function (Blueprint $table) {
+            $table->bigInteger('id');
+            $table->integer('male_count')->default(0);
+            $table->integer('female_count')->default(0);
+            $table->timestamps();
+
+            $table->primary('id');
+        });
     }
 
     /**
@@ -107,5 +116,6 @@ class CreateUsersTable extends Migration
         Schema::dropIfExists('cities');
         Schema::dropIfExists('countries');
         Schema::dropIfExists('users');
+        Schema::dropIfExists('activeusers');
     }
 }

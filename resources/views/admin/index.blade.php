@@ -87,36 +87,35 @@
     </div>
 
     <div class="card-body active-users-chart">
-        <h3><b>Active Users</b> in the last 24 hours</h3>
         <div class="chart-area">
-            <canvas id="activeUsers"></canvas>
+            <canvas id="activeUsers" class="active-users-canvas"></canvas>
         </div>
     </div>
 
-    <div class="row">
-        <div class="card data-section-midle-row">
-            <h3>Users Data</h3>
-            @include('admin.partials.tables.dash_users_table')
-        </div>
-        <div class="card data-section-midle-row">
-            <h3>Raffles Data</h3>
-            @include('admin.partials.tables.dash_raffles_table')
-        </div>
-    </div>
+    {{--<div class="row">--}}
+        {{--<div class="card data-section-midle-row">--}}
+            {{--<h3>Users Data</h3>--}}
+            {{--@include('admin.partials.tables.dash_users_table')--}}
+        {{--</div>--}}
+        {{--<div class="card data-section-midle-row">--}}
+            {{--<h3>Raffles Data</h3>--}}
+            {{--@include('admin.partials.tables.dash_raffles_table')--}}
+        {{--</div>--}}
+    {{--</div>--}}
 
-    <div class="row">
-        <div class="card data-section-midle-row data-section-full-row">
-            <h3>Tickets Data</h3>
-            @include('admin.partials.tables.dash_tickets_table')
-        </div>
-    </div>
+    {{--<div class="row">--}}
+        {{--<div class="card data-section-midle-row data-section-full-row">--}}
+            {{--<h3>Tickets Data</h3>--}}
+            {{--@include('admin.partials.tables.dash_tickets_table')--}}
+        {{--</div>--}}
+    {{--</div>--}}
 
-    <div class="row">
-        <div class="card data-section-midle-row data-section-full-row">
-            <h3>Money Data</h3>
-            @include('admin.partials.tables.dash_money_table')
-        </div>
-    </div>
+    {{--<div class="row">--}}
+        {{--<div class="card data-section-midle-row data-section-full-row">--}}
+            {{--<h3>Money Data</h3>--}}
+            {{--@include('admin.partials.tables.dash_money_table')--}}
+        {{--</div>--}}
+    {{--</div>--}}
 
     {{--<div class="row">--}}
         {{--<div class="col-lg-4 col-md-6">--}}

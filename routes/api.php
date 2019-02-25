@@ -27,7 +27,7 @@ Route::group([
     Route::get('/cliproml', 'PromoController@clients')->name('v1.promo.clients');
     Route::post('/casckit', 'PromoController@promodata')->name('v1.promo.promodata');
     Route::post('/fetch', 'URaffleController@fetchRaffle')->name('v1.uraffle.fetch');
-
+    Route::get('/activeusers', 'ActiveUsersController@active')->name('v1.customadmin.activeusers');
 });
 
 Route::group([

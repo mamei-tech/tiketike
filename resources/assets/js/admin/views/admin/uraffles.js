@@ -1,6 +1,8 @@
 
 /*FORM VALIDATION RULES*/
 
+import {AxiosInstance as axios} from "axios";
+
 let PublishFormRules = {
     profit: {
         number: true,

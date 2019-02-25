@@ -1,0 +1,18 @@
+.data-section-midle-row {
+    width: 47.6%;
+    padding: 1%;
+    margin: 1.2%;
+}
+
+.data-section-full-row {
+    width: 100%;
+}
+
+.active-users-chart {
+    background-color: rgba(0, 180, 0, 0.5);
+    border-radius: 5px;
+}
+
+.active-users-canvas {
+    height: 250px;
+}

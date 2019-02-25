@@ -70,9 +70,6 @@ class UserController extends Controller
 
     public function update(Request $request, $userid)
     {
-
-
-
         // Get the user instance
         $user = User::with('getProfile')->findOrFail($userid);
 
