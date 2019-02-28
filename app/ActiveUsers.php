@@ -27,4 +27,29 @@ class ActiveUsers extends Model
         $days[0]->female_count  = 0;
         $days[0]->save();
     }
+
+    public static function activeUsersCountInDay($day) {
+        $currentDay = ActiveUsers::find($day);
+        return $currentDay->male_count + $currentDay->female_count;
+    }
+
+    //Update active users in current day.
+    public static function updateActiveUsers() {
+        $maleCount      = 0;
+        $femaleCount    = 0;
+        User::chunk(1000, function ($users) use (&$maleCount, &$femaleCount){
+            foreach ($users as $u) {
+                if ($u->logged) {
+                    if ($u->getProfile->gender == 'male')
+                        $maleCount++;
+                    else
+                        $femaleCount++;
+                }
+            }
+        });
+        $loggedUsersCount           = $maleCount + $femaleCount;
+        $registeredLoggedUsersCount = ActiveUsers::activeUsersCountInDay(0);
+        if ($loggedUsersCount > $registeredLoggedUsersCount)
+            ActiveUsers::updateCurrentDay($maleCount, $femaleCount);
+    }
 }

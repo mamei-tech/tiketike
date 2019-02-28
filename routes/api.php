@@ -36,5 +36,12 @@ Route::group([
     Route::post('/filterByPercent', 'RaffleFrontController@filterByPercent')->name('filter.by.percent');
     Route::post('/filterByPrice', 'RaffleFrontController@filterByPrice')->name('filter.by.price');
     Route::post('/getUser', 'UserFrontController@getUser')->name('get.user');
-    Route::get('/activeusers', 'ActiveUsersController@activeUsers')->name('v1.customadmin.activeusers');
+});
+
+Route::group([
+    'namespace' => 'Api\V1',
+    //'middleware' => ['auth:api'],
+], function (){
+    Route::get('/activeusers', 'DashboardController@activeUsers')->name('v1.customadmin.activeusers');
+    Route::get('/publishedraffles', 'DashboardController@publishedRaffles')->name('v1.customadmin.publishedraffles');
 });

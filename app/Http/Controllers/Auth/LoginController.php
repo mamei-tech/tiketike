@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Repositories\ActiveUsersRepository;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
@@ -70,6 +71,11 @@ class LoginController extends Controller
 
             $this->clearLoginAttempts($request);
 
+            /*This code section belongs to mamei. Here the logged user is marked as logged*/
+
+            ActiveUsersRepository::markUserAsLogged($user);
+
+            /*End of mamei section code*/
 
             return $this->authenticated($request, $this->guard()->user())
                 ? redirect()->back(): redirect()->back();
@@ -100,6 +106,11 @@ class LoginController extends Controller
 
         $request->session()->invalidate();
 
+        /*This code section belongs to mamei. Here the logged user is marked as logged*/
+
+        ActiveUsersRepository::markUserAsUnlogged($user);
+
+        /*End of mamei code section*/
 
         return redirect('/');
     }

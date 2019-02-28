@@ -12,22 +12,6 @@
 @section('content')
     {{-- TODO Personalize this --}}
 
-    {{--This div contain --}}
-    <div hidden>
-        <data id="jan" value="{{$actRafflesByMonth[0]}}"></data>
-        <data id="feb" value="{{$actRafflesByMonth[1]}}"></data>
-        <data id="mar" value="{{$actRafflesByMonth[2]}}"></data>
-        <data id="apr" value="{{$actRafflesByMonth[3]}}"></data>
-        <data id="may" value="{{$actRafflesByMonth[4]}}"></data>
-        <data id="jun" value="{{$actRafflesByMonth[5]}}"></data>
-        <data id="jul" value="{{$actRafflesByMonth[6]}}"></data>
-        <data id="aug" value="{{$actRafflesByMonth[7]}}"></data>
-        <data id="sep" value="{{$actRafflesByMonth[8]}}"></data>
-        <data id="oct" value="{{$actRafflesByMonth[9]}}"></data>
-        <data id="nov" value="{{$actRafflesByMonth[10]}}"></data>
-        <data id="dec" value="{{$actRafflesByMonth[11]}}"></data>
-    </div>
-
     <div class="row">
         <div class="col-md-12">
             <div class="card card-stats card-raised">
@@ -86,22 +70,38 @@
         </div>
     </div>
 
-    <div class="card-body active-users-chart">
-        <div class="chart-area">
-            <canvas id="activeUsers" class="active-users-canvas"></canvas>
+    {{--<div class="card-body">--}}
+        {{--<div class="chart-area">--}}
+            {{--<canvas id="activeUsers"></canvas>--}}
+            {{--<div class="stats">--}}
+                {{--<i id="refreshActUsers" class="now-ui-icons arrows-1_refresh-69"></i>--}}
+            {{--</div>--}}
+        {{--</div>--}}
+    {{--</div>--}}
+
+    <div class="row">
+        <div class="card-body data-section-midle-row data-section-full-row">
+            <div class="chart-area">
+                <canvas id="activeUsers" class="active-users-canvas"></canvas>
+                {{--<div class="stats">--}}
+                    {{--<i id="refreshActUsers" class="now-ui-icons arrows-1_refresh-69"></i>--}}
+                {{--</div>--}}
+            </div>
         </div>
     </div>
 
-    {{--<div class="row">--}}
-        {{--<div class="card data-section-midle-row">--}}
-            {{--<h3>Users Data</h3>--}}
-            {{--@include('admin.partials.tables.dash_users_table')--}}
-        {{--</div>--}}
-        {{--<div class="card data-section-midle-row">--}}
-            {{--<h3>Raffles Data</h3>--}}
-            {{--@include('admin.partials.tables.dash_raffles_table')--}}
-        {{--</div>--}}
-    {{--</div>--}}
+    <div class="row">
+        <div class="card data-section-midle-row">
+            <div class="chart-area">
+                <canvas id="usersData"></canvas>
+            </div>
+        </div>
+        <div class="card data-section-midle-row">
+            <div class="chart-area">
+                <canvas id="rafflesData"></canvas>
+            </div>
+        </div>
+    </div>
 
     {{--<div class="row">--}}
         {{--<div class="card data-section-midle-row data-section-full-row">--}}
