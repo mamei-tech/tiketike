@@ -82,7 +82,7 @@
     <div class="row">
         <div class="card-body data-section-midle-row data-section-full-row">
             <div class="chart-area">
-                <canvas id="activeUsers" class="active-users-canvas"></canvas>
+                <canvas id="activeUsers" class="bar-chart-canvas"></canvas>
                 {{--<div class="stats">--}}
                     {{--<i id="refreshActUsers" class="now-ui-icons arrows-1_refresh-69"></i>--}}
                 {{--</div>--}}
@@ -99,6 +99,32 @@
         <div class="card data-section-midle-row">
             <div class="chart-area">
                 <canvas id="rafflesData"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="card data-section-midle-row">
+            <div class="chart-area">
+                <canvas id="ticketsData" class="bar-chart-canvas"></canvas>
+            </div>
+        </div>
+        <div class="card data-section-midle-row">
+            <div class="chart-area">
+                <canvas id="ticketsBySocialNetworksData" class="bar-chart-canvas"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="card data-section-midle-row">
+            <div class="chart-area">
+                <canvas id="moneyByTickets"></canvas>
+            </div>
+        </div>
+        <div class="card data-section-midle-row">
+            <div class="chart-area">
+                <canvas id="xxx"></canvas>
             </div>
         </div>
     </div>
@@ -380,143 +406,143 @@
             {{--</div>--}}
         {{--</div>--}}
     {{--</div>--}}
-    <div class="row">
-        <div class="col-md-12">
-            <div class="card">
-                <div class="card-header">
-                    <h4 class="card-title"> Best Selling Products</h4>
-                </div>
-                <div class="card-body">
-                    <div class="table-responsive">
-                        <table class="table table-shopping">
-                            <thead class="">
-                            <th class="text-center">
-                            </th>
-                            <th>
-                                Product
-                            </th>
-                            <th>
-                                Color
-                            </th>
-                            <th>
-                                Size
-                            </th>
-                            <th class="text-right">
-                                Price
-                            </th>
-                            <th class="text-right">
-                                Qty
-                            </th>
-                            <th class="text-right">
-                                Amount
-                            </th>
-                            </thead>
-                            <tbody>
-                            <tr>
-                                <td>
-                                    <div class="img-container">
-                                        <img src="../assets/img/saint-laurent.jpg" alt="...">
-                                    </div>
-                                </td>
-                                <td class="td-name">
-                                    <a href="#jacket">Suede Biker Jacket</a>
-                                    <br/>
-                                    <small>by Saint Laurent</small>
-                                </td>
-                                <td>
-                                    Black
-                                </td>
-                                <td>
-                                    M
-                                </td>
-                                <td class="td-number">
-                                    <small>€</small>
-                                    3,390
-                                </td>
-                                <td class="td-number">
-                                    1
-                                </td>
-                                <td class="td-number">
-                                    <small>€</small>
-                                    549
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="img-container">
-                                        <img src="../assets/img/balmain.jpg" alt="...">
-                                    </div>
-                                </td>
-                                <td class="td-name">
-                                    <a href="#pants">Jersey T-Shirt</a>
-                                    <br/>
-                                    <small>by Balmain</small>
-                                </td>
-                                <td>
-                                    Black
-                                </td>
-                                <td>
-                                    M
-                                </td>
-                                <td class="td-number">
-                                    <small>€</small>
-                                    499
-                                </td>
-                                <td class="td-number">
-                                    2
-                                </td>
-                                <td class="td-number">
-                                    <small>€</small>
-                                    998
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="img-container">
-                                        <img src="../assets/img/prada.jpg" alt="...">
-                                    </div>
-                                </td>
-                                <td class="td-name">
-                                    <a href="#nothing">Slim-Fit Swim Short</a>
-                                    <br/>
-                                    <small>by Prada</small>
-                                </td>
-                                <td>
-                                    Red
-                                </td>
-                                <td>
-                                    M
-                                </td>
-                                <td class="td-number">
-                                    <small>€</small>
-                                    200
-                                </td>
-                                <td class="td-number">
-                                    1
-                                </td>
-                                <td class="td-number">
-                                    <small>€</small>
-                                    799
-                                </td>
-                            </tr>
-                            <tr>
-                                <td colspan="5">
-                                </td>
-                                <td class="td-total">
-                                    Total
-                                </td>
-                                <td class="td-price">
-                                    <small>€</small>
-                                    2,346
-                                </td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    {{--<div class="row">--}}
+        {{--<div class="col-md-12">--}}
+            {{--<div class="card">--}}
+                {{--<div class="card-header">--}}
+                    {{--<h4 class="card-title"> Best Selling Products</h4>--}}
+                {{--</div>--}}
+                {{--<div class="card-body">--}}
+                    {{--<div class="table-responsive">--}}
+                        {{--<table class="table table-shopping">--}}
+                            {{--<thead class="">--}}
+                            {{--<th class="text-center">--}}
+                            {{--</th>--}}
+                            {{--<th>--}}
+                                {{--Product--}}
+                            {{--</th>--}}
+                            {{--<th>--}}
+                                {{--Color--}}
+                            {{--</th>--}}
+                            {{--<th>--}}
+                                {{--Size--}}
+                            {{--</th>--}}
+                            {{--<th class="text-right">--}}
+                                {{--Price--}}
+                            {{--</th>--}}
+                            {{--<th class="text-right">--}}
+                                {{--Qty--}}
+                            {{--</th>--}}
+                            {{--<th class="text-right">--}}
+                                {{--Amount--}}
+                            {{--</th>--}}
+                            {{--</thead>--}}
+                            {{--<tbody>--}}
+                            {{--<tr>--}}
+                                {{--<td>--}}
+                                    {{--<div class="img-container">--}}
+                                        {{--<img src="../assets/img/saint-laurent.jpg" alt="...">--}}
+                                    {{--</div>--}}
+                                {{--</td>--}}
+                                {{--<td class="td-name">--}}
+                                    {{--<a href="#jacket">Suede Biker Jacket</a>--}}
+                                    {{--<br/>--}}
+                                    {{--<small>by Saint Laurent</small>--}}
+                                {{--</td>--}}
+                                {{--<td>--}}
+                                    {{--Black--}}
+                                {{--</td>--}}
+                                {{--<td>--}}
+                                    {{--M--}}
+                                {{--</td>--}}
+                                {{--<td class="td-number">--}}
+                                    {{--<small>€</small>--}}
+                                    {{--3,390--}}
+                                {{--</td>--}}
+                                {{--<td class="td-number">--}}
+                                    {{--1--}}
+                                {{--</td>--}}
+                                {{--<td class="td-number">--}}
+                                    {{--<small>€</small>--}}
+                                    {{--549--}}
+                                {{--</td>--}}
+                            {{--</tr>--}}
+                            {{--<tr>--}}
+                                {{--<td>--}}
+                                    {{--<div class="img-container">--}}
+                                        {{--<img src="../assets/img/balmain.jpg" alt="...">--}}
+                                    {{--</div>--}}
+                                {{--</td>--}}
+                                {{--<td class="td-name">--}}
+                                    {{--<a href="#pants">Jersey T-Shirt</a>--}}
+                                    {{--<br/>--}}
+                                    {{--<small>by Balmain</small>--}}
+                                {{--</td>--}}
+                                {{--<td>--}}
+                                    {{--Black--}}
+                                {{--</td>--}}
+                                {{--<td>--}}
+                                    {{--M--}}
+                                {{--</td>--}}
+                                {{--<td class="td-number">--}}
+                                    {{--<small>€</small>--}}
+                                    {{--499--}}
+                                {{--</td>--}}
+                                {{--<td class="td-number">--}}
+                                    {{--2--}}
+                                {{--</td>--}}
+                                {{--<td class="td-number">--}}
+                                    {{--<small>€</small>--}}
+                                    {{--998--}}
+                                {{--</td>--}}
+                            {{--</tr>--}}
+                            {{--<tr>--}}
+                                {{--<td>--}}
+                                    {{--<div class="img-container">--}}
+                                        {{--<img src="../assets/img/prada.jpg" alt="...">--}}
+                                    {{--</div>--}}
+                                {{--</td>--}}
+                                {{--<td class="td-name">--}}
+                                    {{--<a href="#nothing">Slim-Fit Swim Short</a>--}}
+                                    {{--<br/>--}}
+                                    {{--<small>by Prada</small>--}}
+                                {{--</td>--}}
+                                {{--<td>--}}
+                                    {{--Red--}}
+                                {{--</td>--}}
+                                {{--<td>--}}
+                                    {{--M--}}
+                                {{--</td>--}}
+                                {{--<td class="td-number">--}}
+                                    {{--<small>€</small>--}}
+                                    {{--200--}}
+                                {{--</td>--}}
+                                {{--<td class="td-number">--}}
+                                    {{--1--}}
+                                {{--</td>--}}
+                                {{--<td class="td-number">--}}
+                                    {{--<small>€</small>--}}
+                                    {{--799--}}
+                                {{--</td>--}}
+                            {{--</tr>--}}
+                            {{--<tr>--}}
+                                {{--<td colspan="5">--}}
+                                {{--</td>--}}
+                                {{--<td class="td-total">--}}
+                                    {{--Total--}}
+                                {{--</td>--}}
+                                {{--<td class="td-price">--}}
+                                    {{--<small>€</small>--}}
+                                    {{--2,346--}}
+                                {{--</td>--}}
+                            {{--</tr>--}}
+                            {{--</tbody>--}}
+                        {{--</table>--}}
+                    {{--</div>--}}
+                {{--</div>--}}
+            {{--</div>--}}
+        {{--</div>--}}
+    {{--</div>--}}
 @endsection
 
 @section('footerScripts')

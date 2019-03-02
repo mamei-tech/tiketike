@@ -10,11 +10,6 @@
     background-color: white;
 }
 
-.active-users-chart {
-    background-color: #1e3d60;
-    border-radius: 5px;
-}
-
-.active-users-canvas {
-    height: 250px;
+.bar-chart-canvas {
+    height: 270px;
 }

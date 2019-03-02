@@ -146,14 +146,11 @@ class Raffle extends Model implements HasMedia
             }
             $ticket->buyer = $user->id;
             $ticket->sold = true;
-            $ticket->save();
             array_push($ticketsBuyed, $ticket);
         }
 
         //TODO transfer the money from user account to tiketike account
         //if fail, return some error view
-
-        $this->getTickets()->saveMany($ticketsBuyed);
 
         if ($referralId != null) //Ticket buyed by a referral.
         {
@@ -167,6 +164,8 @@ class Raffle extends Model implements HasMedia
             $referralsBuys = [];
             foreach ($ticketsBuyed as $ticket)
             {
+                $ticket->soldByCom = true; //Ticket has been buyed by referrals
+
                 $refBuy = new ReferralsBuys;
                 $refBuy->comisionist = $referralId;
                 $refBuy->ticket = $ticket->id;
@@ -177,6 +176,8 @@ class Raffle extends Model implements HasMedia
             $referralUserProfile->save();
             $referralUser->getReferralsBuys()->saveMany($referralsBuys);
         }
+
+        $this->getTickets()->saveMany($ticketsBuyed);
 
         return true;
     }

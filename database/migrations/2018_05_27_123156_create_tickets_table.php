@@ -20,6 +20,7 @@ class CreateTicketsTable extends Migration
             $table->unsignedBigInteger('raffle');          //FK of raffles
             $table->unsignedInteger('buyer')->nullable();  //FK of users
             $table->boolean('sold')->default(false);
+            $table->boolean('soldByCom')->default(false);
             $table->boolean('bingo')->default(false);
             $table->timestamps();
 

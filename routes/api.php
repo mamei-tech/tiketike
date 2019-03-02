@@ -44,4 +44,8 @@ Route::group([
 ], function (){
     Route::get('/activeusers', 'DashboardController@activeUsers')->name('v1.customadmin.activeusers');
     Route::get('/publishedraffles', 'DashboardController@publishedRaffles')->name('v1.customadmin.publishedraffles');
+    Route::get('/registeredusers', 'DashboardController@registeredUsers')->name('v1.customadmin.registeredusers');
+    Route::get('/rafflesbystatus', 'DashboardController@rafflesByStatus')->name('v1.customadmin.rafflesbystatus');
+    Route::get('/soldedtickets', 'DashboardController@soldedTickets')->name('v1.customadmin.soldedtickets');
+    Route::get('/soldedticketsbysocialnetworks', 'DashboardController@soldedTicketsBySocialNetworks')->name('v1.customadmin.soldedticketsbysocialnetworks');
 });
