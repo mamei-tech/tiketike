@@ -72,7 +72,6 @@ class UserController extends Controller
     {
 
 
-
         // Get the user instance
         $user = User::with('getProfile')->findOrFail($userid);
 
