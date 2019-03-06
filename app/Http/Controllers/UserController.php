@@ -21,6 +21,7 @@ class UserController extends Controller
 {
 
     private $raffleRepository;
+
     public function __construct(RaffleRepository $raffleRepository)
     {
         // I think this is not needed because I have this in the route middleware
@@ -33,7 +34,7 @@ class UserController extends Controller
     {
         $current = User::findOrFail(intval($userid));
         $suggested = $this->raffleRepository->getSuggested();
-        $promos = Promo::where('type',1)->where('status',1)->get();
+        $promos = Promo::where('type', 1)->where('status', 1)->get();
         return view('user', [
             'user' => $current,
             'suggested' => $suggested,
@@ -67,12 +68,8 @@ class UserController extends Controller
     }
 
 
-
     public function update(Request $request, $userid)
     {
-
-
-
         // Get the user instance
         $user = User::with('getProfile')->findOrFail($userid);
 
@@ -91,6 +88,7 @@ class UserController extends Controller
         $user->name = $request->get('firstname');
         $user->lastname = $request->get('lastname');
         $user->email = $request->get('email');
+        $user->api_token = $user->getApiToken();
 
         if (isset($request->all()['birthdate']))
             $user->getProfile->birthdate = date('Y-m-d', strtotime($request->get('birthdate')));
@@ -106,23 +104,19 @@ class UserController extends Controller
             $user->getProfile->addrss = $request->get('address');
         if (isset($request->all()['zipcode']))
             $user->getProfile->zipcode = $request->get('zipcode');
+        if (isset($request->all()['phone']))
+            $user->getProfile->phone = $request->get('phone');
 
         // Saving user and user's profile
         $user->getProfile->save();
         $user->save();
-        $roles = array();
-        foreach (array_get($request->all(), 'roles', []) as $role) {
-            array_push($roles,$role);
-        }
-        $user->syncRoles($roles);
 
         // Logs the actions
         Log::info(LogsMsgs::$msgs['accepted'], [$user->getProfile->username, $userid]);
 
-        return redirect()->route('profile.info',['userid'=>$userid])
+        return redirect()->route('profile.info', ['userid' => $userid])
             ->with('success', 'User "' . $user->getProfile->username . '" updated successfully');
     }
-
 
 
 }
