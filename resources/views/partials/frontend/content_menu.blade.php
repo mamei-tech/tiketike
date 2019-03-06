@@ -46,8 +46,6 @@
 					7 </span>
                 </a>
 
-            @include('partials.front_modals.notification_modal')
-
             <li class="hidden-xs"><img class="styleBorderL colorB" src="{{ asset('pics/front/borderLeft.svg') }}" alt="">
             </li>
             <li class="hidden-xs"><a href="" class="icon"><img class="stylebandera" src="{{ asset('pics/front/ban2.jpg') }}"
