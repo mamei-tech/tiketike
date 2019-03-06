@@ -1,5 +1,9 @@
 import axios from 'axios';
 $(document).ready(function () {
+
+    $("#terminosModal").modal("show");
+
+
     $('.select2').select2();
     /*  SETTING UP AXIOS HEADERS  */
     axios.defaults.headers.common['Authorization'] = "Bearer " + $('meta[name=access-token]').attr('content');
