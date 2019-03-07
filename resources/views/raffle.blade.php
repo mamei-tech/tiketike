@@ -9,19 +9,19 @@
             <!--Contenido ticket-->
             <div class="col-xs-12 col-sm-7 col-sm-push-5 col-lg-7 col-lg-push-3 padding-top-20 paddingLeft0 padding-rigth-0">
                 <div class="contenidoTicket" id="scrollContent">
-                    <div class="col-xs-12">
+                    <div class="col-xs-12 ">
                         <div class="col-xs-4 col-md-3">
                             <img src="{{ $raffle->getOwner->getMedia('avatars')->first()->getUrl() }}" alt="Ringo" class="imgUsuario sombraImgUser2">
                         </div>
                         <div class="col-xs-8 col-md-9 texto14 sinkinSans600SB padding0">
                             <span class="colorN">{{ $raffle->getOwner->name }} {{ $raffle->getOwner->lastname }}</span>
                             <span class="ti-location-pin"></span>
-                            <span class="">{{ $raffle->getLocation->name }}</span>
+                            <span class=""><img src="{{ asset('pics/countries/'.$raffle->getLocation->name.'.png') }}">{{ $raffle->getLocation->name }}</span>
                             <p class="texto18 text-uppercase texto-negrita colorN padding-top-10"
                                style="font-family: sinkinSans700Bold">{{ $raffle->title }}</p>
                         </div>
                     </div>
-                    <div class="col-xs-12 ">
+                    <div class="col-xs-12 padding-top-20">
                         <div id="myCarousel" class="carousel carouselTicket slide" data-ride="carousel">
                             <!-- Indicators -->
                             <div class="carousel-inner" role="listbox">
@@ -177,7 +177,7 @@
                         </div>
                         <div class="pull-left padding-left10 texto10 colorV padding-top-10">
                             <span class="sinkinSans200LI">Costo:</span>
-                            <span class="sinkinSans700B colorV">{{ $raffle->tickets_price }}</span>
+                            <span class="sinkinSans700B colorV" id="raffleprice">{{ $raffle->tickets_price }}</span>
                         </div>
                     </div>
                     <div class="col-xs-12 borderBottomDashed"></div>
@@ -213,6 +213,13 @@
                                     class="btn btn-primary bg_green extraer sinkinSans700B text-uppercase">Comprar
                             </a>
                         </div>
+                        <form method="post" action="{{ route('raffle.tickets.buy',['raffleId' => $raffle->id]) }}" id="payform">
+                            {{ csrf_field() }}
+                            <input type="hidden" id="stripeToken" name="stripeToken" />
+                            <input type="hidden" id="stripeEmail" name="stripeEmail" />
+                            <input type="hidden" id="amountInCents" name="amountInCents" />
+                            <input type="hidden" id="ticketsarray" name="tickets[]">
+                        </form>
                     </div>
                 </div>
                 <div class="bottomLIzquierdo"></div>
@@ -225,7 +232,54 @@
 @stop
 @section('additional_scripts')
     <script src="{{ asset('js/raffle.min.js') }}"></script>
-    <script>
+    <script src="https://checkout.stripe.com/checkout.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var handler = StripeCheckout.configure({
+                key: '{{ config('services.stripe.key') }}',
+                image: '{{ asset('pics/front/logonv.png') }}',
+                token: function(token) {
+                    $("#stripeToken").val(token.id);
+                    $("#stripeEmail").val(token.email);
+                    $("#amountInCents").val({{$raffle->tickets_price}});
+                    $("#payform").submit();
+                }
+            });
+
+            $('#buyTickets').on('click', function(e) {
+                var siChequeados = $('input:checkbox:checked').map(function() {
+                    return this.value;
+                }).get();
+                $('#ticketsarray').val(siChequeados);
+                var price = $('#raffleprice').html();
+                var amountInCents = parseFloat(price).toFixed(2) * siChequeados.length * 100;
+                var displayAmount = parseFloat(amountInCents/100).toFixed(2);
+                var handler = StripeCheckout.configure({
+                    key: '{{ config('services.stripe.key') }}',
+                    image: '{{ asset('pics/front/logonv.png') }}',
+                    token: function(token) {
+                        $("#stripeToken").val(token.id);
+                        $("#stripeEmail").val(token.email);
+                        $("#amountInCents").val(amountInCents);
+                        $("#payform").submit();
+                    }
+                });
+                $('input#amountInCents').val(amountInCents);
+
+                // Open Checkout with further options
+                handler.open({
+                    name: 'TikeTikes tickets buy',
+                    description: 'Tickets price ($' + displayAmount + ')',
+                    amount: amountInCents,
+                });
+                e.preventDefault();
+            });
+
+// Close Checkout on page navigation
+            $(window).on('popstate', function() {
+                handler.close();
+            });
+        });
         $('#comenta').click(function (e) {
             e.preventDefault();
             $('#comentarios').fadeIn("300");

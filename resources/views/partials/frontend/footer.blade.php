@@ -1,7 +1,14 @@
 
 
 <footer >
-    <div class="piedepagina" ></div>
+    <div class="piedepagina" >
+
+        <li class="margin-left-20 pull-right padding-top-20 ">
+            <a data-toggle="modal" href="#terminosModal" title="Términos y Condiciones"
+               class="colorB texto16 sinkinSans500M padding-top-40">Términos y Condiciones</a>
+            @include('partials.front_modals.terminos_y_condiciones_modal')
+        </li>
+    </div>
 </footer>
 
 <script src="{{ asset('js/front/jquery-1.11.2.min.js') }}"></script>
@@ -27,9 +34,12 @@
 <script src="{{ asset('js/front/chart.js') }}"></script>
 <script src="{{ asset('js/front/slick.js') }}"></script>
 <script src="{{ asset('js/front/plugins/select2/select2.min.js') }}"></script>
+<script src="{{ asset('js/front/uploader/modernizr.min.js') }}"></script>
+<script src="{{ asset('js/front/uploader/uploadHBR.min.js') }}"></script>
 
 <script>
     $(document).ready(function () {
+        $('.select2').select2();
         Agencia.init();
 
         $("#owl-demo").owlCarousel({

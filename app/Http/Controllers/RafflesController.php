@@ -71,7 +71,7 @@ class RafflesController extends Controller
      * @param StoreRaffleRequest $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreRaffleRequest $request)
+    public function store(Request $request)
     {
         $raffle = new Raffle;
 
@@ -82,12 +82,15 @@ class RafflesController extends Controller
         $raffle->title      = $request->title;
         $raffle->description= $request->description;
         $raffle->price      = $request->price;
+        $raffle->location   = $request->localization;
 
         $raffle->save();
 
-        return redirect()
-            ->route('raffles.create',null, '303')
-            ->with('success','Raffle ' . $raffle->code . ' create successfully');
+        foreach ($request->base as $item) {
+            $raffle->addMediaFromBase64($item)->usingFileName('filename.jpg')->toMediaCollection('raffles','raffles');
+        }
+
+        return redirect()->route('main');
     }
 
     /**

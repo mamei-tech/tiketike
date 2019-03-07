@@ -22,12 +22,17 @@ class RaffleRepository
                     $q->where('buyer', '<>', $user);
                 })
                 ->where('owner', '<>', $user)
+                ->where('progress','<',100)
                 ->limit(3)
-                ->orderBy('activation_date', 'DESC')
+                ->orderBy('progress', 'DESC')
                 ->get();
             return $raffles;
         } else {
-            return Raffle::where('activation_date', '<>', null)->orderBy('activation_date', 'DESC')->limit(3)->get();
+            return Raffle::where('activation_date', '<>', null)
+                ->where('progress','<',100)
+                ->orderBy('progress', 'DESC')
+                ->limit(3)
+                ->get();
         }
     }
 
@@ -226,31 +231,40 @@ class RaffleRepository
      */
     public function almostsoldraffles()
     {
-
-        return Raffle::join('rafflestatus', 'raffles.status', '=', 'rafflestatus.id')
-            ->join('tickets', 'raffles.id', '=', 'tickets.raffle')
-            ->select(
-                'raffles.id',
-                'raffles.title',
-                'raffles.price',
-                'raffles.profit',
-                'raffles.tickets_price',
-                DB::raw('ABS((sum(tickets.sold) * 100) / count(tickets.id)) as progress'),
-                'raffles.activation_date')
-            ->where('rafflestatus.status', 'Published')
-            ->groupBy(
-                'raffles.id',
-                'raffles.title',
-                'raffles.price',
-                'raffles.profit',
-                'raffles.tickets_price',
-                'raffles.activation_date'
-            )
-            ->orderBy('progress', 'DESC')
-            ->having('progress', '<', 100)
-            ->having('progress', '>', 79)
+        $response = Raffle::with('getStatus','getCategory','getLocation')
+            ->whereHas('getStatus', function (Builder $q) {
+                $q->where('status','=', "Published");
+            })->orderBy('progress','DESC')
+            ->having('progress','>','79')
+            ->having('progress','<','100')
             ->take(32)
             ->get();
+        return $response;
+
+//        return Raffle::join('rafflestatus', 'raffles.status', '=', 'rafflestatus.id')
+//            ->join('tickets', 'raffles.id', '=', 'tickets.raffle')
+//            ->select(
+//                'raffles.id',
+//                'raffles.title',
+//                'raffles.price',
+//                'raffles.profit',
+//                'raffles.tickets_price',
+//                DB::raw('ABS((sum(tickets.sold) * 100) / count(tickets.id)) as progress'),
+//                'raffles.activation_date')
+//            ->where('rafflestatus.status', 'Published')
+//            ->groupBy(
+//                'raffles.id',
+//                'raffles.title',
+//                'raffles.price',
+//                'raffles.profit',
+//                'raffles.tickets_price',
+//                'raffles.activation_date'
+//            )
+//            ->orderBy('progress', 'DESC')
+//            ->having('progress', '<', 100)
+//            ->having('progress', '>', 79)
+//            ->take(8)
+//            ->get();
     }
 
     public function getAllProgress()

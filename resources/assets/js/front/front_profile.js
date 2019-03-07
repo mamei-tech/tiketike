@@ -55,28 +55,86 @@ $(document).ready(function () {
 
     /* ADDING CUSTOM VALIDATION RULE */
     // strong pasword rule
-    // $.validator.addMethod("pswchecker", function (value, element) {
-    //     if (value === "") {
-    //         return true;
-    //     }
-    //     else if (value.length < 8) {
-    //         return false;
-    //     }
-    //     else if (!value.match(/[A-z]/)) {
-    //         return false;
-    //     }
-    //     /* I don't know if necesary */
-    //     // else if(!value.match(/[A-Z]/)){
-    //     //     return false;
-    //     // }
-    //     else if (!value.match(/\d/)) {
-    //         return false;
-    //     }
-    //     else return true;
-    // }, "Password must be strong and its minimun length must be 8");
-    //
-    // /* INITIALIZATION OF VALIDATION PLUGINS */
-    // setFormValidation($('#div_formContainer').find('#ftm_profileUpdate'), UpdateFormRulesFront);
+    $.validator.addMethod("pswchecker", function (value, element) {
+        if (value === "") {
+            return true;
+        }
+        else if (value.length < 8) {
+            return false;
+        }
+        else if (!value.match(/[A-z]/)) {
+            return false;
+        }
+        /* I don't know if necesary */
+        // else if(!value.match(/[A-Z]/)){
+        //     return false;
+        // }
+        else if (!value.match(/\d/)) {
+            return false;
+        }
+        else return true;
+    }, "Password must be strong and its minimun length must be 8");
+
+    /* INITIALIZATION OF VALIDATION PLUGINS */
+    // setFormValidation($('#ftm_profileUpdate'), UpdateFormRulesFront);
+    $('form[id="ftm_profileUpdate"]').validate({
+        rules: {
+            username: {
+                required: true,
+                maxlength: 30,
+            },
+            email: {
+                required: true,
+                email: true,
+            },
+            password: {
+                pswchecker: true,
+            },
+            password_confirmation: {
+                equalTo: "#password",
+            },
+            // TODO Make a custom validation for birthdate using DateISO function
+            gender: {
+                required: true,     // TODO Make a custom validation rule for gender
+            },
+            // TODO Make a validation of Languaje
+            firstname: {
+                required: true,
+                maxlength: 20
+            },
+            lastname: {
+                required: true,
+                maxlength: 60
+            },
+            address: {
+                required: true,
+                minlength: 10,
+                maxlength: 60,
+            },
+            // TODO Make a validation of City
+            // TODO Make a validation of Country
+            zipcode: {
+                required: true,
+                number: true,
+                minlength: 3,
+                maxlength: 10,
+            },
+            bio: {
+                maxlength: 116,
+            }
+        },
+        messages: {
+            username: 'This field is required',
+            lastname: 'This field is required',
+            email: 'Enter a valid email',
+            password: {
+                minlength: 'Password must be at least 8 characters long'
+            }
+        },
+        submitHandler: function(form) {
+            form.submit();
+        }
+    });
 
     /* ATACHING EVENTS */
     $("form#ftm_profileUpdate input#avatar").change(function () {

@@ -33,16 +33,13 @@ Route::group(['prefix' => 'raffles',
     'middleware' => ['auth']
 ], function () {
 
-    Route::get('/add', 'RafflesController@create')->name('raffles.create');
-    Route::post('/add', 'RafflesController@store')->name('raffles.store');
+//    Route::get('/add', 'RafflesController@create')->name('raffles.create');
+    Route::post('/add', 'RafflesController@store')->name('raffles.index.store');
     Route::get('/edit/{raffleId}', 'RafflesController@edit')->name('raffles.edit');
     Route::post('/{raffleId}', 'RafflesController@update')->name('raffles.update');
     Route::get('{raffleId}/follow', 'RafflesController@follow')->name('raffles.follow');
     Route::post('/{raffleId}/tickets/buy', 'DirectBuysController@buyTickets')->name('raffle.tickets.buy');
     Route::post('/{raffleId}/{referralId}', 'ReferralsBuysController@buyTickets')->name('referrals.tickets.buy');
-
-    Route::get('/add', 'RafflesController@create')->name('raffles.create');     // TODO Protect
-    Route::post('/add', 'RafflesController@store')->name('raffles.store');      // TODO Protect
 
     Route::get('/{raffleId}/comments/{commentId}/responses', 'CommentsController@commentResponses')->name('raffle.commentResponses');
     Route::post('/{raffleId}/comments/{commentId}/responses', 'CommentsController@respondComment')->name('raffle.respondComment');
@@ -64,7 +61,7 @@ Route::group(['prefix' => 'users',
     Route::get('/billing/{userid}', 'BillingController@getBillingInfo')->name('billing.info');
     Route::patch('/billing/{userid}', 'BillingController@saveBillingInfo')->name('billing.saveinfo');
 //    FRONT
-    Route::get('/profile/{userid}/', 'UserController@getProfile')->name('profile.info');
+//    Route::get('/profile/{userid}/', 'UserController@getProfile')->name('profile.info');
     Route::get('/profile/edit/{userid}', 'UserController@edit')->name('profile.edit');
     Route::patch('/profile/edit/{userid}/update', 'UserController@update')->name('profile.update');
 });
@@ -145,4 +142,9 @@ Route::group(['prefix' => 'raffles'
     Route::get('/{raffleId}/tickets/buy', 'DirectBuysController@availableTickets')->name('raffle.tickets.available');
 
     Route::get('/{raffleId}/{referralId}', 'ReferralsBuysController@availableTickets')->name('referrals.tickets.available');
+});
+
+Route::group(['prefix' => 'users'
+], function () {
+    Route::get('/profile/{userid}/', 'UserController@getProfile')->name('profile.info');
 });

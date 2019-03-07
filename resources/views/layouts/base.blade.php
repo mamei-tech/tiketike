@@ -3,6 +3,7 @@
 
 @section('header')
     @include('partials.frontend.head')
+    @routes
 @show
 
 <body>

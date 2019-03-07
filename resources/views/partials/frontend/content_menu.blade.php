@@ -24,11 +24,6 @@
                     <span class="ti-ticket  margin-right5 rotar  texto16"></span>Rifas
                 </a>
             </li>
-            <li>
-                <a href="" class="text-uppercase colorB sinkinSans300L icon">
-                    <span class="ti-comments margin-right5 texto16 "></span>Chat
-                </a>
-            </li>
         </ul>
     </div>
 
@@ -50,8 +45,6 @@
                     <span class="badge badge-default">
 					7 </span>
                 </a>
-
-            @include('partials.front_modals.notification_modal')
 
             <li class="hidden-xs"><img class="styleBorderL colorB" src="{{ asset('pics/front/borderLeft.svg') }}" alt="">
             </li>

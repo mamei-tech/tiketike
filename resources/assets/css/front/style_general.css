@@ -257,6 +257,9 @@ body {
 .padding-left10{
     padding-left: 10px;
 }
+.padding-left-top-users{
+    padding-left: 7%;
+}
 .padding-left20{
     padding-left: 20px;
 }
@@ -310,6 +313,10 @@ body {
 }
 .padding-left65{
     padding-left: 65px;
+}
+
+.margin-right-4percent {
+    margin-left: 4%;
 }
 
 .margin-right100{
@@ -608,7 +615,7 @@ div .search-box {
     top: 0;
     left: 0;
     width: 100%;
-    z-index: 99999;
+    z-index: 1;
 }
 .btn-primary {
     color: #fff;
@@ -680,7 +687,8 @@ div .search-box {
 }
 .modal-content {
     background: url("../../pics/front/bg-registrarse.png")repeat center center;
-    background-size: cover;
+    background-size: 203px 403px;
+    background-repeat: repeat;
 }
 .modal-dialog {
     margin: 0px auto;
@@ -939,7 +947,7 @@ input[type="radio"], input[type="checkbox"] {
     display: inline-block;
 }
 .carousel {
-    
+
     margin-bottom: 30px;
 }
 .imgUsuario{
@@ -1602,6 +1610,19 @@ Full screen Modal
     div#navdiv-rightcolum ul {
         float: none !important;
     }
+}
+
+::-webkit-scrollbar{
+    width: 10px;
+    background-color: #F5F5F5;
+}
+::-webkit-scrollbar-track{
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    background-color: #F5F5F5;
+}
+::-webkit-scrollbar-thumb{
+    background-color: #70438F;
+    background-image: -webkit-linear-gradient(90deg,rgba(255, 255, 255, .2) 25%,transparent 25%,transparent 50%,rgba(255, 255, 255, .2) 50%,rgba(255, 255, 255, .2) 75%,transparent 75%,transparent)
 }
 
 

@@ -13,7 +13,8 @@
                         <ul class="nav sinkinSans400R">
                             <li class="active"><a href="#" class="colorN text-uppercase" id="all">Todos</a></li>
                             @foreach($categories as $category)
-                                <li><a href="#" id="{{ $category->category }}" class="colorN text-uppercase filters">{{$category->category}}</a></li>
+                                <li><a href="#" id="{{ $category->category }}"
+                                       class="colorN text-uppercase filters">{{$category->category}}</a></li>
                             @endforeach
                         </ul>
                     </div>
@@ -118,7 +119,7 @@
                                         <span class="texto14 colorN pull-left sinkinSans600SB texto14">{{ $raffle->getOwner->name }} {{ $raffle->getOwner->lastname }}</span>
                                         <span class="ti-location-pin texto16 padding-left10 colorN"></span>
                                         <!-- TODO Buscar como poner el texto al lado de la imagen sin hacerla flotar -->
-                                        <span class="texto14 padding-left10 sinkinSans600SB texto14 colorN">{{ $raffle->getLocation->name }}</span>
+                                        <span class="texto14 padding-left10 sinkinSans600SB texto14 colorN"><img src="{{ asset('pics/countries/'.$raffle->getLocation->name.'.png') }}">{{ $raffle->getLocation->name }}</span>
                                         <h4 class=" text-uppercase sinkinSans400R textoR">
                                             <a class="colorN"
                                                href="{{ route('raffle.tickets.available',['raffleId' => $raffle->id]) }}">{{ $raffle->title }}</a>
@@ -164,6 +165,8 @@
                                 </div>
                             @endforeach
                         @endif
+                    </div>
+                    <div class="col-md-12 text-center">
                         {{ $raffles->links() }}
                     </div>
                 </div>
