@@ -1,5 +1,6 @@
 @extends('layouts.base')
 @section('content')
+    @include('partials.front_modals.notification_modal')
     <section class="bienvenidos">
         <div class="container ">
             <div class="row">

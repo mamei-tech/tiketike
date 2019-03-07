@@ -76,8 +76,7 @@
                 <div class="col-md-6">
                     <div class="form-group basic">
                         <label>Phone</label>
-                        <input class="form-control "
-                               id="inputPhone" name="phone">
+                        <input class="form-control" id="inputPhone" name="phone" value="{{$user->getProfile->phone}}">
                     </div>
                 </div>
 
@@ -207,6 +206,7 @@
     </div>
 @stop
 @section('additional_scripts')
+    <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
     {{--<script src="{{asset('js/admin/userprofile.js')}}"></script>--}}
     <script src="{{asset('js/front/front_profile.js')}}"></script>
 
