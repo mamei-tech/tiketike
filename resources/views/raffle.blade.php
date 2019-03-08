@@ -11,7 +11,8 @@
                 <div class="contenidoTicket" id="scrollContent">
                     <div class="col-xs-12 ">
                         <div class="col-xs-4 col-md-3">
-                            <img src="{{ $raffle->getOwner->getMedia('avatars')->first()->getUrl() }}" alt="Ringo" class="imgUsuario sombraImgUser2">
+                            <img src="{{ $raffle->getOwner->getMedia('avatars')->first()->getUrl() }}" alt="Ringo"
+                                 class="imgUsuario sombraImgUser2">
                         </div>
                         <div class="col-xs-8 col-md-9 texto14 sinkinSans600SB padding0">
                             <span class="colorN">{{ $raffle->getOwner->name }} {{ $raffle->getOwner->lastname }}</span>
@@ -54,7 +55,8 @@
                             <!-- Button trigger modal Mis compras de Ticket-->
                             <a class="icon" data-toggle="modal" href="#misCompras" title="Mis Tickets">
                                 <span class="ti-ticket colorV dimenIconos"></span>
-                                <span class="badge badge-default">@if(Auth::user() != null){{ count(Auth::user()->getTicketsByRaffle($raffle->id)) }} @else 0 @endif</span>
+                                <span class="badge badge-default">@if(Auth::user() != null){{ count(Auth::user()->getTicketsByRaffle($raffle->id)) }} @else
+                                        0 @endif</span>
                             </a>
                             <!-- Modal -->
                             <div class="modal fullscreen-modal fade" id="misCompras" tabindex="-1" role="dialog"
@@ -112,6 +114,7 @@
                         <strong class="colorN text-uppercase sinkinSans600SB">comentarios</strong>
                         <div class="comments">
                             @foreach($raffle->getComments as $comment)
+                                @if($comment->parent == null)
                                 <div class="media">
                                     <a href="#" class="pull-left  margin-right-20">
                                         <img src="{{ asset('pics/front/user.jpg') }}" alt="Ringo"
@@ -121,12 +124,18 @@
                                         <div class="margin-bottom-20 sinkinSans400R texto10 ">
                                     <span class="media-heading"><span
                                                 class="colorN">{{ $comment->getUser->name }} {{ $comment->getUser->lastname }}</span>
-                                        <a href="#" class="colorV texto8 sinkinSans400I pull-right margin-right-15">responder...</a>
+
+
+                                        <a data-toggle="collapse" data-target="#reply-{{$comment->id}}" aria-expanded="false" aria-controls="reply-{{$comment->id}}" id="answer_comment" href="#" class="colorV texto8 sinkinSans400I pull-right margin-right-15">responder...</a>
                                     </span>
                                             <p class="texto10 sinkinSans300L">
                                                 {{ $comment->text }}
                                             </p>
                                         </div>
+
+                                    @include('partials.frontend.form_comments',['isSon' => false,'answer_text'=>$comment])
+
+
                                     @foreach($comment->getChilds as $child)
                                         <!-- Nested media object -->
                                             <div class="media">
@@ -138,24 +147,29 @@
                                                     <div class="margin-bottom-20 sinkinSans400R texto10">
                                              <span class="media-heading"><span
                                                          class="colorN">{{ $child->getUser->name }} {{ $child->getUser->lastname }}</span>
+                                                 <a data-toggle="collapse" data-target="#reply-{{$child->id}}" aria-expanded="false" aria-controls="reply-{{$child->id}}" id="answer_comment" href="#" class="colorV texto8 sinkinSans400I pull-right margin-right-15">responder...</a>
                                               </span>
                                                         <p class="texto10 sinkinSans300L">
                                                             {{ $child->text }}
                                                         </p>
                                                     </div>
                                                 </div>
+                                                @include('partials.frontend.form_comments',['isSon' => true,'answer_text'=>$child])
                                             </div>
+
                                             <!--end media-->
                                         @endforeach
                                     </div>
                                 </div>
+                                @endif
                             @endforeach
                         </div>
                         <div class="post-comment padding-top-30">
                             <strong class="colorN sinkinSans600SB text-uppercase">comenta</strong>
-                            <form role="form">
+                            <form action="{{route('raffle.comment', $raffleId)}}" method="POST" role="form">
+                                {{ csrf_field() }}
                                 <div class="form-group">
-                                    <textarea class="form-control bg-gris" rows="5"></textarea>
+                                    <textarea class="form-control bg-gris" rows="5" name="text" id="text"></textarea>
                                 </div>
                                 <button class="btn btn-primary bg_green extraer sinkinSans700B text-uppercase"
                                         type="submit">Enviar
@@ -209,15 +223,17 @@
                             </div>
                         </div>
                         <div class="pull-right colorV padding-top-10">
-                            <a @if(Auth::user() == null)  data-toggle="modal" href="#loginModal" @else id="buyTickets" @endif type="button"
-                                    class="btn btn-primary bg_green extraer sinkinSans700B text-uppercase">Comprar
+                            <a @if(Auth::user() == null)  data-toggle="modal" href="#loginModal" @else id="buyTickets"
+                               @endif type="button"
+                               class="btn btn-primary bg_green extraer sinkinSans700B text-uppercase">Comprar
                             </a>
                         </div>
-                        <form method="post" action="{{ route('raffle.tickets.buy',['raffleId' => $raffle->id]) }}" id="payform">
+                        <form method="post" action="{{ route('raffle.tickets.buy',['raffleId' => $raffle->id]) }}"
+                              id="payform">
                             {{ csrf_field() }}
-                            <input type="hidden" id="stripeToken" name="stripeToken" />
-                            <input type="hidden" id="stripeEmail" name="stripeEmail" />
-                            <input type="hidden" id="amountInCents" name="amountInCents" />
+                            <input type="hidden" id="stripeToken" name="stripeToken"/>
+                            <input type="hidden" id="stripeEmail" name="stripeEmail"/>
+                            <input type="hidden" id="amountInCents" name="amountInCents"/>
                             <input type="hidden" id="ticketsarray" name="tickets[]">
                         </form>
                     </div>
@@ -238,7 +254,7 @@
             var handler = StripeCheckout.configure({
                 key: '{{ config('services.stripe.key') }}',
                 image: '{{ asset('pics/front/logonv.png') }}',
-                token: function(token) {
+                token: function (token) {
                     $("#stripeToken").val(token.id);
                     $("#stripeEmail").val(token.email);
                     $("#amountInCents").val({{$raffle->tickets_price}});
@@ -246,18 +262,18 @@
                 }
             });
 
-            $('#buyTickets').on('click', function(e) {
-                var siChequeados = $('input:checkbox:checked').map(function() {
+            $('#buyTickets').on('click', function (e) {
+                var siChequeados = $('input:checkbox:checked').map(function () {
                     return this.value;
                 }).get();
                 $('#ticketsarray').val(siChequeados);
                 var price = $('#raffleprice').html();
                 var amountInCents = parseFloat(price).toFixed(2) * siChequeados.length * 100;
-                var displayAmount = parseFloat(amountInCents/100).toFixed(2);
+                var displayAmount = parseFloat(amountInCents / 100).toFixed(2);
                 var handler = StripeCheckout.configure({
                     key: '{{ config('services.stripe.key') }}',
                     image: '{{ asset('pics/front/logonv.png') }}',
-                    token: function(token) {
+                    token: function (token) {
                         $("#stripeToken").val(token.id);
                         $("#stripeEmail").val(token.email);
                         $("#amountInCents").val(amountInCents);
@@ -276,7 +292,7 @@
             });
 
 // Close Checkout on page navigation
-            $(window).on('popstate', function() {
+            $(window).on('popstate', function () {
                 handler.close();
             });
         });

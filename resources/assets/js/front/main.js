@@ -6,6 +6,8 @@ $(document).ready(function () {
 
 
 
+
+
     if (window.location.href === route('main').url()+"#terminosModal") {
         $("#terminosModal").modal("show");
     }
