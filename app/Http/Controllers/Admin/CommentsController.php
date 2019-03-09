@@ -21,12 +21,8 @@ class CommentsController extends Controller
      */
     public function __construct(CommentsRepository $commentsRepository)
     {
-        // I think this is not needed because I have this in the route middleware
-        // Authentication
-        $this->middleware('auth');
-//        $this->middleware('permission:list comments');
-//        $this->middleware('permission:edit comments', ['only' => ['edit', 'update']]);
-//        $this->middleware('permission:delete comments', ['only' => ['destroy']]);
+        $this->middleware('permission:list_roles')          ->  only(['index']);
+
         $this->CommenstsRepository = $commentsRepository;
 
     }

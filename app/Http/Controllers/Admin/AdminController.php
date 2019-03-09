@@ -17,8 +17,7 @@ class AdminController extends Controller
      */
     public function __construct()
     {
-        // I think this is not needed because I have this in the route middleware
-        $this->middleware('auth');
+        $this->middleware('permission:enter_admin')          ->  only(['index']);
     }
 
     /**

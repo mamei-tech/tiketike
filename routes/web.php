@@ -123,22 +123,11 @@ Route::group([
         // TODO Change the name for two these views
         Route::get('/config', 'AdminConfigController@showraffleconfig')->name('admin.raffle.showconfig');
         Route::patch('/saveconfig', 'AdminConfigController@saveraffleconfig')->name('admin.raffle.saveconfig');
-
     });
-
-    //    Roles Manager
-    //    Route::group([
-    //        'middleware' => ['permission:roles list']
-    //    ], function (){
-    //        Route::resource('/roles','RoleController', ['except' => ['edit', 'show']]);
-    //    });
-
-
 });
 
 Route::get('auth/{provider}', 'Auth\SocialAuthController@redirectToProvider')->name('social.auth');
 Route::get('auth/{provider}/callback', 'Auth\SocialAuthController@handleProviderCallback');
-
 
 Route::group(['prefix' => 'raffles'
 ], function () {

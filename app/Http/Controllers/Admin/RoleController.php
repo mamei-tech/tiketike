@@ -24,18 +24,11 @@ class RoleController extends Controller
      */
     public function __construct()
     {
-        // I think this is not needed because I have this in the route middleware
-        // Authentication
-        $this->middleware('auth');
-
-        /* TODO: Check what this is for, how to use it */
-        // Authorization
-        $this->middleware('permission:list roles');
-        $this->middleware('permission:create role', ['only' => ['create', 'store']]);
-        $this->middleware('permission:edit role', ['only' => ['edit', 'update']]);
-        $this->middleware('permission:delete role', ['only' => ['destroy']]);
+        $this->middleware('permission:list_roles')          ->  only(['index']);
+        $this->middleware('permission:edit_roles')          ->  only(['update']);
+        $this->middleware('permission:create_roles')        ->  only(['store', 'create']);
+        $this->middleware('permission:delete_roles')        ->  only(['destroy']);
     }
-
 
     /**
      * Display a listing of the resource.

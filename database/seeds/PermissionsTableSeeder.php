@@ -2,6 +2,9 @@
 
 use Illuminate\Database\Seeder;
 
+use Spatie\Permission\Models\Permission;
+use Spatie\Permission\Models\Role;
+
 class PermissionsTableSeeder extends Seeder
 {
     /**
@@ -11,35 +14,47 @@ class PermissionsTableSeeder extends Seeder
      */
     public function run()
     {
-        //Seeding permissions
-        DB::table('permissions')->insert([
-            'name' => 'list roles',
-            'guard_name' => 'web',
-            'created_at' => date('Y-m-d H:i:s'),
-        ]);
+        app()['cache']->forget('spatie.permission.cache');
 
-        //testing
+        // Creting Role Admin
+        $roleAdmin = Role::create(['name' => 'Admon']);
+
+        // Permission
+        Permission::create(['name' => 'list_roles', 'group' => 'roles']);
+        Permission::create(['name' => 'create_roles', 'group' => 'roles']);
+        Permission::create(['name' => 'edit_roles', 'group' => 'roles']);
+        Permission::create(['name' => 'delete_roles', 'group' => 'roles']);
+        $roleAdmin->givePermissionTo(['list_roles','create_roles','edit_roles','delete_roles']);
+
+        // Configuration
+        Permission::create(['name' => 'show_roles', 'group' => 'configuration']);
+        Permission::create(['name' => 'save_roles', 'group' => 'configuration']);
+        $roleAdmin->givePermissionTo(['show_roles','save_roles']);
+
+        // Admin Enter Section
+        Permission::create(['name' => 'enter_admin', 'group' => 'sections']);
+        $roleAdmin->givePermissionTo(['enter_admin']);
+
+        // ARaffle
+        Permission::create(['name' => 'anulled_raffle_list', 'group' => 'raffles']);
+        Permission::create(['name' => 'anulled_raffle_destroy', 'group' => 'raffles']);
+        $roleAdmin->givePermissionTo(['anulled_raffle_list', 'anulled_raffle_destroy']);
+
+        // Category Controller
+        Permission::create(['name' => 'list_categories', 'group' => 'categories']);
+        Permission::create(['name' => 'store_categories', 'group' => 'categories']);
+        Permission::create(['name' => 'update_categories', 'group' => 'categories']);
+        $roleAdmin->givePermissionTo(['list_categories', 'store_categories', 'update_categories']);
 
 
-        DB::table('permissions')->insert([
-            'name' => 'create role',
-            'guard_name' => 'web',
-            'created_at' => date('Y-m-d H:i:s'),
-        ]);
 
 
-        DB::table('permissions')->insert([
-            'name' => 'edit role',
-            'guard_name' => 'web',
-            'created_at' => date('Y-m-d H:i:s'),
-        ]);
+        //
 
 
-        DB::table('permissions')->insert([
-            'name' => 'delete role',
-            'guard_name' => 'web',
-            'created_at' => date('Y-m-d H:i:s'),
-        ]);
+
+        /*
+        //
 
         DB::table('permissions')->insert([
             'name' => 'list users',
@@ -222,9 +237,11 @@ class PermissionsTableSeeder extends Seeder
             'permission_id' => '15',
             'role_id' => '1',
         ]);
+        */
 
         $user = \App\User::find(1);
         $role = \App\Role::find(1);
         $user->assignRole($role->name);
+
     }
 }

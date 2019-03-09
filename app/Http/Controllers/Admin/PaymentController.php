@@ -16,6 +16,7 @@ class PaymentController extends Controller
 
     /**
      * PaymentController constructor.
+     * @param RaffleRepository $raffleRepository
      */
     public function __construct(RaffleRepository $raffleRepository)
     {

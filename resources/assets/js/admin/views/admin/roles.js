@@ -33,21 +33,15 @@ function popultDeleteForm(roleid, roleName, roleDescription) {
 }
 
 function popultUpdateForm(roleid, roleName, roleDescription, rolePermissions) {
-    // console.log('aqui estoy');
-
-    // $('div#frm_deleteRole input#tb_id').val(roleid);
-    // $('div#frm_deleteRole input#tb_name').val(roleName);
-    // $('div#frm_deleteRole input#tb_description').val(roleDescription);
 
     let updateForm = $('div#frm_updateRole form');
 
     updateForm.find('input#tb_id').val(roleid);
     updateForm.find('input#tb_name').val(roleName);
     updateForm.find('input#tb_description').val(roleDescription);
-    var permissions = rolePermissions.split(",");
+    let permissions = rolePermissions.split(",");
     permissions.forEach(function (value, index, array) {
-        console.log(value+","+index);
-        updateForm.find('input#i'+value).attr('checked',true);
+        updateForm.find('input#i'+value).prop('checked',true);
     });
 
     // Updating the id parameter in action attrib
@@ -109,6 +103,7 @@ $(document).ready(function () {
     $('#tbl_roles').DataTable({
         /* TODO User the norma or reduced buttoms here */
         "pagingType": "simple_numbers",
+        "autoWidth" : false,
         "bPaginate": false,
         "lengthMenu": [
             [10, 25, 50, -1],
@@ -119,6 +114,12 @@ $(document).ready(function () {
         columnDefs: [
             { responsivePriority: 1, targets: 1 },
             { responsivePriority: 2, targets: 3 },
+
+            { "width": "6px", "targets": 0 },
+            { "width": "10px", "targets": 1 },
+            { "width": "10px", "targets": 2 },
+            { "width": "60px", "targets": 3 },
+            { "width": "10px", "targets": 4 },
         ],
         order: [ 1, 'asc' ],
 
@@ -126,7 +127,6 @@ $(document).ready(function () {
             search: "_INPUT_",
             searchPlaceholder: "Search records",
         }
-
     });
 
     let table = $('#tbl_roles').DataTable();

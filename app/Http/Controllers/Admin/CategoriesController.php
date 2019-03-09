@@ -11,10 +11,18 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\RaffleCategory;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 
 
 class CategoriesController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('permission:list_categories')          ->  only(['index']);
+        $this->middleware('permission:store_categories')         ->  only(['store']);
+        $this->middleware('permission:update_categories')        ->  only(['update']);
+    }
+
     public function index()
     {
         $categories = RaffleCategory::all();
@@ -30,18 +38,10 @@ class CategoriesController extends Controller
         RaffleCategory::create($request->all());
         return redirect()->route('categories.index')
             ->with('success', 'Category created successfully');
-
     }
 
-    public function update(Request $request, $category)
-    {
-        var_dump($request->all());
-        die();
-    }
-
-    public function delete($id)
+    public function update(Response $response)
     {
 
     }
-
 }
