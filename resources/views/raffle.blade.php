@@ -117,7 +117,7 @@
                                 @if($comment->parent == null)
                                     <div class="media">
                                         <a href="#" class="pull-left  margin-right-20">
-                                            <img src="{{ asset('pics/front/user.jpg') }}" alt="Ringo"
+                                            <img src="{{ $comment->getUser->getMedia('avatars')->first()->getUrl() }}" alt="Ringo"
                                                  class="imgUsuario sombraImgUser2">
                                         </a>
                                         <div class="media-body">
@@ -150,7 +150,7 @@
                                             <!-- Nested media object -->
                                                 <div class="media">
                                                     <a href="#" class="pull-left margin-right-20">
-                                                        <img src="{{ asset('pics/front/user2.jpg') }}" alt="Ringo"
+                                                        <img src="{{ $child->getUser->getMedia('avatars')->first()->getUrl() }}" alt="Ringo"
                                                              class="imgUsuario2 sombraImgUser2">
                                                     </a>
                                                     <div class="media-body">

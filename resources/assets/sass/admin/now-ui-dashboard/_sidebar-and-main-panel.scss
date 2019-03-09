@@ -6,7 +6,22 @@
     &.wrapper-full-page{
         min-height: 100vh;
         height: auto;
+
     }
+}
+
+.login-purple{
+  height: 100%;!important;
+  background-image: url("/pics/front/fondo.png");
+  background-repeat: repeat;
+}
+
+.vertical-center {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
 }
 
 .sidebar,
