@@ -42,9 +42,8 @@ Route::group(['prefix' => 'raffles',
     Route::post('/{raffleId}/{referralId}', 'ReferralsBuysController@buyTickets')->name('referrals.tickets.buy');
 
     Route::post('/{raffleId}/tickets/buy/comment','CommentsController@store')->name('raffle.comment');
-
-    Route::get('/{raffleId}/comments/{commentId}/responses', 'CommentsController@commentResponses')->name('raffle.commentResponses');
-    Route::post('/{raffleId}/comments/{commentId}/responses', 'CommentsController@respondComment')->name('raffle.respondComment');
+    Route::post('/comment/edit/{commentId}','CommentsController@edit')->name('comment.edit');
+    Route::get('/comment/delete/{commentId}','CommentsController@delete')->name('comment.delete');
 });
 
 Route::group(['prefix' => 'payments',
@@ -114,7 +113,6 @@ Route::group([
         Route::resource('/unpublished', 'URaffleController', ['except' => ['edit', 'show', 'destroy']]);
         Route::post('/publish/{id}', 'URaffleController@publish')->name('unpublished.publish');
         Route::get('/anulled', 'ARaffleController@index')->name('arraffle.index');
-        Route::get('/comment', 'CommentsController@index')->name('comments.index');
         Route::delete('/destroy/{id}', 'ARaffleController@destroy')->name('arraffle.destroy');
         Route::get('/praffle/{id}/shuffle','PRaffleController@shuffle')->name('praffle.shuffle');
 
