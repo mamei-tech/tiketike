@@ -114,7 +114,9 @@ Route::group([
         Route::resource('/unpublished', 'URaffleController', ['except' => ['edit', 'show', 'destroy']]);
         Route::post('/publish/{id}', 'URaffleController@publish')->name('unpublished.publish');
         Route::get('/anulled', 'ARaffleController@index')->name('arraffle.index');
+        Route::get('/comment', 'CommentsController@index')->name('comments.index');
         Route::delete('/destroy/{id}', 'ARaffleController@destroy')->name('arraffle.destroy');
+        Route::get('/praffle/{id}/shuffle','PRaffleController@shuffle')->name('praffle.shuffle');
 
         Route::resource('/categories', 'CategoriesController', ['except' => ['edit', 'show']]);
 

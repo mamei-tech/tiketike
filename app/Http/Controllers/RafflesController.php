@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Country;
 use App\Http\TkTk\CodesGenerator;
+use App\Notifications\RaffleCreated;
 use App\Promo;
 use App\RaffleStatus;
 use App\Repositories\RaffleRepository;
@@ -14,6 +15,7 @@ use App\Raffle;
 use App\RaffleCategory;
 use App\Http\Requests\StoreRaffleRequest;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Facades\Notification;
 
 
 class RafflesController extends Controller
@@ -83,12 +85,17 @@ class RafflesController extends Controller
         $raffle->description= $request->description;
         $raffle->price      = $request->price;
         $raffle->location   = $request->localization;
+        $raffle->owner      = Auth::user()->id;
 
         $raffle->save();
+        var_dump(sprintf('%.0f',$raffle->id));
+        die();
 
         foreach ($request->base as $item) {
             $raffle->addMediaFromBase64($item)->usingFileName('filename.jpg')->toMediaCollection('raffles','raffles');
         }
+
+        Notification::send(Auth::user(),new RaffleCreated($raffle));
 
         return redirect()->route('main');
     }

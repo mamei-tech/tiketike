@@ -239,7 +239,7 @@ class Raffle extends Model implements HasMedia
 
     }
 
-    public function suflee()
+    public function shuffle()
     {
         $tickets = Ticket::where('tickets.raffle', $this->id)->get();
         $length = $tickets->count();
