@@ -9,9 +9,6 @@ use App\Http\Requests\StoreRoleRequest;
 use Illuminate\Support\Facades\Log;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
-use Illuminate\Support\Facades\Notification;
-use App\Notifications\GeneralNotification;
-use App\User;
 
 class RoleController extends Controller
 {
