@@ -149,6 +149,14 @@
                                 <span class="sidebar-normal"> @lang('Configuration') </span>
                             </a>
                         </li>
+
+                        <li class="@isset($li_activeRConfig) {{ $li_activeRConfig }} @endisset">
+                            <a href="{{ route('comments.index') }}">
+                                <span class="sidebar-mini-icon"> CO </span>
+                                <span class="sidebar-normal"> @lang('Comments') </span>
+                            </a>
+                        </li>
+
                     </ul>
                 </div>
             </li>
