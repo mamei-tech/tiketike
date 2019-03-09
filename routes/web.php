@@ -78,7 +78,6 @@ Route::group([
     Route::group([
         'prefix' => 'raffles',
     ], function (){
-        Route::post('/null/{id}', 'RafflesController@null')->name('raffles.null');
     });
 
 });
@@ -117,6 +116,7 @@ Route::group([
         Route::get('/comment', 'CommentsController@index')->name('comments.index');
         Route::delete('/destroy/{id}', 'ARaffleController@destroy')->name('arraffle.destroy');
         Route::get('/praffle/{id}/shuffle','PRaffleController@shuffle')->name('praffle.shuffle');
+        Route::post('/null/{id}', 'URaffleController@null')->name('raffles.null');
 
         Route::resource('/categories', 'CategoriesController', ['except' => ['edit', 'show']]);
 

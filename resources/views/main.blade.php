@@ -110,14 +110,14 @@
     <script src="//js.pusher.com/3.1/pusher.min.js"></script>
     {{--<script src='https://www.google.com/recaptcha/api.js'></script>--}}
     <script src="{{ asset('js/main.min.js') }}"></script>
-    @if(\Auth::user() != null)
-        <script type="text/javascript">
-            var notifications_wrapper = $('#notifications_wrapper');
-            var notifications = notifications_wrapper.find('ul#notifications-list');
-            var pusher = new Pusher('{{ env('PUSHER_APP_KEY') }}', {
-                forceTLS: true,
-                cluster: '{{ env('PUSHER_APP_CLUSTER') }}'
-            });
+    <script type="text/javascript">
+        var notifications_wrapper = $('#notifications_wrapper');
+        var notifications = notifications_wrapper.find('ul#notifications-list');
+        var pusher = new Pusher('{{ env('PUSHER_APP_KEY') }}', {
+            forceTLS: true,
+            cluster: '{{ env('PUSHER_APP_CLUSTER') }}'
+        });
+        @if(\Auth::user() != null)
             var channel = pusher.subscribe('chanel-{{ \Auth::user()->id }}');
             channel.bind('Illuminate\\Notifications\\Events\\BroadcastNotificationCreated', function (data) {
                 var existingNotifications = notifications.html();
@@ -127,6 +127,6 @@
                 var new_count = parseInt(notif_count.html()) + 1;
                 notif_count.html(new_count);
             });
-        </script>
-    @endif
+        @endif
+    </script>
 @stop

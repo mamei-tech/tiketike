@@ -4,6 +4,9 @@ namespace App\Http\Controllers\Admin;
 
 use App\Country;
 use App\Http\Controllers\Controller;
+use App\Notifications\RaffleAnulled;
+use App\Notifications\RaffleDeleted;
+use App\Notifications\RaffleUpdated;
 use App\Raffle;
 use App\Http\Requests\ChkRPublishRequest;
 use App\RaffleCategory;
@@ -74,11 +77,13 @@ class URaffleController extends Controller
             return redirect()->back()->withErrors(trans('validation.forminvalid'));
 
         // Getting the raffle
-        $raffle = Raffle::find($request->id);
+        $raffle = Raffle::findOrFail($request->id);
 
         // TODO esta parte son las notificaciones a los usuarios
-        $users = User::get();
-//        Notification::send($users,new GeneralNotification('A new raffle was published.',$raffle,'raffle.tickets.available'));
+        $users = $raffle->getFollowers;
+        foreach ($users as $user) {
+            $user->notify(new RaffleUpdated($raffle,$user));
+        }
 
         // TODO fin notificaciones
         // Getting & decripting the form data sended to the api
@@ -96,9 +101,6 @@ class URaffleController extends Controller
 
         // Everithing is OK, then Publising the raffle
         $raffle->publish($request->profit, $request->commissions, $request->tcount, $request->tprice);
-        $users = User::get();
-        // Notification::send("Hi, there's a new published raffle",$raffle, 'raffle.tickets.available');
-
 
         // TODO Try redirect with compact
         return redirect()->route('unpublished.index',
@@ -196,6 +198,11 @@ class URaffleController extends Controller
         $raffle->category = $request->get('category');
         $raffle->location = $request->get('location');
         $raffle->save();
+
+        foreach ($raffle->getFollowers as $user) {
+            $user->notify(new RaffleUpdated($raffle,$user));
+        }
+
         return redirect()->route('unpublished.index',
             [
                 'div_showRaffles' => 'show',
@@ -213,6 +220,11 @@ class URaffleController extends Controller
      */
     public function destroy($id)
     {
+        $raffle = Raffle::findOrFail($id);
+        foreach ($raffle->getFollowers as $user) {
+            $user->notify(new RaffleDeleted($raffle,$user));
+        }
+
         Raffle::destroy($id);
         return redirect()->route('unpublished.index',
             [
@@ -221,5 +233,25 @@ class URaffleController extends Controller
             ],
             '303')
             ->with('success', 'Raffle deleted successfully');
+    }
+
+    /**
+     *
+     * Anullate the raffle
+     *
+     * @param $id
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function null($id) {
+        $raffle = Raffle::findOrFail($id);
+        foreach ($raffle->getFollowers as $user) {
+            $user->notify(new RaffleDeleted($raffle,$user));
+        }
+        $raffle->getOwner->notify(new RaffleAnulled($raffle,$raffle->getOwner));
+        $raffle->anullate();
+
+        return redirect()->back()
+            ->with('success', 'Raffle "' . $id . '" anulled successfully');
+
     }
 }

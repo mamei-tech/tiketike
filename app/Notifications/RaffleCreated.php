@@ -3,6 +3,7 @@
 namespace App\Notifications;
 
 use App\Raffle;
+use App\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -14,15 +15,18 @@ class RaffleCreated extends Notification
     use Queueable;
 
     private $raffle;
+    private $user;
     /**
      * Create a new notification instance.
      * @param Raffle $raffle
+     * @param User $user
      *
      * @return void
      */
-    public function __construct(Raffle $raffle)
+    public function __construct(Raffle $raffle,User $user)
     {
         $this->raffle = $raffle;
+        $this->user = $user;
     }
 
     /**
@@ -66,6 +70,6 @@ class RaffleCreated extends Notification
 
     public function broadcastOn()
     {
-        return ['chanel-'.Auth::user()->id];
+        return ['chanel-'.$this->user->id];
     }
 }

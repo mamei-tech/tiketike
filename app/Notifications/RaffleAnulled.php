@@ -9,7 +9,7 @@ use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 
-class RaffleWinned extends Notification
+class RaffleAnulled extends Notification
 {
     use Queueable;
     private $raffle;
@@ -19,6 +19,7 @@ class RaffleWinned extends Notification
      * Create a new notification instance.
      * @param Raffle $raffle
      * @param User $user
+     *
      * @return void
      */
     public function __construct(Raffle $raffle,User $user)
@@ -35,7 +36,7 @@ class RaffleWinned extends Notification
      */
     public function via($notifiable)
     {
-        return ['mail','database','broadcast'];
+        return ['mail','broadcast','database'];
     }
 
     /**
@@ -47,9 +48,9 @@ class RaffleWinned extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-                    ->line('Congrats!!! You have winned a raffle '.$this->raffle->title.'. Soon we will send you an interface for bla bla bla')
-                    ->action('Notification Action', url('main'))
-                    ->line('Again, congrats!!!');
+                    ->line('Sorry fellow, we have anulled your raffle '.$this->raffle->title)
+                    ->action('Visit us', route('main'))
+                    ->line('We hope to see you soon!!');
     }
 
     /**
@@ -61,7 +62,7 @@ class RaffleWinned extends Notification
     public function toArray($notifiable)
     {
         return [
-            'data' => 'Congrats!!! You have winned a raffle '.$this->raffle->title.'. Soon we will send you an interface for bla bla bla',
+            'data' => 'Sorry fellow, we have anulled your raffle '.$this->raffle->title,
             'url' => route('main')
         ];
     }

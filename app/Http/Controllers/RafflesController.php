@@ -46,7 +46,14 @@ class RafflesController extends Controller
         $suggested = $this->raffleRepository->getSuggested();
         $promos = Promo::where('type',1)->where('status',1)->get();
         $categories = RaffleCategory::all();
-        $raffles = Raffle::where('progress','<',100)->orderBy('activation_date','ASC')->paginate(10);
+        $raffles = Raffle::with('getStatus')
+            ->whereHas('getStatus', function (Builder $q) {
+                $q->where('status', 'Published');
+                $q->orWhere('status','Unpublished');
+            })
+            ->where('progress','<',100)
+            ->orderBy('activation_date','ASC')
+            ->paginate(10);
         $countries = Country::all();
         return view('raffles',compact('raffles','suggested','promos','categories','countries'));
     }
@@ -93,7 +100,7 @@ class RafflesController extends Controller
             $raffle->addMediaFromBase64($item)->usingFileName('filename.jpg')->toMediaCollection('raffles','raffles');
         }
 
-        Notification::send(Auth::user(),new RaffleCreated($raffle));
+        Auth::user()->notify(new RaffleCreated($raffle,Auth::user()));
 
         return redirect()->route('main');
     }
@@ -157,22 +164,6 @@ class RafflesController extends Controller
     public function destroy($id)
     {
         //
-    }
-
-    /**
-     *
-     * Anullate the raffle
-     *
-     * @param $id
-     * @return \Illuminate\Http\RedirectResponse
-     */
-    public function null($id) {
-        $raffle = Raffle::find($id);
-        $raffle->anullate();
-
-        return redirect()->back()
-            ->with('success', 'Raffle "' . $id . '" anulled successfully');
-
     }
 
     public function follow($id)
