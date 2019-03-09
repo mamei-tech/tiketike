@@ -20,6 +20,10 @@ class PaymentController extends Controller
      */
     public function __construct(RaffleRepository $raffleRepository)
     {
+        $this->middleware('permission:list_roles')                  ->  only(['executed']);
+        $this->middleware('permission:pending_list_payments')       ->  only(['pending_list']);
+        $this->middleware('permission:pending_details_payments')    ->  only(['pending_details']);
+
         $this->raffleRepository = $raffleRepository;
     }
 

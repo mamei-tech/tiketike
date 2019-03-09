@@ -40,18 +40,54 @@ class PermissionsTableSeeder extends Seeder
         Permission::create(['name' => 'anulled_raffle_destroy', 'group' => 'raffles']);
         $roleAdmin->givePermissionTo(['anulled_raffle_list', 'anulled_raffle_destroy']);
 
+        // PRaffleController
+        Permission::create(['name' => 'list_praffles', 'group' => 'raffles']);
+        Permission::create(['name' => 'shuffle_praffles', 'group' => 'raffles']);
+        Permission::create(['name' => 'null_praffles', 'group' => 'raffles']);
+        $roleAdmin->givePermissionTo(['list_praffles', 'list_praffles',  'null_praffles']);
+
+        // URaffles Controller
+        Permission::create(['name' => 'list_upublished_raffles', 'group' => 'raffles']);
+        Permission::create(['name' => 'publish_upublished_raffles', 'group' => 'raffles']);
+        Permission::create(['name' => 'store_upublished_raffles', 'group' => 'raffles']);
+        Permission::create(['name' => 'edit_upublished_raffles', 'group' => 'raffles']);
+        Permission::create(['name' => 'destroy_upublished_raffles', 'group' => 'raffles']);
+        $roleAdmin->givePermissionTo(['list_upublished_raffles', 'publish_upublished_raffles',  'store_upublished_raffles', 'edit_upublished_raffles', 'destroy_upublished_raffles']);
+
         // Category Controller
         Permission::create(['name' => 'list_categories', 'group' => 'categories']);
         Permission::create(['name' => 'store_categories', 'group' => 'categories']);
         Permission::create(['name' => 'update_categories', 'group' => 'categories']);
         $roleAdmin->givePermissionTo(['list_categories', 'store_categories', 'update_categories']);
 
+        // Payments Controller
+        Permission::create(['name' => 'executed_payments', 'group' => 'payments']);
+        Permission::create(['name' => 'pending_list_payments', 'group' => 'payments']);
+        Permission::create(['name' => 'pending_details_payments', 'group' => 'payments']);
+        $roleAdmin->givePermissionTo(['executed_payments', 'pending_list_payments', 'pending_details_payments']);
 
+        // Promo Client Controller
+        Permission::create(['name' => 'promo_c_list', 'group' => 'promos']);
+        Permission::create(['name' => 'promo_c_store', 'group' => 'promos']);
+        Permission::create(['name' => 'promo_c_update', 'group' => 'promos']);
+        Permission::create(['name' => 'promo_c_destroy', 'group' => 'promos']);
+        $roleAdmin->givePermissionTo(['promo_c_list', 'promo_c_store', 'promo_c_update', 'promo_c_destroy']);
 
+        // Promo Controller
+        Permission::create(['name' => 'promo_list', 'group' => 'promos']);
+        Permission::create(['name' => 'promo_store', 'group' => 'promos']);
+        Permission::create(['name' => 'promo_update', 'group' => 'promos']);
+        Permission::create(['name' => 'promo_destroy', 'group' => 'promos']);
+        $roleAdmin->givePermissionTo(['promo_list', 'promo_store', 'promo_update', 'promo_destroy']);
+
+        // User Admin Controller
+        Permission::create(['name' => 'user_list', 'group' => 'user']);
+        Permission::create(['name' => 'user_update', 'group' => 'user']);
+        Permission::create(['name' => 'user_edit', 'group' => 'user']);
+        Permission::create(['name' => 'user_updateadmin', 'group' => 'user']);
+        $roleAdmin->givePermissionTo(['user_list', 'user_update', 'user_edit', 'user_updateadmin']);
 
         //
-
-
 
         /*
         //
