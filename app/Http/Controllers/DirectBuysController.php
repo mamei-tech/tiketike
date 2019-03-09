@@ -10,6 +10,11 @@ use Stripe\Charge;
 
 class DirectBuysController extends BuysController
 {
+    public function __construct()
+    {
+        $this->middleware('permission:buys_tickets')->only(['buyTickets']);
+    }
+
     /**
      * Process a tickets buy.
      *

@@ -4,29 +4,24 @@ namespace App\Http\Controllers;
 
 
 use App\Http\TkTk\LogsMsgs;
-use App\Http\Requests\StoreUserprofileRequest;
 use App\Promo;
-use App\Raffle;
 use App\Repositories\RaffleRepository;
 use App\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use App\Country;
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Log;
-
 
 class UserController extends Controller
 {
-
     private $raffleRepository;
 
     public function __construct(RaffleRepository $raffleRepository)
     {
-        // I think this is not needed because I have this in the route middleware
-        $this->middleware('auth');
-        $this->middleware('permission:edit user', ['only' => ['edit', 'update']]);
+        $this->middleware('permission:user_front_getprofile')       ->  only(['getProfile']);
+        $this->middleware('permission:user_front_edit')             ->  only(['edit']);
+        $this->middleware('permission:user_front_update')           ->  only(['update']);
+
         $this->raffleRepository = $raffleRepository;
     }
 
@@ -51,7 +46,6 @@ class UserController extends Controller
      */
     public function edit($userid)
     {
-
         $user = User::with('getProfile')->findOrFail($userid);
 
         $countries = Country::paginate(10);
@@ -116,6 +110,4 @@ class UserController extends Controller
         return redirect()->route('profile.info', ['userid' => $userid])
             ->with('success', 'User "' . $user->getProfile->username . '" updated successfully');
     }
-
-
 }

@@ -31,11 +31,14 @@ class RafflesController extends Controller
      */
     public function __construct(RaffleRepository $raffleRepository)
     {
+        $this->middleware('permission:raffles_list')          ->  only(['index']);
+        $this->middleware('permission:raffles_create')        ->  only(['create', 'store']);
+        $this->middleware('permission:raffles_edit')          ->  only(['edit', 'update']);
+        $this->middleware('permission:raffles_follow')        ->  only(['follow']);
+
         $this->raffleRepository = $raffleRepository;
     }
 
-
-    // TODO Identify which methods apply to convert to rest method !!!!
     /**
      * Display a listing of the resource.
      *
@@ -46,7 +49,14 @@ class RafflesController extends Controller
         $suggested = $this->raffleRepository->getSuggested();
         $promos = Promo::where('type',1)->where('status',1)->get();
         $categories = RaffleCategory::all();
-        $raffles = Raffle::where('progress','<',100)->orderBy('activation_date','ASC')->paginate(10);
+        $raffles = Raffle::with('getStatus')
+            ->whereHas('getStatus', function (Builder $q) {
+                $q->where('status', 'Published');
+                $q->orWhere('status','Unpublished');
+            })
+            ->where('progress','<',100)
+            ->orderBy('activation_date','ASC')
+            ->paginate(10);
         $countries = Country::all();
         return view('raffles',compact('raffles','suggested','promos','categories','countries'));
     }
@@ -58,8 +68,6 @@ class RafflesController extends Controller
      */
     public function create()
     {
-        //TODO: Add some catcha in this form for the users/clients
-
         $categories = RaffleCategory::all();
 
         return view('raffles.create', [
@@ -70,8 +78,10 @@ class RafflesController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param StoreRaffleRequest $request
+     * @param Request $request
      * @return \Illuminate\Http\Response
+     * @throws \Spatie\MediaLibrary\Exceptions\FileCannotBeAdded
+     * @throws \Spatie\MediaLibrary\Exceptions\FileCannotBeAdded\InvalidBase64Data
      */
     public function store(Request $request)
     {
@@ -88,28 +98,16 @@ class RafflesController extends Controller
         $raffle->owner      = Auth::user()->id;
 
         $raffle->save();
-        var_dump(sprintf('%.0f',$raffle->id));
-        die();
 
         foreach ($request->base as $item) {
             $raffle->addMediaFromBase64($item)->usingFileName('filename.jpg')->toMediaCollection('raffles','raffles');
         }
 
-        Notification::send(Auth::user(),new RaffleCreated($raffle));
+        Auth::user()->notify(new RaffleCreated($raffle,Auth::user()));
 
         return redirect()->route('main');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
 
     /**
      * Show the form for editing the specified resource.
@@ -148,33 +146,6 @@ class RafflesController extends Controller
         return redirect()
             ->route('raffles.index',null, '303')
             ->with('success','Raffle updated successfully');
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
-
-    /**
-     *
-     * Anullate the raffle
-     *
-     * @param $id
-     * @return \Illuminate\Http\RedirectResponse
-     */
-    public function null($id) {
-        $raffle = Raffle::find($id);
-        $raffle->anullate();
-
-        return redirect()->back()
-            ->with('success', 'Raffle "' . $id . '" anulled successfully');
-
     }
 
     public function follow($id)

@@ -3,25 +3,30 @@
 namespace App\Notifications;
 
 use App\Raffle;
+use App\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
+use Illuminate\Support\Facades\Auth;
 
 class RaffleCreated extends Notification
 {
     use Queueable;
 
     private $raffle;
+    private $user;
     /**
      * Create a new notification instance.
      * @param Raffle $raffle
+     * @param User $user
      *
      * @return void
      */
-    public function __construct(Raffle $raffle)
+    public function __construct(Raffle $raffle,User $user)
     {
         $this->raffle = $raffle;
+        $this->user = $user;
     }
 
     /**
@@ -61,5 +66,10 @@ class RaffleCreated extends Notification
             'data' => 'Hi, you have created a new raffle. You can see it clicking at this message.',
             'url' => route('raffle.tickets.available',['raffleId' => sprintf('%.0f',$this->raffle->id)])
         ];
+    }
+
+    public function broadcastOn()
+    {
+        return ['chanel-'.$this->user->id];
     }
 }
