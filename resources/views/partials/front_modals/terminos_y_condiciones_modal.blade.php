@@ -103,7 +103,7 @@
 
                 <div class="row padding-top-20">
                     <div class="col-xs-5 pull-right">
-                        <button type="submit" class="btn btn-sm btn-primary btn-block">
+                        <button type="button"  data-dismiss="modal" aria-hidden="true" class="btn btn-sm btn-primary btn-block" >
                             Aceptar
                         </button>
                     </div>
