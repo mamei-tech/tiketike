@@ -13,7 +13,7 @@
                     <ul class="list-inline padding-top-20 padding-left20">
                         <li class="margin-left-20 ">
                             <a data-toggle="modal" href="#loginModal" title="Autenticarse"
-                               class="colorB texto16 sinkinSans500M">Autenticarse</a>
+                                                                                        class="colorB texto16 sinkinSans500M">Autenticarse</a>
                             @include('partials.front_modals.login_modal')
                             @include('partials.front_modals.register_modal')
                         </li>

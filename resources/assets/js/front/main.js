@@ -1,7 +1,18 @@
 import axios from 'axios';
-import {Ziggy} from "../ziggy";
+
+
 
 $(document).ready(function () {
+
+
+
+
+
+    if (window.location.href === route('main').url()+"#terminosModal") {
+        $("#terminosModal").modal("show");
+    }
+
+
     $('.select2').select2();
     /*  SETTING UP AXIOS HEADERS  */
     axios.defaults.headers.common['Authorization'] = "Bearer " + $('meta[name=access-token]').attr('content');

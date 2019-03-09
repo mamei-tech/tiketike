@@ -41,6 +41,8 @@ Route::group(['prefix' => 'raffles',
     Route::post('/{raffleId}/tickets/buy', 'DirectBuysController@buyTickets')->name('raffle.tickets.buy');
     Route::post('/{raffleId}/{referralId}', 'ReferralsBuysController@buyTickets')->name('referrals.tickets.buy');
 
+    Route::post('/{raffleId}/tickets/buy/comment','CommentsController@store')->name('raffle.comment');
+
     Route::get('/{raffleId}/comments/{commentId}/responses', 'CommentsController@commentResponses')->name('raffle.commentResponses');
     Route::post('/{raffleId}/comments/{commentId}/responses', 'CommentsController@respondComment')->name('raffle.respondComment');
 });

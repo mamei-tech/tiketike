@@ -5,9 +5,9 @@
 
 
     {{--<div class="container-fluid bg-notificacion">--}}
-        {{--<div class="text-center padding-top-20">--}}
-            {{--<span class="sinkinSans400I texto10">Has enviado un mensaje...</span>--}}
-        {{--</div>--}}
+    {{--<div class="text-center padding-top-20">--}}
+    {{--<span class="sinkinSans400I texto10">Has enviado un mensaje...</span>--}}
+    {{--</div>--}}
     {{--</div>--}}
     <div class="container margin-top60">
         <div class="row">
@@ -16,10 +16,10 @@
                     <div class="row padding-top-30">
 
 
-                            <div class="col-xs-5 col-md-5">
-                                <img src="{{$user->getMedia('avatars')->first()->getUrl()}}" alt="Ringo"
-                                     class="imgUsuario sombraImgUser2">
-                            </div>
+                        <div class="col-xs-5 col-md-5">
+                            <img src="{{$user->getMedia('avatars')->first()->getUrl()}}" alt="Ringo"
+                                 class="imgUsuario sombraImgUser2">
+                        </div>
 
                         <div class="col-xs-7 col-md-7 padding-top-20 padding0">
                             <span class="texto20 sinkinSans600SB colorN margin-right-15">{{$user->name}}</span>
@@ -44,13 +44,15 @@
                                 <div class="col-xs-9 col-sm-8 col-lg-7"><span class="colorV margin-right-20">Rifas creadas:</span>
                                 </div>
                                 <div class="col-xs-3 col-sm-4 col-lg-5"><strong
-                                            class="colorN sinkinSans600SB">{{ count($user->getRaffles) }}</strong><br></div>
+                                            class="colorN sinkinSans600SB">{{ count($user->getRaffles) }}</strong><br>
+                                </div>
                             </div>
                             <div class="padding-top-20">
                                 <div class="col-xs-9 col-sm-8 col-lg-7"><span class="colorV margin-right-20">Rifas ganadas:</span>
                                 </div>
                                 <div class="col-xs-3 col-sm-4 col-lg-5"><strong
-                                            class="colorN sinkinSans600SB">{{ count($user->WinnedRaffles()) }}</strong><br></div>
+                                            class="colorN sinkinSans600SB">{{ count($user->WinnedRaffles()) }}</strong><br>
+                                </div>
                             </div>
                             <div class="padding-top-20">
                                 <div class="col-xs-9 col-sm-8 col-lg-7"><span class="colorV margin-right-20">Rifas compartidas:</span>
@@ -62,7 +64,8 @@
                                 <div class="col-xs-9 col-sm-8 col-lg-7"><span class="colorV margin-right-20">Tickets vendidos:</span>
                                 </div>
                                 <div class="col-xs-3 col-sm-4 col-lg-5"><strong
-                                            class="colorN sinkinSans600SB">{{ $user->getSoldTicketsCount() }}</strong><br></div>
+                                            class="colorN sinkinSans600SB">{{ $user->getSoldTicketsCount() }}</strong><br>
+                                </div>
                             </div>
                         </div>
                         <div class="col-xs-12 padding-top-20">
@@ -90,55 +93,57 @@
                             {{--@janedoe--}}
                             {{--</div>--}}
                         </div>
-                        <div class="col-xs-12 padding-top-20">
-                            <h5 class="borderBottomG colorN sinkinSans600SB"><span
-                                        class="ti-wallet texto14 padding-top5 margin-right-10"></span>Mi
-                                cuenta</h5>
-                            <span class="texto14 sinkinSans400R colorV padding-left30">Total</span>
-                            <div class="margin-bottom-40 padding-top5">
-                                <div class="pull-left padding-top5">
-                                    <span class="ti-money colorV margin-right5"></span>
-                                    <span class="borderDashed sinkinSans500M padding15">{{$user->getProfile->balance}}</span>
+                        @if($user->id == \Auth::User()->id)
+                            <div class="col-xs-12 padding-top-20">
+                                <h5 class="borderBottomG colorN sinkinSans600SB"><span
+                                            class="ti-wallet texto14 padding-top5 margin-right-10"></span>Mi
+                                    cuenta</h5>
+                                <span class="texto14 sinkinSans400R colorV padding-left30">Total</span>
+                                <div class="margin-bottom-40 padding-top5">
+                                    <div class="pull-left padding-top5">
+                                        <span class="ti-money colorV margin-right5"></span>
+                                        <span class="borderDashed sinkinSans500M padding15">{{$user->getProfile->balance}}</span>
+                                    </div>
+                                    <div class="pull-right">
+                                        <button type="button"
+                                                class="btn btn-primary bg_green extraer text-uppercase sinkinSans700B">
+                                            Extraer
+                                        </button>
+                                    </div>
                                 </div>
-                                <div class="pull-right">
-                                    <button type="button"
-                                            class="btn btn-primary bg_green extraer text-uppercase sinkinSans700B">
-                                        Extraer
-                                    </button>
-                                </div>
-                            </div>
-                            <div class="col-xs-12 preciosExtraer  padding-left-0">
-                                <div id="precio" class="panel-collapse collapse" role="tabpanel"
-                                     aria-labelledby="headingThree" aria-expanded="true" style="">
-                                    <div class="panel-body">
-                                        <div class="row padding-top-15 ">
-                                            <div class="col-xs-7 padding-left-0 padding-top-10">
-                                                <i class="fa fa-dollar colorV margin-right-10"></i>
-                                                <span class="colorV sinkinSans400I"> por rifas</span>
+                                <div class="col-xs-12 preciosExtraer  padding-left-0">
+                                    <div id="precio" class="panel-collapse collapse" role="tabpanel"
+                                         aria-labelledby="headingThree" aria-expanded="true" style="">
+                                        <div class="panel-body">
+                                            <div class="row padding-top-15 ">
+                                                <div class="col-xs-7 padding-left-0 padding-top-10">
+                                                    <i class="fa fa-dollar colorV margin-right-10"></i>
+                                                    <span class="colorV sinkinSans400I"> por rifas</span>
+                                                </div>
+                                                <div class="col-xs-5 padding-rigth-0 padding-left-0 borderBottomG">
+                                                    <span class="sinkinSans500M">20.00 USD</span>
+                                                </div>
                                             </div>
-                                            <div class="col-xs-5 padding-rigth-0 padding-left-0 borderBottomG">
-                                                <span class="sinkinSans500M">20.00 USD</span>
-                                            </div>
-                                        </div>
-                                        <div class="row padding-top5">
-                                            <div class="col-xs-7 padding-left-0 padding-top5 padding-top-10">
-                                                <i class="fa fa-dollar colorV margin-right-10"></i>
-                                                <span class="colorV sinkinSans400I"> por comisión</span>
-                                            </div>
-                                            <div class="col-xs-5 padding-rigth-0 padding-left-0 borderBottomG">
-                                                <span class="sinkinSans500M">400.00 USD</span>
+                                            <div class="row padding-top5">
+                                                <div class="col-xs-7 padding-left-0 padding-top5 padding-top-10">
+                                                    <i class="fa fa-dollar colorV margin-right-10"></i>
+                                                    <span class="colorV sinkinSans400I"> por comisión</span>
+                                                </div>
+                                                <div class="col-xs-5 padding-rigth-0 padding-left-0 borderBottomG">
+                                                    <span class="sinkinSans500M">400.00 USD</span>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="panel-heading" role="tab" id="">
-                                    <div class="tools">
-                                        <a class="paddingCollapse" data-toggle="collapse" data-parent="#accordion"
-                                           href="#precio" aria-expanded="true" aria-controls="collapseThree"></a>
+                                    <div class="panel-heading" role="tab" id="">
+                                        <div class="tools">
+                                            <a class="paddingCollapse" data-toggle="collapse" data-parent="#accordion"
+                                               href="#precio" aria-expanded="true" aria-controls="collapseThree"></a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        @endif
                     </div>
                 </div>
                 <div class="bottomLIzquierdo hidden-xs"></div>
@@ -296,57 +301,57 @@
 
                                     </div>
                                     <div class="tab-pane active in" id="creadas">
-                                            @foreach($user->getRaffles as $raffle)
-                                                <div class="col-xs-6 col-lg-3 col-sm-4 padding-top-15">
-                                                    <img src="{{ $raffle->getMedia('raffles')->first()->getUrl() }}"
-                                                         class="imgRifas">
-                                                    <div class="porciento">
-                                                        <div class=" text-center">
+                                        @foreach($user->getRaffles as $raffle)
+                                            <div class="col-xs-6 col-lg-3 col-sm-4 padding-top-15">
+                                                <img src="{{ $raffle->getMedia('raffles')->first()->getUrl() }}"
+                                                     class="imgRifas">
+                                                <div class="porciento">
+                                                    <div class=" text-center">
                                                 <span class="chartB chart-porcientoR"
                                                       data-percent="{{round($raffle->getProgress())}}">
                                                     <span class="percentR">{{round($raffle->getProgress())}}%</span>
                                                 </span>
-                                                        </div>
                                                     </div>
-
                                                 </div>
-                                            @endforeach
+
+                                            </div>
+                                        @endforeach
 
                                     </div>
                                     <div class="tab-pane" id="participo">
-                                            @foreach($user->getRafflesBuyed as $raffle)
-                                                <div class="col-xs-6 col-lg-3 col-sm-4 padding-top-15">
-                                                    <img src="{{ $raffle->getMedia('raffles')->first()->getUrl() }}"
-                                                         class="imgRifas">
-                                                    <div class="porciento">
-                                                        <div class=" text-center">
+                                        @foreach($user->getRafflesBuyed as $raffle)
+                                            <div class="col-xs-6 col-lg-3 col-sm-4 padding-top-15">
+                                                <img src="{{ $raffle->getMedia('raffles')->first()->getUrl() }}"
+                                                     class="imgRifas">
+                                                <div class="porciento">
+                                                    <div class=" text-center">
                                                 <span class="chartB chart-porcientoR"
                                                       data-percent="{{round($raffle->getProgress())}}">
                                                     <span class="percentR">{{round($raffle->getProgress())}}%</span>
                                                 </span>
-                                                        </div>
                                                     </div>
-
                                                 </div>
-                                            @endforeach
+
+                                            </div>
+                                        @endforeach
 
                                     </div>
                                     <div class="tab-pane" id="siguiendo">
-                                            @foreach($user->getRafflesFollowed as $raffle)
-                                                <div class="col-xs-6 col-lg-3 col-sm-4 padding-top-15">
-                                                    <img src="{{ $raffle->getMedia('raffles')->first()->getUrl() }}"
-                                                         class="imgRifas">
-                                                    <div class="porciento">
-                                                        <div class=" text-center">
+                                        @foreach($user->getRafflesFollowed as $raffle)
+                                            <div class="col-xs-6 col-lg-3 col-sm-4 padding-top-15">
+                                                <img src="{{ $raffle->getMedia('raffles')->first()->getUrl() }}"
+                                                     class="imgRifas">
+                                                <div class="porciento">
+                                                    <div class=" text-center">
                                                 <span class="chartB chart-porcientoR"
                                                       data-percent="{{round($raffle->getProgress())}}">
                                                     <span class="percentR">{{round($raffle->getProgress())}}%</span>
                                                 </span>
-                                                        </div>
                                                     </div>
-
                                                 </div>
-                                            @endforeach
+
+                                            </div>
+                                        @endforeach
 
                                     </div>
                                 </div>

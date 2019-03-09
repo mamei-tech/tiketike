@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Comment;
+use App\Http\Requests\CommentRaffleRequest;
 use App\Raffle;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -22,11 +23,9 @@ class CommentsController extends Controller
         $responses = null;
         if ($commentId == 'root')
             $responses = Comment::where('raffle', $raffleId)->where('parent', null)->get();
-        else
-        {
+        else {
             $comment = Comment::find($commentId);
-            if ($comment == null)
-            {
+            if ($comment == null) {
                 //TODO return some error view
                 echo 'UNKNOWN COMMENT';
                 die;
@@ -39,18 +38,15 @@ class CommentsController extends Controller
 
     public function respondComment($raffleId, $commentId, Request $request)
     {
-        if (Raffle::find($raffleId) == null)
-        {
+        if (Raffle::find($raffleId) == null) {
             //TODO return some error view
             echo 'UNKNOWN RAFFLE';
             die;
         }
         $commentText = $request->comment;
         $parentId = null;
-        if ($commentId != 'root')
-        {
-            if (Comment::find($commentId) == null)
-            {
+        if ($commentId != 'root') {
+            if (Comment::find($commentId) == null) {
                 //TODO return some error view
                 echo 'UNKNOWN COMMENT';
                 die;
@@ -83,18 +79,31 @@ class CommentsController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param  \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(Request $request)
+    public function store(CommentRaffleRequest $request, $raffle)
     {
-        //
+
+//        var_dump($request->id);die();
+
+
+        $comment = new Comment();
+        $comment->raffle = $raffle;
+        $comment->text = $request->text;
+        $comment->parent = $request->parent_id;
+        $comment->user = \auth()->id();
+        $comment->created_at = date('Y-m-d H:i:s');
+
+        Auth::user()->getComments()->save($comment);
+
+        return \redirect()->route('raffle.tickets.buy', $raffle);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -105,7 +114,7 @@ class CommentsController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -116,8 +125,8 @@ class CommentsController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \Illuminate\Http\Request $request
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -128,7 +137,7 @@ class CommentsController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
