@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Notifications\RaffleFinished;
+use App\Notifications\RaffleWinned;
 use App\Raffle;
 use App\Repositories\RaffleRepository;
 use App\Ticket;
@@ -9,6 +11,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Notification;
 
 class PRaffleController extends Controller
 {
@@ -112,6 +115,21 @@ class PRaffleController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function shuffle($id)
+    {
+        $raffle = Raffle::findOrFail($id);
+        $code = $raffle->shuffle();
+        $raffle->status = 5;
+        $raffle->save();
+        $winner = Ticket::where('code', '=', $code)->firstOrFail();
+        $user_winner = $winner->getBuyer;
+        $winner->bingo = 1;
+        $winner->save();
+        Notification::send($user_winner,new RaffleWinned($raffle));
+        Notification::send($raffle->getOwner,new RaffleFinished($raffle));
+        return redirect()->back(200);
     }
 }
 

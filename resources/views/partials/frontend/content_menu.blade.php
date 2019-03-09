@@ -39,13 +39,15 @@
                                                                                    class="imgUsuarioMenu sombraImgUserMenu margin-left5"></a>
                 </li>
             @endif
+            @if(\Auth::user() != null)
             <li class="notifica">
                 <a class="text-uppercase colorB icon" data-toggle="modal" href="#notificaciones" title="Notificaciones">
                     <span class="ti-bell texto20"></span>
                     <span class="badge badge-default">
-					7 </span>
+					{{ count(\Auth::user()->notifications) }}</span>
                 </a>
-
+            </li>
+            @endif
             <li class="hidden-xs"><img class="styleBorderL colorB" src="{{ asset('pics/front/borderLeft.svg') }}" alt="">
             </li>
             <li class="hidden-xs"><a href="" class="icon"><img class="stylebandera" src="{{ asset('pics/front/ban2.jpg') }}"

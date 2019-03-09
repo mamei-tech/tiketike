@@ -139,6 +139,7 @@ class RaffleRepository
             ->whereHas('getStatus', function (Builder $q) use ($status) {
                 $q->where('status', $status);
             })
+            ->orderBy('progress','DESC')
             ->paginate(10);
         return $raffles;
     }

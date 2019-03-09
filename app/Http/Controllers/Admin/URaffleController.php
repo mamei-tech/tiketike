@@ -78,7 +78,7 @@ class URaffleController extends Controller
 
         // TODO esta parte son las notificaciones a los usuarios
         $users = User::get();
-        Notification::send($users,new GeneralNotification('A new raffle was published.',$raffle,'raffle.tickets.available'));
+//        Notification::send($users,new GeneralNotification('A new raffle was published.',$raffle,'raffle.tickets.available'));
 
         // TODO fin notificaciones
         // Getting & decripting the form data sended to the api
