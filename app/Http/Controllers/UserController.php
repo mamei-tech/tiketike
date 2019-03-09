@@ -77,7 +77,6 @@ class UserController extends Controller
         if ($request->has('avatar') and $request->file('avatar') != null) {
             $user->clearMediaCollection('avatars');
             $user->addMediaFromRequest('avatar')->toMediaCollection('avatars', 'avatars');  // Second parameters is de defaul filesystem, optional
-//            $user->getProfile->avatarname = $request->avatar->getClientOriginalName();
         }
 
         if ($request->has('password') && $request->get('password') != '') {
