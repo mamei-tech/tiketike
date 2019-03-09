@@ -32,8 +32,6 @@ Route::group(['prefix' => 'raffles'], function () {
 Route::group(['prefix' => 'raffles',
     'middleware' => ['auth']
 ], function () {
-
-//    Route::get('/add', 'RafflesController@create')->name('raffles.create');
     Route::post('/add', 'RafflesController@store')->name('raffles.index.store');
     Route::get('/edit/{raffleId}', 'RafflesController@edit')->name('raffles.edit');
     Route::post('/{raffleId}', 'RafflesController@update')->name('raffles.update');

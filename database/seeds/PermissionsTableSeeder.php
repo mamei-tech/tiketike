@@ -18,6 +18,7 @@ class PermissionsTableSeeder extends Seeder
 
         // Creting Role Admin
         $roleAdmin = Role::create(['name' => 'Admon']);
+        $roleUser  = Role::create(['name' => 'User']);
 
         // Permission
         Permission::create(['name' => 'list_roles', 'group' => 'roles']);
@@ -54,6 +55,24 @@ class PermissionsTableSeeder extends Seeder
         Permission::create(['name' => 'destroy_upublished_raffles', 'group' => 'raffles']);
         $roleAdmin->givePermissionTo(['list_upublished_raffles', 'publish_upublished_raffles',  'store_upublished_raffles', 'edit_upublished_raffles', 'destroy_upublished_raffles']);
 
+        // Directs BuyController
+        Permission::create(['name' => 'buys_tickets', 'group' => 'raffles']);
+        $roleAdmin->givePermissionTo(['buys_tickets']);
+        $roleUser->givePermissionTo(['buys_tickets']);
+
+        // Referrals Buys
+        Permission::create(['name' => 'referrals_buys_tickets', 'group' => 'raffles']);
+        $roleAdmin->givePermissionTo(['referrals_buys_tickets']);
+        $roleUser->givePermissionTo(['referrals_buys_tickets']);
+
+        // Raffles Controller (Front)
+        Permission::create(['name' => 'raffles_list', 'group'       => 'raffles']);
+        Permission::create(['name' => 'raffles_create', 'group'     => 'raffles']);
+        Permission::create(['name' => 'raffles_edit', 'group'       => 'raffles']);
+        Permission::create(['name' => 'raffles_follow', 'group'     => 'raffles']);
+        $roleAdmin->givePermissionTo(['raffles_list', 'raffles_create', 'raffles_edit', 'raffles_follow']);
+        $roleUser->givePermissionTo(['raffles_list', 'raffles_create', 'raffles_edit', 'raffles_follow']);
+
         // Category Controller
         Permission::create(['name' => 'list_categories', 'group' => 'categories']);
         Permission::create(['name' => 'store_categories', 'group' => 'categories']);
@@ -87,197 +106,15 @@ class PermissionsTableSeeder extends Seeder
         Permission::create(['name' => 'user_updateadmin', 'group' => 'user']);
         $roleAdmin->givePermissionTo(['user_list', 'user_update', 'user_edit', 'user_updateadmin']);
 
-        //
-
-        /*
-        //
-
-        DB::table('permissions')->insert([
-            'name' => 'list users',
-            'guard_name' => 'web',
-            'created_at' => date('Y-m-d H:i:s'),
-        ]);
-
-        //testing
-
-
-        DB::table('permissions')->insert([
-            'name' => 'create user',
-            'guard_name' => 'web',
-            'created_at' => date('Y-m-d H:i:s'),
-        ]);
-
-
-        DB::table('permissions')->insert([
-            'name' => 'edit user',
-            'guard_name' => 'web',
-            'created_at' => date('Y-m-d H:i:s'),
-        ]);
-
-
-        DB::table('permissions')->insert([
-            'name' => 'delete user',
-            'guard_name' => 'web',
-            'created_at' => date('Y-m-d H:i:s'),
-        ]);
-
-        DB::table('permissions')->insert([
-            'name' => 'list raffles',
-            'guard_name' => 'web',
-            'created_at' => date('Y-m-d H:i:s'),
-        ]);
-
-        //testing
-
-
-        DB::table('permissions')->insert([
-            'name' => 'create raffle',
-            'guard_name' => 'web',
-            'created_at' => date('Y-m-d H:i:s'),
-        ]);
-
-
-        DB::table('permissions')->insert([
-            'name' => 'edit raffle',
-            'guard_name' => 'web',
-            'created_at' => date('Y-m-d H:i:s'),
-        ]);
-
-
-        DB::table('permissions')->insert([
-            'name' => 'delete raffle',
-            'guard_name' => 'web',
-            'created_at' => date('Y-m-d H:i:s'),
-        ]);
-
-        DB::table('permissions')->insert([
-            'name' => 'list promos',
-            'guard_name' => 'web',
-            'created_at' => date('Y-m-d H:i:s'),
-        ]);
-
-        //testing
-
-
-        DB::table('permissions')->insert([
-            'name' => 'create promo',
-            'guard_name' => 'web',
-            'created_at' => date('Y-m-d H:i:s'),
-        ]);
-
-
-        DB::table('permissions')->insert([
-            'name' => 'edit promo',
-            'guard_name' => 'web',
-            'created_at' => date('Y-m-d H:i:s'),
-        ]);
-
-
-        DB::table('permissions')->insert([
-            'name' => 'delete promo',
-            'guard_name' => 'web',
-            'created_at' => date('Y-m-d H:i:s'),
-        ]);
-
-        //Seeding roles
-        DB::table('roles')->insert([
-            'name' => 'admin',
-            'guard_name' => 'web',
-            'created_at' => date('Y-m-d H:i:s'),
-        ]);
-
-
-        DB::table('roles')->insert([
-            'name' => 'moderator',
-            'guard_name' => 'web',
-            'created_at' => date('Y-m-d H:i:s'),
-        ]);
-
-
-        DB::table('roles')->insert([
-            'name' => 'guest',
-            'guard_name' => 'web',
-            'created_at' => date('Y-m-d H:i:s'),
-        ]);
-
-        //Seeding permissions to role
-
-
-        DB::table('role_has_permissions')->insert([
-            'permission_id' => '1',
-            'role_id' => '1',
-        ]);
-
-
-        DB::table('role_has_permissions')->insert([
-            'permission_id' => '2',
-            'role_id' => '1',
-        ]);
-
-
-        DB::table('role_has_permissions')->insert([
-            'permission_id' => '3',
-            'role_id' => '1',
-        ]);
-
-
-        DB::table('role_has_permissions')->insert([
-            'permission_id' => '5',
-            'role_id' => '1',
-        ]);
-
-
-        DB::table('role_has_permissions')->insert([
-            'permission_id' => '6',
-            'role_id' => '1',
-        ]);
-
-
-        DB::table('role_has_permissions')->insert([
-            'permission_id' => '7',
-            'role_id' => '1',
-        ]);
-
-
-        DB::table('role_has_permissions')->insert([
-            'permission_id' => '9',
-            'role_id' => '1',
-        ]);
-
-
-        DB::table('role_has_permissions')->insert([
-            'permission_id' => '10',
-            'role_id' => '1',
-        ]);
-
-
-        DB::table('role_has_permissions')->insert([
-            'permission_id' => '11',
-            'role_id' => '1',
-        ]);
-
-
-        DB::table('role_has_permissions')->insert([
-            'permission_id' => '13',
-            'role_id' => '1',
-        ]);
-
-
-        DB::table('role_has_permissions')->insert([
-            'permission_id' => '14',
-            'role_id' => '1',
-        ]);
-
-
-        DB::table('role_has_permissions')->insert([
-            'permission_id' => '15',
-            'role_id' => '1',
-        ]);
-        */
+        // User Controller (Front)
+        Permission::create(['name' => 'user_front_getprofile', 'group'  => 'user']);
+        Permission::create(['name' => 'user_front_edit', 'group'        => 'user']);
+        Permission::create(['name' => 'user_front_update', 'group'      => 'user']);
+        $roleAdmin->givePermissionTo(['user_list', 'user_update', 'user_edit', 'user_updateadmin']);
+        $roleUser->givePermissionTo(['user_list', 'user_update', 'user_edit', 'user_updateadmin']);
 
         $user = \App\User::find(1);
         $role = \App\Role::find(1);
         $user->assignRole($role->name);
-
     }
 }

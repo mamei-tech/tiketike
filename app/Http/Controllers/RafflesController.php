@@ -31,11 +31,14 @@ class RafflesController extends Controller
      */
     public function __construct(RaffleRepository $raffleRepository)
     {
+        $this->middleware('permission:raffles_list')          ->  only(['index']);
+        $this->middleware('permission:raffles_create')        ->  only(['create', 'store']);
+        $this->middleware('permission:raffles_edit')          ->  only(['edit', 'update']);
+        $this->middleware('permission:raffles_follow')        ->  only(['follow']);
+
         $this->raffleRepository = $raffleRepository;
     }
 
-
-    // TODO Identify which methods apply to convert to rest method !!!!
     /**
      * Display a listing of the resource.
      *
@@ -65,8 +68,6 @@ class RafflesController extends Controller
      */
     public function create()
     {
-        //TODO: Add some catcha in this form for the users/clients
-
         $categories = RaffleCategory::all();
 
         return view('raffles.create', [
@@ -77,8 +78,10 @@ class RafflesController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param StoreRaffleRequest $request
+     * @param Request $request
      * @return \Illuminate\Http\Response
+     * @throws \Spatie\MediaLibrary\Exceptions\FileCannotBeAdded
+     * @throws \Spatie\MediaLibrary\Exceptions\FileCannotBeAdded\InvalidBase64Data
      */
     public function store(Request $request)
     {
@@ -105,16 +108,6 @@ class RafflesController extends Controller
         return redirect()->route('main');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
 
     /**
      * Show the form for editing the specified resource.
@@ -153,17 +146,6 @@ class RafflesController extends Controller
         return redirect()
             ->route('raffles.index',null, '303')
             ->with('success','Raffle updated successfully');
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
     }
 
     public function follow($id)
