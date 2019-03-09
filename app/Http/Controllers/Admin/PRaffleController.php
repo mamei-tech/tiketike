@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Notifications\RaffleAnulled;
+use App\Notifications\RaffleDeleted;
 use App\Notifications\RaffleFinished;
 use App\Notifications\RaffleWinned;
 use App\Raffle;
@@ -127,9 +129,30 @@ class PRaffleController extends Controller
         $user_winner = $winner->getBuyer;
         $winner->bingo = 1;
         $winner->save();
-        Notification::send($user_winner,new RaffleWinned($raffle));
-        Notification::send($raffle->getOwner,new RaffleFinished($raffle));
+        Notification::send($user_winner,new RaffleWinned($raffle,$user_winner));
+        Notification::send($raffle->getOwner,new RaffleFinished($raffle,$raffle->getOwner));
         return redirect()->back(200);
+    }
+
+    /**
+     *
+     * Anullate the raffle
+     *
+     * @param $id
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function null($id) {
+        $raffle = Raffle::findOrFail($id);
+        foreach ($raffle->getFollowers as $user) {
+            $user->notify(new RaffleDeleted($raffle,$user));
+        }
+        $raffle->getOwner->notify(new RaffleAnulled($raffle,$raffle->getOwner));
+        
+        $raffle->anullate();
+
+        return redirect()->back()
+            ->with('success', 'Raffle "' . $id . '" anulled successfully');
+
     }
 }
 

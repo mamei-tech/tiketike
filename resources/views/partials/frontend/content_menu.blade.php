@@ -43,8 +43,7 @@
             <li class="notifica">
                 <a class="text-uppercase colorB icon" data-toggle="modal" href="#notificaciones" title="Notificaciones">
                     <span class="ti-bell texto20"></span>
-                    <span class="badge badge-default">
-					{{ count(\Auth::user()->notifications) }}</span>
+                    <span class="badge badge-default" id="notifications_count">{!! count(\Auth::user()->notifications) !!}</span>
                 </a>
             </li>
             @endif

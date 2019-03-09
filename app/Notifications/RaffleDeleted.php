@@ -3,6 +3,7 @@
 namespace App\Notifications;
 
 use App\Raffle;
+use App\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -12,15 +13,18 @@ class RaffleDeleted extends Notification
 {
     use Queueable;
     private $raffle;
+    private $user;
 
     /**
      * Create a new notification instance.
      * @param Raffle $raffle
+     * @param User $user
      * @return void
      */
-    public function __construct(Raffle $raffle)
+    public function __construct(Raffle $raffle, User $user)
     {
         $this->raffle = $raffle;
+        $this->user = $user;
     }
 
     /**
@@ -59,5 +63,10 @@ class RaffleDeleted extends Notification
             'data' => 'Sorry fellow, you raffle '.$this->raffle->title.' has been deleted by administrator because it dont sell..',
             'url' => route('main')
         ];
+    }
+
+    public function broadcastOn()
+    {
+        return ['chanel-'.$this->user->id];
     }
 }

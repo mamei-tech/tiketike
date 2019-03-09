@@ -2,6 +2,8 @@
 
 namespace App\Notifications;
 
+use App\Raffle;
+use App\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -10,15 +12,20 @@ use Illuminate\Notifications\Messages\MailMessage;
 class RaffleUpdated extends Notification
 {
     use Queueable;
+    private $raffle;
+    private $user;
 
     /**
      * Create a new notification instance.
+     * @param Raffle $raffle
+     * @param User $user
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(Raffle $raffle, User $user)
     {
-        //
+        $this->user = $user;
+        $this->raffle = $raffle;
     }
 
     /**
@@ -29,7 +36,7 @@ class RaffleUpdated extends Notification
      */
     public function via($notifiable)
     {
-        return ['mail'];
+        return ['mail','database','broadcast'];
     }
 
     /**
@@ -41,9 +48,9 @@ class RaffleUpdated extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-                    ->line('The introduction to the notification.')
-                    ->action('Notification Action', url('/'))
-                    ->line('Thank you for using our application!');
+                    ->line('Attention!! The raffle '.$this->raffle->title.' was modified.')
+                    ->action('You can review it here', route('raffle.tickets.available',['raffleId' => $this->raffle->id]))
+                    ->line('Good luck!!');
     }
 
     /**
@@ -55,7 +62,13 @@ class RaffleUpdated extends Notification
     public function toArray($notifiable)
     {
         return [
-            //
+            'data' => 'Attention!! The raffle '.$this->raffle->title.' was modified.',
+            'url' => route('raffle.tickets.available',['raffleId' => $this->raffle->id])
         ];
+    }
+
+    public function broadcastOn()
+    {
+        return ['chanel-'.$this->user->id];
     }
 }

@@ -43,7 +43,7 @@
 
                     @include('admin.partials.tables.comments_table')
 
-                    {{--{{ $comments->links() }}--}}
+                    {{ $comments->links() }}
                 </div>
             </div>
         </div>

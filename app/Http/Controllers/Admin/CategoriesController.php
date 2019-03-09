@@ -42,6 +42,11 @@ class CategoriesController extends Controller
 
     public function update(Response $response)
     {
-
+        $category = RaffleCategory::findOrFail($category);
+        $category->category = $request->get('category');
+        $category->icon = $request->get('icon');
+        $category->save();
+        return redirect()->route('categories.index')
+            ->with('success', 'Category updated successfully');
     }
 }

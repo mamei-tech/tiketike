@@ -16,7 +16,7 @@ class CommentsRepository
      */
     public function getComments()
     {
-        $comments = Comment::orderBy('created_at','DESC')->get();
+        $comments = Comment::orderBy('created_at','DESC')->paginate(10);
         return $comments;
     }
 
