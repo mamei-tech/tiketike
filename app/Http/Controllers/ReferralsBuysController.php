@@ -8,6 +8,11 @@ use Illuminate\Support\Facades\Auth;
 
 class ReferralsBuysController extends BuysController
 {
+    public function __construct()
+    {
+        $this->middleware('permission:referrals_buys_tickets')->only(['buyTickets']);
+    }
+
     /**
      * Process a tickets buy.
      *

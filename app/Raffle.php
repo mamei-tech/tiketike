@@ -89,6 +89,16 @@ class Raffle extends Model implements HasMedia
     }
 
     /**
+     * Retrieve all payments attached to a raffle for refunds
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function getPaymentsAttached()
+    {
+        return $this->hasMany(RafflePays::class);
+    }
+
+    /**
      * Retrieve raffle's tickets.
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
@@ -254,7 +264,7 @@ class Raffle extends Model implements HasMedia
 
     }
 
-    public function suflee()
+    public function shuffle()
     {
         $tickets = Ticket::where('tickets.raffle', $this->id)->get();
         $length = $tickets->count();

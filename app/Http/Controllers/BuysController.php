@@ -30,11 +30,12 @@ abstract class BuysController extends Controller
      *
      * @param $raffleId         Raffle id.
      * @param Request $request
+     * @param RaffleRepository $raffleRepository
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function availableTickets($raffleId, Request $request)
+    public function availableTickets($raffleId, Request $request,RaffleRepository $raffleRepository)
     {
-        $suggested = $this->raffleRepository->getSuggested();
+        $suggested = $raffleRepository->getSuggested();
         $raffle = Raffle::find($raffleId);
         $promos = Promo::where('type',1)->where('status',1)->get();
         $categories = RaffleCategory::all();

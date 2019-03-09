@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Requests\DeletingUserRequest;
 use App\Role;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -14,7 +15,6 @@ use App\Http\TkTk\LogsMsgs;
 
 class UserController extends Controller
 {
-    // TODO Identify which methods apply to convert to rest method !!!!
 
     /**
      * Create a new controller instance.
@@ -23,12 +23,11 @@ class UserController extends Controller
      */
     public function __construct()
     {
-        // I think this is not needed because I have this in the route middleware
-        $this->middleware('auth');
-        $this->middleware('permission:list users');
-        $this->middleware('permission:create user', ['only' => ['create', 'store']]);
-        $this->middleware('permission:edit user', ['only' => ['edit', 'update']]);
-        $this->middleware('permission:delete user', ['only' => ['destroy']]);
+        $this->middleware('permission:user_list')          ->  only(['index']);
+        $this->middleware('permission:user_update')        ->  only(['update']);
+        $this->middleware('permission:user_edit')          ->  only(['edit']);
+        $this->middleware('permission:user_destroy')       ->  only(['destroy']);
+        $this->middleware('permission:user_updateadmin')   ->  only(['updateadmin']);
     }
 
 
@@ -39,7 +38,6 @@ class UserController extends Controller
      */
     public function index()
     {
-        // TODO Get the user role show it in the table
         $users = User::paginate(10);
         $roles = Role::paginate(10);
         return view('admin.users', [
@@ -50,37 +48,6 @@ class UserController extends Controller
         ]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
 
     /**
      * Show the form for editing the specified resource.
@@ -114,8 +81,6 @@ class UserController extends Controller
      */
     public function update(StoreUserprofileRequest $request, $userid)
     {
-//        var_dump($request->get('roles'));
-//        die();
         // Get the user instance
         $user = User::with('getProfile')->findOrFail($userid);
 
@@ -205,13 +170,13 @@ class UserController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int $id
+     * @param DeletingUserRequest $request
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($user)
     {
-        //
+        User::destroy($user);
+        return redirect()->route('users.index')
+            ->with('success', 'User deleted successfully');
     }
-
-    // TODO delclare in the routes the methods that you are not going to use
 }

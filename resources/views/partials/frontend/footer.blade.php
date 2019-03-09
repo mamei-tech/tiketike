@@ -1,7 +1,14 @@
 
 
 <footer >
-    <div class="piedepagina" ></div>
+    <div class="piedepagina" >
+
+        <li class="margin-left-20 pull-right padding-top-20 ">
+            <a data-toggle="modal" href="#terminosModal" title="Términos y Condiciones"
+               class="colorB texto16 sinkinSans500M padding-top-40">Términos y Condiciones</a>
+            @include('partials.front_modals.terminos_y_condiciones_modal')
+        </li>
+    </div>
 </footer>
 
 <script src="{{ asset('js/front/jquery-1.11.2.min.js') }}"></script>
@@ -19,6 +26,7 @@
 <script src="{{ asset('js/front/plugins/fancybox/source/jquery.fancybox.js?v=2.1.3') }}"
         type="text/javascript"></script>
 
+<script src="{{ asset('js/front/jquery.validate.min.js') }}" type="text/javascript"></script>
 <script src="{{ asset('js/front/plugins/tooltipster.bundle.js') }}" type="text/javascript"></script>
 <script src="{{ asset('js/front/agencia.js') }}"></script>
 <script src="{{ asset('js/front/back-to-top.js') }}"></script>

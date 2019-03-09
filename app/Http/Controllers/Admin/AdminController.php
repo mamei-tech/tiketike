@@ -15,8 +15,6 @@ use Illuminate\Support\Facades\DB;
 
 class AdminController extends Controller
 {
-    // TODO Identify which methods apply to convert to rest method in to API methods !!!!
-
     /**
      * Create a new controller instance.
      *
@@ -24,8 +22,7 @@ class AdminController extends Controller
      */
     public function __construct()
     {
-        // I think this is not needed because I have this in the route middleware
-        $this->middleware('auth');
+        $this->middleware('permission:enter_admin')          ->  only(['index']);
     }
 
     /**

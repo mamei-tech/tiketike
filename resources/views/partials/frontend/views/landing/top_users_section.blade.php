@@ -115,8 +115,8 @@
 
             <div class=" slick-vertical col-sm-3 col-md-4 col-lg-3 user hidden-xs ">
                 <?php
-                $nf = new \NumberFormatter(app()->getLocale(), \NumberFormatter::ORDINAL);
-                $count = 1;
+                    $ordinals = ['1st','2nd','3rd','4th','5th','6th','7th','8th','9th','10th'];
+                $count = 0;
                 ?>
                 @foreach($top_users as $top_user)
 
@@ -128,7 +128,7 @@
                             </div>
                         </div>
                         <div class="pull-left padding-top-10">
-                            <h3 class="sinkinSans600SB">{{$nf->format($count)}}</h3>
+                            <h3 class="sinkinSans600SB">{{ $ordinals[$count] }}</h3>
                         </div>
                     </div>
                     <?php $count++; ?>

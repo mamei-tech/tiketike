@@ -36,6 +36,7 @@ Route::group([
     Route::post('/filterByPercent', 'RaffleFrontController@filterByPercent')->name('filter.by.percent');
     Route::post('/filterByPrice', 'RaffleFrontController@filterByPrice')->name('filter.by.price');
     Route::post('/getUser', 'UserFrontController@getUser')->name('get.user');
+    Route::get('/getcity/{country_id}/{user_id}', 'UserFrontController@getcity')->name('get.cities');
 });
 
 Route::group([
@@ -50,3 +51,5 @@ Route::group([
     Route::get('/soldedticketsbysocialnetworks', 'DashboardController@soldedTicketsBySocialNetworks')->name('v1.customadmin.soldedticketsbysocialnetworks');
     Route::get('/moneybytickets', 'DashboardController@moneyByTickets')->name('v1.customadmin.moneybytickets');
 });
+
+

@@ -1,5 +1,11 @@
 import axios from 'axios';
+
 $(document).ready(function () {
+
+    if (window.location.href === route('main').url()+"#terminosModal") {
+        $("#terminosModal").modal("show");
+    }
+
     $('.select2').select2();
     /*  SETTING UP AXIOS HEADERS  */
     axios.defaults.headers.common['Authorization'] = "Bearer " + $('meta[name=access-token]').attr('content');
@@ -7,7 +13,7 @@ $(document).ready(function () {
     $('.slick-vertical').on('beforeChange', function (event, slick, currentSlide, nextSlide) {
         var userid = $("[data-slick-index='" +nextSlide+ "'] .slick-list").attr('id');
 
-        axios.post('api/getUser',{
+        axios.post(route('get.user'),{
             'userid': userid
         }).then(function (response) {
             $('#created_raffles').html('');

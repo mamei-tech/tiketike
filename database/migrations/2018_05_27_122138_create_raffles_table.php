@@ -26,6 +26,13 @@ class CreateRafflesTable extends Migration
             $table->timestamps();
         });
 
+        Schema::create('raffle_pays',function (Blueprint $table) {
+            $table->increments('id');   //PK
+            $table->unsignedBigInteger('raffle_id');
+            $table->string('charge_id');
+            $table->float('amount');
+        });
+
         Schema::create('raffles', function (Blueprint $table) {
 
             $table->unsignedBigInteger('id');       //PK

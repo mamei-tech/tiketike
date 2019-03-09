@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Requests\DeleteRole;
 use App\Http\TkTk\LogsMsgs;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
@@ -9,13 +10,9 @@ use App\Http\Requests\StoreRoleRequest;
 use Illuminate\Support\Facades\Log;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
-use Illuminate\Support\Facades\Notification;
-use App\Notifications\GeneralNotification;
-use App\User;
 
 class RoleController extends Controller
 {
-    // TODO Identify which methods apply to convert to rest method !!!!
 
     /**
      * Create a new controller instance.
@@ -24,18 +21,11 @@ class RoleController extends Controller
      */
     public function __construct()
     {
-        // I think this is not needed because I have this in the route middleware
-        // Authentication
-        $this->middleware('auth');
-
-        /* TODO: Check what this is for, how to use it */
-        // Authorization
-        $this->middleware('permission:list roles');
-        $this->middleware('permission:create role', ['only' => ['create', 'store']]);
-        $this->middleware('permission:edit role', ['only' => ['edit', 'update']]);
-        $this->middleware('permission:delete role', ['only' => ['destroy']]);
+        $this->middleware('permission:list_roles')          ->  only(['index']);
+        $this->middleware('permission:edit_roles')          ->  only(['update']);
+        $this->middleware('permission:create_roles')        ->  only(['store', 'create']);
+        $this->middleware('permission:delete_roles')        ->  only(['destroy']);
     }
-
 
     /**
      * Display a listing of the resource.
@@ -44,7 +34,6 @@ class RoleController extends Controller
      */
     public function index()
     {
-        //TODO Select only the fields you need
         $roles = Role::paginate(10);
         $permissions = Permission::all();
         return view('admin.roles', [
@@ -62,7 +51,6 @@ class RoleController extends Controller
      */
     public function create()
     {
-        //TODO Select only the fields you need
 
         $roles = DB::table('roles')->get();
         return view('admin.roles',
@@ -89,8 +77,6 @@ class RoleController extends Controller
 
         $roles = DB::table('roles')->get();
         Log::info(LogsMsgs::$role['created'], [$role->name, $role->id]);
-
-        // TODO Try redirect with compact
         return redirect()->route('roles.index',
             [
                 'roles' => $roles,
@@ -131,7 +117,6 @@ class RoleController extends Controller
         $permissions = DB::table('permissions')->get();
         Log::info(LogsMsgs::$role['updated'], [$role->name, $role->id]);
 
-        // TODO Try redirect with compact
         return redirect()->route('roles.index',
             [
                 'roles' => $roles,
@@ -146,22 +131,18 @@ class RoleController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int $id
+     * @param  DeleteRole $request
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(DeleteRole $request)
     {
-        //TODO Think in a validation, maybe add a custom Request parameter
+        $id = $request->get('id');
         $role = Role::find($id);
-//        var_dump($role);
-//        die();
         $name = $role->name;
         $role->delete();
         Log::info(LogsMsgs::$role['deleted'], [$name, $id]);
-
         $roles = DB::table('roles')->get();
 
-        // TODO Try redirect with compact
         return redirect()->route('roles.index',
             [
                 'roles' => $roles,

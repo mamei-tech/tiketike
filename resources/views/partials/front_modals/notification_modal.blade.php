@@ -1,4 +1,3 @@
-
 <div class="modal fade" id="notificaciones" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
      aria-hidden="true">
     <div class="modal-dialog">
@@ -25,6 +24,15 @@
                     <div>
                         <strong></strong>
                     </div>
+                </div>
+                <div class="padding-top-10" id="notifications_wrapper">
+                    <ul id="notifications-list">
+                    @if(\Auth::user() != null)
+                        @foreach(\Auth::user()->notifications as $notification)
+                            <li><a href="{{ $notification['data']['url'] }}">{!! $notification['data']['data'] !!}</a></li>
+                        @endforeach
+                    @endif
+                    </ul>
                 </div>
             </div>
 

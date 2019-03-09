@@ -25,7 +25,7 @@
             T.Total
         </th>
         <th>
-            A.Date                                    {{-- TODO show only the date --}}
+            A.Date {{-- TODO show only the date --}}
         </th>
         <th class="disabled-sorting text-right">
             Act
@@ -50,9 +50,11 @@
 
                 {{-- Buttons --}}
                 {{-- TODO Aling the action icons making them floating to right --}}
-                <a id="rpublish" class="btn btn-info btn-icon btn-sm" href="">
-                    <i class="now-ui-icons education_glasses"></i>
-                </a>
+                @if($raffle->progress == 100)
+                    <a id="rpublish" class="btn btn-info btn-icon btn-sm" href="{{ route('praffle.shuffle',['id'=> $raffle->id]) }}">
+                        <i class="now-ui-icons loader_refresh"></i>
+                    </a>
+                @endif
 
                 <a id="rdelete" class="btn btn-danger btn-icon btn-sm remove" href="">
                     <i class="now-ui-icons arrows-1_cloud-download-93"></i>

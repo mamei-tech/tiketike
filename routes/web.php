@@ -19,7 +19,6 @@ use Illuminate\Support\Facades\Route;
 /* FIRST LEVEL ROUTES */
 Auth::routes();
 Route::get('/', 'MainController@index')->name('main');
-Route::get('/home', 'HomeController@index')->name('home');
 Route::post('/pusher/auth',function(Request $request) {
     return Broadcast::auth($request);
 });
@@ -32,8 +31,6 @@ Route::group(['prefix' => 'raffles'], function () {
 Route::group(['prefix' => 'raffles',
     'middleware' => ['auth']
 ], function () {
-
-//    Route::get('/add', 'RafflesController@create')->name('raffles.create');
     Route::post('/add', 'RafflesController@store')->name('raffles.index.store');
     Route::get('/edit/{raffleId}', 'RafflesController@edit')->name('raffles.edit');
     Route::post('/{raffleId}', 'RafflesController@update')->name('raffles.update');
@@ -41,8 +38,9 @@ Route::group(['prefix' => 'raffles',
     Route::post('/{raffleId}/tickets/buy', 'DirectBuysController@buyTickets')->name('raffle.tickets.buy');
     Route::post('/{raffleId}/{referralId}/{socialNetworkId}', 'ReferralsBuysController@buyTickets')->name('referrals.tickets.buy');
 
-    Route::get('/{raffleId}/comments/{commentId}/responses', 'CommentsController@commentResponses')->name('raffle.commentResponses');
-    Route::post('/{raffleId}/comments/{commentId}/responses', 'CommentsController@respondComment')->name('raffle.respondComment');
+    Route::post('/{raffleId}/tickets/buy/comment','CommentsController@store')->name('raffle.comment');
+    Route::post('/comment/edit/{commentId}','CommentsController@edit')->name('comment.edit');
+    Route::get('/comment/delete/{commentId}','CommentsController@delete')->name('comment.delete');
 });
 
 Route::group(['prefix' => 'payments',
@@ -58,10 +56,6 @@ Route::group(['prefix' => 'payments',
 Route::group(['prefix' => 'users',
     'middleware' => ['auth']
 ], function () {
-    Route::get('/billing/{userid}', 'BillingController@getBillingInfo')->name('billing.info');
-    Route::patch('/billing/{userid}', 'BillingController@saveBillingInfo')->name('billing.saveinfo');
-//    FRONT
-//    Route::get('/profile/{userid}/', 'UserController@getProfile')->name('profile.info');
     Route::get('/profile/edit/{userid}', 'UserController@edit')->name('profile.edit');
     Route::patch('/profile/edit/{userid}/update', 'UserController@update')->name('profile.update');
 });
@@ -76,7 +70,6 @@ Route::group([
     Route::group([
         'prefix' => 'raffles',
     ], function (){
-        Route::post('/null/{id}', 'RafflesController@null')->name('raffles.null');
     });
 
 });
@@ -94,7 +87,7 @@ Route::group([
     Route::post('/', 'LangController@localizator')->name('admin.lansw');
 
     // Users Management
-    Route::resource('/users', 'UserController', ['except' => [ 'show']]);
+    Route::resource('/users', 'UserController', ['except' => ['show', 'store', 'create', 'destroy']]);
     Route::put('/users.updateadmin/{userid}', 'UserController@updateadmin')->name('users.updateadmin');
 
     // Roles Management
@@ -108,33 +101,24 @@ Route::group([
     Route::group([
         'prefix' => 'raffles',
     ], function () {
-        Route::resource('/published', 'PRaffleController', ['except' => ['edit', 'show']]);
-        Route::resource('/unpublished', 'URaffleController', ['except' => ['edit', 'show', 'destroy']]);
+        Route::resource('/published', 'PRaffleController', ['except' => ['edit', 'show', 'update', 'destroy']]);
+        Route::resource('/unpublished', 'URaffleController', ['except' => ['edit', 'show', 'destroy', 'create']]);
         Route::post('/publish/{id}', 'URaffleController@publish')->name('unpublished.publish');
         Route::get('/anulled', 'ARaffleController@index')->name('arraffle.index');
         Route::delete('/destroy/{id}', 'ARaffleController@destroy')->name('arraffle.destroy');
+        Route::get('/praffle/{id}/shuffle','PRaffleController@shuffle')->name('praffle.shuffle');
+        Route::post('/null/{id}', 'PRaffleController@null')->name('raffles.null');
 
         Route::resource('/categories', 'CategoriesController', ['except' => ['edit', 'show']]);
 
         // TODO Change the name for two these views
         Route::get('/config', 'AdminConfigController@showraffleconfig')->name('admin.raffle.showconfig');
         Route::patch('/saveconfig', 'AdminConfigController@saveraffleconfig')->name('admin.raffle.saveconfig');
-
     });
-
-    //    Roles Manager
-    //    Route::group([
-    //        'middleware' => ['permission:roles list']
-    //    ], function (){
-    //        Route::resource('/roles','RoleController', ['except' => ['edit', 'show']]);
-    //    });
-
-
 });
 
 Route::get('auth/{provider}', 'Auth\SocialAuthController@redirectToProvider')->name('social.auth');
 Route::get('auth/{provider}/callback', 'Auth\SocialAuthController@handleProviderCallback');
-
 
 Route::group(['prefix' => 'raffles'
 ], function () {

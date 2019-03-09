@@ -32,7 +32,7 @@ class MainController extends Controller
         $top_users = User::orderBy('ranking','DESC')->limit(10)->get();
         $promos = Promo::where('status',1)->where('type',0)->get();
         $countries = Country::all();
-        return view('main',compact('raffles','top_users','promos','categories','countries'));
 
+        return view('main',compact('raffles','top_users','promos','categories','countries'));
     }
 }

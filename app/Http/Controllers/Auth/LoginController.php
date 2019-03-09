@@ -8,6 +8,8 @@ use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
+use Barryvdh\Debugbar\Facade as Debugbar;
+
 class LoginController extends Controller
 {
     /*
@@ -28,7 +30,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/';
+    protected $redirectTo = '/asda';
 
     /**
      * Create a new controller instance.
@@ -44,7 +46,7 @@ class LoginController extends Controller
     /**
      * Handle a login request to the application.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Http\Response|\Illuminate\Http\JsonResponse
      *
      * @throws \Illuminate\Validation\ValidationException
@@ -68,7 +70,6 @@ class LoginController extends Controller
             $user->generateApiToken();
 
             $request->session()->regenerate();
-
             $this->clearLoginAttempts($request);
 
             /*This code section belongs to mamei. Here the logged user is marked as logged*/
@@ -76,6 +77,11 @@ class LoginController extends Controller
             ActiveUsersRepository::markUserAsLogged($user);
 
             /*End of mamei section code*/
+
+            if ($request->has('adm'))
+                return view('admin.index', ['li_activeDash' => 'active']);
+            else
+                redirect()->back();
 
             return $this->authenticated($request, $this->guard()->user())
                 ? redirect()->back(): redirect()->back();
@@ -94,7 +100,7 @@ class LoginController extends Controller
     /**
      * Log the user out of the application.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function logout(Request $request)

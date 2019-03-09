@@ -19,12 +19,10 @@ class PromoController extends Controller
      */
     public function __construct()
     {
-        // I think this is not needed because I have this in the route middleware
-        $this->middleware('auth');
-        $this->middleware('permission:list promos');
-        $this->middleware('permission:create promo', ['only' => ['create', 'store']]);
-        $this->middleware('permission:edit promo', ['only' => ['edit', 'update']]);
-        $this->middleware('permission:delete promo', ['only' => ['destroy']]);
+        $this->middleware('permission:promo_list')          ->  only(['index']);
+        $this->middleware('permission:promo_store')         ->  only(['create', 'store']);
+        $this->middleware('permission:promo_update')        ->  only(['update']);
+        $this->middleware('permission:promo_destroy')       ->  only(['destroy']);
     }
 
 
@@ -51,8 +49,6 @@ class PromoController extends Controller
      */
     public function create()
     {
-        //TODO Select only the fields you need
-
         $promos = DB::table('promos')->get();
 
         return view('admin.promos',
@@ -115,7 +111,6 @@ class PromoController extends Controller
      */
     public function update(EditPromoRequest $request, $id)
     {
-
         // $promo = Promo::where('name', $name)->first();
 
         $promo = Promo::find($id);
@@ -157,8 +152,7 @@ class PromoController extends Controller
                 '303')
                 ->with('success', 'Promo "' . $promo->name . '" updated successfully');
         } else {
-            // TODO Use tranlation here
-            return redirect()->back()->withErrors("The name you use is already taken.");
+            return redirect()->back()->withErrors(trans('validation.name_already_taken'));
         }
 
         /* $promo::update(Input::all()); */

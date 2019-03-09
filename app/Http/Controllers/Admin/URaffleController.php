@@ -4,6 +4,9 @@ namespace App\Http\Controllers\Admin;
 
 use App\Country;
 use App\Http\Controllers\Controller;
+use App\Notifications\RaffleAnulled;
+use App\Notifications\RaffleDeleted;
+use App\Notifications\RaffleUpdated;
 use App\Raffle;
 use App\Http\Requests\ChkRPublishRequest;
 use App\RaffleCategory;
@@ -27,12 +30,12 @@ class URaffleController extends Controller
      */
     public function __construct(RaffleRepository $raffleRepository)
     {
-        // I think this is not needed because I have this in the route middleware
-        $this->middleware('auth');
-        $this->middleware('permission:list raffles');
-        $this->middleware('permission:create raffle', ['only' => ['create', 'store']]);
-        $this->middleware('permission:edit raffle', ['only' => ['edit', 'update']]);
-        $this->middleware('permission:delete raffle', ['only' => ['destroy']]);
+        $this->middleware('permission:list_upublished_raffles')          ->  only(['index']);
+        $this->middleware('permission:publish_upublished_raffles')       ->  only(['publish']);
+        $this->middleware('permission:store_upublished_raffles')         ->  only(['store']);
+        $this->middleware('permission:edit_upublished_raffles')          ->  only(['edit']);
+        $this->middleware('permission:destroy_upublished_raffles')       ->  only(['destroy']);
+
         $this->raffleRepository = $raffleRepository;
     }
 
@@ -74,13 +77,15 @@ class URaffleController extends Controller
             return redirect()->back()->withErrors(trans('validation.forminvalid'));
 
         // Getting the raffle
-        $raffle = Raffle::find($request->id);
+        $raffle = Raffle::findOrFail($request->id);
 
-        // TODO esta parte son las notificaciones a los usuarios
-        $users = User::get();
-        Notification::send($users,new GeneralNotification('A new raffle was published.',$raffle,'raffle.tickets.available'));
+        // esta parte son las notificaciones a los usuarios
+        $users = $raffle->getFollowers;
+        foreach ($users as $user) {
+            $user->notify(new RaffleUpdated($raffle,$user));
+        }
 
-        // TODO fin notificaciones
+        // fin notificaciones
         // Getting & decripting the form data sended to the api
         $apiFormData = decrypt($_COOKIE['azeroth']);
 
@@ -91,16 +96,12 @@ class URaffleController extends Controller
             || $apiFormData['tprice']       != $request ->tprice) {
 
             // The form data don't match with the data sended to the api previously
-            return redirect()->back()->withErrors(trans('validation.forminvalid --'));          // TODO Check this translation
+            return redirect()->back()->withErrors(trans('validation.forminvalid --'));
         }
 
         // Everithing is OK, then Publising the raffle
         $raffle->publish($request->profit, $request->commissions, $request->tcount, $request->tprice);
-        $users = User::get();
-        // Notification::send("Hi, there's a new published raffle",$raffle, 'raffle.tickets.available');
 
-
-        // TODO Try redirect with compact
         return redirect()->route('unpublished.index',
             [
                 'raffles' => $this->raffleRepository->getTenUnpublishedRaffles(),
@@ -111,15 +112,6 @@ class URaffleController extends Controller
             ->with('success', 'Raffle "' . $id . '" published successfully');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
 
     /**
      * Store a newly created resource in storage.
@@ -141,8 +133,6 @@ class URaffleController extends Controller
         $raffle->location       = $request->location;
 
         $raffle->save();
-
-        // TODO validate this for only two images
         foreach ($request->all()['avatar'] as $item) {
 
             if ($request->has('avatar') and $item->isValid())
@@ -156,28 +146,6 @@ class URaffleController extends Controller
             ],
             '303')
             ->with('success', 'Raffle created successfully');
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
     }
 
     /**
@@ -196,6 +164,11 @@ class URaffleController extends Controller
         $raffle->category = $request->get('category');
         $raffle->location = $request->get('location');
         $raffle->save();
+
+        foreach ($raffle->getFollowers as $user) {
+            $user->notify(new RaffleUpdated($raffle,$user));
+        }
+
         return redirect()->route('unpublished.index',
             [
                 'div_showRaffles' => 'show',
@@ -213,6 +186,11 @@ class URaffleController extends Controller
      */
     public function destroy($id)
     {
+        $raffle = Raffle::findOrFail($id);
+        foreach ($raffle->getFollowers as $user) {
+            $user->notify(new RaffleDeleted($raffle,$user));
+        }
+
         Raffle::destroy($id);
         return redirect()->route('unpublished.index',
             [

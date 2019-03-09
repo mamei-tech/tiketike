@@ -615,7 +615,7 @@ div .search-box {
     top: 0;
     left: 0;
     width: 100%;
-    z-index: 99999;
+    z-index: 1;
 }
 .btn-primary {
     color: #fff;
@@ -1580,17 +1580,24 @@ Full screen Modal
     top:5% !important;
     margin-top: 0 !important;
 }
+
+.tile-percent-text {
+    font-size: 28px;
+}
+
+.tile-owner-name {
+    padding-left: 8%;
+    font-size: 8px;
+}
+
 .slicklanding .itemImg strong {
     font-family: sinkinSans600SB;
-    font-size: 12px;
+    font-size: 10px;
     display: block;
-    margin-bottom: 10px;
-    padding: 0 15px;
-    padding-top: 0px;
     border: #ffffff 2px dashed;
-    padding:5px;
-    margin:10px;
-    top:0px;
+    /*position: relative;*/
+    margin: 2% 8% 5% 8%;
+    padding: 5% 5% 5% 5%;
 }
 .slicklanding .itemImg {
     position: relative;
@@ -1610,6 +1617,19 @@ Full screen Modal
     div#navdiv-rightcolum ul {
         float: none !important;
     }
+}
+
+::-webkit-scrollbar{
+    width: 10px;
+    background-color: #F5F5F5;
+}
+::-webkit-scrollbar-track{
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    background-color: #F5F5F5;
+}
+::-webkit-scrollbar-thumb{
+    background-color: #70438F;
+    background-image: -webkit-linear-gradient(90deg,rgba(255, 255, 255, .2) 25%,transparent 25%,transparent 50%,rgba(255, 255, 255, .2) 50%,rgba(255, 255, 255, .2) 75%,transparent 75%,transparent)
 }
 
 
