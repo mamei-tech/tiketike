@@ -108,14 +108,18 @@
 @stop
 @section('additional_scripts')
     <script src="//js.pusher.com/3.1/pusher.min.js"></script>
-    <script src='https://www.google.com/recaptcha/api.js'></script>
+    {{--<script src='https://www.google.com/recaptcha/api.js'></script>--}}
     <script src="{{ asset('js/main.min.js') }}"></script>
     <script type="text/javascript">
         $(document).ready(function () {
-            var pusher = new Pusher({{ env('PUSHER_APP_KEY') }}, {
-                encrypted: true
+            var pusher = new Pusher('{{ env('PUSHER_APP_KEY') }}', {
+                encrypted: true,
+                cluster: 'us2'
             });
             var channel = pusher.subscribe('TikeTikes-development');
+            channel.bind('Illuminate\\Notifications\\Notification',function (data) {
+                alert(data.message);
+            });
 
         });
     </script>

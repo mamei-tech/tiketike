@@ -62,4 +62,9 @@ class RaffleCreated extends Notification
             'url' => route('raffle.tickets.available',['raffleId' => sprintf('%.0f',$this->raffle->id)])
         ];
     }
+
+    public function broadcastOn()
+    {
+        return ['tiketikes'];
+    }
 }
