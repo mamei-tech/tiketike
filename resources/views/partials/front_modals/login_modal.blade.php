@@ -38,6 +38,15 @@
                            class="colorN italic padding-top-20">Contraseña</label>
                     <input type="password" class="form-control form-control-new "
                            id="inputPassword" name="password">
+                    {!! app('captcha')->display() !!}
+                    <div class="g-recaptcha"
+                         data-sitekey="{{env('NOCAPTCHA_SITEKEY')}}">
+                    </div>
+                    @if ($errors->has('g-recaptcha-response'))
+                        <span class="help-block">
+                                        <strong>{{ $errors->first('g-recaptcha-response') }}</strong>
+                                    </span>
+                    @endif
                     <div class="row padding-top-20">
                         <div class="col-xs-7">
                             <a href="#registerModal" onclick="

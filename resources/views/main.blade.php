@@ -107,5 +107,16 @@
     @include('partials.frontend.views.landing.top_users_section')
 @stop
 @section('additional_scripts')
+    <script src="//js.pusher.com/3.1/pusher.min.js"></script>
+    <script src='https://www.google.com/recaptcha/api.js'></script>
     <script src="{{ asset('js/main.min.js') }}"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var pusher = new Pusher({{ env('PUSHER_APP_KEY') }}, {
+                encrypted: true
+            });
+            var channel = pusher.subscribe('TikeTikes-development');
+
+        });
+    </script>
 @stop

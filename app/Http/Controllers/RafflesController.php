@@ -88,6 +88,8 @@ class RafflesController extends Controller
         $raffle->owner      = Auth::user()->id;
 
         $raffle->save();
+        var_dump(sprintf('%.0f',$raffle->id));
+        die();
 
         foreach ($request->base as $item) {
             $raffle->addMediaFromBase64($item)->usingFileName('filename.jpg')->toMediaCollection('raffles','raffles');

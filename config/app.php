@@ -194,7 +194,12 @@ return [
          */
         Laravel\Socialite\SocialiteServiceProvider::class,
 
-        Tightenco\Ziggy\ZiggyServiceProvider::class
+        Tightenco\Ziggy\ZiggyServiceProvider::class,
+
+        /*
+         * Google Captcha
+         */
+        Anhskohbo\NoCaptcha\NoCaptchaServiceProvider::class,
 
 
     ],
