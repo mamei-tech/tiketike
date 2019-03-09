@@ -35,8 +35,12 @@ class CategoriesController extends Controller
 
     public function update(Request $request, $category)
     {
-        var_dump($request->all());
-        die();
+        $category = RaffleCategory::findOrFail($category);
+        $category->category = $request->get('category');
+        $category->icon = $request->get('icon');
+        $category->save();
+        return redirect()->route('categories.index')
+            ->with('success', 'Category updated successfully');
     }
 
     public function delete($id)

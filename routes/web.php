@@ -116,7 +116,7 @@ Route::group([
         Route::get('/comment', 'CommentsController@index')->name('comments.index');
         Route::delete('/destroy/{id}', 'ARaffleController@destroy')->name('arraffle.destroy');
         Route::get('/praffle/{id}/shuffle','PRaffleController@shuffle')->name('praffle.shuffle');
-        Route::post('/null/{id}', 'URaffleController@null')->name('raffles.null');
+        Route::post('/null/{id}', 'PRaffleController@null')->name('raffles.null');
 
         Route::resource('/categories', 'CategoriesController', ['except' => ['edit', 'show']]);
 

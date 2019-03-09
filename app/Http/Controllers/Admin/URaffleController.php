@@ -234,24 +234,4 @@ class URaffleController extends Controller
             '303')
             ->with('success', 'Raffle deleted successfully');
     }
-
-    /**
-     *
-     * Anullate the raffle
-     *
-     * @param $id
-     * @return \Illuminate\Http\RedirectResponse
-     */
-    public function null($id) {
-        $raffle = Raffle::findOrFail($id);
-        foreach ($raffle->getFollowers as $user) {
-            $user->notify(new RaffleDeleted($raffle,$user));
-        }
-        $raffle->getOwner->notify(new RaffleAnulled($raffle,$raffle->getOwner));
-        $raffle->anullate();
-
-        return redirect()->back()
-            ->with('success', 'Raffle "' . $id . '" anulled successfully');
-
-    }
 }
