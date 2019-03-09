@@ -237,7 +237,7 @@ class RaffleRepository
             })->orderBy('progress','DESC')
             ->having('progress','>','79')
             ->having('progress','<','100')
-            ->take(32)
+            ->take(5)
             ->get();
         return $response;
 

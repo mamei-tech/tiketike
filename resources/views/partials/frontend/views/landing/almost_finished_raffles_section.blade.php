@@ -20,10 +20,14 @@
                                href="{{ route('raffle.tickets.available',['raffleId' => $raffle->id]) }}">
                                 <div class="imginline"
                                      style="position: absolute">
-                                    <strong class="padding-top-10 sinkinSans600SB text-center"><span
-                                                class=" texto16">{{ round($raffle->progress) }} %</span><br>{{ $raffle->title }}
-                                            <h5 class="text-center"><img class="align-content-center" src="{{ asset("pics/countries/".$raffle->getLocation->name.".png") }}"
-                                                                         style="float: left">{{ $raffle->getLocation->name }}</h5>
+                                    <strong class="sinkinSans600SB text-center"><span
+                                                class="tile-percent-text">{{ round($raffle->progress) }}
+                                            %</span><br>{{ $raffle->title }}
+                                        <h5 class="text-center">
+                                            <img class="align-content-center"
+                                                 src="{{ asset("pics/countries/".$raffle->getLocation->name.".png") }}"/>
+                                            <span class="tile-owner-name">{{ $raffle->getOwner->name }}</span>
+                                        </h5>
                                     </strong>
                                 </div>
                             </a>
