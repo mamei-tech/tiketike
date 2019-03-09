@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Http\TkTk\Cfg\CfgRaffles;
 use App\Http\TkTk\CodesGenerator;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
@@ -118,9 +119,20 @@ class Raffle extends Model implements HasMedia
      * @param $user - User that buy
      * @param $ticketIds - Ids of tickets
      * @param null $referralId
+     * @param int $socialNetworkId    0 for none, 1 for facebook, 2 for twitter, 3 for instagram
      * @return bool
      */
-    public function buyTickets ($user, $ticketIds, $referralId = null) {
+    public function buyTickets ($user, $ticketIds, $referralId = null, $socialNetworkId = -1) {
+
+        $moneyForCommission = $this->commissions * $this->price / 100;
+        $comForTicket = $moneyForCommission / $this->tickets_count;
+
+        $baseTicketGain = ($this->profit * $this->price / 100) / $this->tickets_count;
+
+        if ($referralId == null)
+            $this->netGain += count($ticketIds) * ($baseTicketGain + $comForTicket);
+        else
+            $this->netGain += count($ticketIds) * $baseTicketGain;
 
         if ($this->getStatus->status != 'Published')
         {
@@ -169,15 +181,17 @@ class Raffle extends Model implements HasMedia
                 $refBuy = new ReferralsBuys;
                 $refBuy->comisionist = $referralId;
                 $refBuy->ticket = $ticket->id;
+                $refBuy->socialNetwork = $socialNetworkId;
                 array_push($referralsBuys, $refBuy);
             }
             $referralUserProfile = $referralUser->getProfile;
-            $referralUserProfile->balance += count($referralsBuys) * $this->commissions / $this->tickets_count;
+            $referralUserProfile->balance += count($referralsBuys) * $comForTicket;
             $referralUserProfile->save();
             $referralUser->getReferralsBuys()->saveMany($referralsBuys);
         }
 
         $this->getTickets()->saveMany($ticketsBuyed);
+        $this->save();
 
         return true;
     }

@@ -39,7 +39,7 @@ Route::group(['prefix' => 'raffles',
     Route::post('/{raffleId}', 'RafflesController@update')->name('raffles.update');
     Route::get('{raffleId}/follow', 'RafflesController@follow')->name('raffles.follow');
     Route::post('/{raffleId}/tickets/buy', 'DirectBuysController@buyTickets')->name('raffle.tickets.buy');
-    Route::post('/{raffleId}/{referralId}', 'ReferralsBuysController@buyTickets')->name('referrals.tickets.buy');
+    Route::post('/{raffleId}/{referralId}/{socialNetworkId}', 'ReferralsBuysController@buyTickets')->name('referrals.tickets.buy');
 
     Route::get('/{raffleId}/comments/{commentId}/responses', 'CommentsController@commentResponses')->name('raffle.commentResponses');
     Route::post('/{raffleId}/comments/{commentId}/responses', 'CommentsController@respondComment')->name('raffle.respondComment');

@@ -152,7 +152,8 @@ class RafflesSeeder extends Seeder
                             $praffle->buyTickets(
                                 $user,
                                 [$tk->code],
-                                $tk->getRaffle->getOwner->id
+                                $tk->getRaffle->getOwner->id,
+                                mt_rand(0, 3)   //social network: 0 none, 1 facebook, 2 twitter, 3 instagram
                             );
                             $praffle->progress = $praffle->getProgress();
                             $praffle->save();

@@ -48,4 +48,5 @@ Route::group([
     Route::get('/rafflesbystatus', 'DashboardController@rafflesByStatus')->name('v1.customadmin.rafflesbystatus');
     Route::get('/soldedtickets', 'DashboardController@soldedTickets')->name('v1.customadmin.soldedtickets');
     Route::get('/soldedticketsbysocialnetworks', 'DashboardController@soldedTicketsBySocialNetworks')->name('v1.customadmin.soldedticketsbysocialnetworks');
+    Route::get('/moneybytickets', 'DashboardController@moneyByTickets')->name('v1.customadmin.moneybytickets');
 });

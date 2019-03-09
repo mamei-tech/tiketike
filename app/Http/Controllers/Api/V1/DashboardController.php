@@ -134,47 +134,27 @@ class DashboardController extends ApiController
         ]);
     }
 
+    static function maleSolds($byCom, $anulledId) {
+        return count(
+            DB::table('usersprofiles')
+                ->join('tickets', 'usersprofiles.user', '=', 'tickets.buyer')
+                ->join('raffles', 'tickets.raffle', '=', 'raffles.id')
+                ->where('raffles.status', '!=', $anulledId)
+                ->where('tickets.soldByCom', $byCom)
+                ->where('usersprofiles.gender', 'male')->get()
+        );
+    }
+
     public function soldedTickets() {
         $anulledId = RaffleStatus::where('status', 'Cancelled')->first()->id;
-        $soldedTicketsDirec = DB::table('tickets')
-            ->join('raffles', 'raffles.id', '=', 'tickets.raffle')
-            ->where('raffles.status', '!=', $anulledId)
-            ->where('tickets.sold', true)
-            ->where('tickets.soldByCom', false)->get();
+        $soldedTicketsDirec = DashboardController::soldedTicketsBy(false, $anulledId);
+        $soldedTicketsByCom = DashboardController::soldedTicketsBy(true, $anulledId);
 
-        $soldedTicketsByCom = DB::table('tickets')
-            ->join('raffles', 'raffles.id', '=', 'tickets.raffle')
-            ->where('raffles.status', '!=', $anulledId)
-            ->where('tickets.sold', true)
-            ->where('tickets.soldByCom', true)->get();
+        $directMaleSolds = DashboardController::maleSolds(false, $anulledId);
 
-        $directMaleSolds = count(
-            DB::table('usersprofiles')
-                ->join('tickets', 'usersprofiles.user', '=', 'tickets.buyer')
-                ->join('raffles', 'tickets.raffle', '=', 'raffles.id')
-                ->where('raffles.status', '!=', $anulledId)
-                ->where('tickets.soldByCom', false)
-                ->where('usersprofiles.gender', 'male')->get()
-        );
-
-        $comMaleSolds = count(
-            DB::table('usersprofiles')
-                ->join('tickets', 'usersprofiles.user', '=', 'tickets.buyer')
-                ->join('raffles', 'tickets.raffle', '=', 'raffles.id')
-                ->where('raffles.status', '!=', $anulledId)
-                ->where('tickets.soldByCom', true)
-                ->where('usersprofiles.gender', 'male')->get()
-        );
+        $comMaleSolds = DashboardController::maleSolds(true, $anulledId);
 
         $remainTickets = count(Ticket::where('sold', false)->get());
-
-//        $directlyMoneyCount = 0;
-//        foreach($soldedTicketsDirec as $std)
-//            $directlyMoneyCount += $std->tickets_price;
-//
-//        $comMoneyCount = 0;
-//        foreach($soldedTicketsByCom as $stc)
-//            $comMoneyCount += $stc->tickets_price;
 
         return $this->respond([
             'status' => 'success',
@@ -188,18 +168,78 @@ class DashboardController extends ApiController
         ]);
     }
 
+    static function soldedTicketsBySocialNetworksAux($netId, $gender) {
+        return count(
+            DB::table('referralsbuys')
+                ->join('users', 'referralsbuys.comisionist', '=', 'users.id')
+                ->join('usersprofiles', 'usersprofiles.user', '=', 'users.id')
+                ->where('referralsbuys.socialNetwork', '=', $netId)
+                ->where('usersprofiles.gender', '=', $gender)->get()
+        );
+    }
+
     public function soldedTicketsBySocialNetworks() {
+
+        $male_facebook = DashboardController::soldedTicketsBySocialNetworksAux(1, 'male');
+        $female_facebook = DashboardController::soldedTicketsBySocialNetworksAux(1, 'female');
+
+        $male_twitter = DashboardController::soldedTicketsBySocialNetworksAux(2, 'male');
+        $female_twitter = DashboardController::soldedTicketsBySocialNetworksAux(2, 'female');
+
+        $male_instagram = DashboardController::soldedTicketsBySocialNetworksAux(3, 'male');
+        $female_instagram = DashboardController::soldedTicketsBySocialNetworksAux(3, 'female');
 
         return $this->respond([
             'status' => 'success',
             'status_code' => Response::HTTP_OK,
             // Payload
-            'male_facebook'     => 156,
-            'female_facebook'   => 60,
-            'male_twitter'      => 90,
-            'female_twitter'    => 84,
-            'male_instagram'    => 105,
-            'female_instagram'  => 125,
+            'male_facebook'     => $male_facebook,
+            'female_facebook'   => $female_facebook,
+            'male_twitter'      => $male_twitter,
+            'female_twitter'    => $female_twitter,
+            'male_instagram'    => $male_instagram,
+            'female_instagram'  => $female_instagram,
+        ]);
+    }
+
+    static function soldedTicketsBy($byCom, $anulledId) {
+        return DB::table('tickets')
+            ->join('raffles', 'raffles.id', '=', 'tickets.raffle')
+            ->where('raffles.status', '!=', $anulledId)
+            ->where('tickets.sold', true)
+            ->where('tickets.soldByCom', $byCom)->get();
+    }
+
+    public function moneyByTickets() {
+        $anulledId = RaffleStatus::where('status', 'Cancelled')->first()->id;
+        $soldedTicketsDirec = DashboardController::soldedTicketsBy(false, $anulledId);
+        $soldedTicketsByCom = DashboardController::soldedTicketsBy(true, $anulledId);
+
+        $netGain = 0;
+        Raffle::chunk(1000, function ($raffles) use (&$netGain, $anulledId) {
+            foreach ($raffles as $r) {
+                if ($r->status != $anulledId)
+                    $netGain += $r->netGain;
+            }
+        });
+
+        $directlyMoneyCount = 0;
+        foreach($soldedTicketsDirec as $std) {
+            $directlyMoneyCount += $std->tickets_price;
+        }
+
+        $comMoneyCount = 0;
+        foreach($soldedTicketsByCom as $stc) {
+            $comMoneyCount += $stc->tickets_price;
+        }
+
+        return $this->respond([
+            'status' => 'success',
+            'status_code' => Response::HTTP_OK,
+            // Payload
+            'directly'     => round($directlyMoneyCount, 2),
+            'referrals'    => round($comMoneyCount, 2),
+            'net_gain'     => round($netGain, 2),
         ]);
     }
 }

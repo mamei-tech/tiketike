@@ -42,6 +42,7 @@ class CreateTicketsTable extends Migration
 
             $table->unsignedInteger('comisionist');
             $table->unsignedInteger('ticket');
+            $table->smallInteger('socialNetwork')->default(0); //0 for none, 1 for facebook, 2 for twitter, 3 for instagram
             $table->timestamps();
 
             $table->foreign('comisionist')

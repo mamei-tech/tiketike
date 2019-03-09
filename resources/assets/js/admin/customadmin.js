@@ -1236,11 +1236,8 @@ demo = {
         $(ticketsCanvas).on('click', updateSoldedTickets);
 
 
-        let moneyByTicketsCtx = document.getElementById("moneyByTickets").getContext("2d");
-
-        let moneyTicketsData = [2065, 3400];
-        let moneyTicketsCount = moneyTicketsData[0] + moneyTicketsData[1];
-        let netGain = 4050;
+        let moneyByTicketsCanvas = document.getElementById("moneyByTickets");
+        let moneyByTicketsCtx = moneyByTicketsCanvas.getContext("2d");
 
         let moneyByTicketsChart = new Chart(moneyByTicketsCtx ,{
             type: 'doughnut',
@@ -1248,7 +1245,7 @@ demo = {
                 datasets: [{
                     backgroundColor: ['rgba(255, 0, 0, 0.5)', 'rgba(0, 0, 255, 0.5)'],
                     borderWidth: [5, 5],
-                    data: moneyTicketsData,
+                    data: [],
                 }],
                 labels: [
                     'Directly',
@@ -1258,7 +1255,7 @@ demo = {
             options: {
                 title : {
                     display: true,
-                    text: 'Money by Tickets: $' + moneyTicketsCount + ' (Net. gain: $' + netGain + ')',
+                    text: '',
                     fontSize: 18,
                     fontStyle: 'normal',
                     fontColor: "rgba(0, 0, 0, 0.5)",
@@ -1274,6 +1271,32 @@ demo = {
             }
         });
 
+
+        function updateMoneyByTickets () {
+            axios.get(route('v1.customadmin.moneybytickets')).then(function (response) {
+
+                let moneyData = [response['data']['directly'], response['data']['referrals']];
+                let moneyTicketsCount = moneyData[0] + moneyData[1];
+                let netGain = response['data']['net_gain'];
+
+                moneyByTicketsChart.data.datasets[0].data = [];
+
+                moneyByTicketsChart.update();
+
+                moneyByTicketsChart.data.datasets[0].data = moneyData;
+
+                moneyByTicketsChart.options.title.text = 'Money by Tickets: $' + moneyTicketsCount + ' (Net. gain: $' + netGain + ')';
+
+                moneyByTicketsChart.update();
+
+            }).catch(function (error) {
+                console.log(error);
+                //showajaxerror('#mdal_publishRaffle',  error.response.data.error['message']);
+            });
+        }
+
+        updateMoneyByTickets();
+        $(moneyByTicketsCanvas).on('click', updateMoneyByTickets);
 
 
         let ticketsBySocialNetworksCanvas = document.getElementById("ticketsBySocialNetworksData");
