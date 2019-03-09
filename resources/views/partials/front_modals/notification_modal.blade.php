@@ -25,14 +25,14 @@
                         <strong></strong>
                     </div>
                 </div>
-                <div class="padding-top-10">
+                <div class="padding-top-10" id="notifications_wrapper">
+                    <ul id="notifications-list">
                     @if(\Auth::user() != null)
                         @foreach(\Auth::user()->notifications as $notification)
-                            <div class="borderBottomG padding-top-10">
-                                <div class="col-md-11"><a href="{{ $notification['data']['url'] }}"><span>{!! $notification['data']['data'] !!}</span></a></div>
-                            </div>
+                            <li><a href="{{ $notification['data']['url'] }}">{!! $notification['data']['data'] !!}</a></li>
                         @endforeach
                     @endif
+                    </ul>
                 </div>
             </div>
 

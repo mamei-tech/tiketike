@@ -13,7 +13,7 @@
                     <ul class="list-inline padding-top-20 padding-left20">
                         <li class="margin-left-20 ">
                             <a data-toggle="modal" href="#loginModal" title="Autenticarse"
-                                                                                        class="colorB texto16 sinkinSans500M">Autenticarse</a>
+                               class="colorB texto16 sinkinSans500M">Autenticarse</a>
                             @include('partials.front_modals.login_modal')
                             @include('partials.front_modals.register_modal')
                         </li>
@@ -110,17 +110,23 @@
     <script src="//js.pusher.com/3.1/pusher.min.js"></script>
     {{--<script src='https://www.google.com/recaptcha/api.js'></script>--}}
     <script src="{{ asset('js/main.min.js') }}"></script>
-    <script type="text/javascript">
-        $(document).ready(function () {
+    @if(\Auth::user() != null)
+        <script type="text/javascript">
+            var notifications_wrapper = $('#notifications_wrapper');
+            var notifications = notifications_wrapper.find('ul#notifications-list');
             var pusher = new Pusher('{{ env('PUSHER_APP_KEY') }}', {
-                encrypted: true,
-                cluster: 'us2'
+                forceTLS: true,
+                cluster: '{{ env('PUSHER_APP_CLUSTER') }}'
             });
-            var channel = pusher.subscribe('TikeTikes-development');
-            channel.bind('Illuminate\\Notifications\\Notification',function (data) {
-                alert(data.message);
+            var channel = pusher.subscribe('chanel-{{ \Auth::user()->id }}');
+            channel.bind('Illuminate\\Notifications\\Events\\BroadcastNotificationCreated', function (data) {
+                var existingNotifications = notifications.html();
+                var newNotification = "<li><a href='" + data.url + "'>" + data.data + "</a></li>";
+                notifications.html(newNotification + existingNotifications);
+                var notif_count = $('span#notifications_count');
+                var new_count = parseInt(notif_count.html()) + 1;
+                notif_count.html(new_count);
             });
-
-        });
-    </script>
+        </script>
+    @endif
 @stop
