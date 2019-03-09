@@ -1,17 +1,10 @@
 import axios from 'axios';
 
-
-
 $(document).ready(function () {
-
-
-
-
 
     if (window.location.href === route('main').url()+"#terminosModal") {
         $("#terminosModal").modal("show");
     }
-
 
     $('.select2').select2();
     /*  SETTING UP AXIOS HEADERS  */
