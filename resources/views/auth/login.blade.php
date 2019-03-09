@@ -4,7 +4,7 @@
 
 
             <!--   you can change the color of the filter page using: data-color="blue | purple | green | orange | red | rose " -->
-            <div class="content login-purple  padding-top-20"  >
+            <div class="content login-purple  padding-top-20">
                 <div class="container" style="height: 100vh" >
                     <div class="col-md-4" style="margin: auto">
                         <form class="form "  method="POST" action="{{ route('login') }}" >
