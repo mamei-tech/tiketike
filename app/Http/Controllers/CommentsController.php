@@ -32,6 +32,44 @@ class CommentsController extends Controller
 
         Auth::user()->getComments()->save($comment);
 
+        return redirect()->route('raffle.tickets.buy', $raffle);
+    }
+
+    public function delete($id){
+        $raffle = Comment::find($id)->getRaffle->id;
+        Comment::destroy($id);
+
+
+        return redirect()->route('raffle.tickets.buy', $raffle);
+    }
+
+    public function edit(CommentRaffleRequest $request, $id){
+
+
+        $raffle = Comment::find($id)->getRaffle->id;
+        $comment = Comment::find($id);
+
+        $comment->text = $request->get('text');
+        $comment->save();
         return \redirect()->route('raffle.tickets.buy', $raffle);
     }
+
+    public function update(Request $request, $id)
+    {
+        $raffle = Raffle::find($id);
+        $raffle->title = $request->get('title');
+        $raffle->description = $request->get('description');
+        $raffle->price = $request->get('price');
+        $raffle->category = $request->get('category');
+        $raffle->location = $request->get('location');
+        $raffle->save();
+        return redirect()->route('unpublished.index',
+            [
+                'div_showRaffles' => 'show',
+                'li_activeURaffles' => 'active',
+            ],
+            '303')
+            ->with('success', 'Raffle updated successfully');
+    }
+
 }
