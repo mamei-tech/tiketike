@@ -7,6 +7,8 @@ use App\Raffle;
 use App\Repositories\RaffleRepository;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Stripe\Stripe;
+use Stripe\Refund;
 
 class PaymentController extends Controller
 {
@@ -59,6 +61,25 @@ class PaymentController extends Controller
 
     public function pending_execute($id)
     {
-
+        Stripe::setApiKey(env('STRIPE_KEY'));
+        $payment = Payment::findOrFail($id);
+        $raffle = $payment->getRaffle();
+        $pending_pays = $raffle->getPaymentsAttached;
+        foreach ($pending_pays as $pay) {
+            $refund = Refund::create([
+                'charge' => $pay->charge_id,
+                'amount' => $pay->amount,
+                'reason' => 'Raffle '.$raffle->title.' was canceled.'
+            ]);
+            if ($refund['status'] != 'succeeded')
+            {
+                return redirect()->back()
+                    ->with('404','Refund failed');
+            }
+        }
+        $payment->status = 'executed';
+        $payment->save();
+        return redirect()->back()
+            ->with('success','Refund executed successfully');
     }
 }
