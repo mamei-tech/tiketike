@@ -126,17 +126,10 @@
                 <div class="col-md-6">
                     <div class="form-group basic">
                         <label>@lang('aDashboard.country')</label>
-                        {{--TODO internazionalization for countries names--}}
                         <br>
                         <select id="contry-select" name="country" class="selectpicker" data-style="btn btn-neutral btn-round"
                                 title="Country" tabindex="-98">
                             <option class="bs-title-option" value="">Country</option>
-
-                            @foreach ($countries as $country)
-                                <option value="{{ $country->id }}" {{ $country->name == $user->getProfile->getCity->getCountry->name ? 'selected' : '' }}>
-                                    {{ $country->name }}</option>
-                            @endforeach
-
                         </select>
                     </div>
                 </div>
