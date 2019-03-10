@@ -30,12 +30,12 @@ class URaffleController extends Controller
      */
     public function __construct(RaffleRepository $raffleRepository)
     {
-        // I think this is not needed because I have this in the route middleware
-        $this->middleware('auth');
-        $this->middleware('permission:list raffles');
-        $this->middleware('permission:create raffle', ['only' => ['create', 'store']]);
-        $this->middleware('permission:edit raffle', ['only' => ['edit', 'update']]);
-        $this->middleware('permission:delete raffle', ['only' => ['destroy']]);
+        $this->middleware('permission:list_upublished_raffles')          ->  only(['index']);
+        $this->middleware('permission:publish_upublished_raffles')       ->  only(['publish']);
+        $this->middleware('permission:store_upublished_raffles')         ->  only(['store']);
+        $this->middleware('permission:edit_upublished_raffles')          ->  only(['edit']);
+        $this->middleware('permission:destroy_upublished_raffles')       ->  only(['destroy']);
+
         $this->raffleRepository = $raffleRepository;
     }
 
@@ -113,15 +113,6 @@ class URaffleController extends Controller
             ->with('success', 'Raffle "' . $id . '" published successfully');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
 
     /**
      * Store a newly created resource in storage.
@@ -158,28 +149,6 @@ class URaffleController extends Controller
             ],
             '303')
             ->with('success', 'Raffle created successfully');
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
     }
 
     /**

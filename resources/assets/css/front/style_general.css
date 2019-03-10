@@ -1580,17 +1580,24 @@ Full screen Modal
     top:5% !important;
     margin-top: 0 !important;
 }
+
+.tile-percent-text {
+    font-size: 28px;
+}
+
+.tile-owner-name {
+    padding-left: 8%;
+    font-size: 8px;
+}
+
 .slicklanding .itemImg strong {
     font-family: sinkinSans600SB;
-    font-size: 12px;
+    font-size: 10px;
     display: block;
-    margin-bottom: 10px;
-    padding: 0 15px;
-    padding-top: 0px;
     border: #ffffff 2px dashed;
-    padding:5px;
-    margin:10px;
-    top:0px;
+    /*position: relative;*/
+    margin: 2% 8% 5% 8%;
+    padding: 5% 5% 5% 5%;
 }
 .slicklanding .itemImg {
     position: relative;

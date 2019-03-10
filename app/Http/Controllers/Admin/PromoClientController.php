@@ -16,12 +16,10 @@ class PromoClientController extends Controller
      */
     public function __construct()
     {
-        // I think this is not needed because I have this in the route middleware
-        $this->middleware('auth');
-        $this->middleware('permission:list promos');
-        $this->middleware('permission:create promo', ['only' => ['create', 'store']]);
-        $this->middleware('permission:edit promo', ['only' => ['edit', 'update']]);
-        $this->middleware('permission:delete promo', ['only' => ['destroy']]);
+        $this->middleware('permission:promo_c_list')          ->  only(['index']);
+        $this->middleware('permission:promo_c_store')         ->  only(['store']);
+        $this->middleware('permission:promo_c_update')        ->  only(['update']);
+        $this->middleware('permission:promo_c_destroy')       ->  only(['destroy']);
     }
 
     /**

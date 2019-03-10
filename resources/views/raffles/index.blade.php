@@ -2,7 +2,6 @@
 
 @section('title', 'Raffles')
 
-
 {{--Current Raffles--}}
 
 @section('content')

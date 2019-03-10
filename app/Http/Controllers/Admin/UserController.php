@@ -23,12 +23,10 @@ class UserController extends Controller
      */
     public function __construct()
     {
-        // I think this is not needed because I have this in the route middleware
-        $this->middleware('auth');
-        $this->middleware('permission:list users');
-        $this->middleware('permission:create user', ['only' => ['create', 'store']]);
-        $this->middleware('permission:edit user', ['only' => ['edit', 'update']]);
-        $this->middleware('permission:delete user', ['only' => ['destroy']]);
+        $this->middleware('permission:user_list')          ->  only(['index']);
+        $this->middleware('permission:user_update')        ->  only(['update']);
+        $this->middleware('permission:user_edit')          ->  only(['edit']);
+        $this->middleware('permission:user_updateadmin')   ->  only(['updateadmin']);
     }
 
 
@@ -50,37 +48,6 @@ class UserController extends Controller
         ]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
 
     /**
      * Show the form for editing the specified resource.
@@ -114,8 +81,6 @@ class UserController extends Controller
      */
     public function update(StoreUserprofileRequest $request, $userid)
     {
-//        var_dump($request->get('roles'));
-//        die();
         // Get the user instance
         $user = User::with('getProfile')->findOrFail($userid);
 
@@ -201,17 +166,4 @@ class UserController extends Controller
         return redirect()->route('users.index')
             ->with('success', 'User "' . $user->getProfile->username . '" updated successfully');
     }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
-
-    // TODO delclare in the routes the methods that you are not going to use
 }

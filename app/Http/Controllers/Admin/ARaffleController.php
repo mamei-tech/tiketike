@@ -10,21 +10,19 @@ use App\Repositories\RaffleRepository;
 class ARaffleController extends Controller
 {
     private $raffleRepository;
+    // TODO Identify which methods apply to convert to rest method !!!!
 
     /**
      * Create a new controller instance.
      *
-     * @return void
+     * @param RaffleRepository $raffleRepository
      */
     public function __construct(RaffleRepository $raffleRepository)
     {
         // I think this is not needed because I have this in the route middleware
-        // Authentication
-        $this->middleware('auth');
-        $this->middleware('permission:list raffles');
-        $this->middleware('permission:create raffle', ['only' => ['create', 'store']]);
-        $this->middleware('permission:edit raffle', ['only' => ['edit', 'update']]);
-        $this->middleware('permission:delete raffle', ['only' => ['destroy']]);
+        $this->middleware('permission:anulled_raffle_list')          ->  only(['index']);
+        $this->middleware('permission:anulled_raffle_destroy')       ->  only(['destroy']);
+
         $this->raffleRepository = $raffleRepository;
     }
     /**

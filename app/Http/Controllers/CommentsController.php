@@ -10,19 +10,23 @@ use Illuminate\Support\Facades\Auth;
 
 class CommentsController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('permission:comments_store')       ->  only(['store']);
+        $this->middleware('permission:comments_delete')      ->  only(['delete']);
+        $this->middleware('permission:comments_edit')        ->  only(['edit']);
+        $this->middleware('permission:comments_update')      ->  only(['update']);
+    }
+
     /**
      * Display the comments of a raffle
      *
-     * @param $raffleId     Raffle id
-     * @param $commentId
-     * @param Request $request
+     * @param CommentRaffleRequest $request
+     * @param $raffle
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-
     public function store(CommentRaffleRequest $request, $raffle)
     {
-
-
         $comment = new Comment();
         $comment->raffle = $raffle;
         $comment->text = $request->text;
@@ -39,13 +43,11 @@ class CommentsController extends Controller
         $raffle = Comment::find($id)->getRaffle->id;
         Comment::destroy($id);
 
-
         return redirect()->route('raffle.tickets.buy', $raffle);
     }
 
-    public function edit(CommentRaffleRequest $request, $id){
-
-
+    public function edit(CommentRaffleRequest $request, $id)
+    {
         $raffle = Comment::find($id)->getRaffle->id;
         $comment = Comment::find($id);
 
@@ -71,5 +73,4 @@ class CommentsController extends Controller
             '303')
             ->with('success', 'Raffle updated successfully');
     }
-
 }

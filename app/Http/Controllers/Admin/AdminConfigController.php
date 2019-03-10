@@ -13,6 +13,9 @@ class AdminConfigController extends Controller
 
     public function __construct()
     {
+        $this->middleware('permission:show_roles')          ->  only(['showraffleconfig']);
+        $this->middleware('permission:save_roles')          ->  only(['saveraffleconfig']);
+
         /* -- The rest of the thing -- */
         // Makin a new config handler
         $this->cfghandler = new CfgRaffles();
