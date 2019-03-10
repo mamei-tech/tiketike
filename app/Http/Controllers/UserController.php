@@ -48,16 +48,25 @@ class UserController extends Controller
     {
         $user = User::with('getProfile')->findOrFail($userid);
 
+
+
         $countries = Country::paginate(10);
-        $countrycities = DB::table('cities')
-            ->select('cities.*')
-            ->where('cities.country', $user->getProfile->getCity->getCountry->id)
-            ->get();
+        $countrycities = null;
+        $first_time = true;
+        if ($user->getProfile()->exists()){
+            $countrycities = DB::table('cities')
+                ->select('cities.*')
+                ->where('cities.country', $user->getProfile->getCity->getCountry->id)
+                ->get();
+            $first_time = false;
+        }
+
 
         return view('front_profile', [
             'user' => $user,
             'countries' => $countries,
-            'countrycities' => $countrycities
+            'countrycities' => $countrycities,
+            'first_time' => $first_time
         ]);
     }
 

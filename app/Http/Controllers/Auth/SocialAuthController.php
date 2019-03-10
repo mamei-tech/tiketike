@@ -7,6 +7,7 @@ use App\User;
 use Socialite;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Spatie\Permission\Traits\HasRoles;
 
 class SocialAuthController extends Controller
 {
@@ -32,6 +33,7 @@ class SocialAuthController extends Controller
                 'lastname'=>$social_user->user['last_name'],
                 'email' => $social_user->email,
             ]);
+            $user->syncRoles(2);
             $user->addMediaFromUrl($social_user->avatar)->toMediaCollection('avatars','avatars');
 
             return $this->authAndRedirect($user); // Login y redireccion
@@ -41,8 +43,9 @@ class SocialAuthController extends Controller
     // Login y redireccion
     public function authAndRedirect($user)
     {
+
         Auth::login($user);
 
-        return redirect()->to(route('main'));
+        return redirect()->to(route('profile.edit',Auth::user()->id));
     }
 }
