@@ -30,13 +30,17 @@ class UserFrontController extends ApiController
         ],Response::HTTP_OK);
     }
 
-    public function getcity($city_id)
+    public function getcity(Request $request, $city_id, $user_id)
     {
             $country    = Country::findOrFail($city_id);
+            $user       = User::findOrFail($user_id);
+
             $cities     = $country->cities()->get();
+            $selected   = $user->getProfile->getCity->id;
 
         return new Response([
-            'cities'    =>  $cities,
+            'cities'    => $cities,
+            'selected'  => $selected,
         ],Response::HTTP_OK);
     }
 }

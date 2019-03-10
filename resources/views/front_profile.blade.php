@@ -7,6 +7,9 @@
               method="post" enctype="multipart/form-data">
             {{csrf_field()}}
             {{method_field('patch')}}
+
+            <input id="user_id" value="{{ $user->id }}" type="text" hidden>
+
             <div class="col-md-4">
                 {{-- FIRST NAME ¦ LASTNAME --}}
                 <div class="col-md-6 pr-1">

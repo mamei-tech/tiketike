@@ -1,5 +1,29 @@
 import axios from 'axios';
 
+function populate_cities_select()
+{
+    let city_id = $('select#contry-select').val();
+    let user_id = $('input#user_id').val();
+
+    let url = route('get.cities', [city_id, user_id]);
+
+    axios.get(url, {}).then(function (response) {
+
+        let $select = $('select#cities-select');
+
+        $select.empty();
+        $select.append('<option class="bs-title-option" value="">City</option>');
+
+        $.each( response.data.cities, function( key, value ) {
+            let selected = response.data.selected === value.id ? 'selected' : '';
+            $select.append('<option class="bs-title-option" value="' + value.id + '"' + selected +'>' + value.name + '</option>');
+        });
+
+    }).catch(function (error) {
+        console.log(error);
+    })
+}
+
 $(document).ready(function () {
 
     // Getting the current time for datetimepicker inputs
@@ -93,6 +117,8 @@ $(document).ready(function () {
         }
     });
 
+    populate_cities_select();
+
     /* ATACHING EVENTS */
     $("form#ftm_profileUpdate input#avatar").change(function () {
 
@@ -108,8 +134,9 @@ $(document).ready(function () {
         e.preventDefault();
 
         let city_id = $(e.target).val();
+        let user_id = $('input#user_id').val();
 
-        let url = route('get.cities', city_id);
+        let url = route('get.cities', [city_id, user_id]);
 
         axios.get(url, {}).then(function (response) {
 
@@ -119,7 +146,8 @@ $(document).ready(function () {
             $select.append('<option class="bs-title-option" value="">City</option>');
 
             $.each( response.data.cities, function( key, value ) {
-                $select.append('<option class="bs-title-option" value="' + value.id + '">' + value.name + '</option>');
+                let selected = response.data.selected === value.id ? 'selected' : '';
+                $select.append('<option class="bs-title-option" value="' + value.id + '"' + selected +'>' + value.name + '</option>');
             });
 
         }).catch(function (error) {
