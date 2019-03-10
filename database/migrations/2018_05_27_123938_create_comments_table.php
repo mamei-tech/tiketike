@@ -32,12 +32,12 @@ class CreateCommentsTable extends Migration
             $table->foreign('user')
                 ->references('id')
                 ->on('users')
-                ->onDelete('restrict');
+                ->onDelete('cascade');
 
             $table->foreign('raffle')
                 ->references('id')
                 ->on('raffles')
-                ->onDelete('restrict');
+                ->onDelete('cascade');
         });
     }
 

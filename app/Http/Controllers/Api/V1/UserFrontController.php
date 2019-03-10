@@ -4,10 +4,6 @@ namespace App\Http\Controllers\Api\V1;
 
 use App\Country;
 use App\Http\Controllers\Api\ApiController;
-use App\Http\Requests\ChkRPublishRequest;
-use App\Http\TkTk\Cfg\CfgRaffles;
-use App\Raffle;
-use App\Repositories\RaffleRepository;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -31,6 +27,16 @@ class UserFrontController extends ApiController
             'created_raffles' => $createdraffles,
             'winned_raffles' => $winnedRaffles,
             'sold_tickets' => $soldtickets
+        ],Response::HTTP_OK);
+    }
+
+    public function getcity($city_id)
+    {
+            $country    = Country::findOrFail($city_id);
+            $cities     = $country->cities()->get();
+
+        return new Response([
+            'cities'    =>  $cities,
         ],Response::HTTP_OK);
     }
 }

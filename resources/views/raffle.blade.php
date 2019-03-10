@@ -103,10 +103,11 @@
                                 </a>
                             </li>
                             <li class="margin-right-10">
-                                <a href="" title="Compartir">
+                                <a data-toggle="modal" data-target="#share_modal" href="" title="Compartir">
                                     <span class="ti-share colorV margin-right-5 dimenIconos"></span>
                                 </a>
                             </li>
+                            @include('partials.front_modals.share_modal');
 
                         </ul>
                     </div>
