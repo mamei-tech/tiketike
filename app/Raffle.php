@@ -150,9 +150,6 @@ class Raffle extends Model implements HasMedia
             array_push($ticketsBuyed, $ticket);
         }
 
-        //TODO transfer the money from user account to tiketike account
-        //if fail, return some error view
-
         $this->getTickets()->saveMany($ticketsBuyed);
 
         if ($referralId != null) //Ticket buyed by a referral.

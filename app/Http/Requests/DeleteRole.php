@@ -2,9 +2,10 @@
 
 namespace App\Http\Requests;
 
+use App\Http\Requests\CustomRules\ChknameEditPromo;
 use Illuminate\Foundation\Http\FormRequest;
 
-class StorePromoClientRequest extends FormRequest
+class DeleteRole extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,9 +25,7 @@ class StorePromoClientRequest extends FormRequest
     public function rules()
     {
         return [
-            'name'          => 'required|string|max:30',
-            'email'         => 'required|string|max:35|email',
-            'contact'       => 'required|string',
+            'id'          => 'required|exists:roles,id',
         ];
     }
 }

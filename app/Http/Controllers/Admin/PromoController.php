@@ -49,8 +49,6 @@ class PromoController extends Controller
      */
     public function create()
     {
-        //TODO Select only the fields you need
-
         $promos = DB::table('promos')->get();
 
         return view('admin.promos',
@@ -154,8 +152,7 @@ class PromoController extends Controller
                 '303')
                 ->with('success', 'Promo "' . $promo->name . '" updated successfully');
         } else {
-            // TODO Use tranlation here
-            return redirect()->back()->withErrors("The name you use is already taken.");
+            return redirect()->back()->withErrors(trans('validation.name_already_taken'));
         }
 
         /* $promo::update(Input::all()); */

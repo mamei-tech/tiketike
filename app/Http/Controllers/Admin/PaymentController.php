@@ -45,22 +45,15 @@ class PaymentController extends Controller
         $id = $request->get('payment');
         $response = array();
         $payment = Payment::find($id);
-        if (count($payment->getUser) > 0)
-        {
-            $user = $payment->getUser->first();
-            $response['amount'] = $user->getProfile->balance;
-            $response['user'] = $user->name." ".$user->lastname.";";
-        }else {
-            $raffle = $payment->getRaffle->first();
-            $tickets = $raffle->getTicketsSold();
-            $response['amount'] = count($tickets)*$raffle->tickets_price;
-            $users = "";
-            foreach ($tickets as $ticket) {
-                $users .= $ticket->getBuyer->name." ".$ticket->getBuyer->lastname.";";
-            }
-            $response['user'] = $users;
+        $raffle = $payment->getRaffle->first();
+        $price = $raffle->tickets_price;
+        $amount = $price * count($raffle->getTickets);
+        $users = "";
+        foreach ($payment->getUser as $user) {
+            $users .= $user->name." ".$user->lastname.";";
         }
-
+        $response['user'] = $users;
+        $response['amount'] = round($amount,2);
         return $response;
     }
 }
