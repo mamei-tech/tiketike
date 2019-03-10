@@ -1,6 +1,5 @@
 @extends('layouts.base')
 @section('content')
-    @include('partials.front_modals.error_notification')
     @include('partials.front_modals.notification_modal')
     <section class="bienvenidos">
         <div class="container ">
@@ -108,7 +107,6 @@
     @include('partials.frontend.views.landing.top_users_section')
 @stop
 @section('additional_scripts')
-    <script src="{{ asset('js/front/messagebox_notifications.js') }}"></script>
     <script src="//js.pusher.com/3.1/pusher.min.js"></script>
     {{--<script src='https://www.google.com/recaptcha/api.js'></script>--}}
     <script src="{{ asset('js/main.min.js') }}"></script>
@@ -129,9 +127,6 @@
                 var new_count = parseInt(notif_count.html()) + 1;
                 notif_count.html(new_count);
             });
-        @endif
-
-        @if ($errors->any())
         @endif
     </script>
 @stop

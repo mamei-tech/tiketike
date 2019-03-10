@@ -1,5 +1,5 @@
 @if ($errors->any())
-    <div id="err_admsec" class="col-md-12" style="display: none;">
+    <div id="err_admsec" class="col-md-12" style="display: none;z-index: 9">
         <div class="alert alert-danger alert-with-icon">
             <button type="button" aria-hidden="true" class="close btn-close">
                 <i class="now-ui-icons ui-1_simple-remove"></i>
