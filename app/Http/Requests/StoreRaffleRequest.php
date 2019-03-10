@@ -27,7 +27,6 @@ class StoreRaffleRequest extends FormRequest
             'title' => 'required|string|max:30',
             'description' => 'required|string|min:15',
             'price' => 'required|numeric|min:1',
-            //TODO Select Validation is missing
         ];
     }
 }

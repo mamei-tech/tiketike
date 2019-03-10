@@ -83,7 +83,7 @@ class RafflesController extends Controller
      * @throws \Spatie\MediaLibrary\Exceptions\FileCannotBeAdded
      * @throws \Spatie\MediaLibrary\Exceptions\FileCannotBeAdded\InvalidBase64Data
      */
-    public function store(Request $request)
+    public function store(StoreRaffleRequest $request)
     {
         $raffle = new Raffle;
 
