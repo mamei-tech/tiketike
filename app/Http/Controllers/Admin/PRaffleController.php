@@ -6,6 +6,7 @@ use App\Notifications\RaffleAnulled;
 use App\Notifications\RaffleDeleted;
 use App\Notifications\RaffleFinished;
 use App\Notifications\RaffleWinned;
+use App\Payment;
 use App\Raffle;
 use App\Repositories\RaffleRepository;
 use App\Ticket;
@@ -15,7 +16,6 @@ use Illuminate\Support\Facades\Notification;
 class PRaffleController extends Controller
 {
     private $raffleRepository;
-    // TODO Identify which methods apply to convert to rest method !!!!
 
     /**
      * Create a new controller instance.
@@ -71,11 +71,22 @@ class PRaffleController extends Controller
      */
     public function null($id) {
         $raffle = Raffle::findOrFail($id);
-        foreach ($raffle->getFollowers as $user) {
-            $user->notify(new RaffleDeleted($raffle,$user));
+//        foreach ($raffle->getFollowers as $user) {
+//            $user->notify(new RaffleDeleted($raffle,$user));
+//        }
+//        $raffle->getOwner->notify(new RaffleAnulled($raffle,$raffle->getOwner));
+
+        $payback = new Payment();
+        $payback->name = "A raffle ".$raffle->title." was anulled";
+        $payback->description = "You have to pay back to all users that had buy a ticket on this raffle";
+        $payback->status = "Pending";
+        $payback->save();
+        $users = array();
+        foreach ($raffle->getTickets as $ticket) {
+            array_push($users,$ticket->getBuyer->id);
         }
-        $raffle->getOwner->notify(new RaffleAnulled($raffle,$raffle->getOwner));
-        
+        $payback->getUser()->sync($users);
+        $payback->getRaffle()->save($raffle);
         $raffle->anullate();
 
         return redirect()->back()

@@ -8,8 +8,6 @@ use Illuminate\Http\Request;
 
 class AdminController extends Controller
 {
-    // TODO Identify which methods apply to convert to rest method in to API methods !!!!
-
     /**
      * Create a new controller instance.
      *

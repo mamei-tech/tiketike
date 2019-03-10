@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Requests\DeletingUserRequest;
 use App\Role;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -14,7 +15,6 @@ use App\Http\TkTk\LogsMsgs;
 
 class UserController extends Controller
 {
-    // TODO Identify which methods apply to convert to rest method !!!!
 
     /**
      * Create a new controller instance.
@@ -26,6 +26,7 @@ class UserController extends Controller
         $this->middleware('permission:user_list')          ->  only(['index']);
         $this->middleware('permission:user_update')        ->  only(['update']);
         $this->middleware('permission:user_edit')          ->  only(['edit']);
+        $this->middleware('permission:user_destroy')       ->  only(['destroy']);
         $this->middleware('permission:user_updateadmin')   ->  only(['updateadmin']);
     }
 
@@ -37,7 +38,6 @@ class UserController extends Controller
      */
     public function index()
     {
-        // TODO Get the user role show it in the table
         $users = User::paginate(10);
         $roles = Role::paginate(10);
         return view('admin.users', [
@@ -165,5 +165,18 @@ class UserController extends Controller
         Log::info(LogsMsgs::$msgs['accepted'], [$user->getProfile->username, $userid]);
         return redirect()->route('users.index')
             ->with('success', 'User "' . $user->getProfile->username . '" updated successfully');
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param DeletingUserRequest $request
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($user)
+    {
+        User::destroy($user);
+        return redirect()->route('users.index')
+            ->with('success', 'User deleted successfully');
     }
 }

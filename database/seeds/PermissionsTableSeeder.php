@@ -104,7 +104,8 @@ class PermissionsTableSeeder extends Seeder
         Permission::create(['name' => 'user_update', 'group' => 'user']);
         Permission::create(['name' => 'user_edit', 'group' => 'user']);
         Permission::create(['name' => 'user_updateadmin', 'group' => 'user']);
-        $roleAdmin->givePermissionTo(['user_list', 'user_update', 'user_edit', 'user_updateadmin']);
+        Permission::create(['name' => 'user_destroy', 'group' => 'user']);
+        $roleAdmin->givePermissionTo(['user_list', 'user_update', 'user_edit', 'user_updateadmin', 'user_destroy']);
 
         // User Controller (Front)
         Permission::create(['name' => 'user_front_getprofile', 'group'  => 'user']);

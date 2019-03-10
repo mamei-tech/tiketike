@@ -88,6 +88,16 @@ class Raffle extends Model implements HasMedia
     }
 
     /**
+     * Retrieve all payments attached to a raffle for refunds
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function getPaymentsAttached()
+    {
+        return $this->hasMany(RafflePays::class);
+    }
+
+    /**
      * Retrieve raffle's tickets.
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
@@ -149,9 +159,6 @@ class Raffle extends Model implements HasMedia
             $ticket->save();
             array_push($ticketsBuyed, $ticket);
         }
-
-        //TODO transfer the money from user account to tiketike account
-        //if fail, return some error view
 
         $this->getTickets()->saveMany($ticketsBuyed);
 
