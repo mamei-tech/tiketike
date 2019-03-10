@@ -10,7 +10,6 @@ use App\Repositories\RaffleRepository;
 class ARaffleController extends Controller
 {
     private $raffleRepository;
-    // TODO Identify which methods apply to convert to rest method !!!!
 
     /**
      * Create a new controller instance.

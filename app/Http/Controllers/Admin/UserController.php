@@ -14,7 +14,6 @@ use App\Http\TkTk\LogsMsgs;
 
 class UserController extends Controller
 {
-    // TODO Identify which methods apply to convert to rest method !!!!
 
     /**
      * Create a new controller instance.
@@ -37,7 +36,6 @@ class UserController extends Controller
      */
     public function index()
     {
-        // TODO Get the user role show it in the table
         $users = User::paginate(10);
         $roles = Role::paginate(10);
         return view('admin.users', [

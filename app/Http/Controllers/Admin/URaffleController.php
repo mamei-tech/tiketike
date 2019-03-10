@@ -79,13 +79,13 @@ class URaffleController extends Controller
         // Getting the raffle
         $raffle = Raffle::findOrFail($request->id);
 
-        // TODO esta parte son las notificaciones a los usuarios
+        // esta parte son las notificaciones a los usuarios
         $users = $raffle->getFollowers;
         foreach ($users as $user) {
             $user->notify(new RaffleUpdated($raffle,$user));
         }
 
-        // TODO fin notificaciones
+        // fin notificaciones
         // Getting & decripting the form data sended to the api
         $apiFormData = decrypt($_COOKIE['azeroth']);
 
@@ -96,13 +96,12 @@ class URaffleController extends Controller
             || $apiFormData['tprice']       != $request ->tprice) {
 
             // The form data don't match with the data sended to the api previously
-            return redirect()->back()->withErrors(trans('validation.forminvalid --'));          // TODO Check this translation
+            return redirect()->back()->withErrors(trans('validation.forminvalid --'));
         }
 
         // Everithing is OK, then Publising the raffle
         $raffle->publish($request->profit, $request->commissions, $request->tcount, $request->tprice);
 
-        // TODO Try redirect with compact
         return redirect()->route('unpublished.index',
             [
                 'raffles' => $this->raffleRepository->getTenUnpublishedRaffles(),
@@ -134,8 +133,6 @@ class URaffleController extends Controller
         $raffle->location       = $request->location;
 
         $raffle->save();
-
-        // TODO validate this for only two images
         foreach ($request->all()['avatar'] as $item) {
 
             if ($request->has('avatar') and $item->isValid())

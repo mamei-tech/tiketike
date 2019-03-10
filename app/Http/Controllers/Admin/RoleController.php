@@ -136,13 +136,11 @@ class RoleController extends Controller
      */
     public function destroy(DeleteRole $request)
     {
-        //TODO Think in a validation, maybe add a custom Request parameter
         $id = $request->get('id');
         $role = Role::find($id);
         $name = $role->name;
         $role->delete();
         Log::info(LogsMsgs::$role['deleted'], [$name, $id]);
-
         $roles = DB::table('roles')->get();
 
         return redirect()->route('roles.index',
