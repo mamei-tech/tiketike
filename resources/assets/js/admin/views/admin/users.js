@@ -1,7 +1,7 @@
 
 /* TODO You need populate the modlas with ajax */
 /* FORM POPLULATION -- MODALS */
-function popultDeleteForm(userId, username, lastname,email) {
+function popultDeleteForm(userId, username, lastname, email) {
 
     let deleteForm = $('div#frm_deleteUser form');
     var aux = deleteForm.find('input#tb_id');

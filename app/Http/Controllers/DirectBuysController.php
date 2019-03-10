@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Raffle;
+use App\RafflePays;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Stripe\Stripe;
@@ -36,6 +37,11 @@ class DirectBuysController extends BuysController
             $raffle = Raffle::findOrFail($raffleId);
 
             $raffle->buyTickets(Auth::user(), $request->get('ticketsarray'));
+            $raffle_pay = new RafflePays();
+            $raffle_pay->raffle_id = $raffleId;
+            $raffle_pay->charge_id = $charge['id'];
+            $raffle_pay->amount = $charge['amount'];
+            $raffle_pay->save();
             return redirect()->back()->with('200',['response' => "Your paiment was sent successfully"]);
         }
 
