@@ -13,7 +13,7 @@ $(document).ready(function () {
     $('.slick-vertical').on('beforeChange', function (event, slick, currentSlide, nextSlide) {
         var userid = $("[data-slick-index='" +nextSlide+ "'] .slick-list").attr('id');
 
-        axios.post('api/getUser',{
+        axios.post(route('get.user'),{
             'userid': userid
         }).then(function (response) {
             $('#created_raffles').html('');

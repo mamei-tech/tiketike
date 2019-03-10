@@ -125,7 +125,7 @@
                         <label>@lang('aDashboard.country')</label>
                         {{--TODO internazionalization for countries names--}}
                         <br>
-                        <select name="country" class="selectpicker" data-style="btn btn-neutral btn-round"
+                        <select id="contry-select" name="country" class="selectpicker" data-style="btn btn-neutral btn-round"
                                 title="Country" tabindex="-98">
                             <option class="bs-title-option" value="">Country</option>
 
@@ -142,15 +142,8 @@
                     <div class="form-group basic">
                         <label>@lang('aDashboard.city')</label>
                         <br>
-                        <select name="city" class="selectpicker" data-style="btn btn-neutral btn-round"
+                        <select id="cities-select" name="city" class="selectpicker" data-style="btn btn-neutral btn-round"
                                 title="City" tabindex="-98">
-                            <option class="bs-title-option" value="">City</option>
-
-                            @foreach($countrycities as $city)
-                                <option value="{{ $city->id }}" {{ $city->name == $user->getProfile->getCity->name ? 'selected' : '' }}>
-                                    {{ $city->name }}</option>
-                            @endforeach
-
                         </select>
 
                     </div>
@@ -186,11 +179,8 @@
                         <input name="bio" type="text" class="form-control" placeholder="Bio"
                                value="{{ $user->getProfile->bio }}">
                     </div>
-
-
                 </div>
             </div>
-
 
             <div class="col-md-2 floatRight">
                 <div class="row padding-top-20">
@@ -202,10 +192,11 @@
                     </div>
                 </div>
             </div>
+
+
         </form>
     </div>
 @stop
 @section('additional_scripts')
-    <script src="{{asset('js/front/front_profile.js')}}"></script>
-
+    <script src="{{asset('js/front_profile.min.js')}}"></script>
 @stop
