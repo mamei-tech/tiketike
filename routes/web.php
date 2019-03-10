@@ -19,7 +19,6 @@ use Illuminate\Support\Facades\Route;
 /* FIRST LEVEL ROUTES */
 Auth::routes();
 Route::get('/', 'MainController@index')->name('main');
-Route::get('/home', 'HomeController@index')->name('home');
 Route::post('/pusher/auth',function(Request $request) {
     return Broadcast::auth($request);
 });

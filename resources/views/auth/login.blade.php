@@ -9,6 +9,9 @@
             <div class="col-md-4" style="margin: auto; top: 25%;">
                 <form class="form " method="POST" action="{{ route('login') }}">
                     @csrf
+
+                    <input type="text" name="adm" value="adm" hidden>
+
                     <div class="card card-login card-plain" style="background: transparent">
                         <div class="card-header ">
                             <div class="logo-container">
@@ -50,12 +53,6 @@
                             <button type="submit" class="btn btn-primary btn-round btn-lg btn-block mb-3">
                                 Login {{--TODO Translation --}}
                             </button>
-                            <div class="pull-right">
-                                <h6>
-                                    <a href="{{ route('password.request') }}"
-                                       style="" class="link footer-link">Forgot?</a>        {{-- TODO Translation --}}
-                                </h6>
-                            </div>
                         </div>
                     </div>
                 </form>
