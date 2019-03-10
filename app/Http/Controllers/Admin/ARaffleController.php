@@ -10,7 +10,6 @@ use App\Repositories\RaffleRepository;
 class ARaffleController extends Controller
 {
     private $raffleRepository;
-    // TODO Identify which methods apply to convert to rest method !!!!
 
     /**
      * Create a new controller instance.
@@ -27,9 +26,6 @@ class ARaffleController extends Controller
         $this->middleware('permission:edit raffle', ['only' => ['edit', 'update']]);
         $this->middleware('permission:delete raffle', ['only' => ['destroy']]);
         $this->raffleRepository = $raffleRepository;
-
-        /* TODO: Check what this is for, how to use it */
-        // Authorization
     }
     /**
      * Display a listing of the resource.

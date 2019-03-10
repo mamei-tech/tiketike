@@ -88,6 +88,7 @@ return [
     'unique'               => 'El valor del campo :attribute ya está en uso.',
     'uploaded'             => 'El campo :attribute falló al subir.',
     'url'                  => 'El formato del campo :attribute es inválido.',
+    'name_already_taken'   => 'El nombre seleccionado se encuentra en uso.',
 
     /*
     |--------------------------------------------------------------------------

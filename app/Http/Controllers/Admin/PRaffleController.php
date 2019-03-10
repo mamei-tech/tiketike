@@ -19,7 +19,6 @@ use Illuminate\Support\Facades\Notification;
 class PRaffleController extends Controller
 {
     private $raffleRepository;
-    // TODO Identify which methods apply to convert to rest method !!!!
 
     /**
      * Create a new controller instance.

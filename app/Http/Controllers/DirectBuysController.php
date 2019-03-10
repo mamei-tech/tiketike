@@ -28,11 +28,11 @@ class DirectBuysController extends BuysController
             'source' => $token,
         ]);
         if ($charge['paid'] == true) {
-            return redirect()->back()->with('200',['response' => "Your paiment was sent successfully"]);
-        }
-        $raffle = Raffle::findOrFail($raffleId);
+            $raffle = Raffle::findOrFail($raffleId);
 
             $raffle->buyTickets(Auth::user(), $request->get('ticketsarray'));
+            return redirect()->back()->with('200',['response' => "Your paiment was sent successfully"]);
+        }
 
         return redirect($request->fullUrl(), 303);
     }

@@ -10,8 +10,6 @@ use App\Repositories\RaffleRepository;
 
 class CommentsController extends Controller
 {
-
-    // TODO Identify which methods apply to convert to rest method !!!!
     private $CommenstsRepository;
 
     /**

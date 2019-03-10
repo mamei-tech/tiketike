@@ -13,13 +13,6 @@ class AdminConfigController extends Controller
 
     public function __construct()
     {
-        // I think this is not needed because I have this in the route middleware
-        // Authentication
-        $this->middleware('auth');
-
-        /* TODO: Check what this is for, how to use it */
-        // Authorization
-
         /* -- The rest of the thing -- */
         // Makin a new config handler
         $this->cfghandler = new CfgRaffles();
