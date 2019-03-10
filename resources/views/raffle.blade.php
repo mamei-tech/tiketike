@@ -115,52 +115,73 @@
                         <div class="comments">
                             @foreach($raffle->getComments as $comment)
                                 @if($comment->parent == null)
-                                <div class="media">
-                                    <a href="#" class="pull-left  margin-right-20">
-                                        <img src="{{ asset('pics/front/user.jpg') }}" alt="Ringo"
-                                             class="imgUsuario sombraImgUser2">
-                                    </a>
-                                    <div class="media-body">
-                                        <div class="margin-bottom-20 sinkinSans400R texto10 ">
+                                    <div class="media">
+                                        <a href="#" class="pull-left  margin-right-20">
+                                            <img src="{{ $comment->getUser->getMedia('avatars')->first()->getUrl() }}" alt="Ringo"
+                                                 class="imgUsuario sombraImgUser2">
+                                        </a>
+                                        <div class="media-body">
+                                            <div class="margin-bottom-20 sinkinSans400R texto10 ">
                                     <span class="media-heading"><span
                                                 class="colorN">{{ $comment->getUser->name }} {{ $comment->getUser->lastname }}</span>
 
+                                          @if(\Auth::User()->id == 1)
+                                            <a data-toggle="modal" data-target="#comment-{{$comment->id}}" href="#" class="">
+                                                    <span class="ti-alert"></span>
+                                            </a>
+                                            @include('partials.front_modals.bad_comment_modal',['commentario'=>$comment])
+                                          @endif
 
-                                        <a data-toggle="collapse" data-target="#reply-{{$comment->id}}" aria-expanded="false" aria-controls="reply-{{$comment->id}}" id="answer_comment" href="#" class="colorV texto8 sinkinSans400I pull-right margin-right-15">responder...</a>
+
+                                        <a data-toggle="collapse" data-target="#reply-{{$comment->id}}"
+                                           aria-expanded="false" aria-controls="reply-{{$comment->id}}"
+                                           id="answer_comment" href="#"
+                                           class="colorV texto8 sinkinSans400I pull-right margin-right-15">responder...</a>
                                     </span>
-                                            <p class="texto10 sinkinSans300L">
-                                                {{ $comment->text }}
-                                            </p>
-                                        </div>
-
-                                    @include('partials.frontend.form_comments',['isSon' => false,'answer_text'=>$comment])
-
-
-                                    @foreach($comment->getChilds as $child)
-                                        <!-- Nested media object -->
-                                            <div class="media">
-                                                <a href="#" class="pull-left margin-right-20">
-                                                    <img src="{{ asset('pics/front/user2.jpg') }}" alt="Ringo"
-                                                         class="imgUsuario2 sombraImgUser2">
-                                                </a>
-                                                <div class="media-body">
-                                                    <div class="margin-bottom-20 sinkinSans400R texto10">
-                                             <span class="media-heading"><span
-                                                         class="colorN">{{ $child->getUser->name }} {{ $child->getUser->lastname }}</span>
-                                                 <a data-toggle="collapse" data-target="#reply-{{$child->id}}" aria-expanded="false" aria-controls="reply-{{$child->id}}" id="answer_comment" href="#" class="colorV texto8 sinkinSans400I pull-right margin-right-15">responder...</a>
-                                              </span>
-                                                        <p class="texto10 sinkinSans300L">
-                                                            {{ $child->text }}
-                                                        </p>
-                                                    </div>
-                                                </div>
-                                                @include('partials.frontend.form_comments',['isSon' => true,'answer_text'=>$child])
+                                                <p class="texto10 sinkinSans300L">
+                                                    {{ $comment->text }}
+                                                </p>
                                             </div>
 
-                                            <!--end media-->
-                                        @endforeach
+                                        @include('partials.frontend.form_comments',['isSon' => false,'answer_text'=>$comment])
+
+
+                                        @foreach($comment->getChilds as $child)
+                                            <!-- Nested media object -->
+                                                <div class="media">
+                                                    <a href="#" class="pull-left margin-right-20">
+                                                        <img src="{{ $child->getUser->getMedia('avatars')->first()->getUrl() }}" alt="Ringo"
+                                                             class="imgUsuario2 sombraImgUser2">
+                                                    </a>
+                                                    <div class="media-body">
+                                                        <div class="margin-bottom-20 sinkinSans400R texto10">
+                                             <span class="media-heading"><span
+                                                         class="colorN">{{ $child->getUser->name }} {{ $child->getUser->lastname }}</span>
+
+                                                @if(\Auth::User()->id == 1)
+                                                     <a data-toggle="modal" data-target="#comment-{{$child->id}}" href="#" class="">
+                                                    <span class="ti-alert"></span>
+                                                     </a>
+                                                     @include('partials.front_modals.bad_comment_modal',['commentario'=>$child])
+                                                 @endif
+
+                                                 <a data-toggle="collapse" data-target="#reply-{{$child->id}}"
+                                                    aria-expanded="false" aria-controls="reply-{{$child->id}}"
+                                                    id="answer_comment" href="#"
+                                                    class="colorV texto8 sinkinSans400I pull-right margin-right-15">responder...</a>
+                                              </span>
+                                                            <p class="texto10 sinkinSans300L">
+                                                                {{ $child->text }}
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                    @include('partials.frontend.form_comments',['isSon' => true,'answer_text'=>$child])
+                                                </div>
+
+                                                <!--end media-->
+                                            @endforeach
+                                        </div>
                                     </div>
-                                </div>
                                 @endif
                             @endforeach
                         </div>
