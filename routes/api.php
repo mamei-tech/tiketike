@@ -36,5 +36,7 @@ Route::group([
     Route::post('/filterByPercent', 'RaffleFrontController@filterByPercent')->name('filter.by.percent');
     Route::post('/filterByPrice', 'RaffleFrontController@filterByPrice')->name('filter.by.price');
     Route::post('/getUser', 'UserFrontController@getUser')->name('get.user');
-    Route::get('/getcity/{country_id}', 'UserFrontController@getcity')->name('get.cities');
+    Route::get('/getcity/{country_id}/{user_id}', 'UserFrontController@getcity')->name('get.cities');
 });
+
+
