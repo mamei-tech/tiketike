@@ -12,7 +12,7 @@
             </div>
             <div class="modal-body">
 
-                <form class="col-md-12" action="{{ route('raffles.index.store') }}" method="POST" enctype="multipart/form-data">
+                <form class="col-md-12" id="ftm_createRaffle" action="{{ route('raffles.index.store') }}" method="POST" enctype="multipart/form-data">
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
                     <div class="col-md-12">
                         {{-- FIRST NAME ¦ LASTNAME --}}
