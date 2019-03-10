@@ -3,6 +3,8 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\Rule;
 
 class UpdateRaffleRequest extends FormRequest
 {
@@ -28,7 +30,8 @@ class UpdateRaffleRequest extends FormRequest
             'description' => 'required|string|min:15',
             'category' => 'required',
             'localization' => 'required',
-            'status' => 'max:1'
+            'status' => 'max:1',
+            'owner' => Rule::in([Auth::user()->id])
         ];
     }
 }

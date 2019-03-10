@@ -110,24 +110,6 @@ class RafflesController extends Controller
         return redirect()->route('main');
     }
 
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    // TODO Need validation, the raffle must own of the current user
-    public function edit($id)
-    {
-        $raffle = Raffle::find($id);
-        $categories = RaffleCategory::all();
-        return view('raffles.edit', [
-            'raffle' => $raffle,
-            'rcategories' => $categories
-        ]);
-    }
-
     /**
      * Update the specified resource in storage.
      *

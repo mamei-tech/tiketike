@@ -17,6 +17,7 @@
                     <div class="col-md-12">
                         {{-- FIRST NAME ¦ LASTNAME --}}
                         <input type="hidden" name="status" value="{{ $raffle->status }}">
+                        <input type="hidden" name="owner" value="{{ $raffle->getOwner->id }}">
 
                         <div class="col-md-6 pr-1">
                             <div class="form-group">

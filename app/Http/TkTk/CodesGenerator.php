@@ -53,7 +53,6 @@ class CodesGenerator
      * @param $codeLength: Code length. By default is five.
      * @return string
      */
-    // TODO Get codeLength from config.
     public static function newTicketCode(Raffle $raffle, $codeLength = 5)
     {
         do

@@ -6,19 +6,27 @@ use Illuminate\Contracts\Validation\Rule;
 
 class StrongEvalR implements Rule
 {
-    // TODO Use translation this
-    protected $message = "Something is wrong with the password. Please re-type it";
+    protected $message = "";
+
+    /**
+     * StrongEvalR constructor.
+     */
+    public function __construct()
+    {
+        $this->message = trans('validation.pass_wrong');
+    }
+
 
     public function passes($attribute, $year)
     {
         if(strlen($year) < 8)
         {
-            $this->message = "Password is too short";
+            $this->message = trans('validation.pass_short');
             return false;
         }
 
         else if (!preg_match("#[0-9]+#", $year)) {
-            $this->message = "Password must include at least one number";
+            $this->message = trans('validation.pass_number');
             return false;
         }
         /* I don't know if necesary */
@@ -27,7 +35,7 @@ class StrongEvalR implements Rule
 //            return false;
 //        }
         else if (!preg_match("#[a-z]+#", $year)) {
-            $this->message = "Password must include at least one letter";
+            $this->message = trans('validation.pass_letter');
             return false;
         }
         else {
