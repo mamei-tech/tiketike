@@ -3,7 +3,7 @@
     @include('partials.frontend.header')
     @include('partials.front_modals.filters')
     @include('partials.front_modals.mobile_suggest')
-    @include('partials.front_modals.login_modal')
+    @include('partials.front_modals.edit_raffle_modal')
     <div class="container margin-top60">
         <div class="row">
             <!--Contenido ticket-->
@@ -19,7 +19,7 @@
                             <span class="ti-location-pin"></span>
                             <span class=""><img src="{{ asset('pics/countries/'.$raffle->getLocation->name.'.png') }}">{{ $raffle->getLocation->name }}</span>
                             <p class="texto18 text-uppercase texto-negrita colorN padding-top-10"
-                               style="font-family: sinkinSans700Bold">{{ $raffle->title }}</p>
+                               style="font-family: sinkinSans700Bold">{{ $raffle->title }} @if(\Auth::user()->id == $raffle->getOwner->id and $raffle->status < 2)<a href="#editRaffleModal" data-toggle="modal"><i class="fa fa-edit"></i> Editar rifa </a>@endif </p>
                         </div>
                     </div>
                     <div class="col-xs-12 padding-top-20">

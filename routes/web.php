@@ -32,7 +32,7 @@ Route::group(['prefix' => 'raffles',
     'middleware' => ['auth']
 ], function () {
     Route::post('/add', 'RafflesController@store')->name('raffles.index.store');
-    Route::get('/edit/{raffleId}', 'RafflesController@edit')->name('raffles.edit');
+//    Route::get('/edit/{raffleId}', 'RafflesController@edit')->name('raffles.edit');
     Route::post('/{raffleId}', 'RafflesController@update')->name('raffles.update');
     Route::get('{raffleId}/follow', 'RafflesController@follow')->name('raffles.follow');
     Route::post('/{raffleId}/tickets/buy', 'DirectBuysController@buyTickets')->name('raffle.tickets.buy');

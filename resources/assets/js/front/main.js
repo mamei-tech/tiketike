@@ -57,6 +57,12 @@ $(document).ready(function () {
                 required: true,
                 min: 1
             },
+            category: {
+                required: true
+            },
+            localization: {
+                required: true
+            }
         },
         messages: {
             title: {
@@ -70,6 +76,12 @@ $(document).ready(function () {
             price: {
                 required: 'This field is required',
                 min: 'The minimum value of price is 1'
+            },
+            localization: {
+                required: 'This field is required',
+            },
+            category: {
+                required: 'This field is required',
             },
         },
         submitHandler: function(form) {

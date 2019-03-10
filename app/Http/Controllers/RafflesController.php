@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Country;
+use App\Http\Requests\UpdateRaffleRequest;
 use App\Http\TkTk\CodesGenerator;
 use App\Notifications\RaffleCreated;
+use App\Notifications\RaffleUpdated;
 use App\Promo;
 use App\RaffleStatus;
 use App\Repositories\RaffleRepository;
@@ -119,7 +121,6 @@ class RafflesController extends Controller
     public function edit($id)
     {
         $raffle = Raffle::find($id);
-
         $categories = RaffleCategory::all();
         return view('raffles.edit', [
             'raffle' => $raffle,
@@ -134,17 +135,29 @@ class RafflesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    // TODO Need validation on a custom reques class, the raffle must own of the current user
-    public function update(Request $request, $id)
+    public function update(UpdateRaffleRequest $request, $id)
     {
         $raffle = Raffle::find($id);
         $raffle->title = $request->get('title');
         $raffle->description = $request->get('description');
-        $raffle->price = $request->get('price');
         $raffle->category = $request->get('category');
+        $raffle->location = $request->get('localization');
+        $raffle->price = $raffle->price;
         $raffle->save();
+
+        if ($request->base[0] != null or $request->base[1] != null or $request->base[2] != null) {
+            $raffle->clearMediaCollection('raffles');
+            foreach ($request->base as $item) {
+                if ($item != null)
+                    $raffle->addMediaFromBase64($item)->usingFileName('filename.jpg')->toMediaCollection('raffles','raffles');
+            }
+        }
+
+        foreach ($raffle->getFollowers as $follower) {
+            $follower->notify(new RaffleUpdated($raffle,$follower));
+        }
         return redirect()
-            ->route('raffles.index',null, '303')
+            ->back()
             ->with('success','Raffle updated successfully');
     }
 

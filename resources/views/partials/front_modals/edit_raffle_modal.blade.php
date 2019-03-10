@@ -1,5 +1,5 @@
 <!-- Modal-->
-<div class="modal fade" id="createRaffleModal" tabindex="-1" role="dialog"
+<div class="modal fade" id="editRaffleModal" tabindex="-1" role="dialog"
      aria-labelledby="myModalLabel"
      aria-hidden="true">
     <div class="modal-dialog" style="width: 60% !important;">
@@ -12,29 +12,23 @@
             </div>
             <div class="modal-body">
 
-                <form class="col-md-12" id="ftm_createRaffle" action="{{ route('raffles.index.store') }}" method="POST" enctype="multipart/form-data">
+                <form class="col-md-12" id="ftm_editRaffle" action="{{ route('raffles.update',$raffle->id) }}" method="POST" enctype="multipart/form-data">
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
                     <div class="col-md-12">
                         {{-- FIRST NAME ¦ LASTNAME --}}
+                        <input type="hidden" name="status" value="{{ $raffle->status }}">
 
                         <div class="col-md-6 pr-1">
                             <div class="form-group">
                                 <label for="title">Título de la rifa</label>
-                                <input name="title" type="text" class="form-control" id="title" placeholder="Raffle title">
+                                <input value="{{ $raffle->title }}" name="title" type="text" class="form-control" id="title" placeholder="Raffle title">
                             </div>
                         </div>
                         <div class="col-md-12 pr-1">
                             <div class="form-group">
                                 <label>Descripción de la rifa</label>
-                                <textarea name="description" class="form-control" id="description" placeholder="Raffle description"></textarea>
+                                <textarea name="description" class="form-control" id="description" placeholder="Raffle description">{!! $raffle->description !!}</textarea>
                             </div>
-                        </div>
-
-                        <div class="col-md-4 pr-1">
-                            <label for="Price"
-                                   class="colorN italic padding-top-20">Precio</label>
-                            <input type="number" class="form-control form-control-new " id="price"
-                                   name="price" placeholder="Raffle price">
                         </div>
 
                         <div class="col-md-4 pr-1">
@@ -43,7 +37,7 @@
                             <select class="form-control form-control-new" name="category" id="category">
                                 <option disabled selected>Select a category</option>
                                 @foreach($categories as $category)
-                                    <option value="{{ $category->id }}">{{ $category->category }}</option>
+                                    <option {{ $raffle->category == $category->id? 'selected' : '' }} value="{{ $category->id }}">{{ $category->category }}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -54,7 +48,7 @@
                             <select class="form-control form-control-new selectpicker" name="localization" id="localization">
                                 <option disabled selected>Select a country</option>
                                 @foreach($countries as $country)
-                                    <option value="{{ $country->id }}">{{ $country->name }}</option>
+                                    <option {{ $raffle->location == $country->id? 'selected' : '' }} value="{{ $country->id }}">{{ $country->name }}</option>
                                 @endforeach
                             </select>
                         </div>
