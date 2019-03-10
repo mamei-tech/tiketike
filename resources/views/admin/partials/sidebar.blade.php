@@ -45,13 +45,6 @@
                             </a>
                         </li>
 
-                        <li>
-                            <a href="{{ route('billing.info', Auth::id()) }}">
-                                <span class="sidebar-mini-icon"> B </span>
-                                <span class="sidebar-normal"> Billing info </span>
-                            </a>
-                        </li>
-
                     </ul>
                 </div>
             </div>
@@ -140,13 +133,6 @@
                             <a href="{{ route('admin.raffle.showconfig') }}">
                                 <span class="sidebar-mini-icon"> C </span>
                                 <span class="sidebar-normal"> @lang('Configuration') </span>
-                            </a>
-                        </li>
-
-                        <li class="@isset($li_activeRConfig) {{ $li_activeRConfig }} @endisset">
-                            <a href="{{ route('comments.index') }}">
-                                <span class="sidebar-mini-icon"> CO </span>
-                                <span class="sidebar-normal"> @lang('Comments') </span>
                             </a>
                         </li>
 
