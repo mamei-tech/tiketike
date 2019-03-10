@@ -35,7 +35,6 @@
                         <div class="col-xs-7">
                         </div>
 
-                        <!-- TODO Aqui van los botones cagados del fi -->
                         <div class="col-xs-12">
                            <h3 class="row">Login With</h3>
                             <a class="btn btn-facebook" href="">
