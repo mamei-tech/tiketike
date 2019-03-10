@@ -26,6 +26,7 @@ class UserController extends Controller
         $this->middleware('permission:user_list')          ->  only(['index']);
         $this->middleware('permission:user_update')        ->  only(['update']);
         $this->middleware('permission:user_edit')          ->  only(['edit']);
+        $this->middleware('permission:user_destroy')       ->  only(['destroy']);
         $this->middleware('permission:user_updateadmin')   ->  only(['updateadmin']);
     }
 
@@ -172,9 +173,9 @@ class UserController extends Controller
      * @param DeletingUserRequest $request
      * @return \Illuminate\Http\Response
      */
-    public function destroy(DeletingUserRequest $request)
+    public function destroy($user)
     {
-        User::destroy($request->get('id'));
+        User::destroy($user);
         return redirect()->route('users.index')
             ->with('success', 'User deleted successfully');
     }

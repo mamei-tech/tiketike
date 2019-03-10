@@ -5,6 +5,8 @@ namespace App\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use App\Http\Requests\CustomRules\StrongEvalR;
 
+
+
 class DeletingUserRequest extends FormRequest
 {
     /**

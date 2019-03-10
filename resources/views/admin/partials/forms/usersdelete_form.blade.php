@@ -1,7 +1,7 @@
-<form class="form-horizontal" method="post" action="{{ route('users.destroy', '')}}"
+<form class="form-horizontal" method="post" action=""
       accept-charset="UTF-8"{{-- enctype="multipart/form-data"--}}>
     {{ csrf_field() }}
-    {{--<input name="_method" type="hidden" value="DELETE">--}}
+    <input name="_method" type="hidden" value="DELETE">
 
     <div class="row">
         <label class="col-sm-3 col-form-label">User Id</label>
@@ -25,7 +25,7 @@
         <label class="col-sm-3 col-form-label">User Lastname</label>
         <div class="col-sm-9">
             <div class="form-group">
-                <input id="tb_lastname" disabled=""   class="form-control" type="text" placeholder="lastname"
+                <input id="tb_lastname" disabled="" class="form-control" type="text" placeholder="lastname"
                        name="lastname">
             </div>
         </div>
@@ -35,7 +35,7 @@
         <label class="col-sm-3 col-form-label">User Email</label>
         <div class="col-sm-9">
             <div class="form-group">
-                <input id="tb_email" disabled=""   class="form-control" type="text" placeholder="email"
+                <input id="tb_email" disabled="" class="form-control" type="text" placeholder="email"
                        name="email">
             </div>
         </div>
