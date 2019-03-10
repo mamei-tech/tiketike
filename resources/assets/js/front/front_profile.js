@@ -1,5 +1,5 @@
 /* FORM VALIDATION RULE -- FORM */
-var UpdateFormRulesFront = {
+let UpdateFormRulesFront = {
     username: {
         required: true,
         maxlength: 30,
@@ -146,6 +146,8 @@ $(document).ready(function () {
         };
         reader.readAsDataURL(this.files[0]);
     });
+
+    console.log('aaa');
 
 });
 

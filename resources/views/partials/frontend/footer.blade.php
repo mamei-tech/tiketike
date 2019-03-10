@@ -26,6 +26,7 @@
 <script src="{{ asset('js/front/plugins/fancybox/source/jquery.fancybox.js?v=2.1.3') }}"
         type="text/javascript"></script>
 
+<script src="{{ asset('js/front/jquery.validate.min.js') }}" type="text/javascript"></script>
 <script src="{{ asset('js/front/plugins/tooltipster.bundle.js') }}" type="text/javascript"></script>
 <script src="{{ asset('js/front/agencia.js') }}"></script>
 <script src="{{ asset('js/front/back-to-top.js') }}"></script>
