@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Requests\DeletingUserRequest;
 use App\Role;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -163,5 +164,18 @@ class UserController extends Controller
         Log::info(LogsMsgs::$msgs['accepted'], [$user->getProfile->username, $userid]);
         return redirect()->route('users.index')
             ->with('success', 'User "' . $user->getProfile->username . '" updated successfully');
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param DeletingUserRequest $request
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy(DeletingUserRequest $request)
+    {
+        User::destroy($request->get('id'));
+        return redirect()->route('users.index')
+            ->with('success', 'User deleted successfully');
     }
 }

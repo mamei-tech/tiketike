@@ -1,7 +1,7 @@
 <form class="form-horizontal" method="post" action="{{ route('users.destroy', '')}}"
-      accept-charset="UTF-8" enctype="multipart/form-data">
+      accept-charset="UTF-8"{{-- enctype="multipart/form-data"--}}>
     {{ csrf_field() }}
-    <input name="_method" type="hidden" value="DELETE">
+    {{--<input name="_method" type="hidden" value="DELETE">--}}
 
     <div class="row">
         <label class="col-sm-3 col-form-label">User Id</label>

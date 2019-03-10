@@ -56,4 +56,9 @@ class PaymentController extends Controller
         $response['amount'] = round($amount,2);
         return $response;
     }
+
+    public function pending_execute($id)
+    {
+
+    }
 }

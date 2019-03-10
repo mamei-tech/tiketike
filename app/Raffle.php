@@ -88,6 +88,16 @@ class Raffle extends Model implements HasMedia
     }
 
     /**
+     * Retrieve all payments attached to a raffle for refunds
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function getPaymentsAttached()
+    {
+        return $this->hasMany(RafflePays::class);
+    }
+
+    /**
      * Retrieve raffle's tickets.
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
