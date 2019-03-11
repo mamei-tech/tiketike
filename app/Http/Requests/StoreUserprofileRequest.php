@@ -28,7 +28,7 @@ class StoreUserprofileRequest extends FormRequest
         return [
             'id' => 'same:'.Auth::user()->id,
             'email' => 'required|email|max:60',
-            'birthdate' => 'date_format:d-m-Y|max:10',
+            'birthdate' => 'date_format:Y-m-d|max:10',
             'gender' => 'required|not_in:0|min:1',
             'languaje'=> 'required|not_in:0|min:1',
             'firstname'=> 'required|string|min:3|max:30',

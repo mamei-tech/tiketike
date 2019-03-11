@@ -45,7 +45,6 @@ class StrongEvalR implements Rule
 
     public function message()
     {
-        // return ':attribute needs more cowbell!';
         return $this->message;
     }
 }
