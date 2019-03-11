@@ -71,10 +71,10 @@ class PRaffleController extends Controller
      */
     public function null($id) {
         $raffle = Raffle::findOrFail($id);
-//        foreach ($raffle->getFollowers as $user) {
-//            $user->notify(new RaffleDeleted($raffle,$user));
-//        }
-//        $raffle->getOwner->notify(new RaffleAnulled($raffle,$raffle->getOwner));
+        foreach ($raffle->getFollowers as $user) {
+            $user->notify(new RaffleDeleted($raffle,$user));
+        }
+        $raffle->getOwner->notify(new RaffleAnulled($raffle,$raffle->getOwner));
 
         $payback = new Payment();
         $payback->name = "A raffle ".$raffle->title." was anulled";
