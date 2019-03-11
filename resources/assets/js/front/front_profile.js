@@ -1,49 +1,28 @@
-/* FORM VALIDATION RULE -- FORM */
-let UpdateFormRulesFront = {
-    username: {
-        required: true,
-        maxlength: 30,
-    },
-    email: {
-        required: true,
-        email: true,
-    },
-    password: {
-        pswchecker: true,
-    },
-    password_confirmation: {
-        equalTo: "#password",
-    },
-    // TODO Make a custom validation for birthdate using DateISO function
-    gender: {
-        required: true,     // TODO Make a custom validation rule for gender
-    },
-    // TODO Make a validation of Languaje
-    firstname: {
-        required: true,
-        maxlength: 20
-    },
-    lastname: {
-        required: true,
-        maxlength: 60
-    },
-    address: {
-        required: true,
-        minlength: 10,
-        maxlength: 60,
-    },
-    // TODO Make a validation of City
-    // TODO Make a validation of Country
-    zipcode: {
-        required: true,
-        number: true,
-        minlength: 3,
-        maxlength: 10,
-    },
-    bio: {
-        maxlength: 116,
-    }
-};
+import axios from 'axios';
+
+function populate_cities_select()
+{
+    let city_id = $('select#contry-select').val();
+    let user_id = $('input#user_id').val();
+
+    let url = route('get.cities', [city_id, user_id]);
+
+    axios.get(url, {}).then(function (response) {
+
+        let $select = $('select#cities-select');
+
+        $select.empty();
+        $select.append('<option class="bs-title-option" value="">City</option>');
+
+        $.each( response.data.cities, function( key, value ) {
+            let selected = response.data.selected === value.id ? 'selected' : '';
+            $select.append('<option class="bs-title-option" value="' + value.id + '"' + selected +'>' + value.name + '</option>');
+        });
+
+    }).catch(function (error) {
+        console.log(error);
+    })
+}
 
 $(document).ready(function () {
 
@@ -52,6 +31,8 @@ $(document).ready(function () {
     /* TODO Get the current time, validate not input a pass date */
     // let now = new Date();
     // dtpicker.val(now.getDay().to + '/' + now.getMonth() + '/' + now.getFullYear());
+
+    axios.defaults.headers.common['Authorization'] = "Bearer " + $('meta[name=access-token]').attr('content');
 
     /* ADDING CUSTOM VALIDATION RULE */
     // strong pasword rule
@@ -136,6 +117,8 @@ $(document).ready(function () {
         }
     });
 
+    populate_cities_select();
+
     /* ATACHING EVENTS */
     $("form#ftm_profileUpdate input#avatar").change(function () {
 
@@ -147,8 +130,30 @@ $(document).ready(function () {
         reader.readAsDataURL(this.files[0]);
     });
 
-    console.log('aaa');
+    $('select#contry-select').change(function (e) {
+        e.preventDefault();
 
+        let city_id = $(e.target).val();
+        let user_id = $('input#user_id').val();
+
+        let url = route('get.cities', [city_id, user_id]);
+
+        axios.get(url, {}).then(function (response) {
+
+            let $select = $('select#cities-select');
+
+            $select.empty();
+            $select.append('<option class="bs-title-option" value="">City</option>');
+
+            $.each( response.data.cities, function( key, value ) {
+                let selected = response.data.selected === value.id ? 'selected' : '';
+                $select.append('<option class="bs-title-option" value="' + value.id + '"' + selected +'>' + value.name + '</option>');
+            });
+
+        }).catch(function (error) {
+            console.log(error);
+        })
+    })
 });
 
 

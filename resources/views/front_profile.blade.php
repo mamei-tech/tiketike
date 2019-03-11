@@ -12,7 +12,9 @@
               method="post" enctype="multipart/form-data">
             {{csrf_field()}}
             {{method_field('patch')}}
-            <input type="hidden" name="id" value="{{ $user->id }}">
+
+            <input id="user_id" value="{{ $user->id }}" type="text" hidden>
+
             <div class="col-md-4">
                 {{-- FIRST NAME ¦ LASTNAME --}}
                 <div class="col-md-6 pr-1">
@@ -76,13 +78,13 @@
                     <div class="form-group basic">
                         <label>@lang('aUserprofile.brdate')</label>
                         <input name="birthdate" type="date" placeholder="" class="form-control datepicker"
-                               value="{{ date('Y-m-d', strtotime($user->getProfile->birthdate)) }}">
+                               @if(!$first_time)value="{{ date('Y-m-d', strtotime($user->getProfile->birthdate)) }}"@endif>
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="form-group basic">
                         <label>Phone</label>
-                        <input class="form-control" id="inputPhone" name="phone" value="{{$user->getProfile->phone}}">
+                        <input class="form-control" id="inputPhone" name="phone"@if(!$first_time) value="{{$user->getProfile->phone}}"@endif>
                     </div>
                 </div>
 
@@ -96,10 +98,10 @@
                                     data-style="btn btn-neutral btn-round"
                                     title="Gender" tabindex="-98">
                                 <option class="bs-title-option" value="">Gender</option>
-                                <option value="Female" {{ $user->getProfile->gender == 'Female' ? 'selected' : '' }}>
+                                <option @if(!$first_time) value="Female" {{ $user->getProfile->gender == 'Female' ? 'selected' : '' }}@endif>
                                     Female
                                 </option>
-                                <option value="Male" {{ $user->getProfile->gender == 'Male' ? 'selected' : '' }}>
+                                <option @if(!$first_time) value="Male" {{ $user->getProfile->gender == 'Male' ? 'selected' : '' }}@endif>
                                     Male
                                 </option>
                             </select>
@@ -118,7 +120,7 @@
                                 <option class="bs-title-option" value="">Languaje</option>
 
                                 @foreach (\App\Facades\Loc::supported() as $lang)
-                                    <option value="{{ $lang }}" {{ $user->getProfile->langcode == $lang ? 'selected' : '' }}>
+                                    <option @if(!$first_time) value="{{ $lang }}" {{ $user->getProfile->langcode == $lang ? 'selected' : '' }}@endif>
                                         {{ \App\Facades\Loc::nameFor($lang) }}</option>
                                 @endforeach
                             </select>
@@ -129,14 +131,13 @@
                 <div class="col-md-6">
                     <div class="form-group basic">
                         <label>@lang('aDashboard.country')</label>
-                        {{--TODO internazionalization for countries names--}}
                         <br>
-                        <select name="country" class="selectpicker" data-style="btn btn-neutral btn-round"
+                        <select id="contry-select" name="country" class="selectpicker" data-style="btn btn-neutral btn-round"
                                 title="Country" tabindex="-98">
                             <option class="bs-title-option" value="">Country</option>
 
                             @foreach ($countries as $country)
-                                <option value="{{ $country->id }}" {{ $country->name == $user->getProfile->getCity->getCountry->name ? 'selected' : '' }}>
+                                <option @if(!$first_time) value="{{ $country->id }}" {{ $country->name == $user->getProfile->getCity->getCountry->name ? 'selected' : '' }}@endif>
                                     {{ $country->name }}</option>
                             @endforeach
 
@@ -148,15 +149,8 @@
                     <div class="form-group basic">
                         <label>@lang('aDashboard.city')</label>
                         <br>
-                        <select name="city" class="selectpicker" data-style="btn btn-neutral btn-round"
+                        <select id="cities-select" name="city" class="selectpicker" data-style="btn btn-neutral btn-round"
                                 title="City" tabindex="-98">
-                            <option class="bs-title-option" value="">City</option>
-
-                            @foreach($countrycities as $city)
-                                <option value="{{ $city->id }}" {{ $city->name == $user->getProfile->getCity->name ? 'selected' : '' }}>
-                                    {{ $city->name }}</option>
-                            @endforeach
-
                         </select>
 
                     </div>
@@ -167,7 +161,7 @@
                         <label for="selector"
                                class="colorN italic padding-top-20">@lang('aUserprofile.zipcode')</label>
                         <input name="zipcode" type="number" class="form-control" placeholder="10100"
-                               value="{{ $user->getProfile->zipcode }}">
+                               @if(!$first_time)value="{{ $user->getProfile->zipcode }}"@endif>
                     </div>
                 </div>
             </div>
@@ -179,7 +173,7 @@
                                class="colorN italic padding-top-40"> @lang('aUserprofile.address')</label>
 
                         <input name="address" type="text" class="form-control" placeholder="Home Address"
-                               value="{{ $user->getProfile->addrss }}">
+                               @if(!$first_time)value="{{ $user->getProfile->addrss }}"@endif>
                     </div>
                 </div>
 
@@ -190,7 +184,7 @@
                                class="colorN italic padding-top-20">Bio</label>
 
                         <input name="bio" type="text" class="form-control" placeholder="Bio"
-                               value="{{ $user->getProfile->bio }}">
+                               @if(!$first_time)value="{{ $user->getProfile->bio }}"@endif>
                     </div>
 
 
@@ -208,10 +202,11 @@
                     </div>
                 </div>
             </div>
+
+
         </form>
     </div>
 @stop
 @section('additional_scripts')
-    <script src="{{asset('js/front/front_profile.js')}}"></script>
-
+    <script src="{{asset('js/front_profile.min.js')}}"></script>
 @stop
