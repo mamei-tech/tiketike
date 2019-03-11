@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 
+use App\Http\Requests\StoreUserprofileRequest;
 use App\Http\TkTk\LogsMsgs;
 use App\Promo;
 use App\Repositories\RaffleRepository;
@@ -62,7 +63,7 @@ class UserController extends Controller
     }
 
 
-    public function update(Request $request, $userid)
+    public function update(StoreUserprofileRequest $request, $userid)
     {
         // Get the user instance
         $user = User::with('getProfile')->findOrFail($userid);
