@@ -2,6 +2,11 @@
 @section('content')
     @include('partials.frontend.header')
     @include('partials.front_modals.mobile_suggest')
+    @if($errors->any())
+        @foreach($errors as $error)
+            {{ $error->message }}
+        @endforeach
+    @endif
     <div class=" container margin-top-70">
         <form class="col-md-12 margin-top60" id="ftm_profileUpdate" action="{{ route('profile.update', $user->id) }}"
               method="post" enctype="multipart/form-data">
