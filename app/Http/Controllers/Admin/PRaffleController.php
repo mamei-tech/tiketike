@@ -68,12 +68,12 @@ class PRaffleController extends Controller
         $confirmation->save();
         Notification::send($user_winner,new RaffleWinned($raffle,$user_winner));
         Notification::send($raffle->getOwner,new RaffleFinished($raffle,$raffle->getOwner));
-        $tickets = $raffle->getTickets->where('bingo',0)->orderBy('buyer')->get();
+        $tickets = Ticket::where('bingo',0)->where('raffle',$raffle->id)->groupBy('buyer');
         foreach ($tickets as $ticket) {
-            Notification::send($ticket->getBuyer,(new RaffleTerminatedAndNotWinned($raffle,$ticket->getBuyer))->delay(1));
+            Notification::send($ticket->getBuyer,(new RaffleTerminatedAndNotWinned($raffle,$ticket->getBuyer))->delay(now()->addMinute()));
         }
         foreach ($raffle->getFollowers as $follower) {
-            Notification::send($follower,(new RaffleTerminatedAndNotWinned($raffle,$follower))->delay(1));
+            Notification::send($follower,(new RaffleTerminatedAndNotWinned($raffle,$follower))->delay(now()->addMinute()));
         }
         return redirect()->back()->with('success','The raffle was shuffled successfully.');
     }

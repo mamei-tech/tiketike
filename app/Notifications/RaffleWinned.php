@@ -11,7 +11,7 @@ use Illuminate\Notifications\Messages\MailMessage;
 
 class RaffleWinned extends Notification
 {
-    use Queueable;
+//    use Queueable;
     private $raffle;
     private $user;
 
