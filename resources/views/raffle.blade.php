@@ -93,7 +93,9 @@
                         </div>
                         <ul class="list-unstyled pull-right list-inline padding-top-20 ">
                             <li class="margin-right-10">
-                                <a href="" title="Comentarios" id="comenta">
+                                <a @if(Auth::user() == null)  data-toggle="modal" href="#loginModal"
+                                   @else
+                                   href="" title="Comentarios" id="comenta"@endif>
                                     <span class="ti-comment colorV margin-right-5 dimenIconos"></span>
                                 </a>
                             </li>
@@ -103,11 +105,11 @@
                                 </a>
                             </li>
                             <li class="margin-right-10">
-                                <a data-toggle="modal" data-target="#share_modal" href="" title="Compartir">
+                                <a data-toggle="modal" data-target="#{{$raffle->id}}-share_modal" href="" title="Compartir">
                                     <span class="ti-share colorV margin-right-5 dimenIconos"></span>
                                 </a>
                             </li>
-                            @include('partials.front_modals.share_modal');
+                            @include('partials.front_modals.share_modal')
 
                         </ul>
                     </div>
@@ -126,7 +128,7 @@
                                     <span class="media-heading"><span
                                                 class="colorN">{{ $comment->getUser->name }} {{ $comment->getUser->lastname }}</span>
 
-                                          @if(\Auth::User()->id == 1)
+                                          @if(Auth::user() != null && Auth::User()->id == 1)
                                             <a data-toggle="modal" data-target="#comment-{{$comment->id}}" href="#" class="">
                                                     <span class="ti-alert"></span>
                                             </a>
@@ -159,7 +161,8 @@
                                              <span class="media-heading"><span
                                                          class="colorN">{{ $child->getUser->name }} {{ $child->getUser->lastname }}</span>
 
-                                                @if(\Auth::User()->id == 1)
+
+                                                @if(Auth::user() != null && Auth::User()->id == 1)
                                                      <a data-toggle="modal" data-target="#comment-{{$child->id}}" href="#" class="">
                                                     <span class="ti-alert"></span>
                                                      </a>
@@ -270,8 +273,11 @@
 @stop
 @section('additional_scripts')
     <script src="{{ asset('js/raffle.min.js') }}"></script>
+    {{--<script src="{{ asset('js/clipboard.min.js') }}"></script>--}}
     <script src="https://checkout.stripe.com/checkout.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
     <script type="text/javascript">
+
         $(document).ready(function () {
             var handler = StripeCheckout.configure({
                 key: '{{ config('services.stripe.key') }}',

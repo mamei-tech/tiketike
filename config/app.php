@@ -170,6 +170,12 @@ return [
         Spatie\Permission\PermissionServiceProvider::class,
 
         /*
+        * Package Service Providers...
+        */
+
+        Khsing\World\WorldServiceProvider::class,
+
+        /*
          * Package Service Providers...
          */
         Spatie\Permission\PermissionServiceProvider::class,

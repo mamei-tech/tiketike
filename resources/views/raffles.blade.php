@@ -149,11 +149,12 @@
                                             </li>
                                             <li class=" margin-right-10">
                                                 <a href="">
-                                        <span class="ti-share texto-negrita colorV margin-right-5 texto16"
+                                        <span data-toggle="modal" data-target="#{{$raffle->id}}-share_modal" class="ti-share texto-negrita colorV margin-right-5 texto16"
                                               title="Compartir"></span>
                                                     <span class="colorV sinkinSans600SB">Compartir</span>
                                                 </a>
                                             </li>
+                                            @include('partials.front_modals.share_modal')
                                             <li class="">
                                                 <button type="button" class="btn btn-info btnSiguiente"><span
                                                             class="ti-arrow-right"></span>

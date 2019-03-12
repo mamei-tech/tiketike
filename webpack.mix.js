@@ -94,6 +94,7 @@ mix.js('resources/assets/js/front/raffles.js', 'public/js/raffles.min.js').sourc
 mix.js('resources/assets/js/front/raffle.js', 'public/js/raffle.min.js').sourceMaps();
 mix.js('resources/assets/js/front/front_profile.js', 'public/js/front_profile.min.js').sourceMaps();
 mix.js('resources/assets/js/front/main.js', 'public/js/main.min.js').sourceMaps();
+mix.js('node_modules/clipboard/dist/clipboard.js', 'public/js/clipboard.min.js').sourceMaps();
 
 /*
  |--------------------------------------------------------------------------

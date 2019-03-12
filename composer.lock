@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "affc7a95df03c1bfec9326e0c42ff204",
+    "content-hash": "bd5ac810d7cce4e5ec6f58bc1eac049f",
     "packages": [
         {
             "name": "anhskohbo/no-captcha",
@@ -1076,6 +1076,53 @@
             ],
             "description": "Highlight PHP code in terminal",
             "time": "2018-09-29T18:48:56+00:00"
+        },
+        {
+            "name": "khsing/world",
+            "version": "v0.8",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/khsing/laravel-world.git",
+                "reference": "f78451c3267acf88212f4b8f4b72fe1d1859bd27"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/khsing/laravel-world/zipball/f78451c3267acf88212f4b8f4b72fe1d1859bd27",
+                "reference": "f78451c3267acf88212f4b8f4b72fe1d1859bd27",
+                "shasum": ""
+            },
+            "require": {
+                "laravel/framework": ">=5.3.0",
+                "php": ">=7.0"
+            },
+            "require-dev": {
+                "mockery/mockery": "~0.9",
+                "phpunit/phpunit": "~5.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Khsing\\World\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Guixing Bai",
+                    "email": "khsing.cn@gmail.com"
+                }
+            ],
+            "description": "Provide countries, states, and cities relations database.",
+            "keywords": [
+                "city",
+                "country",
+                "region",
+                "world"
+            ],
+            "time": "2019-02-09T09:06:18+00:00"
         },
         {
             "name": "laravel/framework",
