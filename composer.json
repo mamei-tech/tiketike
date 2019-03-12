@@ -10,6 +10,7 @@
         "arcanedev/log-viewer": "^4.5",
         "fideloper/proxy": "^4.0",
         "google/apiclient": "^2.0",
+        "khsing/world": "^0.8.0",
         "laravel/framework": "5.7.*",
         "laravel/socialite": "^4.1",
         "laravel/tinker": "^1.0",

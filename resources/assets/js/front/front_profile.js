@@ -1,5 +1,9 @@
 import axios from 'axios';
 
+
+
+
+
 function populate_cities_select()
 {
     let city_id = $('select#contry-select').val();
@@ -26,6 +30,12 @@ function populate_cities_select()
 
 $(document).ready(function () {
 
+
+    var text = $('#foo').value();
+    alert(text);
+
+
+    
     // Getting the current time for datetimepicker inputs
     var dtpicker = $('.datepicker');
     /* TODO Get the current time, validate not input a pass date */
