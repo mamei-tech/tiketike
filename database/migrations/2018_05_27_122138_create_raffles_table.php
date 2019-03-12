@@ -104,6 +104,31 @@ class CreateRafflesTable extends Migration
                 ->on('raffles')
                 ->onDelete('restrict');
         });
+
+        Schema::create('raffle_confirmation', function (Blueprint $table) {
+            $table->increments('id');      //PK
+            $table->integer('winner_id')->unsigned();
+            $table->boolean('wconfirmation');
+            $table->integer('owner_id')->unsigned();
+            $table->boolean('oconfirmation');
+            $table->unsignedBigInteger('raffle_id');
+
+            $table->foreign('winner_id')    //FK
+            ->references('id')
+                ->on('users')
+                ->onDelete('restrict');
+
+            $table->foreign('owner_id')    //FK
+            ->references('id')
+                ->on('users')
+                ->onDelete('restrict');
+
+            $table->foreign('raffle_id')    //FK
+            ->references('id')
+                ->on('raffles')
+                ->onDelete('restrict');
+            $table->timestamps();
+        });
     }
 
     /**

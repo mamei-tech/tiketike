@@ -3,7 +3,6 @@
     @include('partials.frontend.header')
     @include('partials.front_modals.filters')
     @include('partials.front_modals.mobile_suggest')
-    @include('partials.front_modals.edit_raffle_modal')
     <div class="container margin-top60">
         <div class="row">
             <!--Contenido ticket-->
@@ -209,17 +208,12 @@
                 <div class="bg-gris paddingLateralGris">
                     <div class="borderTopDashed padding-bottom20 ">
                         <div class="pull-left padding-top-10 margin-bottom-20">
-                            <span class="text-uppercase dashedDerecho colorV sinkinSans700B">venta de tickets</span>
-                        </div>
-                        <div class="pull-left padding-left10 texto10 colorV padding-top-10">
-                            <span class="sinkinSans200LI">Costo:</span>
-                            <span class="sinkinSans700B colorV" id="raffleprice">{{ $raffle->tickets_price }}</span>
+                            <span class="text-uppercase colorV sinkinSans700B">ticket ganador</span>
                         </div>
                     </div>
                     <div class="col-xs-12 borderBottomDashed"></div>
                     <div class="row padding-top-20 padding-left30">
-                        <div class="centerM slickVertical sinkinSans400R text-uppercase  ">
-                            @foreach($raffle->getTicketsAvailable as $ticket)
+                        <div class="centerM slickVertical sinkinSans400R text-uppercase">
                                 <div>
                                     <div class="padding-top-15  bg-prueba pull-left">
                                         <span class="padding-top-20 padding-left25 text-uppercase colorB margin-right-10">{{ $ticket->code }}</span>
@@ -229,88 +223,19 @@
                                                value="{{ $ticket->code }}" type="checkbox">
                                     </div>
                                 </div>
-                            @endforeach
-                            <input type="hidden" id="raffle" value="{{ $raffle->id }}">
                         </div>
-                    </div>
-                    <div class="borderTopDashed padding-bottom20">
-                        <div class="pull-left">
-                            <strong class="sinkinSans600SB colorV texto24 pull-left margin-right-10"
-                                    id="countTickets">0</strong>
-                            <div class="pull-left colorV texto8 sinkinSans300LI padding-top5">
-                                <span>Tikects</span><br>
-                                <span> Seleccionados</span>
-                            </div>
-                        </div>
-                        <div class="pull-right colorV padding-top-10">
-                            <a @if(Auth::user() == null)  data-toggle="modal" href="#loginModal" @else id="buyTickets"
-                               @endif type="button"
-                               class="btn btn-primary bg_green extraer sinkinSans700B text-uppercase">Comprar
-                            </a>
-                        </div>
-                        <form method="post" action="{{ route('raffle.tickets.buy',['raffleId' => $raffle->id]) }}"
-                              id="payform">
-                            {{ csrf_field() }}
-                            <input type="hidden" id="stripeToken" name="stripeToken"/>
-                            <input type="hidden" id="stripeEmail" name="stripeEmail"/>
-                            <input type="hidden" id="amountInCents" name="amountInCents"/>
-                            <input type="hidden" id="ticketsarray" name="tickets[]">
-                        </form>
                     </div>
                 </div>
                 <div class="bottomLIzquierdo"></div>
             </div>
-
             @include('partials.frontend.promotions')
-
         </div>
     </div>
 @stop
 @section('additional_scripts')
     <script src="{{ asset('js/raffle.min.js') }}"></script>
-    <script src="https://checkout.stripe.com/checkout.js"></script>
     <script type="text/javascript">
         $(document).ready(function () {
-            var handler = StripeCheckout.configure({
-                key: '{{ config('services.stripe.key') }}',
-                image: '{{ asset('pics/front/logonv.png') }}',
-                token: function (token) {
-                    $("#stripeToken").val(token.id);
-                    $("#stripeEmail").val(token.email);
-                    $("#amountInCents").val({{$raffle->tickets_price}});
-                    $("#payform").submit();
-                }
-            });
-
-            $('#buyTickets').on('click', function (e) {
-                var siChequeados = $('input:checkbox:checked').map(function () {
-                    return this.value;
-                }).get();
-                $('#ticketsarray').val(siChequeados);
-                var price = $('#raffleprice').html();
-                var amountInCents = parseFloat(price).toFixed(2) * siChequeados.length * 100;
-                var displayAmount = parseFloat(amountInCents / 100).toFixed(2);
-                var handler = StripeCheckout.configure({
-                    key: '{{ config('services.stripe.key') }}',
-                    image: '{{ asset('pics/front/logonv.png') }}',
-                    token: function (token) {
-                        $("#stripeToken").val(token.id);
-                        $("#stripeEmail").val(token.email);
-                        $("#amountInCents").val(amountInCents);
-                        $("#payform").submit();
-                    }
-                });
-                $('input#amountInCents').val(amountInCents);
-
-                // Open Checkout with further options
-                handler.open({
-                    name: 'TikeTikes tickets buy',
-                    description: 'Tickets price ($' + displayAmount + ')',
-                    amount: amountInCents,
-                });
-                e.preventDefault();
-            });
-
 // Close Checkout on page navigation
             $(window).on('popstate', function () {
                 handler.close();

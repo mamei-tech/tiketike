@@ -25,6 +25,7 @@ class PaymentController extends Controller
         $this->middleware('permission:list_roles')                  ->  only(['executed']);
         $this->middleware('permission:pending_list_payments')       ->  only(['pending_list']);
         $this->middleware('permission:pending_details_payments')    ->  only(['pending_details']);
+        $this->middleware('permission:pending_execute')    ->  only(['pending_execute']);
 
         $this->raffleRepository = $raffleRepository;
     }
@@ -63,19 +64,32 @@ class PaymentController extends Controller
     {
         Stripe::setApiKey(env('STRIPE_KEY'));
         $payment = Payment::findOrFail($id);
-        $raffle = $payment->getRaffle();
-        $pending_pays = $raffle->getPaymentsAttached;
-        foreach ($pending_pays as $pay) {
-            $refund = Refund::create([
-                'charge' => $pay->charge_id,
-                'amount' => $pay->amount,
-                'reason' => 'Raffle '.$raffle->title.' was canceled.'
-            ]);
-            if ($refund['status'] != 'succeeded')
-            {
-                return redirect()->back()
-                    ->with('404','Refund failed');
+        if ($payment->type == 'refund') {
+            $raffle = $payment->getRaffle();
+            $pending_pays = $raffle->getPaymentsAttached;
+            foreach ($pending_pays as $pay) {
+                $refund = Refund::create([
+                    'charge' => $pay->charge_id,
+                    'amount' => $pay->amount,
+                    'reason' => 'Raffle ' . $raffle->title . ' was canceled.'
+                ]);
+                if ($refund['status'] != 'succeeded') {
+                    return redirect()->back()
+                        ->with('404', 'Refund failed');
+                }
             }
+        }else {
+            //TODO investigate hoy to transfer money to another account
+            return true;
+//            $refund = Refund::create([
+//                'charge' => $pay->charge_id,
+//                'amount' => $pay->amount,
+//                'reason' => 'Raffle ' . $raffle->title . ' was canceled.'
+//            ]);
+//            if ($refund['status'] != 'succeeded') {
+//                return redirect()->back()
+//                    ->with('404', 'Refund failed');
+//            }
         }
         $payment->status = 'executed';
         $payment->save();

@@ -21,8 +21,8 @@ class Raffle extends Model implements HasMedia
     public $incrementing    = false;
 
     protected $fillable = [
-        'title',
-        'description',
+        'winner_id',
+        'wconfirmation',
         'price',
         'progress'
     ];
@@ -184,6 +184,8 @@ class Raffle extends Model implements HasMedia
             $referralUserProfile->save();
             $referralUser->getReferralsBuys()->saveMany($referralsBuys);
         }
+        $this->progress = $this->getProgress();
+        $this->save();
 
         return true;
     }

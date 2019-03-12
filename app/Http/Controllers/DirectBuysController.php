@@ -35,8 +35,7 @@ class DirectBuysController extends BuysController
         ]);
         if ($charge['paid'] == true) {
             $raffle = Raffle::findOrFail($raffleId);
-
-            $raffle->buyTickets(Auth::user(), $request->get('ticketsarray'));
+            $raffle->buyTickets(Auth::user(), $request->get('tickets'));
             $raffle_pay = new RafflePays();
             $raffle_pay->raffle_id = $raffleId;
             $raffle_pay->charge_id = $charge['id'];

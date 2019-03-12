@@ -17,6 +17,7 @@ class CreatePaymentsTables extends Migration
             $table->increments('id');
             $table->string('name');
             $table->text('description');
+            $table->enum('type', ['refund','payment']);
             $table->enum('status', ['executed','pending']);
             $table->timestamps();
         });

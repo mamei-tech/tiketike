@@ -124,8 +124,9 @@ Route::group(['prefix' => 'raffles'
 ], function () {
 //publishing raffle access route
     Route::get('/{raffleId}/tickets/buy', 'DirectBuysController@availableTickets')->name('raffle.tickets.available');
-
     Route::get('/{raffleId}/{referralId}', 'ReferralsBuysController@availableTickets')->name('referrals.tickets.available');
+    Route::get('/{raffleId}/view','RafflesController@finishedView')->name('raffle.finished.view');
+    Route::post('{raffleId}/checkConfirmation','RafflesController@checkConfirmation')->name('raffle.finished.checkConfirmation');
 });
 
 Route::group(['prefix' => 'users'

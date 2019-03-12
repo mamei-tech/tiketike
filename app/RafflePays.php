@@ -13,8 +13,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class RafflePays extends Model
 {
-    protected $table        = 'raffles';
+    protected $table        = 'raffle_pays';
     protected $primaryKey   = 'id';
+
+    public $timestamps = false;
 
     protected $fillable = [
         'raffle_id',

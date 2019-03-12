@@ -3,11 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Country;
+use App\Http\Requests\ConfirmRaffle;
 use App\Http\Requests\UpdateRaffleRequest;
 use App\Http\TkTk\CodesGenerator;
 use App\Notifications\RaffleCreated;
 use App\Notifications\RaffleUpdated;
+use App\Payment;
 use App\Promo;
+use App\RaffleConfirmation;
 use App\RaffleStatus;
 use App\Repositories\RaffleRepository;
 use App\User;
@@ -37,6 +40,8 @@ class RafflesController extends Controller
         $this->middleware('permission:raffles_create')        ->  only(['create', 'store']);
         $this->middleware('permission:raffles_edit')          ->  only(['edit', 'update']);
         $this->middleware('permission:raffles_follow')        ->  only(['follow']);
+        $this->middleware('permission:raffles_finished')        ->  only(['finishedView']);
+        $this->middleware('permission:raffles_checkConfirmation')        ->  only(['checkConfirmation']);
 
         $this->raffleRepository = $raffleRepository;
     }
@@ -149,5 +154,39 @@ class RafflesController extends Controller
         $raffle->getFollowers()->sync(User::find(Auth::user()->id));
         return redirect()->back()
             ->with('success', 'Raffle follow successfully');
+    }
+
+    public function finishedView($id)
+    {
+        $raffle = Raffle::findOrFail($id);
+        $confirmation = RaffleConfirmation::where('raffleId',$raffle->id)->first();
+        $ticket = $raffle->getTickets->where('bingo','1')->first();
+        return view('finished_raffle',compact('raffle','ticket','confirmation'));
+    }
+
+    public function checkConfirmation(ConfirmRaffle $request)
+    {
+        $confirmation = ConfirmRaffle::where('raffleId',$request->get('raffleId'))->first();
+        $confirmation->oconfirmation = $request->get('oconfirmation');
+        $confirmation->wconfirmation = $request->get('wconfirmation');
+        $confirmation->save();
+        $raffle = Raffle::findOrFail($request->get('raffleId'));
+        if ($confirmation->oconfirmation and $confirmation->wconfirmation)
+        {
+            $raffle->status = 6;
+            $payment = new Payment();
+            $payment->name = 'A raffle '.$raffle->title.' has been confirmed by booth parts. You must pay to the owner.';
+            $payment->description = "You have to pay to the owner the value of the raffle";
+            $payment->status = 'pending';
+            $payment->type = 'payment';
+            $payment->save();
+            $payment->getUser()->sync([$raffle->getOwner]);
+            $payment->getRaffle()->save($raffle);
+
+            return redirect()->back()
+                ->with('success', 'Congratulations!!! You booth have confirmed the raffle. Enjoy it!!!');
+        }
+        return redirect()->back()
+            ->with('success', 'Thanks for confirm the raffle. Soon you will have news about us.');
     }
 }
