@@ -178,6 +178,8 @@ class RafflesController extends Controller
         $raffle = Raffle::findOrFail($request->get('raffleId'));
         if ($confirmation->oconfirmation == 1 and $confirmation->wconfirmation == 1)
         {
+            $raffle->status = 6;
+            $raffle->save();
             $raffle->getOwner->getProfile->balance += $raffle->price;
             $raffle->getOwner->getProfile->save();
             return redirect()->back()
