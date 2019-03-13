@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 
 class ConfirmRaffle extends FormRequest
 {
+
     /**
      * Determine if the user is authorized to make this request.
      *
@@ -27,10 +28,10 @@ class ConfirmRaffle extends FormRequest
     public function rules()
     {
         return [
-            'wconfirmation' => 'required',
-            'oconfirmation '=> 'required',
-            'user' => 'required|same:'.Auth::user()->id.'|'.[new CustomValidateRaffle('raffleId')],
-            'raffleId' => 'required|'.[new RaffleShuffled()]
+//            'wconfirmation' => 'required',
+//            'oconfirmation '=> 'required',
+            'user' => ['required',new CustomValidateRaffle($this->raffleId)],
+            'raffleId' => ['required',new RaffleShuffled()]
         ];
     }
 }

@@ -159,30 +159,27 @@ class RafflesController extends Controller
     public function finishedView($id)
     {
         $raffle = Raffle::findOrFail($id);
-        $confirmation = RaffleConfirmation::where('raffleId',$raffle->id)->first();
+        $raffleId = $raffle->id;
+        $confirmation = RaffleConfirmation::where('raffle_id',$raffle->id)->first();
         $ticket = $raffle->getTickets->where('bingo','1')->first();
-        return view('finished_raffle',compact('raffle','ticket','confirmation'));
+        $suggested = $this->raffleRepository->getSuggested();
+        $promos = Promo::where('type',1)->where('status',1)->get();
+        return view('finished_raffle',compact('raffle','ticket','confirmation','raffleId','suggested','promos'));
     }
 
     public function checkConfirmation(ConfirmRaffle $request)
     {
-        $confirmation = ConfirmRaffle::where('raffleId',$request->get('raffleId'))->first();
-        $confirmation->oconfirmation = $request->get('oconfirmation');
-        $confirmation->wconfirmation = $request->get('wconfirmation');
+        $confirmation = RaffleConfirmation::where('raffle_id',$request->get('raffleId'))->first();
+        $oconfirmation = $request->get('oconfirmation') == 'on'?true:false;
+        $confirmation->oconfirmation = $oconfirmation;
+        $wconfirmation = $request->get('wconfirmation')=='on'?true:false;
+        $confirmation->wconfirmation = $wconfirmation;
         $confirmation->save();
         $raffle = Raffle::findOrFail($request->get('raffleId'));
-        if ($confirmation->oconfirmation and $confirmation->wconfirmation)
+        if ($confirmation->oconfirmation == 1 and $confirmation->wconfirmation == 1)
         {
-            $raffle->status = 6;
-            $payment = new Payment();
-            $payment->name = 'A raffle '.$raffle->title.' has been confirmed by booth parts. You must pay to the owner.';
-            $payment->description = "You have to pay to the owner the value of the raffle";
-            $payment->status = 'pending';
-            $payment->type = 'payment';
-            $payment->save();
-            $payment->getUser()->sync([$raffle->getOwner]);
-            $payment->getRaffle()->save($raffle);
-
+            $raffle->getOwner->getProfile->balance += $raffle->price;
+            $raffle->getOwner->getProfile->save();
             return redirect()->back()
                 ->with('success', 'Congratulations!!! You booth have confirmed the raffle. Enjoy it!!!');
         }

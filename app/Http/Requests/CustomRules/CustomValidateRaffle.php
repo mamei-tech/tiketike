@@ -9,6 +9,7 @@
 namespace App\Http\Requests\CustomRules;
 use App\RaffleConfirmation;
 use Illuminate\Contracts\Validation\Rule;
+use Illuminate\Support\Facades\Auth;
 
 
 class CustomValidateRaffle implements Rule
@@ -30,7 +31,9 @@ class CustomValidateRaffle implements Rule
 
     public function passes($attribute, $year)
     {
-        $confirmation = RaffleConfirmation::where('raffleId',$this->raffle)->first();
+        if ($year != Auth::user()->id)
+            return false;
+        $confirmation = RaffleConfirmation::where('raffle_id',$this->raffle)->first();
         if($year == $confirmation->owner_id or $year == $confirmation->winner_id)
             return true;
         else

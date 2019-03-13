@@ -127,5 +127,11 @@ class PermissionsTableSeeder extends Seeder
         $user = \App\User::find(1);
         $role = \App\Role::find(1);
         $user->assignRole($role->name);
+        $other_users = \App\User::where('id','!=',$user->id)->get();
+        $role = \App\Role::find(2);
+        foreach ($other_users as $user)
+        {
+            $user->assignRole($role->name);
+        }
     }
 }

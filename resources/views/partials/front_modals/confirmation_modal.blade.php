@@ -12,25 +12,25 @@
             <div class="modal-body">
                 <div class="col-md-12 "></div>
                 <h5 class="modal-title text-uppercase textoCenter padding-top-20">Confirmacion de rifa</h5>
-                <form class="form-signin" action="login" method="POST">
+                <form class="form-signin" action="{{ route('raffle.finished.checkConfirmation',['raffleId' => $raffleId]) }}" method="POST">
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
                     <input type="hidden" name="raffleId" value="{{ $raffle->id }}">
                     <input type="hidden" name="user" value="{{ \Auth::user()->id }}">
                     <div class="form-group">
                         <label for="oconfirmation">El due&nacute;o de la rifa confirmó la entrega:</label>
                         <input type="checkbox" name="oconfirmation"
-                               id="oconfirmation" {{ $confirmation->oconfirmation?'checked': '' }} {{ $raffle->getOwner->id == \Auth::user()->id?'':'disabled' }}>
+                               id="oconfirmation" {{ $confirmation->oconfirmation?'checked': '' }} {{ $confirmation->owner_id == \Auth::user()->id?'':'disabled' }}>
                     </div>
-                    @if($confirmation->oconfirmation)
-                        <input type="hidden" name="oconfirmation" value="{{ $confirmation->oconfirmation }}">
+                    @if($confirmation->owner_id != \Auth::user()->id)
+                        <input type="hidden" name="oconfirmation" value="{{ $confirmation->oconfirmation == 1?'on':'off' }}">
                     @endif
                     <div class="form-group">
                         <label for="wconfirmation">El ganador de la rifa confirmó la entrega:</label>
                         <input type="checkbox" name="wconfirmation"
-                               id="wconfirmation" {{ $confirmation->wconfirmation?'checked': '' }} {{ $ticket->getBuyer->id == \Auth::user()->id? '': 'disabled' }}>
+                               id="wconfirmation" {{ $confirmation->wconfirmation?'checked': '' }} {{ $confirmation->winner_id == \Auth::user()->id? '': 'disabled' }}>
                     </div>
-                    @if($confirmation->wconfirmation)
-                        <input type="hidden" name="wconfirmation" value="{{ $confirmation->wconfirmation }}">
+                    @if($confirmation->winner_id != \Auth::user()->id)
+                        <input type="hidden" name="wconfirmation" value="{{ $confirmation->wconfirmation == 1?'on':'off' }}">
                     @endif
                     {!! app('captcha')->display() !!}
                     <div class="g-recaptcha"
@@ -44,31 +44,12 @@
                     <div class="row padding-top-20">
 
                         <div class="col-xs-5 pull-right">
-                            <button type="submit" class="btn btn-sm btn-primary btn-block">
+                            <button {{ $raffle->status == 6?'disabled':'' }} type="submit" class="btn btn-sm btn-primary btn-block">
                                 Entrar
                             </button>
                         </div>
                     </div>
                 </form>
-
-
-                <h5 class="modal-title text-uppercase textoCenter padding-top-20">@lang('Register With')</h5>
-
-                <div class="col-xs-12 text-center margin-bottom-40">
-                    <a class="btn btn-facebook" href="{{ route('social.auth', 'facebook') }}">
-                        <span class="ti-facebook texto-negrita colorV margin-right-5 texto16" title="Facebook"></span>
-                    </a>
-                    <a class="btn btn-twitter" href="{{ route('social.auth', 'twitter') }}">
-                        <span class="ti-twitter texto-negrita colorV margin-right-5 texto16" title="Twitter"></span>
-                    </a>
-                    <a class="btn btn-google" href="{{ route('social.auth', 'google') }}">
-                        <span class="ti-google texto-negrita colorV margin-right-5 texto16" title="Google"></span>
-                    </a>
-                    <a class="btn btn-linkedin" href="{{ route('social.auth', 'linkedin') }}">
-                        <span class="ti-linkedin texto-negrita colorV margin-right-5 texto16" title="Linkedin"></span>
-                    </a>
-                </div>
-
                 <!-- TODO Aqui van los enlaces morrongueros del fi para acceder por las redes sociales -->
             </div>
         </div>

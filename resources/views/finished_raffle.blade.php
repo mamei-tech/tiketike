@@ -1,8 +1,9 @@
 @extends('layouts.base')
 @section('content')
     @include('partials.frontend.header')
-    @include('partials.front_modals.filters')
     @include('partials.front_modals.mobile_suggest')
+    @include('partials.front_modals.confirmation_modal')
+    @include('partials.front_modals.error_notification')
     <div class="container margin-top60">
         <div class="row">
             <!--Contenido ticket-->
@@ -16,9 +17,16 @@
                         <div class="col-xs-8 col-md-9 texto14 sinkinSans600SB padding0">
                             <span class="colorN">{{ $raffle->getOwner->name }} {{ $raffle->getOwner->lastname }}</span>
                             <span class="ti-location-pin"></span>
-                            <span class=""><img src="{{ asset('pics/countries/'.$raffle->getLocation->name.'.png') }}">{{ $raffle->getLocation->name }}</span>
+                            <span class=""><img
+                                        src="{{ asset('pics/countries/'.$raffle->getLocation->name.'.png') }}">{{ $raffle->getLocation->name }}</span>
                             <p class="texto18 text-uppercase texto-negrita colorN padding-top-10"
-                               style="font-family: sinkinSans700Bold">{{ $raffle->title }} @if(\Auth::user()->id == $raffle->getOwner->id and $raffle->status < 2)<a href="#editRaffleModal" data-toggle="modal"><i class="fa fa-edit"></i> Editar rifa </a>@endif </p>
+                               style="font-family: sinkinSans700Bold">{{ $raffle->title }} @if(\Auth::user()->id == $raffle->getOwner->id and $raffle->status < 2)
+                                    <a href="#editRaffleModal" data-toggle="modal"><i class="fa fa-edit"></i> Editar
+                                        rifa </a>@endif </p>
+                            @if(\Auth::user()->id == $confirmation->owner_id or \Auth::user()->id == $confirmation->winner_id)
+                                <a href="#confirmation_modal" data-toggle="modal" class="btn btn-success">Confirmar
+                                    rifa</a>
+                            @endif
                         </div>
                     </div>
                     <div class="col-xs-12 padding-top-20">
@@ -117,7 +125,8 @@
                                 @if($comment->parent == null)
                                     <div class="media">
                                         <a href="#" class="pull-left  margin-right-20">
-                                            <img src="{{ $comment->getUser->getMedia('avatars')->first()->getUrl() }}" alt="Ringo"
+                                            <img src="{{ $comment->getUser->getMedia('avatars')->first()->getUrl() }}"
+                                                 alt="Ringo"
                                                  class="imgUsuario sombraImgUser2">
                                         </a>
                                         <div class="media-body">
@@ -125,12 +134,13 @@
                                     <span class="media-heading"><span
                                                 class="colorN">{{ $comment->getUser->name }} {{ $comment->getUser->lastname }}</span>
 
-                                          @if(\Auth::User()->id == 1)
-                                            <a data-toggle="modal" data-target="#comment-{{$comment->id}}" href="#" class="">
+                                        @if(\Auth::User()->id == 1)
+                                            <a data-toggle="modal" data-target="#comment-{{$comment->id}}" href="#"
+                                               class="">
                                                     <span class="ti-alert"></span>
                                             </a>
                                             @include('partials.front_modals.bad_comment_modal',['commentario'=>$comment])
-                                          @endif
+                                        @endif
 
 
                                         <a data-toggle="collapse" data-target="#reply-{{$comment->id}}"
@@ -150,7 +160,8 @@
                                             <!-- Nested media object -->
                                                 <div class="media">
                                                     <a href="#" class="pull-left margin-right-20">
-                                                        <img src="{{ $child->getUser->getMedia('avatars')->first()->getUrl() }}" alt="Ringo"
+                                                        <img src="{{ $child->getUser->getMedia('avatars')->first()->getUrl() }}"
+                                                             alt="Ringo"
                                                              class="imgUsuario2 sombraImgUser2">
                                                     </a>
                                                     <div class="media-body">
@@ -158,8 +169,9 @@
                                              <span class="media-heading"><span
                                                          class="colorN">{{ $child->getUser->name }} {{ $child->getUser->lastname }}</span>
 
-                                                @if(\Auth::User()->id == 1)
-                                                     <a data-toggle="modal" data-target="#comment-{{$child->id}}" href="#" class="">
+                                                 @if(\Auth::User()->id == 1)
+                                                     <a data-toggle="modal" data-target="#comment-{{$child->id}}"
+                                                        href="#" class="">
                                                     <span class="ti-alert"></span>
                                                      </a>
                                                      @include('partials.front_modals.bad_comment_modal',['commentario'=>$child])
@@ -214,15 +226,15 @@
                     <div class="col-xs-12 borderBottomDashed"></div>
                     <div class="row padding-top-20 padding-left30">
                         <div class="centerM slickVertical sinkinSans400R text-uppercase">
-                                <div>
-                                    <div class="padding-top-15  bg-prueba pull-left">
-                                        <span class="padding-top-20 padding-left25 text-uppercase colorB margin-right-10">{{ $ticket->code }}</span>
-                                    </div>
-                                    <div class="padding-top-30">
-                                        <input name="tickets" id="tickets" class="margin-left15 tickets"
-                                               value="{{ $ticket->code }}" type="checkbox">
-                                    </div>
+                            <div>
+                                <div class="padding-top-15  bg-prueba pull-left">
+                                    <span class="padding-top-20 padding-left25 text-uppercase colorB margin-right-10">{{ $ticket->code }}</span>
                                 </div>
+                                {{--<div class="padding-top-30">--}}
+                                    {{--<input name="tickets" id="tickets" class="margin-left15 tickets"--}}
+                                           {{--value="{{ $ticket->code }}" type="checkbox">--}}
+                                {{--</div>--}}
+                            </div>
                         </div>
                     </div>
                 </div>

@@ -126,7 +126,7 @@ Route::group(['prefix' => 'raffles'
     Route::get('/{raffleId}/tickets/buy', 'DirectBuysController@availableTickets')->name('raffle.tickets.available');
     Route::get('/{raffleId}/{referralId}', 'ReferralsBuysController@availableTickets')->name('referrals.tickets.available');
     Route::get('/view/{raffleId}/finished','RafflesController@finishedView')->name('raffle.finished.view');
-    Route::post('{raffleId}/checkConfirmation','RafflesController@checkConfirmation')->name('raffle.finished.checkConfirmation');
+    Route::post('/checkConfirmation/{raffleId}/finished','RafflesController@checkConfirmation')->name('raffle.finished.checkConfirmation');
 });
 
 Route::group(['prefix' => 'users'
