@@ -48,7 +48,7 @@ class RaffleWinned extends Notification
     {
         return (new MailMessage)
                     ->line('Congrats!!! You have winned a raffle '.$this->raffle->title.'. Soon we will send you an interface for bla bla bla')
-                    ->action('Notification Action', url('main'))
+                    ->action('Notification Action', route('raffle.finished.view',['raffleId' => $this->raffle->id]))
                     ->line('Again, congrats!!!');
     }
 
@@ -62,7 +62,7 @@ class RaffleWinned extends Notification
     {
         return [
             'data' => 'Congrats!!! You have winned a raffle '.$this->raffle->title.'. Soon we will send you an interface for bla bla bla',
-            'url' => route('main')
+            'url' => route('raffle.finished.view',['raffleId' => $this->raffle->id])
         ];
     }
 
