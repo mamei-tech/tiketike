@@ -12,6 +12,7 @@ use App\Payment;
 use App\Promo;
 use App\RaffleConfirmation;
 use App\RaffleStatus;
+use App\ReferralsBuys;
 use App\Repositories\RaffleRepository;
 use App\User;
 use Illuminate\Http\Request;
@@ -182,6 +183,12 @@ class RafflesController extends Controller
             $raffle->save();
             $raffle->getOwner->getProfile->balance += $raffle->price;
             $raffle->getOwner->getProfile->save();
+            foreach ($raffle->getReferrals as $referral)
+            {
+                // TODO review if this formula is correct to assign profit to comissionist of a raffle per referral
+                $referral->getComisionist->getProfile->balance += $raffle->comissions/$raffle->tickets_count;
+                $referral->getComisionist->getProfile->save();
+            }
             return redirect()->back()
                 ->with('success', 'Congratulations!!! You booth have confirmed the raffle. Enjoy it!!!');
         }
