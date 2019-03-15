@@ -74,7 +74,7 @@ class CreateRafflesTable extends Migration
 
             $table->foreign('location')  //FK
             ->references('id')
-                ->on('countries')
+                ->on('world_countries')
                 ->onDelete('restrict');
         });
 
