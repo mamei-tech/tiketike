@@ -25,7 +25,7 @@
                                             %</span><br>{{ $raffle->title }}
                                         <h5 class="text-center">
                                             <img class="align-content-center"
-                                                 src="{{ $raffle->getLocation->emoji}}"/>
+                                                 src="{{ asset('pics/countries/'.$raffle->getLocation->code.'.png') }}"/>
                                             <span class="tile-owner-name">{{ $raffle->getOwner->name }}</span>
                                         </h5>
                                     </strong>

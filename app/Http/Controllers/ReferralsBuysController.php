@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Raffle;
 use Illuminate\Support\Facades\Auth;
+use Stripe\Charge;
+use Stripe\Stripe;
 
 class ReferralsBuysController extends BuysController
 {
@@ -24,9 +26,24 @@ class ReferralsBuysController extends BuysController
      */
     public function buyTickets($raffleId, $referralId, $socialNetworkId, Request $request)
     {
-        $raffle = Raffle::findOrFail($raffleId);
-
-        $raffle->buyTickets(Auth::user(), $request->availabletickets, $referralId, $socialNetworkId);
+        Stripe::setApiKey(env('STRIPE_SECRET'));
+        $token = $request->get('stripeToken');
+        $charge = Charge::create([
+            'amount' => $request->get('amountInCents'),
+            'currency' => 'usd',
+            'description' => 'Tikets buyed from raffle '.$raffleId,
+            'source' => $token,
+        ]);
+        if ($charge['paid'] == true) {
+            $raffle = Raffle::findOrFail($raffleId);
+            $raffle->buyTickets(Auth::user(), $request->get('tickets'),$referralId, $socialNetworkId);
+            $raffle_pay = new RafflePays();
+            $raffle_pay->raffle_id = $raffleId;
+            $raffle_pay->charge_id = $charge['id'];
+            $raffle_pay->amount = $charge['amount'];
+            $raffle_pay->save();
+            return redirect()->back()->with('200',['response' => "Your paiment was sent successfully"]);
+        }
 
         return redirect($request->fullUrl(), 303);
     }
