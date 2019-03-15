@@ -44,11 +44,6 @@ class DashboardController extends ApiController
 
     function activatedRafflesByMonth() {
         $currenYear = date('Y');
-//        $raffles = Raffle::whereYear('activation_date', $currenYear)->get();
-//        $rafflesByMonth = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-//        foreach ($raffles as $r)
-//            $rafflesByMonth[$r->activation_date->month() - 1]++;
-//        return $rafflesByMonth;
         return [
             count(Raffle::whereYear('activation_date', $currenYear)->whereMonth('activation_date', 1)->get()),
             count(Raffle::whereYear('activation_date', $currenYear)->whereMonth('activation_date', 2)->get()),
@@ -134,25 +129,24 @@ class DashboardController extends ApiController
         ]);
     }
 
-    static function maleSolds($byCom, $anulledId) {
+    static function maleSolds($byCom) {
         return count(
             DB::table('usersprofiles')
                 ->join('tickets', 'usersprofiles.user', '=', 'tickets.buyer')
                 ->join('raffles', 'tickets.raffle', '=', 'raffles.id')
-                ->where('raffles.status', '!=', $anulledId)
+                ->where('raffles.status', '!=', 3)
                 ->where('tickets.soldByCom', $byCom)
                 ->where('usersprofiles.gender', 'male')->get()
         );
     }
 
     public function soldedTickets() {
-        $anulledId = RaffleStatus::where('status', 'Cancelled')->first()->id;
-        $soldedTicketsDirec = DashboardController::soldedTicketsBy(false, $anulledId);
-        $soldedTicketsByCom = DashboardController::soldedTicketsBy(true, $anulledId);
+        $soldedTicketsDirec = DashboardController::soldedTicketsBy(false);
+        $soldedTicketsByCom = DashboardController::soldedTicketsBy(true);
 
-        $directMaleSolds = DashboardController::maleSolds(false, $anulledId);
+        $directMaleSolds = DashboardController::maleSolds(false);
 
-        $comMaleSolds = DashboardController::maleSolds(true, $anulledId);
+        $comMaleSolds = DashboardController::maleSolds(true);
 
         $remainTickets = count(Ticket::where('sold', false)->get());
 
@@ -202,26 +196,17 @@ class DashboardController extends ApiController
         ]);
     }
 
-    static function soldedTicketsBy($byCom, $anulledId) {
+    static function soldedTicketsBy($byCom) {
         return DB::table('tickets')
             ->join('raffles', 'raffles.id', '=', 'tickets.raffle')
-            ->where('raffles.status', '!=', $anulledId)
+            ->where('raffles.status', '!=', 3)
             ->where('tickets.sold', true)
             ->where('tickets.soldByCom', $byCom)->get();
     }
 
     public function moneyByTickets() {
-        $anulledId = RaffleStatus::where('status', 'Cancelled')->first()->id;
-        $soldedTicketsDirec = DashboardController::soldedTicketsBy(false, $anulledId);
-        $soldedTicketsByCom = DashboardController::soldedTicketsBy(true, $anulledId);
-
-        $netGain = 0;
-        Raffle::chunk(1000, function ($raffles) use (&$netGain, $anulledId) {
-            foreach ($raffles as $r) {
-                if ($r->status != $anulledId)
-                    $netGain += $r->netGain;
-            }
-        });
+        $soldedTicketsDirec = DashboardController::soldedTicketsBy(false);
+        $soldedTicketsByCom = DashboardController::soldedTicketsBy(true);
 
         $directlyMoneyCount = 0;
         foreach($soldedTicketsDirec as $std) {
@@ -239,7 +224,7 @@ class DashboardController extends ApiController
             // Payload
             'directly'     => round($directlyMoneyCount, 2),
             'referrals'    => round($comMoneyCount, 2),
-            'net_gain'     => round($netGain, 2),
+            'net_gain'     => round(Raffle::rafflesNetGain(), 2),
         ]);
     }
 }

@@ -251,6 +251,7 @@ class Raffle extends Model implements HasMedia
     /* TODO Enhance this method for situation like is the raffle is published already */
     public function anullate() {
         $this->status = 3;                    // ID for anulled status
+        $this->netGain = 0;
         $this->save();
     }
 
@@ -310,5 +311,45 @@ class Raffle extends Model implements HasMedia
      */
     public function getTicketsAvailable() {
         return $this->hasMany('App\Ticket', 'raffle', 'id')->where('sold','=',false);
+    }
+
+    public static function rafflesNetGain()
+    {
+        $netGain = 0;
+        Raffle::chunk(1000, function ($raffles) use (&$netGain) {
+            foreach ($raffles as $r) {
+                if ($r->status != 3)    // Not anulled
+                    $netGain += $r->netGain;
+            }
+        });
+
+        return $netGain;
+    }
+
+    public static function sharedRaffles()
+    {
+        return Raffle::join('tickets', 'raffles.id', '=', 'tickets.raffle')
+            ->join('referralsbuys', 'tickets.id', '=', 'referralsbuys.ticket')
+            ->select(
+                'raffles.id',
+                'raffles.title',
+                'raffles.price'
+            )
+            ->groupBy('raffles.id')->get();
+    }
+
+    public function referralsInfo()
+    {
+        return Raffle::join('tickets', 'raffles.id', '=', 'tickets.raffle')
+            ->join('referralsbuys', 'tickets.id', '=', 'referralsbuys.ticket')
+            ->join('users', 'users.id', '=', 'referralsbuys.comisionist')
+            ->select(
+                'users.id',
+                'users.name',
+                DB::raw('count(users.id) as shared_tickets')
+            )
+            ->where('raffles.id', '=', $this->id)
+            ->groupBy('users.id')
+            ->get();
     }
 }

@@ -36,9 +36,9 @@
                                     </div>
                                     <h3 class="info-title">
                                         <small>$</small>
-                                        3,521
+                                        {{$netGain}}
                                     </h3>
-                                    <h6 class="stats-title">Today Revenue</h6>
+                                    <h6 class="stats-title">Net. Gain</h6>
                                 </div>
                             </div>
                         </div>
@@ -48,8 +48,8 @@
                                     <div class="icon icon-info">
                                         <i class="now-ui-icons users_single-02"></i>
                                     </div>
-                                    <h3 class="info-title">562</h3>
-                                    <h6 class="stats-title">Customers</h6>
+                                    <h3 class="info-title">{{$usersCount}}</h3>
+                                    <h6 class="stats-title">Users</h6>
                                 </div>
                             </div>
                         </div>
@@ -126,6 +126,13 @@
             <div class="chart-area">
                 <canvas id="xxx"></canvas>
             </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="card data-section-midle-row data-section-full-row text-center">
+            <h4>Shared Raffles</h4>
+            @include('admin.partials.tables.groups_table')
         </div>
     </div>
 
@@ -548,6 +555,6 @@
 @section('footerScripts')
     @parent
     <script src="{{ asset('js/admin/admin_dash.js') }}" defer></script>
-    <link href="{{asset('css/front/admin_dash.css')}}" rel="stylesheet">
+    <link href="{{ asset('css/front/admin_dash.css')}}" rel="stylesheet">
 @endsection
 

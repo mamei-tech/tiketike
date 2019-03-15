@@ -61,18 +61,18 @@ Route::group(['prefix' => 'users',
 });
 
 /* ADMIN ROUTES | MIX NAMESPACE */
-Route::group([
-    'prefix' => 'adm' . config('tiketike.urladminsalt'),
-    'middleware' => ['auth']
-], function (){
-
-    //Rafles
-    Route::group([
-        'prefix' => 'raffles',
-    ], function (){
-    });
-
-});
+//Route::group([
+//    'prefix' => 'adm' . config('tiketike.urladminsalt'),
+//    'middleware' => ['auth']
+//], function (){
+//
+//    //Rafles
+//    Route::group([
+//        'prefix' => 'raffles',
+//    ], function (){
+//    });
+//
+//});
 
 
 /* PURE ADMIN ROUTES | ADMIN NAMESPACE */
