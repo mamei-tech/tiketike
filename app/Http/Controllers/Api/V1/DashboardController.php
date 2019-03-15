@@ -15,15 +15,21 @@ class DashboardController extends ApiController
 {
     public function activeUsers() {
 
-        ActiveUsers::updateActiveUsers();
-
-        $trackedActiveUsers = ActiveUsers::all(); //Allways are 30 items
+//        ActiveUsers::updateActiveUsers();
+//
+//        $trackedActiveUsers = ActiveUsers::all(); //Allways are 30 items
         $male_users     = [];
         $female_users   = [];
-        for ($i = count($trackedActiveUsers) - 1; $i >= 0; $i--) {
-            array_push($male_users, $trackedActiveUsers[$i]->male_count);
-            array_push($female_users, $trackedActiveUsers[$i]->female_count);
+        //TODO Arreglar.
+        for($i = 0; $i < 30; $i++)
+        {
+            $male_users[$i] = rand(1, 100);
+            $female_users[$i] = rand(1, 100);
         }
+//        for ($i = count($trackedActiveUsers) - 1; $i >= 0; $i--) {
+//            array_push($male_users, $trackedActiveUsers[$i]->male_count);
+//            array_push($female_users, $trackedActiveUsers[$i]->female_count);
+//        }
         return $this->respond([
             'status' => 'success',
             'status_code' => Response::HTTP_OK,
