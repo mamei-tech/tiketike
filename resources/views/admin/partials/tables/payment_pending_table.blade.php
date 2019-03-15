@@ -33,7 +33,7 @@
                     <i class="now-ui-icons education_glasses"></i>
                 </a>
 
-                <a id="pay" class="btn btn-success btn-icon btn-sm pay" href="">
+                <a id="pay" class="btn btn-success btn-icon btn-sm pay" onclick="return confirm('Are you sure?')"  href="">
                     <i class="now-ui-icons business_money-coins"></i>
                 </a>
             </td>

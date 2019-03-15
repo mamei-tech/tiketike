@@ -21,8 +21,8 @@ class Raffle extends Model implements HasMedia
     public $incrementing    = false;
 
     protected $fillable = [
-        'title',
-        'description',
+        'winner_id',
+        'wconfirmation',
         'price',
         'progress'
     ];
@@ -122,6 +122,11 @@ class Raffle extends Model implements HasMedia
         return $this->hasOne(Country::class,'id','location');
     }
 
+    public function getReferrals()
+    {
+        return $this->hasMany(ReferralsBuys::class,'raffle_id','id');
+    }
+
     /**
      * Perform a tickets buy
      *
@@ -177,13 +182,17 @@ class Raffle extends Model implements HasMedia
                 $refBuy = new ReferralsBuys;
                 $refBuy->comisionist = $referralId;
                 $refBuy->ticket = $ticket->id;
+                $refBuy->raffle_id = $this->id;
                 array_push($referralsBuys, $refBuy);
             }
-            $referralUserProfile = $referralUser->getProfile;
-            $referralUserProfile->balance += count($referralsBuys) * $this->commissions / $this->tickets_count;
-            $referralUserProfile->save();
+            // TODO review because the referrals profit only pass to the comissionist when raffle ends
+//            $referralUserProfile = $referralUser->getProfile;
+//            $referralUserProfile->balance += count($referralsBuys) * $this->commissions / $this->tickets_count;
+//            $referralUserProfile->save();
             $referralUser->getReferralsBuys()->saveMany($referralsBuys);
         }
+        $this->progress = $this->getProgress();
+        $this->save();
 
         return true;
     }

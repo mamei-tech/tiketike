@@ -12,7 +12,7 @@
             </div>
             <div class="modal-body">
 
-                <form class="col-md-12" action="{{ route('raffles.index.store') }}" method="POST" enctype="multipart/form-data">
+                <form class="col-md-12" id="ftm_createRaffle" action="{{ route('raffles.index.store') }}" method="POST" enctype="multipart/form-data">
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
                     <div class="col-md-12">
                         {{-- FIRST NAME ¦ LASTNAME --}}
@@ -54,7 +54,7 @@
                             <select class="form-control form-control-new selectpicker" name="localization" id="localization">
                                 <option disabled selected>Select a country</option>
                                 @foreach($countries as $country)
-                                    <option data-thumbnail="http://icons.iconarchive.com/icons/tinylab/android-lollipop-apps/24/Foursquare-icon.png" value="{{ $country->id }}">{{ $country->name }}</option>
+                                    <option value="{{ $country->id }}">{{ $country->name }}</option>
                                 @endforeach
                             </select>
                         </div>

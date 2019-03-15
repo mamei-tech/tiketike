@@ -1,5 +1,3 @@
-
-/* TODO You need populate the modlas with ajax */
 /* FORM POPLULATION -- MODALS */
 function popultDeleteForm(userId, username, lastname, email) {
 
@@ -14,8 +12,6 @@ function popultDeleteForm(userId, username, lastname, email) {
     // let currentFormAction = route();
 
     deleteForm.attr('action', route('users.destroy', userId));
-
-    /* TODO if elese condition ocours notice the error to the user */
 }
 
 function popultUpdateForm(userid, name, lastname, email, role) {
@@ -40,11 +36,9 @@ function popultUpdateForm(userid, name, lastname, email, role) {
     // Updating the id parameter in action attrib
     let currentFormAction = updateForm.attr('action');
 
-    /* TODO Maybe is better to save the action url at the beggining and averride every time populate runs
     /* that way we don't need isGood2ApendID method */
     if (isGood2ApendID(currentFormAction))
         updateForm.attr('action', currentFormAction + '/' + userid);
-    /* TODO if elese condition ocours notice the error to the user */
 }
 
 //Delete
@@ -76,7 +70,6 @@ function openUpdateModal(){
 
 $(document).ready(function () {
     $('#table_users').DataTable({
-        /* TODO User the norma or reduced buttoms here */
         "pagingType": "full_numbers",
         "bPaginate": false,
         "lengthMenu": [

@@ -7,6 +7,7 @@ use App\Repositories\RaffleRepository;
 use App\Raffle;
 use App\User;
 use App\Http\TkTk\Formula;
+use Khsing\World\Models\Country;
 
 
 class RafflesSeeder extends Seeder
@@ -31,7 +32,7 @@ class RafflesSeeder extends Seeder
                 'title'         => 'Samsung S8',
                 'description'   => 'Samsung S8 nuevo en su caja. No se lo pierda',
                 'price'         => 600,
-                'location'      => \App\Country::all()->first()->id,
+                'location'      => Country::all()->first()->id,
             ]
         );
 
@@ -43,7 +44,7 @@ class RafflesSeeder extends Seeder
                 'title'         => 'Laptop Dell',
                 'description'   => 'Dell core i7 7ma, 16GB ram, 2TB HDD, pantalla 17"',
                 'price'         => 700,
-                'location'      => \App\Country::all()->first()->id,
+                'location'      => Country::all()->first()->id,
             ]
         );
 
@@ -55,7 +56,7 @@ class RafflesSeeder extends Seeder
                 'title'         => 'PC de escritorio',
                 'description'   => 'Core i3 de 4ta, chasis negro, 1TB HDD, 4GB ram, monitor led de 24"',
                 'price'         => 500,
-                'location'      => \App\Country::all()->first()->id,
+                'location'      => Country::all()->first()->id,
             ]
         );
 
@@ -67,7 +68,7 @@ class RafflesSeeder extends Seeder
                 'title'         => 'Konka de 32"',
                 'description'   => 'Nuevo TV Konka de 32" en su caja. No se lo pierda',
                 'price'         => 220,
-                'location'      => \App\Country::all()->first()->id,
+                'location'      => Country::all()->first()->id,
             ]
         );
 
@@ -79,7 +80,7 @@ class RafflesSeeder extends Seeder
                 'title'         => 'Atec-Panda',
                 'description'   => 'TV panda como nuevo, esta muy bien cuidado, mando nuevo',
                 'price'         => 100,
-                'location'      => \App\Country::all()->first()->id,
+                'location'      => Country::all()->first()->id,
             ]
         );
 

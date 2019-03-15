@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Country;
 use App\Promo;
 use App\RaffleCategory;
 use App\Repositories\RaffleRepository;
@@ -35,10 +36,11 @@ abstract class BuysController extends Controller
      */
     public function availableTickets($raffleId, Request $request,RaffleRepository $raffleRepository)
     {
+        $countries = Country::all();
         $suggested = $raffleRepository->getSuggested();
         $raffle = Raffle::find($raffleId);
         $promos = Promo::where('type',1)->where('status',1)->get();
         $categories = RaffleCategory::all();
-        return view('raffle', ['raffleId' => $raffleId,'promos'=>$promos, 'url' => $request->fullUrl(), 'raffle' => $raffle,'suggested' => $suggested,'categories' => $categories]);
+        return view('raffle', compact('countries','suggested','raffle','promos','categories','raffleId'));
     }
 }

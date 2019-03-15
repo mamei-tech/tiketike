@@ -18,7 +18,6 @@ $(document).ready(function () {
                 if (data.result === 'success') {
                     deleteLogModal.modal('hide');
                     location.replace("{{ route('log-viewer::logs.list') }}");
-                    // location.replace("http://localhost/tiketike/public/log-viewer/logs");TODO Replace this and below
                 }
                 else {
                     alert('OOPS ! This is a lack of coffee exception !')

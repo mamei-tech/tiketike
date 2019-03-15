@@ -32,7 +32,7 @@ Route::group(['prefix' => 'raffles',
     'middleware' => ['auth']
 ], function () {
     Route::post('/add', 'RafflesController@store')->name('raffles.index.store');
-    Route::get('/edit/{raffleId}', 'RafflesController@edit')->name('raffles.edit');
+//    Route::get('/edit/{raffleId}', 'RafflesController@edit')->name('raffles.edit');
     Route::post('/{raffleId}', 'RafflesController@update')->name('raffles.update');
     Route::get('{raffleId}/follow', 'RafflesController@follow')->name('raffles.follow');
     Route::post('/{raffleId}/tickets/buy', 'DirectBuysController@buyTickets')->name('raffle.tickets.buy');
@@ -49,8 +49,8 @@ Route::group(['prefix' => 'payments',
 ], function () {
     Route::get('/executed/list', 'PaymentController@executed')->name('payment.executed');
     Route::get('/pending/list', 'PaymentController@pending_list')->name('payment.pending.list');
-    Route::post('/pending/pay', 'PaymentController@pending_pay')->name('payment.pending.pay');
-        Route::post('/pending/details', 'PaymentController@pending_details')->name('payment.pending.details');
+    Route::get('/pending/pay/{payment}', 'PaymentController@pending_execute')->name('payment.pending.pay');
+    Route::post('/pending/details', 'PaymentController@pending_details')->name('payment.pending.details');
 });
 
 Route::group(['prefix' => 'users',
@@ -124,8 +124,9 @@ Route::group(['prefix' => 'raffles'
 ], function () {
 //publishing raffle access route
     Route::get('/{raffleId}/tickets/buy', 'DirectBuysController@availableTickets')->name('raffle.tickets.available');
-
     Route::get('/{raffleId}/{referralId}', 'ReferralsBuysController@availableTickets')->name('referrals.tickets.available');
+    Route::get('/view/{raffleId}/finished','RafflesController@finishedView')->name('raffle.finished.view');
+    Route::post('/checkConfirmation/{raffleId}/finished','RafflesController@checkConfirmation')->name('raffle.finished.checkConfirmation');
 });
 
 Route::group(['prefix' => 'users'

@@ -3,12 +3,13 @@
     @include('partials.frontend.header')
     @include('partials.front_modals.mobile_suggest')
     <div class=" container margin-top-70">
+        @include('partials.front_modals.error_notification')
         <form class="col-md-12 margin-top60" id="ftm_profileUpdate" action="{{ route('profile.update', $user->id) }}"
               method="post" enctype="multipart/form-data">
             {{csrf_field()}}
             {{method_field('patch')}}
 
-            <input id="user_id" value="{{ $user->id }}" type="text" hidden>
+            <input id="user_id" value="{{ $user->id }}" name="user" type="text" hidden>
 
             <div class="col-md-4">
                 {{-- FIRST NAME ¦ LASTNAME --}}
@@ -47,7 +48,7 @@
                     <label for="selector"
                            class="colorN italic padding-top-20">Repita la contraseña</label>
                     <input type="password" class="form-control form-control-new "
-                           id="password_confirm" name="password" placeholder="Password Repeat">
+                           id="password_confirm" name="password_confirmation" placeholder="Password Repeat">
                 </div>
 
             </div>

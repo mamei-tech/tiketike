@@ -26,23 +26,23 @@ class CreateUsersTable extends Migration
             $table->timestamps();
         });
 
-//        Schema::create('countries', function (Blueprint $table) {
-//            $table->increments('id');
-//            $table->string('name', 60)->unique();
-//        });
-//
-//        Schema::create('cities', function (Blueprint $table) {
-//            $table->increments('id');
-//            $table->string('name', 30);
-//
-//            //FK
-//            $table->unsignedInteger('country');
-//            $table->foreign('country')
-//                ->references('id')
-//                ->on('countries')
-//                ->onUpdate('restrict')
-//                ->onDelete('cascade');
-//        });
+        // Schema::create('countries', function (Blueprint $table) {
+        //     $table->increments('id');
+        //     $table->string('name', 60)->unique();
+        // });
+
+        // Schema::create('cities', function (Blueprint $table) {
+        //     $table->increments('id');
+        //     $table->string('name', 30);
+
+        //     //FK
+        //     $table->unsignedInteger('country');
+        //     $table->foreign('country')
+        //         ->references('id')
+        //         ->on('countries')
+        //         ->onUpdate('restrict')
+        //         ->onDelete('cascade');
+        // });
 
 
         /* TODO test the delete user opertation delete its profiles to */
@@ -104,6 +104,8 @@ class CreateUsersTable extends Migration
     {
         Schema::dropIfExists('debitcards');
         Schema::dropIfExists('usersprofiles');
+        Schema::dropIfExists('cities');
+        Schema::dropIfExists('countries');
         Schema::dropIfExists('users');
     }
 }

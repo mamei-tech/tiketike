@@ -41,6 +41,7 @@ class CreateTicketsTable extends Migration
 
             $table->unsignedInteger('comisionist');
             $table->unsignedInteger('ticket');
+            $table->unsignedBigInteger('raffle_id');
             $table->timestamps();
 
             $table->foreign('comisionist')
@@ -51,6 +52,11 @@ class CreateTicketsTable extends Migration
             $table->foreign('ticket')
                 ->references('id')
                 ->on('tickets')
+                ->onDelete('cascade');
+
+            $table->foreign('raffle_id')
+                ->references('id')
+                ->on('raffles')
                 ->onDelete('cascade');
         });
     }

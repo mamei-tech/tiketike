@@ -3,7 +3,7 @@
     @include('partials.frontend.header')
     @include('partials.front_modals.filters')
     @include('partials.front_modals.mobile_suggest')
-    @include('partials.front_modals.login_modal')
+    @include('partials.front_modals.edit_raffle_modal')
     <div class="container margin-top60">
         <div class="row">
             <!--Contenido ticket-->
@@ -19,7 +19,7 @@
                             <span class="ti-location-pin"></span>
                             <span class=""><img src="{{ asset('pics/countries/'.$raffle->getLocation->name.'.png') }}">{{ $raffle->getLocation->name }}</span>
                             <p class="texto18 text-uppercase texto-negrita colorN padding-top-10"
-                               style="font-family: sinkinSans700Bold">{{ $raffle->title }}</p>
+                               style="font-family: sinkinSans700Bold">{{ $raffle->title }} @if(\Auth::user()->id == $raffle->getOwner->id and $raffle->status < 2)<a href="#editRaffleModal" data-toggle="modal"><i class="fa fa-edit"></i> Editar rifa </a>@endif </p>
                         </div>
                     </div>
                     <div class="col-xs-12 padding-top-20">
@@ -236,8 +236,6 @@
                             <input type="hidden" id="raffle" value="{{ $raffle->id }}">
                         </div>
                     </div>
-                    <div class="btn btn-info btnShufle center-block "><span class="ti-control-shuffle"></span>
-                    </div>
                     <div class="borderTopDashed padding-bottom20">
                         <div class="pull-left">
                             <strong class="sinkinSans600SB colorV texto24 pull-left margin-right-10"
@@ -273,11 +271,9 @@
 @stop
 @section('additional_scripts')
     <script src="{{ asset('js/raffle.min.js') }}"></script>
-    {{--<script src="{{ asset('js/clipboard.min.js') }}"></script>--}}
     <script src="https://checkout.stripe.com/checkout.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
     <script type="text/javascript">
-
         $(document).ready(function () {
             var handler = StripeCheckout.configure({
                 key: '{{ config('services.stripe.key') }}',
@@ -340,7 +336,7 @@
             infinite: true,
             draggable: true,
             centerMode: true,
-            centerPadding: '50%',
+            centerPadding: '50% 4%',
             responsive: [
                 {
                     breakpoint: 768,

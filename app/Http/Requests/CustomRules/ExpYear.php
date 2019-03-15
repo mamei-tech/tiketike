@@ -6,18 +6,27 @@ use Illuminate\Contracts\Validation\Rule;
 
 class ExpYear implements Rule
 {
-    // TODO Use translation thisss
-    protected $message = "The expiration year don't exist anymore.";
+    protected $message = "";
+
+    /**
+     * ExpYear constructor.
+     * @param string $message
+     */
+    public function __construct()
+    {
+        $this->message = trans('validation.year_exist');
+    }
+
 
     public function passes($attribute, $year)
     {
         if (strlen($year) < 4 || strlen($year) > 4) {
-            $this->message = "The year must have exactly four character.";
+            $this->message = trans('validation.year_chars');
             return false;
         }
 
         else if (!preg_match("#(20[1-3][0-9])#", $year)) {
-            $this->message = "You most enter a valid year using YYYY format.";
+            $this->message = trans('validation.year_format');
             return false;
         }
 

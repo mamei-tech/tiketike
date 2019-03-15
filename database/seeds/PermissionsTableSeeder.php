@@ -45,7 +45,7 @@ class PermissionsTableSeeder extends Seeder
         Permission::create(['name' => 'list_praffles', 'group' => 'raffles']);
         Permission::create(['name' => 'shuffle_praffles', 'group' => 'raffles']);
         Permission::create(['name' => 'null_praffles', 'group' => 'raffles']);
-        $roleAdmin->givePermissionTo(['list_praffles', 'list_praffles',  'null_praffles']);
+        $roleAdmin->givePermissionTo(['list_praffles', 'shuffle_praffles',  'null_praffles']);
 
         // URaffles Controller
         Permission::create(['name' => 'list_upublished_raffles', 'group' => 'raffles']);
@@ -70,8 +70,10 @@ class PermissionsTableSeeder extends Seeder
         Permission::create(['name' => 'raffles_create', 'group'     => 'raffles']);
         Permission::create(['name' => 'raffles_edit', 'group'       => 'raffles']);
         Permission::create(['name' => 'raffles_follow', 'group'     => 'raffles']);
-        $roleAdmin->givePermissionTo(['raffles_list', 'raffles_create', 'raffles_edit', 'raffles_follow']);
-        $roleUser->givePermissionTo(['raffles_list', 'raffles_create', 'raffles_edit', 'raffles_follow']);
+        Permission::create(['name' => 'raffles_finished', 'group'     => 'raffles']);
+        Permission::create(['name' => 'raffles_checkConfirmation', 'group'     => 'raffles']);
+        $roleAdmin->givePermissionTo(['raffles_list', 'raffles_create', 'raffles_edit', 'raffles_follow','raffles_finished','raffles_checkConfirmation']);
+        $roleUser->givePermissionTo(['raffles_list', 'raffles_create', 'raffles_edit', 'raffles_follow','raffles_finished','raffles_checkConfirmation']);
 
         // Category Controller
         Permission::create(['name' => 'list_categories', 'group' => 'categories']);
@@ -83,7 +85,8 @@ class PermissionsTableSeeder extends Seeder
         Permission::create(['name' => 'executed_payments', 'group' => 'payments']);
         Permission::create(['name' => 'pending_list_payments', 'group' => 'payments']);
         Permission::create(['name' => 'pending_details_payments', 'group' => 'payments']);
-        $roleAdmin->givePermissionTo(['executed_payments', 'pending_list_payments', 'pending_details_payments']);
+        Permission::create(['name' => 'pending_execute', 'group' => 'payments']);
+        $roleAdmin->givePermissionTo(['executed_payments', 'pending_list_payments', 'pending_details_payments','pending_execute']);
 
         // Promo Client Controller
         Permission::create(['name' => 'promo_c_list', 'group' => 'promos']);
@@ -124,5 +127,11 @@ class PermissionsTableSeeder extends Seeder
         $user = \App\User::find(1);
         $role = \App\Role::find(1);
         $user->assignRole($role->name);
+        $other_users = \App\User::where('id','!=',$user->id)->get();
+        $role = \App\Role::find(2);
+        foreach ($other_users as $user)
+        {
+            $user->assignRole($role->name);
+        }
     }
 }
