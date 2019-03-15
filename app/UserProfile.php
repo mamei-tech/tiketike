@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\DB;
 use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 use Spatie\MediaLibrary\HasMedia\HasMedia;
 use Spatie\MediaLibrary\File;
+use Khsing\World\World;
 
 class UserProfile extends Model implements HasMedia
 {
@@ -34,7 +35,7 @@ class UserProfile extends Model implements HasMedia
 
     public function getCity()
     {
-        return $this->belongsTo('App\City', 'city', 'id');
+        return $this->belongsTo(City::class,'city','id');
     }
 
     /* Only jpg or png files are allowed */

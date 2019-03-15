@@ -15,7 +15,7 @@ class UserFrontController extends ApiController
         $id = $request->get('userid');
         $user = User::with('getProfile')->findOrFail($id);
         $name = $user->name.' '.$user->lastname;
-        $country = $user->getProfile->getCity->getCountry->name;
+        $country = $user->getProfile->getCity->country->name;
         $createdraffles = count($user->getRaffles);
         $winnedRaffles = count($user->WinnedRaffles());
         $soldtickets = $user->getSoldTicketsCount();

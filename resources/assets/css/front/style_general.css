@@ -1491,7 +1491,7 @@ a#logged-user-name {
     margin-top: 4%;
 }
 
-.rotar{                                                 /* TODO Esto no pincha arreglar */
+.rotar{
     -webkit-transform: rotate(45deg);
     -moz-transform: rotate(45deg);
 }
@@ -1609,6 +1609,8 @@ Full screen Modal
     margin-top: 20px;
 
 }
+
+
 
 
 @media (max-width: 768px) {

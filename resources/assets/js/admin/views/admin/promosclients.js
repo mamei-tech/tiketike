@@ -32,7 +32,6 @@ function popultEditForm(id, name, contact, email) {
 }
 
 /* DEFINITION -- MODALS */
-/* TODO Move this method to aux and making a generic method usin the modal id as a parameter. Do this for all scripts */
 function openDeleteModal() {
     setTimeout(function () {
         $('#mdal_deletePromoClient').modal('show');
@@ -66,7 +65,6 @@ $(document).ready(function () {
 
     // Starting Table
     $('#table_promo').DataTable({
-        /* TODO User the norma or reduced buttoms here */
         "pagingType": "full_numbers",
         "lengthMenu": [
             [10, 25, 50, -1],
@@ -159,7 +157,6 @@ $(document).ready(function () {
     /* CUSTOM VALIDATION METHODS */
 
     /* INITIALIZATION OF VALIDATION PLUGINS */
-    // TODO Make this work
     setFormValidation($('div#frm_createPromoClient').find('form'), CreateFormRules, '#mdal_createPromoClient');
     setFormValidation($('div#frm_editPromoClient').find('form'), CreateFormRules, '#mdal_editPromoClient');   // The same rules
 

@@ -11,7 +11,7 @@ use Illuminate\Notifications\Messages\MailMessage;
 
 class RaffleFinished extends Notification
 {
-    use Queueable;
+//    use Queueable;
     private $raffle;
     private $user;
     /**
@@ -47,6 +47,7 @@ class RaffleFinished extends Notification
     {
         return (new MailMessage)
                     ->line('Hey fellow, your raffle '.$this->raffle->title.' has sold all tickets')
+                    ->action('Review it', route('raffle.finished.view',['raffleId' => $this->raffle->id]))
                     ->line('Congratulations!! We are very proud of you!!');
     }
 
@@ -60,7 +61,7 @@ class RaffleFinished extends Notification
     {
         return [
             'data' => 'Hey fellow, your raffle '.$this->raffle->title.' has sold all tickets',
-            'url' => route('main')
+            'url' => route('raffle.finished.view',['raffleId' => $this->raffle->id])
         ];
     }
 

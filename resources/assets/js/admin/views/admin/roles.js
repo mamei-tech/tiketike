@@ -24,12 +24,9 @@ function popultDeleteForm(roleid, roleName, roleDescription) {
 
     // Updating the id parameter in action attrib
     let currentFormAction = deleteForm.attr('action');
-
-    /* TODO Maybe is better to save the action url at the beggining and averride every time populate runs
     /* that way we don't need isGood2ApendID method */
     if (isGood2ApendID(currentFormAction))
         deleteForm.attr('action', currentFormAction + '/' + roleid);
-    /* TODO if elese condition ocours notice the error to the user */
 }
 
 function popultUpdateForm(roleid, roleName, roleDescription, rolePermissions) {
@@ -46,12 +43,9 @@ function popultUpdateForm(roleid, roleName, roleDescription, rolePermissions) {
 
     // Updating the id parameter in action attrib
     let currentFormAction = updateForm.attr('action');
-
-    /* TODO Maybe is better to save the action url at the beggining and averride every time populate runs
     /* that way we don't need isGood2ApendID method */
     if (isGood2ApendID(currentFormAction))
         updateForm.attr('action', currentFormAction + '/' + roleid);
-    /* TODO if elese condition ocours notice the error to the user */
 }
 
 
@@ -101,7 +95,6 @@ $(document).ready(function () {
 
     /* CONFIGURATION -- DATATABLE */
     $('#tbl_roles').DataTable({
-        /* TODO User the norma or reduced buttoms here */
         "pagingType": "simple_numbers",
         "autoWidth" : false,
         "bPaginate": false,
@@ -167,7 +160,6 @@ $(document).ready(function () {
         e.preventDefault();
     });
 
-    /* TODO Use this booton for reserve permission to the role */
     //Like record
     table.on('click', '.like', function (e) {
         alert('You clicked on Like button');

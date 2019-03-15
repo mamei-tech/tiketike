@@ -49,7 +49,7 @@ Route::group(['prefix' => 'payments',
 ], function () {
     Route::get('/executed/list', 'PaymentController@executed')->name('payment.executed');
     Route::get('/pending/list', 'PaymentController@pending_list')->name('payment.pending.list');
-    Route::post('/pending/pay', 'PaymentController@pending_pay')->name('payment.pending.pay');
+    Route::get('/pending/pay/{payment}', 'PaymentController@pending_execute')->name('payment.pending.pay');
     Route::post('/pending/details', 'PaymentController@pending_details')->name('payment.pending.details');
 });
 
@@ -61,19 +61,6 @@ Route::group(['prefix' => 'users',
 });
 
 /* ADMIN ROUTES | MIX NAMESPACE */
-//Route::group([
-//    'prefix' => 'adm' . config('tiketike.urladminsalt'),
-//    'middleware' => ['auth']
-//], function (){
-//
-//    //Rafles
-//    Route::group([
-//        'prefix' => 'raffles',
-//    ], function (){
-//    });
-//
-//});
-
 
 /* PURE ADMIN ROUTES | ADMIN NAMESPACE */
 //TODO: Filter this by role, implement authorization i mean
@@ -124,8 +111,9 @@ Route::group(['prefix' => 'raffles'
 ], function () {
 //publishing raffle access route
     Route::get('/{raffleId}/tickets/buy', 'DirectBuysController@availableTickets')->name('raffle.tickets.available');
-
     Route::get('/{raffleId}/{referralId}', 'ReferralsBuysController@availableTickets')->name('referrals.tickets.available');
+    Route::get('/view/{raffleId}/finished','RafflesController@finishedView')->name('raffle.finished.view');
+    Route::post('/checkConfirmation/{raffleId}/finished','RafflesController@checkConfirmation')->name('raffle.finished.checkConfirmation');
 });
 
 Route::group(['prefix' => 'users'

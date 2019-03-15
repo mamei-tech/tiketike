@@ -26,8 +26,6 @@ class CommentRaffleRequest extends FormRequest
         return [
             'text' => 'required',
             'parent_id'=>'exists:comments,id',
-
-            //TODO Select Validation is missing
         ];
     }
 

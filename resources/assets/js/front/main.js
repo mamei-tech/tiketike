@@ -42,4 +42,50 @@ $(document).ready(function () {
     $('#reset').click(function () {
         uploadHBR.reset('#uploads');
     });
+
+    $('form[id="ftm_createRaffle"]').validate({
+        rules: {
+            title: {
+                required: true,
+                maxlength: 30,
+            },
+            description: {
+                required: true,
+                minlength: 15,
+            },
+            price: {
+                required: true,
+                min: 1
+            },
+            category: {
+                required: true
+            },
+            localization: {
+                required: true
+            }
+        },
+        messages: {
+            title: {
+                required : 'This field is required',
+                maxlength: 'The max length of this field is 30 characters'
+            },
+            description: {
+                required: 'This field is required',
+                minlength: 'The minimum length of this field is 15 characters'
+            },
+            price: {
+                required: 'This field is required',
+                min: 'The minimum value of price is 1'
+            },
+            localization: {
+                required: 'This field is required',
+            },
+            category: {
+                required: 'This field is required',
+            },
+        },
+        submitHandler: function(form) {
+            form.submit();
+        }
+    });
 });

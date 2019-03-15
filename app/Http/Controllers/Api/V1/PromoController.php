@@ -39,16 +39,9 @@ class PromoController extends ApiController
      * @param Request $request
      * @return \Illuminate\Http\JsonResponse
      */
-    /* TODO Make a specifical request for validating it */
     public function promodata (Request $request)
     {
         $imageurl = null;
-
-        /*$promo = DB::table('promos')
-            ->join('promoclients', 'promos.client', '=', 'promoclients.id')
-            ->select('promos.alternative', 'promos.website', 'promoclients.name', 'promoclients.id')
-            ->where('promos.name', '=', $request->name)
-            ->first();*/
 
         $promo = Promo::where('name', $request->name)->first();
         $promo->getClient;

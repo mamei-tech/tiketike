@@ -12,6 +12,7 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $this->call([
+            WorldTablesSeeder::class,
             RaffleCategoryTableSeeder::class,       //rafflecategories
             RafflestatusTableSeeder::class,         //rafflestatus
             CityTableSeeder::class,                 //city
