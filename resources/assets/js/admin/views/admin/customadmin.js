@@ -773,9 +773,9 @@ demo = {
                 publishedRafflesChart.options.title.text = 'Published Raffles in this year:  ' + total;
 
                 publishedRafflesChart.update();
-
             }).catch(function (error) {
                 console.log(error);
+                console.log("Error YBM");
                 //showajaxerror('#mdal_publishRaffle',  error.response.data.error['message']);
             });
         }
