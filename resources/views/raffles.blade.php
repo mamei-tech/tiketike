@@ -127,7 +127,7 @@
                                         </h4>
                                         <div class="hidden-lg texto8">
                                             <span class="sinkinSans300L ">Costo:</span>
-                                            <span class="sinkinSans600SB">{{ $raffle->price }}</span>
+                                            <span class="sinkinSans600SB">{{ $raffle->tickets_price ? $raffle->tickets_price : 0  }}</span>
                                         </div>
                                         <div class="costo hidden-xs">
                                             <div class="pull-left porcientoCompletado">
@@ -137,7 +137,7 @@
                                             </div>
                                             <div class="pull-left padding-top-20 padding-left30">
                                                 <span class="sinkinSans300L texto10">Costo:</span><br>
-                                                <span class="colorN sinkinSans600SB">${{ $raffle->price }}</span>
+                                                <span class="colorN sinkinSans600SB">${{ $raffle->tickets_price ? $raffle->tickets_price : 0 }}</span>
                                             </div>
                                         </div>
                                         <ul class="list-unstyled list-inline padding-top-20 hidden-xs pull-right">
