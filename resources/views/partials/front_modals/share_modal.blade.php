@@ -12,6 +12,7 @@
             </div>
             <div class="modal-body">
                 <div class="col-xs-12 text-center margin-bottom-40">
+                    @if(Auth::check())
                     <a class=" btn-facebook padding-left30" href="https://www.facebook.com/sharer/sharer.php?u={{route('referrals.tickets.buy',[$raffle->id, Auth::user()->id,'socialNetworkId' => 1])}}">
                         <span class="ti-facebook texto-negrita colorV margin-right-5 texto35" title="Facebook"></span>
                     </a>
@@ -40,8 +41,7 @@
                     </span>
                 </div>
 
-
-                <!-- TODO Aqui van los enlaces morrongueros del fi para acceder por las redes sociales -->
+            @endif
             </div>
         </div>
         <!-- /.modal-content -->
