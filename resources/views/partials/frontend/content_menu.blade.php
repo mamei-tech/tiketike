@@ -41,7 +41,7 @@
             @endif
             @if(\Auth::user() != null)
             <li class="notifica">
-                <a class="text-uppercase colorB icon" data-toggle="modal" href="#notificaciones" title="Notificaciones">
+                <a class="text-uppercase colorB sinkinSans300L icon" data-toggle="modal" href="#notificaciones" title="Notificaciones">
                     <span class="ti-bell texto20"></span>
                     <span class="badge badge-default" id="notifications_count">{!! count(\Auth::user()->notifications) !!}</span>
                 </a>
@@ -49,10 +49,10 @@
             @endif
             <li class="hidden-xs"><img class="styleBorderL colorB" src="{{ asset('pics/front/borderLeft.svg') }}" alt="">
             </li>
-            <li class="hidden-xs"><a href="" class="icon"><img class="stylebandera" src="{{ asset('pics/front/ban2.jpg') }}"
+            <li class="hidden-xs"><a href="" class="text-uppercase colorB sinkinSans300L icon"><img class="stylebandera" src="{{ asset('pics/front/ban2.jpg') }}"
                                                                alt=""></a></li>
             <li class="hidden-xs colorB">
-                <a href="#" class="icon colorB"><span class="ti-search texto20 search-btn show-search-icon"></span></a>
+                <a href="#" class="text-uppercase colorB sinkinSans300L icon"><span class="ti-search texto20 search-btn show-search-icon"></span></a>
                 <div class="search-box" style="display: none;">
                     <form action="#">
                         <div class="input-group">
@@ -66,7 +66,7 @@
             </li>
 
             @if(\Auth::user() != null)
-                <li class="">
+                <li class="hidden-xs">
                     <a class="icon" href="{{ route('logout') }}"
                        onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                         <span class="texto20 ti-shift-right">
