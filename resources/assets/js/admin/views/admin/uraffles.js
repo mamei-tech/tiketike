@@ -95,7 +95,6 @@ $(document).ready(function () {
 
     // Delete a record
     table.on('click', '.remove', function (e) {
-
         let tr = $(this).closest('tr');
         let row = table.row(tr).data();
 

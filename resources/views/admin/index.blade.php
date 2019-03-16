@@ -548,6 +548,7 @@
             {{--</div>--}}
         {{--</div>--}}
     {{--</div>--}}
+    @include('admin.partials.modals.rafflereferrals_modal')
 @endsection
 
 @section('footerScripts')

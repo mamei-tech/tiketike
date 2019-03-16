@@ -79,7 +79,8 @@ class LoginController extends Controller
             /*End of mamei section code*/
 
             if ($request->has('adm'))
-                return view('admin.index', ['li_activeDash' => 'active']);
+                return redirect(route('admin.index'));
+                //return view('admin.index', ['li_activeDash' => 'active']);
             else
                 redirect()->back();
 
