@@ -5,8 +5,6 @@
 
     {{-- Meta, title, CSS, favicons, etc. --}}
     @section('metas')
-
-        {{--TODO benith the favicon sentecen benith--}}
         {{-- <link rel="icon" type="image/png" href="../assets/img/favicon.png"> --}}
 
         <meta charset="utf-8">
@@ -51,35 +49,6 @@
         @include('admin.partials.footer')
     </div>
 </div>
- 
-    {{--<script>--}}
-        {{--Pusher.logToConsole = true;--}}
-    {{--//Remember to replace key and cluster with your credentials.--}}
-    {{--var pusher = new Pusher('{{env('PUSHER_APP_KEY')}}', {--}}
-        {{--authEndpoint: 'http://localhost/tiketike/public/pusher/auth',--}}
-        {{--auth: {--}}
-      {{--headers: {--}}
-        {{--'X-CSRF-Token': "{{ csrf_token() }}"--}}
-      {{--}--}}
-    {{--},--}}
-        {{--cluster: 'us2',--}}
-        {{--encrypted: true--}}
-    {{--});--}}
- {{----}}
-    {{--//Also remember to change channel and event name if your's are different.--}}
-    {{--var channel = pusher.subscribe('private-App.User.{{ \Auth::user()->id }}');--}}
-    {{--channel.bind("Illuminate\\Notifications\\Events\\BroadcastNotificationCreated", function(data) {--}}
-        {{--// alert(data);--}}
-        {{--var ul = document.getElementById('notifications_component');--}}
-        {{--var li = document.createElement('li');--}}
-        {{--li.appendChild(document.createTextNode(data['data']));--}}
-        {{--ul.appendChild(li);--}}
-    {{--});--}}
-    {{--channel.bind("subscription_succeeded", function(data) {--}}
-        {{--console.log('todo ok');--}}
-    {{--});--}}
- {{----}}
-    {{--</script>--}}
 
 
 @section('footerScripts')

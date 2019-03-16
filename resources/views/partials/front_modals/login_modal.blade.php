@@ -61,8 +61,6 @@
                         <span class="ti-linkedin texto-negrita colorV margin-right-5 texto16" title="Linkedin"></span>
                     </a>
                 </div>
-
-                <!-- TODO Aqui van los enlaces morrongueros del fi para acceder por las redes sociales -->
             </div>
         </div>
         <!-- /.modal-content -->

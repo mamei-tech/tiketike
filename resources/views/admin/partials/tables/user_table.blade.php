@@ -37,7 +37,6 @@
                 @endforeach
             </td>
             <td class="text-right">
-                {{-- TODO Aling the action icons making them floating to right --}}
                 <a class="btn btn-info btn-icon btn-sm like" href="">
                     <i class="now-ui-icons users_single-02"></i>
                 </a>

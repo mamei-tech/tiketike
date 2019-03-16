@@ -1,34 +1,32 @@
 <table id="tbl_praffles" class="table table-striped table-bordered" cellspacing="0" width="100%">
-
     <thead class="text-primary">
-    {{--TODO Use translations here--}}
     <tr>
         <th>
             Id
         </th>
         <th>
-            Title
+            @lang('tables.title')
         </th>
         <th>
-            Price
+            @lang('tables.price')
         </th>
         <th>
-            Profit
+            @lang('tables.profit')
         </th>
         <th>
-            T.Price
+            @lang('tables.ticket_price')
         </th>
         <th>
-            T.Sold
+            @lang('tables.ticket_sold')
         </th>
         <th>
-            T.Total
+            @lang('tables.ticket_total')
         </th>
         <th>
-            A.Date {{-- TODO show only the date --}}
+            @lang('tables.activation_date')
         </th>
         <th class="disabled-sorting text-right">
-            Act
+            @lang('tables.action')
         </th>
     </tr>
     </thead>
@@ -43,13 +41,9 @@
             <td>{{ $raffle->tickets_price }}</td>
             <td>{{ $raffle->getTicketsSold() }}</td>
             <td>{{ count($raffle->getTickets)}}</td>
-            <td>{{ $raffle->activation_date }}</td>
+            <td>{{ $raffle->activation_date->format('d/m/Y') }}</td>
             {{--<td>???</td>--}}
             <td class="text-right">
-
-
-                {{-- Buttons --}}
-                {{-- TODO Aling the action icons making them floating to right --}}
                 @if($raffle->progress == 100)
                     <a id="rpublish" class="btn btn-info btn-icon btn-sm" href="{{ route('praffle.shuffle',['id'=> $raffle->id]) }}">
                         <i class="now-ui-icons loader_refresh"></i>

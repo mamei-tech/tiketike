@@ -29,18 +29,10 @@ function populate_cities_select()
 }
 
 $(document).ready(function () {
-
-
-    var text = $('#foo').value();
-    alert(text);
-
-
-    
     // Getting the current time for datetimepicker inputs
     var dtpicker = $('.datepicker');
-    /* TODO Get the current time, validate not input a pass date */
-    // let now = new Date();
-    // dtpicker.val(now.getDay().to + '/' + now.getMonth() + '/' + now.getFullYear());
+    let now = new Date();
+    dtpicker.val(now.getDay().to + '/' + now.getMonth() + '/' + now.getFullYear());
 
     axios.defaults.headers.common['Authorization'] = "Bearer " + $('meta[name=access-token]').attr('content');
 
@@ -84,11 +76,9 @@ $(document).ready(function () {
             password_confirmation: {
                 equalTo: "#password",
             },
-            // TODO Make a custom validation for birthdate using DateISO function
             gender: {
-                required: true,     // TODO Make a custom validation rule for gender
+                required: true,
             },
-            // TODO Make a validation of Languaje
             firstname: {
                 required: true,
                 maxlength: 20
@@ -102,8 +92,6 @@ $(document).ready(function () {
                 minlength: 10,
                 maxlength: 60,
             },
-            // TODO Make a validation of City
-            // TODO Make a validation of Country
             zipcode: {
                 required: true,
                 number: true,
