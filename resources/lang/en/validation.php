@@ -88,6 +88,7 @@ return [
     'unique'               => 'The :attribute has already been taken.',
     'uploaded'             => 'The :attribute failed to upload.',
     'url'                  => 'The :attribute format is invalid.',
+    'name_already_taken'   => 'The name you use is already taken.',
 
     /*
     |--------------------------------------------------------------------------
@@ -126,5 +127,15 @@ return [
     |
     */
     'forminvalid' => 'Sorry, the forms\'s data isn\'t valid.',
+    'expiration_date' => 'The expdate month must be between 01 and 12.',
+    'month_chars' => 'The month must have only two character.',
+    'month_format' => 'Enter a correct month number. Use the month in the format MM.',
+    'year_exist' => 'The expiration year don\'t exist anymore.',
+    'year_chars' => 'The year must have exactly four character.',
+    'year_format' => 'You most enter a valid year using YYYY format.',
+    'pass_wrong' => 'Something is wrong with the password. Please re-type it',
+    'pass_short' => 'Password is too short',
+    'pass_number' => 'Password must include at least one number',
+    'pass_letter' => 'Password must include at least one letter'
 
 ];

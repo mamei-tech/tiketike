@@ -39,7 +39,6 @@ class UpdateRanking extends Command
      */
     public function handle()
     {
-
         $users = User::all();
         foreach ($users as $user)
         {

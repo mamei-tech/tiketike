@@ -2,9 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\Country;
+use App\Http\Requests\ConfirmRaffle;
+use App\Http\Requests\UpdateRaffleRequest;
 use App\Http\TkTk\CodesGenerator;
+use App\Notifications\RaffleCreated;
+use App\Notifications\RaffleUpdated;
+use App\Payment;
 use App\Promo;
+use App\RaffleConfirmation;
 use App\RaffleStatus;
+use App\ReferralsBuys;
 use App\Repositories\RaffleRepository;
 use App\User;
 use Illuminate\Http\Request;
@@ -13,6 +21,7 @@ use App\Raffle;
 use App\RaffleCategory;
 use App\Http\Requests\StoreRaffleRequest;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Facades\Notification;
 
 
 class RafflesController extends Controller
@@ -28,11 +37,15 @@ class RafflesController extends Controller
      */
     public function __construct(RaffleRepository $raffleRepository)
     {
+        $this->middleware('permission:raffles_create')                  ->  only(['create', 'store']);
+        $this->middleware('permission:raffles_edit')                    ->  only(['edit', 'update']);
+        $this->middleware('permission:raffles_follow')                  ->  only(['follow']);
+        $this->middleware('permission:raffles_finished')                ->  only(['finishedView']);
+        $this->middleware('permission:raffles_checkConfirmation')       ->  only(['checkConfirmation']);
+
         $this->raffleRepository = $raffleRepository;
     }
 
-
-    // TODO Identify which methods apply to convert to rest method !!!!
     /**
      * Display a listing of the resource.
      *
@@ -43,8 +56,16 @@ class RafflesController extends Controller
         $suggested = $this->raffleRepository->getSuggested();
         $promos = Promo::where('type',1)->where('status',1)->get();
         $categories = RaffleCategory::all();
-        $raffles = Raffle::paginate(3);
-        return view('raffles',compact('raffles','suggested','promos','categories'));
+        $raffles = Raffle::with('getStatus')
+            ->whereHas('getStatus', function (Builder $q) {
+                $q->where('status', 'Published');
+                $q->orWhere('status','Unpublished');
+            })
+            ->where('progress','<',100)
+            ->orderBy('activation_date','ASC')
+            ->paginate(10);
+        $countries = Country::all();
+        return view('raffles',compact('raffles','suggested','promos','categories','countries'));
     }
 
     /**
@@ -54,8 +75,6 @@ class RafflesController extends Controller
      */
     public function create()
     {
-        //TODO: Add some catcha in this form for the users/clients
-
         $categories = RaffleCategory::all();
 
         return view('raffles.create', [
@@ -66,8 +85,10 @@ class RafflesController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param StoreRaffleRequest $request
+     * @param Request $request
      * @return \Illuminate\Http\Response
+     * @throws \Spatie\MediaLibrary\Exceptions\FileCannotBeAdded
+     * @throws \Spatie\MediaLibrary\Exceptions\FileCannotBeAdded\InvalidBase64Data
      */
     public function store(StoreRaffleRequest $request)
     {
@@ -80,41 +101,18 @@ class RafflesController extends Controller
         $raffle->title      = $request->title;
         $raffle->description= $request->description;
         $raffle->price      = $request->price;
+        $raffle->location   = $request->localization;
+        $raffle->owner      = Auth::user()->id;
 
         $raffle->save();
 
-        return redirect()
-            ->route('raffles.create',null, '303')
-            ->with('success','Raffle ' . $raffle->code . ' create successfully');
-    }
+        foreach ($request->base as $item) {
+            $raffle->addMediaFromBase64($item)->usingFileName('filename.jpg')->toMediaCollection('raffles','raffles');
+        }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
+        Auth::user()->notify(new RaffleCreated($raffle,Auth::user()));
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    // TODO Need validation, the raffle must own of the current user
-    public function edit($id)
-    {
-        $raffle = Raffle::find($id);
-
-        $categories = RaffleCategory::all();
-        return view('raffles.edit', [
-            'raffle' => $raffle,
-            'rcategories' => $categories
-        ]);
+        return redirect()->route('main');
     }
 
     /**
@@ -124,45 +122,30 @@ class RafflesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    // TODO Need validation on a custom reques class, the raffle must own of the current user
-    public function update(Request $request, $id)
+    public function update(UpdateRaffleRequest $request, $id)
     {
         $raffle = Raffle::find($id);
         $raffle->title = $request->get('title');
         $raffle->description = $request->get('description');
-        $raffle->price = $request->get('price');
         $raffle->category = $request->get('category');
+        $raffle->location = $request->get('localization');
+        $raffle->price = $raffle->price;
         $raffle->save();
+
+        if ($request->base[0] != null or $request->base[1] != null or $request->base[2] != null) {
+            $raffle->clearMediaCollection('raffles');
+            foreach ($request->base as $item) {
+                if ($item != null)
+                    $raffle->addMediaFromBase64($item)->usingFileName('filename.jpg')->toMediaCollection('raffles','raffles');
+            }
+        }
+
+        foreach ($raffle->getFollowers as $follower) {
+            $follower->notify(new RaffleUpdated($raffle,$follower));
+        }
         return redirect()
-            ->route('raffles.index',null, '303')
+            ->back()
             ->with('success','Raffle updated successfully');
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
-
-    /**
-     *
-     * Anullate the raffle
-     *
-     * @param $id
-     * @return \Illuminate\Http\RedirectResponse
-     */
-    public function null($id) {
-        $raffle = Raffle::find($id);
-        $raffle->anullate();
-
-        return redirect()->back()
-            ->with('success', 'Raffle "' . $id . '" anulled successfully');
-
     }
 
     public function follow($id)
@@ -171,5 +154,44 @@ class RafflesController extends Controller
         $raffle->getFollowers()->sync(User::find(Auth::user()->id));
         return redirect()->back()
             ->with('success', 'Raffle follow successfully');
+    }
+
+    public function finishedView($id)
+    {
+        $raffle = Raffle::findOrFail($id);
+        $raffleId = $raffle->id;
+        $confirmation = RaffleConfirmation::where('raffle_id',$raffle->id)->first();
+        $ticket = $raffle->getTickets->where('bingo','1')->first();
+        $suggested = $this->raffleRepository->getSuggested();
+        $promos = Promo::where('type',1)->where('status',1)->get();
+        return view('finished_raffle',compact('raffle','ticket','confirmation','raffleId','suggested','promos'));
+    }
+
+    public function checkConfirmation(ConfirmRaffle $request)
+    {
+        $confirmation = RaffleConfirmation::where('raffle_id',$request->get('raffleId'))->first();
+        $oconfirmation = $request->get('oconfirmation') == 'on'?true:false;
+        $confirmation->oconfirmation = $oconfirmation;
+        $wconfirmation = $request->get('wconfirmation')=='on'?true:false;
+        $confirmation->wconfirmation = $wconfirmation;
+        $confirmation->save();
+        $raffle = Raffle::findOrFail($request->get('raffleId'));
+        if ($confirmation->oconfirmation == 1 and $confirmation->wconfirmation == 1)
+        {
+            $raffle->status = 6;
+            $raffle->save();
+            $raffle->getOwner->getProfile->balance += $raffle->price;
+            $raffle->getOwner->getProfile->save();
+            foreach ($raffle->getReferrals as $referral)
+            {
+                // TODO review if this formula is correct to assign profit to comissionist of a raffle per referral
+                $referral->getComisionist->getProfile->balance += $raffle->comissions/$raffle->tickets_count;
+                $referral->getComisionist->getProfile->save();
+            }
+            return redirect()->back()
+                ->with('success', 'Congratulations!!! You booth have confirmed the raffle. Enjoy it!!!');
+        }
+        return redirect()->back()
+            ->with('success', 'Thanks for confirm the raffle. Soon you will have news about us.');
     }
 }

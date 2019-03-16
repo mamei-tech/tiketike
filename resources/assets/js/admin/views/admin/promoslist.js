@@ -13,7 +13,6 @@ let CreateFormRules = {
         url: true
     },
     expdate: {
-        // TODO add validation for before date here
         required: true,
         dateISO: true
     },
@@ -70,7 +69,6 @@ function popultEditForm(id, name, type, status, expdate) {
 }
 
 /* DEFINITION -- MODALS */
-/* TODO Move this method to aux and making a generic method usin the modal id as a parameter. Do this for all scripts */
 function openDeleteModal() {
     setTimeout(function () {
         $('#mdal_deletePromo').modal('show');
@@ -104,8 +102,6 @@ function getClient() {
     // Cleaning the select first
     select.empty();
 
-    // TODO use the package that allows use the routes name in javascript
-    // axios.get('http://localhost/tiketike/public/api/adm7HidkOduO1/v1/cliproml'
     axios.get(route('v1.promo.clients'), {}).then(function (response) {
 
         $.each(response.data.clients, function (i, item) {
@@ -125,8 +121,6 @@ function getClient() {
 }
 
 function getPromoDataEdit(name, editForm) {
-    // TODO use the package that allows use the routes name in javascript
-    // axios.post('http://localhost/tiketike/public/api/adm7HidkOduO1/v1/casckit'
         axios.post(route('v1.promo.promodata'), {
         name: name,
     }).then(function (response) {
@@ -144,7 +138,6 @@ function getPromoDataEdit(name, editForm) {
 }
 
 function getPromoData(name, detailsForm, originalDetailsLinkAction) {
-    // TODO use the package that allows use the routes name in javascript
     axios.post(route('v1.promo.promodata'), {
         name: name,
     }).then(function (response) {
@@ -204,7 +197,6 @@ $(document).ready(function () {
 
     // Starting Table
     $('#table_promo').DataTable({
-        /* TODO User the norma or reduced buttoms here */
         "pagingType": "full_numbers",
         "lengthMenu": [
             [10, 25, 50, -1],

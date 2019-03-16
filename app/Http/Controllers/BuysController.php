@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Country;
 use App\Promo;
+use App\RaffleCategory;
 use App\Repositories\RaffleRepository;
 use Illuminate\Http\Request;
 use App\Raffle;
@@ -29,14 +31,35 @@ abstract class BuysController extends Controller
      *
      * @param $raffleId         Raffle id.
      * @param Request $request
+     * @param RaffleRepository $raffleRepository
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function availableTickets($raffleId, Request $request)
+    public function availableTickets($raffleId, Request $request,RaffleRepository $raffleRepository)
     {
-        $user = Auth::user()->id;
-        $suggested = $this->raffleRepository->getSuggested();
+        $countries = Country::all();
+        $suggested = $raffleRepository->getSuggested();
         $raffle = Raffle::find($raffleId);
         $promos = Promo::where('type',1)->where('status',1)->get();
-        return view('raffle', ['raffleId' => $raffleId,'promos'=>$promos, 'tickets' => $tickets, 'url' => $request->fullUrl(), 'raffle' => $raffle,'suggested' => $suggested]);
+        $categories = RaffleCategory::all();
+        return view('raffle', compact('countries','suggested','raffle','promos','categories','raffleId'));
+    }
+
+
+    /**
+     * Display available tickets.
+     *
+     * @param $raffleId         Raffle id.
+     * @param Request $request
+     * @param RaffleRepository $raffleRepository
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function availableTicketsByReferral($raffleId,$referralId, $socialNetwork,RaffleRepository $raffleRepository)
+    {
+        $countries = Country::all();
+        $suggested = $raffleRepository->getSuggested();
+        $raffle = Raffle::find($raffleId);
+        $promos = Promo::where('type',1)->where('status',1)->get();
+        $categories = RaffleCategory::all();
+        return view('raffle', compact('countries','suggested','raffle','promos','categories','raffleId','referralId','socialNetwork'));
     }
 }

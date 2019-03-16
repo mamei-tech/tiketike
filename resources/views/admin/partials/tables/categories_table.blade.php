@@ -1,16 +1,14 @@
 <table id="tbl_categories" class="table table-striped table-bordered" cellspacing="0" width="100%">
-
     <thead class=" text-primary">
-    {{--TODO Use translations here--}}
     <tr>
         <th>
             ID
         </th>
         <th>
-            Name
+            @lang('tables.name')
         </th>
         <th>
-            Icon
+            @lang('tables.icon')
         </th>
         <th class="disabled-sorting text-right">
             Act
@@ -27,7 +25,6 @@
 
             {{--Buttons --}}
             <td class="text-right">
-                {{-- TODO Aling the action icons making them floating to right --}}
 
                 <a class="btn btn-info btn-icon btn-sm" href="">
                     <i class="now-ui-icons education_glasses"></i>

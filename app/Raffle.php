@@ -2,9 +2,12 @@
 
 namespace App;
 
+use App\Http\TkTk\Cfg\CfgRaffles;
 use App\Http\TkTk\CodesGenerator;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
+use PhpParser\Node\Scalar\String_;
+use Psy\Util\Str;
 use Spatie\MediaLibrary\HasMedia\HasMedia;
 use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 use Spatie\MediaLibrary\File;
@@ -21,9 +24,10 @@ class Raffle extends Model implements HasMedia
     public $incrementing    = false;
 
     protected $fillable = [
-        'title',
-        'description',
+        'winner_id',
+        'wconfirmation',
         'price',
+        'progress'
     ];
 
     /**
@@ -87,6 +91,16 @@ class Raffle extends Model implements HasMedia
     }
 
     /**
+     * Retrieve all payments attached to a raffle for refunds
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function getPaymentsAttached()
+    {
+        return $this->hasMany(RafflePays::class);
+    }
+
+    /**
      * Retrieve raffle's tickets.
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
@@ -111,21 +125,35 @@ class Raffle extends Model implements HasMedia
         return $this->hasOne(Country::class,'id','location');
     }
 
+    public function getReferrals()
+    {
+        return $this->hasMany(ReferralsBuys::class,'raffle_id','id');
+    }
+
     /**
      * Perform a tickets buy
      *
      * @param $user - User that buy
      * @param $ticketIds - Ids of tickets
      * @param null $referralId
+     * @param int $socialNetworkId    0 for none, 1 for facebook, 2 for twitter, 3 for instagram
      * @return bool
      */
-    public function buyTickets ($user, $ticketIds, $referralId = null) {
+    public function buyTickets ($user, $ticketIds, $referralId = null, $socialNetworkId = -1) {
+
+        $moneyForCommission = $this->commissions * $this->price / 100;
+        $comForTicket = $moneyForCommission / $this->tickets_count;
+
+        $baseTicketGain = ($this->profit * $this->price / 100) / $this->tickets_count;
+
+        if ($referralId == null)
+            $this->netGain += count($ticketIds) * ($baseTicketGain + $comForTicket);
+        else
+            $this->netGain += count($ticketIds) * $baseTicketGain;
 
         if ($this->getStatus->status != 'Published')
         {
-            //TODO return some error view
-            echo "UNPUBLISHED RAFFLE";
-            die();
+            return abort('422');
         }
         $ticketsBuyed = [];
         foreach ($ticketIds as $tid)
@@ -133,49 +161,47 @@ class Raffle extends Model implements HasMedia
             $ticket = Ticket::where('raffle', $this->id)->where('code', $tid)->first();
             if ($ticket == null)
             {
-                //TODO return some error view
-                echo "UNKNOW TICKET";
-                die();
+                return abort('422');
             }
             if ($ticket->sold == 1)
             {
-                //TODO return some error view
-                echo "TICKETS HAS BEEN SOLD";
-                die();
+                return abort('422');
             }
             $ticket->buyer = $user->id;
             $ticket->sold = true;
-            $ticket->save();
             array_push($ticketsBuyed, $ticket);
         }
-
-        //TODO transfer the money from user account to tiketike account
-        //if fail, return some error view
-
-        $this->getTickets()->saveMany($ticketsBuyed);
 
         if ($referralId != null) //Ticket buyed by a referral.
         {
             $referralUser = User::find($referralId);
             if ($referralUser == null)
             {
-                //TODO return some error view
-                echo "USER NOT FOUND";
-                die();
+                return abort('422');
             }
             $referralsBuys = [];
             foreach ($ticketsBuyed as $ticket)
             {
+                $ticket->soldByCom = true; //Ticket has been buyed by referrals
+
                 $refBuy = new ReferralsBuys;
                 $refBuy->comisionist = $referralId;
                 $refBuy->ticket = $ticket->id;
+                $refBuy->raffle_id = $this->id;
+                $refBuy->socialNetwork = $socialNetworkId;
                 array_push($referralsBuys, $refBuy);
             }
-            $referralUserProfile = $referralUser->getProfile;
-            $referralUserProfile->balance += count($referralsBuys) * $this->commissions / $this->tickets_count;
-            $referralUserProfile->save();
+            // TODO review because the referrals profit only pass to the comissionist when raffle ends
+//            $referralUserProfile = $referralUser->getProfile;
+//            $referralUserProfile->balance += count($referralsBuys) * $this->commissions / $this->tickets_count;
+//            $referralUserProfile->save();
             $referralUser->getReferralsBuys()->saveMany($referralsBuys);
         }
+        $this->progress = $this->getProgress();
+        $this->save();
+
+        $this->getTickets()->saveMany($ticketsBuyed);
+        $this->save();
 
         return true;
     }
@@ -222,9 +248,9 @@ class Raffle extends Model implements HasMedia
         }
     }
 
-    /* TODO Enhance this method for situation like is the raffle is published already */
     public function anullate() {
         $this->status = 3;                    // ID for anulled status
+        $this->netGain = 0;
         $this->save();
     }
 
@@ -238,7 +264,7 @@ class Raffle extends Model implements HasMedia
 
     }
 
-    public function suflee()
+    public function shuffle()
     {
         $tickets = Ticket::where('tickets.raffle', $this->id)->get();
         $length = $tickets->count();
@@ -272,7 +298,7 @@ class Raffle extends Model implements HasMedia
 
                 if ($exists)
                     return false;
-                if (!($file->mimeType === 'image/jpeg') or !($file->mimeType !== 'image/png'))
+                if ($file->mimeType !== 'image/jpeg' && $file->mimeType !== 'image/png')
                     return false;
                 else
                     return true;
@@ -284,5 +310,47 @@ class Raffle extends Model implements HasMedia
      */
     public function getTicketsAvailable() {
         return $this->hasMany('App\Ticket', 'raffle', 'id')->where('sold','=',false);
+    }
+
+    public static function rafflesNetGain()
+    {
+        $netGain = 0;
+        Raffle::chunk(1000, function ($raffles) use (&$netGain) {
+            foreach ($raffles as $r) {
+                if ($r->status != 3)    // Not anulled
+                    $netGain += $r->netGain;
+            }
+        });
+
+        return $netGain;
+    }
+
+    public static function sharedRaffles()
+    {
+        return Raffle::join('tickets', 'raffles.id', '=', 'tickets.raffle')
+            ->join('referralsbuys', 'tickets.id', '=', 'referralsbuys.ticket')
+            ->select(
+                'raffles.id',
+                'raffles.title',
+                'raffles.price'
+            )
+            ->groupBy('raffles.id')->get();
+    }
+
+    public static function referralsInfo($raffleId)
+    {
+        $raffle = Raffle::find($raffleId);
+
+        return Raffle::join('tickets', 'raffles.id', '=', 'tickets.raffle')
+            ->join('referralsbuys', 'tickets.id', '=', 'referralsbuys.ticket')
+            ->join('users', 'users.id', '=', 'referralsbuys.comisionist')
+            ->select(
+                'users.id',
+                'users.name',
+                DB::raw('count(users.id) as shared_tickets')
+            )
+            ->where('raffles.id', '=', $raffle->id)
+            ->groupBy('users.id')
+            ->get();
     }
 }

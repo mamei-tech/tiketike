@@ -1,36 +1,3 @@
-
-//
-// /* FORM POPLULATION -- MODALS */
-// function popultDeleteForm(id, title, price) {
-//
-//     let deleteForm = $('div#frm_deleteRaffle form');
-//
-//     deleteForm.find('input#tb_id').val(id);
-//     deleteForm.find('input#tb_title').val(title);
-//     deleteForm.find('input#tb_price').val(price);
-// }
-//
-// function populatePublishForm(id, price) {
-//
-//     let publishForm = $('div#frm_publishRaffle form');
-//
-//     publishForm.find('input#tb_id').val(id);
-//     publishForm.find('input#tb_price').val(price);
-// }
-//
-// /* DEFINITION -- MODALS */
-// function openDeleteModal() {
-//     setTimeout(function () {
-//         $('#mdal_deleteRaffle').modal('show');
-//     }, 30);
-// }
-//
-// function openPublishModal() {
-//     setTimeout(function () {
-//         $('#mdal_publishRaffle').modal('show');
-//     }, 30);
-// }
-
 $(document).ready(function () {
 
     // gettings the forms

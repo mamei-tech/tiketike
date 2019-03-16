@@ -1,9 +1,6 @@
 
 <div class="card mb-4">
     <div class="card-header"><i class="now-ui-icons business_globe"></i>&emsp;@lang('aLogs.loglevels')</div>
-
-    {{-- TODO Emrgency and Warning don't fit --}}
-
     <div class="list-group list-group-flush log-menu">
         @foreach($log->menu() as $levelKey => $item)
             @if ($item['count'] === 0)

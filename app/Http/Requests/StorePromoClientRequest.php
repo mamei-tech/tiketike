@@ -13,8 +13,6 @@ class StorePromoClientRequest extends FormRequest
      */
     public function authorize()
     {
-        //TODO: Do the correct this here, right now i don't know what is that for
-        //return false;
         return true;
     }
 
@@ -28,7 +26,7 @@ class StorePromoClientRequest extends FormRequest
         return [
             'name'          => 'required|string|max:30',
             'email'         => 'required|string|max:35|email',
-            'contact'       => 'required|string',    // TODO Maybe improve this validation rule with a custom one
+            'contact'       => 'required|string',
         ];
     }
 }

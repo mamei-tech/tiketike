@@ -26,6 +26,13 @@ class CreateRafflesTable extends Migration
             $table->timestamps();
         });
 
+        Schema::create('raffle_pays',function (Blueprint $table) {
+            $table->increments('id');   //PK
+            $table->unsignedBigInteger('raffle_id');
+            $table->string('charge_id');
+            $table->float('amount');
+        });
+
         Schema::create('raffles', function (Blueprint $table) {
 
             $table->unsignedBigInteger('id');       //PK
@@ -38,11 +45,13 @@ class CreateRafflesTable extends Migration
             $table->string('title', 60);
             $table->text('description');
             $table->float('price');
+            $table->float('progress')->default(0);
             $table->unsignedInteger('tickets_count')->default(0);
             $table->float('tickets_price')->nullable();
             $table->string('image')->default("pics/common/rotating_card_profile.png");
             $table->unsignedtinyInteger('profit')->nullable();
             $table->float('commissions')->nullable();
+            $table->double('netGain')->default(0);
             $table->date('activation_date')->nullable();
             $table->timestamps();
 
@@ -66,7 +75,7 @@ class CreateRafflesTable extends Migration
 
             $table->foreign('location')  //FK
             ->references('id')
-                ->on('countries')
+                ->on('world_countries')
                 ->onDelete('restrict');
         });
 
@@ -95,6 +104,31 @@ class CreateRafflesTable extends Migration
                 ->references('id')
                 ->on('raffles')
                 ->onDelete('restrict');
+        });
+
+        Schema::create('raffle_confirmation', function (Blueprint $table) {
+            $table->increments('id');      //PK
+            $table->integer('winner_id')->unsigned();
+            $table->boolean('wconfirmation');
+            $table->integer('owner_id')->unsigned();
+            $table->boolean('oconfirmation');
+            $table->unsignedBigInteger('raffle_id');
+
+            $table->foreign('winner_id')    //FK
+            ->references('id')
+                ->on('users')
+                ->onDelete('restrict');
+
+            $table->foreign('owner_id')    //FK
+            ->references('id')
+                ->on('users')
+                ->onDelete('restrict');
+
+            $table->foreign('raffle_id')    //FK
+            ->references('id')
+                ->on('raffles')
+                ->onDelete('restrict');
+            $table->timestamps();
         });
     }
 

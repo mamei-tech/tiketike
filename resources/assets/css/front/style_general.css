@@ -257,6 +257,9 @@ body {
 .padding-left10{
     padding-left: 10px;
 }
+.padding-left-top-users{
+    padding-left: 7%;
+}
 .padding-left20{
     padding-left: 20px;
 }
@@ -305,11 +308,24 @@ body {
 .margin-top5{
     margin-top: 5px;
 }
+.margin-top10{
+    margin-top: 10px;
+}
+.margin-top15{
+    margin-top: 15px;
+}
+.margin-top20{
+    margin-top: 20px;
+}
 .padding10{
     padding: 10px!important;
 }
 .padding-left65{
     padding-left: 65px;
+}
+
+.margin-right-4percent {
+    margin-left: 4%;
 }
 
 .margin-right100{
@@ -608,7 +624,7 @@ div .search-box {
     top: 0;
     left: 0;
     width: 100%;
-    z-index: 99999;
+    z-index: 1;
 }
 .btn-primary {
     color: #fff;
@@ -639,6 +655,7 @@ div .search-box {
 .img-contenedor:hover, .img-contenedor:focus {
     width: 110px;
     height: 110px;
+    text-overflow: ellipsis;
 }
 .pais{
     font-style: italic;
@@ -680,7 +697,8 @@ div .search-box {
 }
 .modal-content {
     background: url("../../pics/front/bg-registrarse.png")repeat center center;
-    background-size: cover;
+    background-size: 203px 403px;
+    background-repeat: repeat;
 }
 .modal-dialog {
     margin: 0px auto;
@@ -822,11 +840,17 @@ div.checker, div.checker span, div.checker input {
     width: 30px;
     height: 20px;
 }
+
+.flag-country {
+    width: 16px;
+    height: 16px;
+}
+
 .paddingRifas{
     padding:0 50px;
 }
 div.contenido{
-    margin-top: 85px;
+    margin-top: 15px;
 }
 .panel-heading {
     border-bottom: inherit;
@@ -846,7 +870,7 @@ input[type="radio"], input[type="checkbox"] {
 }
 .porcientoCompletado {
     border-right: #000000 2px dashed;
-    padding-right: 35px;
+    padding-right: 16px;
 }
 .dashedDerecho{
     border-right: #9D9D9D 2px dashed;
@@ -939,7 +963,7 @@ input[type="radio"], input[type="checkbox"] {
     display: inline-block;
 }
 .carousel {
-    
+
     margin-bottom: 30px;
 }
 .imgUsuario{
@@ -1301,11 +1325,36 @@ section#vertical ul li.last {
     height: 55px;
     font-size: 20px;
 }
+
+.bg-popover-border{
+ background: transparent;
+}
+
+@-ms-viewport {
+    width: device-width;
+}
+.visible-xs-f1,
+.visible-lg {
+    display: none !important;
+}
+
+@media (max-width: 767px) {
+    .visible-xs-f1 {
+        display: block !important;
+    }
+}
+
 .bg-popover{
-    background: url("../../pics/front/popover.svg");
-    width: 100%;
-    height: 188px;
-    padding: 40px 70px;
+    background: url("../../pics/front/bg-popoverR.png");
+    background-size: 100% 250px!important;
+    padding: 20px;
+    height: 50px;
+    width: 100px;
+
+
+    /*width: 100%;*/
+    /*height: 188px;*/
+    /*padding: 40px 70px;*/
 }
 
 /*slick-Vertical*/
@@ -1483,7 +1532,7 @@ a#logged-user-name {
     margin-top: 4%;
 }
 
-.rotar{                                                 /* TODO Esto no pincha arreglar */
+.rotar{
     -webkit-transform: rotate(45deg);
     -moz-transform: rotate(45deg);
 }
@@ -1572,17 +1621,24 @@ Full screen Modal
     top:5% !important;
     margin-top: 0 !important;
 }
+
+.tile-percent-text {
+    font-size: 28px;
+}
+
+.tile-owner-name {
+    padding-left: 8%;
+    font-size: 8px;
+}
+
 .slicklanding .itemImg strong {
     font-family: sinkinSans600SB;
-    font-size: 12px;
+    font-size: 10px;
     display: block;
-    margin-bottom: 10px;
-    padding: 0 15px;
-    padding-top: 0px;
     border: #ffffff 2px dashed;
-    padding:5px;
-    margin:10px;
-    top:0px;
+    /*position: relative;*/
+    margin: 2% 8% 5% 8%;
+    padding: 5% 5% 5% 5%;
 }
 .slicklanding .itemImg {
     position: relative;
@@ -1596,12 +1652,27 @@ Full screen Modal
 }
 
 
+
+
 @media (max-width: 768px) {
 
     /* Media Query for Navbar */
     div#navdiv-rightcolum ul {
         float: none !important;
     }
+}
+
+::-webkit-scrollbar{
+    width: 10px;
+    background-color: #F5F5F5;
+}
+::-webkit-scrollbar-track{
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    background-color: #F5F5F5;
+}
+::-webkit-scrollbar-thumb{
+    background-color: #70438F;
+    background-image: -webkit-linear-gradient(90deg,rgba(255, 255, 255, .2) 25%,transparent 25%,transparent 50%,rgba(255, 255, 255, .2) 50%,rgba(255, 255, 255, .2) 75%,transparent 75%,transparent)
 }
 
 

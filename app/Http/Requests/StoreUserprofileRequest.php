@@ -4,6 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 use App\Http\Requests\CustomRules\StrongEvalR;
+use Illuminate\Support\Facades\Auth;
 
 class StoreUserprofileRequest extends FormRequest
 {
@@ -14,8 +15,6 @@ class StoreUserprofileRequest extends FormRequest
      */
     public function authorize()
     {
-        //TODO: Do the correct this here, right now i don't know what is that for
-        //return false;
         return true;
     }
 
@@ -26,15 +25,15 @@ class StoreUserprofileRequest extends FormRequest
      */
     public function rules()
     {
-        /* TODO Set what field are required, setup here, in the view and in the migration and model */
         return [
+            'id' => 'same:'.Auth::user()->id,
             'email' => 'required|email|max:60',
-            'birthdate' => 'date_format:d-m-Y|max:10',              // TODO add limits to validation, not pass date allowed
-            'gender' => 'required|not_in:0|min:1',                  // TODO check is Male or Female
+            'birthdate' => 'date_format:Y-m-d|max:10',
+            'gender' => 'required|not_in:0|min:1',
             'languaje'=> 'required|not_in:0|min:1',
             'firstname'=> 'required|string|min:3|max:30',
             'lastname'=> 'required|string|min:6|max:30',
-//            'password' => ['nullable', 'string', 'confirmed', new StrongEvalR()],
+            'password' => ['nullable', 'string', 'confirmed', new StrongEvalR()],
             'address'=> 'required|string|min:12|max:60',
             'country' => 'required|not_in:0|min:1|exists:countries,id',
             'city' => 'required|not_in:0|min:1|exists:cities,id',

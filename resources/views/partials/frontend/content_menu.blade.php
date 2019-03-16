@@ -8,7 +8,7 @@
     </button>
 
     <a href="{{ route('main') }}" class="padding-left">
-        <img src="{{ asset('pics/front/logoPeque.svg') }}" class="navbar-log" alt="">
+        <img src="{{ asset('pics/front/logonv.png') }}" class="navbar-log" alt="">
     </a>
 
     <img class="styleBorderL padding-left30 hidden-xs" src="{{ asset('pics/front/borderLeft.svg') }}" alt="">
@@ -21,12 +21,7 @@
         <ul class="nav navbar-nav">
             <li>
                 <a href="{{ route('raffles.index') }}" class="text-uppercase colorB sinkinSans300L icon">
-                    <span class="ti-ticket  margin-right5 rotar  texto16"></span>Rifas
-                </a>
-            </li>
-            <li>
-                <a href="" class="text-uppercase colorB sinkinSans300L icon">
-                    <span class="ti-comments margin-right5 texto16 "></span>Chat
+                    <span class="ti-ticket  margin-right5 rotar  texto16"></span>@lang('views.raffles')
                 </a>
             </li>
         </ul>
@@ -38,26 +33,44 @@
             @if(\Auth::user() != null)
                 <li class="">
                     <a id="logged-user-name" href="{{route('profile.info',['userid'=> \Auth::User()->id])}}"
-                       class="colorB sinkinSans300L"> {{\Auth::User()->name}} <img src="{{ asset('pics/front/user.jpg') }}"
-                                                                                   alt="Ringo"
-                                                                                   class="imgUsuarioMenu sombraImgUserMenu margin-left5"></a>
+                       class="colorB sinkinSans300L"> {{\Auth::User()->name}} <img
+                                src="{{ Auth::user()->getMedia('avatars')->first()->getUrl() }}"
+
+                                alt="Ringo"
+                                class="imgUsuarioMenu sombraImgUserMenu margin-left5"></a>
                 </li>
             @endif
-            <li class="notifica">
-                <a class="text-uppercase colorB icon" data-toggle="modal" href="#notificaciones" title="Notificaciones">
-                    <span class="ti-bell texto20"></span>
-                    <span class="badge badge-default">
-					7 </span>
-                </a>
-
-            @include('partials.front_modals.notification_modal')
-
-            <li class="hidden-xs"><img class="styleBorderL colorB" src="{{ asset('pics/front/borderLeft.svg') }}" alt="">
+            @if(\Auth::user() != null)
+                <li class="notifica">
+                    <a class="text-uppercase colorB sinkinSans300L icon" data-toggle="modal" href="#notificaciones"
+                       title="Notificaciones">
+                        <span class="ti-bell texto20"></span>
+                        <span class="badge badge-default"
+                              id="notifications_count">{!! count(\Auth::user()->notifications) !!}</span>
+                    </a>
+                </li>
+            @endif
+            <li class="hidden-xs"><img class="styleBorderL colorB" src="{{ asset('pics/front/borderLeft.svg') }}"
+                                       alt="">
             </li>
-            <li class="hidden-xs"><a href="" class="icon"><img class="stylebandera" src="{{ asset('pics/front/ban2.jpg') }}"
-                                                               alt=""></a></li>
+            <li class="hidden-xs">
+                <form action="{{ route('admin.lansw') }}" method="post">
+                    {{ csrf_field() }}
+                    <button style="background: transparent;border: transparent" type="submit" class="text-uppercase colorB padding-top-20 sinkinSans300L icon">
+                        <?php
+                        $currentLocale = app()->getLocale();
+                        $otherLocale = $currentLocale == 'es' ? 'en' : 'es';
+                        ?>
+                        <input type="hidden" name="locale" value="{{ $otherLocale }}">
+                        <img class="stylebandera" src="{{ asset('pics/common/'.$otherLocale.'.png') }}" alt="">
+                    </button>
+                </form>
+            </li>
+
+
             <li class="hidden-xs colorB">
-                <a href="#" class="icon colorB"><span class="ti-search texto20 search-btn show-search-icon"></span></a>
+                <a href="#" class="text-uppercase colorB sinkinSans300L icon"><span
+                            class="ti-search texto20 search-btn show-search-icon"></span></a>
                 <div class="search-box" style="display: none;">
                     <form action="#">
                         <div class="input-group">
@@ -69,6 +82,21 @@
                     </form>
                 </div>
             </li>
+
+            @if(\Auth::user() != null)
+                <li class="hidden-xs">
+                    <a class="icon" href="{{ route('logout') }}"
+                       onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                        <span class="texto20 ti-shift-right">
+                        </span>
+                    </a>
+
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        {{ csrf_field() }}
+                    </form>
+
+                </li>
+            @endif
 
         </ul>
     </div>

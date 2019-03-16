@@ -170,6 +170,12 @@ return [
         Spatie\Permission\PermissionServiceProvider::class,
 
         /*
+        * Package Service Providers...
+        */
+
+        Khsing\World\WorldServiceProvider::class,
+
+        /*
          * Package Service Providers...
          */
         Spatie\Permission\PermissionServiceProvider::class,
@@ -194,7 +200,12 @@ return [
          */
         Laravel\Socialite\SocialiteServiceProvider::class,
 
-        Tightenco\Ziggy\ZiggyServiceProvider::class
+        Tightenco\Ziggy\ZiggyServiceProvider::class,
+
+        /*
+         * Google Captcha
+         */
+        Anhskohbo\NoCaptcha\NoCaptchaServiceProvider::class,
 
 
     ],

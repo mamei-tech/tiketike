@@ -5,31 +5,26 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Raffle;
 use App\Repositories\RaffleRepository;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 
 
 class ARaffleController extends Controller
 {
     private $raffleRepository;
-    // TODO Identify which methods apply to convert to rest method !!!!
 
     /**
      * Create a new controller instance.
      *
-     * @return void
+     * @param RaffleRepository $raffleRepository
      */
     public function __construct(RaffleRepository $raffleRepository)
     {
         // I think this is not needed because I have this in the route middleware
-        // Authentication
-        $this->middleware('auth');
-        $this->middleware('permission:list raffles');
-        $this->middleware('permission:create raffle', ['only' => ['create', 'store']]);
-        $this->middleware('permission:edit raffle', ['only' => ['edit', 'update']]);
-        $this->middleware('permission:delete raffle', ['only' => ['destroy']]);
-        $this->raffleRepository = $raffleRepository;
+        $this->middleware('permission:anulled_raffle_list')          ->  only(['index']);
+        $this->middleware('permission:anulled_raffle_destroy')       ->  only(['destroy']);
 
-        /* TODO: Check what this is for, how to use it */
-        // Authorization
+        $this->raffleRepository = $raffleRepository;
     }
     /**
      * Display a listing of the resource.
@@ -39,6 +34,8 @@ class ARaffleController extends Controller
     public function index()
     {
         $uraffles = $this->raffleRepository->getTenAnulleddRaffles();
+
+        Log::log('INFO', trans('aLogs.adm_role_sec').' - '.Auth::user()->id);
 
         return view('admin.araffles', [
             'raffles' => $uraffles,
@@ -66,6 +63,9 @@ class ARaffleController extends Controller
 
             // Anulled
             if($raffle->status == 3) {
+
+                Log::log('INFO', trans('aLogs.adm_araffle_deleted').' - '.Auth::user()->id.' - '.$raffle->id);
+
                 return redirect()
                     ->route('arraffle.index',null, '303')
                     ->with('success','Raffle ' . $raffle->code . ' deleted successfully');
@@ -73,6 +73,9 @@ class ARaffleController extends Controller
 
             // Unpublished
             if($raffle->status == 1){
+
+                Log::log('INFO', trans('aLogs.adm_araffle_deleted').' - '.Auth::user()->id.' - '.$raffle->id);
+
                 return redirect()
                     ->route('unpublished.index',null, '303')
                     ->with('success','Raffle ' . $raffle->code . ' deleted successfully');

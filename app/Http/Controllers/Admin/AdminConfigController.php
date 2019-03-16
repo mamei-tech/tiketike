@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\RaffleConfigRequest;
 use App\Http\TkTk\Cfg\CfgRaffles;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 
 
 class AdminConfigController extends Controller
@@ -13,12 +15,8 @@ class AdminConfigController extends Controller
 
     public function __construct()
     {
-        // I think this is not needed because I have this in the route middleware
-        // Authentication
-        $this->middleware('auth');
-
-        /* TODO: Check what this is for, how to use it */
-        // Authorization
+        $this->middleware('permission:show_roles')          ->  only(['showraffleconfig']);
+        $this->middleware('permission:save_roles')          ->  only(['saveraffleconfig']);
 
         /* -- The rest of the thing -- */
         // Makin a new config handler
@@ -37,6 +35,8 @@ class AdminConfigController extends Controller
             'gwfee'                     => $this->cfghandler->getConfig('gwfee'),
             'minextractbalance'         => $this->cfghandler->getConfig('minextractbalance')
         ];
+
+        Log::log('INFO', trans('aLogs.raffle_config_show').' - '.Auth::user()->id);
 
         return view('admin.confviews.raffles', [
             'div_showRaffles' => 'show',
@@ -62,6 +62,8 @@ class AdminConfigController extends Controller
             'gwfee'                     => $this->cfghandler->getConfig('gwfee'),
             'minextractbalance'         => $this->cfghandler->getConfig('minextractbalance')
         ];
+
+        Log::log('INFO', trans('aLogs.raffle_config_show').' -z '.Auth::user()->id.' - '.$request->all());
 
         return redirect()->route('admin.raffle.showconfig',
             compact('cfg', $cnf),

@@ -17,8 +17,6 @@
 
                     <div id="frm_editCategory" class="col-md-12">
                         @include('admin.partials.forms.categoryedit_form')
-
-                        {{--TODO Change this proper to this view--}}
                     </div>
 
                 </div>

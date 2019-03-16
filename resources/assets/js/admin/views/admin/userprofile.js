@@ -14,11 +14,9 @@ let UpdateFormRules = {
     password_confirmation: {
         equalTo: "#password",
     },
-    // TODO Make a custom validation for birthdate using DateISO function
     gender: {
-        required: true,     // TODO Make a custom validation rule for gender
+        required: true,
     },
-    // TODO Make a validation of Languaje
     firstname: {
         required: true,
         maxlength: 20
@@ -32,8 +30,6 @@ let UpdateFormRules = {
         minlength: 10,
         maxlength: 60,
     },
-    // TODO Make a validation of City
-    // TODO Make a validation of Country
     zipcode: {
         required: true,
         number: true,
@@ -49,9 +45,6 @@ $(document).ready(function () {
 
     // Getting the current time for datetimepicker inputs
     let dtpicker = $('.datepicker');
-    /* TODO Get the current time, validate not input a pass date */
-    // let now = new Date();
-    // dtpicker.val(now.getDay().to + '/' + now.getMonth() + '/' + now.getFullYear());
 
     //Initializing the datetimepicker inputs
     dtpicker.datetimepicker({

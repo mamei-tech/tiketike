@@ -4,13 +4,16 @@ namespace App;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Spatie\MediaLibrary\HasMedia\HasMedia;
+use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Database\Eloquent\Builder;
 
-class User extends Authenticatable
+class User extends Authenticatable implements HasMedia
 {
     use Notifiable;
     use HasRoles;
+    use HasMediaTrait;
 
 
     // Explicit table definition for the model
@@ -171,5 +174,15 @@ class User extends Authenticatable
             $total += $raffle->getTickets->where('sold',1)->get();
         }
         return $total;
+    }
+
+    public static function usersCount()
+    {
+        $usersCount = 0;
+        User::chunk(1000, function ($users) use (&$usersCount) {
+            $usersCount += count($users);
+        });
+
+        return $usersCount;
     }
 }

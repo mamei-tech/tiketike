@@ -135,7 +135,6 @@
                         <div class="col-md-6">
                             <div class="form-group basic">
                                 <label>@lang('aDashboard.country')</label>
-                                {{--TODO internazionalization for countries names--}}
                                 <br>
                                 <select name="country" class="selectpicker" data-style="btn btn-neutral btn-round"
                                         title="Country" tabindex="-98">
@@ -214,8 +213,6 @@
                         </div>
                     </div>
                 </form>
-
-                <!-- TODO Aqui van los enlaces morrongueros del fi para acceder por las redes sociales -->
             </div>
         </div>
         <!-- /.modal-content -->

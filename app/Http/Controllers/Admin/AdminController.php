@@ -3,13 +3,14 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Payment;
-use Illuminate\Http\Request;
+use App\Raffle;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
+use App\User;
+
 
 class AdminController extends Controller
 {
-    // TODO Identify which methods apply to convert to rest method in to API methods !!!!
-
     /**
      * Create a new controller instance.
      *
@@ -17,7 +18,6 @@ class AdminController extends Controller
      */
     public function __construct()
     {
-        // I think this is not needed because I have this in the route middleware
         $this->middleware('auth');
     }
 
@@ -28,7 +28,17 @@ class AdminController extends Controller
      */
     public function index()
     {
-        return view('admin.index', [ 'li_activeDash' => 'active']);
+        $sharedRaffles = Raffle::sharedRaffles();
+
+        Log::log('INFO', trans('aLogs.dashboard_show').' - '.Auth::user()->id);
+
+        return view('admin.index',
+            [
+                'li_activeDash' => 'active',
+                'netGain' => round(Raffle::rafflesNetGain(), 2),
+                'usersCount' => User::usersCount(),
+                'sharedRaffles' => $sharedRaffles,
+            ]);
     }
 }
 

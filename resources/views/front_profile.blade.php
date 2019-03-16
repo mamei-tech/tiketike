@@ -1,13 +1,18 @@
 @extends('layouts.base')
 @section('content')
     @include('partials.frontend.header')
-    @include('partials.front_modals.filters')
     @include('partials.front_modals.mobile_suggest')
     <div class=" container margin-top-70">
-        <form class="col-md-12 margin-top60" id="ftm_profileUpdate" action="{{ route('profile.update', Auth::id()) }}" method="POST" >
+        @include('partials.front_modals.error_notification')
+        <form class="col-md-12 margin-top60" id="ftm_profileUpdate" action="{{ route('profile.update', $user->id) }}"
+              method="post" enctype="multipart/form-data">
+            {{csrf_field()}}
+            {{method_field('patch')}}
+
+            <input id="user_id" value="{{ $user->id }}" name="user" type="text" hidden>
+
             <div class="col-md-4">
                 {{-- FIRST NAME ¦ LASTNAME --}}
-{{csrf_field()}}
                 <div class="col-md-6 pr-1">
                     <div class="form-group basic">
                         <label>@lang('aUserprofile.firstname')</label>
@@ -32,19 +37,18 @@
                 </div>
 
 
-
                 <div class="col-md-8">
                     <label for="selector"
                            class="colorN italic padding-top-20">Contraseña</label>
                     <input type="password" class="form-control form-control-new "
-                           id="inputPassword" name="password" placeholder="Password">
+                           id="password" name="password" placeholder="Password">
                 </div>
 
                 <div class="col-md-8">
                     <label for="selector"
                            class="colorN italic padding-top-20">Repita la contraseña</label>
                     <input type="password" class="form-control form-control-new "
-                           id="inputPassword" name="password" placeholder="Password Repeat">
+                           id="password_confirm" name="password_confirmation" placeholder="Password Repeat">
                 </div>
 
             </div>
@@ -53,39 +57,30 @@
             <div class="col-md-4" style="text-align: center ">
                 <label for="selector" class="colorN italic padding-top-20">Avatar</label>
                 <br>
+                <img id="profile-pic-card" class="img-circle"
+                     src="{{ $user->getMedia('avatars')->first()->getUrl() }}">
 
-                @if($user->getProfile->avatarname == 'default')
-                    <img id="profile-pic-card" class="img-circle"
-                         src={{ asset('pics/common/default-avatar.png') }}>
-                @else
-                    <img id="profile-pic-card" class="img-circle"
-                         src="{{ $user->getProfile->getMedia('avatars')->first()->getUrl() }}">
-                @endif
 
-                <input id="avatar" type="file" class="padding-top-20" name="avatar">
+                <input id="avatar" type="file" value="{{ $user->getMedia('avatars')->first()->getUrl() }}" class="padding-top-20" name="avatar">
 
 
             </div>
 
 
-
-
-
-            <div class="col-md-4" style="margin-top: 30px" >
+            <div class="col-md-4" style="margin-top: 30px">
                 {{-- BIRTHDATE ¦ GENDER ¦ LANG --}}
 
                 <div class="col-md-6 ">
                     <div class="form-group basic">
                         <label>@lang('aUserprofile.brdate')</label>
                         <input name="birthdate" type="date" placeholder="" class="form-control datepicker"
-                               value="{{ date('d-m-Y', strtotime($user->getProfile->birthdate)) }}">
+                               @if(!$first_time)value="{{ date('Y-m-d', strtotime($user->getProfile->birthdate)) }}"@endif>
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="form-group basic">
                         <label>Phone</label>
-                        <input class="form-control "
-                               id="inputPhone" name="phone">
+                        <input class="form-control" id="inputPhone" name="phone"@if(!$first_time) value="{{$user->getProfile->phone}}"@endif>
                     </div>
                 </div>
 
@@ -99,10 +94,10 @@
                                     data-style="btn btn-neutral btn-round"
                                     title="Gender" tabindex="-98">
                                 <option class="bs-title-option" value="">Gender</option>
-                                <option value="Female" {{ $user->getProfile->gender == 'Female' ? 'selected' : '' }}>
+                                <option @if(!$first_time) value="Female" {{ $user->getProfile->gender == 'Female' ? 'selected' : '' }}@endif>
                                     Female
                                 </option>
-                                <option value="Male" {{ $user->getProfile->gender == 'Male' ? 'selected' : '' }}>
+                                <option @if(!$first_time) value="Male" {{ $user->getProfile->gender == 'Male' ? 'selected' : '' }}@endif>
                                     Male
                                 </option>
                             </select>
@@ -121,7 +116,7 @@
                                 <option class="bs-title-option" value="">Languaje</option>
 
                                 @foreach (\App\Facades\Loc::supported() as $lang)
-                                    <option value="{{ $lang }}" {{ $user->getProfile->langcode == $lang ? 'selected' : '' }}>
+                                    <option @if(!$first_time) value="{{ $lang }}" {{ $user->getProfile->langcode == $lang ? 'selected' : '' }}@endif>
                                         {{ \App\Facades\Loc::nameFor($lang) }}</option>
                                 @endforeach
                             </select>
@@ -132,14 +127,13 @@
                 <div class="col-md-6">
                     <div class="form-group basic">
                         <label>@lang('aDashboard.country')</label>
-                        {{--TODO internazionalization for countries names--}}
                         <br>
-                        <select name="country" class="selectpicker" data-style="btn btn-neutral btn-round"
+                        <select id="contry-select" name="country" class="selectpicker" data-style="btn btn-neutral btn-round"
                                 title="Country" tabindex="-98">
                             <option class="bs-title-option" value="">Country</option>
 
                             @foreach ($countries as $country)
-                                <option value="{{ $country->id }}" {{ $country->name == $user->getProfile->getCity->getCountry->name ? 'selected' : '' }}>
+                                <option @if(!$first_time) value="{{ $country->id }}" {{ $country->name == $user->getProfile->getCity->country->name ? 'selected' : '' }}@endif>
                                     {{ $country->name }}</option>
                             @endforeach
 
@@ -151,15 +145,8 @@
                     <div class="form-group basic">
                         <label>@lang('aDashboard.city')</label>
                         <br>
-                        <select name="city" class="selectpicker" data-style="btn btn-neutral btn-round"
+                        <select id="cities-select" name="city" class="selectpicker" data-style="btn btn-neutral btn-round"
                                 title="City" tabindex="-98">
-                            <option class="bs-title-option" value="">City</option>
-
-                            @foreach($countrycities as $city)
-                                <option value="{{ $city->id }}" {{ $city->name == $user->getProfile->getCity->name ? 'selected' : '' }}>
-                                    {{ $city->name }}</option>
-                            @endforeach
-
                         </select>
 
                     </div>
@@ -170,7 +157,7 @@
                         <label for="selector"
                                class="colorN italic padding-top-20">@lang('aUserprofile.zipcode')</label>
                         <input name="zipcode" type="number" class="form-control" placeholder="10100"
-                               value="{{ $user->getProfile->zipcode }}">
+                               @if(!$first_time)value="{{ $user->getProfile->zipcode }}"@endif>
                     </div>
                 </div>
             </div>
@@ -182,7 +169,7 @@
                                class="colorN italic padding-top-40"> @lang('aUserprofile.address')</label>
 
                         <input name="address" type="text" class="form-control" placeholder="Home Address"
-                               value="{{ $user->getProfile->addrss }}">
+                               @if(!$first_time)value="{{ $user->getProfile->addrss }}"@endif>
                     </div>
                 </div>
 
@@ -193,7 +180,7 @@
                                class="colorN italic padding-top-20">Bio</label>
 
                         <input name="bio" type="text" class="form-control" placeholder="Bio"
-                               value="{{ $user->getProfile->bio }}">
+                               @if(!$first_time)value="{{ $user->getProfile->bio }}"@endif>
                     </div>
 
 
@@ -201,22 +188,21 @@
             </div>
 
 
-
             <div class="col-md-2 floatRight">
                 <div class="row padding-top-20">
                     <div class="col-md-5 form-group basic">
-                        <button id="btn-submit" type="submit" class="btn btn-success btn-round" value="add">
+                        <button  type="submit" class="btn btn-success btn-round">
                             <i class="now-ui-icons ui-1_simple-add"></i>
                             @lang('buttons.update')
                         </button>
                     </div>
                 </div>
             </div>
+
+
         </form>
     </div>
 @stop
 @section('additional_scripts')
-    {{--<script src="{{asset('js/admin/userprofile.js')}}"></script>--}}
-    <script src="{{asset('js/front/front_profile.js')}}"></script>
-
+    <script src="{{asset('js/front_profile.min.js')}}"></script>
 @stop

@@ -15,8 +15,6 @@ class StoreBillingInfoReques extends FormRequest
      */
     public function authorize()
     {
-        //TODO: Do the correct this here, right now i don't know what is that for
-        //return false;
         return true;
     }
 

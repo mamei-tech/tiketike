@@ -13,8 +13,6 @@ class StoreRaffleRequest extends FormRequest
      */
     public function authorize()
     {
-        //TODO: Do the correct this here, right now i don't know what is that for
-        //return false;
         return true;
     }
 
@@ -29,7 +27,8 @@ class StoreRaffleRequest extends FormRequest
             'title' => 'required|string|max:30',
             'description' => 'required|string|min:15',
             'price' => 'required|numeric|min:1',
-            //TODO Select Validation is missing
+            'category' => 'required',
+            'localization' => 'required',
         ];
     }
 }

@@ -12,11 +12,14 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $this->call([
+            WorldTablesSeeder::class,
             RaffleCategoryTableSeeder::class,       //rafflecategories
             RafflestatusTableSeeder::class,         //rafflestatus
             CityTableSeeder::class,                 //city
             UsersTableSeeder::class,                //User
             RafflesSeeder::class,                   //raffles
+            CommentsTableSeeder::class,             //comments
+            FollowTableSeeder::class,               //followers
             PromoSeeder::class,                     //Promo & Ads and also Promo Clients
             ConfigsSeeder::class,                   //configs
             PermissionsTableSeeder::class,

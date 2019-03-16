@@ -121,9 +121,6 @@ $(document).ready(function () {
     });
 
     $('#btn_addcategory').on('click',function () {
-        // e.preventDefault();
-        // alert('add category');
-        // //TODO aqui va la parte del modal de crear una categoria
         setTimeout(function () {
             $('#mdal_addCategory').modal('show');
         }, 30);

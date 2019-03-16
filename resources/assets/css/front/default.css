@@ -15,7 +15,7 @@ body.page-md {
   background: #f3f5f9;
 }
 
-/*********** 
+/***********
 Page Header
 ***********/
 /* Header search bar, toggler button & top menu */
@@ -350,7 +350,7 @@ Page Header
 }
 
 /******
-Page Footer 
+Page Footer
 ******/
 .page-footer .page-footer-inner {
   color: #69789E;
@@ -447,7 +447,7 @@ Page Footer
   }
 }
 /****
- CSS3 Spinner Bar  
+ CSS3 Spinner Bar
 ****/
 .page-spinner-bar > div,
 .block-spinner-bar > div {

@@ -1,10 +1,7 @@
-
-/* TODO You need populate the modlas with ajax */
 /* FORM POPLULATION -- MODALS */
-function popultDeleteForm(userId, username, lastname,email) {
+function popultDeleteForm(userId, username, lastname, email) {
 
     let deleteForm = $('div#frm_deleteUser form');
-    var aux = deleteForm.find('input#tb_id');
 
     deleteForm.find('input#tb_id').val(userId);
     deleteForm.find('input#tb_name').val(username);
@@ -12,13 +9,9 @@ function popultDeleteForm(userId, username, lastname,email) {
     deleteForm.find('input#tb_email').val(email);
 
     // Updating the id parameter in action attrib
-    let currentFormAction = deleteForm.attr('action');
+    // let currentFormAction = route();
 
-    /* TODO Maybe is better to save the action url at the beggining and averride every time populate runs
-    /* that way we don't need isGood2ApendID method */
-    if (isGood2ApendID(currentFormAction))
-        deleteForm.attr('action', currentFormAction + '/' + userId);
-    /* TODO if elese condition ocours notice the error to the user */
+    deleteForm.attr('action', route('users.destroy', userId));
 }
 
 function popultUpdateForm(userid, name, lastname, email, role) {
@@ -43,11 +36,9 @@ function popultUpdateForm(userid, name, lastname, email, role) {
     // Updating the id parameter in action attrib
     let currentFormAction = updateForm.attr('action');
 
-    /* TODO Maybe is better to save the action url at the beggining and averride every time populate runs
     /* that way we don't need isGood2ApendID method */
     if (isGood2ApendID(currentFormAction))
         updateForm.attr('action', currentFormAction + '/' + userid);
-    /* TODO if elese condition ocours notice the error to the user */
 }
 
 //Delete
@@ -79,7 +70,6 @@ function openUpdateModal(){
 
 $(document).ready(function () {
     $('#table_users').DataTable({
-        /* TODO User the norma or reduced buttoms here */
         "pagingType": "full_numbers",
         "bPaginate": false,
         "lengthMenu": [
@@ -122,6 +112,7 @@ $(document).ready(function () {
 
     // Delete a record
     table.on('click', '.remove', function (e) {
+        e.preventDefault();
 
         let $tr = $(this).closest('tr');
         let row = table.row($tr).data();
@@ -133,7 +124,6 @@ $(document).ready(function () {
 
         /*let $tr = $(this).closest('tr');
         table.row($tr).remove().draw();*/
-        e.preventDefault();
     });
 
     //Like record

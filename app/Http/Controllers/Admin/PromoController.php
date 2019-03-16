@@ -5,9 +5,11 @@ namespace App\Http\Controllers\Admin;
 use App\Promo;
 use Exception;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use App\Http\Requests\StorePromoRequest;
 use App\Http\Requests\EditPromoRequest;
+use Illuminate\Support\Facades\Log;
 
 class PromoController extends Controller
 {
@@ -19,12 +21,10 @@ class PromoController extends Controller
      */
     public function __construct()
     {
-        // I think this is not needed because I have this in the route middleware
-        $this->middleware('auth');
-        $this->middleware('permission:list promos');
-        $this->middleware('permission:create promo', ['only' => ['create', 'store']]);
-        $this->middleware('permission:edit promo', ['only' => ['edit', 'update']]);
-        $this->middleware('permission:delete promo', ['only' => ['destroy']]);
+        $this->middleware('permission:promo_list')          ->  only(['index']);
+        $this->middleware('permission:promo_store')         ->  only(['create', 'store']);
+        $this->middleware('permission:promo_update')        ->  only(['update']);
+        $this->middleware('permission:promo_destroy')       ->  only(['destroy']);
     }
 
 
@@ -36,6 +36,8 @@ class PromoController extends Controller
     public function index()
     {
         $promos = DB::table('promos')->get();
+
+        Log::log('INFO', trans('aLogs.adm_promo_section').' - '.Auth::user()->id);
 
         return view('admin.promos', [
             'promos' => $promos,
@@ -51,8 +53,6 @@ class PromoController extends Controller
      */
     public function create()
     {
-        //TODO Select only the fields you need
-
         $promos = DB::table('promos')->get();
 
         return view('admin.promos',
@@ -88,13 +88,16 @@ class PromoController extends Controller
 
             } catch (Exception $e) {
 
+                Log::log('ERROR', trans('aLogs.adm_promo_uploaderror').' - '.Auth::user()->id);
+
                 $promo->delete();
                 return redirect()->back()->withErrors("Something went wrong uploading the image.");
             }
         }
-
         // Retriving all the promos for redirect
         $promos = DB::table('promos')->get();
+
+        Log::log('INFO', trans('aLogs.adm_promo_store').' - '.Auth::user()->id.' - '.$promo->id);
 
         return redirect()->route('promos.index',
             [
@@ -115,9 +118,6 @@ class PromoController extends Controller
      */
     public function update(EditPromoRequest $request, $id)
     {
-
-        // $promo = Promo::where('name', $name)->first();
-
         $promo = Promo::find($id);
 
         if ($promo->canUpdateName($request->name)) {
@@ -142,11 +142,12 @@ class PromoController extends Controller
                 return redirect()->back()->withErrors("Something went wrong uploading the image.");
             }
 
-
             $promo->save();
 
             // Retriving all the promos for redirect
             $promos = DB::table('promos')->get();
+
+            Log::log('INFO', trans('aLogs.adm_promo_update').' - '.Auth::user()->id.' - '.$promo->id);
 
             return redirect()->route('promos.index',
                 [
@@ -157,11 +158,8 @@ class PromoController extends Controller
                 '303')
                 ->with('success', 'Promo "' . $promo->name . '" updated successfully');
         } else {
-            // TODO Use tranlation here
-            return redirect()->back()->withErrors("The name you use is already taken.");
+            return redirect()->back()->withErrors(trans('validation.name_already_taken'));
         }
-
-        /* $promo::update(Input::all()); */
     }
 
     /**
@@ -173,7 +171,10 @@ class PromoController extends Controller
     public function destroy($name)
     {
         $promo = Promo::where('name', $name)->first();
+        $promoname = $promo->name;
         $promo->delete();
+
+        Log::log('INFO', trans('aLogs.adm_promo_delete').' - '.Auth::user()->id.' - '.$promoname);
 
         return redirect()
             ->route('promos.index', null, '303')

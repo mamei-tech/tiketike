@@ -50,7 +50,7 @@ class PromoSeeder extends Seeder
             ]
         );
 
-        DB::table('promos')->insert([
+        $lezcano = DB::table('promos')->insertGetId([
                 'name'          => 'Lezcano 02',
                 'type'          => 0,
                 'status'        => 1,
@@ -66,6 +66,8 @@ class PromoSeeder extends Seeder
                 'website'       => 'http://www.lezcano.com'
             ]
         );
+
+        \App\Promo::find($lezcano)->addMediaFromUrl('http://localhost/pics/front/slide1.jpg')->toMediaCollection('promos','promos');
 
         DB::table('promos')->insert([
                 'name'          => 'Girls Pics',
@@ -100,5 +102,20 @@ class PromoSeeder extends Seeder
                 'website'       => 'http://www.mamaei.com'
             ]
         );
+
+        // Main
+        $promoa = \App\Promo::find(2);
+        $promob = \App\Promo::find(3);
+
+        $promoa->addMediaFromUrl('http://localhost/pics/common/psample_1.jpg')->toMediaCollection('promos', 'promos');
+        $promob->addMediaFromUrl('http://localhost/pics/common/psample_2.jpg')->toMediaCollection('promos', 'promos');
+
+
+        // Sec
+        $promoc = \App\Promo::find(1);
+        $promod = \App\Promo::find(4);
+
+        $promoc->addMediaFromUrl('http://localhost/pics/common/psample_3.jpg')->toMediaCollection('promos', 'promos');
+        $promod->addMediaFromUrl('http://localhost/pics/common/psample_4.jpg')->toMediaCollection('promos', 'promos');
     }
 }

@@ -43,8 +43,6 @@
 
         {{--Create Role Modal --}}
         @include('admin.partials.modals.payment_pending_details_modal')
-        {{--@include('admin.partials.modals.araffledelete_modal')--}}
-        {{--@include('admin.partials.modals.urafflecreate_modal')--}}
 
     </div>
 

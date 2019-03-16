@@ -3,11 +3,19 @@
 namespace App\Http\Controllers;
 
 use App\Raffle;
+use App\RafflePays;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Stripe\Stripe;
+use Stripe\Charge;
 
 class DirectBuysController extends BuysController
 {
+    public function __construct()
+    {
+        $this->middleware('permission:buys_tickets')->only(['buyTickets']);
+    }
+
     /**
      * Process a tickets buy.
      *
@@ -17,9 +25,24 @@ class DirectBuysController extends BuysController
      */
     public function buyTickets($raffleId, Request $request)
     {
-        $raffle = Raffle::findOrFail($raffleId);
-
-        $raffle->buyTickets(Auth::user(), $request->availabletickets);
+        Stripe::setApiKey(env('STRIPE_SECRET'));
+        $token = $request->get('stripeToken');
+        $charge = Charge::create([
+            'amount' => $request->get('amountInCents'),
+            'currency' => 'usd',
+            'description' => 'Tikets buyed from raffle '.$raffleId,
+            'source' => $token,
+        ]);
+        if ($charge['paid'] == true) {
+            $raffle = Raffle::findOrFail($raffleId);
+            $raffle->buyTickets(Auth::user(), $request->get('tickets'));
+            $raffle_pay = new RafflePays();
+            $raffle_pay->raffle_id = $raffleId;
+            $raffle_pay->charge_id = $charge['id'];
+            $raffle_pay->amount = $charge['amount'];
+            $raffle_pay->save();
+            return redirect()->back()->with('200',['response' => "Your paiment was sent successfully"]);
+        }
 
         return redirect($request->fullUrl(), 303);
     }

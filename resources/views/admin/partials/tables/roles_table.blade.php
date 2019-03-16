@@ -1,4 +1,4 @@
-<table id="tbl_roles" class="table table-striped table-bordered" cellspacing="0" width="100%">
+<table id="tbl_roles" class="table table-striped table-bordered" cellspacing="0" width="100%" style="table-layout: fixed; word-wrap:break-word;">
 
     <thead class=" text-primary">
     <tr>
@@ -9,7 +9,7 @@
             Role
         </th>
         <th>
-            Guard name
+            Guard
         </th>
         <th>Permissions</th>
         <th class="disabled-sorting text-right">
@@ -29,16 +29,12 @@
                 $perm = '';
                 foreach ($role->permissions as $permission) {
                     $role = explode(" ",$permission->name);
-                    $perm.=$role[0].'_'.$role[1].',';
+                    $perm.=$permission->name.',';
                 }
                 ?>
                 {{ $perm }}
             </td>
             <td class="text-right">
-                {{-- TODO Aling the action icons making them floating to right --}}
-                <a class="btn btn-info btn-icon btn-sm like" href="">
-                    <i class="now-ui-icons users_single-02"></i>
-                </a>
                 <a class="btn btn-success btn-icon btn-sm edit" href="">
                     <i class="now-ui-icons ui-2_settings-90"></i>
                 </a>

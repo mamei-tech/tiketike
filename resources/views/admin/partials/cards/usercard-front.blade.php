@@ -1,4 +1,3 @@
-{{-- TODO customize the info here --}}
 <div class="front">
     <div class="cover">
         <img src="{{ asset('pics/common/rotating_card_thumb.png') }}">

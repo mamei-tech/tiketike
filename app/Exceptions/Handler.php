@@ -53,13 +53,12 @@ class Handler extends ExceptionHandler
             $json = [
                 'success' => false,
                 'error' => [
-                    'code' => 403,
                     'message' => $exception->getMessage(),
                 ],
             ];
 
             return redirect()->back()
-                ->with('success', $exception->getMessage());
+                ->withErrors( $json);
         }
         if ($request->ajax() || $request->wantsJson())
         {

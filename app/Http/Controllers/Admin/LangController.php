@@ -9,8 +9,6 @@ use Illuminate\Support\Facades\Input;
 class LangController extends Controller
 {
 
-    //TODO Add a validator reques for this method controller
-
     public function localizator(){
         if (!Session::has('locale'))
             Session::put('locale', input::get('locale'));

@@ -13,17 +13,12 @@
                         <h5 class="modal-title textoCenter sinkinSans600SB text-uppercase colorN">categorias</h5>
                     </div>
                     <div class="modal-body">
-                        <div class="listadoCategoria text-center">
+                        <div class="listadoCategoriaR text-center">
                             <ul class="nav sinkinSans400R">
-                                <li><a href="#" class="colorN text-uppercase">Todos</a></li>
-                                <li class="active"><a href="#" class="colorN text-uppercase">Celulares</a></li>
-                                <li><a href="#" class="colorN text-uppercase">Ropa/Calzado</a></li>
-                                <li><a href="#" class="colorN text-uppercase">Electrodomestico</a></li>
-                                <li><a href="#" class="colorN text-uppercase">autos / piezas</a></li>
-                                <li><a href="#" class="colorN text-uppercase">PC/acsesorios</a></li>
-                                <li><a href="#" class="colorN text-uppercase">Cosmeticos</a></li>
-                                <li><a href="#" class="colorN text-uppercase">Joyas</a></li>
-                                <li><a href="#" class="colorN text-uppercase">Mobiliario</a></li>
+                                <li class="active"><a href="#" class="colorN text-uppercase" id="all">Todos</a></li>
+                                @foreach($categories as $category)
+                                    <li><a href="#" id="{{ $category->category }}" class="colorN text-uppercase filters">{{$category->category}}</a></li>
+                                @endforeach
                             </ul>
                         </div>
                     </div>
@@ -45,7 +40,7 @@
                         <h5 class="modal-title textoCenter text-uppercase colorN">filtrar por</h5>
                     </div>
                     <div class="modal-body">
-                        <div class="listadoCategoria">
+                        <div class="listadoCategoriaR">
                             <h5 class="modal-title textoCenter text-uppercase colorV">paises</h5>
                             <div class="america">
                                 <div class="panel-heading borderBottomG" role="tab" id="">
@@ -214,10 +209,10 @@
         </div><!-- /.modal -->
     </div>
     <div class="ordenarPorcientoR visible-xs">
-        <a class="btn btnOrdenarPorcientoR colorB bg-ordenarPorcientoR texto18">%</a>
+        <a class="btn btnOrdenarPorcientoR colorB bg-ordenarPorcientoR texto18" id="percent">%</a>
     </div>
     <div class="ordenarPrecioR visible-xs">
-        <a class="btn btnOrdenarPorcientoR colorB bg-ordenarPorcientoR"><i class="fa fa-dollar texto18"></i></a>
+        <a class="btn btnOrdenarPorcientoR colorB bg-ordenarPorcientoR" id="price"><i class="fa fa-dollar texto18"></i></a>
     </div>
 </div>
 <!--FIN Modal para mostrar las categorias y el filtrar en la vista movil-->

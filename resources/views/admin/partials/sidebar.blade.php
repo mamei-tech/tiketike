@@ -1,11 +1,9 @@
 <div class="sidebar" data-color="orange">
     <!-- Tip 1: You can change the color of the sidebar using: data-color="blue | green | orange | red | yellow" -->
     <div class="logo">
-        {{-- TODO Fix url here --}}
         <a href="http://www.creative-tim.com" class="simple-text logo-mini">
             TK
         </a>
-        {{-- TODO Fix url here --}}
         <a href="http://www.creative-tim.com" class="simple-text logo-normal">
             TikeTike
         </a>
@@ -45,13 +43,6 @@
                             </a>
                         </li>
 
-                        <li>
-                            <a href="{{ route('billing.info', Auth::id()) }}">
-                                <span class="sidebar-mini-icon"> B </span>
-                                <span class="sidebar-normal"> Billing info </span>
-                            </a>
-                        </li>
-
                     </ul>
                 </div>
             </div>
@@ -83,22 +74,15 @@
                                 <span class="sidebar-normal"> @lang('aSidebar.users') </span>
                             </a>
                         </li>
-                        {{--{{dump(\Auth::user()->assignRole('admin'))}}--}}
 
-                        @if(\Auth::user()->hasPermissionTo('list roles'))
-                        <li class="@isset($li_activeRoles) {{ $li_activeRoles }} @endisset">
-                            <a href="{{ route('roles.index') }}">
-                                <span class="sidebar-mini-icon"> R </span>
-                                <span class="sidebar-normal"> @lang('aSidebar.roles') </span>
-                            </a>
-                        </li>
-                        @endif
-                        <li class="@isset($li_acivePerms) {{ $li_acivePerms }} @endisset">
-                            <a href="">
-                                <span class="sidebar-mini-icon"> P </span>
-                                <span class="sidebar-normal"> @lang('aSidebar.perms') </span>
-                            </a>
-                        </li>
+                        @can('list_roles')
+                            <li class="@isset($li_activeRoles) {{ $li_activeRoles }} @endisset">
+                                <a href="{{ route('roles.index') }}">
+                                    <span class="sidebar-mini-icon"> R </span>
+                                    <span class="sidebar-normal"> @lang('aSidebar.roles') </span>
+                                </a>
+                            </li>
+                        @endcan
                     </ul>
                 </div>
             </li>
@@ -149,6 +133,7 @@
                                 <span class="sidebar-normal"> @lang('Configuration') </span>
                             </a>
                         </li>
+
                     </ul>
                 </div>
             </li>

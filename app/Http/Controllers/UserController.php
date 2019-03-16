@@ -3,29 +3,27 @@
 namespace App\Http\Controllers;
 
 
-use App\Http\TkTk\LogsMsgs;
+use App\City;
 use App\Http\Requests\StoreUserprofileRequest;
 use App\Promo;
-use App\Raffle;
 use App\Repositories\RaffleRepository;
 use App\User;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use App\Country;
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Log;
-
 
 class UserController extends Controller
 {
-
     private $raffleRepository;
+
     public function __construct(RaffleRepository $raffleRepository)
     {
-        // I think this is not needed because I have this in the route middleware
-        $this->middleware('auth');
-        $this->middleware('permission:edit user', ['only' => ['edit', 'update']]);
+        $this->middleware('permission:user_front_getprofile')       ->  only(['getProfile']);
+        $this->middleware('permission:user_front_edit')             ->  only(['edit']);
+        $this->middleware('permission:user_front_update')           ->  only(['update']);
+
         $this->raffleRepository = $raffleRepository;
     }
 
@@ -33,7 +31,7 @@ class UserController extends Controller
     {
         $current = User::findOrFail(intval($userid));
         $suggested = $this->raffleRepository->getSuggested();
-        $promos = Promo::where('type',1)->where('status',1)->get();
+        $promos = Promo::where('type', 1)->where('status', 1)->get();
         return view('user', [
             'user' => $current,
             'suggested' => $suggested,
@@ -51,34 +49,36 @@ class UserController extends Controller
     public function edit($userid)
     {
         $user = User::with('getProfile')->findOrFail($userid);
+        $countries = Country::all();
+        $countrycities = null;
+        $first_time = true;
+        if ($user->getProfile()->exists()){
+            $countrycities = City::with('country')->whereHas('country', function (Builder $q) use ($user) {
+                $q->where('id',$user->getProfile->getCity->country->id);
+            })
+                ->get();
+            $first_time = false;
+        }
 
-        $countries = Country::paginate(10);
-        $countrycities = DB::table('cities')
-            ->select('cities.*')
-            ->where('cities.country', $user->getProfile->getCity->getCountry->id)
-            ->get();
 
         return view('front_profile', [
             'user' => $user,
             'countries' => $countries,
-            'countrycities' => $countrycities
+            'countrycities' => $countrycities,
+            'first_time' => $first_time
         ]);
     }
 
 
     public function update(StoreUserprofileRequest $request, $userid)
     {
-        var_dump($request->get('avatar'));
-        die();
-
         // Get the user instance
         $user = User::with('getProfile')->findOrFail($userid);
 
         // Avatar ops
-        if ($request->has('avatar') and $request->file('avatar')->isValid()) {
-            $user->getProfile->clearMediaCollection('avatars');
-            $user->getProfile->addMediaFromRequest('avatar')->toMediaCollection('avatars', 'avatars');  // Second parameters is de defaul filesystem, optional
-            $user->getProfile->avatarname = $request->avatar->getClientOriginalName();
+        if ($request->has('avatar') and $request->file('avatar') != null) {
+            $user->clearMediaCollection('avatars');
+            $user->addMediaFromRequest('avatar')->toMediaCollection('avatars', 'avatars');  // Second parameters is de defaul filesystem, optional
         }
 
         if ($request->has('password') && $request->get('password') != '') {
@@ -89,6 +89,7 @@ class UserController extends Controller
         $user->name = $request->get('firstname');
         $user->lastname = $request->get('lastname');
         $user->email = $request->get('email');
+        $user->api_token = $user->getApiToken();
 
         if (isset($request->all()['birthdate']))
             $user->getProfile->birthdate = date('Y-m-d', strtotime($request->get('birthdate')));
@@ -104,23 +105,17 @@ class UserController extends Controller
             $user->getProfile->addrss = $request->get('address');
         if (isset($request->all()['zipcode']))
             $user->getProfile->zipcode = $request->get('zipcode');
+        if (isset($request->all()['phone']))
+            $user->getProfile->phone = $request->get('phone');
 
         // Saving user and user's profile
         $user->getProfile->save();
         $user->save();
-        $roles = array();
-        foreach (array_get($request->all(), 'roles', []) as $role) {
-            array_push($roles,$role);
-        }
-        $user->syncRoles($roles);
 
         // Logs the actions
-        Log::info(LogsMsgs::$msgs['accepted'], [$user->getProfile->username, $userid]);
+        Log::log('INFO', LogsMsgs::$msgs['accepted'], [$user->getProfile->username, $userid]);
 
-        return redirect()->route('profile.info',['userid'=>$userid])
+        return redirect()->route('profile.info', ['userid' => $userid])
             ->with('success', 'User "' . $user->getProfile->username . '" updated successfully');
     }
-
-
-
 }

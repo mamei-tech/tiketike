@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class UsersTableSeeder extends Seeder
 {
@@ -68,5 +69,12 @@ class UsersTableSeeder extends Seeder
         factory(\App\User::class, 30)->create();
         factory(\App\UserProfile::class, 30)->create();
 
+        $users = \App\User::all();
+        $values = [0 => 'user', 1=> 'user2'];
+        foreach ($users as $user)
+        {
+            $img = rand(0,1);
+            $user->addMediaFromUrl('http://localhost/pics/front/'.$values[$img].'.jpg')->toMediaCollection('avatars','avatars');
+        }
     }
 }

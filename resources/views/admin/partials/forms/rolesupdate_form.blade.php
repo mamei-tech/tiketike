@@ -22,16 +22,13 @@
         </div>
     </div>
 
-
-
     <div class="row">
         <label class="col-sm-3 col-form-label">Permissions</label>
         <div class="col-sm-9">
                 @foreach($permissions as $permission)
                 <div class="form-check">
                     <label class="form-check-label">
-                        <?php $role = explode(" ",$permission->name);?>
-                        <input class="form-check-input" name="permissions[]" id="i{{ $role[0] }}_{{$role[1]}}"  type="checkbox" value="{{ $permission->id }}">
+                        <input class="form-check-input" name="permissions[]" id="i{{ $permission->name}}"  type="checkbox" value="{{ $permission->id }}">
                         <span class="form-check-sign"></span>
                         {{ $permission->name }}
                     </label>
