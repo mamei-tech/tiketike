@@ -35,7 +35,7 @@ class UserProfile extends Model implements HasMedia
 
     public function getCity()
     {
-        return $this->belongsTo(World::Countries()->children()->all, 'world_cities', 'id');
+        return $this->belongsTo(City::class,'city','id');
     }
 
     /* Only jpg or png files are allowed */
