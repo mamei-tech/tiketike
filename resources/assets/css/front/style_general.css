@@ -1331,7 +1331,7 @@ section#vertical ul li.last {
 
 .bg-popover{
     background: url("../../pics/front/bg-popoverR.png");
-    background-size: 100% 250px!important;
+    /*background-size: 100% 250px!important;*/
     padding: 20px;
     height: 50px;
     width: 100px;

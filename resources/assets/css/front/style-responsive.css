@@ -1161,7 +1161,7 @@
     }
     .bg-popover {
         background: url("../../pics/front/bg-popoverR.png") no-repeat;
-        background-size: contain;
+        background-size: 100px 650px;!important;
         width: 280px;
         height: 298px;
         padding: 40px 20px;
