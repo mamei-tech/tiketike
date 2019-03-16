@@ -56,12 +56,12 @@
         font-size: 1rem;
     }
     .bg-popover {
-        background: url("../../pics/front/popover.svg") no-repeat scroll top center;
-        background-size: auto auto;
+        background: url("../../pics/front/bg-popoverR.png") no-repeat scroll top center;
+        /*background-size: auto auto;*/
         width: 100%;
         height: auto;
         padding: 15px;
-        background-size: cover;
+        /*background-size: cover;*/
         font-size: 10px;
     }
     .dimenUsuarioG {
@@ -215,12 +215,11 @@
         margin-left: -90px;
     }
     .bg-popover {
-        background: url("../../pics/front/popover.svg") no-repeat scroll top center;
-        background-size: auto auto;
+        background: url("../../pics/front/bg-popoverR.png") no-repeat scroll top center;
+
         width: 100%;
         height: auto;
         padding: 15px;
-        background-size: cover;
         font-size: 10px;
     }
     .logo img {
@@ -362,11 +361,10 @@
 
     .bg-popover {
         background: url("../../pics/front/popover.svg") no-repeat scroll top center;
-        background-size: auto auto;
-        width: 100%;
-        height: auto;
+        background-size: 100% 650px;
+        width: 650px;!important;
+        height: 300px;!important;
         padding: 15px;
-        background-size: cover;
         font-size: 10px;
     }
 
@@ -580,19 +578,6 @@
 
 
 }
-@media (min-width: 760px) {
-
-    .bg-popover {
-        background: url("../../pics/front/popover.svg") no-repeat scroll top center;
-        background-size: auto auto;
-        width: 100%;
-        height: auto;
-        padding: 15px;
-        background-size: cover;
-        font-size: 10px;
-    }
-
-}
 @media (max-width: 600px) {
     .imginline {
         width: 100%;
@@ -676,11 +661,10 @@
     }
     .bg-popover {
         background: url("../../pics/front/popover.svg") no-repeat scroll top center;
-        background-size: auto auto;
+        background-size: 100% 650px;
         width: 100%;
         height: auto;
         padding: 15px;
-        background-size: cover;
         font-size: 10px;
     }
     .texto35 {
@@ -1176,7 +1160,8 @@
         right: -15px;
     }
     .bg-popover {
-        background: url("../../pics/front/bg-popoverR.png");
+        background: url("../../pics/front/bg-popoverR.png") no-repeat;
+        background-size: contain;
         width: 280px;
         height: 298px;
         padding: 40px 20px;

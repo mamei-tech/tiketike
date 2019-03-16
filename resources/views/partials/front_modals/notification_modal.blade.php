@@ -11,14 +11,16 @@
             </div>
 
             <div class="modal-body">
+                @if(Auth::user()!= null)
                 <div class="text-center">
-                    <img src="{{ asset('pics/front/user.jpg') }}" alt="Ringo"
+                    <img src="{{ Auth::user()->getMedia('avatars')->first()->getUrl() }}" alt="Ringo"
                          class="imgUsuario sombraImgUser2"><br>
                     <div class="padding-top-10">
-                        <span class="sinkinSans300L colorN margin-right-15 padding-top5">Jane Doe</span><br>
-                        <span class="sinkinSans200LI texto10">Pais</span>
+                        <span class="sinkinSans300L colorN padding-top5">{{Auth::user()->name}}</span><br>
+                        <span class="sinkinSans200LI texto10">{{Auth::user()->getProfile->getCity->country->name}}</span>
                     </div>
                 </div>
+                @endif
                 <div class="borderBottomG padding-top-40">
                     <span class="text-uppercase sinkinSans400R">notificaciones</span>
                     <div>

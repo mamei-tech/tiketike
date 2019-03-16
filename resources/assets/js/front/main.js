@@ -26,11 +26,22 @@ $(document).ready(function () {
             $('#sold_tickets').html(response.data['sold_tickets']);
             $('#link_to_profile').href = '';
             $('#link_to_profile').attr('href', route('profile.info',{userid}));
+            $('#created_raffles_xs').html('');
+            $('#winned_raffles_xs').html('');
+            $('#sold_tickets_xs').html('');
+            $('#name_xs').html(response.data['name']+ '  /');
+            $('#country_xs').html('  ' + response.data['country']);
+            $('#created_raffles_xs').html(response.data['created_raffles']);
+            $('#winned_raffles_xs').html(response.data['winned_raffles']);
+            $('#sold_tickets_xs').html(response.data['sold_tickets']);
+            $('#link_to_profile_xs').href = '';
+            $('#link_to_profile_xs').attr('href', route('profile.info',{userid}));
             $('.field-item .even')
         }).catch(function (error) {
             console.log(error);
         })
     });
+
 
     uploadHBR.init({
         "target": "#uploads",
