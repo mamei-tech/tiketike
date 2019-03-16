@@ -655,6 +655,7 @@ div .search-box {
 .img-contenedor:hover, .img-contenedor:focus {
     width: 110px;
     height: 110px;
+    text-overflow: ellipsis;
 }
 .pais{
     font-style: italic;
@@ -1324,11 +1325,36 @@ section#vertical ul li.last {
     height: 55px;
     font-size: 20px;
 }
+
+.bg-popover-border{
+ background: transparent;
+}
+
+@-ms-viewport {
+    width: device-width;
+}
+.visible-xs-f1,
+.visible-lg {
+    display: none !important;
+}
+
+@media (max-width: 767px) {
+    .visible-xs-f1 {
+        display: block !important;
+    }
+}
+
 .bg-popover{
-    background: url("../../pics/front/popover.svg");
-    width: 100%;
-    height: 188px;
-    padding: 40px 70px;
+    background: url("../../pics/front/bg-popoverR.png");
+    background-size: 100% 250px!important;
+    padding: 20px;
+    height: 50px;
+    width: 100px;
+
+
+    /*width: 100%;*/
+    /*height: 188px;*/
+    /*padding: 40px 70px;*/
 }
 
 /*slick-Vertical*/

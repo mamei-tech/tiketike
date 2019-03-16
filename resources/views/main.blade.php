@@ -27,7 +27,7 @@
                     <span class="colorB texto24 sinkinSans300LI">Texto de bienvenida del sitio y de orientación al usuario</span>
                 </div>
                 <div class="col-md-3 padding-top-20 center-textR">
-                    <a href="@if(Auth::user() != null)#createRaffleModal @else #loginModal @endif" data-toggle="modal"
+                    <a href="@if(Auth::check())#createRaffleModal @else #loginModal @endif" data-toggle="modal"
                        class="btn btn-primary btn-lg texto24 bg_green padding10">
                         <span class="margin-right-15 padding-left10 sinkinSans300L">@lang('views.create_raffle')</span>
                         <span aria-hidden="true" class="ti-angle-right styleFlechaD"></span>

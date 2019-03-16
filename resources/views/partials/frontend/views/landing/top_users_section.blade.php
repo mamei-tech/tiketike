@@ -20,54 +20,50 @@
                     <div class="col-md-12 borderBotDis hidden-xs"></div>
                 </div>
                 <!--TOP de ganadores visibles solo en vista movil-->
-                <div class="col-xs-12 paddingLeft0 padding-rigth-0 visible-xs padding-top-20">
+                <div class="slick-vertical col-xs-12 paddingLeft0 padding-rigth-0 visible-xs padding-top-20">
+                    <?php
+                    $ordinals = ['1st', '2nd', '3rd', '4th', '5th', '6th', '7th', '8th', '9th', '10th'];
+                    $count = 0;
+                    ?>
+                    @foreach($top_users as $top_user)
+                        <div class="col-xs-4 slick-list padding-left30 padding-top-20" id="{{$top_user->id}}">
+                            <div class="img-contenedor padding-bottom5">
+                                <img src="{{$top_user->getMedia('avatars')->first()->getUrl()}}" alt="Ringo"
+                                     class="dimenUsuarioG sombraImgUser img-popover">
+                            </div>
+                            <span class="text-center sinkinSans600SB texto14 " style="padding-left: 35px">{{ $ordinals[$count] }}</span>
+                        </div>
+                        <?php $count++; ?>
+                    @endforeach
 
-                    <div class="col-xs-4 ">
-                        <div class="img-contenedor padding-bottom5">
-                            <img src="{{ asset('pics/front/user.jpg') }}" alt="Ringo"
-                                 class="dimenUsuarioG sombraImgUser img-popover">
-                        </div>
-                        <span class="text-center sinkinSans600SB texto14 padding-left10">1ro</span>
-                    </div>
-                    <div class="col-xs-4">
-                        <div class="img-contenedor padding-bottom5">
-                            <img src="{{ asset('pics/front/user.jpg') }}" alt="Ringo"
-                                 class="dimenUsuarioG sombraImgUser img-popover">
-                        </div>
-                        <span class="text-center sinkinSans600SB texto14 padding-left10">2do</span>
-                    </div>
-                    <div class="col-xs-4 ">
-                        <div class="img-contenedor padding-bottom5">
-                            <img src="{{ asset('pics/front/user.jpg') }}" alt="Ringo"
-                                 class="dimenUsuarioG sombraImgUser img-popover">
-                        </div>
-                        <span class="text-center sinkinSans600SB texto14 padding-left10">3ro</span>
-                    </div>
+
                 </div>
-                <div class="col-xs-12 bg-popover visible-xs">
+
+                <div class="col-xs-12 bg-popover visible-xs-f1" >
                     <div class="colorV visible-xs text-center texto14 padding-top-30"><span
-                                class="sinkinSans600SB text-uppercase">Jane Doe /</span> <span
-                                class="sinkinSans300LI">@lang('views.country')</span>
+                                class="sinkinSans600SB text-uppercase"id="name_xs">Jane Doe /</span><span
+                                class="sinkinSans300LI" id="country_xs">@lang('views.country')</span>
                     </div>
                     <div class="col-xs-12 padding-top-20 sinkinSans400R">
                         <span class="colorN padding-top-20 margin-right40">@lang('views.winned_raffles'):</span>
-                        <strong class="colorV">20%</strong>
+                        <strong class="colorV" id="winned_raffles_xs">20%</strong>
                         <div class="padding-top-20">
-                            <span class='colorN margin-right40'>@lang('views.created_raffles'):</span>
-                            <strong class="colorV">20%</strong><br>
+                            <span class="colorN margin-right40">@lang('views.created_raffles'):</span>
+                            <strong class="colorV"id="created_raffles_xs">20%</strong><br>
                         </div>
                     </div>
                     <div class="col-xs-12 padding-top-20 sinkinSans400R">
                         <span class="colorN padding-top-20 margin-right40">@lang('views.shared_raffles'):</span>
                         <strong class="colorV">20%</strong>
                         <div class="padding-top-20">
-                            <span class='colorN margin-right40'>@lang('views.sold_tickets'):</span>
-                            <strong class="colorV">20%</strong><br>
+                            <span class="colorN margin-right40">@lang('views.sold_tickets'):</span>
+                            <strong class="colorV" id="sold_tickets_xs">20%</strong><br>
                         </div>
                     </div>
-                    <a href="" class="floatRight sinkinSans200LI padding-top-30 colorN">@lang('views.go_to_profile')
+                    <a href="" class="floatRight sinkinSans200LI padding-top-30 colorN" id="link_to_profile_xs">@lang('views.go_to_profile')
                         <span class="ti-angle-right texto16 colorN texto-negrita padding-top5"></span></a>
                 </div>
+
                 <!--FIN top de ganadores visibles solo en vista movil-->
                 <!--Usuarios Opinan-->
                 <div class="col-xs-12 userOpinan marginResponsive-5 padding-top-10 padding-left0">
@@ -102,7 +98,7 @@
                         </div>
                     </div>
                     <div class="col-md-12 borderBotDis hidden-lg"></div>
-                    <a href="#" class="colorV pull-right padding-top-10 sinkinSans600SB">Ver más</a>
+
 
 
                 </div>
@@ -116,7 +112,8 @@
                 ?>
                 @foreach($top_users as $top_user)
 
-                    <div class="slick-list information " id="{{$top_user->id}}" style="padding-top: 20px ; padding-bottom: 20px">
+                    <div class="slick-list information " id="{{$top_user->id}}"
+                         style="padding-top: 20px ; padding-bottom: 20px">
                         <div class="pull-left margin-right-15 padding-left-top-users">
                             <div class="img-contenedor">
                                 <img src="{{$top_user->getMedia('avatars')->first()->getUrl()}}" alt="Ringo"
@@ -133,15 +130,17 @@
             </div>
             <div class="col-sm-5 col-md-4 col-lg-4 bg-popoverLanding padding-top-50 hidden-xs padding-left-0">
                 <span class="colorV text-uppercase sinkinSans600SB texto20" id="name">Jane Doe</span><br>
-                <span class="colorV sinkinSans300LI texto20"id="country">@lang('views.country')</span><br>
+                <span class="colorV sinkinSans300LI texto20" id="country">@lang('views.country')</span><br>
                 <div class="row sinkinSans200L texto14 padding-top-20 paddingLeft0">
                     <div class="col-xs-12 padding-top-20 paddingLeft0">
                         <div class="col-xs-9"><span class="colorN margin-right-20">@lang('views.created_raffles'):</span></div>
-                        <div class="col-xs-3"><strong class="colorV sinkinSans600SB" id="created_raffles">20%</strong><br></div>
+                        <div class="col-xs-3"><strong class="colorV sinkinSans600SB"
+                                                      id="created_raffles">20%</strong><br></div>
                     </div>
                     <div class="col-xs-12 padding-top-20 paddingLeft0">
                         <div class="col-xs-9"><span class="colorN margin-right-20">@lang('views.winned_raffles'):</span></div>
-                        <div class="col-xs-3"><strong class="colorV sinkinSans600SB" id="winned_raffles">100%</strong><br></div>
+                        <div class="col-xs-3"><strong class="colorV sinkinSans600SB"
+                                                      id="winned_raffles">100%</strong><br></div>
                     </div>
                     <div class="col-xs-12 padding-top-20 paddingLeft0">
                         <div class="col-xs-9"><span class="colorN margin-right-20">@lang('views.shared_raffles'):</span></div>
@@ -149,7 +148,8 @@
                     </div>
                     <div class="col-xs-12 padding-top-20 paddingLeft0">
                         <div class="col-xs-9"><span class="colorN margin-right-20">@lang('views.sold_tickets'):</span></div>
-                        <div class="col-xs-3"><strong class="colorV sinkinSans600SB" id="sold_tickets">20%</strong><br></div>
+                        <div class="col-xs-3"><strong class="colorV sinkinSans600SB" id="sold_tickets">20%</strong><br>
+                        </div>
                     </div>
                 </div>
                 <a href="" class="floatRight sinkinSans200LI padding-top-50 colorN" id="link_to_profile">@lang('views.go_to_profile')

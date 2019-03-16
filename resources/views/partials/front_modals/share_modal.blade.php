@@ -22,10 +22,6 @@
                     <a class=" padding-left30" href="mailto:?&cc=&bcc=&subject=Good Raffle for you&body={{route('referrals.tickets.buy',[$raffle->id, Auth::user()->id,'socialNetworkId' => 3])}}">
                         <span class="ti-email texto-negrita colorV margin-right-5 texto35" title="Email"></span>
                     </a>
-                    <a class=" btn-linkedin padding-left30"
-                       href="https://www.linkedin.com/shareArticle?mini=true&url={{route('referrals.tickets.buy',[$raffle->id, Auth::user()->id,'socialNetworkId' => 0])}}&title=Good%20Raffle%20for%20you&summary=&source=">
-                        <span class="ti-linkedin texto-negrita colorV margin-right-5 texto35" title="Linkedin"></span>
-                    </a>
 
                 </div>
 
