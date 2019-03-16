@@ -11,9 +11,6 @@
                 <h5 class="modal-title text-uppercase textoCenter padding-top-20">Share</h5>
             </div>
             <div class="modal-body">
-
-
-
                 <div class="col-xs-12 text-center margin-bottom-40">
                     <a class=" btn-facebook padding-left30" href="https://www.facebook.com/sharer/sharer.php?u={{route('referrals.tickets.buy',[$raffle->id, Auth::user()->id,'socialNetworkId' => 1])}}">
                         <span class="ti-facebook texto-negrita colorV margin-right-5 texto35" title="Facebook"></span>

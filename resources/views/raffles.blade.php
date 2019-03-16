@@ -3,6 +3,7 @@
     @include('partials.frontend.header')
     @include('partials.front_modals.filters')
     @include('partials.front_modals.mobile_suggest')
+    @include('partials.front_modals.notification_modal')
     <div class="container contenido">
         <div class="row ">
             <!--categoria y rifas-->
