@@ -235,4 +235,14 @@ class DashboardController extends ApiController
             'net_gain'     => round(Raffle::rafflesNetGain(), 2),
         ]);
     }
+
+    public function raffleReferrals($raffleId) {
+
+        return $this->respond([
+            'status' => 'success',
+            'status_code' => Response::HTTP_OK,
+            // Payload
+            'referrals'   => Raffle::referralsInfo($raffleId)
+        ]);
+    }
 }

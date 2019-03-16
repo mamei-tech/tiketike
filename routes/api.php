@@ -50,6 +50,7 @@ Route::group([
     Route::get('/soldedtickets', 'DashboardController@soldedTickets')->name('v1.customadmin.soldedtickets');
     Route::get('/soldedticketsbysocialnetworks', 'DashboardController@soldedTicketsBySocialNetworks')->name('v1.customadmin.soldedticketsbysocialnetworks');
     Route::get('/moneybytickets', 'DashboardController@moneyByTickets')->name('v1.customadmin.moneybytickets');
+    Route::get('/rafflereferrals/{raffleId}', 'DashboardController@raffleReferrals')->name('v1.groups.rafflereferrals');
 });
 
 
