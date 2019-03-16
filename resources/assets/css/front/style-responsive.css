@@ -1576,7 +1576,7 @@
         right: -15px;
     }
     .bg-popover {
-        background: url("../../pics/front/bg-popoverR.png");
+        background: url("../../pics/front/bg-popoverR.png") no-repeat;
         width: 280px;
         height: 298px;
         padding: 40px 20px;
@@ -1983,7 +1983,7 @@
         right: -15px;
     }
     .bg-popover {
-        background: url("../../pics/front/bg-popoverR.png");
+        background: url("../../pics/front/bg-popoverR.png") no-repeat;
         width: 280px;
         height: 298px;
         padding: 40px 20px;
@@ -2407,7 +2407,7 @@
         right: -15px;
     }
     .bg-popover {
-        background: url("../../pics/front/bg-popoverR.png");
+        background: url("../../pics/front/bg-popoverR.png") no-repeat;
         width: 280px;
         height: 298px;
         padding: 40px 20px;

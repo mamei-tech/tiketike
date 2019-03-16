@@ -25,8 +25,6 @@ let mix = require('laravel-mix');
 mix.setPublicPath('public/');
 mix.setResourceRoot('../../');
 
-/* TODO Remove source maps sentence in deployment*/
-
 /*
  |--------------------------------------------------------------------------
  | Mix Core
@@ -152,6 +150,4 @@ mix.js('resources/assets/js/admin/views/admin/payment.js', 'public/js/admin/paym
 /* Admin | views | configs raffles */
 mix.js('resources/assets/js/admin/views/admin/configs/configraffles.js', 'public/js/admin/configraffles.js').sourceMaps();
 
-
-/* TODO use nprogres lib in the admin theme section */
 

@@ -55,7 +55,7 @@ $(document).ready(function () {
 
     $('#price').on('click',function (e) {
         e.preventDefault();
-        $(e.target).addClass('active');
+        // $(e.target).addClass('active');
         var category = $('div.listadoCategoriaN ul li[class="active"] a').html();
         // alert(category);
         axios.post('api/filterByPercent',{

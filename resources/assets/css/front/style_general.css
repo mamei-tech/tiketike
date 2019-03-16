@@ -308,6 +308,15 @@ body {
 .margin-top5{
     margin-top: 5px;
 }
+.margin-top10{
+    margin-top: 10px;
+}
+.margin-top15{
+    margin-top: 15px;
+}
+.margin-top20{
+    margin-top: 20px;
+}
 .padding10{
     padding: 10px!important;
 }
@@ -831,11 +840,17 @@ div.checker, div.checker span, div.checker input {
     width: 30px;
     height: 20px;
 }
+
+.flag-country {
+    width: 16px;
+    height: 16px;
+}
+
 .paddingRifas{
     padding:0 50px;
 }
 div.contenido{
-    margin-top: 85px;
+    margin-top: 15px;
 }
 .panel-heading {
     border-bottom: inherit;
@@ -855,7 +870,7 @@ input[type="radio"], input[type="checkbox"] {
 }
 .porcientoCompletado {
     border-right: #000000 2px dashed;
-    padding-right: 35px;
+    padding-right: 16px;
 }
 .dashedDerecho{
     border-right: #9D9D9D 2px dashed;

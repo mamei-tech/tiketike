@@ -1,3 +1,4 @@
+
 <div class="topUsuariosTop"></div>
 <section class="usuariostop">
     <div class="container">
@@ -8,15 +9,12 @@
                         <span class="ti-crown texto35 colorB"></span>
                     </div>
                     <div class="col-xs-12 col-md-10 paddingUserTop  centerR">
-                        <span class="text-uppercase colorB sinkinSans600SB texto35">usuarios top</span>
+                        <span class="text-uppercase colorB sinkinSans600SB texto35">@lang('views.top_users')</span>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-xs-12 padding-left-0">
-                        <p class="colorB texto24 sinkinSans300LI padding-top-20 centerR">Estás viendo el Top 10 de
-                            los
-                            usuarios más destacados
-                            del sitio
+                        <p class="colorB texto24 sinkinSans300LI padding-top-20 centerR">@lang('views.top_ten_explanation')
                         </p>
                     </div>
                     <div class="col-md-12 borderBotDis hidden-xs"></div>
@@ -44,25 +42,25 @@
                 <div class="col-xs-12 bg-popover visible-xs-f1" >
                     <div class="colorV visible-xs text-center texto14 padding-top-30"><span
                                 class="sinkinSans600SB text-uppercase"id="name_xs">Jane Doe /</span><span
-                                class="sinkinSans300LI" id="country_xs">Pais</span>
+                                class="sinkinSans300LI" id="country_xs">@lang('views.country')</span>
                     </div>
                     <div class="col-xs-12 padding-top-20 sinkinSans400R">
-                        <span class="colorN padding-top-20 margin-right40">Rifas ganadas:</span>
+                        <span class="colorN padding-top-20 margin-right40">@lang('views.winned_raffles'):</span>
                         <strong class="colorV" id="winned_raffles_xs">20%</strong>
                         <div class="padding-top-20">
-                            <span class="colorN margin-right40">Rifas Creadas:</span>
+                            <span class="colorN margin-right40">@lang('views.created_raffles'):</span>
                             <strong class="colorV"id="created_raffles_xs">20%</strong><br>
                         </div>
                     </div>
                     <div class="col-xs-12 padding-top-20 sinkinSans400R">
-                        <span class="colorN padding-top-20 margin-right40">Rifas Compartidas:</span>
+                        <span class="colorN padding-top-20 margin-right40">@lang('views.shared_raffles'):</span>
                         <strong class="colorV">20%</strong>
                         <div class="padding-top-20">
-                            <span class="colorN margin-right40">Tickets Vendidos:</span>
-                            <strong class="colorV"id="sold_tickets_xs">20%</strong><br>
+                            <span class="colorN margin-right40">@lang('views.sold_tickets'):</span>
+                            <strong class="colorV" id="sold_tickets_xs">20%</strong><br>
                         </div>
                     </div>
-                    <a href="" class="floatRight sinkinSans200LI padding-top-30 colorN" id="link_to_profile_xs">ir al perfil
+                    <a href="" class="floatRight sinkinSans200LI padding-top-30 colorN" id="link_to_profile_xs">@lang('views.go_to_profile')
                         <span class="ti-angle-right texto16 colorN texto-negrita padding-top5"></span></a>
                 </div>
 
@@ -110,8 +108,7 @@
 
             <div class=" slick-vertical col-sm-3 col-md-4 col-lg-3 user hidden-xs ">
                 <?php
-                $ordinals = ['1st', '2nd', '3rd', '4th', '5th', '6th', '7th', '8th', '9th', '10th'];
-                $count = 0;
+                $count = 1;
                 ?>
                 @foreach($top_users as $top_user)
 
@@ -124,7 +121,7 @@
                             </div>
                         </div>
                         <div class="pull-left padding-top-10">
-                            <h3 class="sinkinSans600SB">{{ $ordinals[$count] }}</h3>
+                            <h3 class="sinkinSans600SB">{{ $count.trans('views.'.$count) }}</h3>
                         </div>
                     </div>
                     <?php $count++; ?>
@@ -133,29 +130,29 @@
             </div>
             <div class="col-sm-5 col-md-4 col-lg-4 bg-popoverLanding padding-top-50 hidden-xs padding-left-0">
                 <span class="colorV text-uppercase sinkinSans600SB texto20" id="name">Jane Doe</span><br>
-                <span class="colorV sinkinSans300LI texto20" id="country">Pais</span><br>
+                <span class="colorV sinkinSans300LI texto20" id="country">@lang('views.country')</span><br>
                 <div class="row sinkinSans200L texto14 padding-top-20 paddingLeft0">
                     <div class="col-xs-12 padding-top-20 paddingLeft0">
-                        <div class="col-xs-9"><span class="colorN margin-right-20">Rifas creadas:</span></div>
+                        <div class="col-xs-9"><span class="colorN margin-right-20">@lang('views.created_raffles'):</span></div>
                         <div class="col-xs-3"><strong class="colorV sinkinSans600SB"
                                                       id="created_raffles">20%</strong><br></div>
                     </div>
                     <div class="col-xs-12 padding-top-20 paddingLeft0">
-                        <div class="col-xs-9"><span class="colorN margin-right-20">Rifas ganadas:</span></div>
+                        <div class="col-xs-9"><span class="colorN margin-right-20">@lang('views.winned_raffles'):</span></div>
                         <div class="col-xs-3"><strong class="colorV sinkinSans600SB"
                                                       id="winned_raffles">100%</strong><br></div>
                     </div>
                     <div class="col-xs-12 padding-top-20 paddingLeft0">
-                        <div class="col-xs-9"><span class="colorN margin-right-20">Rifas compartidas:</span></div>
+                        <div class="col-xs-9"><span class="colorN margin-right-20">@lang('views.shared_raffles'):</span></div>
                         <div class="col-xs-3"><strong class="colorV sinkinSans600SB">20%</strong><br></div>
                     </div>
                     <div class="col-xs-12 padding-top-20 paddingLeft0">
-                        <div class="col-xs-9"><span class="colorN margin-right-20">Tickets vendidos:</span></div>
+                        <div class="col-xs-9"><span class="colorN margin-right-20">@lang('views.sold_tickets'):</span></div>
                         <div class="col-xs-3"><strong class="colorV sinkinSans600SB" id="sold_tickets">20%</strong><br>
                         </div>
                     </div>
                 </div>
-                <a href="" class="floatRight sinkinSans200LI padding-top-50 colorN" id="link_to_profile">ir al perfil
+                <a href="" class="floatRight sinkinSans200LI padding-top-50 colorN" id="link_to_profile">@lang('views.go_to_profile')
                     <span class="ti-angle-right texto16 colorN texto-negrita padding-top5"></span></a>
             </div>
         </div>

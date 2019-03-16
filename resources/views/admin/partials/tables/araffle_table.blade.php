@@ -1,31 +1,29 @@
 <table id="tbl_araffles" class="table table-striped table-bordered" cellspacing="0" width="100%">
-
     <thead class=" text-primary">
-    {{--TODO Use translations here--}}
     <tr>
         <th>
             ID
         </th>
         <th>
-            Title
+            @lang('tables.title')
         </th>
         <th>
-            Price
+            @lang('tables.price')
         </th>
         <th>
-            T.Sold
+            @lang('tables.ticket_sold')
         </th>
         <th>
-            T.Total
+            @lang('tables.ticket_total')
         </th>
         <th>
-            Progress
+            @lang('tables.progress')
         </th>
         <th>
-            A.Date
+            @lang('tables.activation_date')
         </th>
         <th class="disabled-sorting text-right">
-            Actions
+            @lang('tables.action')
         </th>
     </tr>
     </thead>
@@ -43,7 +41,6 @@
 
             {{--Buttons --}}
             <td class="text-right">
-                {{-- TODO Aling the action icons making them floating to right --}}
 
                 <a class="btn btn-info btn-icon btn-sm" href="">
                     <i class="now-ui-icons education_glasses"></i>

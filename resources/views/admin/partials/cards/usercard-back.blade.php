@@ -1,4 +1,3 @@
-{{-- TODO customize the info here --}}
 <div class="back">
     <div class="header-card">
         <h5 class="motto"><b>{{ $user->email }}</b></h5>

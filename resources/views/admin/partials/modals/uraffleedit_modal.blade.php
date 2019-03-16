@@ -22,21 +22,10 @@
 
                     <div id="frm_editRaffle" class="col-md-12">
                         @include('admin.partials.forms.raffleedit_form')
-
-                        {{--TODO Change this proper to this view--}}
-                        {{-- control --}}
-                        {{--<span id="show_modal" hidden>@isset($show_create_modal){{ $show_create_modal }}@endisset</span>--}}
                     </div>
 
                 </div>
             </div>
-
-            {{--Modal Footer--}}
-            {{--<div class="modal-footer">--}}
-            {{--<div class="">--}}
-            {{--<p></p>--}}
-            {{--</div>--}}
-            {{--</div>--}}
         </div>
 
     </div>

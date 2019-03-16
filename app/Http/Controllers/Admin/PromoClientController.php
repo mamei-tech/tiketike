@@ -4,8 +4,10 @@ namespace App\Http\Controllers\Admin;
 
 use App\PromoClient;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use App\Http\Requests\StorePromoClientRequest;
+use Illuminate\Support\Facades\Log;
 
 class PromoClientController extends Controller
 {
@@ -31,6 +33,8 @@ class PromoClientController extends Controller
     {
         $clients = DB::table('promoclients')->get();
 
+        Log::log('INFO', trans('aLogs.adm_promoclietn_section').' - '.Auth::user()->id);
+
         return view('admin.promosclients', [
             'clients' => $clients,
             'div_showPromo' => 'show',
@@ -55,6 +59,8 @@ class PromoClientController extends Controller
         $promoclient->save();
 
         $clients = DB::table('promoclients')->get();
+
+        Log::log('INFO', trans('aLogs.adm_promoclient_store').' - '.Auth::user()->id.' - '.$promoclient.':'.$promoclient->name);
 
         return redirect()->route('pmclients.index',
             [
@@ -85,6 +91,8 @@ class PromoClientController extends Controller
 
         $clients = DB::table('promoclients')->get();
 
+        Log::log('INFO', trans('aLogs.adm_promoclient_update').' - '.Auth::user()->id.' promoclient_id:'.$promoclient->ip);
+
         return redirect()->route('pmclients.index',
             [
                 'clients' => $clients,
@@ -104,7 +112,10 @@ class PromoClientController extends Controller
     public function destroy($id)
     {
         $client = PromoClient::where('id', $id)->first();
+        $clientname = $client->name;
         $client->delete();
+
+        Log::log('INFO', trans('aLogs.adm_promoclient_del').' - '.Auth::user()->id.' client_name:'.$clientname);
 
         return redirect()
             ->route('pmclients.index', null, '303')

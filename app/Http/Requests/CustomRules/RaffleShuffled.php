@@ -13,7 +13,6 @@ use Illuminate\Contracts\Validation\Rule;
 
 class RaffleShuffled implements Rule
 {
-    //TODO set custom message with internationalization
     private $message;
 
     /**
@@ -21,6 +20,7 @@ class RaffleShuffled implements Rule
      */
     public function __construct()
     {
+        $this->message = 'validation.raffle_not_shuffled';
     }
 
     public function passes($attribute, $year)
@@ -34,7 +34,6 @@ class RaffleShuffled implements Rule
 
     public function message()
     {
-        // return ':attribute needs more cowbell!';
         return $this->message;
     }
 }

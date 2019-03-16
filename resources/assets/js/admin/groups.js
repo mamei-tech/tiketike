@@ -1,4 +1,10 @@
 
+function openRaffleReferralsModal() {
+    setTimeout(function () {
+        $('#mdal_raffleReferrals').modal('show');
+    }, 30);
+}
+
 $(document).ready(function () {
 
     /* CONFIGURATION -- DATATABLE */
@@ -22,5 +28,13 @@ $(document).ready(function () {
             searchPlaceholder: "Search records",
         }
 
+    });
+
+    let table = $('#groups_table').DataTable();
+
+    table.on('click', '.btn-info', function (e) {
+        openRaffleReferralsModal();
+        console.log("ybm");
+        e.preventDefault();
     });
 });

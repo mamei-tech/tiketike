@@ -5,8 +5,6 @@
 
     {{-- Meta, title, CSS, favicons, etc. --}}
     @section('metas')
-
-        {{--TODO benith the favicon sentecen benith--}}
         {{-- <link rel="icon" type="image/png" href="../assets/img/favicon.png"> --}}
 
         <meta charset="utf-8">

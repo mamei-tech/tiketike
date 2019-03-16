@@ -10,8 +10,6 @@
 @endsection
 
 @section('content')
-    {{-- TODO Personalize this --}}
-
     <div class="row">
         <div class="col-md-12">
             <div class="card card-stats card-raised">
@@ -550,6 +548,7 @@
             {{--</div>--}}
         {{--</div>--}}
     {{--</div>--}}
+    @include('admin.partials.modals.rafflereferrals_modal')
 @endsection
 
 @section('footerScripts')

@@ -209,10 +209,10 @@
         </div><!-- /.modal -->
     </div>
     <div class="ordenarPorcientoR visible-xs">
-        <a class="btn btnOrdenarPorcientoR colorB bg-ordenarPorcientoR texto18">%</a>
+        <a class="btn btnOrdenarPorcientoR colorB bg-ordenarPorcientoR texto18" id="percent">%</a>
     </div>
     <div class="ordenarPrecioR visible-xs">
-        <a class="btn btnOrdenarPorcientoR colorB bg-ordenarPorcientoR"><i class="fa fa-dollar texto18"></i></a>
+        <a class="btn btnOrdenarPorcientoR colorB bg-ordenarPorcientoR" id="price"><i class="fa fa-dollar texto18"></i></a>
     </div>
 </div>
 <!--FIN Modal para mostrar las categorias y el filtrar en la vista movil-->

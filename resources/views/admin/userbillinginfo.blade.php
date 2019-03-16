@@ -18,8 +18,6 @@
         {{-- USER FORM --}}
         <div class="col-md-12">
             <div class="card">
-
-                {{-- TODO Apply this style tittle to the other views --}}
                 <div class="card-header">
                     <h4 class="title"> Billing Information </h4>
                 </div>

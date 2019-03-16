@@ -13,7 +13,7 @@
                     <ul class="list-inline padding-top-20 padding-left20">
                         <li class="margin-left-20 ">
                             <a data-toggle="modal" href="#loginModal" title="Autenticarse"
-                               class="colorB texto16 sinkinSans500M">Autenticarse</a>
+                               class="colorB texto16 sinkinSans500M">@lang('views.login')</a>
                             @include('partials.front_modals.login_modal')
                             @include('partials.front_modals.register_modal')
                         </li>
@@ -29,13 +29,13 @@
                 <div class="col-md-3 padding-top-20 center-textR">
                     <a href="@if(Auth::check())#createRaffleModal @else #loginModal @endif" data-toggle="modal"
                        class="btn btn-primary btn-lg texto24 bg_green padding10">
-                        <span class="margin-right-15 padding-left10 sinkinSans300L">Crear rifa</span>
+                        <span class="margin-right-15 padding-left10 sinkinSans300L">@lang('views.create_raffle')</span>
                         <span aria-hidden="true" class="ti-angle-right styleFlechaD"></span>
                     </a>
                     @include('partials.front_modals.create_raffle_modal')
                     <div class="padding-top50 margin-left15">
                         <a href="#" class="texto24 colorB padding10">
-                            <span class="margin-right-15 sinkinSans300L">Participa</span>
+                            <span class="margin-right-15 sinkinSans300L">@lang('views.take_part')</span>
                             <i aria-hidden="true" class="ti-angle-right styleFlechaD"></i>
                         </a>
                     </div>

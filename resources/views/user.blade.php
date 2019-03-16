@@ -30,7 +30,7 @@
                             @endif
                             <br>
 
-                            <span class="sinkinSans500MI texto16">{{$user->getProfile->getCity->getCountry->name}}</span>
+                            <span class="sinkinSans500MI texto16">{{$user->getProfile->getCity->country->name}}</span>
                         </div>
                     </div>
                     <div class="row hidden-xs padding-top-20">
@@ -82,16 +82,6 @@
                                 <span class="ti-email colorV  margin-right-10"></span>
                                 {{$user->email}}
                             </div>
-
-                            {{--TODO Made Social Info--}}
-                            {{--<div class="facebook sinkinSans500M padding-top-20">--}}
-                            {{--<span class="ti-facebook colorV texto14 margin-right-10"></span>--}}
-                            {{--janedoe--}}
-                            {{--</div>--}}
-                            {{--<div class="twitter sinkinSans500M padding-top-20">--}}
-                            {{--<span class="ti-twitter colorV texto14 margin-right-10"></span>--}}
-                            {{--@janedoe--}}
-                            {{--</div>--}}
                         </div>
                         @if($user->id == \Auth::User()->id)
                             <div class="col-xs-12 padding-top-20">

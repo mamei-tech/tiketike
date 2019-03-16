@@ -141,7 +141,7 @@
                 var returnMoment;
 
                 if (d === undefined || d === null) {
-                    returnMoment = moment(); //TODO should this use format? and locale?
+                    returnMoment = moment();
                 } else if (moment.isDate(d) || moment.isMoment(d)) {
                     // If the date that is passed in is already a Date() or moment() object,
                     // pass it directly to moment.

@@ -1,13 +1,14 @@
 @extends('layouts.base')
 @section('content')
     @include('partials.frontend.header')
-    @include('partials.front_modals.filters')
+    @include('partials.front_modals.login_modal')
     @include('partials.front_modals.mobile_suggest')
     @include('partials.front_modals.edit_raffle_modal')
+    @include('partials.front_modals.notification_modal')
     <div class="container margin-top60">
         <div class="row">
             <!--Contenido ticket-->
-            <div class="col-xs-12 col-sm-7 col-sm-push-5 col-lg-7 col-lg-push-3 padding-top-20 paddingLeft0 padding-rigth-0">
+            <div class="col-xs-12 col-sm-7 col-sm-push-5 col-lg-7 margin-top15 col-lg-push-3 paddingLeft0 padding-rigth-0">
                 <div class="contenidoTicket" id="scrollContent">
                     <div class="col-xs-12 ">
                         <div class="col-xs-4 col-md-3">
@@ -17,9 +18,9 @@
                         <div class="col-xs-8 col-md-9 texto14 sinkinSans600SB padding0">
                             <span class="colorN">{{ $raffle->getOwner->name }} {{ $raffle->getOwner->lastname }}</span>
                             <span class="ti-location-pin"></span>
-                            <span class=""><img src="{{ asset('pics/countries/'.$raffle->getLocation->name.'.png') }}">{{ $raffle->getLocation->name }}</span>
+                            <span class=""><img class="flag-country" src="{{ asset('pics/countries/png100px/'.$raffle->getLocation->code.'.png') }}">{{ $raffle->getLocation->name }}</span>
                             <p class="texto18 text-uppercase texto-negrita colorN padding-top-10"
-                               style="font-family: sinkinSans700Bold">{{ $raffle->title }} @if(\Auth::user()->id == $raffle->getOwner->id and $raffle->status < 2)<a href="#editRaffleModal" data-toggle="modal"><i class="fa fa-edit"></i> Editar rifa </a>@endif </p>
+                               style="font-family: sinkinSans700Bold">{{ $raffle->title }} @if(Auth::check()) @if(\Auth::user()->id == $raffle->getOwner->id and $raffle->status < 2)<a href="#editRaffleModal" data-toggle="modal"><i class="fa fa-edit"></i></a>@endif @endif </p>
                         </div>
                     </div>
                     <div class="col-xs-12 padding-top-20">
@@ -93,7 +94,7 @@
                         </div>
                         <ul class="list-unstyled pull-right list-inline padding-top-20 ">
                             <li class="margin-right-10">
-                                <a @if(Auth::user() == null)  data-toggle="modal" href="#loginModal"
+                                <a @if(Auth::user() == null)data-toggle="modal" href="#loginModal"
                                    @else
                                    href="" title="Comentarios" id="comenta"@endif>
                                     <span class="ti-comment colorV margin-right-5 dimenIconos"></span>
@@ -105,12 +106,11 @@
                                 </a>
                             </li>
                             <li class="margin-right-10">
-                                <a data-toggle="modal" data-target="#{{$raffle->id}}-share_modal" href="" title="Compartir">
+                                <a data-toggle="modal" data-target="@if(\Auth::check())#{{$raffle->id}}-share_modal @else #loginModal @endif" href="" title="Compartir">
                                     <span class="ti-share colorV margin-right-5 dimenIconos"></span>
                                 </a>
                             </li>
                             @include('partials.front_modals.share_modal')
-
                         </ul>
                     </div>
                     <div id="comentarios" style=" display:none" class="col-xs-12">
@@ -205,9 +205,9 @@
                 </div>
             </div>
             <!--FIN Contenido ticket-->
-            <div class="col-xs-12 visible-xs publicidad padding-top-20 padding-bottom20">
-                <img src="{{ asset('pics/front/proyecto1.jpg') }}" class="imgPublicidadR" alt="">
-            </div>
+            {{--<div class="col-xs-12 visible-xs publicidad padding-top-20 padding-bottom20">--}}
+                {{--<img src="{{ asset('pics/front/proyecto1.jpg') }}" class="imgPublicidadR" alt="">--}}
+            {{--</div>--}}
             <div class="col-xs-12 col-sm-5 col-sm-pull-7 col-lg-3 col-lg-pull-7 paddingLeft0 padding-rigth-0">
                 <div class="bg-gris paddingLateralGris">
                     <div class="borderTopDashed padding-bottom20 ">

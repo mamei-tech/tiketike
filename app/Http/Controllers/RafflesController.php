@@ -37,12 +37,11 @@ class RafflesController extends Controller
      */
     public function __construct(RaffleRepository $raffleRepository)
     {
-        $this->middleware('permission:raffles_list')          ->  only(['index']);
-        $this->middleware('permission:raffles_create')        ->  only(['create', 'store']);
-        $this->middleware('permission:raffles_edit')          ->  only(['edit', 'update']);
-        $this->middleware('permission:raffles_follow')        ->  only(['follow']);
-        $this->middleware('permission:raffles_finished')        ->  only(['finishedView']);
-        $this->middleware('permission:raffles_checkConfirmation')        ->  only(['checkConfirmation']);
+        $this->middleware('permission:raffles_create')                  ->  only(['create', 'store']);
+        $this->middleware('permission:raffles_edit')                    ->  only(['edit', 'update']);
+        $this->middleware('permission:raffles_follow')                  ->  only(['follow']);
+        $this->middleware('permission:raffles_finished')                ->  only(['finishedView']);
+        $this->middleware('permission:raffles_checkConfirmation')       ->  only(['checkConfirmation']);
 
         $this->raffleRepository = $raffleRepository;
     }
