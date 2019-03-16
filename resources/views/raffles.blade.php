@@ -119,16 +119,17 @@
                                             %</span>
                                         <span class="texto14 colorN pull-left sinkinSans600SB texto14">{{ $raffle->getOwner->name }} {{ $raffle->getOwner->lastname }}</span>
                                         <span class="ti-location-pin texto16 padding-left10 colorN"></span>
-                                        <!-- TODO Buscar como poner el texto al lado de la imagen sin hacerla flotar -->
                                         <span class="texto14 padding-left10 sinkinSans600SB texto14 colorN"><img class="flag-country" src="{{ asset('pics/countries/png100px/'.$raffle->getLocation->code.'.png') }}">{{ $raffle->getLocation->name }}</span>
                                         <h4 class=" text-uppercase sinkinSans400R textoR">
                                             <a class="colorN"
                                                href="{{ route('raffle.tickets.available',['raffleId' => $raffle->id]) }}">{{ $raffle->title }}</a>
                                         </h4>
+
                                         <div class="hidden-lg texto8">
                                             <span class="sinkinSans300L ">Costo:</span>
                                             <span class="sinkinSans600SB">{{ $raffle->tickets_price ? $raffle->tickets_price : 0  }}</span>
                                         </div>
+
                                         <div class="costo hidden-xs">
                                             <div class="pull-left porcientoCompletado">
                                                 <span class="texto35 sinkinSans600SB colorN">{{ round($raffle->getProgress()) }}
@@ -140,6 +141,7 @@
                                                 <span class="colorN sinkinSans600SB">${{ $raffle->tickets_price ? $raffle->tickets_price : 0 }}</span>
                                             </div>
                                         </div>
+
                                         <ul class="list-unstyled list-inline padding-top-20 hidden-xs pull-right">
                                             <li class=" margin-right-10">
                                                 <a href="{{ route('raffles.follow',['raffleId' => $raffle->id]) }}">
@@ -150,7 +152,8 @@
                                             </li>
                                             <li class=" margin-right-10">
                                                 <a href="">
-                                        <span data-toggle="modal" data-target="#{{$raffle->id}}-share_modal" class="ti-share texto-negrita colorV margin-right-5 texto16"
+                                        <span data-toggle="modal" data-target="#{{$raffle->id}}-share_modal"
+                                              class="ti-share texto-negrita colorV margin-right-5 texto16"
                                               title="Compartir"></span>
                                                     <span class="colorV sinkinSans600SB">Compartir</span>
                                                 </a>
