@@ -128,6 +128,16 @@ return [
     |--------------------------------------------------------------------------
     |
     */
-    'forminvalid' => 'Lo sentimos, los datos del formulario no son válidos.',
+    'forminvalid' => 'Lo sentimos, los datos del formulario no son válidos',
+    'expiration_date' => 'El mes de expiración debe ser un número entre 1 y 12',
+    'month_chars' => 'Los meses tienen solo 2 caractéres',
+    'month_format' => 'Inserte un mes correcto. Use el formato MM.',
+    'year_exist' => 'El año de expiración no existe',
+    'year_chars' => 'El año debe tener exactamente dos caractéres',
+    'year_format' => 'Usted debe insertar un año válido en el formato YYYY.',
+    'pass_wrong' => 'Algo fue mal con su password. Insértelo nuevamente',
+    'pass_short' => 'Password demasiado corto',
+    'pass_number' => 'El password debe contener al menos un número.',
+    'pass_letter' => 'El password debe contener al menos una letra.'
 
 ];
