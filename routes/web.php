@@ -37,7 +37,6 @@ Route::group(['prefix' => 'raffles',
     Route::get('{raffleId}/follow', 'RafflesController@follow')->name('raffles.follow');
     Route::post('/{raffleId}/tickets/buy', 'DirectBuysController@buyTickets')->name('raffle.tickets.buy');
     Route::post('/{raffleId}/{referralId}/{socialNetworkId}', 'ReferralsBuysController@buyTickets')->name('referrals.tickets.buy');
-    Route::get('/{raffleId}/{referralId}/{socialNetworkId}', 'ReferralsBuysController@buyTickets')->name('referrals.tickets.buy.get');
 
     Route::post('/{raffleId}/tickets/buy/comment','CommentsController@store')->name('raffle.comment');
     Route::post('/comment/edit/{commentId}','CommentsController@edit')->name('comment.edit');
@@ -112,7 +111,7 @@ Route::group(['prefix' => 'raffles'
 ], function () {
 //publishing raffle access route
     Route::get('/{raffleId}/tickets/buy', 'DirectBuysController@availableTickets')->name('raffle.tickets.available');
-    Route::get('/{raffleId}/{referralId}', 'ReferralsBuysController@availableTickets')->name('referrals.tickets.available');
+    Route::get('/{raffleId}/{referralId}/{socialNetworkId}', 'ReferralsBuysController@availableTickets')->name('referrals.tickets.available');
     Route::get('/view/{raffleId}/finished','RafflesController@finishedView')->name('raffle.finished.view');
     Route::post('/checkConfirmation/{raffleId}/finished','RafflesController@checkConfirmation')->name('raffle.finished.checkConfirmation');
 });
