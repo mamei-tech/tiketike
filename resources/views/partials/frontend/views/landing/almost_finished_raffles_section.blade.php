@@ -4,7 +4,7 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="borderBotDis dimenBorderBotDisc">
-                    <h3 class="text-uppercase sinkinSans600SB texto24 text-center colorVC">rifas por culminar</h3>
+                    <h3 class="text-uppercase sinkinSans600SB texto24 text-center colorVC">@lang('views.almost_finished_raffle')</h3>
                 </div>
             </div>
             <div class="col-md-12">

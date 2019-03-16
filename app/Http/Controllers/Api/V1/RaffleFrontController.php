@@ -39,7 +39,7 @@ class RaffleFrontController extends ApiController
             $raffles = $this->raffleRepository->getRafflesByCategory($request->get('category'));
         foreach ($raffles as $raffle) {
             $response .= '<div class="row padding20 bg-rifas1 center-block '.$raffle->id.'">'.PHP_EOL;
-            $response .= '<div class="col-xs-4 col-md-6">'.PHP_EOL;
+            $response .= '<div class="col-xs-4 col-md-6" style="padding-left: 23px;padding-right: 0">'.PHP_EOL;
             $response .= '<div class="hidden-lg visible-xs padding-top-20 padding-left-0">'.PHP_EOL;
             $response .= '<img src="';
             if(count($raffle->getMedia('raffles')) > 0)
@@ -70,11 +70,11 @@ class RaffleFrontController extends ApiController
             $response .= '</ol>'.PHP_EOL;
             $response .= '</div>'.PHP_EOL;
             $response .= '</div>'.PHP_EOL;
-            $response .= '<div class="col-xs-8 col-md-6 padding-top10R">'.PHP_EOL;
-            $response .= '<span class="texto16 colorV hidden-lg visible-xs pull-left margin-right-10 sinkinSans600SB">'.round($raffle->getProgress()).'</span>'.PHP_EOL;
-            $response .= '<span class="texto14 colorN pull-left sinkinSans600SB texto14">'.$raffle->getOwner->name.' '.$raffle->getOwner->lastname.'</span>'.PHP_EOL;
-            $response .= '<span class="ti-location-pin texto16 padding-left10 colorN"></span>'.PHP_EOL;
-            $response .= '<span class="texto14 padding-left10 sinkinSans600SB texto14 colorN">'.$raffle->getLocation->name.'</span>'.PHP_EOL;
+            $response .= '<div class="col-xs-8 col-md-6 padding-top10R" style="padding-left: 5px">'.PHP_EOL;
+            $response .= '<span class="texto16 colorV hidden-lg visible-xs pull-left margin-right-10 sinkinSans600SB">'.round($raffle->progress).' %</span>'.PHP_EOL;
+            $response .= '<span class="texto14 colorN pull-left sinkinSans600SB texto14">'.$raffle->getOwner->name.'</span>'.PHP_EOL;
+            $response .= '<span class="ti-location-pin texto16 colorN"></span>'.PHP_EOL;
+            $response .= '<span class="texto14 sinkinSans600SB texto14 colorN"><img class="flag-country" src="'.asset('pics/countries/png100px/'.$raffle->getLocation->code.'.png').'"></span>'.PHP_EOL;
             $response .= '<h4 class=" text-uppercase sinkinSans400R textoR">'.PHP_EOL;
             $response .= '<a class="colorN" href="'.route('raffle.tickets.available',['raffleId' => $raffle->id]).'">'.$raffle->title.'</a>'.PHP_EOL;
             $response .= '</h4>'.PHP_EOL;
@@ -128,7 +128,7 @@ class RaffleFrontController extends ApiController
             $raffles = $this->raffleRepository->getRafflesByCategory($request->get('category'),$request->get('criteria'));
         foreach ($raffles as $raffle) {
             $response .= '<div class="row padding20 bg-rifas1 center-block '.$raffle->id.'">'.PHP_EOL;
-            $response .= '<div class="col-xs-4 col-md-6">'.PHP_EOL;
+            $response .= '<div class="col-xs-4 col-md-6" style="padding-left: 23px;padding-right: 0">'.PHP_EOL;
             $response .= '<div class="hidden-lg visible-xs padding-top-20 padding-left-0">'.PHP_EOL;
             $response .= '<img src="';
             if(count($raffle->getMedia('raffles')) > 0)
@@ -159,11 +159,11 @@ class RaffleFrontController extends ApiController
             $response .= '</ol>'.PHP_EOL;
             $response .= '</div>'.PHP_EOL;
             $response .= '</div>'.PHP_EOL;
-            $response .= '<div class="col-xs-8 col-md-6 padding-top10R">'.PHP_EOL;
-            $response .= '<span class="texto16 colorV hidden-lg visible-xs pull-left margin-right-10 sinkinSans600SB">'.round($raffle->getProgress()).'</span>'.PHP_EOL;
-            $response .= '<span class="texto14 colorN pull-left sinkinSans600SB texto14">'.$raffle->getOwner->name.' '.$raffle->getOwner->lastname.'</span>'.PHP_EOL;
-            $response .= '<span class="ti-location-pin texto16 padding-left10 colorN"></span>'.PHP_EOL;
-            $response .= '<span class="texto14 padding-left10 sinkinSans600SB texto14 colorN">'.$raffle->getLocation->name.'</span>'.PHP_EOL;
+            $response .= '<div class="col-xs-8 col-md-6 padding-top10R" style="padding-left: 5px">'.PHP_EOL;
+            $response .= '<span class="texto16 colorV hidden-lg visible-xs pull-left margin-right-10 sinkinSans600SB">'.round($raffle->progress).' %</span>'.PHP_EOL;
+            $response .= '<span class="texto14 colorN pull-left sinkinSans600SB texto14">'.$raffle->getOwner->name.'</span>'.PHP_EOL;
+            $response .= '<span class="ti-location-pin texto16 colorN"></span>'.PHP_EOL;
+            $response .= '<span class="texto14 sinkinSans600SB texto14 colorN"><img class="flag-country" src="'.asset('pics/countries/png100px/'.$raffle->getLocation->code.'.png').'"></span>'.PHP_EOL;
             $response .= '<h4 class=" text-uppercase sinkinSans400R textoR">'.PHP_EOL;
             $response .= '<a class="colorN" href="'.route('raffle.tickets.available',['raffleId' => $raffle->id]).'">'.$raffle->title.'</a>'.PHP_EOL;
             $response .= '</h4>'.PHP_EOL;
@@ -217,7 +217,7 @@ class RaffleFrontController extends ApiController
             $raffles = $this->raffleRepository->getRaflesByCategory($request->get('category'));
         foreach ($raffles as $raffle) {
             $response .= '<div class="row padding20 bg-rifas1 center-block '.$raffle->id.'">'.PHP_EOL;
-            $response .= '<div class="col-xs-4 col-md-6">'.PHP_EOL;
+            $response .= '<div class="col-xs-4 col-md-6" style="padding-left: 23px;padding-right: 0">'.PHP_EOL;
             $response .= '<div class="hidden-lg visible-xs padding-top-20 padding-left-0">'.PHP_EOL;
             $response .= '<img src="';
             if(count($raffle->getMedia('raffles')) > 0)
@@ -248,11 +248,11 @@ class RaffleFrontController extends ApiController
             $response .= '</ol>'.PHP_EOL;
             $response .= '</div>'.PHP_EOL;
             $response .= '</div>'.PHP_EOL;
-            $response .= '<div class="col-xs-8 col-md-6 padding-top10R">'.PHP_EOL;
-            $response .= '<span class="texto16 colorV hidden-lg visible-xs pull-left margin-right-10 sinkinSans600SB">'.round($raffle->getProgress()).'</span>'.PHP_EOL;
-            $response .= '<span class="texto14 colorN pull-left sinkinSans600SB texto14">'.$raffle->getOwner->name.' '.$raffle->getOwner->lastname.'</span>'.PHP_EOL;
-            $response .= '<span class="ti-location-pin texto16 padding-left10 colorN"></span>'.PHP_EOL;
-            $response .= '<span class="texto14 padding-left10 sinkinSans600SB texto14 colorN">'.$raffle->getLocation->name.'</span>'.PHP_EOL;
+            $response .= '<div class="col-xs-8 col-md-6 padding-top10R" style="padding-left: 5px">'.PHP_EOL;
+            $response .= '<span class="texto16 colorV hidden-lg visible-xs pull-left margin-right-10 sinkinSans600SB">'.round($raffle->progress).' %</span>'.PHP_EOL;
+            $response .= '<span class="texto14 colorN pull-left sinkinSans600SB texto14">'.$raffle->getOwner->name.'</span>'.PHP_EOL;
+            $response .= '<span class="ti-location-pin texto16 colorN"></span>'.PHP_EOL;
+            $response .= '<span class="texto14 sinkinSans600SB texto14 colorN"><img class="flag-country" src="'.asset('pics/countries/png100px/'.$raffle->getLocation->code.'.png').'"></span>'.PHP_EOL;
             $response .= '<h4 class=" text-uppercase sinkinSans400R textoR">'.PHP_EOL;
             $response .= '<a class="colorN" href="'.route('raffle.tickets.available',['raffleId' => $raffle->id]).'">'.$raffle->title.'</a>'.PHP_EOL;
             $response .= '</h4>'.PHP_EOL;
