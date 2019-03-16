@@ -21,7 +21,7 @@
         <ul class="nav navbar-nav">
             <li>
                 <a href="{{ route('raffles.index') }}" class="text-uppercase colorB sinkinSans300L icon">
-                    <span class="ti-ticket  margin-right5 rotar  texto16"></span>Rifas
+                    <span class="ti-ticket  margin-right5 rotar  texto16"></span>@lang('views.raffles')
                 </a>
             </li>
         </ul>
@@ -33,26 +33,44 @@
             @if(\Auth::user() != null)
                 <li class="">
                     <a id="logged-user-name" href="{{route('profile.info',['userid'=> \Auth::User()->id])}}"
-                       class="colorB sinkinSans300L"> {{\Auth::User()->name}} <img src="{{ Auth::user()->getMedia('avatars')->first()->getUrl() }}"
+                       class="colorB sinkinSans300L"> {{\Auth::User()->name}} <img
+                                src="{{ Auth::user()->getMedia('avatars')->first()->getUrl() }}"
 
-                                                                                   alt="Ringo"
-                                                                                   class="imgUsuarioMenu sombraImgUserMenu margin-left5"></a>
+                                alt="Ringo"
+                                class="imgUsuarioMenu sombraImgUserMenu margin-left5"></a>
                 </li>
             @endif
             @if(\Auth::user() != null)
-            <li class="notifica">
-                <a class="text-uppercase colorB sinkinSans300L icon" data-toggle="modal" href="#notificaciones" title="Notificaciones">
-                    <span class="ti-bell texto20"></span>
-                    <span class="badge badge-default" id="notifications_count">{!! count(\Auth::user()->notifications) !!}</span>
-                </a>
-            </li>
+                <li class="notifica">
+                    <a class="text-uppercase colorB sinkinSans300L icon" data-toggle="modal" href="#notificaciones"
+                       title="Notificaciones">
+                        <span class="ti-bell texto20"></span>
+                        <span class="badge badge-default"
+                              id="notifications_count">{!! count(\Auth::user()->notifications) !!}</span>
+                    </a>
+                </li>
             @endif
-            <li class="hidden-xs"><img class="styleBorderL colorB" src="{{ asset('pics/front/borderLeft.svg') }}" alt="">
+            <li class="hidden-xs"><img class="styleBorderL colorB" src="{{ asset('pics/front/borderLeft.svg') }}"
+                                       alt="">
             </li>
-            <li class="hidden-xs"><a href="" class="text-uppercase colorB sinkinSans300L icon"><img class="stylebandera" src="{{ asset('pics/front/ban2.jpg') }}"
-                                                               alt=""></a></li>
+            <li class="hidden-xs">
+                <form action="{{ route('admin.lansw') }}" method="post">
+                    {{ csrf_field() }}
+                    <button style="background: transparent;border: transparent" type="submit" class="text-uppercase colorB padding-top-20 sinkinSans300L icon">
+                        <?php
+                        $currentLocale = app()->getLocale();
+                        $otherLocale = $currentLocale == 'es' ? 'en' : 'es';
+                        ?>
+                        <input type="hidden" name="locale" value="{{ $otherLocale }}">
+                        <img class="stylebandera" src="{{ asset('pics/common/'.$otherLocale.'.png') }}" alt="">
+                    </button>
+                </form>
+            </li>
+
+
             <li class="hidden-xs colorB">
-                <a href="#" class="text-uppercase colorB sinkinSans300L icon"><span class="ti-search texto20 search-btn show-search-icon"></span></a>
+                <a href="#" class="text-uppercase colorB sinkinSans300L icon"><span
+                            class="ti-search texto20 search-btn show-search-icon"></span></a>
                 <div class="search-box" style="display: none;">
                     <form action="#">
                         <div class="input-group">
