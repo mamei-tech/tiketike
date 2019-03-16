@@ -27,7 +27,7 @@ class CategoriesController extends Controller
     {
         $categories = RaffleCategory::all();
 
-        Log::info(trans('aLogs.adm_cat_index'), [Auth::user()]);
+        Log::log('INFO', trans('aLogs.adm_cat_index').' - '.Auth::user()->id);
 
         return view('admin.categories', [
             'categories' => $categories,
@@ -40,7 +40,7 @@ class CategoriesController extends Controller
     {
         $category = RaffleCategory::create($request->all());
 
-        Log::info(trans('aLogs.adm_cat_store'), [Auth::user(), $category]);
+        Log::log('INFO', trans('aLogs.adm_cat_store').' - '.Auth::user()->id.' - '.$category);
 
         return redirect()->route('categories.index')
             ->with('success', 'Category created successfully');
@@ -54,7 +54,7 @@ class CategoriesController extends Controller
         $category->icon = $request->get('icon');
         $category->save();
 
-        Log::info(trans('aLogs.adm_cat_updated'), [Auth::user(), $request->all()]);
+        Log::log('INFO', trans('aLogs.adm_cat_updated').' - '.Auth::user()->id.' - '.$request->all());
 
         return redirect()->route('categories.index')
             ->with('success', 'Category updated successfully');

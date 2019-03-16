@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Raffle;
 use Illuminate\Support\Facades\Auth;
-use Arcanedev\LogViewer\Entities\Log;
+use Illuminate\Support\Facades\Log;
 use App\User;
 
 
@@ -30,7 +30,7 @@ class AdminController extends Controller
     {
         $sharedRaffles = Raffle::sharedRaffles();
 
-        Log::info(trans('aLogs.dashboard_show'), [Auth::user()]);
+        Log::log('INFO', trans('aLogs.dashboard_show').' - '.Auth::user()->id);
 
         return view('admin.index',
             [

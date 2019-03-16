@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Payment;
 use App\Repositories\RaffleRepository;
-use Arcanedev\LogViewer\Entities\Log;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -40,7 +40,7 @@ class PaymentController extends Controller
         // TODO Pending
         $payments = Payment::where('status','=','executed')->get();
 
-        Log::info(trans('aLogs.adm_payment_executed'), [Auth::user()]);
+        Log::log('INFO', trans('aLogs.adm_payment_executed').' - '.Auth::user()->id);
 
         var_dump($payments);
         die();
@@ -55,7 +55,7 @@ class PaymentController extends Controller
     {
         $payments = Payment::where('status','=','pending')->paginate(10);
 
-        Log::info(trans('aLogs.adm_payment_pending'), [Auth::user()]);
+        Log::log('INFO', trans('aLogs.adm_payment_pending').' - '.Auth::user()->id);
 
         return view('admin.payment_pending',compact('payments'));
     }
@@ -78,31 +78,39 @@ class PaymentController extends Controller
     }
 
     /**
-     * Make a payment. Witedraw
+     * Make a payment. Witedraw or RollBack
      *
      * @param $id
      * @return bool|\Illuminate\Http\RedirectResponse
      */
     public function pending_execute($id)
     {
+        // Witedraw ??
         Stripe::setApiKey(env('STRIPE_KEY'));
         $payment = Payment::findOrFail($id);
         if ($payment->type == 'refund') {
             $raffle = $payment->getRaffle();
             $pending_pays = $raffle->getPaymentsAttached;
-            foreach ($pending_pays as $pay) {
+            foreach ($pending_pays as $pay)
+            {
                 $refund = Refund::create([
-                    'charge' => $pay->charge_id,
-                    'amount' => $pay->amount,
+                    'charge' => $pay->charge_id,  'amount' => $pay->amount,
                     'reason' => 'Raffle ' . $raffle->title . ' was canceled.'  // TODO Transalation
                 ]);
                 if ($refund['status'] != 'succeeded') {
                     return redirect()->back()
                         ->with('404', 'Refund failed');
                 }
+
+                //TODO poner el dueño del tike que se le va a realziar el refaund en el arreglo null del log
+                Log::log('INFO', trans('aLogs.adm_refaund_exction'), []);
             }
+
         }else {
             //TODO investigate hoy to transfer money to another account
+            //TODO poner en el contexto del Log el ide del usuario de la rifa, en el arreglo que esta vacia
+            Log::log('INFO', trans('aLogs.adm_witedraw_exc').' - '.[]);
+
             return true;
 //            $refund = Refund::create([
 //                'charge' => $pay->charge_id,
@@ -113,9 +121,15 @@ class PaymentController extends Controller
 //                return redirect()->back()
 //                    ->with('404', 'Refund failed');
 //            }
+
+
         }
+
         $payment->status = 'executed';
         $payment->save();
+
+
+
         return redirect()->back()
             ->with('success','Refund executed successfully');
     }

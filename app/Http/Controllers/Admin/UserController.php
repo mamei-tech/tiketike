@@ -6,7 +6,7 @@ use App\Http\Requests\DeletingUserRequest;
 use App\Role;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use Arcanedev\LogViewer\Entities\Log;
+use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreUserprofileRequest;
 use App\User;
@@ -130,7 +130,7 @@ class UserController extends Controller
             ->get();
 
         // Logs the actions
-        Log::info(LogsMsgs::$msgs['accepted'], [$user->getProfile->username, $userid]);
+        Log::log(LogsMsgs::$msgs['accepted'], [$user->getProfile->username, $userid]);
 
         return redirect()->route('users.edit',
             [

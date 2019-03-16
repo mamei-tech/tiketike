@@ -12,7 +12,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Country;
-use Arcanedev\LogViewer\Entities\Log;
+use Illuminate\Support\Facades\Log;
 
 class UserController extends Controller
 {
@@ -113,7 +113,7 @@ class UserController extends Controller
         $user->save();
 
         // Logs the actions
-        Log::info(LogsMsgs::$msgs['accepted'], [$user->getProfile->username, $userid]);
+        Log::log('INFO', LogsMsgs::$msgs['accepted'], [$user->getProfile->username, $userid]);
 
         return redirect()->route('profile.info', ['userid' => $userid])
             ->with('success', 'User "' . $user->getProfile->username . '" updated successfully');

@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Raffle;
 use App\Repositories\RaffleRepository;
 use Illuminate\Support\Facades\Auth;
-use Arcanedev\LogViewer\Entities\Log;
+use Illuminate\Support\Facades\Log;
 
 
 class ARaffleController extends Controller
@@ -35,7 +35,7 @@ class ARaffleController extends Controller
     {
         $uraffles = $this->raffleRepository->getTenAnulleddRaffles();
 
-        Log::info(trans('aLogs.adm_araffle_index'), [Auth::user()]);
+        Log::log('INFO', trans('aLogs.adm_role_sec').' - '.Auth::user()->id);
 
         return view('admin.araffles', [
             'raffles' => $uraffles,
@@ -64,7 +64,7 @@ class ARaffleController extends Controller
             // Anulled
             if($raffle->status == 3) {
 
-                Log::info(trans('aLogs.adm_araffle_deleted'), [Auth::user(), $raffle]);
+                Log::log('INFO', trans('aLogs.adm_araffle_deleted').' - '.Auth::user()->id.' - '.$raffle->id);
 
                 return redirect()
                     ->route('arraffle.index',null, '303')
@@ -74,7 +74,7 @@ class ARaffleController extends Controller
             // Unpublished
             if($raffle->status == 1){
 
-                Log::info(trans('aLogs.adm_araffle_deleted'), [Auth::user(), $raffle]);
+                Log::log('INFO', trans('aLogs.adm_araffle_deleted').' - '.Auth::user()->id.' - '.$raffle->id);
 
                 return redirect()
                     ->route('unpublished.index',null, '303')
