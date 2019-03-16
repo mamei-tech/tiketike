@@ -349,8 +349,10 @@ class Raffle extends Model implements HasMedia
             ->groupBy('raffles.id')->get();
     }
 
-    public function referralsInfo()
+    public static function referralsInfo($raffleId)
     {
+        $raffle = Raffle::find($raffleId);
+
         return Raffle::join('tickets', 'raffles.id', '=', 'tickets.raffle')
             ->join('referralsbuys', 'tickets.id', '=', 'referralsbuys.ticket')
             ->join('users', 'users.id', '=', 'referralsbuys.comisionist')
@@ -359,7 +361,7 @@ class Raffle extends Model implements HasMedia
                 'users.name',
                 DB::raw('count(users.id) as shared_tickets')
             )
-            ->where('raffles.id', '=', $this->id)
+            ->where('raffles.id', '=', $raffle->id)
             ->groupBy('users.id')
             ->get();
     }

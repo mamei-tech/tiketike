@@ -1,6 +1,6 @@
-
-
 <?php
+
+namespace App;
 
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Session;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Auth;
 
-class SessionManager extends Model
+class SessionCounter extends Model
 {
     /**
      * {@inheritdoc}
@@ -27,7 +27,7 @@ class SessionManager extends Model
      */
     public function user()
     {
-        return $this->belongsTo('Cartalyst\Sentinel\Users\EloquentUser');
+        return $this->belongsTo(User::class);
     }
 
     /**

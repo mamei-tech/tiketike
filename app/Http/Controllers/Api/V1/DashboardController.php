@@ -6,6 +6,7 @@ use App\ActiveUsers;
 use App\Http\Controllers\Api\ApiController;
 use App\Raffle;
 use App\RaffleStatus;
+use App\SessionCounter;
 use App\Ticket;
 use App\User;
 use Illuminate\Http\Response;
@@ -21,10 +22,11 @@ class DashboardController extends ApiController
         $male_users     = [];
         $female_users   = [];
         //TODO Arreglar.
+        SessionCounter::updateCurrent();
         for($i = 0; $i < 30; $i++)
         {
-            $male_users[$i] = rand(1, 100);
-            $female_users[$i] = rand(1, 100);
+            $male_users[$i] = SessionCounter::registered()->count();
+            $female_users[$i] = SessionCounter::registered()->count();
         }
 //        for ($i = count($trackedActiveUsers) - 1; $i >= 0; $i--) {
 //            array_push($male_users, $trackedActiveUsers[$i]->male_count);
