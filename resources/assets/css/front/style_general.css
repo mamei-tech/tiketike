@@ -830,6 +830,12 @@ div.checker, div.checker span, div.checker input {
     width: 30px;
     height: 20px;
 }
+
+.flag-country {
+    width: 16px;
+    height: 16px;
+}
+
 .paddingRifas{
     padding:0 50px;
 }
