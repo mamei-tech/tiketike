@@ -78,7 +78,7 @@ class PaymentController extends Controller
     }
 
     /**
-     * Make a payment
+     * Make a payment. Witedraw
      *
      * @param $id
      * @return bool|\Illuminate\Http\RedirectResponse
@@ -94,7 +94,7 @@ class PaymentController extends Controller
                 $refund = Refund::create([
                     'charge' => $pay->charge_id,
                     'amount' => $pay->amount,
-                    'reason' => 'Raffle ' . $raffle->title . ' was canceled.'
+                    'reason' => 'Raffle ' . $raffle->title . ' was canceled.'  // TODO Transalation
                 ]);
                 if ($refund['status'] != 'succeeded') {
                     return redirect()->back()
