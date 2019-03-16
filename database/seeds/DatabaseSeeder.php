@@ -23,6 +23,7 @@ class DatabaseSeeder extends Seeder
             PromoSeeder::class,                     //Promo & Ads and also Promo Clients
             ConfigsSeeder::class,                   //configs
             PermissionsTableSeeder::class,
+            ActiveUsersTableSeeder::class,          //active users in the las 30 days
         ]);
     }
 }

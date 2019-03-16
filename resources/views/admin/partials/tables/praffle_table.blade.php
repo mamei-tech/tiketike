@@ -1,6 +1,6 @@
 <table id="tbl_praffles" class="table table-striped table-bordered" cellspacing="0" width="100%">
 
-    <thead class=" text-primary">
+    <thead class="text-primary">
     {{--TODO Use translations here--}}
     <tr>
         <th>

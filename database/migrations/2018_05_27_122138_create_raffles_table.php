@@ -51,6 +51,7 @@ class CreateRafflesTable extends Migration
             $table->string('image')->default("pics/common/rotating_card_profile.png");
             $table->unsignedtinyInteger('profit')->nullable();
             $table->float('commissions')->nullable();
+            $table->double('netGain')->default(0);
             $table->date('activation_date')->nullable();
             $table->timestamps();
 

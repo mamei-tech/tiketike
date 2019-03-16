@@ -175,4 +175,14 @@ class User extends Authenticatable implements HasMedia
         }
         return $total;
     }
+
+    public static function usersCount()
+    {
+        $usersCount = 0;
+        User::chunk(1000, function ($users) use (&$usersCount) {
+            $usersCount += count($users);
+        });
+
+        return $usersCount;
+    }
 }

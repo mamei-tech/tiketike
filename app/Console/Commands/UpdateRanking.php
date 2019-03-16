@@ -39,7 +39,7 @@ class UpdateRanking extends Command
      */
     public function handle()
     {
-
+        //TODO check this for optimization
         $users = User::all();
         foreach ($users as $user)
         {

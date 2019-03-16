@@ -32,11 +32,11 @@ Route::group(['prefix' => 'raffles',
     'middleware' => ['auth']
 ], function () {
     Route::post('/add', 'RafflesController@store')->name('raffles.index.store');
-//    Route::get('/edit/{raffleId}', 'RafflesController@edit')->name('raffles.edit');
+    Route::get('/edit/{raffleId}', 'RafflesController@edit')->name('raffles.edit');
     Route::post('/{raffleId}', 'RafflesController@update')->name('raffles.update');
     Route::get('{raffleId}/follow', 'RafflesController@follow')->name('raffles.follow');
     Route::post('/{raffleId}/tickets/buy', 'DirectBuysController@buyTickets')->name('raffle.tickets.buy');
-    Route::post('/{raffleId}/{referralId}', 'ReferralsBuysController@buyTickets')->name('referrals.tickets.buy');
+    Route::post('/{raffleId}/{referralId}/{socialNetworkId}', 'ReferralsBuysController@buyTickets')->name('referrals.tickets.buy');
 
     Route::post('/{raffleId}/tickets/buy/comment','CommentsController@store')->name('raffle.comment');
     Route::post('/comment/edit/{commentId}','CommentsController@edit')->name('comment.edit');
@@ -61,19 +61,6 @@ Route::group(['prefix' => 'users',
 });
 
 /* ADMIN ROUTES | MIX NAMESPACE */
-Route::group([
-    'prefix' => 'adm' . config('tiketike.urladminsalt'),
-    'middleware' => ['auth']
-], function (){
-
-    //Rafles
-    Route::group([
-        'prefix' => 'raffles',
-    ], function (){
-    });
-
-});
-
 
 /* PURE ADMIN ROUTES | ADMIN NAMESPACE */
 //TODO: Filter this by role, implement authorization i mean

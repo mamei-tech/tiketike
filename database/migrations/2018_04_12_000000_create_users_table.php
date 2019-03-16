@@ -22,6 +22,7 @@ class CreateUsersTable extends Migration
             $table->string('password')->nullable();
             $table->float('ranking')->nullable();
             $table->string('api_token', 60)->unique()->nullable();   // Auth purpose
+            $table->boolean('logged')->default(false);
             $table->rememberToken();
             $table->timestamps();
         });
@@ -93,6 +94,15 @@ class CreateUsersTable extends Migration
                 ->on('users')
                 ->onDelete('cascade');
         });
+
+        Schema::create('activeusers', function (Blueprint $table) {
+            $table->bigInteger('id');
+            $table->integer('male_count')->default(0);
+            $table->integer('female_count')->default(0);
+            $table->timestamps();
+
+            $table->primary('id');
+        });
     }
 
     /**
@@ -107,5 +117,6 @@ class CreateUsersTable extends Migration
         Schema::dropIfExists('cities');
         Schema::dropIfExists('countries');
         Schema::dropIfExists('users');
+        Schema::dropIfExists('activeusers');
     }
 }

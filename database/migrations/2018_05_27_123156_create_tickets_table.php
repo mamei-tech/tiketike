@@ -20,6 +20,7 @@ class CreateTicketsTable extends Migration
             $table->unsignedBigInteger('raffle');          //FK of raffles
             $table->unsignedInteger('buyer')->nullable();  //FK of users
             $table->boolean('sold')->default(false);
+            $table->boolean('soldByCom')->default(false);
             $table->boolean('bingo')->default(false);
             $table->timestamps();
 
@@ -41,6 +42,7 @@ class CreateTicketsTable extends Migration
 
             $table->unsignedInteger('comisionist');
             $table->unsignedInteger('ticket');
+            $table->smallInteger('socialNetwork')->default(0); //0 for none, 1 for facebook, 2 for twitter, 3 for instagram
             $table->unsignedBigInteger('raffle_id');
             $table->timestamps();
 

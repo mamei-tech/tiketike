@@ -1,0 +1,15 @@
+.data-section-midle-row {
+    width: 47.6%;
+    padding: 1%;
+    margin: 1.2%;
+}
+
+.data-section-full-row {
+    width: 100%;
+    border-radius: 5px;
+    background-color: white;
+}
+
+.bar-chart-canvas {
+    height: 270px;
+}

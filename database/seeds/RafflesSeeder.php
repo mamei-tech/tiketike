@@ -129,7 +129,7 @@ class RafflesSeeder extends Seeder
 
                 $tkavailable = $praffle->getTicketsAvailable()->get();                  // Getting available tickets for buying
                 $tktotal     = $tkavailable->count();                                   // Getting the total of them
-                $buys        = mt_rand(10, 35);                                         // Making a random iterator count
+                $buys        = mt_rand(5, 10);                                          // Making a random iterator count
 
                 if ($tktotal < $buys) continue;                                         // If there is not enough available tickets then continue to the next published raffle
 
@@ -153,7 +153,8 @@ class RafflesSeeder extends Seeder
                             $praffle->buyTickets(
                                 $user,
                                 [$tk->code],
-                                $tk->getRaffle->getOwner->id
+                                $tk->getRaffle->getOwner->id,
+                                mt_rand(0, 3)   //social network: 0 none, 1 facebook, 2 twitter, 3 instagram
                             );
                             $praffle->progress = $praffle->getProgress();
                             $praffle->save();
