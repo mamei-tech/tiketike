@@ -860,7 +860,7 @@ input[type="radio"], input[type="checkbox"] {
 }
 .porcientoCompletado {
     border-right: #000000 2px dashed;
-    padding-right: 28px;
+    padding-right: 25px;
 }
 .dashedDerecho{
     border-right: #9D9D9D 2px dashed;
