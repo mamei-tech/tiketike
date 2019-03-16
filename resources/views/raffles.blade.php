@@ -119,7 +119,8 @@
                                         <span class="texto14 colorN pull-left sinkinSans600SB texto14">{{ $raffle->getOwner->name }} {{ $raffle->getOwner->lastname }}</span>
                                         <span class="ti-location-pin texto16 padding-left10 colorN"></span>
                                         <!-- TODO Buscar como poner el texto al lado de la imagen sin hacerla flotar -->
-                                        <span class="texto14 padding-left10 sinkinSans600SB texto14 colorN"><img src="{{ asset('pics/countries/'.$raffle->getLocation->code.'.png') }}">{{ $raffle->getLocation->name }}</span>
+                                        <span class="texto14 padding-left10 sinkinSans600SB texto14 colorN"><img
+                                                    src="{{ asset('pics/countries/'.$raffle->getLocation->code.'.png') }}">{{ $raffle->getLocation->name }}</span>
                                         <h4 class=" text-uppercase sinkinSans400R textoR">
                                             <a class="colorN"
                                                href="{{ route('raffle.tickets.available',['raffleId' => $raffle->id]) }}">{{ $raffle->title }}</a>
@@ -148,13 +149,15 @@
                                                 </a>
                                             </li>
                                             <li class=" margin-right-10">
-                                                <a href="">
-                                        <span data-toggle="modal" data-target="#{{$raffle->id}}-share_modal" class="ti-share texto-negrita colorV margin-right-5 texto16"
-                                              title="Compartir"></span>
+                                                <a data-toggle="modal" data-target="#{{$raffle->id}}-share_modal"
+                                                   href="" title="Compartir">
+                                                    <span class="ti-share texto-negrita colorV margin-right-5 texto16"></span>
                                                     <span class="colorV sinkinSans600SB">Compartir</span>
                                                 </a>
+
                                             </li>
                                             @include('partials.front_modals.share_modal')
+
                                             <li class="">
                                                 <button type="button" class="btn btn-info btnSiguiente"><span
                                                             class="ti-arrow-right"></span>
