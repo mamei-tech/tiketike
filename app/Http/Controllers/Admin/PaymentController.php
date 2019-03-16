@@ -3,10 +3,11 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Payment;
-use App\Raffle;
 use App\Repositories\RaffleRepository;
+use Arcanedev\LogViewer\Entities\Log;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Stripe\Stripe;
 use Stripe\Refund;
 
@@ -30,16 +31,32 @@ class PaymentController extends Controller
         $this->raffleRepository = $raffleRepository;
     }
 
+    /**
+     * List the executed payments
+     *
+     */
     public function executed()
     {
+        // TODO Pending
         $payments = Payment::where('status','=','executed')->get();
+
+        Log::info(trans('aLogs.adm_payment_executed'), [Auth::user()]);
+
         var_dump($payments);
         die();
     }
 
+    /**
+     * List of pending payments
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function pending_list()
     {
         $payments = Payment::where('status','=','pending')->paginate(10);
+
+        Log::info(trans('aLogs.adm_payment_pending'), [Auth::user()]);
+
         return view('admin.payment_pending',compact('payments'));
     }
 
@@ -60,6 +77,12 @@ class PaymentController extends Controller
         return $response;
     }
 
+    /**
+     * Make a payment
+     *
+     * @param $id
+     * @return bool|\Illuminate\Http\RedirectResponse
+     */
     public function pending_execute($id)
     {
         Stripe::setApiKey(env('STRIPE_KEY'));

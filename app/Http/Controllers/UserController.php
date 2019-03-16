@@ -4,14 +4,12 @@ namespace App\Http\Controllers;
 
 
 use App\Http\Requests\StoreUserprofileRequest;
-use App\Http\TkTk\LogsMsgs;
 use App\Promo;
 use App\Repositories\RaffleRepository;
 use App\User;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Country;
-use Illuminate\Support\Facades\Log;
+use Arcanedev\LogViewer\Entities\Log;
 
 class UserController extends Controller
 {

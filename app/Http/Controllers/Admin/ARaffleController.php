@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Raffle;
 use App\Repositories\RaffleRepository;
+use Illuminate\Support\Facades\Auth;
+use Arcanedev\LogViewer\Entities\Log;
 
 
 class ARaffleController extends Controller
@@ -33,6 +35,8 @@ class ARaffleController extends Controller
     {
         $uraffles = $this->raffleRepository->getTenAnulleddRaffles();
 
+        Log::info(trans('aLogs.adm_araffle_index'), [Auth::user()]);
+
         return view('admin.araffles', [
             'raffles' => $uraffles,
             'div_showRaffles' => 'show',
@@ -59,6 +63,9 @@ class ARaffleController extends Controller
 
             // Anulled
             if($raffle->status == 3) {
+
+                Log::info(trans('aLogs.adm_araffle_deleted'), [Auth::user(), $raffle]);
+
                 return redirect()
                     ->route('arraffle.index',null, '303')
                     ->with('success','Raffle ' . $raffle->code . ' deleted successfully');
@@ -66,6 +73,9 @@ class ARaffleController extends Controller
 
             // Unpublished
             if($raffle->status == 1){
+
+                Log::info(trans('aLogs.adm_araffle_deleted'), [Auth::user(), $raffle]);
+
                 return redirect()
                     ->route('unpublished.index',null, '303')
                     ->with('success','Raffle ' . $raffle->code . ' deleted successfully');

@@ -3,11 +3,11 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Requests\DeleteRole;
-use App\Http\TkTk\LogsMsgs;
+
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreRoleRequest;
-use Illuminate\Support\Facades\Log;
+use Arcanedev\LogViewer\Entities\Log;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
 
@@ -65,7 +65,7 @@ class RoleController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request $request
+     * @param StoreRoleRequest $request
      * @return \Illuminate\Http\Response
      */
     public function store(StoreRoleRequest $request)
@@ -90,7 +90,7 @@ class RoleController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request $request
+     * @param StoreRoleRequest $request
      * @param  int $id
      * @return \Illuminate\Http\Response
      */

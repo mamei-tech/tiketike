@@ -6,12 +6,11 @@ use App\Http\Requests\DeletingUserRequest;
 use App\Role;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Log;
+use Arcanedev\LogViewer\Entities\Log;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreUserprofileRequest;
 use App\User;
 use App\Country;
-use App\Http\TkTk\LogsMsgs;
 
 class UserController extends Controller
 {

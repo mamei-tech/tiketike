@@ -2,18 +2,12 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Api\V1\DashboardController;
 use App\Http\Controllers\Controller;
-use App\Payment;
-use Illuminate\Http\Request;
 use App\Raffle;
-use App\RaffleStatus;
-use App\ReferralsBuys;
-use App\Ticket;
+use Illuminate\Support\Facades\Auth;
+use Arcanedev\LogViewer\Entities\Log;
 use App\User;
-use App\UserProfile;
-use Illuminate\Support\Facades\DB;
-use Mockery\Exception;
+
 
 class AdminController extends Controller
 {
@@ -24,7 +18,6 @@ class AdminController extends Controller
      */
     public function __construct()
     {
-        //$this->middleware('permission:enter_admin') ->  only(['index']);
         $this->middleware('auth');
     }
 
@@ -36,6 +29,9 @@ class AdminController extends Controller
     public function index()
     {
         $sharedRaffles = Raffle::sharedRaffles();
+
+        Log::info(trans('aLogs.dashboard_show'), [Auth::user()]);
+
         return view('admin.index',
             [
                 'li_activeDash' => 'active',
