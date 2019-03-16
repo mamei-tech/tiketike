@@ -1,4 +1,3 @@
-{{-- TODO Make internazionalization for gender, languaje, countries and cities --}}
 <form id="ftm_profileUpdate" class="form-horizontal" method="post" action="{{ route('users.update', Auth::id()) }}"
       accept-charset="UTF-8" enctype="multipart/form-data">
     {{ csrf_field() }}
@@ -148,8 +147,6 @@
         <div class="col-md-4">
             <div class="form-group basic">
                 <label>@lang('aDashboard.country')</label>
-                {{--TODO internazionalization for countries names--}}
-
                 <select name="country" class="selectpicker" data-style="btn btn-neutral btn-round"
                         title="Country" tabindex="-98">
                     <option class="bs-title-option" value="">Country</option>
@@ -165,7 +162,6 @@
         <div class="col-md-4">
             <div class="form-group basic">
                 <label>@lang('aDashboard.city')</label>
-
                 <select name="city" class="selectpicker" data-style="btn btn-neutral btn-round"
                         title="City" tabindex="-98">
                     <option class="bs-title-option" value="">City</option>

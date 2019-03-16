@@ -80,8 +80,6 @@
                         </div>
                     </div>
                 </form>
-
-                <!-- TODO Aqui van los enlaces morrongueros del fi para acceder por las redes sociales -->
             </div>
         </div>
         <!-- /.modal-content -->

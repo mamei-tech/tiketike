@@ -14,7 +14,6 @@ use Illuminate\Support\Facades\Auth;
 
 class CustomValidateRaffle implements Rule
 {
-    //TODO set custom message with internationalization
     private $raffle;
     private $user;
     private $message;
@@ -27,6 +26,7 @@ class CustomValidateRaffle implements Rule
     public function __construct($raffle)
     {
         $this->raffle = $raffle;
+        $this->message = trans('validation.user_not_allowed');
     }
 
     public function passes($attribute, $year)

@@ -151,9 +151,7 @@ class Raffle extends Model implements HasMedia
 
         if ($this->getStatus->status != 'Published')
         {
-            //TODO return some error view
-            echo "UNPUBLISHED RAFFLE";
-            die();
+            return abort('422');
         }
         $ticketsBuyed = [];
         foreach ($ticketIds as $tid)
@@ -161,32 +159,23 @@ class Raffle extends Model implements HasMedia
             $ticket = Ticket::where('raffle', $this->id)->where('code', $tid)->first();
             if ($ticket == null)
             {
-                //TODO return some error view
-                echo "UNKNOW TICKET";
-                die();
+                return abort('422');
             }
             if ($ticket->sold == 1)
             {
-                //TODO return some error view
-                echo "TICKETS HAS BEEN SOLD";
-                die();
+                return abort('422');
             }
             $ticket->buyer = $user->id;
             $ticket->sold = true;
             array_push($ticketsBuyed, $ticket);
         }
 
-        //TODO transfer the money from user account to tiketike account
-        //if fail, return some error view
-
         if ($referralId != null) //Ticket buyed by a referral.
         {
             $referralUser = User::find($referralId);
             if ($referralUser == null)
             {
-                //TODO return some error view
-                echo "USER NOT FOUND";
-                die();
+                return abort('422');
             }
             $referralsBuys = [];
             foreach ($ticketsBuyed as $ticket)
@@ -257,7 +246,6 @@ class Raffle extends Model implements HasMedia
         }
     }
 
-    /* TODO Enhance this method for situation like is the raffle is published already */
     public function anullate() {
         $this->status = 3;                    // ID for anulled status
         $this->netGain = 0;

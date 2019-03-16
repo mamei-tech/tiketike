@@ -29,7 +29,7 @@
                         <div class="text-uppercase margin-bottom-20">
                             <label class="colorN styleEncabezado sinkinSans300L">Seleccione uno o varios países</label>
                             <select class="select2 margin-bottom-20" name="filterByCountry" id="filterByCountry"
-                                    multiple="multiple" style="width: 100%"> <!-- TODO llevar el estilo este a css -->
+                                    multiple="multiple" style="width: 100%">
                                 <option disabled>Seleccione uno o varios paises</option>
                                 @foreach($countries as $country)
                                     <option id="{{ $country->name }}"
@@ -120,7 +120,6 @@
                                         <span class="texto14 colorN pull-left sinkinSans600SB texto14">{{ $raffle->getOwner->name }} {{ $raffle->getOwner->lastname }}</span>
                                         <br>
                                         <span class="ti-location-pin texto16 colorN"></span>
-                                        <!-- TODO Buscar como poner el texto al lado de la imagen sin hacerla flotar -->
                                         <span class="texto14 sinkinSans600SB texto14 colorN"><img class="flag-country" src="{{ asset('pics/countries/png100px/'.$raffle->getLocation->code.'.png') }}">{{ $raffle->getLocation->name }}</span>
                                         <h4 class=" text-uppercase sinkinSans400R textoR">
                                             <a class="colorN"

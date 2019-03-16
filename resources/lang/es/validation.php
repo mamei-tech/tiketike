@@ -89,6 +89,8 @@ return [
     'uploaded'             => 'El campo :attribute falló al subir.',
     'url'                  => 'El formato del campo :attribute es inválido.',
     'name_already_taken'   => 'El nombre seleccionado se encuentra en uso.',
+    'user_not_allowed'     => 'El usuario no es v&aacute;lida.',
+    'raffle_not_shuffled'  => 'La rifa no ha sido sorteada a&uacute;n',
 
     /*
     |--------------------------------------------------------------------------

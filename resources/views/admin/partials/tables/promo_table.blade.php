@@ -3,7 +3,6 @@
     {{--Header--}}
     <thead class=" text-primary">
     <tr>
-        {{-- TODO make the id column thinner. Make this in the JS file for this file --}}
         <th>Id</th>
         <th>@lang('Name')</th>
         <th>@lang('aPromo.type')</th>
@@ -50,7 +49,6 @@
             <td>{{$promo->image}}</td>
 
             <td class="text-right">
-                {{-- TODO Aling the action icons making them floating to right --}}
                 <a class="btn btn-info btn-icon btn-sm like" href="">
                     <i class="now-ui-icons education_glasses"></i>
                 </a>

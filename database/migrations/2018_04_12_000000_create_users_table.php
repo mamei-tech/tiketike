@@ -27,33 +27,13 @@ class CreateUsersTable extends Migration
             $table->timestamps();
         });
 
-        // Schema::create('countries', function (Blueprint $table) {
-        //     $table->increments('id');
-        //     $table->string('name', 60)->unique();
-        // });
-
-        // Schema::create('cities', function (Blueprint $table) {
-        //     $table->increments('id');
-        //     $table->string('name', 30);
-
-        //     //FK
-        //     $table->unsignedInteger('country');
-        //     $table->foreign('country')
-        //         ->references('id')
-        //         ->on('countries')
-        //         ->onUpdate('restrict')
-        //         ->onDelete('cascade');
-        // });
-
-
-        /* TODO test the delete user opertation delete its profiles to */
         Schema::create('usersprofiles', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('username',  25);                         //The same as unsignedBigInteger
             $table->date('birthdate')->nullable();
             $table->string('gender', 6);                             //male or female
             $table->string('langcode', 2)->default('en');
-            $table->string('avatarname')->default('default');               //TODO Check if this is working properly
+            $table->string('avatarname')->default('default');
             $table->string('bio', 116)->nullable();
             $table->string('addrss', 60);
             $table->string('phone', 15)->nullable();
@@ -83,7 +63,7 @@ class CreateUsersTable extends Migration
         Schema::create('debitcards', function (Blueprint $table) {
 
             $table->increments('id');                               //PK
-            $table->unsignedBigInteger('accnumber')->unique();      // TODO I don't know if this must be unique
+            $table->unsignedBigInteger('accnumber')->unique();
             $table->string("expiration", 7)->default("MM/AAAA")->nullable();
             $table->smallInteger("cvv")->nullable();
             $table->timestamps();

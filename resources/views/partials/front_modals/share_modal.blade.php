@@ -35,13 +35,9 @@
                     <span class="input-group-btn">
                     <button class="btn btn-icon btncopy" data-clipboard-target="#copylink">
                         <i class="ti-agenda"></i>
-                        {{--<img src="{{asset('pics/front/clippy.svg')}}" alt="Copy to clipboard">--}}
                     </button>
                     </span>
                 </div>
-
-
-                <!-- TODO Aqui van los enlaces morrongueros del fi para acceder por las redes sociales -->
             </div>
         </div>
         <!-- /.modal-content -->

@@ -40,8 +40,9 @@ class CategoriesController extends Controller
             ->with('success', 'Category created successfully');
     }
 
-    public function update(Response $response)
+    public function update(Request $request)
     {
+        $category = $request->get('category');
         $category = RaffleCategory::findOrFail($category);
         $category->category = $request->get('category');
         $category->icon = $request->get('icon');

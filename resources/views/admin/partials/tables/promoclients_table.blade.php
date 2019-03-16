@@ -3,7 +3,6 @@
     {{--Header--}}
     <thead class=" text-primary">
     <tr>
-        {{-- TODO make the id column thinner. Make this in the JS file for this file --}}
         <th>Id</th>
         <th>@lang('Client')</th>
         <th>@lang('Contact')</th>
@@ -42,7 +41,6 @@
             <td>{{$client->email}}</td>
 
             <td class="text-right">
-                {{-- TODO Aling the action icons making them floating to right --}}
                 <a class="btn btn-success btn-icon btn-sm edit" href="">
                     <i class="now-ui-icons ui-2_settings-90"></i>
                 </a>
