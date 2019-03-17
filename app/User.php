@@ -176,6 +176,11 @@ class User extends Authenticatable implements HasMedia
         return $total;
     }
 
+    public function getCountryCode()
+    {
+        return strtoupper($this->getProfile->getCity->country->code);
+    }
+
     public function getTicketsSold()
     {
         return $this->hasManyThrough(Ticket::class,Raffle::class,'owner','raffle')->where('sold',1);

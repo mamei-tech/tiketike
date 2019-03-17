@@ -4,6 +4,12 @@
     margin: 1.2%;
 }
 
+.data-section-three-row {
+    width: 33%;
+    padding: 1%;
+    /*margin: 0.3%;*/
+}
+
 .data-section-full-row {
     width: 100%;
     border-radius: 5px;
