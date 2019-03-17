@@ -25,5 +25,6 @@ return [
     'address' => 'Dirección',
     'zipcode' => 'Código Postal',
     'userlist' => 'Lista de Usuarios',
+    'phone' => 'Teléfono'
 
 ];
