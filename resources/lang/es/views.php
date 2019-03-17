@@ -64,5 +64,6 @@ return [
     'purchased' => 'Comprados',
     'sold' => 'Vendidos',
     'followed' => 'Seguidos',
-    'follow_me' => 'Me siguen'
+    'follow_me' => 'Me siguen',
+    'profile_updated' => 'Perfil actualizado exitosamente.'
 ];

@@ -1,8 +1,6 @@
 
 /* On ready */
 $(function () {
-
-
     $('.slick-vertical').slick({
         infinite: true,
         slidesToShow: 3,
@@ -10,7 +8,7 @@ $(function () {
         slidesToScroll: 1,
         vertical: true,
         autoplay:true,
-        autoplaySpeed: 2000,
+        autoplaySpeed: 6000,
         pauseOnHover: false,
         initialSlide: 9,
         responsive: [
@@ -24,7 +22,7 @@ $(function () {
                     arrows:false,
                     vertical: false,
                     autoplay:true,
-                    autoplaySpeed: 2000,
+                    autoplaySpeed: 6000,
                     pauseOnHover: false,
 
                 }
@@ -39,7 +37,7 @@ $(function () {
                     arrows:false,
                     vertical: false,
                     autoplay:true,
-                    autoplaySpeed: 2000,
+                    autoplaySpeed: 6000,
                     pauseOnHover: false,
                 }
             }

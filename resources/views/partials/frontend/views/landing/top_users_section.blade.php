@@ -19,7 +19,7 @@
                     <div class="col-md-12 borderBotDis hidden-xs"></div>
                 </div>
                 <!--TOP de ganadores visibles solo en vista movil-->
-                <div class="slick-vertical col-xs-12 paddingLeft0 padding-rigth-0 visible-xs padding-top-20">
+                <div class="slick-vertical col-xs-12 paddingLeft0 padding-rigth-0 visible-xs padding-top-20" id="responsiveSlick">
                     <?php
                     $ordinals = ['1st', '2nd', '3rd', '4th', '5th', '6th', '7th', '8th', '9th', '10th'];
                     $count = 0;
@@ -55,7 +55,7 @@
                         </div>
                         <div class="padding-top-20">
                             <span class="colorN padding-top-20 margin-right40">@lang('views.shared_raffles'):</span>
-                            <strong class="colorV pull-right">20%</strong>
+                            <strong id="shared_raffles_xs" class="colorV pull-right">20%</strong>
                         </div>
                         <div class="padding-top-20">
                             <span class="colorN margin-right40">@lang('views.sold_tickets'):</span>
@@ -100,7 +100,7 @@
             </div>
             <!--TOP usuarios ganadores solo visible en desktop-->
 
-            <div class=" slick-vertical col-sm-3 col-md-4 col-lg-3 user hidden-xs ">
+            <div class=" slick-vertical col-sm-3 col-md-4 col-lg-3 user hidden-xs " id="normalSlick">
                 <?php
                 $count = 1;
                 ?>
@@ -141,7 +141,7 @@
                     <div class="col-xs-12 padding-top-20 paddingLeft0">
                         <div class="col-xs-9"><span class="colorN margin-right-20">@lang('views.shared_raffles'):</span>
                         </div>
-                        <div class="col-xs-3"><strong class="colorV sinkinSans600SB">20%</strong><br></div>
+                        <div class="col-xs-3"><strong id="shared_raffles" class="colorV sinkinSans600SB">20%</strong><br></div>
                     </div>
                     <div class="col-xs-12 padding-top-20 paddingLeft0">
                         <div class="col-xs-9"><span class="colorN margin-right-20">@lang('views.sold_tickets'):</span>

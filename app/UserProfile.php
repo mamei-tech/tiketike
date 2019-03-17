@@ -30,7 +30,7 @@ class UserProfile extends Model implements HasMedia
 
     public function user()
     {
-        return $this->belongsTo('App\User', 'user', 'id');
+        return $this->belongsTo(User::class, 'user', 'id');
     }
 
     public function getCity()
