@@ -5,9 +5,11 @@ namespace App\Http\Controllers\Admin;
 use App\Promo;
 use Exception;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use App\Http\Requests\StorePromoRequest;
 use App\Http\Requests\EditPromoRequest;
+use Illuminate\Support\Facades\Log;
 
 class PromoController extends Controller
 {
@@ -34,6 +36,8 @@ class PromoController extends Controller
     public function index()
     {
         $promos = DB::table('promos')->get();
+
+        Log::log('INFO', trans('aLogs.adm_promo_section').' - '.Auth::user()->id);
 
         return view('admin.promos', [
             'promos' => $promos,
@@ -84,13 +88,16 @@ class PromoController extends Controller
 
             } catch (Exception $e) {
 
+                Log::log('ERROR', trans('aLogs.adm_promo_uploaderror').' - '.Auth::user()->id);
+
                 $promo->delete();
                 return redirect()->back()->withErrors("Something went wrong uploading the image.");
             }
         }
-
         // Retriving all the promos for redirect
         $promos = DB::table('promos')->get();
+
+        Log::log('INFO', trans('aLogs.adm_promo_store').' - '.Auth::user()->id.' - '.$promo->id);
 
         return redirect()->route('promos.index',
             [
@@ -111,8 +118,6 @@ class PromoController extends Controller
      */
     public function update(EditPromoRequest $request, $id)
     {
-        // $promo = Promo::where('name', $name)->first();
-
         $promo = Promo::find($id);
 
         if ($promo->canUpdateName($request->name)) {
@@ -137,11 +142,12 @@ class PromoController extends Controller
                 return redirect()->back()->withErrors("Something went wrong uploading the image.");
             }
 
-
             $promo->save();
 
             // Retriving all the promos for redirect
             $promos = DB::table('promos')->get();
+
+            Log::log('INFO', trans('aLogs.adm_promo_update').' - '.Auth::user()->id.' - '.$promo->id);
 
             return redirect()->route('promos.index',
                 [
@@ -154,8 +160,6 @@ class PromoController extends Controller
         } else {
             return redirect()->back()->withErrors(trans('validation.name_already_taken'));
         }
-
-        /* $promo::update(Input::all()); */
     }
 
     /**
@@ -167,7 +171,10 @@ class PromoController extends Controller
     public function destroy($name)
     {
         $promo = Promo::where('name', $name)->first();
+        $promoname = $promo->name;
         $promo->delete();
+
+        Log::log('INFO', trans('aLogs.adm_promo_delete').' - '.Auth::user()->id.' - '.$promoname);
 
         return redirect()
             ->route('promos.index', null, '303')

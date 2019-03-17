@@ -18,8 +18,6 @@
         {{-- USER FORM --}}
         <div class="col-md-8">
             <div class="card">
-
-                {{-- TODO Apply this style tittle to the other views --}}
                 <div class="card-header">
                     <h5 class="title"> User </h5>
                 </div>

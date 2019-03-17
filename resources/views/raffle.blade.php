@@ -1,13 +1,14 @@
 @extends('layouts.base')
 @section('content')
     @include('partials.frontend.header')
-    @include('partials.front_modals.filters')
+    @include('partials.front_modals.login_modal')
     @include('partials.front_modals.mobile_suggest')
     @include('partials.front_modals.edit_raffle_modal')
+    @include('partials.front_modals.notification_modal')
     <div class="container margin-top60">
         <div class="row">
             <!--Contenido ticket-->
-            <div class="col-xs-12 col-sm-7 col-sm-push-5 col-lg-7 col-lg-push-3 padding-top-20 paddingLeft0 padding-rigth-0">
+            <div class="col-xs-12 col-sm-7 col-sm-push-5 col-lg-7 margin-top15 col-lg-push-3 paddingLeft0 padding-rigth-0">
                 <div class="contenidoTicket" id="scrollContent">
                     <div class="col-xs-12 ">
                         <div class="col-xs-4 col-md-3">
@@ -17,9 +18,9 @@
                         <div class="col-xs-8 col-md-9 texto14 sinkinSans600SB padding0">
                             <span class="colorN">{{ $raffle->getOwner->name }} {{ $raffle->getOwner->lastname }}</span>
                             <span class="ti-location-pin"></span>
-                            <span class=""><img src="{{ asset('pics/countries/'.$raffle->getLocation->name.'.png') }}">{{ $raffle->getLocation->name }}</span>
+                            <span class=""><img class="flag-country" src="{{ asset('pics/countries/png100px/'.$raffle->getLocation->code.'.png') }}">{{ $raffle->getLocation->name }}</span>
                             <p class="texto18 text-uppercase texto-negrita colorN padding-top-10"
-                               style="font-family: sinkinSans700Bold">{{ $raffle->title }} @if(\Auth::user()->id == $raffle->getOwner->id and $raffle->status < 2)<a href="#editRaffleModal" data-toggle="modal"><i class="fa fa-edit"></i> Editar rifa </a>@endif </p>
+                               style="font-family: sinkinSans700Bold">{{ $raffle->title }} @if(Auth::check()) @if(\Auth::user()->id == $raffle->getOwner->id and $raffle->status < 2)<a href="#editRaffleModal" data-toggle="modal"><i class="fa fa-edit"></i></a>@endif @endif </p>
                         </div>
                     </div>
                     <div class="col-xs-12 padding-top-20">
@@ -46,7 +47,7 @@
                         </div>
                     </div>
                     <div class="col-xs-12 paddingR-5">
-                        <span class="italic margin-right5">Articulos:</span>
+                        <span class="italic margin-right5">@lang('views.articles'):</span>
                         <strong class="colorN">1</strong>
                         <p class="colorN">{{ $raffle->description }}</p>
                     </div>
@@ -69,9 +70,7 @@
                                                 &times;
                                             </button>
                                             <h6 class="modal-title textoCenter text-uppercase sinkinSans600SB colorN">
-                                                Mis
-                                                Tickets
-                                                comprados</h6>
+                                                @lang('views.my_tickets_buyed')</h6>
                                         </div>
                                         <div class="modal-body">
                                             <div class="listadoTickets padding-left50">
@@ -93,7 +92,7 @@
                         </div>
                         <ul class="list-unstyled pull-right list-inline padding-top-20 ">
                             <li class="margin-right-10">
-                                <a @if(Auth::user() == null)  data-toggle="modal" href="#loginModal"
+                                <a @if(Auth::user() == null)data-toggle="modal" href="#loginModal"
                                    @else
                                    href="" title="Comentarios" id="comenta"@endif>
                                     <span class="ti-comment colorV margin-right-5 dimenIconos"></span>
@@ -105,16 +104,15 @@
                                 </a>
                             </li>
                             <li class="margin-right-10">
-                                <a data-toggle="modal" data-target="#{{$raffle->id}}-share_modal" href="" title="Compartir">
+                                <a data-toggle="modal" data-target="@if(\Auth::check())#{{$raffle->id}}-share_modal @else #loginModal @endif" href="" title="Compartir">
                                     <span class="ti-share colorV margin-right-5 dimenIconos"></span>
                                 </a>
                             </li>
                             @include('partials.front_modals.share_modal')
-
                         </ul>
                     </div>
                     <div id="comentarios" style=" display:none" class="col-xs-12">
-                        <strong class="colorN text-uppercase sinkinSans600SB">comentarios</strong>
+                        <strong class="colorN text-uppercase sinkinSans600SB">@lang('views.comments')</strong>
                         <div class="comments">
                             @foreach($raffle->getComments as $comment)
                                 @if($comment->parent == null)
@@ -139,7 +137,7 @@
                                         <a data-toggle="collapse" data-target="#reply-{{$comment->id}}"
                                            aria-expanded="false" aria-controls="reply-{{$comment->id}}"
                                            id="answer_comment" href="#"
-                                           class="colorV texto8 sinkinSans400I pull-right margin-right-15">responder...</a>
+                                           class="colorV texto8 sinkinSans400I pull-right margin-right-15">@lang('views.respond')...</a>
                                     </span>
                                                 <p class="texto10 sinkinSans300L">
                                                     {{ $comment->text }}
@@ -172,7 +170,7 @@
                                                  <a data-toggle="collapse" data-target="#reply-{{$child->id}}"
                                                     aria-expanded="false" aria-controls="reply-{{$child->id}}"
                                                     id="answer_comment" href="#"
-                                                    class="colorV texto8 sinkinSans400I pull-right margin-right-15">responder...</a>
+                                                    class="colorV texto8 sinkinSans400I pull-right margin-right-15">@lang('views.respond')...</a>
                                               </span>
                                                             <p class="texto10 sinkinSans300L">
                                                                 {{ $child->text }}
@@ -190,14 +188,14 @@
                             @endforeach
                         </div>
                         <div class="post-comment padding-top-30">
-                            <strong class="colorN sinkinSans600SB text-uppercase">comenta</strong>
+                            <strong class="colorN sinkinSans600SB text-uppercase">@lang('views.make_comment')</strong>
                             <form action="{{route('raffle.comment', $raffleId)}}" method="POST" role="form">
                                 {{ csrf_field() }}
                                 <div class="form-group">
                                     <textarea class="form-control bg-gris" rows="5" name="text" id="text"></textarea>
                                 </div>
                                 <button class="btn btn-primary bg_green extraer sinkinSans700B text-uppercase"
-                                        type="submit">Enviar
+                                        type="submit">@lang('views.send')
                                 </button>
                             </form>
                         </div>
@@ -205,17 +203,14 @@
                 </div>
             </div>
             <!--FIN Contenido ticket-->
-            <div class="col-xs-12 visible-xs publicidad padding-top-20 padding-bottom20">
-                <img src="{{ asset('pics/front/proyecto1.jpg') }}" class="imgPublicidadR" alt="">
-            </div>
             <div class="col-xs-12 col-sm-5 col-sm-pull-7 col-lg-3 col-lg-pull-7 paddingLeft0 padding-rigth-0">
                 <div class="bg-gris paddingLateralGris">
                     <div class="borderTopDashed padding-bottom20 ">
                         <div class="pull-left padding-top-10 margin-bottom-20">
-                            <span class="text-uppercase dashedDerecho colorV sinkinSans700B">venta de tickets</span>
+                            <span class="text-uppercase dashedDerecho colorV sinkinSans700B">@lang('views.tickets_sell')</span>
                         </div>
                         <div class="pull-left padding-left10 texto10 colorV padding-top-10">
-                            <span class="sinkinSans200LI">Costo:</span>
+                            <span class="sinkinSans200LI">@lang('views.cost'):</span>
                             <span class="sinkinSans700B colorV" id="raffleprice">{{ $raffle->tickets_price }}</span>
                         </div>
                     </div>
@@ -242,13 +237,13 @@
                                     id="countTickets">0</strong>
                             <div class="pull-left colorV texto8 sinkinSans300LI padding-top5">
                                 <span>Tikects</span><br>
-                                <span> Seleccionados</span>
+                                <span> @lang('views.selected')</span>
                             </div>
                         </div>
                         <div class="pull-right colorV padding-top-10">
                             <a @if(Auth::user() == null)  data-toggle="modal" href="#loginModal" @else id="buyTickets"
                                @endif type="button"
-                               class="btn btn-primary bg_green extraer sinkinSans700B text-uppercase">Comprar
+                               class="btn btn-primary bg_green extraer sinkinSans700B text-uppercase">@lang('views.buy')
                             </a>
                         </div>
                         <form method="post" action="{{ route('raffle.tickets.buy',['raffleId' => $raffle->id]) }}"

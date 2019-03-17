@@ -3,15 +3,16 @@
     @include('partials.frontend.header')
     @include('partials.front_modals.filters')
     @include('partials.front_modals.mobile_suggest')
+    @include('partials.front_modals.notification_modal')
     <div class="container contenido">
         <div class="row ">
             <!--categoria y rifas-->
             <div class="col-sm-4 col-lg-3 hidden-xs padding-rigth-0">
                 <div class="categoria">
                     <div class="listadoCategoriaN">
-                        <h4 class="text-uppercase sinkinSans600SB colorV">categorías</h4>
+                        <h4 class="text-uppercase sinkinSans600SB colorV">@lang('views.categories')</h4>
                         <ul class="nav sinkinSans400R">
-                            <li class="active"><a href="#" class="colorN text-uppercase" id="all">Todos</a></li>
+                            <li class="active"><a href="#" class="colorN text-uppercase" id="all">@lang('views.all')</a></li>
                             @foreach($categories as $category)
                                 <li><a href="#" id="{{ $category->category }}"
                                        class="colorN text-uppercase filters">{{$category->category}}</a></li>
@@ -20,43 +21,53 @@
                     </div>
                 </div>
                 <div class="filtrarpor">
-                    <h4 class="text-uppercase sinkinSans600SB colorV">filtrar por</h4>
+                    <h4 class="text-uppercase sinkinSans600SB colorV">@lang('views.filter_by')</h4>
                     <div class="bg_V text-uppercase">
-                        <label class="colorB styleEncabezado sinkinSans300L">paises</label>
+                        <label class="colorB styleEncabezado sinkinSans300L">@lang('views.countries')</label>
                     </div>
                     <div class="paddingFiltrar">
-                        <div class="text-uppercase margin-bottom-20">
-                            <label class="colorN styleEncabezado sinkinSans300L">Seleccione uno o varios países</label>
-                            <select class="select2 margin-bottom-20" name="filterByCountry" id="filterByCountry"
-                                    multiple="multiple" style="width: 100%"> <!-- TODO llevar el estilo este a css -->
-                                <option disabled>Seleccione uno o varios paises</option>
-                                @foreach($countries as $country)
-                                    <option id="{{ $country->name }}"
-                                            value="{{ $country->name }}">{{ $country->name }}</option>
-                                @endforeach
-                            </select>
-                        </div>
+                        @foreach($continents as $continent)
+                            <div class="panel-group">
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <h4 class="panel-title">
+                                            <button class="btn btn-default text-left" style="width: 100%" data-toggle="collapse"
+                                               data-target="#collapse{{ $continent->id }}">{{ $continent->name }} <i class="fa fa-angle-down right"></i> </button>
+                                        </h4>
+                                    </div>
+                                    <div id="collapse{{ $continent->id }}" class="panel-collapse collapse">
+                                        @foreach($continent->countries as $country)
+                                            <div class="col-md-12 col-sm-12 col-xs-12 col-lg-{{strlen($country->name) > 20?'12':'6'}}" style="padding: 5px 5px 5px 0">
+                                                <label for="countries">{{ $country->name }}</label>
+                                                <input class="right" type="checkbox" name="countries" id="countries">
+                                            </div>
+                                        @endforeach
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="clearfix"></div>
+                        @endforeach
                     </div>
                     <div class="bg_V text-uppercase">
-                        <label class="colorB styleEncabezado sinkinSans300L">precios</label>
+                        <label class="colorB styleEncabezado sinkinSans300L">@lang('views.price')</label>
                     </div>
                     <div class="paddingFiltrar sinkinSans300L">
                         <div class="subtPais checkbox padding-top-15">
                             <label>
                                 <input class="letra-naranja" type="checkbox">
-                                de 0 a 19 usd
+                                @lang('views.from') 0 @lang('views.to') 19 usd
                             </label>
                         </div>
                         <div class="subtPais checkbox padding-top-15">
                             <label>
                                 <input class="letra-naranja" type="checkbox">
-                                de 20 a 39 usd
+                                @lang('views.from') 20 @lang('views.to') 39 usd
                             </label>
                         </div>
                         <div class="subtPais checkbox padding-top-15">
                             <label>
                                 <input class="letra-naranja" type="checkbox">
-                                de 40 o más usd
+                                @lang('views.from') 40 @lang('views.more_than')
                             </label>
                         </div>
                     </div>
@@ -68,7 +79,7 @@
                 <div class="row">
                     <div class="row padding-bottom20 ">
                         <div class="floatRight padding-rigth80 sinkinSans600SB hidden-xs">
-                            <span class=" text-uppercase pull-left margin-right-15">ordenar por:</span>
+                            <span class=" text-uppercase pull-left margin-right-15">@lang('views.order_by'):</span>
                             <button id="percent" type="button" class="btn btn-info padding0 pull-left margin-right-15">
                                 <span>%</span>
                             </button>
@@ -77,12 +88,12 @@
                             </button>
                         </div>
                     </div>
-                    <div class="row rafflescontent" style="overflow-y: scroll; overflow-x: hidden; height: 588.533px">
+                    <div class="row rafflescontent" style="overflow-y: scroll; overflow-x: hidden">
                         @if (count($raffles) > 0)
                             @foreach($raffles as $raffle)
                                 <div class="row padding20 bg-rifas1 center-block {{$raffle->id}}">
-                                    <div class="col-xs-4 col-md-6">
-                                        <div class="hidden-lg visible-xs padding-top-20 padding-left-0">
+                                    <div class="col-xs-4 col-md-6" style="padding-left: 23px;padding-right: 0">
+                                        <div class="hidden-lg visible-xs padding-top-10 padding-left-0">
                                             <img src="@if(count($raffle->getMedia('raffles')) > 0){{ $raffle->getMedia('raffles')->first()->getUrl() }} @endif"
                                                  class="dimenImgCarouselR"
                                                  alt="">
@@ -113,32 +124,35 @@
                                             </ol>
                                         </div>
                                     </div>
-                                    <div class="col-xs-8 col-md-6 padding-top10R">
-                                        <span class="texto16 colorV hidden-lg visible-xs pull-left margin-right-10 sinkinSans600SB">{{ $raffle->getProgress() }}
+                                    <div class="col-xs-8 col-md-6 padding-top10R" style="padding-left: 5px">
+                                        <span class="texto16 colorV hidden-lg visible-xs pull-left margin-right-10 sinkinSans600SB">{{ round($raffle->progress) }}
                                             %</span>
-                                        <span class="texto14 colorN pull-left sinkinSans600SB texto14">{{ $raffle->getOwner->name }} {{ $raffle->getOwner->lastname }}</span>
-                                        <span class="ti-location-pin texto16 padding-left10 colorN"></span>
-                                        <!-- TODO Buscar como poner el texto al lado de la imagen sin hacerla flotar -->
-                                        <span class="texto14 padding-left10 sinkinSans600SB texto14 colorN"><img src="{{ asset('pics/countries/'.$raffle->getLocation->code.'.png') }}">{{ $raffle->getLocation->name }}</span>
+                                        <span class="texto14 colorN pull-left sinkinSans600SB texto14">{{ $raffle->getOwner->name }}</span>
+                                        <span class="ti-location-pin texto16 colorN"></span>
+                                        <span class="texto14 sinkinSans600SB texto14 colorN"><img class="flag-country"
+                                                                                                  src="{{ asset('pics/countries/png100px/'.$raffle->getLocation->code.'.png') }}"></span>
                                         <h4 class=" text-uppercase sinkinSans400R textoR">
                                             <a class="colorN"
                                                href="{{ route('raffle.tickets.available',['raffleId' => $raffle->id]) }}">{{ $raffle->title }}</a>
                                         </h4>
+
                                         <div class="hidden-lg texto8">
-                                            <span class="sinkinSans300L ">Costo:</span>
-                                            <span class="sinkinSans600SB">{{ $raffle->price }}</span>
+                                            <span class="sinkinSans300L ">@lang('views.cost'):</span>
+                                            <span class="sinkinSans600SB">{{ $raffle->tickets_price ? $raffle->tickets_price : 0  }}</span>
                                         </div>
+
                                         <div class="costo hidden-xs">
                                             <div class="pull-left porcientoCompletado">
                                                 <span class="texto35 sinkinSans600SB colorN">{{ round($raffle->getProgress()) }}
                                                     %</span><br>
-                                                <span class="sinkinSans400R">completado</span>
+                                                <span class="sinkinSans400R">@lang('views.completed')</span>
                                             </div>
                                             <div class="pull-left padding-top-20 padding-left30">
-                                                <span class="sinkinSans300L texto10">Costo:</span><br>
-                                                <span class="colorN sinkinSans600SB">${{ $raffle->price }}</span>
+                                                <span class="sinkinSans300L texto10">@lang('views.cost'):</span><br>
+                                                <span class="colorN sinkinSans600SB">${{ $raffle->tickets_price ? $raffle->tickets_price : 0 }}</span>
                                             </div>
                                         </div>
+
                                         <ul class="list-unstyled list-inline padding-top-20 hidden-xs pull-right">
                                             <li class=" margin-right-10">
                                                 <a href="{{ route('raffles.follow',['raffleId' => $raffle->id]) }}">
@@ -149,7 +163,8 @@
                                             </li>
                                             <li class=" margin-right-10">
                                                 <a href="">
-                                        <span data-toggle="modal" data-target="#{{$raffle->id}}-share_modal" class="ti-share texto-negrita colorV margin-right-5 texto16"
+                                        <span data-toggle="modal" data-target="#{{$raffle->id}}-share_modal"
+                                              class="ti-share texto-negrita colorV margin-right-5 texto16"
                                               title="Compartir"></span>
                                                     <span class="colorV sinkinSans600SB">Compartir</span>
                                                 </a>

@@ -20,13 +20,15 @@ class UserFrontController extends ApiController
         $winnedRaffles = count($user->WinnedRaffles());
         $soldtickets = $user->getSoldTicketsCount();
         $route = route('profile.info',['userid'=>$id]);
+        $shared_raffles = count($user->getReferralsBuys->groupBy('raffle_id'));
         return new Response([
             'route'=>$route,
             'name'=>$name,
             'country'=>$country,
             'created_raffles' => $createdraffles,
             'winned_raffles' => $winnedRaffles,
-            'sold_tickets' => $soldtickets
+            'sold_tickets' => $soldtickets,
+            'shared_raffles' => $shared_raffles
         ],Response::HTTP_OK);
     }
 

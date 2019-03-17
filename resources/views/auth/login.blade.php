@@ -51,7 +51,7 @@
                         </div>
                         <div class="card-footer ">
                             <button type="submit" class="btn btn-primary btn-round btn-lg btn-block mb-3">
-                                Login {{--TODO Translation --}}
+                                Login
                             </button>
                         </div>
                     </div>

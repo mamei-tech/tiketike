@@ -26,6 +26,7 @@ return [
     'address' => 'Address',
     'zipcode' => 'Postal Code',
     'userlist' => 'Users List',
+    'phone' => 'Phone'
 
 
 ];

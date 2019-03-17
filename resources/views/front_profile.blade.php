@@ -1,7 +1,7 @@
 @extends('layouts.base')
 @section('content')
     @include('partials.frontend.header')
-    @include('partials.front_modals.mobile_suggest')
+    {{--@include('partials.front_modals.mobile_suggest')--}}
     <div class=" container margin-top-70">
         @include('partials.front_modals.error_notification')
         <form class="col-md-12 margin-top60" id="ftm_profileUpdate" action="{{ route('profile.update', $user->id) }}"
@@ -39,14 +39,14 @@
 
                 <div class="col-md-8">
                     <label for="selector"
-                           class="colorN italic padding-top-20">Contraseña</label>
+                           class="colorN italic padding-top-20">@lang('aUserprofile.newpass')</label>
                     <input type="password" class="form-control form-control-new "
                            id="password" name="password" placeholder="Password">
                 </div>
 
                 <div class="col-md-8">
                     <label for="selector"
-                           class="colorN italic padding-top-20">Repita la contraseña</label>
+                           class="colorN italic padding-top-20">@lang('aUserprofile.confrmpass')</label>
                     <input type="password" class="form-control form-control-new "
                            id="password_confirm" name="password_confirmation" placeholder="Password Repeat">
                 </div>
@@ -79,7 +79,7 @@
                 </div>
                 <div class="col-md-6">
                     <div class="form-group basic">
-                        <label>Phone</label>
+                        <label>@lang('aUserprofile.phone')</label>
                         <input class="form-control" id="inputPhone" name="phone"@if(!$first_time) value="{{$user->getProfile->phone}}"@endif>
                     </div>
                 </div>
@@ -133,7 +133,7 @@
                             <option class="bs-title-option" value="">Country</option>
 
                             @foreach ($countries as $country)
-                                <option @if(!$first_time) value="{{ $country->id }}" {{ $country->name == $user->getProfile->getCity->getCountry->name ? 'selected' : '' }}@endif>
+                                <option @if(!$first_time) value="{{ $country->id }}" {{ $country->name == $user->getProfile->getCity->country->name ? 'selected' : '' }}@endif>
                                     {{ $country->name }}</option>
                             @endforeach
 

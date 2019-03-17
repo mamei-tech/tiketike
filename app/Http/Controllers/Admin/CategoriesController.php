@@ -11,7 +11,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\RaffleCategory;
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Auth;
 
 
 class CategoriesController extends Controller
@@ -26,6 +26,9 @@ class CategoriesController extends Controller
     public function index()
     {
         $categories = RaffleCategory::all();
+
+        Log::log('INFO', trans('aLogs.adm_cat_index').' - '.Auth::user()->id);
+
         return view('admin.categories', [
             'categories' => $categories,
             'div_showRaffles' => 'show',
@@ -35,17 +38,24 @@ class CategoriesController extends Controller
 
     public function store(Request $request)
     {
-        RaffleCategory::create($request->all());
+        $category = RaffleCategory::create($request->all());
+
+        Log::log('INFO', trans('aLogs.adm_cat_store').' - '.Auth::user()->id.' - '.$category);
+
         return redirect()->route('categories.index')
             ->with('success', 'Category created successfully');
     }
 
-    public function update(Response $response)
+    public function update(Request $request)
     {
+        $category = $request->get('category');
         $category = RaffleCategory::findOrFail($category);
         $category->category = $request->get('category');
         $category->icon = $request->get('icon');
         $category->save();
+
+        Log::log('INFO', trans('aLogs.adm_cat_updated').' - '.Auth::user()->id.' - '.$request->all());
+
         return redirect()->route('categories.index')
             ->with('success', 'Category updated successfully');
     }

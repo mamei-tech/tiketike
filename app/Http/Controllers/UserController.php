@@ -3,13 +3,12 @@
 namespace App\Http\Controllers;
 
 
+use App\City;
 use App\Http\Requests\StoreUserprofileRequest;
-use App\Http\TkTk\LogsMsgs;
 use App\Promo;
 use App\Repositories\RaffleRepository;
 use App\User;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
+use Illuminate\Database\Eloquent\Builder;
 use App\Country;
 use Illuminate\Support\Facades\Log;
 
@@ -31,6 +30,8 @@ class UserController extends Controller
         $current = User::findOrFail(intval($userid));
         $suggested = $this->raffleRepository->getSuggested();
         $promos = Promo::where('type', 1)->where('status', 1)->get();
+//        var_dump(count($current->getRafflesSelled));
+//        die();
         return view('user', [
             'user' => $current,
             'suggested' => $suggested,
@@ -48,16 +49,13 @@ class UserController extends Controller
     public function edit($userid)
     {
         $user = User::with('getProfile')->findOrFail($userid);
-
-
-
-        $countries = Country::paginate(10);
+        $countries = Country::all();
         $countrycities = null;
         $first_time = true;
         if ($user->getProfile()->exists()){
-            $countrycities = DB::table('cities')
-                ->select('cities.*')
-                ->where('cities.country', $user->getProfile->getCity->getCountry->id)
+            $countrycities = City::with('country')->whereHas('country', function (Builder $q) use ($user) {
+                $q->where('id',$user->getProfile->getCity->country->id);
+            })
                 ->get();
             $first_time = false;
         }
@@ -115,7 +113,7 @@ class UserController extends Controller
         $user->save();
 
         // Logs the actions
-        Log::info(LogsMsgs::$msgs['accepted'], [$user->getProfile->username, $userid]);
+        Log::log('INFO', trans('views.profile_updated'), [$user->getProfile->username, $userid]);
 
         return redirect()->route('profile.info', ['userid' => $userid])
             ->with('success', 'User "' . $user->getProfile->username . '" updated successfully');

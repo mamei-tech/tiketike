@@ -4,6 +4,7 @@ namespace App;
 
 use App\Http\TkTk\Cfg\CfgRaffles;
 use App\Http\TkTk\CodesGenerator;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 use PhpParser\Node\Scalar\String_;
@@ -153,9 +154,7 @@ class Raffle extends Model implements HasMedia
 
         if ($this->getStatus->status != 'Published')
         {
-            //TODO return some error view
-            echo "UNPUBLISHED RAFFLE";
-            die();
+            return abort('422');
         }
         $ticketsBuyed = [];
         foreach ($ticketIds as $tid)
@@ -163,32 +162,23 @@ class Raffle extends Model implements HasMedia
             $ticket = Ticket::where('raffle', $this->id)->where('code', $tid)->first();
             if ($ticket == null)
             {
-                //TODO return some error view
-                echo "UNKNOW TICKET";
-                die();
+                return abort('422');
             }
             if ($ticket->sold == 1)
             {
-                //TODO return some error view
-                echo "TICKETS HAS BEEN SOLD";
-                die();
+                return abort('422');
             }
             $ticket->buyer = $user->id;
             $ticket->sold = true;
             array_push($ticketsBuyed, $ticket);
         }
 
-        //TODO transfer the money from user account to tiketike account
-        //if fail, return some error view
-
         if ($referralId != null) //Ticket buyed by a referral.
         {
             $referralUser = User::find($referralId);
             if ($referralUser == null)
             {
-                //TODO return some error view
-                echo "USER NOT FOUND";
-                die();
+                return abort('422');
             }
             $referralsBuys = [];
             foreach ($ticketsBuyed as $ticket)
@@ -202,10 +192,6 @@ class Raffle extends Model implements HasMedia
                 $refBuy->socialNetwork = $socialNetworkId;
                 array_push($referralsBuys, $refBuy);
             }
-            // TODO review because the referrals profit only pass to the comissionist when raffle ends
-//            $referralUserProfile = $referralUser->getProfile;
-//            $referralUserProfile->balance += count($referralsBuys) * $this->commissions / $this->tickets_count;
-//            $referralUserProfile->save();
             $referralUser->getReferralsBuys()->saveMany($referralsBuys);
         }
         $this->progress = $this->getProgress();
@@ -259,7 +245,6 @@ class Raffle extends Model implements HasMedia
         }
     }
 
-    /* TODO Enhance this method for situation like is the raffle is published already */
     public function anullate() {
         $this->status = 3;                    // ID for anulled status
         $this->netGain = 0;
@@ -285,11 +270,7 @@ class Raffle extends Model implements HasMedia
 
     public function getTicketsSold()
     {
-        $tickets = Raffle::join('tickets', 'raffles.id', '=', 'tickets.raffle')
-            ->select('tickets.id')
-            ->where('raffles.id',$this->id)
-            ->where('tickets.sold',1)
-            ->count();
+        $tickets = $this->getTickets()->where('sold',1)->count();
         return $tickets;
     }
 

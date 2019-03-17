@@ -35,11 +35,11 @@ class StoreUserprofileRequest extends FormRequest
             'lastname'=> 'required|string|min:6|max:30',
             'password' => ['nullable', 'string', 'confirmed', new StrongEvalR()],
             'address'=> 'required|string|min:12|max:60',
-            'country' => 'required|not_in:0|min:1|exists:countries,id',
-            'city' => 'required|not_in:0|min:1|exists:cities,id',
+            'country' => 'required|not_in:0|min:1|exists:world_countries,id',
+            'city' => 'required|not_in:0|min:1|exists:world_cities,id',
             'zipcode' => 'nullable|integer|between:999,9999999999',
             'bio' => 'nullable|max:116',
-            'avatar' => 'nullable|mimes:jpeg,png|dimensions:max_width=800,max_height=800|between:1,4096',
+            'avatar' => 'nullable|mimes:jpeg,png|dimensions:max_width=1920,max_height=1080|between:1,4096',
         ];
     }
 }

@@ -6,7 +6,6 @@
         <li class="margin-left-20 pull-right padding-top-20 ">
             <a data-toggle="modal" href="#terminosModal" title="Términos y Condiciones"
                class="colorB texto16 sinkinSans500M padding-top-40">Términos y Condiciones</a>
-            @include('partials.front_modals.terminos_y_condiciones_modal')
         </li>
     </div>
 </footer>

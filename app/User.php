@@ -84,7 +84,7 @@ class User extends Authenticatable implements HasMedia
      */
     public function getTickets()
     {
-        return $this->hasMany('App\Ticket', 'buyer');
+        return $this->hasMany(Ticket::class, 'buyer','id');
     }
 
 
@@ -170,8 +170,8 @@ class User extends Authenticatable implements HasMedia
     public function getSoldTicketsCount()
     {
         $total = 0;
-        foreach ($this->getRaffles() as $raffle) {
-            $total += $raffle->getTickets->where('sold',1)->get();
+        foreach ($this->getRaffles as $raffle) {
+            $total += $raffle->getTicketsSold();
         }
         return $total;
     }
@@ -179,6 +179,19 @@ class User extends Authenticatable implements HasMedia
     public function getCountryCode()
     {
         return strtoupper($this->getProfile->getCity->country->code);
+    }
+
+    public function getTicketsSold()
+    {
+        return $this->hasManyThrough(Ticket::class,Raffle::class,'owner','raffle')->where('sold',1);
+    }
+
+    public function getRafflesSelled()
+    {
+        return $this->hasMany(Raffle::class,'owner','id')->with('getTickets')
+            ->whereHas('getTickets', function (Builder $q) {
+               $q->where('sold',1);
+            });
     }
 
     public static function usersCount()

@@ -11,7 +11,6 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreUserprofileRequest;
 use App\User;
 use App\Country;
-use App\Http\TkTk\LogsMsgs;
 
 class UserController extends Controller
 {
@@ -131,7 +130,7 @@ class UserController extends Controller
             ->get();
 
         // Logs the actions
-        Log::info(LogsMsgs::$msgs['accepted'], [$user->getProfile->username, $userid]);
+        Log::log(LogsMsgs::$msgs['accepted'], [$user->getProfile->username, $userid]);
 
         return redirect()->route('users.edit',
             [

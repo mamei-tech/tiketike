@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\RaffleConfigRequest;
 use App\Http\TkTk\Cfg\CfgRaffles;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 
 
 class AdminConfigController extends Controller
@@ -34,6 +36,8 @@ class AdminConfigController extends Controller
             'minextractbalance'         => $this->cfghandler->getConfig('minextractbalance')
         ];
 
+        Log::log('INFO', trans('aLogs.raffle_config_show').' - '.Auth::user()->id);
+
         return view('admin.confviews.raffles', [
             'div_showRaffles' => 'show',
             'li_activeRConfig' => 'active',
@@ -58,6 +62,8 @@ class AdminConfigController extends Controller
             'gwfee'                     => $this->cfghandler->getConfig('gwfee'),
             'minextractbalance'         => $this->cfghandler->getConfig('minextractbalance')
         ];
+
+        Log::log('INFO', trans('aLogs.raffle_config_show').' -z '.Auth::user()->id.' - '.$request->all());
 
         return redirect()->route('admin.raffle.showconfig',
             compact('cfg', $cnf),

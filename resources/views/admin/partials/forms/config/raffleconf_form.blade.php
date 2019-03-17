@@ -3,7 +3,6 @@
     {{ csrf_field() }}
 
     <input name="_method" type="hidden" value="patch">
-    {{-- TODO Include the password --}}
 
     {{-- Transaction Fee | Minimun Value 4 withdraw --}}
     <div class="row">

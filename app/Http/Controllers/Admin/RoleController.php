@@ -3,7 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Requests\DeleteRole;
-use App\Http\TkTk\LogsMsgs;
+
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreRoleRequest;
@@ -36,6 +37,9 @@ class RoleController extends Controller
     {
         $roles = Role::paginate(10);
         $permissions = Permission::all();
+
+        Log::log('INFO', trans('aLogs.adm_araffle_deleted'),Auth::user()->id);
+
         return view('admin.roles', [
             'roles' => $roles,
             'permissions' => $permissions,
@@ -65,18 +69,20 @@ class RoleController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request $request
+     * @param StoreRoleRequest $request
      * @return \Illuminate\Http\Response
      */
     public function store(StoreRoleRequest $request)
     {
         $role = Role::create([
-            'name' => $request->name,
-            'guard_name' => $request->description,
+            'name'          => $request->name,
+            'guard_name'    => $request->description,
         ]);
 
         $roles = DB::table('roles')->get();
-        Log::info(LogsMsgs::$role['created'], [$role->name, $role->id]);
+
+        Log::log('INFO', trans('aLogs.adm_role_store'), [Auth::user()->id, $role->name]);
+
         return redirect()->route('roles.index',
             [
                 'roles' => $roles,
@@ -90,7 +96,7 @@ class RoleController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request $request
+     * @param StoreRoleRequest $request
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
@@ -115,7 +121,8 @@ class RoleController extends Controller
 
         $roles = DB::table('roles')->get();
         $permissions = DB::table('permissions')->get();
-        Log::info(LogsMsgs::$role['updated'], [$role->name, $role->id]);
+
+        Log::log('INFO', trans('aLogs.adm_role_updated'), [$role->name, $role->id]);
 
         return redirect()->route('roles.index',
             [
@@ -140,7 +147,7 @@ class RoleController extends Controller
         $role = Role::find($id);
         $name = $role->name;
         $role->delete();
-        Log::info(LogsMsgs::$role['deleted'], [$name, $id]);
+        Log::log('INFO', trans('aLogs.adm_role_deleted'), [$name, $id]);
         $roles = DB::table('roles')->get();
 
         return redirect()->route('roles.index',

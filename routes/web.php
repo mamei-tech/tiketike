@@ -14,7 +14,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
-/* TODO Making the routes of logs-viewer match with the admin section */
 
 /* FIRST LEVEL ROUTES */
 Auth::routes();
@@ -37,7 +36,6 @@ Route::group(['prefix' => 'raffles',
     Route::get('{raffleId}/follow', 'RafflesController@follow')->name('raffles.follow');
     Route::post('/{raffleId}/tickets/buy', 'DirectBuysController@buyTickets')->name('raffle.tickets.buy');
     Route::post('/{raffleId}/{referralId}/{socialNetworkId}', 'ReferralsBuysController@buyTickets')->name('referrals.tickets.buy');
-    Route::get('/{raffleId}/{referralId}/{socialNetworkId}', 'ReferralsBuysController@buyTickets')->name('referrals.tickets.buy.get');
 
     Route::post('/{raffleId}/tickets/buy/comment','CommentsController@store')->name('raffle.comment');
     Route::post('/comment/edit/{commentId}','CommentsController@edit')->name('comment.edit');
@@ -64,7 +62,6 @@ Route::group(['prefix' => 'users',
 /* ADMIN ROUTES | MIX NAMESPACE */
 
 /* PURE ADMIN ROUTES | ADMIN NAMESPACE */
-//TODO: Filter this by role, implement authorization i mean
 Route::group([
     'namespace' => 'Admin',
     'prefix' => 'adm' . config('tiketike.urladminsalt'),
@@ -98,8 +95,6 @@ Route::group([
         Route::post('/null/{id}', 'PRaffleController@null')->name('raffles.null');
 
         Route::resource('/categories', 'CategoriesController', ['except' => ['edit', 'show']]);
-
-        // TODO Change the name for two these views
         Route::get('/config', 'AdminConfigController@showraffleconfig')->name('admin.raffle.showconfig');
         Route::patch('/saveconfig', 'AdminConfigController@saveraffleconfig')->name('admin.raffle.saveconfig');
     });
@@ -112,7 +107,7 @@ Route::group(['prefix' => 'raffles'
 ], function () {
 //publishing raffle access route
     Route::get('/{raffleId}/tickets/buy', 'DirectBuysController@availableTickets')->name('raffle.tickets.available');
-    Route::get('/{raffleId}/{referralId}', 'ReferralsBuysController@availableTickets')->name('referrals.tickets.available');
+    Route::get('/{raffleId}/{referralId}/{socialNetworkId}', 'ReferralsBuysController@availableTickets')->name('referrals.tickets.available');
     Route::get('/view/{raffleId}/finished','RafflesController@finishedView')->name('raffle.finished.view');
     Route::post('/checkConfirmation/{raffleId}/finished','RafflesController@checkConfirmation')->name('raffle.finished.checkConfirmation');
 });

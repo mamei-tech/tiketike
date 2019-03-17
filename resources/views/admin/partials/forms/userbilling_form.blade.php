@@ -1,4 +1,3 @@
-{{-- TODO Make internazionalization for gender, languaje, countries and cities --}}
 <form id="ftm_userBillingInfo" class="form-horizontal" method="post" action="{{ route('billing.saveinfo', Auth::id()) }}"
       accept-charset="UTF-8" enctype="multipart/form-data">
     {{ csrf_field() }}

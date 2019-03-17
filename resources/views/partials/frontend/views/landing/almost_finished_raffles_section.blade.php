@@ -4,7 +4,7 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="borderBotDis dimenBorderBotDisc">
-                    <h3 class="text-uppercase sinkinSans600SB texto24 text-center colorVC">rifas por culminar</h3>
+                    <h3 class="text-uppercase sinkinSans600SB texto24 text-center colorVC">@lang('views.almost_finished_raffle')</h3>
                 </div>
             </div>
             <div class="col-md-12">
@@ -24,8 +24,8 @@
                                                 class="tile-percent-text">{{ round($raffle->progress) }}
                                             %</span><br>{{ $raffle->title }}
                                         <h5 class="text-center">
-                                            <img class="align-content-center"
-                                                 src="{{ asset('pics/countries/'.$raffle->getLocation->code.'.png') }}"/>
+                                            <img class="align-content-center flag-country"
+                                                 src="{{ asset('pics/countries/png100px/'.$raffle->getLocation->code.'.png') }}"/>
                                             <span class="tile-owner-name">{{ $raffle->getOwner->name }}</span>
                                         </h5>
                                     </strong>
