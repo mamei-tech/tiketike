@@ -35,27 +35,32 @@
                         </div>
                         <div class="col-xs-12 sinkinSans300L colorV">
                             <div class="padding-top-10">
-                                <div class="col-xs-9 col-sm-8 col-lg-7"><span class="colorV margin-right-20">@lang('views.created_raffles'):</span>
+                                <div class="col-xs-9 col-sm-8 col-lg-7"><span class="colorV margin-right-20">@lang('views.created_raffles')
+                                        :</span>
                                 </div>
                                 <div class="col-xs-3 col-sm-4 col-lg-5"><strong
                                             class="colorN sinkinSans600SB">{{ count($user->getRaffles) }}</strong><br>
                                 </div>
                             </div>
                             <div class="padding-top-20">
-                                <div class="col-xs-9 col-sm-8 col-lg-7"><span class="colorV margin-right-20">@lang('views.winned_raffles'):</span>
+                                <div class="col-xs-9 col-sm-8 col-lg-7"><span class="colorV margin-right-20">@lang('views.winned_raffles')
+                                        :</span>
                                 </div>
                                 <div class="col-xs-3 col-sm-4 col-lg-5"><strong
                                             class="colorN sinkinSans600SB">{{ count($user->WinnedRaffles()) }}</strong><br>
                                 </div>
                             </div>
                             <div class="padding-top-20">
-                                <div class="col-xs-9 col-sm-8 col-lg-7"><span class="colorV margin-right-20">@lang('views.shared_raffles'):</span>
+                                <div class="col-xs-9 col-sm-8 col-lg-7"><span class="colorV margin-right-20">@lang('views.shared_raffles')
+                                        :</span>
                                 </div>
                                 <div class="col-xs-3 col-sm-4 col-lg-5"><strong
-                                            class="colorN sinkinSans600SB">{{ count($user->getReferralsBuys->groupBy('raffle_id')) }}</strong><br></div>
+                                            class="colorN sinkinSans600SB">{{ count($user->getReferralsBuys->groupBy('raffle_id')) }}</strong><br>
+                                </div>
                             </div>
                             <div class="padding-top-20">
-                                <div class="col-xs-9 col-sm-8 col-lg-7"><span class="colorV margin-right-20">@lang('views.sold_tickets'):</span>
+                                <div class="col-xs-9 col-sm-8 col-lg-7"><span class="colorV margin-right-20">@lang('views.sold_tickets')
+                                        :</span>
                                 </div>
                                 <div class="col-xs-3 col-sm-4 col-lg-5"><strong
                                             class="colorN sinkinSans600SB">{{ $user->getSoldTicketsCount() }}</strong><br>
@@ -64,7 +69,8 @@
                         </div>
                         <div class="col-xs-12 padding-top-20">
                             <h5 class="borderBottomG colorN sinkinSans600SB"><span
-                                        class="ti-agenda texto14 padding-top5 margin-right-10"></span>@lang('views.contacts')</h5>
+                                        class="ti-agenda texto14 padding-top5 margin-right-10"></span>@lang('views.contacts')
+                            </h5>
 
                             @if($user->getProfile->phone)
                                 <div class="phone sinkinSans500M padding-top-20">
@@ -80,7 +86,8 @@
                         @if($user->id == \Auth::User()->id)
                             <div class="col-xs-12 padding-top-20">
                                 <h5 class="borderBottomG colorN sinkinSans600SB"><span
-                                            class="ti-wallet texto14 padding-top5 margin-right-10"></span>@lang('views.my_account')</h5>
+                                            class="ti-wallet texto14 padding-top5 margin-right-10"></span>@lang('views.my_account')
+                                </h5>
                                 <span class="texto14 sinkinSans400R colorV padding-left30">Total</span>
                                 <div class="margin-bottom-40 padding-top5">
                                     <div class="pull-left padding-top5">
@@ -151,25 +158,29 @@
                             <div class="tab-pane active in" id="estadisticas">
                                 <div class="col-xs-12 colorV sinkinSans300L">
                                     <div class="padding-top-10">
-                                        <div class="col-xs-6 col-sm-8"><span class="colorV margin-right-20">@lang('views.created_raffles'):</span>
+                                        <div class="col-xs-6 col-sm-8"><span class="colorV margin-right-20">@lang('views.created_raffles')
+                                                :</span>
                                         </div>
                                         <div class="col-xs-6 col-sm-4"><strong
                                                     class="colorN sinkinSans600SB">100%</strong><br></div>
                                     </div>
                                     <div class="padding-top-20">
-                                        <div class="col-xs-6 col-sm-8"><span class="colorV margin-right-20">@lang('views.winned_raffles'):</span>
+                                        <div class="col-xs-6 col-sm-8"><span class="colorV margin-right-20">@lang('views.winned_raffles')
+                                                :</span>
                                         </div>
                                         <div class="col-xs-6 col-sm-4"><strong
                                                     class="colorN sinkinSans600SB">80%</strong><br></div>
                                     </div>
                                     <div class="padding-top-20">
-                                        <div class="col-xs-6 col-sm-8"><span class="colorV margin-right-20">@lang('views.shared_raffles'):</span>
+                                        <div class="col-xs-6 col-sm-8"><span class="colorV margin-right-20">@lang('views.shared_raffles')
+                                                :</span>
                                         </div>
                                         <div class="col-xs-6 col-sm-4"><strong
                                                     class="colorN sinkinSans600SB">100%</strong><br></div>
                                     </div>
                                     <div class="padding-top-20">
-                                        <div class="col-xs-6 col-sm-8"><span class="colorV margin-right-20">@lang('views.sold_tickets'):</span>
+                                        <div class="col-xs-6 col-sm-8"><span class="colorV margin-right-20">@lang('views.sold_tickets')
+                                                :</span>
                                         </div>
                                         <div class="col-xs-6 col-sm-4"><strong
                                                     class="colorN sinkinSans600SB">100%</strong><br></div>
@@ -286,17 +297,17 @@
                                     <div class="tab-pane active in" id="creadas">
                                         @foreach($user->getRaffles as $raffle)
                                             <div class="col-xs-6 col-lg-3 col-sm-4 padding-top-15">
-                                                <a href="{{ route() }}">
-                                                <img src="{{ $raffle->getMedia('raffles')->first()->getUrl() }}"
-                                                     class="imgRifas">
-                                                <div class="porciento">
-                                                    <div class=" text-center">
+                                                <a href="{{ route('raffle.tickets.available',['raffleId' => $raffle->id]) }}">
+                                                    <img src="{{ $raffle->getMedia('raffles')->first()->getUrl() }}"
+                                                         class="imgRifas">
+                                                    <div class="porciento">
+                                                        <div class=" text-center">
                                                 <span class="chartB chart-porcientoR"
                                                       data-percent="{{round($raffle->getProgress())}}">
                                                     <span class="percentR">{{round($raffle->getProgress())}}%</span>
                                                 </span>
+                                                        </div>
                                                     </div>
-                                                </div>
                                                 </a>
                                             </div>
                                         @endforeach
@@ -305,17 +316,18 @@
                                     <div class="tab-pane" id="participo">
                                         @foreach($user->getRafflesBuyed as $raffle)
                                             <div class="col-xs-6 col-lg-3 col-sm-4 padding-top-15">
-                                                <img src="{{ $raffle->getMedia('raffles')->first()->getUrl() }}"
-                                                     class="imgRifas">
-                                                <div class="porciento">
-                                                    <div class=" text-center">
+                                                <a href="{{ route('raffle.tickets.available',['raffleId' => $raffle->id]) }}">
+                                                    <img src="{{ $raffle->getMedia('raffles')->first()->getUrl() }}"
+                                                         class="imgRifas">
+                                                    <div class="porciento">
+                                                        <div class=" text-center">
                                                 <span class="chartB chart-porcientoR"
                                                       data-percent="{{round($raffle->getProgress())}}">
                                                     <span class="percentR">{{round($raffle->getProgress())}}%</span>
                                                 </span>
+                                                        </div>
                                                     </div>
-                                                </div>
-
+                                                </a>
                                             </div>
                                         @endforeach
 
@@ -323,17 +335,18 @@
                                     <div class="tab-pane" id="siguiendo">
                                         @foreach($user->getRafflesFollowed as $raffle)
                                             <div class="col-xs-6 col-lg-3 col-sm-4 padding-top-15">
-                                                <img src="{{ $raffle->getMedia('raffles')->first()->getUrl() }}"
-                                                     class="imgRifas">
-                                                <div class="porciento">
-                                                    <div class=" text-center">
+                                                <a href="{{ route('raffle.tickets.available',['raffleId' => $raffle->id]) }}">
+                                                    <img src="{{ $raffle->getMedia('raffles')->first()->getUrl() }}"
+                                                         class="imgRifas">
+                                                    <div class="porciento">
+                                                        <div class=" text-center">
                                                 <span class="chartB chart-porcientoR"
                                                       data-percent="{{round($raffle->getProgress())}}">
                                                     <span class="percentR">{{round($raffle->getProgress())}}%</span>
                                                 </span>
+                                                        </div>
                                                     </div>
-                                                </div>
-
+                                                </a>
                                             </div>
                                         @endforeach
 
@@ -371,16 +384,18 @@
                                     <div class="tab-pane active in" id="vendidos">
                                         @foreach($user->getRafflesSelled as $raffle)
                                             <div class="col-xs-6 col-lg-3 col-sm-4 padding-top-15 paddingLeft0 padding-rigth-0">
-                                                <div class="pull-left">
-                                                    @if(count($raffle->getMedia('raffles')) > 0)
-                                                        <img src="{{$raffle->getMedia('raffles')->first()->getUrl()}}"
-                                                             class="imgTicket">
-                                                    @endif
-                                                </div>
-                                                <div class="pull-left bg-b colorV textoCenter">
-                                                    <h4 class="sinkinSans600SB">{{$raffle->getTicketsSold()}}</h4>
-                                                    <h5 class="text-uppercase texto10 sinkinSans300L">tickets</h5>
-                                                </div>
+                                                <a href="{{ route('raffle.tickets.available',['raffleId' => $raffle->id]) }}">
+                                                    <div class="pull-left">
+                                                        @if(count($raffle->getMedia('raffles')) > 0)
+                                                            <img src="{{$raffle->getMedia('raffles')->first()->getUrl()}}"
+                                                                 class="imgTicket">
+                                                        @endif
+                                                    </div>
+                                                    <div class="pull-left bg-b colorV textoCenter">
+                                                        <h4 class="sinkinSans600SB">{{$raffle->getTicketsSold()}}</h4>
+                                                        <h5 class="text-uppercase texto10 sinkinSans300L">tickets</h5>
+                                                    </div>
+                                                </a>
                                             </div>
 
                                         @endforeach
@@ -388,18 +403,19 @@
                                     <div class="tab-pane" id="comprados">
                                         @foreach($user->getRafflesBuyed as $raffle)
                                             <div class="col-xs-6 col-lg-3 col-sm-4 padding-top-15 paddingLeft0 padding-rigth-0">
-                                                <div class="pull-left">
-                                                    @if(count($raffle->getMedia('raffles')) > 0)
-                                                        <img src="{{$raffle->getMedia('raffles')->first()->getUrl()}}"
-                                                             class="imgTicket">
-                                                    @endif
-                                                </div>
-                                                <div class="pull-left bg-b colorV textoCenter">
-                                                    <h4 class="sinkinSans600SB">{{count($user->getTicketsByRaffle($raffle->id))}}</h4>
-                                                    <h5 class="text-uppercase texto10 sinkinSans300L">tickets</h5>
-                                                </div>
+                                                <a href="{{ route('raffle.tickets.available',['raffleId' => $raffle->id]) }}">
+                                                    <div class="pull-left">
+                                                        @if(count($raffle->getMedia('raffles')) > 0)
+                                                            <img src="{{$raffle->getMedia('raffles')->first()->getUrl()}}"
+                                                                 class="imgTicket">
+                                                        @endif
+                                                    </div>
+                                                    <div class="pull-left bg-b colorV textoCenter">
+                                                        <h4 class="sinkinSans600SB">{{count($user->getTicketsByRaffle($raffle->id))}}</h4>
+                                                        <h5 class="text-uppercase texto10 sinkinSans300L">tickets</h5>
+                                                    </div>
+                                                </a>
                                             </div>
-
                                         @endforeach
                                     </div>
                                 </div>
