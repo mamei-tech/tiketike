@@ -10,8 +10,8 @@ $(function () {
         slidesToScroll: 1,
         vertical: true,
         autoplay:true,
-        autoplaySpeed: 2000,
-        pauseOnHover: false,
+        autoplaySpeed: 6000,
+        pauseOnHover: true,
         initialSlide: 9,
         responsive: [
             {
@@ -24,23 +24,9 @@ $(function () {
                     arrows:false,
                     vertical: false,
                     autoplay:true,
-                    autoplaySpeed: 2000,
-                    pauseOnHover: false,
+                    autoplaySpeed: 6000,
+                    pauseOnHover: true,
 
-                }
-            },
-            {
-                breakpoint: 480,
-                settings: {
-                    slidesToShow: 1,
-                    slidesToScroll: 1,
-                    initialSlide: 9,
-                    infinite: true,
-                    arrows:false,
-                    vertical: false,
-                    autoplay:true,
-                    autoplaySpeed: 2000,
-                    pauseOnHover: false,
                 }
             }
             // You can unslick at a given breakpoint now by adding:
