@@ -192,10 +192,6 @@ class Raffle extends Model implements HasMedia
                 $refBuy->socialNetwork = $socialNetworkId;
                 array_push($referralsBuys, $refBuy);
             }
-            // TODO review because the referrals profit only pass to the comissionist when raffle ends
-//            $referralUserProfile = $referralUser->getProfile;
-//            $referralUserProfile->balance += count($referralsBuys) * $this->commissions / $this->tickets_count;
-//            $referralUserProfile->save();
             $referralUser->getReferralsBuys()->saveMany($referralsBuys);
         }
         $this->progress = $this->getProgress();
