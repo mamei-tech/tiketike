@@ -41,12 +41,6 @@ class WorldContinentsTableSeeder extends Seeder
                 'id' => 4,
                 'name' => 'Oceania',
             ),
-            4 => 
-            array (
-                'code' => 'an',
-                'id' => 5,
-                'name' => 'Antarctica',
-            ),
             5 => 
             array (
                 'code' => 'na',

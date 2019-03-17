@@ -34,7 +34,7 @@ class RaffleFrontController extends ApiController
         $raffles = null;
         $response = '';
         if ($request->get('category') == 'Todos')
-            $raffles = Raffle::paginate(10);
+            $raffles = Raffle::where('progress','<',100)->paginate(10);
         else
             $raffles = $this->raffleRepository->getRafflesByCategory($request->get('category'));
         foreach ($raffles as $raffle) {
@@ -67,6 +67,7 @@ class RaffleFrontController extends ApiController
                 $response .= '"></li>'.PHP_EOL;
                 $count++;
             }
+            $price = $raffle->tickets_price?$raffle->tickets_price:0;
             $response .= '</ol>'.PHP_EOL;
             $response .= '</div>'.PHP_EOL;
             $response .= '</div>'.PHP_EOL;
@@ -79,17 +80,17 @@ class RaffleFrontController extends ApiController
             $response .= '<a class="colorN" href="'.route('raffle.tickets.available',['raffleId' => $raffle->id]).'">'.$raffle->title.'</a>'.PHP_EOL;
             $response .= '</h4>'.PHP_EOL;
             $response .= '<div class="hidden-lg texto8">'.PHP_EOL;
-            $response .= '<span class="sinkinSans300L ">Costo:</span>'.PHP_EOL;
-            $response .= '<span class="sinkinSans600SB">'.$raffle->price.'</span>'.PHP_EOL;
+            $response .= '<span class="sinkinSans300L ">'.trans('views.cost',[],app()->getLocale()).':</span>'.PHP_EOL;
+            $response .= '<span class="sinkinSans600SB">'.$price.'</span>'.PHP_EOL;
             $response .= '</div>'.PHP_EOL;
             $response .= '<div class="costo hidden-xs">'.PHP_EOL;
             $response .= '<div class="pull-left porcientoCompletado">'.PHP_EOL;
             $response .= '<span class="texto35 sinkinSans600SB colorN">'.round($raffle->getProgress()).' %</span><br>'.PHP_EOL;
-            $response .= '<span class="sinkinSans400R">completado</span>'.PHP_EOL;
+            $response .= '<span class="sinkinSans400R">'.trans('views.completed',[],app()->getLocale()).'</span>'.PHP_EOL;
             $response .= '</div>'.PHP_EOL;
             $response .= '<div class="pull-left padding-top-20 padding-left30">'.PHP_EOL;
-            $response .= '<span class="sinkinSans300L texto10">Costo:</span><br>'.PHP_EOL;
-            $response .= '<span class="colorN sinkinSans600SB">$'.$raffle->price.'</span>'.PHP_EOL;
+            $response .= '<span class="sinkinSans300L texto10">'.trans('views.cost',[],app()->getLocale()).':</span><br>'.PHP_EOL;
+            $response .= '<span class="colorN sinkinSans600SB">$'.$price.'</span>'.PHP_EOL;
             $response .= '</div>'.PHP_EOL;
             $response .= '</div>'.PHP_EOL;
             $response .= '<ul class="list-unstyled list-inline padding-top-20 hidden-xs pull-right">'.PHP_EOL;
@@ -156,6 +157,7 @@ class RaffleFrontController extends ApiController
                 $response .= '"></li>'.PHP_EOL;
                 $count++;
             }
+            $price = $raffle->tickets_price?$raffle->tickets_price:0;
             $response .= '</ol>'.PHP_EOL;
             $response .= '</div>'.PHP_EOL;
             $response .= '</div>'.PHP_EOL;
@@ -168,17 +170,17 @@ class RaffleFrontController extends ApiController
             $response .= '<a class="colorN" href="'.route('raffle.tickets.available',['raffleId' => $raffle->id]).'">'.$raffle->title.'</a>'.PHP_EOL;
             $response .= '</h4>'.PHP_EOL;
             $response .= '<div class="hidden-lg texto8">'.PHP_EOL;
-            $response .= '<span class="sinkinSans300L ">Costo:</span>'.PHP_EOL;
-            $response .= '<span class="sinkinSans600SB">'.$raffle->price.'</span>'.PHP_EOL;
+            $response .= '<span class="sinkinSans300L ">'.trans('views.cost',[],app()->getLocale() ).':</span>'.PHP_EOL;
+            $response .= '<span class="sinkinSans600SB">'.$price.'</span>'.PHP_EOL;
             $response .= '</div>'.PHP_EOL;
             $response .= '<div class="costo hidden-xs">'.PHP_EOL;
             $response .= '<div class="pull-left porcientoCompletado">'.PHP_EOL;
             $response .= '<span class="texto35 sinkinSans600SB colorN">'.round($raffle->getProgress()).' %</span><br>'.PHP_EOL;
-            $response .= '<span class="sinkinSans400R">completado</span>'.PHP_EOL;
+            $response .= '<span class="sinkinSans400R">'.trans('views.completed',[],app()->getLocale()).'</span>'.PHP_EOL;
             $response .= '</div>'.PHP_EOL;
             $response .= '<div class="pull-left padding-top-20 padding-left30">'.PHP_EOL;
-            $response .= '<span class="sinkinSans300L texto10">Costo:</span><br>'.PHP_EOL;
-            $response .= '<span class="colorN sinkinSans600SB">$'.$raffle->price.'</span>'.PHP_EOL;
+            $response .= '<span class="sinkinSans300L texto10">'.trans('views.cost',[],app()->getLocale() ).':</span><br>'.PHP_EOL;
+            $response .= '<span class="colorN sinkinSans600SB">$'.$price.'</span>'.PHP_EOL;
             $response .= '</div>'.PHP_EOL;
             $response .= '</div>'.PHP_EOL;
             $response .= '<ul class="list-unstyled list-inline padding-top-20 hidden-xs pull-right">'.PHP_EOL;
@@ -212,9 +214,9 @@ class RaffleFrontController extends ApiController
         $raffles = null;
         $response = '';
         if ($request->get('category') == 'Todos')
-            $raffles = Raffle::where('progress','<',100)->orderBy('price','DESC')->paginate(10);
+            $raffles = Raffle::where('progress','<',100)->orderBy('progress','DESC')->paginate(10);
         else
-            $raffles = $this->raffleRepository->getRaflesByCategory($request->get('category'));
+            $raffles = $this->raffleRepository->getRafflesByCategory($request->get('category'),$request->get('criteria'));
         foreach ($raffles as $raffle) {
             $response .= '<div class="row padding20 bg-rifas1 center-block '.$raffle->id.'">'.PHP_EOL;
             $response .= '<div class="col-xs-4 col-md-6" style="padding-left: 23px;padding-right: 0">'.PHP_EOL;
@@ -245,6 +247,7 @@ class RaffleFrontController extends ApiController
                 $response .= '"></li>'.PHP_EOL;
                 $count++;
             }
+            $price = $raffle->tickets_price?$raffle->tickets_price:0;
             $response .= '</ol>'.PHP_EOL;
             $response .= '</div>'.PHP_EOL;
             $response .= '</div>'.PHP_EOL;
@@ -257,17 +260,17 @@ class RaffleFrontController extends ApiController
             $response .= '<a class="colorN" href="'.route('raffle.tickets.available',['raffleId' => $raffle->id]).'">'.$raffle->title.'</a>'.PHP_EOL;
             $response .= '</h4>'.PHP_EOL;
             $response .= '<div class="hidden-lg texto8">'.PHP_EOL;
-            $response .= '<span class="sinkinSans300L ">Costo:</span>'.PHP_EOL;
-            $response .= '<span class="sinkinSans600SB">'.$raffle->price.'</span>'.PHP_EOL;
+            $response .= '<span class="sinkinSans300L ">'.trans('views.cost',[],app()->getLocale() ).':</span>'.PHP_EOL;
+            $response .= '<span class="sinkinSans600SB">'.$price.'</span>'.PHP_EOL;
             $response .= '</div>'.PHP_EOL;
             $response .= '<div class="costo hidden-xs">'.PHP_EOL;
             $response .= '<div class="pull-left porcientoCompletado">'.PHP_EOL;
             $response .= '<span class="texto35 sinkinSans600SB colorN">'.round($raffle->getProgress()).' %</span><br>'.PHP_EOL;
-            $response .= '<span class="sinkinSans400R">completado</span>'.PHP_EOL;
+            $response .= '<span class="sinkinSans400R">'.trans('views.completed',[],app()->getLocale()).'</span>'.PHP_EOL;
             $response .= '</div>'.PHP_EOL;
             $response .= '<div class="pull-left padding-top-20 padding-left30">'.PHP_EOL;
-            $response .= '<span class="sinkinSans300L texto10">Costo:</span><br>'.PHP_EOL;
-            $response .= '<span class="colorN sinkinSans600SB">$'.$raffle->price.'</span>'.PHP_EOL;
+            $response .= '<span class="sinkinSans300L texto10">'.trans('views.cost',[],app()->getLocale() ).':</span><br>'.PHP_EOL;
+            $response .= '<span class="colorN sinkinSans600SB">$'.$price.'</span>'.PHP_EOL;
             $response .= '</div>'.PHP_EOL;
             $response .= '</div>'.PHP_EOL;
             $response .= '<ul class="list-unstyled list-inline padding-top-20 hidden-xs pull-right">'.PHP_EOL;

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Continent;
 use App\Country;
 use App\Http\Requests\ConfirmRaffle;
 use App\Http\Requests\UpdateRaffleRequest;
@@ -64,8 +65,8 @@ class RafflesController extends Controller
             ->where('progress','<',100)
             ->orderBy('activation_date','ASC')
             ->paginate(10);
-        $countries = Country::all();
-        return view('raffles',compact('raffles','suggested','promos','categories','countries'));
+        $continents = Continent::all();
+        return view('raffles',compact('raffles','suggested','promos','categories','continents'));
     }
 
     /**

@@ -32,6 +32,8 @@ class UserController extends Controller
         $current = User::findOrFail(intval($userid));
         $suggested = $this->raffleRepository->getSuggested();
         $promos = Promo::where('type', 1)->where('status', 1)->get();
+//        var_dump(count($current->getRafflesSelled));
+//        die();
         return view('user', [
             'user' => $current,
             'suggested' => $suggested,
