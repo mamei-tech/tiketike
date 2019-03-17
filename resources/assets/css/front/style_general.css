@@ -782,7 +782,7 @@ div.checker, div.checker span, div.checker input {
     padding: 0;
 }
 .paddingFiltrar{
-    padding:0 15px;
+    padding:10px 15px;
 }
 .porciento {
     position: absolute;
@@ -850,7 +850,7 @@ div.checker, div.checker span, div.checker input {
     padding:0 50px;
 }
 div.contenido{
-    margin-top: 15px;
+    margin-top: 85px;
 }
 .panel-heading {
     border-bottom: inherit;

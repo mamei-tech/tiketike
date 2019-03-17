@@ -29,5 +29,17 @@ return [
     '8' => 'th',
     '9' => 'th',
     '10' => 'th',
-    'raffles' => 'Raffles'
+    'raffles' => 'Raffles',
+    'categories' => 'Categories',
+    'all' => 'All',
+    'countries' => 'Countries',
+    'filter_by' => 'Filter by',
+    'price' => 'Price',
+    'from' => 'from',
+    'to' => 'to',
+    'more_than' => 'or more',
+    'order_by' => 'order by',
+    'completed' => 'completed',
+    'cost' => 'Cost',
+    'suggested' => 'Suggested'
 ];

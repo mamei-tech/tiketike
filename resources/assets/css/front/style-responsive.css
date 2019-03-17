@@ -579,6 +579,9 @@
 
 }
 @media (max-width: 600px) {
+    div.contenido{
+        margin-top: 65px;
+    }
     .imginline {
         width: 100%;
         top:2% !important;
@@ -795,6 +798,9 @@
 
 }
 @media (min-width: 481px)and (max-width: 500px){
+    div.contenido{
+        margin-top: 25px;
+    }
     .padding-top-70 {
         padding-top: 0px;
     }
@@ -831,6 +837,7 @@
         top: 5px;
     }
     .fullscreen-modal .modal-dialog, modal-content {
+        overflow-y: initial !important;
         width: 100%;
     }
     .imgPublicidadR {
@@ -1217,6 +1224,9 @@
     }
 }
 @media (max-width: 480px) {
+    div.contenido{
+        margin-top: 15px;
+    }
     .fullscreen-modal .modal-dialog, modal-content {
         width: 100%;
     }
@@ -1631,6 +1641,9 @@
 
 }
 @media (max-width: 400px) {
+    div.contenido{
+        margin-top: 15px;
+    }
     .fullscreen-modal .modal-dialog, modal-content {
         width: 100%;
     }
@@ -2026,6 +2039,9 @@
 
 }
 @media (max-width: 320px) {
+    div.contenido{
+        margin-top: 15px;
+    }
     body {
         font-size: 10px;
     }

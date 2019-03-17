@@ -29,5 +29,17 @@ return [
     '8' => 'vo',
     '9' => 'no',
     '10' => 'mo',
-    'raffles' => 'Rifas'
+    'raffles' => 'Rifas',
+    'categories' => 'Categorías',
+    'all' => 'Todos',
+    'countries' => 'Países',
+    'filter_by' => 'Filtrar por',
+    'price' => 'Precio',
+    'from' => 'desde',
+    'to' => 'a',
+    'more_than' => 'o más',
+    'order_by' => 'ordenar por',
+    'completed' => 'completado',
+    'cost' => 'Costo',
+    'suggested' => 'Sugeridas'
 ];
