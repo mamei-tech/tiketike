@@ -11,7 +11,7 @@
             </div>
         </div>
         <button class="btn btn-primary bg_green extraer sinkinSans700B text-uppercase"
-                type="submit">Enviar
+                type="submit">@lang('views.send')
         </button>
     </form>
 

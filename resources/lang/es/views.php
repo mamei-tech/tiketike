@@ -41,5 +41,14 @@ return [
     'order_by' => 'ordenar por',
     'completed' => 'completado',
     'cost' => 'Costo',
-    'suggested' => 'Sugeridas'
+    'suggested' => 'Sugeridas',
+    'articles' => 'Artículos',
+    'my_tickets_buyed' => 'Mis tickets comprados',
+    'comments' => 'comentarios',
+    'respond' => 'responder',
+    'send' => 'Enviar',
+    'make_comment' => 'Comenta',
+    'tickets_sell' => 'venta de tickets',
+    'selected' => 'seleccionados',
+    'buy' => 'Comprar'
 ];
