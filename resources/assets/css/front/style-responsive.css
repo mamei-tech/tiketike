@@ -282,6 +282,11 @@
 
 }
 @media (max-width: 768px) {
+    .preciosExtraer{
+        border-top: #9D9D9D solid 1px;
+        margin-left: 4px;
+        width: 93%;
+    }
     .imgTicket {
         width: 60px;
         height: 74px;
@@ -399,6 +404,11 @@
     }
 }
 @media (max-width: 767px) {
+    .preciosExtraer{
+        border-top: #9D9D9D solid 1px;
+        margin-left: 4px;
+        width: 93%;
+    }
     .padding-left65 {
         padding-left: 0px;
     }
@@ -579,6 +589,11 @@
 
 }
 @media (max-width: 600px) {
+    .preciosExtraer{
+        border-top: #9D9D9D solid 1px;
+        margin-left: 10px;
+        width: 91%;
+    }
     div.contenido{
         margin-top: 65px;
     }
@@ -798,6 +813,11 @@
 
 }
 @media (min-width: 481px)and (max-width: 500px){
+    .preciosExtraer{
+        border-top: #9D9D9D solid 1px;
+        margin-left: 13px;
+        width: 87%;
+    }
     div.contenido{
         margin-top: 25px;
     }
@@ -1224,6 +1244,11 @@
     }
 }
 @media (max-width: 480px) {
+    .preciosExtraer{
+        border-top: #9D9D9D solid 1px;
+        margin-left: 25px;
+        width: 87%;
+    }
     div.contenido{
         margin-top: 15px;
     }

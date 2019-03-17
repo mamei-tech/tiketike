@@ -50,5 +50,19 @@ return [
     'make_comment' => 'Make a comment',
     'tickets_sell' => 'Tickets sell',
     'selected' => 'selected',
-    'buy' => 'Buy'
+    'buy' => 'Buy',
+    'statistics' => 'Statistics',
+    'contacts' => 'Contacts',
+    'my_account' => 'My account',
+    'extract' => 'Extract',
+    'by_raffle' => 'by raffle',
+    'by_commission' => 'by commission',
+    'created' => 'Created',
+    'participating' => 'Participating',
+    'following' => 'Following',
+    'users' => 'Users',
+    'purchased' => 'purchased',
+    'sold' => 'Sold',
+    'followed' => 'followed',
+    'follow_me' => 'Follow me'
 ];

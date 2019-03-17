@@ -50,5 +50,19 @@ return [
     'make_comment' => 'Comenta',
     'tickets_sell' => 'venta de tickets',
     'selected' => 'seleccionados',
-    'buy' => 'Comprar'
+    'buy' => 'Comprar',
+    'statistics' => 'Estadísticas',
+    'contacts' => 'Contactos',
+    'my_account' => 'Mi cuenta',
+    'extract' => 'Extraer',
+    'by_raffle' => 'por rifa',
+    'by_commission' => 'por comisión',
+    'created' => 'Creadas',
+    'participating' => 'Participando',
+    'following' => 'Siguiendo',
+    'users' => 'Usuarios',
+    'purchased' => 'Comprados',
+    'sold' => 'Vendidos',
+    'followed' => 'Seguidos',
+    'follow_me' => 'Me siguen'
 ];

@@ -4,6 +4,7 @@ namespace App;
 
 use App\Http\TkTk\Cfg\CfgRaffles;
 use App\Http\TkTk\CodesGenerator;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 use PhpParser\Node\Scalar\String_;
@@ -273,11 +274,7 @@ class Raffle extends Model implements HasMedia
 
     public function getTicketsSold()
     {
-        $tickets = Raffle::join('tickets', 'raffles.id', '=', 'tickets.raffle')
-            ->select('tickets.id')
-            ->where('raffles.id',$this->id)
-            ->where('tickets.sold',1)
-            ->count();
+        $tickets = $this->getTickets()->where('sold',1)->count();
         return $tickets;
     }
 
