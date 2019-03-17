@@ -176,6 +176,11 @@ class User extends Authenticatable implements HasMedia
         return $total;
     }
 
+    public function getCountryCode()
+    {
+        return strtoupper($this->getProfile->getCity->country->code);
+    }
+
     public static function usersCount()
     {
         $usersCount = 0;

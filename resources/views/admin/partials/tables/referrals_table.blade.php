@@ -17,15 +17,10 @@
     </thead>
 
     <tbody>
-    {{--@foreach ($referrals as $key => $r)--}}
-        {{--<tr>--}}
-            {{--<td>{{ $r->id }}</td>--}}
-            {{--<td>{{ $r->name }}</td>--}}
-            {{--<td>{{ $r->shared_tickets }}</td>--}}
-            {{--<td>{{ $r }}</td>--}}
-            {{--<td>{{ $r }}</td>--}}
-            {{--<td>{{ $r }}</td>--}}
-        {{--</tr>--}}
-    {{--@endforeach--}}
+    <tr hidden>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
     </tbody>
 </table>
