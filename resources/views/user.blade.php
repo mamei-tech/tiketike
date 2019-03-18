@@ -213,7 +213,7 @@
                                     <div class="col-xs-12 padding-bottom20 padding-top5">
                                         <div class="col-xs-8 texto14  padding-top5">
                                             <span class="ti-money colorV margin-right5"></span>
-                                            <span class="borderDashed padding15">450.00 USD</span>
+                                            <span class="borderDashed padding15">{{$user->getProfile->balance}}</span>
                                         </div>
                                         <div class="col-xs-4">
                                             <button type="button"
@@ -462,44 +462,9 @@
                                                         <h6 class="hidden-xs sinkinSans600SB">Jane Doe</h6>
                                                         <span class="texto10 sinkinSans500MI padding-left10 hidden-xs">Brasil</span>
                                                     </div>
-                                                    <div class="paddingImgCarousel">
-                                                        <img src="{{ asset('pics/front/user.jpg') }}"
-                                                             class="imgUsuario sombraImgUser2"
-                                                             alt="imgUser">
-                                                        <h6 class="hidden-xs sinkinSans600SB">Jane Doe</h6>
-                                                        <span class="texto10 sinkinSans500MI padding-left10 hidden-xs">Brasil</span>
-                                                    </div>
-                                                    <div class="paddingImgCarousel">
-                                                        <img src="{{ asset('pics/front/user.jpg') }}"
-                                                             class="imgUsuario sombraImgUser2"
-                                                             alt="imgUser">
-                                                        <h6 class="hidden-xs sinkinSans600SB">Jane Doe</h6>
-                                                        <span class="texto10 sinkinSans500MI padding-left10 hidden-xs">Brasil</span>
-                                                    </div>
-                                                    <div class="paddingImgCarousel">
-                                                        <img src="{{ asset('pics/front/user.jpg') }}"
-                                                             class="imgUsuario sombraImgUser2"
-                                                             alt="imgUser">
-                                                        <h6 class="hidden-xs sinkinSans600SB">Jane Doe</h6>
-                                                        <span class="texto10 sinkinSans500MI padding-left10 hidden-xs">Brasil</span>
-                                                    </div>
-                                                    <div class="paddingImgCarousel">
-                                                        <img src="{{ asset('pics/front/user.jpg') }}"
-                                                             class="imgUsuario sombraImgUser2"
-                                                             alt="imgUser">
-                                                        <h6 class="hidden-xs sinkinSans600SB">Jane Doe</h6>
-                                                        <span class="texto10 sinkinSans500MI padding-left10 hidden-xs">Brasil</span>
-                                                    </div>
-                                                    <div class="paddingImgCarousel">
-                                                        <img src="{{ asset('pics/front/user.jpg') }}"
-                                                             class="imgUsuario sombraImgUser2"
-                                                             alt="imgUser">
-                                                        <h6 class="hidden-xs sinkinSans600SB">Jane Doe</h6>
-                                                        <span class="texto10 sinkinSans500MI padding-left10 hidden-xs">Brasil</span>
-                                                    </div>
                                                 </div>
                                             </div>
-                                            <div class="col-xs-12 bg-popover">
+                                            <div class="col-xs-12 bg-popoverU">
                                                 <div class="colorV visible-xs text-center texto14 padding-top-30"><span
                                                             class="sinkinSans600SB text-uppercase">Jane Doe /</span>
                                                     <span

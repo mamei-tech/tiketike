@@ -12,6 +12,16 @@
         background-size: cover;
     }
 
+    .bg-popoverU {
+        background: url("../../pics/front/popover.svg") no-repeat scroll top center;
+        background-size: 100% 250px;!important;
+        width: 100%;
+        height: 250px;
+        padding: 15px;
+        font-size: 10px;
+    }
+
+
 }
 @media (min-width: 1201px) and (max-width: 1279px) {
     .fullscreen-modal .modal-dialog {
@@ -64,6 +74,15 @@
         /*background-size: cover;*/
         font-size: 10px;
     }
+
+    .bg-popoverU {
+        background: url("../../pics/front/popover.svg") no-repeat scroll top center;
+        background-size: 100% 250px;!important;
+        width: 100%;
+        height: 250px;
+        padding: 15px;
+        font-size: 10px;
+    }
     .dimenUsuarioG {
         width: 90px !important;
         height: 90px;
@@ -82,6 +101,16 @@
     }
 }
 @media (min-width: 1025px) and (max-width: 1200px) {
+
+    .bg-popoverU {
+        background: url("../../pics/front/popover.svg") no-repeat scroll top center;
+        background-size: 100% 250px;!important;
+        width: 100%;
+        height: 250px;
+        padding: 15px;
+        font-size: 10px;
+    }
+
     .fullscreen-modal .modal-dialog {
         width: 1170px;
     }
@@ -107,6 +136,16 @@
     }
 }
 @media (min-width: 993px) and (max-width: 1024px) {
+
+    .bg-popoverU {
+        background: url("../../pics/front/popover.svg") no-repeat scroll top center;
+        background-size: 100% 250px;!important;
+        width: 100%;
+        height: 250px;
+        padding: 15px;
+        font-size: 10px;
+    }
+
     .padding-left650 {
         padding-left: 280px;
     }
@@ -222,6 +261,15 @@
         padding: 15px;
         font-size: 10px;
     }
+
+    .bg-popoverU {
+        background: url("../../pics/front/bg-popoverR.png") no-repeat;
+        width: 280px;
+        height: 298px;
+        /*padding: 40px 20px;*/
+        margin-left: 15px;
+    }
+
     .logo img {
         width: 175px;
         height: auto;
