@@ -37,8 +37,6 @@ class PromoController extends Controller
     {
         $promos = DB::table('promos')->get();
 
-        Log::log('INFO', trans('aLogs.adm_promo_section').' - '.Auth::user()->id);
-
         return view('admin.promos', [
             'promos' => $promos,
             'div_showPromo' => 'show',
@@ -97,7 +95,10 @@ class PromoController extends Controller
         // Retriving all the promos for redirect
         $promos = DB::table('promos')->get();
 
-        Log::log('INFO', trans('aLogs.adm_promo_store').' - '.Auth::user()->id.' - '.$promo->id);
+        Log::log('INFO', trans('aLogs.adm_promo_store'), [
+            'user'  => Auth::user()->id,
+            'promo_id'  => $promo->id
+        ]);
 
         return redirect()->route('promos.index',
             [
@@ -147,7 +148,10 @@ class PromoController extends Controller
             // Retriving all the promos for redirect
             $promos = DB::table('promos')->get();
 
-            Log::log('INFO', trans('aLogs.adm_promo_update').' - '.Auth::user()->id.' - '.$promo->id);
+            Log::log('INFO', trans('aLogs.adm_promo_update'), [
+                'user'      => Auth::user()->id,
+                'promo_id'  => $promo->id
+            ]);
 
             return redirect()->route('promos.index',
                 [
@@ -174,7 +178,10 @@ class PromoController extends Controller
         $promoname = $promo->name;
         $promo->delete();
 
-        Log::log('INFO', trans('aLogs.adm_promo_delete').' - '.Auth::user()->id.' - '.$promoname);
+        Log::log('INFO', trans('aLogs.adm_promo_delete'), [
+            'user'      => Auth::user()->id,
+            'name'      => $promoname,
+        ]);
 
         return redirect()
             ->route('promos.index', null, '303')

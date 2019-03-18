@@ -44,8 +44,6 @@ class PRaffleController extends Controller
     {
         $raffles = $this->raffleRepository->getTenPublishedRaffles();
 
-        Log::log('INFO', trans('aLogs.adm_praffle_index').' - '.Auth::user()->id);
-
         return view('admin.praffles', [
             'raffles' => $raffles,
             'div_showRaffles' => 'show',
@@ -84,7 +82,12 @@ class PRaffleController extends Controller
             Notification::send($follower,(new RaffleTerminatedAndNotWinned($raffle,$follower))->delay(now()->addMinute()));
         }
 
-        Log::log('INFO', trans('aLogs.raffle_shuffled').' - '.['admon:'.Auth::user()->id.' raffle:'.$id.' winner:'.$user_winner->id ]);
+        Log::log('INFO', trans('aLogs.raffle_shuffled'),
+            [
+                'admon'     => Auth::user()->id,
+                'raffle'    => $id,
+                'winner'    =>$user_winner->id
+            ]);
 
         return redirect()->back()->with('success','The raffle was shuffled successfully.');
     }
@@ -116,7 +119,10 @@ class PRaffleController extends Controller
         $payback->getRaffle()->save($raffle);
         $raffle->anullate();
 
-        Log::log('INFO', trans('aLogs.adm_raffle_anullation').' - '.'raffle_id: '.$raffle->id.' - user'.Auth::user()->id);
+        Log::log('INFO', trans('aLogs.adm_raffle_anullation'), [
+            'raffle_id' => $raffle->id,
+            'user'      => Auth::user()->id,
+        ]);
 
         return redirect()->back()
             ->with('success', 'Raffle "' . $id . '" anulled successfully');
