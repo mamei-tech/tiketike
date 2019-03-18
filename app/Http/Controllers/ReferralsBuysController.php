@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\RafflePays;
 use Illuminate\Http\Request;
 use App\Raffle;
 use Illuminate\Support\Facades\Auth;
 use Stripe\Charge;
 use Stripe\Stripe;
+use Illuminate\Support\Facades\Log;
 
 class ReferralsBuysController extends BuysController
 {
@@ -42,6 +44,15 @@ class ReferralsBuysController extends BuysController
             $raffle_pay->charge_id = $charge['id'];
             $raffle_pay->amount = $charge['amount'];
             $raffle_pay->save();
+
+
+            Log::log('INFO', trans('aLogs.referl_buys_tickes'), [
+                'user'      => Auth::user()->id,
+                'raffle'    => $raffle->id,
+                'tickets'   => $request->get('tickets'),
+            ]);
+
+
             return redirect()->back()->with('200',['response' => "Your paiment was sent successfully"]);
         }
 

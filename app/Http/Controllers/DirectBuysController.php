@@ -8,6 +8,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Stripe\Stripe;
 use Stripe\Charge;
+use Illuminate\Support\Facades\Log;
+
 
 class DirectBuysController extends BuysController
 {
@@ -41,7 +43,14 @@ class DirectBuysController extends BuysController
             $raffle_pay->charge_id = $charge['id'];
             $raffle_pay->amount = $charge['amount'];
             $raffle_pay->save();
-            return redirect()->back()->with('200',['response' => "Your paiment was sent successfully"]);
+
+            Log::log('INFO', trans('aLogs.driect_buys_tickes'),
+                [
+                    'user'      => Auth::user()->id,
+                    'tickets'   => $request->get('tickets'),
+                ]);
+
+            return redirect()->back()->with('200',['response' => trans('view.payments_done')]);
         }
 
         return redirect($request->fullUrl(), 303);

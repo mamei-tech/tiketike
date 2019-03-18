@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers\Admin;
 
+use Illuminate\Support\Facades\Auth;
 use App\Country;
 use App\Http\Controllers\Controller;
-use App\Notifications\RaffleAnulled;
 use App\Notifications\RaffleDeleted;
 use App\Notifications\RaffleUpdated;
 use App\Raffle;
@@ -12,11 +12,13 @@ use App\Http\Requests\ChkRPublishRequest;
 use App\RaffleCategory;
 use App\RaffleStatus;
 use App\Repositories\RaffleRepository;
+
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Notification;
+use Illuminate\Support\Facades\Log;
+
 use App\User;
-use App\Notifications\GeneralNotification;
 use App\Http\TkTk\CodesGenerator;
+
 
 
 class URaffleController extends Controller
@@ -102,6 +104,11 @@ class URaffleController extends Controller
         // Everithing is OK, then Publising the raffle
         $raffle->publish($request->profit, $request->commissions, $request->tcount, $request->tprice);
 
+        Log::log('INFO', trans('aLogs.adm_araffle_deleted'), [
+            'user' => Auth::user()->id,
+            'raffle'    => $raffle->id,
+        ]);
+
         return redirect()->route('unpublished.index',
             [
                 'raffles' => $this->raffleRepository->getTenUnpublishedRaffles(),
@@ -139,6 +146,12 @@ class URaffleController extends Controller
                 $raffle->addMedia($item)->toMediaCollection('raffles','raffles');
         }
 
+        Log::log('INFO', trans('aLogs.adm_created_reaffle'),
+            [
+                'user'      => Auth::user()->id,
+                'raffle'    => $raffle->id,
+            ]);
+
         return redirect()->route('unpublished.index',
             [
                 'div_showRaffles' => 'show',
@@ -169,6 +182,12 @@ class URaffleController extends Controller
             $user->notify(new RaffleUpdated($raffle,$user));
         }
 
+        Log::log('INFO', trans('aLogs.adm_updated_reaffle'),
+            [
+                'user'      => Auth::user()->id,
+                'raffle'    => $raffle->id,
+            ]);
+
         return redirect()->route('unpublished.index',
             [
                 'div_showRaffles' => 'show',
@@ -190,6 +209,11 @@ class URaffleController extends Controller
         foreach ($raffle->getFollowers as $user) {
             $user->notify(new RaffleDeleted($raffle,$user));
         }
+
+        Log::log('INFO', trans('aLogs.adm_updated_delete'),
+            [
+                'user'      => Auth::user()->id,
+            ]);
 
         Raffle::destroy($id);
         return redirect()->route('unpublished.index',

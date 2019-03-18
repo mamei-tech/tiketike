@@ -36,7 +36,7 @@ class AdminConfigController extends Controller
             'minextractbalance'         => $this->cfghandler->getConfig('minextractbalance')
         ];
 
-        Log::log('INFO', trans('aLogs.raffle_config_show').' - '.Auth::user()->id);
+        Log::log('INFO', trans('aLogs.raffle_config_show'), ['user'=> Auth::user()->id]);
 
         return view('admin.confviews.raffles', [
             'div_showRaffles' => 'show',
@@ -63,7 +63,10 @@ class AdminConfigController extends Controller
             'minextractbalance'         => $this->cfghandler->getConfig('minextractbalance')
         ];
 
-        Log::log('INFO', trans('aLogs.raffle_config_show').' -z '.Auth::user()->id.' - '.$request->all());
+        Log::log('INFO', trans('aLogs.raffle_config_show'), [
+            'user'      => Auth::user()->id,
+            'request'   => $request->all(),
+        ]);
 
         return redirect()->route('admin.raffle.showconfig',
             compact('cfg', $cnf),

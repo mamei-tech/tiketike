@@ -29,6 +29,7 @@ return [
     '8' => 'vo',
     '9' => 'no',
     '10' => 'mo',
+    'payments_done'    => 'Your paiment was sent successfully',
     'raffles' => 'Rifas',
     'categories' => 'Categorías',
     'all' => 'Todos',

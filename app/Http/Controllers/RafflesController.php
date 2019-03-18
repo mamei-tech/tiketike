@@ -13,8 +13,8 @@ use App\RaffleConfirmation;
 use App\RaffleStatus;
 use App\Repositories\RaffleRepository;
 use App\User;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
+
 use App\Raffle;
 use App\RaffleCategory;
 use App\Http\Requests\StoreRaffleRequest;
@@ -34,11 +34,11 @@ class RafflesController extends Controller
      */
     public function __construct(RaffleRepository $raffleRepository)
     {
-        $this->middleware('permission:raffles_create')->only(['create', 'store']);
-        $this->middleware('permission:raffles_edit')->only(['edit', 'update']);
-        $this->middleware('permission:raffles_follow')->only(['follow']);
-        $this->middleware('permission:raffles_finished')->only(['finishedView']);
-        $this->middleware('permission:raffles_checkConfirmation')->only(['checkConfirmation']);
+        $this->middleware('permission:raffles_create')                  ->  only(['create', 'store']);
+        $this->middleware('permission:raffles_edit')                    ->  only(['edit', 'update']);
+        $this->middleware('permission:raffles_follow')                  ->  only(['follow']);
+        $this->middleware('permission:raffles_finished')                ->  only(['finishedView']);
+        $this->middleware('permission:raffles_checkConfirmation')       ->  only(['checkConfirmation']);
 
         $this->raffleRepository = $raffleRepository;
     }
@@ -82,7 +82,7 @@ class RafflesController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param Request $request
+     * @param StoreRaffleRequest $request
      * @return \Illuminate\Http\Response
      * @throws \Spatie\MediaLibrary\Exceptions\FileCannotBeAdded
      * @throws \Spatie\MediaLibrary\Exceptions\FileCannotBeAdded\InvalidBase64Data
@@ -109,13 +109,18 @@ class RafflesController extends Controller
 
         Auth::user()->notify(new RaffleCreated($raffle, Auth::user()));
 
+        Log::log('INFO', trans('aLogs.raffle_created'), [
+            'user' => Auth::user()->id,
+            'raffle'    => $raffle->id,
+        ]);
+
         return redirect()->route('main');
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request $request
+     * @param UpdateRaffleRequest $request
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
@@ -140,6 +145,12 @@ class RafflesController extends Controller
         foreach ($raffle->getFollowers as $follower) {
             $follower->notify(new RaffleUpdated($raffle, $follower));
         }
+
+        Log::log('INFO', trans('aLogs.raffle_updated'), [
+            'user' => Auth::user()->id,
+            'raffle'    => $raffle->id,
+        ]);
+
         return redirect()
             ->back()
             ->with('success', 'Raffle updated successfully');
@@ -149,6 +160,12 @@ class RafflesController extends Controller
     {
         $raffle = Raffle::find($id);
         $raffle->getFollowers()->sync(User::find(Auth::user()->id));
+
+        Log::log('INFO', trans('aLogs.new_fallower'), [
+            'raffle'    => $raffle->id,
+            'follower' => Auth::user()->id,
+        ]);
+
         return redirect()->back()
             ->with('success', 'Raffle follow successfully');
     }
