@@ -455,6 +455,7 @@
                                         <div class="row">
                                             <div class="col-md-12">
                                                 <div class="slickUsuario">
+                                                    @foreach($user)
                                                     <div class="paddingImgCarousel">
                                                         <img src="{{ asset('pics/front/user.jpg') }}"
                                                              class="imgUsuario sombraImgUser2"
