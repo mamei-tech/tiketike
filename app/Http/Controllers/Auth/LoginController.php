@@ -92,7 +92,6 @@ class LoginController extends Controller
                         'sharedRaffles' => $sharedRaffles,
                     ]);
             }
-
             else
                 redirect()->back();
 
