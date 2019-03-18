@@ -37,7 +37,7 @@ class CreateUsersTable extends Migration
             $table->string('bio', 116)->nullable();
             $table->string('addrss', 60);
             $table->string('phone', 15)->nullable();
-            $table->float('balance')->default(0);
+            $table->double('balance')->default(0);
             $table->unsignedInteger('zipcode', false);
             $table->timestamps();
 
