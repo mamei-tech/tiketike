@@ -454,29 +454,32 @@
                                     <div class="tab-pane active in" id="mesiguen">
                                         <div class="row">
                                             <div class="col-md-12">
-                                                <div class="slickUsuario">
-                                                    @foreach($user)
-                                                    <div class="paddingImgCarousel">
-                                                        <img src="{{ asset('pics/front/user.jpg') }}"
-                                                             class="imgUsuario sombraImgUser2"
-                                                             alt="imgUser">
-                                                        <h6 class="hidden-xs sinkinSans600SB">Jane Doe</h6>
-                                                        <span class="texto10 sinkinSans500MI padding-left10 hidden-xs">Brasil</span>
-                                                    </div>
+
+
+                                                <div class="slickUsuario" id="normalSlick">
+                                                    @foreach($user->getFollowers as $follower)
+                                                        <div class=" slick-list ">
+                                                            <img src="{{ $follower->getMedia('avatars')->first() ->getUrl()}}"
+                                                                 class="imgUsuario sombraImgUser2"
+                                                                 alt="imgUser">
+                                                            <h6 class="hidden-xs sinkinSans600SB">{{ $follower->name }} {{ $follower->lastname }}</h6>
+                                                            <span class="texto10 sinkinSans500MI padding-left10 hidden-xs">{{ $follower->getProfile->getCity->country->name }}</span>
+                                                        </div>
+                                                    @endforeach
                                                 </div>
                                             </div>
-                                            <div class="col-xs-12 bg-popoverU">
+                                            <div class="col-xs-12 bg-popoverU" >
                                                 <div class="colorV visible-xs text-center texto14 padding-top-30"><span
-                                                            class="sinkinSans600SB text-uppercase">Jane Doe /</span>
-                                                    <span
-                                                            class="sinkinSans300LI">Pais</span></div>
+                                                            class="sinkinSans600SB text-uppercase" id="name">Jane Doe /</span>
+                                                    <span class="sinkinSans300LI" id="country">Pais</span>
+                                                </div>
                                                 <div class="col-md-6 padding-top-20 sinkinSans400R">
                                                     <div class="col-xs-12 padding-top-20 paddingLeft0">
                                                         <div class="col-xs-9 col-md-6"><span
-                                                                    class="colorN margin-right-20">Rifas creadas:</span>
+                                                                    class="colorN margin-right-20" >@lang('views.created_raffles'):</span>
                                                         </div>
                                                         <div class="col-xs-3 col-md-6"><strong
-                                                                    class="colorV sinkinSans600SB">20%</strong><br>
+                                                                    class="colorV sinkinSans600SB" id="created_raffles">20%</strong><br>
                                                         </div>
                                                     </div>
                                                     <div class="col-xs-12 padding-top-20 paddingLeft0">
@@ -534,30 +537,18 @@
             autoplay: true,
             slidesToShow: 5,
             slidesToScroll: 1,
+            infinite: true,
+            pauseOnHover: true,
             autoplaySpeed: 2000,
             responsive: [
                 {
                     breakpoint: 1024,
                     settings: {
                         slidesToShow: 3,
-                        slidesToScroll: 3,
+                        slidesToScroll: 1,
                         infinite: true,
                     }
                 },
-                {
-                    breakpoint: 600,
-                    settings: {
-                        slidesToShow: 4,
-                        slidesToScroll: 2
-                    }
-                },
-                {
-                    breakpoint: 480,
-                    settings: {
-                        slidesToShow: 3,
-                        slidesToScroll: 1
-                    }
-                }
 
             ]
         });
