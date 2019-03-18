@@ -4,6 +4,7 @@ namespace App;
 
 use App\Http\TkTk\Cfg\CfgRaffles;
 use App\Http\TkTk\CodesGenerator;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 use PhpParser\Node\Scalar\String_;
@@ -191,10 +192,6 @@ class Raffle extends Model implements HasMedia
                 $refBuy->socialNetwork = $socialNetworkId;
                 array_push($referralsBuys, $refBuy);
             }
-            // TODO review because the referrals profit only pass to the comissionist when raffle ends
-//            $referralUserProfile = $referralUser->getProfile;
-//            $referralUserProfile->balance += count($referralsBuys) * $this->commissions / $this->tickets_count;
-//            $referralUserProfile->save();
             $referralUser->getReferralsBuys()->saveMany($referralsBuys);
         }
         $this->progress = $this->getProgress();
@@ -273,11 +270,7 @@ class Raffle extends Model implements HasMedia
 
     public function getTicketsSold()
     {
-        $tickets = Raffle::join('tickets', 'raffles.id', '=', 'tickets.raffle')
-            ->select('tickets.id')
-            ->where('raffles.id',$this->id)
-            ->where('tickets.sold',1)
-            ->count();
+        $tickets = $this->getTickets()->where('sold',1)->count();
         return $tickets;
     }
 

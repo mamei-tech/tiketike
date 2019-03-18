@@ -782,7 +782,7 @@ div.checker, div.checker span, div.checker input {
     padding: 0;
 }
 .paddingFiltrar{
-    padding:0 15px;
+    padding:10px 15px;
 }
 .porciento {
     position: absolute;
@@ -850,7 +850,7 @@ div.checker, div.checker span, div.checker input {
     padding:0 50px;
 }
 div.contenido{
-    margin-top: 15px;
+    margin-top: 85px;
 }
 .panel-heading {
     border-bottom: inherit;
@@ -997,8 +997,8 @@ input[type="radio"], input[type="checkbox"] {
 }
 .preciosExtraer{
     border-top: #9D9D9D solid 1px;
-    margin-left: 30px;
-    width: 220px;
+    margin-left: 0px;
+    width: 100%;
 }
 /*para animar los listado en los paneles*/
 .gallery-item-shadow {
@@ -1346,7 +1346,7 @@ section#vertical ul li.last {
 
 .bg-popover{
     background: url("../../pics/front/bg-popoverR.png");
-    background-size: 100% 250px!important;
+    /*background-size: 100% 250px!important;*/
     padding: 20px;
     height: 50px;
     width: 100px;

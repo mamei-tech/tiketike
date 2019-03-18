@@ -1,6 +1,7 @@
 @extends('layouts.base')
 @section('content')
     @include('partials.front_modals.notification_modal')
+    @include('partials.front_modals.terminos_y_condiciones_modal')
     <section class="bienvenidos">
         <div class="container ">
             <div class="row">

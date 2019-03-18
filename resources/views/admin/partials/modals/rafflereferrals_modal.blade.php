@@ -13,7 +13,7 @@
             <div class="modal-body">
                 <div class="container">
 
-                    @include('admin.partials.tables.referrals_table', ["referrals" => ['a', 'b', 'c']])
+                    @include('admin.partials.tables.referrals_table')
 
                 </div>
             </div>

@@ -122,8 +122,9 @@
         </div>
         <div class="card data-section-midle-row">
             <div class="chart-area">
-                <canvas id="xxx"></canvas>
+                <canvas id="countries"></canvas>
             </div>
+            <div id="worldMap" class="map"></div>
         </div>
     </div>
 

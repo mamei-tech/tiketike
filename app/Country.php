@@ -125,4 +125,18 @@ class Country extends Model
                 return $item->country;
             });
     }
+
+    public static function countriesUsers()
+    {
+        $countryUsers = [];
+        User::chunk(1000, function ($users) use (&$countryUsers) {
+            foreach ($users as $u) {
+                if (array_key_exists($u->getCountryCode(), $countryUsers))
+                    $countryUsers[$u->getCountryCode()]++;
+                else
+                    $countryUsers[$u->getCountryCode()] = 1;
+            }
+        });
+        return $countryUsers;
+    }
 }

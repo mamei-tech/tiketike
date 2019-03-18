@@ -656,6 +656,15 @@ demo = {
         /*****************************************************************************************************/
 
 
+        let worldsCodes;
+        let mapData = {};
+        let countriesUsers;
+
+        axios.get(route('v1.coustomadmin.countriescodes')).then(function (response) {
+            worldsCodes = response['data']['countries_codes'];
+        }).catch(function (error) {
+            console.log(error);
+        });
 
 
         let bigDashboardCtx = document.getElementById('bigDashboardChart').getContext("2d");
@@ -1259,6 +1268,14 @@ demo = {
                     fontStyle: 'normal',
                     fontColor: "rgba(0, 0, 0, 0.5)",
                 },
+                layout: {
+                    padding: {
+                        left: 20,
+                        right: 20,
+                        top: 0,
+                        bottom: 0
+                    }
+                },
                 legend: {
                     display: true,
                     position: 'right',
@@ -1456,6 +1473,158 @@ demo = {
         updateSoldedTicketsBySocialNetworks();
         $(ticketsBySocialNetworksCanvas).on('click', updateSoldedTicketsBySocialNetworks);
 
+        let countriesCanvas = document.getElementById("countries");
+        let countriesCtx = countriesCanvas.getContext("2d");
+
+        let countriesChart = new Chart(countriesCtx, {
+            type: 'horizontalBar',
+            data: {
+                labels: [],
+                datasets: [{
+                    label: "Users",
+                    borderColor: "rgba(0, 0, 0, 0.2)",
+                    fill: false,
+                    backgroundColor: "rgba(0, 230, 200, 0.4)",
+                    hoverBackgroundColor: "rgba(0, 230, 200, 0.6)",
+                    borderWidth: 0.5,
+                    data: [],
+                }]
+            },
+            options: {
+                title: {
+                    text: 'Countries with most users',
+                    display: true,
+                    fontSize: 18,
+                    fontStyle: 'normal',
+                    fontColor: "rgba(0, 0, 0, 0.5)",
+                },
+                layout: {
+                    padding: {
+                        left: 20,
+                        right: 20,
+                        top: 0,
+                        bottom: 0
+                    }
+                },
+                maintainAspectRatio: false,
+                tooltips: {
+                    backgroundColor: "rgba(20, 20, 20, 0.9)",
+                    titleFontColor: '#eee',
+                    bodyFontColor: '#fff',
+                    bodySpacing: 4,
+                    xPadding: 12,
+                    mode: "nearest",
+                    intersect: 0,
+                    position: "nearest"
+                },
+                legend: {
+                    position: "bottom",
+                    fillStyle: "#FFF",
+                    display: false,
+                    labels : {
+                        boxWidth: 15,
+                        padding: 15,
+                    },
+                },
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            fontColor: "rgba(0, 0, 0, 0.5)",
+                            fontStyle: "bold",
+                            beginAtZero: true,
+                            maxTicksLimit: 5,
+                            padding: 10
+                        },
+                        gridLines: {
+                            drawTicks: false,
+                            drawBorder: false,
+                            display: true,
+                            color: "rgba(100, 100, 100, 0.1)",
+                            zeroLineColor: "transparent",
+                        },
+                    }],
+                    xAxes: [{
+                        gridLines: {
+                            zeroLineColor: "transparent",
+                            display: true,
+                        },
+                        ticks: {
+                            padding: 10,
+                            fontColor: "rgba(0, 0, 0, 0.5)",
+                            fontStyle: "bold",
+                            beginAtZero: true,
+                            maxTicksLimit: 5,
+                            display: true,
+                        },
+                    }]
+                }
+            }
+        });
+
+        function updateCountriesUsers () {
+            axios.get(route('v1.customadmin.countriesusers')).then(function (response) {
+                let countriesCodes = response['data']['countries'];
+                let users = response['data']['users'];
+                countriesUsers = response['data']['countries_users'];
+
+                let countries = [];
+                for(let i = 0; i < countriesCodes.length; i++) {
+                    countries.push(worldsCodes[countriesCodes[i]]);
+                    mapData[countriesCodes[i]] = users[i] * 20;
+                }
+                countriesChart.data.labels = [];
+                countriesChart.data.datasets[0].data = [];
+
+                countriesChart.update();
+
+                countriesChart.data.labels = countries;
+                countriesChart.data.datasets[0].data = users;
+
+                countriesChart.update();
+
+                $("#worldMap").html('');
+
+                initWorldMap();
+
+            }).catch(function (error) {
+                console.log(error);
+            });
+        }
+
+        updateCountriesUsers();
+        $(countriesCanvas).on('click', updateCountriesUsers);
+
+        function initWorldMap() {
+
+            $('#worldMap').vectorMap({
+                map: 'world_mill_en',
+                backgroundColor: "transparent",
+                zoomOnScroll: false,
+                regionStyle: {
+                    initial: {
+                        fill: '#e4e4e4',
+                        "fill-opacity": 0.9,
+                        stroke: 'none',
+                        "stroke-width": 0,
+                        "stroke-opacity": 0
+                    }
+                },
+
+                series: {
+                    regions: [{
+                        values: mapData,
+                        scale: ["#AAAAAA", "#444444"],
+                        normalizeFunction: 'polynomial'
+                    }]
+                },
+                onRegionTipShow: function(e, el, code){
+                    let usersCount = 0;
+                    if (countriesUsers[code] !== undefined)
+                        usersCount = countriesUsers[code];
+                    el.html(el.html() + ' (Users: ' + usersCount + ')');
+                }
+            });
+        }
 
         /*****************************************************************************************************/
         /*                                                 mamei end                                         */

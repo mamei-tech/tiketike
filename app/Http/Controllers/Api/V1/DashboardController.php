@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api\V1;
 
 use App\ActiveUsers;
+use App\Country;
 use App\Http\Controllers\Api\ApiController;
 use App\Raffle;
 use App\RaffleStatus;
@@ -11,6 +12,7 @@ use App\Ticket;
 use App\User;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\DB;
+use PHPUnit\Framework\Constraint\Count;
 
 class DashboardController extends ApiController
 {
@@ -233,6 +235,58 @@ class DashboardController extends ApiController
             'directly'     => round($directlyMoneyCount, 2),
             'referrals'    => round($comMoneyCount, 2),
             'net_gain'     => round(Raffle::rafflesNetGain(), 2),
+        ]);
+    }
+
+    public function raffleReferrals($raffleId) {
+
+        return $this->respond([
+            'status' => 'success',
+            'status_code' => Response::HTTP_OK,
+            // Payload
+            'referrals'   => Raffle::referralsInfo($raffleId)
+        ]);
+    }
+
+    public function topCountryByUsers()
+    {
+        $countriesCodes = [];
+        $users = [];
+        $codesUsers = Country::countriesUsers();
+
+        arsort($codesUsers);
+
+        $i = 0;
+        foreach ($codesUsers as $c => $u) {
+            if ($i < 4) {
+                array_push($countriesCodes, $c);
+                array_push($users, $u);
+                $i++;
+            }
+            else
+                break;
+        }
+        return $this->respond([
+            'status' => 'success',
+            'status_code' => Response::HTTP_OK,
+            // Payload
+            'countries'   => $countriesCodes,
+            'users' => $users,
+            'countries_users' => $codesUsers,
+        ]);
+    }
+
+    public function countriesCodes()
+    {
+        $countries_codes_tmp = Country::pluck('name', 'code');
+        $countries_codes = [];
+        foreach ($countries_codes_tmp as $cc => $country)
+            $countries_codes[strtoupper($cc)] = $country;
+        return $this->respond([
+            'status' => 'success',
+            'status_code' => Response::HTTP_OK,
+            // Payload
+            'countries_codes'   => $countries_codes,
         ]);
     }
 }

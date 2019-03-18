@@ -53,7 +53,7 @@ class RaffleRepository
                         $q->where('category', $category);
                     })
                     ->where('progress', '<', 100)
-                    ->orderBy('price', 'DESC')
+                    ->orderBy('tickets_price', 'DESC')
                     ->paginate(10);
             }
         } else {
