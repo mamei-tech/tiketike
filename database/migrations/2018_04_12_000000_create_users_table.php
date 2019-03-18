@@ -27,6 +27,7 @@ class CreateUsersTable extends Migration
             $table->timestamps();
         });
 
+        //Cambie el float de balance por un double
         Schema::create('usersprofiles', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('username',  25);                         //The same as unsignedBigInteger
