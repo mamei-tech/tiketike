@@ -66,6 +66,5 @@ return [
     'followed' => 'followed',
     'follow_me' => 'Follow me',
     'profile_updated' => 'Profile updated successfully.',
-    'payments_done'    => 'Su pago ha sido enviado satisfactoriamente.'
-
+    'payments_done'    => 'Su pago ha sido enviado satisfactoriamente.',
 ];

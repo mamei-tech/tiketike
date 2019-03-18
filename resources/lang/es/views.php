@@ -29,6 +29,7 @@ return [
     '8' => 'vo',
     '9' => 'no',
     '10' => 'mo',
+    'payments_done'    => 'Your paiment was sent successfully',
     'raffles' => 'Rifas',
     'categories' => 'Categorías',
     'all' => 'Todos',
@@ -65,7 +66,5 @@ return [
     'sold' => 'Vendidos',
     'followed' => 'Seguidos',
     'follow_me' => 'Me siguen',
-    'profile_updated' => 'Perfil actualizado exitosamente.',
-    'payments_done'    => 'Your paiment was sent successfully'
-
+    'profile_updated' => 'Perfil actualizado exitosamente.'
 ];

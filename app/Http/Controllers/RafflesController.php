@@ -3,25 +3,22 @@
 namespace App\Http\Controllers;
 
 use App\Continent;
-use App\Country;
 use App\Http\Requests\ConfirmRaffle;
 use App\Http\Requests\UpdateRaffleRequest;
 use App\Http\TkTk\CodesGenerator;
 use App\Notifications\RaffleCreated;
 use App\Notifications\RaffleUpdated;
-use Illuminate\Support\Facades\Auth;
 use App\Promo;
 use App\RaffleConfirmation;
 use App\RaffleStatus;
-use App\ReferralsBuys;
 use App\Repositories\RaffleRepository;
 use App\User;
 use Illuminate\Support\Facades\Log;
+
 use App\Raffle;
 use App\RaffleCategory;
 use App\Http\Requests\StoreRaffleRequest;
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Support\Facades\Notification;
 
 
 class RafflesController extends Controller
@@ -37,11 +34,11 @@ class RafflesController extends Controller
      */
     public function __construct(RaffleRepository $raffleRepository)
     {
-        $this->middleware('permission:raffles_create')->only(['create', 'store']);
-        $this->middleware('permission:raffles_edit')->only(['edit', 'update']);
-        $this->middleware('permission:raffles_follow')->only(['follow']);
-        $this->middleware('permission:raffles_finished')->only(['finishedView']);
-        $this->middleware('permission:raffles_checkConfirmation')->only(['checkConfirmation']);
+        $this->middleware('permission:raffles_create')                  ->  only(['create', 'store']);
+        $this->middleware('permission:raffles_edit')                    ->  only(['edit', 'update']);
+        $this->middleware('permission:raffles_follow')                  ->  only(['follow']);
+        $this->middleware('permission:raffles_finished')                ->  only(['finishedView']);
+        $this->middleware('permission:raffles_checkConfirmation')       ->  only(['checkConfirmation']);
 
         $this->raffleRepository = $raffleRepository;
     }
