@@ -118,4 +118,18 @@ class UserController extends Controller
         return redirect()->route('profile.info', ['userid' => $userid])
             ->with('success', 'User "' . $user->getProfile->username . '" updated successfully');
     }
+
+    public function follow($id)
+    {
+        $user = User::findOrFail($id);
+        $user->getFollowers()->syncWithoutDetaching(Auth::user());
+
+        Log::log('INFO', trans('aLogs.new_fallower'), [
+            'user'    => $user->id,
+            'follower' => Auth::user()->id,
+        ]);
+
+        return redirect()->back()
+            ->with('success', 'Raffle follow successfully');
+    }
 }

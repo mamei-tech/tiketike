@@ -3,27 +3,23 @@
 namespace App\Http\Controllers;
 
 use App\Continent;
-use App\Country;
 use App\Http\Requests\ConfirmRaffle;
 use App\Http\Requests\UpdateRaffleRequest;
 use App\Http\TkTk\CodesGenerator;
 use App\Notifications\RaffleCreated;
 use App\Notifications\RaffleUpdated;
-
-use Illuminate\Support\Facades\Auth;
 use App\Promo;
 use App\RaffleConfirmation;
 use App\RaffleStatus;
-
 use App\Repositories\RaffleRepository;
 use App\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 
 use App\Raffle;
 use App\RaffleCategory;
 use App\Http\Requests\StoreRaffleRequest;
 use Illuminate\Database\Eloquent\Builder;
-
 
 
 class RafflesController extends Controller
@@ -164,7 +160,7 @@ class RafflesController extends Controller
     public function follow($id)
     {
         $raffle = Raffle::find($id);
-        $raffle->getFollowers()->sync(User::find(Auth::user()->id));
+        $raffle->getFollowers()->syncWithoutDetaching(User::find(Auth::user()->id));
 
         Log::log('INFO', trans('aLogs.new_fallower'), [
             'raffle'    => $raffle->id,

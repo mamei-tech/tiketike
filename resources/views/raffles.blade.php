@@ -166,7 +166,7 @@
                                         <span data-toggle="modal" data-target="#{{$raffle->id}}-share_modal"
                                               class="ti-share texto-negrita colorV margin-right-5 texto16"
                                               title="Compartir"></span>
-                                                    <span class="colorV sinkinSans600SB">Compartir</span>
+                                                    <span class="colorV sinkinSans600SB" id="share_buttom" data-toggle="modal" href="#{{$raffle->id}}-share_modal">Compartir</span>
                                                 </a>
                                             </li>
                                             @include('partials.front_modals.share_modal')
