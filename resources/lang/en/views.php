@@ -29,7 +29,6 @@ return [
     '8' => 'th',
     '9' => 'th',
     '10' => 'th',
-    'payments_done'    => 'Su pago ha sido enviado satisfactoriamente.',
     'raffles' => 'Raffles',
     'categories' => 'Categories',
     'all' => 'All',
@@ -66,5 +65,6 @@ return [
     'sold' => 'Sold',
     'followed' => 'followed',
     'follow_me' => 'Follow me',
-    'profile_updated' => 'Profile updated successfully.'
+    'profile_updated' => 'Profile updated successfully.',
+    'payments_done'    => 'Su pago ha sido enviado satisfactoriamente.',
 ];
