@@ -13,6 +13,7 @@ use App\RaffleConfirmation;
 use App\RaffleStatus;
 use App\Repositories\RaffleRepository;
 use App\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 
 use App\Raffle;
@@ -159,7 +160,7 @@ class RafflesController extends Controller
     public function follow($id)
     {
         $raffle = Raffle::find($id);
-        $raffle->getFollowers()->sync(User::find(Auth::user()->id));
+        $raffle->getFollowers()->syncWithoutDetaching(User::find(Auth::user()->id));
 
         Log::log('INFO', trans('aLogs.new_fallower'), [
             'raffle'    => $raffle->id,

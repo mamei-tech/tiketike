@@ -115,4 +115,5 @@ Route::group(['prefix' => 'raffles'
 Route::group(['prefix' => 'users'
 ], function () {
     Route::get('/profile/{userid}/', 'UserController@getProfile')->name('profile.info');
+    Route::get('user/{userid}/follow', 'UserController@follow')->name('user.follow');
 });
