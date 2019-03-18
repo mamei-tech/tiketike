@@ -7,6 +7,8 @@ use App\Repositories\ActiveUsersRepository;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use App\Raffle;
+use App\User;
 
 use Barryvdh\Debugbar\Facade as Debugbar;
 
@@ -78,16 +80,25 @@ class LoginController extends Controller
 
             /*End of mamei section code*/
 
-            if ($request->has('adm'))
-                return redirect(route('admin.index'));
-                //return view('admin.index', ['li_activeDash' => 'active']);
+            if (!$this->guard()->user()->hasRole('User') && $this->guard()->user()->can('enter_admin'))
+            {
+                $sharedRaffles = Raffle::sharedRaffles();
+
+                return view('admin.index',
+                    [
+                        'li_activeDash' => 'active',
+                        'netGain' => round(Raffle::rafflesNetGain(), 2),
+                        'usersCount' => User::usersCount(),
+                        'sharedRaffles' => $sharedRaffles,
+                    ]);
+            }
+
             else
                 redirect()->back();
 
             return $this->authenticated($request, $this->guard()->user())
                 ? redirect()->back(): redirect()->back();
 
-//            return $this->sendLoginResponse($request);
         }
 
         // If the login attempt was unsuccessful we will increment the number of attempts
