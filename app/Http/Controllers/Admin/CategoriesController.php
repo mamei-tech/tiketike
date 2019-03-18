@@ -12,22 +12,21 @@ use App\Http\Controllers\Controller;
 use App\RaffleCategory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 
 
 class CategoriesController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('permission:list_categories')          ->  only(['index']);
-        $this->middleware('permission:store_categories')         ->  only(['store']);
-        $this->middleware('permission:update_categories')        ->  only(['update']);
+        $this->middleware('permission:list_categories')->only(['index']);
+        $this->middleware('permission:store_categories')->only(['store']);
+        $this->middleware('permission:update_categories')->only(['update']);
     }
 
     public function index()
     {
         $categories = RaffleCategory::all();
-
-        Log::log('INFO', trans('aLogs.adm_cat_index').' - '.Auth::user()->id);
 
         return view('admin.categories', [
             'categories' => $categories,
@@ -40,7 +39,11 @@ class CategoriesController extends Controller
     {
         $category = RaffleCategory::create($request->all());
 
-        Log::log('INFO', trans('aLogs.adm_cat_store').' - '.Auth::user()->id.' - '.$category);
+        Log::log('INFO', trans('aLogs.adm_cat_store'),
+            [
+                'user' => Auth::user()->id,
+                'category' => $category,
+            ]);
 
         return redirect()->route('categories.index')
             ->with('success', 'Category created successfully');
@@ -54,7 +57,11 @@ class CategoriesController extends Controller
         $category->icon = $request->get('icon');
         $category->save();
 
-        Log::log('INFO', trans('aLogs.adm_cat_updated').' - '.Auth::user()->id.' - '.$request->all());
+        Log::log('INFO', trans('aLogs.adm_cat_updated'),
+            [
+                'user'      => Auth::user()->id,
+                'request'   => $request->all()
+            ]);
 
         return redirect()->route('categories.index')
             ->with('success', 'Category updated successfully');

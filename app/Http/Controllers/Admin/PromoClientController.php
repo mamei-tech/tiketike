@@ -18,10 +18,10 @@ class PromoClientController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('permission:promo_c_list')          ->  only(['index']);
-        $this->middleware('permission:promo_c_store')         ->  only(['store']);
-        $this->middleware('permission:promo_c_update')        ->  only(['update']);
-        $this->middleware('permission:promo_c_destroy')       ->  only(['destroy']);
+        $this->middleware('permission:promo_c_list')->only(['index']);
+        $this->middleware('permission:promo_c_store')->only(['store']);
+        $this->middleware('permission:promo_c_update')->only(['update']);
+        $this->middleware('permission:promo_c_destroy')->only(['destroy']);
     }
 
     /**
@@ -32,8 +32,6 @@ class PromoClientController extends Controller
     public function index()
     {
         $clients = DB::table('promoclients')->get();
-
-        Log::log('INFO', trans('aLogs.adm_promoclietn_section').' - '.Auth::user()->id);
 
         return view('admin.promosclients', [
             'clients' => $clients,
@@ -60,7 +58,11 @@ class PromoClientController extends Controller
 
         $clients = DB::table('promoclients')->get();
 
-        Log::log('INFO', trans('aLogs.adm_promoclient_store').' - '.Auth::user()->id.' - '.$promoclient.':'.$promoclient->name);
+        Log::log('INFO', trans('aLogs.adm_promoclient_store'),
+            [
+                'user' => Auth::user()->id,
+                'promoclient' => $promoclient->name,
+            ]);
 
         return redirect()->route('pmclients.index',
             [
@@ -91,7 +93,10 @@ class PromoClientController extends Controller
 
         $clients = DB::table('promoclients')->get();
 
-        Log::log('INFO', trans('aLogs.adm_promoclient_update').' - '.Auth::user()->id.' promoclient_id:'.$promoclient->ip);
+        Log::log('INFO', trans('aLogs.adm_promoclient_update'), [
+            'user' => Auth::user()->id,
+            'promoclient_id' => $promoclient->ip
+        ]);
 
         return redirect()->route('pmclients.index',
             [
@@ -106,7 +111,7 @@ class PromoClientController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
@@ -115,7 +120,11 @@ class PromoClientController extends Controller
         $clientname = $client->name;
         $client->delete();
 
-        Log::log('INFO', trans('aLogs.adm_promoclient_del').' - '.Auth::user()->id.' client_name:'.$clientname);
+        Log::log('INFO', trans('aLogs.adm_promoclient_del'),
+            [
+                'user' => Auth::user()->id,
+                'client_name' => $clientname
+            ]);
 
         return redirect()
             ->route('pmclients.index', null, '303')

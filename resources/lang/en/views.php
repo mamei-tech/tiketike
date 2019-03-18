@@ -29,5 +29,6 @@ return [
     '8' => 'th',
     '9' => 'th',
     '10' => 'th',
+    'payments_done'    => 'Su pago ha sido enviado satisfactoriamente.',
     'raffles' => 'Raffles'
 ];

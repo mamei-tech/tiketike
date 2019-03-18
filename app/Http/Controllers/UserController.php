@@ -2,16 +2,14 @@
 
 namespace App\Http\Controllers;
 
-
 use App\City;
 use App\Http\Requests\StoreUserprofileRequest;
 use App\Promo;
 use App\Repositories\RaffleRepository;
 use App\User;
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use App\Country;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 
 class UserController extends Controller
@@ -59,7 +57,6 @@ class UserController extends Controller
                 ->get();
             $first_time = false;
         }
-
 
         return view('front_profile', [
             'user' => $user,
@@ -113,7 +110,10 @@ class UserController extends Controller
         $user->save();
 
         // Logs the actions
-        Log::log('INFO', LogsMsgs::$msgs['accepted'], [$user->getProfile->username, $userid]);
+        Log::log('INFO', trans('aLogs.adm_araffle_deleted'), [
+            'user' => Auth::user()->id,
+            'request'   => $request->all(),
+        ]);
 
         return redirect()->route('profile.info', ['userid' => $userid])
             ->with('success', 'User "' . $user->getProfile->username . '" updated successfully');

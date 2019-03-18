@@ -4,9 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Comment;
 use App\Http\Requests\CommentRaffleRequest;
-use App\Raffle;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 
 class CommentsController extends Controller
 {
@@ -15,7 +14,6 @@ class CommentsController extends Controller
         $this->middleware('permission:comments_store')       ->  only(['store']);
         $this->middleware('permission:comments_delete')      ->  only(['delete']);
         $this->middleware('permission:comments_edit')        ->  only(['edit']);
-        $this->middleware('permission:comments_update')      ->  only(['update']);
     }
 
     /**
@@ -36,12 +34,21 @@ class CommentsController extends Controller
 
         Auth::user()->getComments()->save($comment);
 
+        Log::log('INFO', trans('aLogs.comment_created'), [
+            'user'              => Auth::user()->id,
+            'comment_id'        => $comment->id,
+        ]);
+
         return redirect()->route('raffle.tickets.buy', $raffle);
     }
 
     public function delete($id){
         $raffle = Comment::find($id)->getRaffle->id;
         Comment::destroy($id);
+
+        Log::log('INFO', trans('aLogs.comment_del'), [
+            'user'              => Auth::user()->id,
+        ]);
 
         return redirect()->route('raffle.tickets.buy', $raffle);
     }
@@ -53,24 +60,12 @@ class CommentsController extends Controller
 
         $comment->text = $request->get('text');
         $comment->save();
-        return \redirect()->route('raffle.tickets.buy', $raffle);
-    }
 
-    public function update(Request $request, $id)
-    {
-        $raffle = Raffle::find($id);
-        $raffle->title = $request->get('title');
-        $raffle->description = $request->get('description');
-        $raffle->price = $request->get('price');
-        $raffle->category = $request->get('category');
-        $raffle->location = $request->get('location');
-        $raffle->save();
-        return redirect()->route('unpublished.index',
-            [
-                'div_showRaffles' => 'show',
-                'li_activeURaffles' => 'active',
-            ],
-            '303')
-            ->with('success', 'Raffle updated successfully');
+        Log::log('INFO', trans('aLogs.comment_edited'), [
+            'user'              => Auth::user()->id,
+            'comment'           => $comment->id,
+        ]);
+
+        return redirect()->route('raffle.tickets.buy', $raffle);
     }
 }
