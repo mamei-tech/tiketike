@@ -28,15 +28,6 @@
                     @include('admin.components.langsw')
                 </li>
 
-                <li class="nav-item">
-                    <a class="nav-link" href="">
-                        <i class="now-ui-icons location_world"></i>
-                        <p>
-                            <span class="d-lg-none d-md-block">Account</span>
-                        </p>
-                    </a>
-                </li>
-
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdaown-toggle" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <i class="fa fa-bell"></i>
