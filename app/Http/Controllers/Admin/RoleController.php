@@ -6,9 +6,12 @@ use App\Http\Requests\DeleteRole;
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreRoleRequest;
+
 use Illuminate\Support\Facades\Log;
+
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
 
@@ -37,8 +40,6 @@ class RoleController extends Controller
     {
         $roles = Role::paginate(10);
         $permissions = Permission::all();
-
-        Log::log('INFO', trans('aLogs.adm_araffle_deleted'),Auth::user()->id);
 
         return view('admin.roles', [
             'roles' => $roles,
@@ -81,7 +82,10 @@ class RoleController extends Controller
 
         $roles = DB::table('roles')->get();
 
-        Log::log('INFO', trans('aLogs.adm_role_store'), [Auth::user()->id, $role->name]);
+        Log::log('INFO', trans('aLogs.adm_role_store'), [
+            'user'=> Auth::user()->id,
+            'role-name' => $role->name
+        ]);
 
         return redirect()->route('roles.index',
             [
@@ -108,7 +112,6 @@ class RoleController extends Controller
         $role->name = $request->get('name');
         $role->guard_name = $request->get('description');
         $role->save();
-        $perms = array();
         DB::table('role_has_permissions')->where('role_id', $role->id)->delete();
         if ($permissions_request != null) {
             foreach ($permissions_request as $permission) {
@@ -116,13 +119,14 @@ class RoleController extends Controller
                 $role->givePermissionTo($result);
             }
         }
-//        $role->syncPermissions($result) ;
-//        die();
 
         $roles = DB::table('roles')->get();
         $permissions = DB::table('permissions')->get();
 
-        Log::log('INFO', trans('aLogs.adm_role_updated'), [$role->name, $role->id]);
+        Log::log('INFO', trans('aLogs.adm_role_updated'), [
+            'role-name' => $role->name,
+            'role-id'   => $role->id
+        ]);
 
         return redirect()->route('roles.index',
             [
@@ -147,8 +151,14 @@ class RoleController extends Controller
         $role = Role::find($id);
         $name = $role->name;
         $role->delete();
-        Log::log('INFO', trans('aLogs.adm_role_deleted'), [$name, $id]);
         $roles = DB::table('roles')->get();
+
+        Log::log('INFO', trans('aLogs.adm_role_deleted'),
+            [
+                'user'          => Auth::user()->id,
+                'role-name'     => $name,
+                'role-id'       => $id
+            ]);
 
         return redirect()->route('roles.index',
             [

@@ -65,5 +65,7 @@ return [
     'sold' => 'Vendidos',
     'followed' => 'Seguidos',
     'follow_me' => 'Me siguen',
-    'profile_updated' => 'Perfil actualizado exitosamente.'
+    'profile_updated' => 'Perfil actualizado exitosamente.',
+    'payments_done'    => 'Your paiment was sent successfully'
+
 ];

@@ -11,6 +11,8 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreUserprofileRequest;
 use App\User;
 use App\Country;
+use Illuminate\Support\Facades\Auth;
+
 
 class UserController extends Controller
 {
@@ -63,6 +65,7 @@ class UserController extends Controller
             ->select('cities.*')
             ->where('cities.country', $user->getProfile->getCity->getCountry->id)
             ->get();
+
 
         return view('admin.userprofile', [
             'user' => $user,
@@ -130,7 +133,9 @@ class UserController extends Controller
             ->get();
 
         // Logs the actions
-        Log::log(LogsMsgs::$msgs['accepted'], [$user->getProfile->username, $userid]);
+        Log::log('INFO', trans('aLogs.user_prof_updated'), [
+            'user'      => Auth::user()->id,
+        ]);
 
         return redirect()->route('users.edit',
             [
@@ -161,7 +166,11 @@ class UserController extends Controller
             array_push($roles, $role);
         }
         $user->syncRoles($roles);
-        Log::info(LogsMsgs::$msgs['accepted'], [$user->getProfile->username, $userid]);
+
+        Log::log('INFO', trans('aLogs.user_prof_updated'), [
+            'user'      => Auth::user()->id,
+        ]);
+
         return redirect()->route('users.index')
             ->with('success', 'User "' . $user->getProfile->username . '" updated successfully');
     }
@@ -169,12 +178,17 @@ class UserController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param DeletingUserRequest $request
+     * @param $user
      * @return \Illuminate\Http\Response
      */
     public function destroy($user)
     {
         User::destroy($user);
+
+        Log::log('INFO', trans('aLogs.user_prof_deleted'), [
+            'user'      => Auth::user()->id,
+        ]);
+
         return redirect()->route('users.index')
             ->with('success', 'User deleted successfully');
     }

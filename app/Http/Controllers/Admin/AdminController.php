@@ -30,8 +30,6 @@ class AdminController extends Controller
     {
         $sharedRaffles = Raffle::sharedRaffles();
 
-        Log::log('INFO', trans('aLogs.dashboard_show').' - '.Auth::user()->id);
-
         return view('admin.index',
             [
                 'li_activeDash' => 'active',

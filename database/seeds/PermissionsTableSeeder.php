@@ -122,7 +122,7 @@ class PermissionsTableSeeder extends Seeder
         Permission::create(['name' => 'comments_delete', 'group'  => 'comments']);
         Permission::create(['name' => 'comments_edit', 'group'  => 'comments']);
         $roleAdmin->givePermissionTo(['comments_store', 'comments_delete', 'comments_edit']);
-        $roleUser->givePermissionTo(['comments_store']);
+        $roleUser->givePermissionTo(['comments_store', 'comments_edit']);
 
         $user = \App\User::find(1);
         $role = \App\Role::find(1);

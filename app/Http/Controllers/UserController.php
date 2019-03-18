@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-
 use App\City;
 use App\Http\Requests\StoreUserprofileRequest;
 use App\Promo;
@@ -10,6 +9,7 @@ use App\Repositories\RaffleRepository;
 use App\User;
 use Illuminate\Database\Eloquent\Builder;
 use App\Country;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 
 class UserController extends Controller
@@ -30,8 +30,6 @@ class UserController extends Controller
         $current = User::findOrFail(intval($userid));
         $suggested = $this->raffleRepository->getSuggested();
         $promos = Promo::where('type', 1)->where('status', 1)->get();
-//        var_dump(count($current->getRafflesSelled));
-//        die();
         return view('user', [
             'user' => $current,
             'suggested' => $suggested,
@@ -59,7 +57,6 @@ class UserController extends Controller
                 ->get();
             $first_time = false;
         }
-
 
         return view('front_profile', [
             'user' => $user,
@@ -113,7 +110,10 @@ class UserController extends Controller
         $user->save();
 
         // Logs the actions
-        Log::log('INFO', trans('views.profile_updated'), [$user->getProfile->username, $userid]);
+        Log::log('INFO', trans('aLogs.adm_araffle_deleted'), [
+            'user' => Auth::user()->id,
+            'request'   => $request->all(),
+        ]);
 
         return redirect()->route('profile.info', ['userid' => $userid])
             ->with('success', 'User "' . $user->getProfile->username . '" updated successfully');

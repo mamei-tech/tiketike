@@ -9,20 +9,21 @@ use App\Http\Requests\UpdateRaffleRequest;
 use App\Http\TkTk\CodesGenerator;
 use App\Notifications\RaffleCreated;
 use App\Notifications\RaffleUpdated;
-use App\Payment;
+
+use Illuminate\Support\Facades\Auth;
 use App\Promo;
 use App\RaffleConfirmation;
 use App\RaffleStatus;
-use App\ReferralsBuys;
+
 use App\Repositories\RaffleRepository;
 use App\User;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
+
 use App\Raffle;
 use App\RaffleCategory;
 use App\Http\Requests\StoreRaffleRequest;
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Support\Facades\Notification;
+
 
 
 class RafflesController extends Controller
@@ -86,7 +87,7 @@ class RafflesController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param Request $request
+     * @param StoreRaffleRequest $request
      * @return \Illuminate\Http\Response
      * @throws \Spatie\MediaLibrary\Exceptions\FileCannotBeAdded
      * @throws \Spatie\MediaLibrary\Exceptions\FileCannotBeAdded\InvalidBase64Data
@@ -113,14 +114,19 @@ class RafflesController extends Controller
 
         Auth::user()->notify(new RaffleCreated($raffle,Auth::user()));
 
+        Log::log('INFO', trans('aLogs.raffle_created'), [
+            'user' => Auth::user()->id,
+            'raffle'    => $raffle->id,
+        ]);
+
         return redirect()->route('main');
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param UpdateRaffleRequest $request
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function update(UpdateRaffleRequest $request, $id)
@@ -130,7 +136,6 @@ class RafflesController extends Controller
         $raffle->description = $request->get('description');
         $raffle->category = $request->get('category');
         $raffle->location = $request->get('localization');
-        $raffle->price = $raffle->price;
         $raffle->save();
 
         if ($request->base[0] != null or $request->base[1] != null or $request->base[2] != null) {
@@ -144,6 +149,12 @@ class RafflesController extends Controller
         foreach ($raffle->getFollowers as $follower) {
             $follower->notify(new RaffleUpdated($raffle,$follower));
         }
+
+        Log::log('INFO', trans('aLogs.raffle_updated'), [
+            'user' => Auth::user()->id,
+            'raffle'    => $raffle->id,
+        ]);
+
         return redirect()
             ->back()
             ->with('success','Raffle updated successfully');
@@ -153,6 +164,12 @@ class RafflesController extends Controller
     {
         $raffle = Raffle::find($id);
         $raffle->getFollowers()->sync(User::find(Auth::user()->id));
+
+        Log::log('INFO', trans('aLogs.new_fallower'), [
+            'raffle'    => $raffle->id,
+            'follower' => Auth::user()->id,
+        ]);
+
         return redirect()->back()
             ->with('success', 'Raffle follow successfully');
     }
