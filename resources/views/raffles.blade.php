@@ -40,7 +40,7 @@
                                         @foreach($continent->countries as $country)
                                             <div class="col-md-12 col-sm-12 col-xs-12 col-lg-{{strlen($country->name) > 20?'12':'6'}}" style="padding: 5px 5px 5px 0">
                                                 <label for="countries">{{ $country->name }}</label>
-                                                <input class="right" type="checkbox" name="countries" id="countries">
+                                                <input class="right" type="checkbox" name="countries" id="countries" value="{{ $country->id }}">
                                             </div>
                                         @endforeach
                                     </div>
