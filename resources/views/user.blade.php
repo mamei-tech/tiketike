@@ -111,7 +111,7 @@
                                                     <span class="colorV sinkinSans400I"> @lang('views.by_raffle')</span>
                                                 </div>
                                                 <div class="col-xs-5 padding-rigth-0 padding-left-0 borderBottomG">
-                                                    <span class="sinkinSans500M">20.00 USD</span>
+                                                    <span class="sinkinSans500M">{{ $user->getRaffleMoney() }} USD</span>
                                                 </div>
                                             </div>
                                             <div class="row padding-top5">
@@ -120,7 +120,7 @@
                                                     <span class="colorV sinkinSans400I">@lang('views.by_commission')</span>
                                                 </div>
                                                 <div class="col-xs-4 padding-rigth-0 padding-left-0 borderBottomG">
-                                                    <span class="sinkinSans500M">400.00 USD</span>
+                                                    <span class="sinkinSans500M">{{ $user->getReferralsMoney() }} USD</span>
                                                 </div>
                                             </div>
                                         </div>
@@ -232,7 +232,7 @@
                                                         <span class="colorV italic"> @lang('views.by_raffle')</span>
                                                     </div>
                                                     <div class="col-xs-5 padding-rigth-0 borderBottomG">
-                                                        <span class="texto14">20.00 USD</span>
+                                                        <span class="texto14">{{ $user->getRaffleMoney() }} USD</span>
                                                     </div>
                                                 </div>
                                                 <div class="row padding-top5">
@@ -241,7 +241,7 @@
                                                         <span class="colorV italic">@lang('views.by_commission')</span>
                                                     </div>
                                                     <div class="col-xs-5 padding-rigth-0 borderBottomG">
-                                                        <span class="texto14">400.00 USD</span>
+                                                        <span class="texto14">{{ $user->getReferralsMoney() }} USD</span>
                                                     </div>
                                                 </div>
                                             </div>

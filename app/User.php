@@ -114,7 +114,7 @@ class User extends Authenticatable implements HasMedia
      */
     public function getReferralsBuys()
     {
-        return $this->hasMany('App\ReferralsBuys', 'comisionist');
+        return $this->hasMany(ReferralsBuys::class, 'comisionist');
     }
 
     /**
@@ -212,5 +212,41 @@ class User extends Authenticatable implements HasMedia
     public function getFollows()
     {
         return $this->belongsToMany(User::class,'user_follow','follower_id','follow_id');
+    }
+
+    /**
+     * Get user's referrals.
+     *
+     * @return double
+     */
+    public function getReferralsMoney()
+    {
+        $amount = 0;
+        $referrals = $this->hasMany(ReferralsBuys::class, 'comisionist')->whereHas('getRaffle', function (Builder $q) {
+            $q->where('status',6);
+        })->get();
+        foreach ($referrals as $referral)
+        {
+            $raffle = $referral->getRaffle;
+            $amount += (($raffle->commissions * $raffle->price) / 100)/ $raffle->tickets_count;
+        }
+        return $amount;
+    }
+
+
+    /**
+     * Get user's referrals.
+     *
+     * @return double
+     */
+    public function getRaffleMoney()
+    {
+        $amount = 0;
+        $raffles = $this->getRaffles()->where('status',6)->get();
+        foreach ($raffles as $raffle)
+        {
+            $amount += $raffle->price;
+        }
+        return $amount;
     }
 }

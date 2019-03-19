@@ -41,7 +41,7 @@
             <td>{{ $raffle->tickets_price }}</td>
             <td>{{ $raffle->getTicketsSold() }}</td>
             <td>{{ count($raffle->getTickets)}}</td>
-            <td>{{ $raffle->activation_date->format('d/m/Y') }}</td>
+            <td>{{ $raffle->activation_date }}</td>
             {{--<td>???</td>--}}
             <td class="text-right">
                 @if($raffle->progress == 100)
