@@ -44,13 +44,7 @@ class UpdateRanking extends Command
         {
             $created_raffles = count($user->getRaffles);
             $buyed_tickets = count($user->getTickets);
-            $tickets = User::with('getTickets')
-                ->whereHas('getTickets', function (Builder $q) use ($user){
-                    $q->where('bingo',0);
-                    $q->where('buyer',$user->id);
-                })
-                ->get();
-            $times_winner = count($tickets);
+            $times_winner =$user->WinnedRaffles();
             $raferals = count($user->getReferralsBuys);
             $comments = count($user->getComments);
             $ranking = $created_raffles*0.3 + $buyed_tickets*0.05 + $times_winner*0.3 + $raferals*0.3 + $comments*0.05;

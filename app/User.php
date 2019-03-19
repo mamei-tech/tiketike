@@ -157,14 +157,7 @@ class User extends Authenticatable implements HasMedia
 
     public function WinnedRaffles()
     {
-        $id = $this->id;
-        return $this->hasMany('App\Raffle', 'owner')
-            ->with('getTickets')
-            ->whereHas('getTickets',function (Builder $q) use ($id) {
-                $q->where('buyer',$id);
-                $q->where('sold',1);
-                $q->where('bingo',1);
-            })->get();
+        return $this->getTickets()->where('bingo',1)->groupBy('raffle')->count();
     }
 
     public function getSoldTicketsCount()

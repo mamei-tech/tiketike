@@ -1333,8 +1333,7 @@ section#vertical ul li.last {
 @-ms-viewport {
     width: device-width;
 }
-.visible-xs-f1,
-.visible-lg {
+.visible-xs-f1{
     display: none !important;
 }
 
