@@ -93,7 +93,6 @@ mix.js('resources/assets/js/front/raffle.js', 'public/js/raffle.min.js').sourceM
 mix.js('resources/assets/js/front/front_profile.js', 'public/js/front_profile.min.js').sourceMaps();
 mix.js('resources/assets/js/front/main.js', 'public/js/main.min.js').sourceMaps();
 mix.js('node_modules/clipboard/dist/clipboard.js', 'public/js/clipboard.min.js').sourceMaps();
-mix.js('resources/assets/js/front/user_profile.js', 'public/js/user_profile.min.js').sourceMaps();
 
 /*
  |--------------------------------------------------------------------------

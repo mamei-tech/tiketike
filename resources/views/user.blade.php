@@ -111,7 +111,8 @@
                                                     <span class="colorV sinkinSans400I"> @lang('views.by_raffle')</span>
                                                 </div>
                                                 <div class="col-xs-5 padding-rigth-0 padding-left-0 borderBottomG">
-                                                    <span class="sinkinSans500M">{{ $user->getRaffleMoney() }} USD</span>
+                                                    <span class="sinkinSans500M">{{ $user->getRaffleMoney() }}
+                                                        USD</span>
                                                 </div>
                                             </div>
                                             <div class="row padding-top5">
@@ -120,7 +121,8 @@
                                                     <span class="colorV sinkinSans400I">@lang('views.by_commission')</span>
                                                 </div>
                                                 <div class="col-xs-4 padding-rigth-0 padding-left-0 borderBottomG">
-                                                    <span class="sinkinSans500M">{{ $user->getReferralsMoney() }} USD</span>
+                                                    <span class="sinkinSans500M">{{ $user->getReferralsMoney() }}
+                                                        USD</span>
                                                 </div>
                                             </div>
                                         </div>
@@ -241,7 +243,8 @@
                                                         <span class="colorV italic">@lang('views.by_commission')</span>
                                                     </div>
                                                     <div class="col-xs-5 padding-rigth-0 borderBottomG">
-                                                        <span class="texto14">{{ $user->getReferralsMoney() }} USD</span>
+                                                        <span class="texto14">{{ $user->getReferralsMoney() }}
+                                                            USD</span>
                                                     </div>
                                                 </div>
                                             </div>
@@ -477,33 +480,40 @@
                                                 <div class="col-md-6 padding-top-20 sinkinSans400R">
                                                     <div class="col-xs-12 padding-top-20 paddingLeft0">
                                                         <div class="col-xs-9 col-md-6"><span
-                                                                    class="colorN margin-right-20">@lang('views.created_raffles'):</span>
+                                                                    class="colorN margin-right-20">@lang('views.created_raffles')
+                                                                :</span>
                                                         </div>
                                                         <div class="col-xs-3 col-md-6"><strong
-                                                                    class="colorV sinkinSans600SB" id="created_raffles_follows">20%</strong><br>
+                                                                    class="colorV sinkinSans600SB"
+                                                                    id="created_raffles_follows">20%</strong><br>
                                                         </div>
                                                     </div>
                                                     <div class="col-xs-12 padding-top-20 paddingLeft0">
                                                         <div class="col-xs-9 col-md-6"><span
-                                                                    class="colorN margin-right-20">@lang('views.winned_raffles'):</span>
+                                                                    class="colorN margin-right-20">@lang('views.winned_raffles')
+                                                                :</span>
                                                         </div>
                                                         <div class="col-xs-3 col-md-6"><strong
-                                                                    class="colorV sinkinSans600SB" id="winned_raffles_follows">100%</strong><br>
+                                                                    class="colorV sinkinSans600SB"
+                                                                    id="winned_raffles_follows">100%</strong><br>
                                                         </div>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6 padding-top-20 sinkinSans400R">
                                                     <div class="col-xs-12 padding-top-20 paddingLeft0">
                                                         <div class="col-xs-9 col-md-6"><span
-                                                                    class="colorN margin-right-20">@lang('views.shared_raffles'):</span>
+                                                                    class="colorN margin-right-20">@lang('views.shared_raffles')
+                                                                :</span>
                                                         </div>
                                                         <div class="col-xs-3 col-md-6"><strong
-                                                                    class="colorV sinkinSans600SB" id="shared_raffles_follows">20%</strong><br>
+                                                                    class="colorV sinkinSans600SB"
+                                                                    id="shared_raffles_follows">20%</strong><br>
                                                         </div>
                                                     </div>
                                                     <div class="col-xs-12 padding-top-20 paddingLeft0">
                                                         <div class="col-xs-9 col-md-6"><span
-                                                                    class="colorN margin-right-20">@lang('views.sold_tickets'):</span>
+                                                                    class="colorN margin-right-20">@lang('views.sold_tickets')
+                                                                :</span>
                                                         </div>
                                                         <div class="col-xs-3 col-md-6"><strong
                                                                     class="colorV sinkinSans600SB"
@@ -521,14 +531,11 @@
                                     <div class="tab-pane active" id="mesiguen">
                                         <div class="row">
                                             <div class="col-md-12">
-
                                                 <?php
                                                 $start_followers = count($user->getFollowers) - 1;
                                                 ?>
-
-
-
-
+                                                <div class="helper_for_followers" id="{{ count($user->getFollowers) }}"
+                                                     style="display: none"></div>
                                                 <div class="slickFollowers" id="normalSlick-followers">
                                                     @foreach($user->getFollowers as $follower)
                                                         <div class="slick-list follower" id="{{$follower->id}}">
@@ -550,7 +557,8 @@
                                                 <div class="col-md-6 padding-top-20 sinkinSans400R">
                                                     <div class="col-xs-12 padding-top-20 paddingLeft0">
                                                         <div class="col-xs-9 col-md-6"><span
-                                                                    class="colorN margin-right-20">@lang('views.created_raffles'):</span>
+                                                                    class="colorN margin-right-20">@lang('views.created_raffles')
+                                                                :</span>
                                                         </div>
                                                         <div class="col-xs-3 col-md-6"><strong
                                                                     class="colorV sinkinSans600SB"
@@ -559,7 +567,8 @@
                                                     </div>
                                                     <div class="col-xs-12 padding-top-20 paddingLeft0">
                                                         <div class="col-xs-9 col-md-6"><span
-                                                                    class="colorN margin-right-20">@lang('views.winned_raffles'):</span>
+                                                                    class="colorN margin-right-20">@lang('views.winned_raffles')
+                                                                :</span>
                                                         </div>
                                                         <div class="col-xs-3 col-md-6"><strong
                                                                     class="colorV sinkinSans600SB"
@@ -570,7 +579,8 @@
                                                 <div class="col-md-6 padding-top-20 sinkinSans400R">
                                                     <div class="col-xs-12 padding-top-20 paddingLeft0">
                                                         <div class="col-xs-9 col-md-6"><span
-                                                                    class="colorN margin-right-20">@lang('views.shared_raffles'):</span>
+                                                                    class="colorN margin-right-20">@lang('views.shared_raffles')
+                                                                :</span>
                                                         </div>
                                                         <div class="col-xs-3 col-md-6"><strong
                                                                     class="colorV sinkinSans600SB"
@@ -579,7 +589,8 @@
                                                     </div>
                                                     <div class="col-xs-12 padding-top-20 paddingLeft0">
                                                         <div class="col-xs-9 col-md-6"><span
-                                                                    class="colorN margin-right-20">@lang('views.sold_tickets'):</span>
+                                                                    class="colorN margin-right-20">@lang('views.sold_tickets')
+                                                                :</span>
                                                         </div>
                                                         <div class="col-xs-3 col-md-6"><strong
                                                                     class="colorV sinkinSans600SB"
@@ -609,33 +620,33 @@
     </div>
 @stop
 @section('additional_scripts')
-    <script src="{{ asset('js/user_profile.min.js') }}"></script>
 
     <script type="text/javascript">
 
-        
-        if ($('#mesiguen .active')){
+
+        if ($('#mesiguen .active')) {
 
             $('.slickFollowers').slick({
-            autoplay: true,
-            slidesToShow: 5,
-            slidesToScroll: 1,
-            infinite: true,
-            pauseOnHover: true,
-            autoplaySpeed: 2000,
-            initialSlide: parseInt({{$start_followers }}) ,
-            responsive: [
-                {
-                    breakpoint: 1024,
-                    settings: {
-                        slidesToShow: 3,
-                        slidesToScroll: 1,
-                        infinite: true,
-                    }
-                },
+                autoplay: true,
+                slidesToShow: 5,
+                slidesToScroll: 1,
+                infinite: true,
+                pauseOnHover: true,
+                autoplaySpeed: 2000,
+                initialSlide: parseInt({{$start_followers }}),
+                responsive: [
+                    {
+                        breakpoint: 1024,
+                        settings: {
+                            slidesToShow: 3,
+                            slidesToScroll: 1,
+                            infinite: true,
+                        }
+                    },
 
-            ]
-        });}
+                ]
+            });
+        }
 
         if ($('#siguiendo .active')) {
 
