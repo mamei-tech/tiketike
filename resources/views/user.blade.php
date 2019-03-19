@@ -455,153 +455,40 @@
                                     <div class="tab-pane " id="seguidos">
                                         <div class="row">
                                             <div class="col-md-12">
-                                                <?php
-                                                $start_follow = count($user->getFollows) - 1;
-                                                ?>
-
                                                 <div class="slickFollows" id="normalSlick-follows">
                                                     @foreach($user->getFollows as $follow)
                                                         <div class=" slick-list follow" id="{{$follow->id}}">
-                                                            <img src="{{ $follow->getMedia('avatars')->first() ->getUrl()}}"
-                                                                 class="imgUsuario sombraImgUser2"
-                                                                 alt="imgUser">
+                                                            <a href="{{ route('profile.info',$follow->id) }}">
+                                                                <img src="{{ $follow->getMedia('avatars')->first() ->getUrl()}}"
+                                                                     class="imgUsuario sombraImgUser2"
+                                                                     alt="imgUser">
+                                                            </a>
                                                             <h6 class="hidden-xs sinkinSans600SB">{{ $follow->name }} {{ $follow->lastname }}</h6>
                                                             <span class="texto10 sinkinSans500MI padding-left10 hidden-xs">{{ $follow->getProfile->getCity->country->name }}</span>
                                                         </div>
                                                     @endforeach
                                                 </div>
                                             </div>
-                                            <div class="col-xs-12 bg-popoverU">
-                                                <div class="colorV visible-xs text-center texto14 padding-top-30"><span
-                                                            class="sinkinSans600SB text-uppercase"
-                                                            id="name_follows">Jane Doe /</span>
-                                                    <span class="sinkinSans300LI" id="country_follows">Pais</span>
-                                                </div>
-                                                <div class="col-md-6 padding-top-20 sinkinSans400R">
-                                                    <div class="col-xs-12 padding-top-20 paddingLeft0">
-                                                        <div class="col-xs-9 col-md-6"><span
-                                                                    class="colorN margin-right-20">@lang('views.created_raffles')
-                                                                :</span>
-                                                        </div>
-                                                        <div class="col-xs-3 col-md-6"><strong
-                                                                    class="colorV sinkinSans600SB"
-                                                                    id="created_raffles_follows">20%</strong><br>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-xs-12 padding-top-20 paddingLeft0">
-                                                        <div class="col-xs-9 col-md-6"><span
-                                                                    class="colorN margin-right-20">@lang('views.winned_raffles')
-                                                                :</span>
-                                                        </div>
-                                                        <div class="col-xs-3 col-md-6"><strong
-                                                                    class="colorV sinkinSans600SB"
-                                                                    id="winned_raffles_follows">100%</strong><br>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6 padding-top-20 sinkinSans400R">
-                                                    <div class="col-xs-12 padding-top-20 paddingLeft0">
-                                                        <div class="col-xs-9 col-md-6"><span
-                                                                    class="colorN margin-right-20">@lang('views.shared_raffles')
-                                                                :</span>
-                                                        </div>
-                                                        <div class="col-xs-3 col-md-6"><strong
-                                                                    class="colorV sinkinSans600SB"
-                                                                    id="shared_raffles_follows">20%</strong><br>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-xs-12 padding-top-20 paddingLeft0">
-                                                        <div class="col-xs-9 col-md-6"><span
-                                                                    class="colorN margin-right-20">@lang('views.sold_tickets')
-                                                                :</span>
-                                                        </div>
-                                                        <div class="col-xs-3 col-md-6"><strong
-                                                                    class="colorV sinkinSans600SB"
-                                                                    id="sold_tickets_follows">20%</strong><br>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                                <a href="" class="floatRight sinkinSans200LI padding-top-30 colorN"
-                                                   id="link_to_profile_follows">@lang('views.go_to_profile')
-                                                    <span class="ti-angle-right texto16 colorN texto-negrita padding-top5"></span></a>
-                                            </div>
                                         </div>
                                     </div>
                                     <div class="tab-pane active" id="mesiguen">
                                         <div class="row">
                                             <div class="col-md-12">
-                                                <?php
-                                                $start_followers = count($user->getFollowers) - 1;
-                                                ?>
                                                 <div class="helper_for_followers" id="{{ count($user->getFollowers) }}"
                                                      style="display: none"></div>
                                                 <div class="slickFollowers" id="normalSlick-followers">
                                                     @foreach($user->getFollowers as $follower)
                                                         <div class="slick-list follower" id="{{$follower->id}}">
-                                                            <img src="{{ $follower->getMedia('avatars')->first() ->getUrl()}}"
-                                                                 class="imgUsuario sombraImgUser2"
-                                                                 alt="imgUser">
+                                                            <a href="{{ route('profile.info',$follower->id) }}">
+                                                                <img src="{{ $follower->getMedia('avatars')->first() ->getUrl()}}"
+                                                                     class="imgUsuario sombraImgUser2"
+                                                                     alt="imgUser">
+                                                            </a>
                                                             <h6 class="hidden-xs sinkinSans600SB">{{ $follower->name }} {{ $follower->lastname }}</h6>
                                                             <span class="texto10 sinkinSans500MI padding-left10 hidden-xs">{{ $follower->getProfile->getCity->country->name }}</span>
                                                         </div>
                                                     @endforeach
                                                 </div>
-                                            </div>
-                                            <div class="col-xs-12 bg-popoverU">
-                                                <div class="colorV visible-xs text-center texto14 padding-top-30"><span
-                                                            class="sinkinSans600SB text-uppercase"
-                                                            id="name">Jane Doe /</span>
-                                                    <span class="sinkinSans300LI" id="country">Pais</span>
-                                                </div>
-                                                <div class="col-md-6 padding-top-20 sinkinSans400R">
-                                                    <div class="col-xs-12 padding-top-20 paddingLeft0">
-                                                        <div class="col-xs-9 col-md-6"><span
-                                                                    class="colorN margin-right-20">@lang('views.created_raffles')
-                                                                :</span>
-                                                        </div>
-                                                        <div class="col-xs-3 col-md-6"><strong
-                                                                    class="colorV sinkinSans600SB"
-                                                                    id="created_raffles">20%</strong><br>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-xs-12 padding-top-20 paddingLeft0">
-                                                        <div class="col-xs-9 col-md-6"><span
-                                                                    class="colorN margin-right-20">@lang('views.winned_raffles')
-                                                                :</span>
-                                                        </div>
-                                                        <div class="col-xs-3 col-md-6"><strong
-                                                                    class="colorV sinkinSans600SB"
-                                                                    id="winned_raffles">100%</strong><br>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6 padding-top-20 sinkinSans400R">
-                                                    <div class="col-xs-12 padding-top-20 paddingLeft0">
-                                                        <div class="col-xs-9 col-md-6"><span
-                                                                    class="colorN margin-right-20">@lang('views.shared_raffles')
-                                                                :</span>
-                                                        </div>
-                                                        <div class="col-xs-3 col-md-6"><strong
-                                                                    class="colorV sinkinSans600SB"
-                                                                    id="shared_raffles">20%</strong><br>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-xs-12 padding-top-20 paddingLeft0">
-                                                        <div class="col-xs-9 col-md-6"><span
-                                                                    class="colorN margin-right-20">@lang('views.sold_tickets')
-                                                                :</span>
-                                                        </div>
-                                                        <div class="col-xs-3 col-md-6"><strong
-                                                                    class="colorV sinkinSans600SB"
-                                                                    id="sold_tickets">20%</strong><br>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                                <a href="" class="floatRight sinkinSans200LI padding-top-30 colorN"
-                                                   id="link_to_profile">@lang('views.go_to_profile')
-                                                    <span class="ti-angle-right texto16 colorN texto-negrita padding-top5"></span></a>
                                             </div>
                                         </div>
                                     </div>
@@ -622,10 +509,7 @@
 @section('additional_scripts')
 
     <script type="text/javascript">
-
-
-        if ($('#mesiguen .active')) {
-
+        $(document).ready(function () {
             $('.slickFollowers').slick({
                 autoplay: true,
                 slidesToShow: 5,
@@ -633,7 +517,7 @@
                 infinite: true,
                 pauseOnHover: true,
                 autoplaySpeed: 2000,
-                initialSlide: parseInt({{$start_followers }}),
+                initialSlide: 0,
                 responsive: [
                     {
                         breakpoint: 1024,
@@ -646,9 +530,6 @@
 
                 ]
             });
-        }
-
-        if ($('#siguiendo .active')) {
 
             $('.slickFollows').slick({
                 autoplay: true,
@@ -657,7 +538,7 @@
                 infinite: true,
                 pauseOnHover: true,
                 autoplaySpeed: 2000,
-                initialSlide: parseInt({{$start_follow }}),
+                initialSlide: 0,
                 responsive: [
                     {
                         breakpoint: 1024,
@@ -670,7 +551,6 @@
 
                 ]
             });
-        }
-
+        });
     </script>
 @stop

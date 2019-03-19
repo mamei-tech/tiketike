@@ -2,18 +2,25 @@ import axios from 'axios';
 
 $(document).ready(function () {
 
-    if (window.location.href === route('main').url()+"#terminosModal") {
+    if (window.location.href === route('main').url() + "#terminosModal") {
         $("#terminosModal").modal("show");
     }
 
     $('.select2').select2();
     /*  SETTING UP AXIOS HEADERS  */
     axios.defaults.headers.common['Authorization'] = "Bearer " + $('meta[name=access-token]').attr('content');
-
+    var start = true;
     $('#normalSlick').on('beforeChange', function (event, slick, currentSlide, nextSlide) {
-        var userid = $("[data-slick-index='" +nextSlide+ "'] .slick-list").attr('id');
-
-        axios.post(route('get.user'),{
+        if (start) {
+            var userid = $("[data-slick-index='" + 1 + "'] .slick-list").attr('id');
+            start = false;
+        } else {
+            if (nextSlide == 9)
+                userid = $("[data-slick-index='" + 0 + "'] .slick-list").attr('id');
+            else
+                var userid = $("[data-slick-index='" + (nextSlide + 1) + "'] .slick-list").attr('id');
+        }
+        axios.post(route('get.user'), {
             'userid': userid
         }).then(function (response) {
             $('#created_raffles').html('');
@@ -26,7 +33,7 @@ $(document).ready(function () {
             $('#sold_tickets').html(response.data['sold_tickets']);
             $('#shared_raffles').html(response.data['shared_raffles']);
             $('#link_to_profile').href = '';
-            $('#link_to_profile').attr('href', route('profile.info',{userid}));
+            $('#link_to_profile').attr('href', route('profile.info', {userid}));
             $('.field-item .even');
         }).catch(function (error) {
             console.log(error);
@@ -34,21 +41,21 @@ $(document).ready(function () {
     });
 
     $('#responsiveSlick').on('beforeChange', function (event, slick, currentSlide, nextSlide) {
-        var userid = $("[data-slick-index='" +nextSlide+ "'] .slick-list").attr('id');
-        axios.post(route('get.user'),{
+        var userid = $("[data-slick-index='" + nextSlide + "'] .slick-list").attr('id');
+        axios.post(route('get.user'), {
             'userid': userid
         }).then(function (response) {
             $('#created_raffles_xs').html('');
             $('#winned_raffles_xs').html('');
             $('#sold_tickets_xs').html('');
-            $('#name_xs').html(response.data['name']+ '  /');
+            $('#name_xs').html(response.data['name'] + '  /');
             $('#country_xs').html('  ' + response.data['country']);
             $('#created_raffles_xs').html(response.data['created_raffles']);
             $('#shared_raffles_xs').html(response.data['shared_raffles']);
             $('#winned_raffles_xs').html(response.data['winned_raffles']);
             $('#sold_tickets_xs').html(response.data['sold_tickets']);
             $('#link_to_profile_xs').href = '';
-            $('#link_to_profile_xs').attr('href', route('profile.info',{userid}));
+            $('#link_to_profile_xs').attr('href', route('profile.info', {userid}));
             $('.field-item .even');
         }).catch(function (error) {
             console.log(error);
@@ -90,7 +97,7 @@ $(document).ready(function () {
         },
         messages: {
             title: {
-                required : 'This field is required',
+                required: 'This field is required',
                 maxlength: 'The max length of this field is 30 characters'
             },
             description: {
@@ -108,7 +115,7 @@ $(document).ready(function () {
                 required: 'This field is required',
             },
         },
-        submitHandler: function(form) {
+        submitHandler: function (form) {
             form.submit();
         }
     });
