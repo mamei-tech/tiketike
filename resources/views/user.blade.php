@@ -532,6 +532,7 @@
     </div>
 @stop
 @section('additional_scripts')
+    <script src="{{ asset('js/user_profile.min.js') }}"></script>
     <script>
         $('.slickUsuario').slick({
             autoplay: true,
