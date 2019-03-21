@@ -42,12 +42,12 @@ return [
     'facebook' => [
         'client_id' => '2089531807735327',
         'client_secret' => 'b55790b08e57117371badaa2084f87df',
-        'redirect' => 'http://localhost/tiketike/public/auth/facebook/callback'
+        'redirect' => 'http://tiketikes.com/auth/facebook/callback'
     ],
     'twitter' => [
         'client_id' => 'B7oIUInNaskO2Ow4scKo1aNxz',
         'client_secret' => '5rTFTlHuxizw9RqrtRWm89CJUs3SDh7OAYaPWel5D9NUvx6dej ',
-        'redirect' => 'http://localhost/tiketike/public/auth/twitter/callback'
+        'redirect' => 'http://tiketikes.com/auth/twitter/callback'
     ],
 
     'google' => [
