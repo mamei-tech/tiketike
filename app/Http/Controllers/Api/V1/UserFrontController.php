@@ -17,7 +17,7 @@ class UserFrontController extends ApiController
         $name = $user->name.' '.$user->lastname;
         $country = $user->getProfile->getCity->country->name;
         $createdraffles = count($user->getRaffles);
-        $winnedRaffles = count($user->WinnedRaffles());
+        $winnedRaffles = $user->WinnedRaffles();
         $soldtickets = $user->getSoldTicketsCount();
         $route = route('profile.info',['userid'=>$id]);
         $shared_raffles = count($user->getReferralsBuys->groupBy('raffle_id'));

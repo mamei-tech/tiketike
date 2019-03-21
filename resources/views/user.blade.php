@@ -47,7 +47,7 @@
                                         :</span>
                                 </div>
                                 <div class="col-xs-3 col-sm-4 col-lg-5"><strong
-                                            class="colorN sinkinSans600SB">{{ count($user->WinnedRaffles()) }}</strong><br>
+                                            class="colorN sinkinSans600SB">{{ $user->WinnedRaffles() }}</strong><br>
                                 </div>
                             </div>
                             <div class="padding-top-20">
@@ -82,17 +82,6 @@
                                 <span class="ti-email colorV  margin-right-10"></span>
                                 {{$user->email}}
                             </div>
-                            @if(\Auth::check())
-                                @if(\Auth::user()->id != $user->id)
-                                    <div class="sinkinSans500M padding-top-20">
-                                        <a href="{{ route('user.follow',[$user->id]) }}"><span
-                                                    class="ti-face-smile texto-negrita colorV margin-right-5 texto16"
-                                                    title="Seguir"></span>
-                                            <span class="colorV sinkinSans600SB">Seguir</span>
-                                        </a>
-                                    </div>
-                                @endif
-                            @endif
                         </div>
                         @if($user->id == \Auth::User()->id)
                             <div class="col-xs-12 padding-top-20">
@@ -122,7 +111,8 @@
                                                     <span class="colorV sinkinSans400I"> @lang('views.by_raffle')</span>
                                                 </div>
                                                 <div class="col-xs-5 padding-rigth-0 padding-left-0 borderBottomG">
-                                                    <span class="sinkinSans500M">20.00 USD</span>
+                                                    <span class="sinkinSans500M">{{ $user->getRaffleMoney() }}
+                                                        USD</span>
                                                 </div>
                                             </div>
                                             <div class="row padding-top5">
@@ -131,7 +121,8 @@
                                                     <span class="colorV sinkinSans400I">@lang('views.by_commission')</span>
                                                 </div>
                                                 <div class="col-xs-4 padding-rigth-0 padding-left-0 borderBottomG">
-                                                    <span class="sinkinSans500M">400.00 USD</span>
+                                                    <span class="sinkinSans500M">{{ $user->getReferralsMoney() }}
+                                                        USD</span>
                                                 </div>
                                             </div>
                                         </div>
@@ -150,6 +141,131 @@
                 <div class="bottomLIzquierdo hidden-xs"></div>
             </div>
             <!--PANEL Solo visible en la vista movil-->
+            <div class="col-xs-12 visible-xs paddingLeft0 padding-rigth-0 padding-bottom30">
+                <div class="paddingLeft0 ">
+                    <div class="panel-body">
+                        <ul class="nav nav-tabs bg-panelUsuarioR sinkinSans600SB padding-left150" id="myTab">
+                            <li class="active stylePanelU"><a data-toggle="tab"
+                                                              class="panelUsuario colorV ti-bar-chart texto20"
+                                                              href="#estadisticas"
+                                                              aria-expanded="true"></a></li>
+                            <li class="stylePanelU"><a data-toggle="tab" class="panelUsuario colorV ti-agenda texto20"
+                                                       href="#contactos"
+                                                       aria-expanded="false"></a></li>
+                            <li class="stylePanelU"><a data-toggle="tab" class="panelUsuario colorV ti-wallet texto20"
+                                                       href="#micuenta"
+                                                       aria-expanded="true"></a></li>
+                        </ul>
+                        <div class="tab-content padding-top-20">
+                            <div class="tab-pane active in" id="estadisticas">
+                                <div class="col-xs-12 colorV sinkinSans300L">
+                                    <div class="padding-top-10">
+                                        <div class="col-xs-6 col-sm-8"><span class="colorV margin-right-20">@lang('views.created_raffles')
+                                                :</span>
+                                        </div>
+                                        <div class="col-xs-6 col-sm-4"><strong
+                                                    class="colorN sinkinSans600SB">100%</strong><br></div>
+                                    </div>
+                                    <div class="padding-top-20">
+                                        <div class="col-xs-6 col-sm-8"><span class="colorV margin-right-20">@lang('views.winned_raffles')
+                                                :</span>
+                                        </div>
+                                        <div class="col-xs-6 col-sm-4"><strong
+                                                    class="colorN sinkinSans600SB">80%</strong><br></div>
+                                    </div>
+                                    <div class="padding-top-20">
+                                        <div class="col-xs-6 col-sm-8"><span class="colorV margin-right-20">@lang('views.shared_raffles')
+                                                :</span>
+                                        </div>
+                                        <div class="col-xs-6 col-sm-4"><strong
+                                                    class="colorN sinkinSans600SB">100%</strong><br></div>
+                                    </div>
+                                    <div class="padding-top-20">
+                                        <div class="col-xs-6 col-sm-8"><span class="colorV margin-right-20">@lang('views.sold_tickets')
+                                                :</span>
+                                        </div>
+                                        <div class="col-xs-6 col-sm-4"><strong
+                                                    class="colorN sinkinSans600SB">100%</strong><br></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane " id="contactos">
+                                <div class="col-xs-12 sinkinSans300LI">
+                                    <div class="padding-top-20">
+                                        <span class="ti-mobile colorV"></span>
+                                        +534518478
+                                    </div>
+                                    <div class="padding-top-20">
+                                        <span class="ti-email colorV  margin-right-10"></span>
+                                        janedoe@nauta.com.cu
+                                    </div>
+                                    <div class="padding-top-20">
+                                        <span class="ti-facebook colorV texto14 margin-right-10"></span>
+                                        janedoe
+                                    </div>
+                                    <div class="padding-top-20">
+                                        <span class="ti-twitter colorV texto14 margin-right-10"></span>
+                                        @janedoe
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane" id="micuenta">
+                                <div class="col-xs-12 sinkinSans300LI ">
+                                    <span class="texto14 colorV padding-left30">Total</span>
+                                    <div class="col-xs-12 padding-bottom20 padding-top5">
+                                        <div class="col-xs-8 texto14  padding-top5">
+                                            <span class="ti-money colorV margin-right5"></span>
+                                            <span class="borderDashed padding15">{{$user->getProfile->balance}}</span>
+                                        </div>
+                                        <div class="col-xs-4">
+                                            <button type="button"
+                                                    class="btn btn-primary bg_green extraer text-uppercase">
+                                                @lang('views.extract')
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 preciosExtraer padding-left-0">
+                                        <div id="precio1" class="panel-collapse collapse" role="tabpanel"
+                                             aria-labelledby="headingThree" aria-expanded="true" style="">
+                                            <div class="panel-body">
+                                                <div class="row padding-top-15">
+                                                    <div class="col-xs-7 padding-left-0 texto14 padding-top-10">
+                                                        <i class="fa fa-dollar colorV margin-right-10"></i>
+                                                        <span class="colorV italic"> @lang('views.by_raffle')</span>
+                                                    </div>
+                                                    <div class="col-xs-5 padding-rigth-0 borderBottomG">
+                                                        <span class="texto14">{{ $user->getRaffleMoney() }} USD</span>
+                                                    </div>
+                                                </div>
+                                                <div class="row padding-top5">
+                                                    <div class="col-xs-7 padding-left-0 padding-top5 texto14 padding-top-10">
+                                                        <i class="fa fa-dollar colorV margin-right-10"></i>
+                                                        <span class="colorV italic">@lang('views.by_commission')</span>
+                                                    </div>
+                                                    <div class="col-xs-5 padding-rigth-0 borderBottomG">
+                                                        <span class="texto14">{{ $user->getReferralsMoney() }}
+                                                            USD</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="panel-heading " role="tab" id="">
+                                            <div class="tools">
+                                                <a class="paddingCollapse" data-toggle="collapse"
+                                                   data-parent="#accordion"
+                                                   href="#precio1" aria-expanded="true"
+                                                   aria-controls="collapseThree"></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--FIN Solo visible en la vista movil-->
+
+            </div>
             <!--Contenido usuario-->
             <div class="col-xs-12 col-sm-7 col-md-8 col-lg-7 padding-top-50">
                 <div class="row">
@@ -339,29 +455,35 @@
                                     <div class="tab-pane " id="seguidos">
                                         <div class="row">
                                             <div class="col-md-12">
-                                                <div class="slickUsuario">
-                                                    @foreach($user->getFollows as $follower)
-                                                        <div class="paddingImgCarousel">
-                                                            <img src="{{ $follower->getMedia('avatars')->first() ->getUrl()}}"
-                                                                 class="imgUsuario sombraImgUser2"
-                                                                 alt="imgUser">
-                                                            <h6 class="hidden-xs sinkinSans600SB">{{ $follower->name }} {{ $follower->lastname }}</h6>
-                                                            <span class="texto10 sinkinSans500MI padding-left10 hidden-xs">{{ $follower->getProfile->getCity->country->name }}</span>
+                                                <div class="slickFollows" id="normalSlick-follows">
+                                                    @foreach($user->getFollows as $follow)
+                                                        <div class=" slick-list follow" id="{{$follow->id}}">
+                                                            <a href="{{ route('profile.info',$follow->id) }}">
+                                                                <img src="{{ $follow->getMedia('avatars')->first() ->getUrl()}}"
+                                                                     class="imgUsuario sombraImgUser2"
+                                                                     alt="imgUser">
+                                                            </a>
+                                                            <h6 class="hidden-xs sinkinSans600SB">{{ $follow->name }} {{ $follow->lastname }}</h6>
+                                                            <span class="texto10 sinkinSans500MI padding-left10 hidden-xs">{{ $follow->getProfile->getCity->country->name }}</span>
                                                         </div>
                                                     @endforeach
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="tab-pane active in" id="mesiguen">
+                                    <div class="tab-pane active" id="mesiguen">
                                         <div class="row">
                                             <div class="col-md-12">
-                                                <div class="slickUsuario">
+                                                <div class="helper_for_followers" id="{{ count($user->getFollowers) }}"
+                                                     style="display: none"></div>
+                                                <div class="slickFollowers" id="normalSlick-followers">
                                                     @foreach($user->getFollowers as $follower)
-                                                        <div class="paddingImgCarousel">
-                                                            <img src="{{ $follower->getMedia('avatars')->first() ->getUrl()}}"
-                                                                 class="imgUsuario sombraImgUser2"
-                                                                 alt="imgUser">
+                                                        <div class="slick-list follower" id="{{$follower->id}}">
+                                                            <a href="{{ route('profile.info',$follower->id) }}">
+                                                                <img src="{{ $follower->getMedia('avatars')->first() ->getUrl()}}"
+                                                                     class="imgUsuario sombraImgUser2"
+                                                                     alt="imgUser">
+                                                            </a>
                                                             <h6 class="hidden-xs sinkinSans600SB">{{ $follower->name }} {{ $follower->lastname }}</h6>
                                                             <span class="texto10 sinkinSans500MI padding-left10 hidden-xs">{{ $follower->getProfile->getCity->country->name }}</span>
                                                         </div>
@@ -385,38 +507,50 @@
     </div>
 @stop
 @section('additional_scripts')
-    <script>
-        $('.slickUsuario').slick({
-            autoplay: true,
-            slidesToShow: 5,
-            slidesToScroll: 1,
-            autoplaySpeed: 2000,
-            responsive: [
-                {
-                    breakpoint: 1024,
-                    settings: {
-                        slidesToShow: 3,
-                        slidesToScroll: 3,
-                        infinite: true,
-                    }
-                },
-                {
-                    breakpoint: 600,
-                    settings: {
-                        slidesToShow: 4,
-                        slidesToScroll: 2
-                    }
-                },
-                {
-                    breakpoint: 480,
-                    settings: {
-                        slidesToShow: 3,
-                        slidesToScroll: 1
-                    }
-                }
 
-            ]
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('.slickFollowers').slick({
+                autoplay: true,
+                slidesToShow: 5,
+                slidesToScroll: 1,
+                infinite: true,
+                pauseOnHover: true,
+                autoplaySpeed: 2000,
+                initialSlide: 0,
+                responsive: [
+                    {
+                        breakpoint: 1024,
+                        settings: {
+                            slidesToShow: 3,
+                            slidesToScroll: 1,
+                            infinite: true,
+                        }
+                    },
+
+                ]
+            });
+
+            $('.slickFollows').slick({
+                autoplay: true,
+                slidesToShow: 5,
+                slidesToScroll: 1,
+                infinite: true,
+                pauseOnHover: true,
+                autoplaySpeed: 2000,
+                initialSlide: 0,
+                responsive: [
+                    {
+                        breakpoint: 1024,
+                        settings: {
+                            slidesToShow: 3,
+                            slidesToScroll: 1,
+                            infinite: true,
+                        }
+                    },
+
+                ]
+            });
         });
-
     </script>
 @stop

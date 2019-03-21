@@ -36,13 +36,16 @@ class RaffleRepository
         }
     }
 
-    public function getRafflesByCategory($category, $filter = null)
+    public function getRafflesByCategory($category, $filter = null,$countries)
     {
         if ($filter != null) {
             if ($filter == 'percent') {
                 return Raffle::with('getCategory')
                     ->whereHas('getCategory', function (Builder $q) use ($category) {
                         $q->where('category', $category);
+                    })
+                    ->when($countries, function ($query) use ($countries) {
+                        return $query->whereIn('location',$countries);
                     })
                     ->where('progress', '<', 100)
                     ->orderBy('progress', 'DESC')
@@ -52,6 +55,9 @@ class RaffleRepository
                     ->whereHas('getCategory', function (Builder $q) use ($category) {
                         $q->where('category', $category);
                     })
+                    ->when($countries, function ($query) use ($countries) {
+                        return $query->whereIn('location',$countries);
+                    })
                     ->where('progress', '<', 100)
                     ->orderBy('tickets_price', 'DESC')
                     ->paginate(10);
@@ -60,6 +66,9 @@ class RaffleRepository
             return Raffle::with('getCategory')
                 ->whereHas('getCategory', function (Builder $q) use ($category) {
                     $q->where('category', $category);
+                })
+                ->when($countries, function ($query) use ($countries) {
+                    return $query->whereIn('location',$countries);
                 })
                 ->where('progress', '<', 100)
                 ->paginate(10);

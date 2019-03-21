@@ -230,10 +230,6 @@
                                 <div class="padding-top-15  bg-prueba pull-left">
                                     <span class="padding-top-20 padding-left25 text-uppercase colorB margin-right-10">{{ $ticket->code }}</span>
                                 </div>
-                                {{--<div class="padding-top-30">--}}
-                                    {{--<input name="tickets" id="tickets" class="margin-left15 tickets"--}}
-                                           {{--value="{{ $ticket->code }}" type="checkbox">--}}
-                                {{--</div>--}}
                             </div>
                         </div>
                     </div>

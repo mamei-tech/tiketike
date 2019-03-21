@@ -2,6 +2,7 @@
 @section('content')
     @include('partials.frontend.header')
     @include('partials.front_modals.filters')
+    @include('partials.front_modals.login_modal')
     @include('partials.front_modals.mobile_suggest')
     @include('partials.front_modals.notification_modal')
     <div class="container contenido">
@@ -39,7 +40,7 @@
                                         @foreach($continent->countries as $country)
                                             <div class="col-md-12 col-sm-12 col-xs-12 col-lg-{{strlen($country->name) > 20?'12':'6'}}" style="padding: 5px 5px 5px 0">
                                                 <label for="countries">{{ $country->name }}</label>
-                                                <input class="right" type="checkbox" name="countries" id="countries">
+                                                <input class="right" type="checkbox" name="countries" id="countries" value="{{ $country->id }}">
                                             </div>
                                         @endforeach
                                     </div>
@@ -162,11 +163,11 @@
                                                 </a>
                                             </li>
                                             <li class=" margin-right-10">
-                                                <a href="">
-                                        <span data-toggle="modal" data-target="#{{$raffle->id}}-share_modal"
+                                                <a data-toggle="modal" data-target="@if(\Auth::check())#{{$raffle->id}}-share_modal @else #loginModal @endif" href="" title="Compartir">
+                                        <span
                                               class="ti-share texto-negrita colorV margin-right-5 texto16"
-                                              title="Compartir"></span>
-                                                    <span class="colorV sinkinSans600SB" id="share_buttom" data-toggle="modal" href="#{{$raffle->id}}-share_modal">Compartir</span>
+                                              ></span>
+                                                    <span class="colorV sinkinSans600SB" id="share_buttom" >Compartir</span>
                                                 </a>
                                             </li>
                                             @include('partials.front_modals.share_modal')

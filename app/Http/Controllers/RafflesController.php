@@ -192,13 +192,13 @@ class RafflesController extends Controller
         $confirmation->save();
         $raffle = Raffle::findOrFail($request->get('raffleId'));
         if ($confirmation->oconfirmation == 1 and $confirmation->wconfirmation == 1) {
-            $commissionMoney = (($raffle->comissions * $raffle->price) / 100); // Porciento de comision * precio de la rifa entre 100 obtiene comision por ticket referido
+            $commissionMoney = (($raffle->commissions * $raffle->price) / 100)/ $raffle->tickets_count; // Porciento de comision * precio de la rifa entre 100 obtiene comision por ticket referido
             $raffle->status = 6;
             $raffle->save();
             $raffle->getOwner->getProfile->balance += $raffle->price;
             $raffle->getOwner->getProfile->save();
             foreach ($raffle->getReferrals as $referral) {
-                $referral->getComisionist->getProfile->balance += $commissionMoney / $raffle->tickets_count;
+                $referral->getComisionist->getProfile->balance += $commissionMoney;
                 $referral->getComisionist->getProfile->save();
             }
             return redirect()->back()

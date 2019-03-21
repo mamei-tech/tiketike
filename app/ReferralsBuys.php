@@ -29,4 +29,9 @@ class ReferralsBuys extends Model
     {
         return $this->belongsTo('App\Ticket', 'ticket');
     }
+
+    public function getRaffle()
+    {
+        return $this->hasOne(Raffle::class,'id','raffle_id');
+    }
 }

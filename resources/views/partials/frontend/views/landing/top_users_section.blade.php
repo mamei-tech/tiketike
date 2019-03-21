@@ -123,30 +123,30 @@
 
             </div>
             <div class="col-sm-5 col-md-4 col-lg-4 bg-popoverLanding padding-top-50 hidden-xs padding-left-0">
-                <span class="colorV text-uppercase sinkinSans600SB texto20" id="name">Jane Doe</span><br>
-                <span class="colorV sinkinSans300LI texto20" id="country">@lang('views.country')</span><br>
+                <span class="colorV text-uppercase sinkinSans600SB texto20" id="name">{{ $top_users->first()->name }} {{ $top_users->first()->lastname }}</span><br>
+                <span class="colorV sinkinSans300LI texto20" id="country">{{ $top_users->first()->getProfile->getCity->country->name }}</span><br>
                 <div class="row sinkinSans200L texto14 padding-top-20 paddingLeft0">
                     <div class="col-xs-12 padding-top-20 paddingLeft0">
                         <div class="col-xs-9"><span
                                     class="colorN margin-right-20">@lang('views.created_raffles'):</span></div>
                         <div class="col-xs-3"><strong class="colorV sinkinSans600SB"
-                                                      id="created_raffles">20%</strong><br></div>
+                                                      id="created_raffles">{{ count($top_users->first()->getRaffles) }}</strong><br></div>
                     </div>
                     <div class="col-xs-12 padding-top-20 paddingLeft0">
                         <div class="col-xs-9"><span class="colorN margin-right-20">@lang('views.winned_raffles'):</span>
                         </div>
                         <div class="col-xs-3"><strong class="colorV sinkinSans600SB"
-                                                      id="winned_raffles">100%</strong><br></div>
+                                                      id="winned_raffles">{{ $top_users->first()->WinnedRaffles() }}</strong><br></div>
                     </div>
                     <div class="col-xs-12 padding-top-20 paddingLeft0">
                         <div class="col-xs-9"><span class="colorN margin-right-20">@lang('views.shared_raffles'):</span>
                         </div>
-                        <div class="col-xs-3"><strong id="shared_raffles" class="colorV sinkinSans600SB">20%</strong><br></div>
+                        <div class="col-xs-3"><strong id="shared_raffles" class="colorV sinkinSans600SB">{{ count($top_users->first()->getReferralsBuys->groupBy('raffle_id')) }}</strong><br></div>
                     </div>
                     <div class="col-xs-12 padding-top-20 paddingLeft0">
                         <div class="col-xs-9"><span class="colorN margin-right-20">@lang('views.sold_tickets'):</span>
                         </div>
-                        <div class="col-xs-3"><strong class="colorV sinkinSans600SB" id="sold_tickets">20%</strong><br>
+                        <div class="col-xs-3"><strong class="colorV sinkinSans600SB" id="sold_tickets">{{ $top_users->first()->getSoldTicketsCount() }}</strong><br>
                         </div>
                     </div>
                 </div>
