@@ -22,13 +22,13 @@ Route::post('/pusher/auth',function(Request $request) {
     return Broadcast::auth($request);
 });
 
-Route::group(['prefix' => 'raffles'], function () {
+Route::group(['prefix' => 'raffles', 'middleware' => ['update_users']], function () {
     Route::get('/', 'RafflesController@index')->name('raffles.index');
 });
 
 /*-- USER SECTION -- */
 Route::group(['prefix' => 'raffles',
-    'middleware' => ['auth']
+    'middleware' => ['auth','update_users']
 ], function () {
     Route::post('/add', 'RafflesController@store')->name('raffles.index.store');
     Route::get('/edit/{raffleId}', 'RafflesController@edit')->name('raffles.edit');
@@ -44,7 +44,7 @@ Route::group(['prefix' => 'raffles',
 
 Route::group(['prefix' => 'payments',
     'namespace' => 'Admin',
-    'middleware' => ['auth']
+    'middleware' => ['auth','update_users']
 ], function () {
     Route::get('/executed/list', 'PaymentController@executed')->name('payment.executed');
     Route::get('/pending/list', 'PaymentController@pending_list')->name('payment.pending.list');
@@ -53,7 +53,7 @@ Route::group(['prefix' => 'payments',
 });
 
 Route::group(['prefix' => 'users',
-    'middleware' => ['auth']
+    'middleware' => ['auth','update_users']
 ], function () {
     Route::get('/profile/edit/{userid}', 'UserController@edit')->name('profile.edit');
     Route::patch('/profile/edit/{userid}/update', 'UserController@update')->name('profile.update');
@@ -65,7 +65,7 @@ Route::group(['prefix' => 'users',
 Route::group([
     'namespace' => 'Admin',
     'prefix' => 'adm' . config('tiketike.urladminsalt'),
-    'middleware' => ['auth']
+    'middleware' => ['auth','update_users']
 ], function () {
 
     Route::get('/', 'AdminController@index')->name('admin.index');
@@ -85,6 +85,7 @@ Route::group([
     // Raffles Management
     Route::group([
         'prefix' => 'raffles',
+        'middleware' => ['update_users']
     ], function () {
         Route::resource('/published', 'PRaffleController', ['except' => ['edit', 'show', 'update', 'destroy']]);
         Route::resource('/unpublished', 'URaffleController', ['except' => ['edit', 'show', 'destroy', 'create']]);
@@ -103,7 +104,8 @@ Route::group([
 Route::get('auth/{provider}', 'Auth\SocialAuthController@redirectToProvider')->name('social.auth');
 Route::get('auth/{provider}/callback', 'Auth\SocialAuthController@handleProviderCallback');
 
-Route::group(['prefix' => 'raffles'
+Route::group(['prefix' => 'raffles',
+    'middleware' => ['update_users']
 ], function () {
 //publishing raffle access route
     Route::get('/view/{raffleId}/finished','RafflesController@finishedView')->name('raffle.finished.view');
@@ -112,7 +114,8 @@ Route::group(['prefix' => 'raffles'
     Route::get('/{raffleId}/{referralId}/{socialNetworkId}', 'ReferralsBuysController@availableTickets')->name('referrals.tickets.available');
 });
 
-Route::group(['prefix' => 'users'
+Route::group(['prefix' => 'users',
+    'middleware' => ['update_users']
 ], function () {
     Route::get('/profile/{userid}/', 'UserController@getProfile')->name('profile.info');
     Route::get('user/{userid}/follow', 'UserController@follow')->name('user.follow');

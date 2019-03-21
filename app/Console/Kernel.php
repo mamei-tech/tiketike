@@ -25,7 +25,7 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         $schedule->command('update:ranking')->everyMinute()->sendOutputTo('C:\xampp\htdocs\tiketike\storage\logs\job.txt');
-        $schedule->command('command:active_users')->daily();
+//        $schedule->command('command:active_users')->daily()->sendOutputTo('C:\xampp\htdocs\tiketike\storage\logs\users.txt');
     }
 
     /**

@@ -75,6 +75,7 @@ class SessionCounter extends Model
     public function scopeUpdateCurrent(Builder $query)
     {
         $user = Auth::check();
+        $user = Auth::user();
 
         return $query->where('id', Session::getId())->update([
             'user_id' => $user ? $user->id : null
