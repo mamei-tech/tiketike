@@ -1337,6 +1337,11 @@ section#vertical ul li.last {
     display: none !important;
 }
 
+.raffle_carousel {
+    padding-left: 23px;
+    padding-right: 0;
+}
+
 @media (max-width: 767px) {
     .visible-xs-f1 {
         display: block !important;

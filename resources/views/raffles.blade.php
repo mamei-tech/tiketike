@@ -13,7 +13,8 @@
                     <div class="listadoCategoriaN">
                         <h4 class="text-uppercase sinkinSans600SB colorV">@lang('views.categories')</h4>
                         <ul class="nav sinkinSans400R">
-                            <li class="active"><a href="#" class="colorN text-uppercase" id="all">@lang('views.all')</a></li>
+                            <li class="active"><a href="#" class="colorN text-uppercase" id="all">@lang('views.all')</a>
+                            </li>
                             @foreach($categories as $category)
                                 <li><a href="#" id="{{ $category->category }}"
                                        class="colorN text-uppercase filters">{{$category->category}}</a></li>
@@ -32,15 +33,19 @@
                                 <div class="panel panel-default">
                                     <div class="panel-heading">
                                         <h4 class="panel-title">
-                                            <button class="btn btn-default text-left" style="width: 100%" data-toggle="collapse"
-                                               data-target="#collapse{{ $continent->id }}">{{ $continent->name }} <i class="fa fa-angle-down right"></i> </button>
+                                            <button class="btn btn-default text-left" style="width: 100%"
+                                                    data-toggle="collapse"
+                                                    data-target="#collapse{{ $continent->id }}">{{ $continent->name }}
+                                                <i class="fa fa-angle-down right"></i></button>
                                         </h4>
                                     </div>
                                     <div id="collapse{{ $continent->id }}" class="panel-collapse collapse">
                                         @foreach($continent->countries as $country)
-                                            <div class="col-md-12 col-sm-12 col-xs-12 col-lg-{{strlen($country->name) > 20?'12':'6'}}" style="padding: 5px 5px 5px 0">
+                                            <div class="col-md-12 col-sm-12 col-xs-12 col-lg-{{strlen($country->name) > 20?'12':'6'}}"
+                                                 style="padding: 5px 5px 5px 0">
                                                 <label for="countries">{{ $country->name }}</label>
-                                                <input class="right" type="checkbox" name="countries" id="countries" value="{{ $country->id }}">
+                                                <input class="right" type="checkbox" name="countries" id="countries"
+                                                       value="{{ $country->id }}">
                                             </div>
                                         @endforeach
                                     </div>
@@ -93,22 +98,20 @@
                         @if (count($raffles) > 0)
                             @foreach($raffles as $raffle)
                                 <div class="row padding20 bg-rifas1 center-block {{$raffle->id}}">
-                                    <div class="col-xs-4 col-md-6" style="padding-left: 23px;padding-right: 0">
+                                    <div class="col-xs-4 col-md-6 raffle_carousel">
                                         <div class="hidden-lg visible-xs padding-top-10 padding-left-0">
                                             <img src="@if(count($raffle->getMedia('raffles')) > 0){{ $raffle->getMedia('raffles')->first()->getUrl() }} @endif"
                                                  class="dimenImgCarouselR"
                                                  alt="">
                                         </div>
                                         <div id="myCarousel{{ $raffle->id }}"
-                                             class="carousel carouselRifas slide hidden-xs "
-                                             data-ride="carousel">
+                                             class="carousel carouselRifas slide hidden-xs " data-ride="carousel">
                                             <!-- Indicators -->
                                             <div class="carousel-inner" role="listbox">
                                                 <?php $count = 0;?>
                                                 @foreach($raffle->getMedia('raffles') as $media)
                                                     <div class="item @if($count == 0) active @endif">
-                                                        <img src="{{ $media->getUrl() }}"
-                                                             class="dimenImgCarouselR"
+                                                        <img src="{{ $media->getUrl() }}" class="dimenImgCarouselR"
                                                              alt="First slide">
                                                     </div>
                                                     <?php $count++; ?>
@@ -126,8 +129,7 @@
                                         </div>
                                     </div>
                                     <div class="col-xs-8 col-md-6 padding-top10R" style="padding-left: 5px">
-                                        <span class="texto16 colorV hidden-lg visible-xs pull-left margin-right-10 sinkinSans600SB">{{ round($raffle->progress) }}
-                                            %</span>
+                                        <span class="texto16 colorV hidden-lg visible-xs pull-left margin-right-10 sinkinSans600SB">{{ round($raffle->progress) }}%</span>
                                         <span class="texto14 colorN pull-left sinkinSans600SB texto14">{{ $raffle->getOwner->name }}</span>
                                         <span class="ti-location-pin texto16 colorN"></span>
                                         <span class="texto14 sinkinSans600SB texto14 colorN"><img class="flag-country"
@@ -137,37 +139,33 @@
                                                href="{{ route('raffle.tickets.available',['raffleId' => $raffle->id]) }}">{{ $raffle->title }}</a>
                                         </h4>
 
-                                        <div class="hidden-lg texto8">
-                                            <span class="sinkinSans300L ">@lang('views.cost'):</span>
-                                            <span class="sinkinSans600SB">{{ $raffle->tickets_price ? $raffle->tickets_price : 0  }}</span>
+                                        <div class="hidden-lg texto8"><span
+                                                    class="sinkinSans300L ">@lang('views.cost'):</span><span
+                                                    class="sinkinSans600SB">{{ $raffle->tickets_price ? $raffle->tickets_price : 0  }}</span>
                                         </div>
 
                                         <div class="costo hidden-xs">
-                                            <div class="pull-left porcientoCompletado">
-                                                <span class="texto35 sinkinSans600SB colorN">{{ round($raffle->getProgress()) }}
-                                                    %</span><br>
-                                                <span class="sinkinSans400R">@lang('views.completed')</span>
-                                            </div>
+                                            <div class="pull-left porcientoCompletado"><span
+                                                        class="texto35 sinkinSans600SB colorN">{{ round($raffle->getProgress()) }}%</span><br>
+                                                <span class="sinkinSans400R">@lang('views.completed')</span></div>
                                             <div class="pull-left padding-top-20 padding-left30">
-                                                <span class="sinkinSans300L texto10">@lang('views.cost'):</span><br>
-                                                <span class="colorN sinkinSans600SB">${{ $raffle->tickets_price ? $raffle->tickets_price : 0 }}</span>
+                                                <span class="sinkinSans300L texto10">@lang('views.cost'):</span><br><span
+                                                        class="colorN sinkinSans600SB">${{ $raffle->tickets_price ? $raffle->tickets_price : 0 }}</span>
                                             </div>
                                         </div>
 
                                         <ul class="list-unstyled list-inline padding-top-20 hidden-xs pull-right">
-                                            <li class=" margin-right-10">
-                                                <a href="{{ route('raffles.follow',['raffleId' => $raffle->id]) }}">
-                                        <span class="ti-face-smile texto-negrita colorV margin-right-5 texto16"
-                                              title="Seguir"></span>
-                                                    <span class="colorV sinkinSans600SB">Seguir</span>
-                                                </a>
-                                            </li>
-                                            <li class=" margin-right-10">
-                                                <a data-toggle="modal" data-target="@if(\Auth::check())#{{$raffle->id}}-share_modal @else #loginModal @endif" href="" title="Compartir">
-                                        <span
-                                              class="ti-share texto-negrita colorV margin-right-5 texto16"
-                                              ></span>
-                                                    <span class="colorV sinkinSans600SB" id="share_buttom" >Compartir</span>
+                                            <li class=" margin-right-10"><a
+                                                        href="{{ route('raffles.follow',['raffleId' => $raffle->id]) }}">
+                                                    <span class="ti-face-smile texto-negrita colorV margin-right-5 texto16"
+                                                          title="Seguir"></span> <span class="colorV sinkinSans600SB">Seguir</span>
+                                                </a></li>
+                                            <li class=" margin-right-10"><a data-toggle="modal"
+                                                                            data-target="@if(\Auth::check())#{{$raffle->id}}-share_modal @else #loginModal @endif"
+                                                                            href="" title="Compartir">
+                                                    <span class="ti-share texto-negrita colorV margin-right-5 texto16"></span><span
+                                                            class="colorV sinkinSans600SB"
+                                                            id="share_buttom">Compartir</span>
                                                 </a>
                                             </li>
                                             @include('partials.front_modals.share_modal')
