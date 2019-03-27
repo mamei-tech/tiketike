@@ -1,5 +1,7 @@
 import axios from 'axios';
 
+require('./carousel');
+
 /* On ready */
 $(document).ready(function () {
     /*  SETTING UP AXIOS HEADERS  */
@@ -16,13 +18,63 @@ $(document).ready(function () {
         });
         $('div.listadoCategoriaN ul li[class="active"]').removeClass('active');
         $('div.listadoCategoriaR ul li[class="active"]').removeClass('active');
+        var raffles_content = $('.rafflescontent');
+        raffles_content.html('');
         axios.get(route('filter.front.raffles'),{ params: {
                 'category': 'Todos',
                 'countries': acountries
             }
         }).then(function (response) {
-
-            console.log(response.data);
+            e.target.parentElement.className = 'active';
+            var array_response = response.data.data;
+            var append = '';
+            array_response.forEach(function (element, index) {
+                var medias = element.medias.split(';');
+                var raffle = '<div class="row padding20 bg-rifas1 center-block '+element.id+'">'+
+                    '<div class="col-xs-4 col-md-6 raffle_carousel">'+
+                    '<div class="hidden-lg visible-xs padding-top-10 padding-left-0">'+
+                    '<img src="'+medias[0]+'" class="dimenImgCarouselR" alt="">'+
+                    '</div>'+
+                    '<div id="myCarousel'+element.id+'" class="carousel carouselRifas slide hidden-xs " data-ride="carousel">'+
+                    '<div class="carousel-inner" role="listbox">'+
+                    '<div class="item active">'+
+                    '<img src="'+medias[0]+'" class="dimenImgCarouselR" alt="First slide"></div>'+
+                    '<div class="item">'+
+                    '<img src="'+medias[1]+'" class="dimenImgCarouselR" alt="First slide"></div>'+
+                    '<div class="item">'+
+                    '<img src="'+medias[2]+'" class="dimenImgCarouselR" alt="First slide"></div></div>'+
+                    '<ol class="carousel-indicators">'+
+                    '<li data-target="#myCarousel'+element.id+'" data-slide-to="0" class="active"></li>'+
+                    '<li data-target="#myCarousel'+element.id+'" data-slide-to="1"></li>'+
+                    '<li data-target="#myCarousel'+element.id+'" data-slide-to="2"></li>'+
+                    '</ol></div></div>'+
+                    '<div class="col-xs-8 col-md-6 padding-top10R" style="padding-left: 5px">'+
+                    '<span class="texto16 colorV hidden-lg visible-xs pull-left margin-right-10 sinkinSans600SB">'+element.progress+'%</span>'+
+                    '<span class="texto14 colorN pull-left sinkinSans600SB texto14">'+element.owner_name+'</span>'+
+                    '<span class="ti-location-pin texto16 colorN"></span><span class="texto14 sinkinSans600SB texto14 colorN">'+
+                    '<img class="flag-country" src="'+element.location_flag+'"></span>'+
+                    '<h4 class=" text-uppercase sinkinSans400R textoR">'+
+                    '<a class="colorN" href="'+element.link_to_raffle+'">'+element.title+'</a></h4>'+
+                    '<div class="hidden-lg texto8"><span class="sinkinSans300L ">Cost:</span><span class="sinkinSans600SB">'+element.price+'</span></div>'+
+                    '<div class="costo hidden-xs"><div class="pull-left porcientoCompletado"><span class="texto35 sinkinSans600SB colorN">'+element.progress+'%</span><br>'+
+                    '<span class="sinkinSans400R">Completed</span></div><div class="pull-left padding-top-20 padding-left30">'+
+                    '<span class="sinkinSans300L texto10">Cost:</span><br><span class="colorN sinkinSans600SB">$'+element.price+'</span>'+
+                    '</div></div>'+
+                    '<ul class="list-unstyled list-inline padding-top-20 hidden-xs pull-right">'+
+                    '<li class=" margin-right-10"><a href="'+element.follow_link+'">'+
+                    '<span class="ti-face-smile texto-negrita colorV margin-right-5 texto16" title="Seguir"></span> <span class="colorV sinkinSans600SB">Seguir</span>'+
+                    '</a></li><li class=" margin-right-10"><a data-toggle="modal" data-target="'+element.to_modal+'" href="" title="Compartir">'+
+                    '<span class="ti-share texto-negrita colorV margin-right-5 texto16"></span><span class="colorV sinkinSans600SB" id="share_buttom">Compartir</span></a>'+
+                    '</li>'+
+                    '<li class=""><button type="button" class="btn btn-info btnSiguiente"><span class="ti-arrow-right"></span></button></li>'+
+                    '</ul></div></div></div>';
+                append += raffle;
+            });
+            raffles_content.html(append);
+            $(".carousel").carousel({
+                interval: 15000,
+                pause: "hover"
+            });
         }).catch(function (error) {
             console.log(error);
         });
@@ -38,12 +90,62 @@ $(document).ready(function () {
         });
         $('div.listadoCategoriaN ul li[class="active"]').removeClass('active');
         $('div.listadoCategoriaR ul li[class="active"]').removeClass('active');
+        var raffles_content = $('.rafflescontent');
+        raffles_content.html('');
         axios.post(route('filter.front.raffles'),{
             'category' : 'Todos',
             'countries': acountries
         }).then(function (response) {
-
-            console.log(response.data);
+            e.target.parentElement.className = 'active';
+            var array_response = response.data.data;
+            var append = '';
+            array_response.forEach(function (element, index) {
+                var medias = element.medias.split(';');
+                var raffle = '<div class="row padding20 bg-rifas1 center-block '+element.id+'">'+
+                    '<div class="col-xs-4 col-md-6 raffle_carousel">'+
+                    '<div class="hidden-lg visible-xs padding-top-10 padding-left-0">'+
+                    '<img src="'+medias[0]+'" class="dimenImgCarouselR" alt="">'+
+                    '</div>'+
+                    '<div id="myCarousel'+element.id+'" class="carousel carouselRifas slide hidden-xs " data-ride="carousel">'+
+                    '<div class="carousel-inner" role="listbox">'+
+                    '<div class="item active">'+
+                    '<img src="'+medias[0]+'" class="dimenImgCarouselR" alt="First slide"></div>'+
+                    '<div class="item">'+
+                    '<img src="'+medias[1]+'" class="dimenImgCarouselR" alt="First slide"></div>'+
+                    '<div class="item">'+
+                    '<img src="'+medias[2]+'" class="dimenImgCarouselR" alt="First slide"></div></div>'+
+                    '<ol class="carousel-indicators">'+
+                    '<li data-target="#myCarousel'+element.id+'" data-slide-to="0" class="active"></li>'+
+                    '<li data-target="#myCarousel'+element.id+'" data-slide-to="1"></li>'+
+                    '<li data-target="#myCarousel'+element.id+'" data-slide-to="2"></li>'+
+                    '</ol></div></div>'+
+                    '<div class="col-xs-8 col-md-6 padding-top10R" style="padding-left: 5px">'+
+                    '<span class="texto16 colorV hidden-lg visible-xs pull-left margin-right-10 sinkinSans600SB">'+element.progress+'%</span>'+
+                    '<span class="texto14 colorN pull-left sinkinSans600SB texto14">'+element.owner_name+'</span>'+
+                    '<span class="ti-location-pin texto16 colorN"></span><span class="texto14 sinkinSans600SB texto14 colorN">'+
+                    '<img class="flag-country" src="'+element.location_flag+'"></span>'+
+                    '<h4 class=" text-uppercase sinkinSans400R textoR">'+
+                    '<a class="colorN" href="'+element.link_to_raffle+'">'+element.title+'</a></h4>'+
+                    '<div class="hidden-lg texto8"><span class="sinkinSans300L ">Cost:</span><span class="sinkinSans600SB">'+element.price+'</span></div>'+
+                    '<div class="costo hidden-xs"><div class="pull-left porcientoCompletado"><span class="texto35 sinkinSans600SB colorN">'+element.progress+'%</span><br>'+
+                    '<span class="sinkinSans400R">Completed</span></div><div class="pull-left padding-top-20 padding-left30">'+
+                    '<span class="sinkinSans300L texto10">Cost:</span><br><span class="colorN sinkinSans600SB">$'+element.price+'</span>'+
+                    '</div></div>'+
+                    '<ul class="list-unstyled list-inline padding-top-20 hidden-xs pull-right">'+
+                    '<li class=" margin-right-10"><a href="'+element.follow_link+'">'+
+                    '<span class="ti-face-smile texto-negrita colorV margin-right-5 texto16" title="Seguir"></span> <span class="colorV sinkinSans600SB">Seguir</span>'+
+                    '</a></li><li class=" margin-right-10"><a data-toggle="modal" data-target="'+element.to_modal+'" href="" title="Compartir">'+
+                    '<span class="ti-share texto-negrita colorV margin-right-5 texto16"></span><span class="colorV sinkinSans600SB" id="share_buttom">Compartir</span></a>'+
+                    '</li>'+
+                    '<li class=""><button type="button" class="btn btn-info btnSiguiente"><span class="ti-arrow-right"></span></button></li>'+
+                    '</ul></div></div></div>';
+                append += raffle;
+            });
+            raffles_content.html(append);
+            $(".carousel").carousel({
+                interval: 15000,
+                pause: "hover"
+            });
         }).catch(function (error) {
             console.log(error);
         });
@@ -60,13 +162,63 @@ $(document).ready(function () {
         var category = $(e.target).html();
         $('div.listadoCategoriaN ul li[class="active"]').removeClass('active');
         $('div.listadoCategoriaR ul li[class="active"]').removeClass('active');
+        var raffles_content = $('.rafflescontent');
+        raffles_content.html('');
         axios.get(route('filter.front.raffles'),{ params: {
                 'category': category,
                 'countries': acountries
             }
         }).then(function (response) {
-
-            console.log(response.data);
+            e.target.parentElement.className = 'active';
+            var array_response = response.data.data;
+            var append = '';
+            array_response.forEach(function (element, index) {
+                var medias = element.medias.split(';');
+                var raffle = '<div class="row padding20 bg-rifas1 center-block '+element.id+'">'+
+                    '<div class="col-xs-4 col-md-6 raffle_carousel">'+
+                    '<div class="hidden-lg visible-xs padding-top-10 padding-left-0">'+
+                    '<img src="'+medias[0]+'" class="dimenImgCarouselR" alt="">'+
+                    '</div>'+
+                    '<div id="myCarousel'+element.id+'" class="carousel carouselRifas slide hidden-xs " data-ride="carousel">'+
+                    '<div class="carousel-inner" role="listbox">'+
+                    '<div class="item active">'+
+                    '<img src="'+medias[0]+'" class="dimenImgCarouselR" alt="First slide"></div>'+
+                    '<div class="item">'+
+                    '<img src="'+medias[1]+'" class="dimenImgCarouselR" alt="First slide"></div>'+
+                    '<div class="item">'+
+                    '<img src="'+medias[2]+'" class="dimenImgCarouselR" alt="First slide"></div></div>'+
+                    '<ol class="carousel-indicators">'+
+                    '<li data-target="#myCarousel'+element.id+'" data-slide-to="0" class="active"></li>'+
+                    '<li data-target="#myCarousel'+element.id+'" data-slide-to="1"></li>'+
+                    '<li data-target="#myCarousel'+element.id+'" data-slide-to="2"></li>'+
+                    '</ol></div></div>'+
+                    '<div class="col-xs-8 col-md-6 padding-top10R" style="padding-left: 5px">'+
+                    '<span class="texto16 colorV hidden-lg visible-xs pull-left margin-right-10 sinkinSans600SB">'+element.progress+'%</span>'+
+                    '<span class="texto14 colorN pull-left sinkinSans600SB texto14">'+element.owner_name+'</span>'+
+                    '<span class="ti-location-pin texto16 colorN"></span><span class="texto14 sinkinSans600SB texto14 colorN">'+
+                    '<img class="flag-country" src="'+element.location_flag+'"></span>'+
+                    '<h4 class=" text-uppercase sinkinSans400R textoR">'+
+                    '<a class="colorN" href="'+element.link_to_raffle+'">'+element.title+'</a></h4>'+
+                    '<div class="hidden-lg texto8"><span class="sinkinSans300L ">Cost:</span><span class="sinkinSans600SB">'+element.price+'</span></div>'+
+                    '<div class="costo hidden-xs"><div class="pull-left porcientoCompletado"><span class="texto35 sinkinSans600SB colorN">'+element.progress+'%</span><br>'+
+                    '<span class="sinkinSans400R">Completed</span></div><div class="pull-left padding-top-20 padding-left30">'+
+                    '<span class="sinkinSans300L texto10">Cost:</span><br><span class="colorN sinkinSans600SB">$'+element.price+'</span>'+
+                    '</div></div>'+
+                    '<ul class="list-unstyled list-inline padding-top-20 hidden-xs pull-right">'+
+                    '<li class=" margin-right-10"><a href="'+element.follow_link+'">'+
+                    '<span class="ti-face-smile texto-negrita colorV margin-right-5 texto16" title="Seguir"></span> <span class="colorV sinkinSans600SB">Seguir</span>'+
+                    '</a></li><li class=" margin-right-10"><a data-toggle="modal" data-target="'+element.to_modal+'" href="" title="Compartir">'+
+                    '<span class="ti-share texto-negrita colorV margin-right-5 texto16"></span><span class="colorV sinkinSans600SB" id="share_buttom">Compartir</span></a>'+
+                    '</li>'+
+                    '<li class=""><button type="button" class="btn btn-info btnSiguiente"><span class="ti-arrow-right"></span></button></li>'+
+                    '</ul></div></div></div>';
+                append += raffle;
+            });
+            raffles_content.html(append);
+            $(".carousel").carousel({
+                interval: 15000,
+                pause: "hover"
+            });
         }).catch(function (error) {
             console.log(error);
         });
@@ -83,14 +235,63 @@ $(document).ready(function () {
         var category = $('div.listadoCategoriaN ul li[class="active"] a').html();
         if (category === 'Todos' || category === 'All')
             category = 'Todos';
+        var raffles_content = $('.rafflescontent');
+        raffles_content.html('');
         axios.get(route('filter.front.raffles'),{ params: {
                 'category': category,
                 'criteria': 'percent',
                 'countries': acountries
             }
         }).then(function (response) {
-
-            console.log(response.data);
+            var array_response = response.data.data;
+            var append = '';
+            array_response.forEach(function (element, index) {
+                var medias = element.medias.split(';');
+                var raffle = '<div class="row padding20 bg-rifas1 center-block '+element.id+'">'+
+                    '<div class="col-xs-4 col-md-6 raffle_carousel">'+
+                    '<div class="hidden-lg visible-xs padding-top-10 padding-left-0">'+
+                    '<img src="'+medias[0]+'" class="dimenImgCarouselR" alt="">'+
+                    '</div>'+
+                    '<div id="myCarousel'+element.id+'" class="carousel carouselRifas slide hidden-xs " data-ride="carousel">'+
+                    '<div class="carousel-inner" role="listbox">'+
+                    '<div class="item active">'+
+                    '<img src="'+medias[0]+'" class="dimenImgCarouselR" alt="First slide"></div>'+
+                    '<div class="item">'+
+                    '<img src="'+medias[1]+'" class="dimenImgCarouselR" alt="First slide"></div>'+
+                    '<div class="item">'+
+                    '<img src="'+medias[2]+'" class="dimenImgCarouselR" alt="First slide"></div></div>'+
+                    '<ol class="carousel-indicators">'+
+                    '<li data-target="#myCarousel'+element.id+'" data-slide-to="0" class="active"></li>'+
+                    '<li data-target="#myCarousel'+element.id+'" data-slide-to="1"></li>'+
+                    '<li data-target="#myCarousel'+element.id+'" data-slide-to="2"></li>'+
+                    '</ol></div></div>'+
+                    '<div class="col-xs-8 col-md-6 padding-top10R" style="padding-left: 5px">'+
+                    '<span class="texto16 colorV hidden-lg visible-xs pull-left margin-right-10 sinkinSans600SB">'+element.progress+'%</span>'+
+                    '<span class="texto14 colorN pull-left sinkinSans600SB texto14">'+element.owner_name+'</span>'+
+                    '<span class="ti-location-pin texto16 colorN"></span><span class="texto14 sinkinSans600SB texto14 colorN">'+
+                    '<img class="flag-country" src="'+element.location_flag+'"></span>'+
+                    '<h4 class=" text-uppercase sinkinSans400R textoR">'+
+                    '<a class="colorN" href="'+element.link_to_raffle+'">'+element.title+'</a></h4>'+
+                    '<div class="hidden-lg texto8"><span class="sinkinSans300L ">Cost:</span><span class="sinkinSans600SB">'+element.price+'</span></div>'+
+                    '<div class="costo hidden-xs"><div class="pull-left porcientoCompletado"><span class="texto35 sinkinSans600SB colorN">'+element.progress+'%</span><br>'+
+                    '<span class="sinkinSans400R">Completed</span></div><div class="pull-left padding-top-20 padding-left30">'+
+                    '<span class="sinkinSans300L texto10">Cost:</span><br><span class="colorN sinkinSans600SB">$'+element.price+'</span>'+
+                    '</div></div>'+
+                    '<ul class="list-unstyled list-inline padding-top-20 hidden-xs pull-right">'+
+                    '<li class=" margin-right-10"><a href="'+element.follow_link+'">'+
+                    '<span class="ti-face-smile texto-negrita colorV margin-right-5 texto16" title="Seguir"></span> <span class="colorV sinkinSans600SB">Seguir</span>'+
+                    '</a></li><li class=" margin-right-10"><a data-toggle="modal" data-target="'+element.to_modal+'" href="" title="Compartir">'+
+                    '<span class="ti-share texto-negrita colorV margin-right-5 texto16"></span><span class="colorV sinkinSans600SB" id="share_buttom">Compartir</span></a>'+
+                    '</li>'+
+                    '<li class=""><button type="button" class="btn btn-info btnSiguiente"><span class="ti-arrow-right"></span></button></li>'+
+                    '</ul></div></div></div>';
+                append += raffle;
+            });
+            raffles_content.html(append);
+            $(".carousel").carousel({
+                interval: 15000,
+                pause: "hover"
+            });
         }).catch(function (error) {
             console.log(error);
         });
@@ -107,14 +308,63 @@ $(document).ready(function () {
         var category = $('div.listadoCategoriaN ul li[class="active"] a').html();
         if (category === 'Todos' || category === 'All')
             category = 'Todos';
+        var raffles_content = $('.rafflescontent');
+        raffles_content.html('');
         axios.get(route('filter.front.raffles'),{ params: {
                 'category': category,
                 'criteria': 'price',
                 'countries': acountries
             }
         }).then(function (response) {
-
-            console.log(response.data);
+            var array_response = response.data.data;
+            var append = '';
+            array_response.forEach(function (element, index) {
+                var medias = element.medias.split(';');
+                var raffle = '<div class="row padding20 bg-rifas1 center-block '+element.id+'">'+
+                    '<div class="col-xs-4 col-md-6 raffle_carousel">'+
+                    '<div class="hidden-lg visible-xs padding-top-10 padding-left-0">'+
+                    '<img src="'+medias[0]+'" class="dimenImgCarouselR" alt="">'+
+                    '</div>'+
+                    '<div id="myCarousel'+element.id+'" class="carousel carouselRifas slide hidden-xs " data-ride="carousel">'+
+                    '<div class="carousel-inner" role="listbox">'+
+                    '<div class="item active">'+
+                    '<img src="'+medias[0]+'" class="dimenImgCarouselR" alt="First slide"></div>'+
+                    '<div class="item">'+
+                    '<img src="'+medias[1]+'" class="dimenImgCarouselR" alt="First slide"></div>'+
+                    '<div class="item">'+
+                    '<img src="'+medias[2]+'" class="dimenImgCarouselR" alt="First slide"></div></div>'+
+                    '<ol class="carousel-indicators">'+
+                    '<li data-target="#myCarousel'+element.id+'" data-slide-to="0" class="active"></li>'+
+                    '<li data-target="#myCarousel'+element.id+'" data-slide-to="1"></li>'+
+                    '<li data-target="#myCarousel'+element.id+'" data-slide-to="2"></li>'+
+                    '</ol></div></div>'+
+                    '<div class="col-xs-8 col-md-6 padding-top10R" style="padding-left: 5px">'+
+                    '<span class="texto16 colorV hidden-lg visible-xs pull-left margin-right-10 sinkinSans600SB">'+element.progress+'%</span>'+
+                    '<span class="texto14 colorN pull-left sinkinSans600SB texto14">'+element.owner_name+'</span>'+
+                    '<span class="ti-location-pin texto16 colorN"></span><span class="texto14 sinkinSans600SB texto14 colorN">'+
+                    '<img class="flag-country" src="'+element.location_flag+'"></span>'+
+                    '<h4 class=" text-uppercase sinkinSans400R textoR">'+
+                    '<a class="colorN" href="'+element.link_to_raffle+'">'+element.title+'</a></h4>'+
+                    '<div class="hidden-lg texto8"><span class="sinkinSans300L ">Cost:</span><span class="sinkinSans600SB">'+element.price+'</span></div>'+
+                    '<div class="costo hidden-xs"><div class="pull-left porcientoCompletado"><span class="texto35 sinkinSans600SB colorN">'+element.progress+'%</span><br>'+
+                    '<span class="sinkinSans400R">Completed</span></div><div class="pull-left padding-top-20 padding-left30">'+
+                    '<span class="sinkinSans300L texto10">Cost:</span><br><span class="colorN sinkinSans600SB">$'+element.price+'</span>'+
+                    '</div></div>'+
+                    '<ul class="list-unstyled list-inline padding-top-20 hidden-xs pull-right">'+
+                    '<li class=" margin-right-10"><a href="'+element.follow_link+'">'+
+                    '<span class="ti-face-smile texto-negrita colorV margin-right-5 texto16" title="Seguir"></span> <span class="colorV sinkinSans600SB">Seguir</span>'+
+                    '</a></li><li class=" margin-right-10"><a data-toggle="modal" data-target="'+element.to_modal+'" href="" title="Compartir">'+
+                    '<span class="ti-share texto-negrita colorV margin-right-5 texto16"></span><span class="colorV sinkinSans600SB" id="share_buttom">Compartir</span></a>'+
+                    '</li>'+
+                    '<li class=""><button type="button" class="btn btn-info btnSiguiente"><span class="ti-arrow-right"></span></button></li>'+
+                    '</ul></div></div></div>';
+                append += raffle;
+            });
+            raffles_content.html(append);
+            $(".carousel").carousel({
+                interval: 15000,
+                pause: "hover"
+            });
         }).catch(function (error) {
             console.log(error);
         });
@@ -128,6 +378,8 @@ $(document).ready(function () {
         array.forEach(function (element,index) {
             acountries[index] = element['value'];
         });
+        var raffles_content = $('.rafflescontent');
+        raffles_content.html('');
         var category = $('div.listadoCategoriaR ul li[class="active"] a').html();
         if (category === 'Todos' || category === 'All')
             category = 'Todos';
@@ -137,8 +389,55 @@ $(document).ready(function () {
                 'countries': acountries
             }
         }).then(function (response) {
-
-            console.log(response.data);
+            var array_response = response.data.data;
+            var append = '';
+            array_response.forEach(function (element, index) {
+                var medias = element.medias.split(';');
+                var raffle = '<div class="row padding20 bg-rifas1 center-block '+element.id+'">'+
+                    '<div class="col-xs-4 col-md-6 raffle_carousel">'+
+                    '<div class="hidden-lg visible-xs padding-top-10 padding-left-0">'+
+                    '<img src="'+medias[0]+'" class="dimenImgCarouselR" alt="">'+
+                    '</div>'+
+                    '<div id="myCarousel'+element.id+'" class="carousel carouselRifas slide hidden-xs " data-ride="carousel">'+
+                    '<div class="carousel-inner" role="listbox">'+
+                    '<div class="item active">'+
+                    '<img src="'+medias[0]+'" class="dimenImgCarouselR" alt="First slide"></div>'+
+                    '<div class="item">'+
+                    '<img src="'+medias[1]+'" class="dimenImgCarouselR" alt="First slide"></div>'+
+                    '<div class="item">'+
+                    '<img src="'+medias[2]+'" class="dimenImgCarouselR" alt="First slide"></div></div>'+
+                    '<ol class="carousel-indicators">'+
+                    '<li data-target="#myCarousel'+element.id+'" data-slide-to="0" class="active"></li>'+
+                    '<li data-target="#myCarousel'+element.id+'" data-slide-to="1"></li>'+
+                    '<li data-target="#myCarousel'+element.id+'" data-slide-to="2"></li>'+
+                    '</ol></div></div>'+
+                    '<div class="col-xs-8 col-md-6 padding-top10R" style="padding-left: 5px">'+
+                    '<span class="texto16 colorV hidden-lg visible-xs pull-left margin-right-10 sinkinSans600SB">'+element.progress+'%</span>'+
+                    '<span class="texto14 colorN pull-left sinkinSans600SB texto14">'+element.owner_name+'</span>'+
+                    '<span class="ti-location-pin texto16 colorN"></span><span class="texto14 sinkinSans600SB texto14 colorN">'+
+                    '<img class="flag-country" src="'+element.location_flag+'"></span>'+
+                    '<h4 class=" text-uppercase sinkinSans400R textoR">'+
+                    '<a class="colorN" href="'+element.link_to_raffle+'">'+element.title+'</a></h4>'+
+                    '<div class="hidden-lg texto8"><span class="sinkinSans300L ">Cost:</span><span class="sinkinSans600SB">'+element.price+'</span></div>'+
+                    '<div class="costo hidden-xs"><div class="pull-left porcientoCompletado"><span class="texto35 sinkinSans600SB colorN">'+element.progress+'%</span><br>'+
+                    '<span class="sinkinSans400R">Completed</span></div><div class="pull-left padding-top-20 padding-left30">'+
+                    '<span class="sinkinSans300L texto10">Cost:</span><br><span class="colorN sinkinSans600SB">$'+element.price+'</span>'+
+                    '</div></div>'+
+                    '<ul class="list-unstyled list-inline padding-top-20 hidden-xs pull-right">'+
+                    '<li class=" margin-right-10"><a href="'+element.follow_link+'">'+
+                    '<span class="ti-face-smile texto-negrita colorV margin-right-5 texto16" title="Seguir"></span> <span class="colorV sinkinSans600SB">Seguir</span>'+
+                    '</a></li><li class=" margin-right-10"><a data-toggle="modal" data-target="'+element.to_modal+'" href="" title="Compartir">'+
+                    '<span class="ti-share texto-negrita colorV margin-right-5 texto16"></span><span class="colorV sinkinSans600SB" id="share_buttom">Compartir</span></a>'+
+                    '</li>'+
+                    '<li class=""><button type="button" class="btn btn-info btnSiguiente"><span class="ti-arrow-right"></span></button></li>'+
+                    '</ul></div></div></div>';
+                append += raffle;
+            });
+            raffles_content.html(append);
+            $(".carousel").carousel({
+                interval: 15000,
+                pause: "hover"
+            });
         }).catch(function (error) {
             console.log(error);
         });
@@ -149,6 +448,8 @@ $(document).ready(function () {
         acountries = [];
         var countries = $('input#countries:checked');
         var array = countries.toArray();
+        var raffles_content = $('.rafflescontent');
+        raffles_content.html('');
         array.forEach(function (element,index) {
             acountries[index] = element['value'];
         });
@@ -162,8 +463,55 @@ $(document).ready(function () {
                 'countries': acountries
             }
         }).then(function (response) {
-
-            console.log(response.data);
+            var array_response = response.data.data;
+            var append = '';
+            array_response.forEach(function (element, index) {
+                var medias = element.medias.split(';');
+                var raffle = '<div class="row padding20 bg-rifas1 center-block '+element.id+'">'+
+                    '<div class="col-xs-4 col-md-6 raffle_carousel">'+
+                    '<div class="hidden-lg visible-xs padding-top-10 padding-left-0">'+
+                    '<img src="'+medias[0]+'" class="dimenImgCarouselR" alt="">'+
+                    '</div>'+
+                    '<div id="myCarousel'+element.id+'" class="carousel carouselRifas slide hidden-xs " data-ride="carousel">'+
+                    '<div class="carousel-inner" role="listbox">'+
+                    '<div class="item active">'+
+                    '<img src="'+medias[0]+'" class="dimenImgCarouselR" alt="First slide"></div>'+
+                    '<div class="item">'+
+                    '<img src="'+medias[1]+'" class="dimenImgCarouselR" alt="First slide"></div>'+
+                    '<div class="item">'+
+                    '<img src="'+medias[2]+'" class="dimenImgCarouselR" alt="First slide"></div></div>'+
+                    '<ol class="carousel-indicators">'+
+                    '<li data-target="#myCarousel'+element.id+'" data-slide-to="0" class="active"></li>'+
+                    '<li data-target="#myCarousel'+element.id+'" data-slide-to="1"></li>'+
+                    '<li data-target="#myCarousel'+element.id+'" data-slide-to="2"></li>'+
+                    '</ol></div></div>'+
+                    '<div class="col-xs-8 col-md-6 padding-top10R" style="padding-left: 5px">'+
+                    '<span class="texto16 colorV hidden-lg visible-xs pull-left margin-right-10 sinkinSans600SB">'+element.progress+'%</span>'+
+                    '<span class="texto14 colorN pull-left sinkinSans600SB texto14">'+element.owner_name+'</span>'+
+                    '<span class="ti-location-pin texto16 colorN"></span><span class="texto14 sinkinSans600SB texto14 colorN">'+
+                    '<img class="flag-country" src="'+element.location_flag+'"></span>'+
+                    '<h4 class=" text-uppercase sinkinSans400R textoR">'+
+                    '<a class="colorN" href="'+element.link_to_raffle+'">'+element.title+'</a></h4>'+
+                    '<div class="hidden-lg texto8"><span class="sinkinSans300L ">Cost:</span><span class="sinkinSans600SB">'+element.price+'</span></div>'+
+                    '<div class="costo hidden-xs"><div class="pull-left porcientoCompletado"><span class="texto35 sinkinSans600SB colorN">'+element.progress+'%</span><br>'+
+                    '<span class="sinkinSans400R">Completed</span></div><div class="pull-left padding-top-20 padding-left30">'+
+                    '<span class="sinkinSans300L texto10">Cost:</span><br><span class="colorN sinkinSans600SB">$'+element.price+'</span>'+
+                    '</div></div>'+
+                    '<ul class="list-unstyled list-inline padding-top-20 hidden-xs pull-right">'+
+                    '<li class=" margin-right-10"><a href="'+element.follow_link+'">'+
+                    '<span class="ti-face-smile texto-negrita colorV margin-right-5 texto16" title="Seguir"></span> <span class="colorV sinkinSans600SB">Seguir</span>'+
+                    '</a></li><li class=" margin-right-10"><a data-toggle="modal" data-target="'+element.to_modal+'" href="" title="Compartir">'+
+                    '<span class="ti-share texto-negrita colorV margin-right-5 texto16"></span><span class="colorV sinkinSans600SB" id="share_buttom">Compartir</span></a>'+
+                    '</li>'+
+                    '<li class=""><button type="button" class="btn btn-info btnSiguiente"><span class="ti-arrow-right"></span></button></li>'+
+                    '</ul></div></div></div>';
+                append += raffle;
+            });
+            raffles_content.html(append);
+            $(".carousel").carousel({
+                interval: 15000,
+                pause: "hover"
+            });
         }).catch(function (error) {
             console.log(error);
         });
@@ -173,10 +521,12 @@ $(document).ready(function () {
         acountries = [];
         var countries = $('input#countries:checked');
         var array = countries.toArray();
+        var raffles_content = $('.rafflescontent');
+        raffles_content.html('');
         array.forEach(function (element,index) {
             acountries[index] = element['value'];
         });
-        var category = $('div.listadoCategoriaR ul li[class="active"] a').html();
+        var category = $('div.listadoCategoriaN ul li[class="active"] a').html();
         if (category === 'Todos' || category === 'All')
             category = "Todos";
         axios.get(route('filter.front.raffles'),{ params: {
@@ -185,8 +535,55 @@ $(document).ready(function () {
                 'countries': acountries
             }
         }).then(function (response) {
-
-            console.log(response.data);
+            var array_response = response.data.data;
+            var append = '';
+            array_response.forEach(function (element, index) {
+                var medias = element.medias.split(';');
+                var raffle = '<div class="row padding20 bg-rifas1 center-block '+element.id+'">'+
+                    '<div class="col-xs-4 col-md-6 raffle_carousel">'+
+                    '<div class="hidden-lg visible-xs padding-top-10 padding-left-0">'+
+                    '<img src="'+medias[0]+'" class="dimenImgCarouselR" alt="">'+
+                    '</div>'+
+                    '<div id="myCarousel'+element.id+'" class="carousel carouselRifas slide hidden-xs " data-ride="carousel">'+
+                    '<div class="carousel-inner" role="listbox">'+
+                    '<div class="item active">'+
+                    '<img src="'+medias[0]+'" class="dimenImgCarouselR" alt="First slide"></div>'+
+                    '<div class="item">'+
+                    '<img src="'+medias[1]+'" class="dimenImgCarouselR" alt="First slide"></div>'+
+                    '<div class="item">'+
+                    '<img src="'+medias[2]+'" class="dimenImgCarouselR" alt="First slide"></div></div>'+
+                    '<ol class="carousel-indicators">'+
+                    '<li data-target="#myCarousel'+element.id+'" data-slide-to="0" class="active"></li>'+
+                    '<li data-target="#myCarousel'+element.id+'" data-slide-to="1"></li>'+
+                    '<li data-target="#myCarousel'+element.id+'" data-slide-to="2"></li>'+
+                    '</ol></div></div>'+
+                    '<div class="col-xs-8 col-md-6 padding-top10R" style="padding-left: 5px">'+
+                    '<span class="texto16 colorV hidden-lg visible-xs pull-left margin-right-10 sinkinSans600SB">'+element.progress+'%</span>'+
+                    '<span class="texto14 colorN pull-left sinkinSans600SB texto14">'+element.owner_name+'</span>'+
+                    '<span class="ti-location-pin texto16 colorN"></span><span class="texto14 sinkinSans600SB texto14 colorN">'+
+                    '<img class="flag-country" src="'+element.location_flag+'"></span>'+
+                    '<h4 class=" text-uppercase sinkinSans400R textoR">'+
+                    '<a class="colorN" href="'+element.link_to_raffle+'">'+element.title+'</a></h4>'+
+                    '<div class="hidden-lg texto8"><span class="sinkinSans300L ">Cost:</span><span class="sinkinSans600SB">'+element.price+'</span></div>'+
+                    '<div class="costo hidden-xs"><div class="pull-left porcientoCompletado"><span class="texto35 sinkinSans600SB colorN">'+element.progress+'%</span><br>'+
+                    '<span class="sinkinSans400R">Completed</span></div><div class="pull-left padding-top-20 padding-left30">'+
+                    '<span class="sinkinSans300L texto10">Cost:</span><br><span class="colorN sinkinSans600SB">$'+element.price+'</span>'+
+                    '</div></div>'+
+                    '<ul class="list-unstyled list-inline padding-top-20 hidden-xs pull-right">'+
+                    '<li class=" margin-right-10"><a href="'+element.follow_link+'">'+
+                    '<span class="ti-face-smile texto-negrita colorV margin-right-5 texto16" title="Seguir"></span> <span class="colorV sinkinSans600SB">Seguir</span>'+
+                    '</a></li><li class=" margin-right-10"><a data-toggle="modal" data-target="'+element.to_modal+'" href="" title="Compartir">'+
+                    '<span class="ti-share texto-negrita colorV margin-right-5 texto16"></span><span class="colorV sinkinSans600SB" id="share_buttom">Compartir</span></a>'+
+                    '</li>'+
+                    '<li class=""><button type="button" class="btn btn-info btnSiguiente"><span class="ti-arrow-right"></span></button></li>'+
+                    '</ul></div></div></div>';
+                append += raffle;
+            });
+            raffles_content.html(append);
+            $(".carousel").carousel({
+                interval: 15000,
+                pause: "hover"
+            });
         }).catch(function (error) {
             console.log(error);
         });
