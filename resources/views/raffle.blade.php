@@ -9,11 +9,11 @@
         <div class="row">
             <!--Contenido ticket-->
             <div class="col-xs-12 col-sm-7 col-sm-push-5 col-lg-7 margin-top15 col-lg-push-3 paddingLeft0 padding-rigth-0">
-                <div class="contenidoTicket" id="scrollContent">
+                <div class="contenidoTicket" id="scrollContent" >
                     <div class="col-xs-12 ">
                         <div class="col-xs-4 col-md-3">
                             <img src="{{ $raffle->getOwner->getMedia('avatars')->first()->getUrl() }}" alt="Ringo"
-                                 class="imgUsuario sombraImgUser2">
+                                 class="imgUsuario2 sombraImgUser2">
                         </div>
                         <div class="col-xs-8 col-md-9 texto14 sinkinSans600SB padding0">
                             <span class="colorN">{{ $raffle->getOwner->name }} {{ $raffle->getOwner->lastname }}</span>
@@ -46,7 +46,7 @@
                             </ol>
                         </div>
                     </div>
-                    <div class="col-xs-12 paddingR-5">
+                    <div class="col-xs-12 paddingR-5 sinkinSans600SB">
                         <span class="italic margin-right5">@lang('views.articles'):</span>
                         <strong class="colorN">1</strong>
                         <p class="colorN">{{ $raffle->description }}</p>
@@ -111,7 +111,7 @@
                             @include('partials.front_modals.share_modal')
                         </ul>
                     </div>
-                    <div id="comentarios" style=" display:none" class="col-xs-12">
+                    <div id="comentarios" style=" display:none" class="col-xs-12" >
                         <strong class="colorN text-uppercase sinkinSans600SB">@lang('views.comments')</strong>
                         <div class="comments">
                             @foreach($raffle->getComments as $comment)
@@ -219,10 +219,10 @@
                         <div class="centerM slickVertical sinkinSans400R text-uppercase  ">
                             @foreach($raffle->getTicketsAvailable as $ticket)
                                 <div>
-                                    <div class="padding-top-15  bg-prueba pull-left">
-                                        <span class="padding-top-20 padding-left25 text-uppercase colorB margin-right-10">{{ $ticket->code }}</span>
+                                    <div class="  bg-prueba pull-left" style="text-align: center; padding-top: 10px; font-size: 26px">
+                                        <span class=" text-uppercase colorB margin-right-10">{{ $ticket->code }}</span>
                                     </div>
-                                    <div class="padding-top-30">
+                                    <div class="padding-top-30" >
                                         <input name="tickets" id="tickets" class="margin-left15 tickets"
                                                value="{{ $ticket->code }}" type="checkbox">
                                     </div>
@@ -315,21 +315,17 @@
                 handler.close();
             });
         });
-        $('#comenta').click(function (e) {
-            e.preventDefault();
-            $('#comentarios').fadeIn("300");
-        });
+
 
         $('.slickVertical').slick({
             autoplay: true,
             vertical: true,
             verticalSwiping: true,
-            slidesToShow: 2,
-            slidesToScroll: 4,
-            arrows: false,
             swipeToSlide: true,
+            slidesToShow: 3,
+            slidesToScroll: 3,
+            arrows: false,
             infinite: true,
-            draggable: true,
             centerMode: true,
             centerPadding: '50% 4%',
             responsive: [
@@ -353,6 +349,8 @@
                 }
             ]
         });
+
+
 
 
     </script>

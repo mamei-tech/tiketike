@@ -1185,10 +1185,13 @@ input[type="radio"], input[type="checkbox"] {
 .contenidoTicket{
     padding-left: 40px;
     padding-right: 30px;
+
+
 }
 #comentarios .comments {
     border-top: solid 1px #70438F;
     padding-top: 15px;
+
 }
 #comentarios .media {
     border-bottom: solid 1px #70438F;

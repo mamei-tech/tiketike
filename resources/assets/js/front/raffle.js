@@ -8,6 +8,16 @@ import axios from 'axios';
 $(document).ready(function () {
 
 
+    $('#comenta').click(function (e) {
+        e.preventDefault();
+        $('#comentarios').fadeIn("300");
+
+
+        $('#scrollContent').css('overflow-y', 'scroll');
+
+    });
+
+
     var clipboard = new ClipboardJS('.btncopy');
 
     clipboard.on('success', function(e) {

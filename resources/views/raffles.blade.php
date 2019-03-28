@@ -82,7 +82,7 @@
             <!--FIN categoria y rifas-->
             <!--Contenido rifas-->
             <div class="col-xs-12 col-sm-8 col-lg-7 paddingRifas">
-                <div class="row">
+                <div class="col-lg-12">
                     <div class="row padding-bottom20 ">
                         <div class="floatRight padding-rigth80 sinkinSans600SB hidden-xs">
                             <span class=" text-uppercase pull-left margin-right-15">@lang('views.order_by'):</span>
