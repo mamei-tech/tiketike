@@ -161,49 +161,44 @@
                                                 :</span>
                                         </div>
                                         <div class="col-xs-6 col-sm-4"><strong
-                                                    class="colorN sinkinSans600SB">100%</strong><br></div>
+                                                    class="colorN sinkinSans600SB">{{ count($user->getRaffles) }}</strong><br></div>
                                     </div>
                                     <div class="padding-top-20">
                                         <div class="col-xs-6 col-sm-8"><span class="colorV margin-right-20">@lang('views.winned_raffles')
                                                 :</span>
                                         </div>
                                         <div class="col-xs-6 col-sm-4"><strong
-                                                    class="colorN sinkinSans600SB">80%</strong><br></div>
+                                                    class="colorN sinkinSans600SB">{{ $user->WinnedRaffles() }}</strong><br></div>
                                     </div>
                                     <div class="padding-top-20">
                                         <div class="col-xs-6 col-sm-8"><span class="colorV margin-right-20">@lang('views.shared_raffles')
                                                 :</span>
                                         </div>
                                         <div class="col-xs-6 col-sm-4"><strong
-                                                    class="colorN sinkinSans600SB">100%</strong><br></div>
+                                                    class="colorN sinkinSans600SB">{{ count($user->getReferralsBuys->groupBy('raffle_id')) }}</strong><br></div>
                                     </div>
                                     <div class="padding-top-20">
                                         <div class="col-xs-6 col-sm-8"><span class="colorV margin-right-20">@lang('views.sold_tickets')
                                                 :</span>
                                         </div>
                                         <div class="col-xs-6 col-sm-4"><strong
-                                                    class="colorN sinkinSans600SB">100%</strong><br></div>
+                                                    class="colorN sinkinSans600SB">{{ $user->getSoldTicketsCount() }}</strong><br></div>
                                     </div>
                                 </div>
                             </div>
                             <div class="tab-pane " id="contactos">
                                 <div class="col-xs-12 sinkinSans300LI">
+                                    @if($user->getProfile->phone)
                                     <div class="padding-top-20">
                                         <span class="ti-mobile colorV"></span>
-                                        +534518478
+                                        {{$user->getProfile->phone}}
                                     </div>
+                                    @endif
                                     <div class="padding-top-20">
                                         <span class="ti-email colorV  margin-right-10"></span>
-                                        janedoe@nauta.com.cu
+                                        {{$user->email}}
                                     </div>
-                                    <div class="padding-top-20">
-                                        <span class="ti-facebook colorV texto14 margin-right-10"></span>
-                                        janedoe
-                                    </div>
-                                    <div class="padding-top-20">
-                                        <span class="ti-twitter colorV texto14 margin-right-10"></span>
-                                        @janedoe
-                                    </div>
+
                                 </div>
                             </div>
                             <div class="tab-pane" id="micuenta">

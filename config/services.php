@@ -42,24 +42,18 @@ return [
     'facebook' => [
         'client_id' => '2089531807735327',
         'client_secret' => 'b55790b08e57117371badaa2084f87df',
-        'redirect' => 'http://localhost/tiketike/public/auth/facebook/callback'
+        'redirect' => env('APP_URL').'/auth/facebook/callback'
     ],
     'twitter' => [
         'client_id' => 'B7oIUInNaskO2Ow4scKo1aNxz',
         'client_secret' => '5rTFTlHuxizw9RqrtRWm89CJUs3SDh7OAYaPWel5D9NUvx6dej ',
-        'redirect' => 'http://localhost/tiketike/public/auth/twitter/callback'
+        'redirect' => env('APP_URL').'/auth/twitter/callback'
     ],
 
     'google' => [
         'client_id' => 'XXXXXXXXXXX',
         'client_secret' => 'XXXXXXXXXXXXXX',
-        'redirect' => 'http://localhost/tiketike/public/auth/google/callback'
-    ],
-
-    'linkedin' => [
-        'client_id' => 'XXXXXXXXXXX',
-        'client_secret' => 'XXXXXXXXXXXXXX',
-        'redirect' => 'http://localhost/tiketike/public/auth/linkedin/callback'
+        'redirect' => env('APP_URL').'/auth/google/callback'
     ],
 
 //    Cualquier otra red que quieran agregar lo hacen manteniendo la estructura anterior

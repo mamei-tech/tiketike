@@ -19,11 +19,9 @@
         {{-- USER SECTION --}}
         <div class="user">
             <div class="photo">
-                @if(Auth::user()->getProfile->avatarname == 'default')
-                    <img class="img-circle" src={{ asset('pics/common/default-avatar.png') }}/>
-                @else
-                    <img class="img-circle" src="{{ Auth::user()->getProfile->getMedia('avatars')->first()->getUrl() }}">
-                @endif
+
+                    <img class="img-circle" src="{{ Auth::user()->getMedia('avatars')->first()->getUrl() }}">
+
             </div>
             <div class="info">
                 <a data-toggle="collapse" href="#usrProfile" class="collapsed">
