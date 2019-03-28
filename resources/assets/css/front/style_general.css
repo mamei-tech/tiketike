@@ -403,13 +403,17 @@ body {
     float: left;
 }
 .dimenUsuario{
-    width: 67px;
-    height: 67px;
+    width: 100%;
+    height: auto;
     float: left;
 }
 .dimenUsuarioG{
-    width: 110px !important;
-    height: 110px;
+    width: 80px !important;
+    height: 80px;
+}
+
+.slick-vertical > div.slick-list {
+    margin-top: 20%;
 }
 .borderBotDis {
     border-bottom: #000000 2px dashed;;
@@ -1338,8 +1342,8 @@ section#vertical ul li.last {
 }
 
 .raffle_carousel {
-    padding-left: 23px;
-    padding-right: 0;
+    /*padding-left: 23px;*/
+    /*padding-right: 0;*/
 }
 
 @media (max-width: 767px) {
@@ -1430,6 +1434,17 @@ section#vertical ul li.last {
     background-color: #e22029;
     left: 28px;
     font-size: 11px
+}
+.links > ul > li > .icon > .badge {
+    font-family: "Open Sans", sans-serif;
+    position: absolute;
+    font-weight: 300;
+    padding: 3px;
+    border-radius: 2px;
+    background-color: #e22029;
+    left: 38%;
+    font-size: 11px;
+    bottom: 15%;
 }
 .close{
     float: left;
@@ -1677,6 +1692,22 @@ Full screen Modal
 ::-webkit-scrollbar-thumb{
     background-color: #70438F;
     background-image: -webkit-linear-gradient(90deg,rgba(255, 255, 255, .2) 25%,transparent 25%,transparent 50%,rgba(255, 255, 255, .2) 50%,rgba(255, 255, 255, .2) 75%,transparent 75%,transparent)
+}
+
+.ordenarPorcientoR > .btn:active,
+.ordenarPorcientoR > .btn.active {
+    background-image: none; /* cambiar iconos */
+    outline: 0;
+    -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, .125);
+    box-shadow: inset 0 3px 5px rgba(0, 0, 0, .125);
+}
+
+.ordenarPrecioR > .btn:active,
+.ordenarPrecioR > .btn.active {
+    background-image: none; /* cambiar iconos */
+    outline: 0;
+    -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, .125);
+    box-shadow: inset 0 3px 5px rgba(0, 0, 0, .125);
 }
 
 

@@ -6,7 +6,7 @@
     @include('partials.front_modals.mobile_suggest')
     @include('partials.front_modals.notification_modal')
     <div class="container contenido">
-        <div class="row ">
+        <div class="row">
             <!--categoria y rifas-->
             <div class="col-sm-4 col-lg-3 hidden-xs padding-rigth-0">
                 <div class="categoria">
@@ -82,7 +82,7 @@
             <!--FIN categoria y rifas-->
             <!--Contenido rifas-->
             <div class="col-xs-12 col-sm-8 col-lg-7 paddingRifas">
-                <div class="row">
+                <div class="col-lg-12">
                     <div class="row padding-bottom20 ">
                         <div class="floatRight padding-rigth80 sinkinSans600SB hidden-xs">
                             <span class=" text-uppercase pull-left margin-right-15">@lang('views.order_by'):</span>
@@ -94,15 +94,14 @@
                             </button>
                         </div>
                     </div>
-                    <div class="row rafflescontent" style="overflow-y: scroll; overflow-x: hidden">
+                    <div class="row rafflescontent" style="overflow-y: scroll; overflow-x: hidden;max-height: 800px">
                         @if (count($raffles) > 0)
                             @foreach($raffles as $raffle)
                                 <div class="row padding20 bg-rifas1 center-block {{$raffle->id}}">
-                                    <div class="col-xs-4 col-md-6 raffle_carousel">
+                                    <div class="col-xs-4 col-md-6 raffle_carousel text-right">
                                         <div class="hidden-lg visible-xs padding-top-10 padding-left-0">
-                                            <img src="@if(count($raffle->getMedia('raffles')) > 0){{ $raffle->getMedia('raffles')->first()->getUrl() }} @endif"
-                                                 class="dimenImgCarouselR"
-                                                 alt="">
+                                            <a href="{{ route('raffle.tickets.available',['raffleId' => $raffle->id]) }}"><img src="@if(count($raffle->getMedia('raffles')) > 0){{ $raffle->getMedia('raffles')->first()->getUrl() }} @endif"
+                                                 class="dimenImgCarouselR" alt=""></a>
                                         </div>
                                         <div id="myCarousel{{ $raffle->id }}"
                                              class="carousel carouselRifas slide hidden-xs " data-ride="carousel">
@@ -111,8 +110,8 @@
                                                 <?php $count = 0;?>
                                                 @foreach($raffle->getMedia('raffles') as $media)
                                                     <div class="item @if($count == 0) active @endif">
-                                                        <img src="{{ $media->getUrl() }}" class="dimenImgCarouselR"
-                                                             alt="First slide">
+                                                        <a href="{{ route('raffle.tickets.available',['raffleId' => $raffle->id]) }}"><img src="{{ $media->getUrl() }}" class="dimenImgCarouselR"
+                                                                         alt="First slide"></a>
                                                     </div>
                                                     <?php $count++; ?>
                                                 @endforeach
@@ -128,7 +127,7 @@
                                             </ol>
                                         </div>
                                     </div>
-                                    <div class="col-xs-8 col-md-6 padding-top10R" style="padding-left: 5px">
+                                    <div class="col-xs-8 col-md-6 padding-top10R padding-left20">
                                         <span class="texto16 colorV hidden-lg visible-xs pull-left margin-right-10 sinkinSans600SB">{{ round($raffle->progress) }}%</span>
                                         <span class="texto14 colorN pull-left sinkinSans600SB texto14">{{ $raffle->getOwner->name }}</span>
                                         <span class="ti-location-pin texto16 colorN"></span>
@@ -153,29 +152,32 @@
                                                         class="colorN sinkinSans600SB">${{ $raffle->tickets_price ? $raffle->tickets_price : 0 }}</span>
                                             </div>
                                         </div>
-
-                                        <ul class="list-unstyled list-inline padding-top-20 hidden-xs pull-right">
-                                            <li class=" margin-right-10"><a
-                                                        href="{{ route('raffles.follow',['raffleId' => $raffle->id]) }}">
+                                        <div class="row links">
+                                            <ul class="list-unstyled list-inline padding-top-20 hidden-xs pull-right">
+                                                <li class="margin-right-10"><a class="icon"
+                                                                               href="{{ route('raffles.follow',['raffleId' => $raffle->id]) }}">
                                                     <span class="ti-face-smile texto-negrita colorV margin-right-5 texto16"
-                                                          title="Seguir"></span> <span class="colorV sinkinSans600SB">Seguir</span>
-                                                </a></li>
-                                            <li class=" margin-right-10"><a data-toggle="modal"
-                                                                            data-target="@if(\Auth::check())#{{$raffle->id}}-share_modal @else #loginModal @endif"
-                                                                            href="" title="Compartir">
-                                                    <span class="ti-share texto-negrita colorV margin-right-5 texto16"></span><span
-                                                            class="colorV sinkinSans600SB"
-                                                            id="share_buttom">Compartir</span>
-                                                </a>
-                                            </li>
-                                            @include('partials.front_modals.share_modal')
-                                            <li class="">
-                                                <button type="button" class="btn btn-info btnSiguiente"><span
-                                                            class="ti-arrow-right"></span>
-                                                </button>
-                                            </li>
+                                                          title="Seguir"></span>
+                                                        <span class="badge badge-default">{{ count($raffle->getFollowers) }}</span>
+                                                        <span class="colorV sinkinSans600SB">Seguir</span>
+                                                    </a></li>
+                                                <li class=" margin-right-10"><a data-toggle="modal"
+                                                                                data-target="@if(\Auth::check())#{{$raffle->id}}-share_modal @else #loginModal @endif"
+                                                                                href="" title="Compartir">
+                                                        <span class="ti-share texto-negrita colorV margin-right-5 texto16"></span><span
+                                                                class="colorV sinkinSans600SB"
+                                                                id="share_buttom">Compartir</span>
+                                                    </a>
+                                                </li>
+                                                @include('partials.front_modals.share_modal')
+                                                <li class="">
+                                                    <button type="button" class="btn btn-info btnSiguiente"><span
+                                                                class="ti-arrow-right"></span>
+                                                    </button>
+                                                </li>
 
-                                        </ul>
+                                            </ul>
+                                        </div>
                                     </div>
                                 </div>
                             @endforeach

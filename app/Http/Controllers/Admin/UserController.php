@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\City;
 use App\Http\Requests\DeletingUserRequest;
 use App\Role;
 use Illuminate\Http\Request;
@@ -61,10 +62,7 @@ class UserController extends Controller
         $user = User::with('getProfile')->findOrFail($userid);
 
         $countries = Country::paginate(10);
-        $countrycities = DB::table('cities')
-            ->select('cities.*')
-            ->where('cities.country', $user->getProfile->getCity->getCountry->id)
-            ->get();
+        $countrycities = City::where('country_id',$user->getProfile->getCity->country->id)->get();
 
 
         return view('admin.userprofile', [

@@ -84,7 +84,7 @@ var Layout = function () {
 
     function handleBootstrap() {
         $(".carousel").carousel({
-            interval: 15000,
+            interval: 1500,
             pause: "hover"
         });
         $(".tooltips").tooltip();

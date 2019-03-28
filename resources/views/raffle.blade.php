@@ -17,8 +17,6 @@
                         </div>
                         <div class="col-xs-8 col-md-9 texto14 sinkinSans600SB padding0">
                             <span class="colorN">{{ $raffle->getOwner->name }} {{ $raffle->getOwner->lastname }}</span>
-                            <span class="ti-location-pin"></span>
-                            <span class=""><img class="flag-country" src="{{ asset('pics/countries/png100px/'.$raffle->getLocation->code.'.png') }}">{{ $raffle->getLocation->name }}</span>
                             <p class="texto18 text-uppercase texto-negrita colorN padding-top-10"
                                style="font-family: sinkinSans700Bold">{{ $raffle->title }} @if(Auth::check()) @if(\Auth::user()->id == $raffle->getOwner->id and $raffle->status < 2)<a href="#editRaffleModal" data-toggle="modal"><i class="fa fa-edit"></i></a>@endif @endif </p>
                         </div>
@@ -49,6 +47,8 @@
                     <div class="col-xs-12 paddingR-5">
                         <span class="italic margin-right5">@lang('views.articles'):</span>
                         <strong class="colorN">1</strong>
+                        <span class="ti-location-pin"></span>
+                        <span class=""><img class="flag-country" src="{{ asset('pics/countries/png100px/'.$raffle->getLocation->code.'.png') }}">{{ $raffle->getLocation->name }}</span>
                         <p class="colorN">{{ $raffle->description }}</p>
                     </div>
                     <div class="col-xs-12">

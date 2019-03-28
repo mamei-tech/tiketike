@@ -19,7 +19,7 @@ class RafflesSeeder extends Seeder
      */
     public function run()
     {
-        $moreraffles2create = 1;
+        $moreraffles2create = 60;
         $totalr             = $moreraffles2create + 5;       // There are 5 raffles creation by default written her below so, ...
         $rpostry            = new RaffleRepository();
 

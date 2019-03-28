@@ -13,10 +13,12 @@
                 <div class="col-sm-5 col-md-4 col-lg-3">
                     <ul class="list-inline padding-top-20 padding-left20">
                         <li class="margin-left-20 ">
-                            <a data-toggle="modal" href="#loginModal" title="Autenticarse"
-                               class="colorB texto16 sinkinSans500M">@lang('views.login')</a>
-                            @include('partials.front_modals.login_modal')
-                            @include('partials.front_modals.register_modal')
+                            @if(!Auth::check())
+                                <a data-toggle="modal" href="#loginModal" title="Autenticarse"
+                                   class="colorB texto16 sinkinSans500M">@lang('views.login')</a>
+                                @include('partials.front_modals.login_modal')
+                                @include('partials.front_modals.register_modal')
+                            @endif
                         </li>
                     </ul>
                 </div>
@@ -118,16 +120,16 @@
             forceTLS: true,
             cluster: '{{ env('PUSHER_APP_CLUSTER') }}'
         });
-        @if(\Auth::user() != null)
-            var channel = pusher.subscribe('chanel-{{ \Auth::user()->id }}');
-            channel.bind('Illuminate\\Notifications\\Events\\BroadcastNotificationCreated', function (data) {
-                var existingNotifications = notifications.html();
-                var newNotification = "<li><a href='" + data.url + "'>" + data.data + "</a></li>";
-                notifications.html(newNotification + existingNotifications);
-                var notif_count = $('span#notifications_count');
-                var new_count = parseInt(notif_count.html()) + 1;
-                notif_count.html(new_count);
-            });
+                @if(\Auth::user() != null)
+        var channel = pusher.subscribe('chanel-{{ \Auth::user()->id }}');
+        channel.bind('Illuminate\\Notifications\\Events\\BroadcastNotificationCreated', function (data) {
+            var existingNotifications = notifications.html();
+            var newNotification = "<li><a href='" + data.url + "'>" + data.data + "</a></li>";
+            notifications.html(newNotification + existingNotifications);
+            var notif_count = $('span#notifications_count');
+            var new_count = parseInt(notif_count.html()) + 1;
+            notif_count.html(new_count);
+        });
         @endif
     </script>
 @stop

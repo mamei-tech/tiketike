@@ -72,7 +72,7 @@ $(document).ready(function () {
             });
             raffles_content.html(append);
             $(".carousel").carousel({
-                interval: 15000,
+                interval: 1500,
                 pause: "hover"
             });
         }).catch(function (error) {
@@ -143,7 +143,7 @@ $(document).ready(function () {
             });
             raffles_content.html(append);
             $(".carousel").carousel({
-                interval: 15000,
+                interval: 1500,
                 pause: "hover"
             });
         }).catch(function (error) {
@@ -216,7 +216,7 @@ $(document).ready(function () {
             });
             raffles_content.html(append);
             $(".carousel").carousel({
-                interval: 15000,
+                interval: 1500,
                 pause: "hover"
             });
         }).catch(function (error) {
@@ -289,7 +289,7 @@ $(document).ready(function () {
             });
             raffles_content.html(append);
             $(".carousel").carousel({
-                interval: 15000,
+                interval: 1500,
                 pause: "hover"
             });
         }).catch(function (error) {
@@ -362,7 +362,7 @@ $(document).ready(function () {
             });
             raffles_content.html(append);
             $(".carousel").carousel({
-                interval: 15000,
+                interval: 1500,
                 pause: "hover"
             });
         }).catch(function (error) {
@@ -372,6 +372,10 @@ $(document).ready(function () {
 
     $('#percentR').on('click',function (e) {
         e.preventDefault();
+        var percent = document.getElementById('percentR');
+        percent.className += ' active';
+        var price = document.getElementById('priceR');
+        price.removeClass('active');
         acountries = [];
         var countries = $('input#countries:checked');
         var array = countries.toArray();
@@ -435,7 +439,7 @@ $(document).ready(function () {
             });
             raffles_content.html(append);
             $(".carousel").carousel({
-                interval: 15000,
+                interval: 1500,
                 pause: "hover"
             });
         }).catch(function (error) {
@@ -509,7 +513,7 @@ $(document).ready(function () {
             });
             raffles_content.html(append);
             $(".carousel").carousel({
-                interval: 15000,
+                interval: 1500,
                 pause: "hover"
             });
         }).catch(function (error) {
@@ -581,7 +585,7 @@ $(document).ready(function () {
             });
             raffles_content.html(append);
             $(".carousel").carousel({
-                interval: 15000,
+                interval: 1500,
                 pause: "hover"
             });
         }).catch(function (error) {

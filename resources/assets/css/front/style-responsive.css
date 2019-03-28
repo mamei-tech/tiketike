@@ -460,6 +460,9 @@
     .padding-left65 {
         padding-left: 0px;
     }
+    .margin-top60{
+        margin-top: 0;
+    }
     .padding-top50 {
         padding-top: 20px;
     }
@@ -604,21 +607,21 @@
         background: url("../../pics/front/bg-filtrarR1.svg");
     }
     .btnCategoriasR{
-        border-color: #FAEDF6;
+        /*border-color: #FAEDF6;*/
         padding: 5px;
         margin-top: 0px;
         width: 40px;
         height: 30px;
     }
     .btnFiltrarR{
-        border-color: #FAEDF6;
+        /*border-color: #FAEDF6;*/
         padding: 5px;
         margin-top: 0px;
         width: 40px;
         height: 30px;
     }
     .btnOrdenarPorcientoR{
-        border-color: #FAEDF6;
+        /*border-color: #FAEDF6;*/
         padding: 5px 10px 5px 5px;
         margin-top: 0px;
         width: 40px;
@@ -800,21 +803,21 @@
         background: url("../../pics/front/bg-filtrarR1.svg");
     }
     .btnCategoriasR{
-        border-color: #FAEDF6;
+        /*border-color: #FAEDF6;*/
         padding: 5px;
         margin-top: 0px;
         width: 40px;
         height: 30px;
     }
     .btnFiltrarR{
-        border-color: #FAEDF6;
+        /*border-color: #FAEDF6;*/
         padding: 5px;
         margin-top: 0px;
         width: 40px;
         height: 30px;
     }
     .btnOrdenarPorcientoR{
-        border-color: #FAEDF6;
+        /*border-color: #FAEDF6;*/
         padding: 5px 10px 5px 5px;
         margin-top: 0px;
         width: 40px;
@@ -868,6 +871,9 @@
     }
     div.contenido{
         margin-top: 25px;
+    }
+    .margin-top60{
+        margin-top: 0;
     }
     .padding-top-70 {
         padding-top: 0px;
@@ -1088,6 +1094,7 @@
     .style{
         z-index: 99999;
         position: fixed;
+        right: 15%;
     }
     radio, .checkbox {
         width: inherit;
@@ -1099,21 +1106,21 @@
         background: url("../../pics/front/bg-filtrarR1.svg");
     }
     .btnCategoriasR{
-        border-color: #FAEDF6;
+        /*border-color: #FAEDF6;*/
         padding: 5px;
         margin-top: 0px;
         width: 40px;
         height: 30px;
     }
     .btnFiltrarR{
-        border-color: #FAEDF6;
+        /*border-color: #FAEDF6;*/
         padding: 5px;
         margin-top: 0px;
         width: 40px;
         height: 30px;
     }
     .btnOrdenarPorcientoR{
-        border-color: #FAEDF6;
+        /*border-color: #FAEDF6;*/
         padding: 5px 10px 5px 5px;
         margin-top: 0px;
         width: 40px;
@@ -1239,7 +1246,6 @@
         width: 280px;
         height: 298px;
         /*padding: 40px 20px;*/
-        margin-left: 15px;
     }
 
     .slick-list{
@@ -1302,6 +1308,9 @@
     }
     div.contenido{
         margin-top: 15px;
+    }
+    .margin-top60{
+        margin-top: 0;
     }
     .fullscreen-modal .modal-dialog, modal-content {
         width: 100%;
@@ -1508,6 +1517,7 @@
     .style{
         z-index: 99999;
         position: fixed;
+        right: 15%;
     }
     radio, .checkbox {
         width: inherit;
@@ -1519,21 +1529,21 @@
         background: url("../../pics/front/bg-filtrarR1.svg");
     }
     .btnCategoriasR{
-        border-color: #FAEDF6;
+        /*border-color: #FAEDF6;*/
         padding: 5px;
         margin-top: 0px;
         width: 40px;
         height: 30px;
     }
     .btnFiltrarR{
-        border-color: #FAEDF6;
+        /*border-color: #FAEDF6;*/
         padding: 5px;
         margin-top: 0px;
         width: 40px;
         height: 30px;
     }
     .btnOrdenarPorcientoR{
-        border-color: #FAEDF6;
+        /*border-color: #FAEDF6;*/
         padding: 5px 10px 5px 5px;
         margin-top: 0px;
         width: 40px;
@@ -1666,7 +1676,6 @@
         width: 280px;
         height: 298px;
         padding: 40px 20px;
-        margin-left: 15px;
     }
     .margin-right100 {
         margin-right: 50px;
@@ -1722,6 +1731,9 @@
     }
     .fullscreen-modal .modal-dialog, modal-content {
         width: 100%;
+    }
+    .margin-top60{
+        margin-top: 0;
     }
     .textoR {
         font-size: 14px;
@@ -1918,6 +1930,7 @@
     .style{
         z-index: 99999;
         position: fixed;
+        right: 15%;
     }
     radio, .checkbox {
         width: inherit;
@@ -1929,21 +1942,21 @@
         background: url("../../pics/front/bg-filtrarR1.svg");
     }
     .btnCategoriasR{
-        border-color: #FAEDF6;
+        /*border-color: #FAEDF6;*/
         padding: 5px;
         margin-top: 0px;
         width: 40px;
         height: 30px;
     }
     .btnFiltrarR{
-        border-color: #FAEDF6;
+        /*border-color: #FAEDF6;*/
         padding: 5px;
         margin-top: 0px;
         width: 40px;
         height: 30px;
     }
     .btnOrdenarPorcientoR{
-        border-color: #FAEDF6;
+        /*border-color: #FAEDF6;*/
         padding: 5px 10px 5px 5px;
         margin-top: 0px;
         width: 40px;
@@ -2076,7 +2089,6 @@
         width: 280px;
         height: 298px;
         padding: 40px 20px;
-        margin-left: 15px;
     }
     .margin-right100 {
         margin-right: 50px;
@@ -2120,6 +2132,9 @@
     }
     body {
         font-size: 10px;
+    }
+    .margin-top60{
+        margin-top: 0;
     }
     .modal-dialog {
         margin: 0px auto;
@@ -2336,6 +2351,7 @@
     .style{
         z-index: 99999;
         position: fixed;
+        right: 15%;
     }
     radio, .checkbox {
         width: inherit;
@@ -2347,21 +2363,21 @@
         background: url("../../pics/front/bg-filtrarR1.svg");
     }
     .btnCategoriasR{
-        border-color: #FAEDF6;
+        /*border-color: #FAEDF6;*/
         padding: 5px;
         margin-top: 0px;
         width: 40px;
         height: 30px;
     }
     .btnFiltrarR{
-        border-color: #FAEDF6;
+        /*border-color: #FAEDF6;*/
         padding: 5px;
         margin-top: 0px;
         width: 40px;
         height: 30px;
     }
     .btnOrdenarPorcientoR{
-        border-color: #FAEDF6;
+        /*border-color: #FAEDF6;*/
         padding: 5px 10px 5px 5px;
         margin-top: 0px;
         width: 40px;
@@ -2503,7 +2519,6 @@
         width: 280px;
         height: 298px;
         padding: 40px 20px;
-        margin-left: 15px;
     }
     .margin-right100 {
         margin-right: 50px;

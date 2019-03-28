@@ -152,7 +152,7 @@
                     <option class="bs-title-option" value="">Country</option>
 
                     @foreach ($countries as $country)
-                        <option value="{{ $country->id }}" {{ $country->name == $user->getProfile->getCity->getCountry->name ? 'selected' : '' }}>
+                        <option value="{{ $country->id }}" {{ $country->name == $user->getProfile->getCity->country->name ? 'selected' : '' }}>
                             {{ $country->name }}</option>
                     @endforeach
 

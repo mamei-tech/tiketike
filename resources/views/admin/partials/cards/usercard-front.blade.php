@@ -23,8 +23,8 @@
         <hr>
         <div class="bootom-rcard">
             <div class="rating">
-                <img src="{{ asset('pics/countries/'. $user->getProfile->getCity->getCountry->name .'.png') }}">&emsp;
-                {{ $user->getProfile->getCity->getCountry->name }}
+                <img src="{{ asset('pics/countries/'. $user->getProfile->getCity->country->name .'.png') }}">&emsp;
+                {{ $user->getProfile->getCity->country->name }}
             </div>
         </div>
     </div>

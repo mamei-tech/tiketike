@@ -8,13 +8,10 @@
             <div class="col-xs-12 col-sm-5 col-md-4 col-lg-3 padding-rigth-0">
                 <div class="bg-grisU paddingLateralGris">
                     <div class="row padding-top-30">
-
-
                         <div class="col-xs-5 col-md-5">
                             <img src="{{$user->getMedia('avatars')->first()->getUrl()}}" alt="Ringo"
                                  class="imgUsuario sombraImgUser2">
                         </div>
-
                         <div class="col-xs-7 col-md-7 padding-top-20 padding0">
                             <span class="texto20 sinkinSans600SB colorN margin-right-15">{{$user->name}}</span>
                             @if($user->id == \Auth::User()->id)
@@ -281,8 +278,8 @@
                         </div>
                         <div id="collapseThree" class="panel-collapse collapse in" role="tabpanel"
                              aria-labelledby="headingThree" aria-expanded="true" style="">
-                            <div class="panel-body">
-                                <ul class="padding-top-20 nav nav-tabs sinkinSans600SB padding-left150" id="myTab">
+                            <div class="panel-body text-center">
+                                <ul class="nav nav-tabs sinkinSans600SB" id="myTab" style="display: inline-block">
 
                                     <li class="active"><a data-toggle="tab" class="ticket text-uppercase colorN"
                                                           href="#creadas"
@@ -373,8 +370,8 @@
                         </div>
                         <div id="ticket" class="panel-collapse collapse" role="tabpanel"
                              aria-labelledby="headingThree" aria-expanded="false" style="">
-                            <div class="panel-body">
-                                <ul class="padding-top-20 nav nav-tabs sinkinSans600SB padding-left150" id="myTab">
+                            <div class="panel-body text-center">
+                                <ul class="nav nav-tabs sinkinSans600SB" id="myTab" style="display: inline-block">
                                     <li class="active"><a data-toggle="tab" class="ticket text-uppercase colorN"
                                                           href="#vendidos"
                                                           aria-expanded="true">@lang('views.sold')</a></li>
@@ -440,8 +437,8 @@
                         </div>
                         <div id="usuarios" class="panel-collapse collapse" role="tabpanel"
                              aria-labelledby="headingThree" aria-expanded="false" style="">
-                            <div class="panel-body">
-                                <ul class="padding-top-20 nav nav-tabs sinkinSans600SB padding-left150" id="myTab">
+                            <div class="panel-body text-center">
+                                <ul class="nav nav-tabs sinkinSans600SB" id="myTab" style="display: inline-block">
 
                                     <li class=""><a data-toggle="tab" class="ticket text-uppercase colorN"
                                                     href="#seguidos"
