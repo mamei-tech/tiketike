@@ -11,10 +11,10 @@ $(document).ready(function () {
     $('#comenta').click(function (e) {
         e.preventDefault();
         $('#comentarios').fadeIn("300");
-
-
-        $('#scrollContent').css('overflow-y', 'scroll');
-
+        $('#scrollContent').css({
+            'height' : '550px',
+            'overflow-y' : 'scroll'
+        });
     });
 
 
