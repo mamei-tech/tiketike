@@ -53,7 +53,7 @@
             <li class="hidden-xs"><img class="styleBorderL colorB" src="{{ asset('pics/front/borderLeft.svg') }}"
                                        alt="">
             </li>
-            <li class="hidden-xs">
+            <li class="text-center">
                 <form action="{{ route('admin.lansw') }}" method="post">
                     {{ csrf_field() }}
                     <button style="background: transparent;border: transparent" type="submit" class="text-uppercase colorB padding-top-20 sinkinSans300L icon">
@@ -68,7 +68,7 @@
             </li>
 
 
-            <li class="hidden-xs colorB">
+            <li class="colorB">
                 <a href="#" class="text-uppercase colorB sinkinSans300L icon"><span
                             class="ti-search texto20 search-btn show-search-icon"></span></a>
                 <div class="search-box" style="display: none;">
@@ -84,7 +84,7 @@
             </li>
 
             @if(\Auth::user() != null)
-                <li class="hidden-xs">
+                <li>
                     <a class="icon" href="{{ route('logout') }}"
                        onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                         <span class="texto20 ti-shift-right">

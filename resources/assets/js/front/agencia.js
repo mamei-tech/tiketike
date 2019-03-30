@@ -21,15 +21,15 @@ var Agencia = function () {
         });
 
         // para el scroll de las p'aginas
-        $('#scrollContent').slimScroll({
-            height: '550px',
-            size: '0px',
-            railVisible: false,
-            railOpacity: 0.3,
-            wheelStep: 10,
-            allowPageScroll: true,
-            disableFadeOut: false
-        });
+        // $('#scrollContent').slimScroll({
+        //     height: '550px',
+        //     size: '0px',
+        //     railVisible: false,
+        //     railOpacity: 0.3,
+        //     wheelStep: 10,
+        //     allowPageScroll: true,
+        //     disableFadeOut: false
+        // });
         // para el carrousel de 2 filas del home
         $("#owl-demo1").owlCarousel({
 

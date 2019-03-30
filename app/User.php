@@ -28,6 +28,10 @@ class User extends Authenticatable implements HasMedia
         'name', 'lastname', 'email', 'avatar' , 'password', 'ranking',   'api_token'
     ];
 
+    protected $appends = [
+        'full_name'
+    ];
+
     /**
      * The attributes that should be hidden for arrays.
      *
@@ -241,5 +245,10 @@ class User extends Authenticatable implements HasMedia
             $amount += $raffle->price;
         }
         return $amount;
+    }
+
+    public function getFullNameAttribute()
+    {
+        return $this->name .' '. $this->lastname;
     }
 }

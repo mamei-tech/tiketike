@@ -4,12 +4,7 @@
     </div>
     <div class="user">
 
-        @if($user->getProfile->avatarname == 'default')
-
-            <img id="profile-pic-card" class="img-circle" src={{ asset('pics/common/default-avatar.png') }}>
-        @else
-            <img id="profile-pic-card" class="img-circle" src="{{ $user->getProfile->getMedia('avatars')->first()->getUrl() }}">
-        @endif
+            <img id="profile-pic-card" class="img-circle" src={{$user->getMedia('avatars')->first()->getUrl()}}>
 
     </div>
 
@@ -23,8 +18,8 @@
         <hr>
         <div class="bootom-rcard">
             <div class="rating">
-                <img src="{{ asset('pics/countries/'. $user->getProfile->getCity->getCountry->name .'.png') }}">&emsp;
-                {{ $user->getProfile->getCity->getCountry->name }}
+                <img src="{{ asset('pics/countries/'. $user->getProfile->getCity->country->name .'.png') }}">&emsp;
+                {{ $user->getProfile->getCity->country->name }}
             </div>
         </div>
     </div>

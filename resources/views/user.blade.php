@@ -8,13 +8,10 @@
             <div class="col-xs-12 col-sm-5 col-md-4 col-lg-3 padding-rigth-0">
                 <div class="bg-grisU paddingLateralGris">
                     <div class="row padding-top-30">
-
-
                         <div class="col-xs-5 col-md-5">
                             <img src="{{$user->getMedia('avatars')->first()->getUrl()}}" alt="Ringo"
                                  class="imgUsuario sombraImgUser2">
                         </div>
-
                         <div class="col-xs-7 col-md-7 padding-top-20 padding0">
                             <span class="texto20 sinkinSans600SB colorN margin-right-15">{{$user->name}}</span>
                             @if($user->id == \Auth::User()->id)
@@ -164,49 +161,44 @@
                                                 :</span>
                                         </div>
                                         <div class="col-xs-6 col-sm-4"><strong
-                                                    class="colorN sinkinSans600SB">100%</strong><br></div>
+                                                    class="colorN sinkinSans600SB">{{ count($user->getRaffles) }}</strong><br></div>
                                     </div>
                                     <div class="padding-top-20">
                                         <div class="col-xs-6 col-sm-8"><span class="colorV margin-right-20">@lang('views.winned_raffles')
                                                 :</span>
                                         </div>
                                         <div class="col-xs-6 col-sm-4"><strong
-                                                    class="colorN sinkinSans600SB">80%</strong><br></div>
+                                                    class="colorN sinkinSans600SB">{{ $user->WinnedRaffles() }}</strong><br></div>
                                     </div>
                                     <div class="padding-top-20">
                                         <div class="col-xs-6 col-sm-8"><span class="colorV margin-right-20">@lang('views.shared_raffles')
                                                 :</span>
                                         </div>
                                         <div class="col-xs-6 col-sm-4"><strong
-                                                    class="colorN sinkinSans600SB">100%</strong><br></div>
+                                                    class="colorN sinkinSans600SB">{{ count($user->getReferralsBuys->groupBy('raffle_id')) }}</strong><br></div>
                                     </div>
                                     <div class="padding-top-20">
                                         <div class="col-xs-6 col-sm-8"><span class="colorV margin-right-20">@lang('views.sold_tickets')
                                                 :</span>
                                         </div>
                                         <div class="col-xs-6 col-sm-4"><strong
-                                                    class="colorN sinkinSans600SB">100%</strong><br></div>
+                                                    class="colorN sinkinSans600SB">{{ $user->getSoldTicketsCount() }}</strong><br></div>
                                     </div>
                                 </div>
                             </div>
                             <div class="tab-pane " id="contactos">
                                 <div class="col-xs-12 sinkinSans300LI">
+                                    @if($user->getProfile->phone)
                                     <div class="padding-top-20">
                                         <span class="ti-mobile colorV"></span>
-                                        +534518478
+                                        {{$user->getProfile->phone}}
                                     </div>
+                                    @endif
                                     <div class="padding-top-20">
                                         <span class="ti-email colorV  margin-right-10"></span>
-                                        janedoe@nauta.com.cu
+                                        {{$user->email}}
                                     </div>
-                                    <div class="padding-top-20">
-                                        <span class="ti-facebook colorV texto14 margin-right-10"></span>
-                                        janedoe
-                                    </div>
-                                    <div class="padding-top-20">
-                                        <span class="ti-twitter colorV texto14 margin-right-10"></span>
-                                        @janedoe
-                                    </div>
+
                                 </div>
                             </div>
                             <div class="tab-pane" id="micuenta">
@@ -281,8 +273,8 @@
                         </div>
                         <div id="collapseThree" class="panel-collapse collapse in" role="tabpanel"
                              aria-labelledby="headingThree" aria-expanded="true" style="">
-                            <div class="panel-body">
-                                <ul class="padding-top-20 nav nav-tabs sinkinSans600SB padding-left150" id="myTab">
+                            <div class="panel-body text-center">
+                                <ul class="nav nav-tabs sinkinSans600SB" id="myTab" style="display: inline-block">
 
                                     <li class="active"><a data-toggle="tab" class="ticket text-uppercase colorN"
                                                           href="#creadas"
@@ -373,8 +365,8 @@
                         </div>
                         <div id="ticket" class="panel-collapse collapse" role="tabpanel"
                              aria-labelledby="headingThree" aria-expanded="false" style="">
-                            <div class="panel-body">
-                                <ul class="padding-top-20 nav nav-tabs sinkinSans600SB padding-left150" id="myTab">
+                            <div class="panel-body text-center">
+                                <ul class="nav nav-tabs sinkinSans600SB" id="myTab" style="display: inline-block">
                                     <li class="active"><a data-toggle="tab" class="ticket text-uppercase colorN"
                                                           href="#vendidos"
                                                           aria-expanded="true">@lang('views.sold')</a></li>
@@ -440,8 +432,8 @@
                         </div>
                         <div id="usuarios" class="panel-collapse collapse" role="tabpanel"
                              aria-labelledby="headingThree" aria-expanded="false" style="">
-                            <div class="panel-body">
-                                <ul class="padding-top-20 nav nav-tabs sinkinSans600SB padding-left150" id="myTab">
+                            <div class="panel-body text-center">
+                                <ul class="nav nav-tabs sinkinSans600SB" id="myTab" style="display: inline-block">
 
                                     <li class=""><a data-toggle="tab" class="ticket text-uppercase colorN"
                                                     href="#seguidos"

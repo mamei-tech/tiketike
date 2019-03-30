@@ -41,7 +41,15 @@ $(document).ready(function () {
     });
 
     $('#responsiveSlick').on('beforeChange', function (event, slick, currentSlide, nextSlide) {
-        var userid = $("[data-slick-index='" + nextSlide + "'] .slick-list").attr('id');
+        if (start) {
+            var userid = $("[data-slick-index='" + 1 + "'] .slick-list").attr('id');
+            start = false;
+        } else {
+            if (nextSlide == 9)
+                userid = $("[data-slick-index='" + 0 + "'] .slick-list").attr('id');
+            else
+                var userid = $("[data-slick-index='" + (nextSlide + 1) + "'] .slick-list").attr('id');
+        }
         axios.post(route('get.user'), {
             'userid': userid
         }).then(function (response) {
