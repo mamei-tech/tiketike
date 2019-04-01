@@ -867,9 +867,9 @@ input[type="radio"], input[type="checkbox"] {
     margin-bottom: 0px;
 }
 .costo {
-    height: 80px;
+    height: 85px;
     border: #000000 2px dashed;
-    border-radius: 7px;
+    border-radius: 25px;
     padding: 5px 30px;
 }
 .porcientoCompletado {
@@ -1443,11 +1443,11 @@ section#vertical ul li.last {
     position: absolute;
     font-weight: 300;
     padding: 3px;
-    border-radius: 2px;
+    /*border-radius: 2px;*/
     background-color: #e22029;
-    left: 38%;
+    left: 24%;
     font-size: 11px;
-    bottom: 15%;
+    bottom: 10%;
 }
 .close{
     float: left;

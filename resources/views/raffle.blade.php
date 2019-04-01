@@ -7,7 +7,7 @@
     @include('partials.front_modals.notification_modal')
     <div class="container margin-top60">
         <div class="row">
-            <!--Contenido ticket-->
+
             <div class="col-xs-12 col-sm-7 col-sm-push-5 col-lg-7 margin-top15 col-lg-push-3 paddingLeft0 padding-rigth-0">
                 <div class="contenidoTicket" id="scrollContent" >
                     <div class="col-xs-12 ">
@@ -23,7 +23,7 @@
                     </div>
                     <div class="col-xs-12 padding-top-20">
                         <div id="myCarousel" class="carousel carouselTicket slide" data-ride="carousel">
-                            <!-- Indicators -->
+
                             <div class="carousel-inner" role="listbox">
                                 <?php $count = 0; ?>
                                 @foreach($raffle->getMedia('raffles') as $media)
@@ -53,13 +53,13 @@
                     </div>
                     <div class="col-xs-12">
                         <div class="pull-left padding-top-20 links">
-                            <!-- Button trigger modal Mis compras de Ticket-->
+
                             <a class="icon" data-toggle="modal" href="#misCompras" title="Mis Tickets">
                                 <span class="ti-ticket colorV dimenIconos"></span>
                                 <span class="badge badge-default">@if(Auth::user() != null){{ count(Auth::user()->getTicketsByRaffle($raffle->id)) }} @else
                                         0 @endif</span>
                             </a>
-                            <!-- Modal -->
+
                             <div class="modal fullscreen-modal fade" id="misCompras" tabindex="-1" role="dialog"
                                  aria-labelledby="myModalLabel"
                                  aria-hidden="true">
@@ -86,9 +86,9 @@
                                                 </ul>
                                             </div>
                                         </div>
-                                    </div><!-- /.modal-content -->
-                                </div><!-- /.modal-dialog -->
-                            </div><!-- /.modal -->
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                         <ul class="list-unstyled pull-right list-inline padding-top-20 ">
                             <li class="margin-right-10">
@@ -148,7 +148,7 @@
 
 
                                         @foreach($comment->getChilds as $child)
-                                            <!-- Nested media object -->
+
                                                 <div class="media">
                                                     <a href="#" class="pull-left margin-right-20">
                                                         <img src="{{ $child->getUser->getMedia('avatars')->first()->getUrl() }}" alt="Ringo"
@@ -180,7 +180,7 @@
                                                     @include('partials.frontend.form_comments',['isSon' => true,'answer_text'=>$child])
                                                 </div>
 
-                                                <!--end media-->
+
                                             @endforeach
                                         </div>
                                     </div>
@@ -202,7 +202,7 @@
                     </div>
                 </div>
             </div>
-            <!--FIN Contenido ticket-->
+
             <div class="col-xs-12 col-sm-5 col-sm-pull-7 col-lg-3 col-lg-pull-7 paddingLeft0 padding-rigth-0">
                 <div class="bg-gris paddingLateralGris">
                     <div class="borderTopDashed padding-bottom20 ">

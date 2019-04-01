@@ -1,4 +1,4 @@
-<!-- Modal-->
+
 <div class="modal fade" id="{{$raffle->id}}-share_modal" tabindex="-1" role="dialog"
      aria-labelledby="myModalLabel"
      aria-hidden="true">
@@ -28,7 +28,7 @@
                 <div class="input-group">
                     <input type="text" class="form-control" readonly id="copylink" value="{{route('referrals.tickets.buy',[$raffle->id, Auth::user()->id,'socialNetworkId' => 0])}}">
 
-                    <!-- Trigger -->
+
                     <span class="input-group-btn">
                     <button class="btn btn-icon btncopy" data-clipboard-target="#copylink">
                         <i class="ti-agenda"></i>
@@ -39,8 +39,8 @@
             @endif
             </div>
         </div>
-        <!-- /.modal-content -->
+
     </div>
-    <!-- /.modal-dialog -->
+
 </div>
-<!-- /.modal -->
+

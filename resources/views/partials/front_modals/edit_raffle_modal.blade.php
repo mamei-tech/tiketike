@@ -1,4 +1,4 @@
-<!-- Modal-->
+
 <div class="modal fade" id="editRaffleModal" tabindex="-1" role="dialog"
      aria-labelledby="myModalLabel"
      aria-hidden="true">
@@ -60,7 +60,7 @@
                             <div class="col-md-12 col-lg-12 col-xs-12" id="columns">
                                 <h3 class="form-label">Select the images</h3>
                                 <div class="desc"><p class="text-center">or drag to box</p></div>
-                                <div id="uploads"><!-- Upload Content --></div>
+                                <div id="uploads"></div>
                             </div>
                         </div>
                     </div>
@@ -77,8 +77,8 @@
                 </form>
             </div>
         </div>
-        <!-- /.modal-content -->
+
     </div>
-    <!-- /.modal-dialog -->
+
 </div>
-<!-- /.modal -->
+

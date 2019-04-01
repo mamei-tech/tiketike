@@ -30,7 +30,7 @@ class EditPromoRequest extends FormRequest
             'expdate'       => 'required|date|after:today',
             'type'          => 'integer|between:0,1',
             'status'        => 'integer|between:0,1',
-            'image'         => 'required|mimes:jpeg,png|between:1,4096|unique:promos,image',
+            'image'         => 'mimes:jpeg,png|between:1,4096|unique:promos,image',
             'alternative'   => 'required|string|max:200',
             'website'       => 'required|string|max:60',
         ];
