@@ -80,7 +80,7 @@ return [
     'Executed' => 'Ejecutados',
     'Pending' => 'Pendientes',
     'Dashboard' => 'Tablero',
-    'My Profile' => 'Mi Perfil'
+    'My Profile' => 'Mi Perfil',
 
 
 

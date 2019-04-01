@@ -5,9 +5,9 @@
     </div>
     <div class="card-content">
         <div class="principale">
-            <h4 class="text-center">@lang('Other Description')</h4>
+            <h4 class="text-center">@lang('aUserprofile.address')</h4>
             <p class="text-center">
-                Web design, Adobe Photoshop, HTML5, CSS3, Corel and many others...
+                {{ $user->getProfile->addrss }}
             </p>
 
             <div class="stats-container">
