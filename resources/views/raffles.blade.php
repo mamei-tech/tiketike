@@ -171,9 +171,9 @@
                                                 </li>
                                                 @include('partials.front_modals.share_modal')
                                                 <li class="">
-                                                    <button type="button" class="btn btn-info btnSiguiente"><span
+                                                    <a  href="{{ route('raffle.tickets.available',['raffleId' => $raffle->id]) }}" class="btn btn-info btnSiguiente"><span
                                                                 class="ti-arrow-right"></span>
-                                                    </button>
+                                                    </a>
                                                 </li>
 
                                             </ul>
