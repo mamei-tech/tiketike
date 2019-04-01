@@ -66,5 +66,24 @@ return [
     'sold' => 'Vendidos',
     'followed' => 'Seguidos',
     'follow_me' => 'Me siguen',
-    'profile_updated' => 'Perfil actualizado exitosamente.'
+    'profile_updated' => 'Perfil actualizado exitosamente.',
+    'Persons' => 'Personas',
+    'Published' => 'Publicadas',
+    'Unpublished' => 'Sin Publicar',
+    'Cancelled' => 'Canceladas',
+    'Configuration' => 'Configuración',
+    'Categories' => 'Categorías',
+    'Promos & Ads' => 'Publicidad',
+    'List' => 'Lista',
+    'Clients' => 'Clientes',
+    'Payments' => 'Pagos',
+    'Executed' => 'Ejecutados',
+    'Pending' => 'Pendientes',
+    'Dashboard' => 'Tablero',
+    'My Profile' => 'Mi Perfil',
+
+
+
+
+
 ];

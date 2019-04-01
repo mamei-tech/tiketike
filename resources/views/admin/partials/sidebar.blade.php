@@ -52,7 +52,7 @@
             <li class="@isset($li_activeDash) {{ $li_activeDash }} @endisset">
                 <a href="{{ route('admin.index') }}">
                     <i class="now-ui-icons design_app"></i>
-                    <p> Dashboard </p>
+                    <p> @lang('views.Dashboard') </p>
                 </a>
             </li>
 
@@ -121,7 +121,7 @@
                         <li class="@isset($li_activeRCategories) {{ $li_activeRCategories }} @endisset">
                             <a href="{{ route('categories.index') }}">
                                 <span class="sidebar-mini-icon"> Ca </span>
-                                <span class="sidebar-normal"> @lang('Categories') </span>
+                                <span class="sidebar-normal"> @lang('views.Categories') </span>
                             </a>
                         </li>
 
@@ -140,7 +140,7 @@
             <li class="">
                 <a class="" data-toggle="collapse" href="#promo_section" aria-expanded="false">
                     <i class="now-ui-icons objects_diamond"></i>
-                    <p> Promos & Ads
+                    <p> @lang('views.Promos & Ads')
                         <b class="caret"></b>
                     </p>
                 </a>
@@ -151,14 +151,14 @@
                         <li class="@isset($li_activePromoList) {{ $li_activePromoList }} @endisset">
                             <a href="{{ route('promos.index') }}">
                                 <span class="sidebar-mini-icon"> L </span>
-                                <span class="sidebar-normal"> List </span>
+                                <span class="sidebar-normal"> @lang('views.List') </span>
                             </a>
                         </li>
 
                         <li class="@isset($li_activePromoClients) {{ $li_activePromoClients }} @endisset">
                             <a href="{{ route('pmclients.index') }}">
                                 <span class="sidebar-mini-icon"> C </span>
-                                <span class="sidebar-normal"> Clients  </span>
+                                <span class="sidebar-normal"> @lang('views.Clients')  </span>
                             </a>
                         </li>
                     </ul>
@@ -170,7 +170,7 @@
             <li class="">
                 <a class="" data-toggle="collapse" href="#payment_section" aria-expanded="false">
                     <i class="now-ui-icons business_money-coins"></i>
-                    <p> Payments
+                    <p> @lang('views.Payments')
                         <b class="caret"></b>
                     </p>
                 </a>
@@ -181,14 +181,14 @@
                         <li class="@isset($li_activeExecuted) {{ $li_activeExecuted }} @endisset">
                             <a href="{{ route('payment.executed') }}">
                                 <span class="sidebar-mini-icon"> E </span>
-                                <span class="sidebar-normal"> Executed </span>
+                                <span class="sidebar-normal"> @lang('views.Executed') </span>
                             </a>
                         </li>
 
                         <li class="@isset($li_activePending) {{ $li_activePending }} @endisset">
                             <a href="{{ route('payment.pending.list') }}">
                                 <span class="sidebar-mini-icon"> P </span>
-                                <span class="sidebar-normal"> Pending  </span>
+                                <span class="sidebar-normal"> @lang('views.Pending')  </span>
                             </a>
                         </li>
                     </ul>
@@ -211,14 +211,14 @@
                         <li class="@isset($li_activeLogsDashborad) {{ $li_activeLogsDashborad }} @endisset">
                             <a href="{{ route('log-viewer::dashboard') }}">
                                 <span class="sidebar-mini-icon"> D </span>
-                                <span class="sidebar-normal"> Dashborad </span>
+                                <span class="sidebar-normal"> @lang('views.Dashboard') </span>
                             </a>
                         </li>
 
                         <li class="@isset($li_activeLogsList) {{ $li_activeLogsList }} @endisset">
                             <a href="{{ route('log-viewer::logs.list') }}">
                                 <span class="sidebar-mini-icon"> U </span>
-                                <span class="sidebar-normal"> List  </span>
+                                <span class="sidebar-normal"> @lang('views.List')  </span>
                             </a>
                         </li>
                     </ul>

@@ -5,6 +5,8 @@ $(function () {
         infinite: true,
         slidesToShow: 3,
         arrows:false,
+        verticalSwiping: true,
+        swipeToSlide: true,
         slidesToScroll: 1,
         vertical: true,
         autoplay:true,

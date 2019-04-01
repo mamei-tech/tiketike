@@ -61,4 +61,18 @@ return [
     'follow_me' => 'Follow me',
     'profile_updated' => 'Profile updated successfully.',
     'payments_done'    => 'Su pago ha sido enviado satisfactoriamente.',
+    'Persons' => 'Persons',
+    'Published' => 'Published',
+    'Unpublished' => 'Unpublished',
+    'Cancelled' => 'Cancelled',
+    'Configuration' => 'Configuration',
+    'Categories' => 'Categories',
+    'Promos & Ads' => 'Promos & Ads',
+    'List' => 'List',
+    'Clients' => 'Clients',
+    'Payments' => 'Payments',
+    'Executed' => 'Executed',
+    'Pending' => 'Pending',
+    'Dashboard' => 'Dashboard',
+    'My Profile' => 'My Profile'
 ];
