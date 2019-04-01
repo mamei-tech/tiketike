@@ -153,8 +153,9 @@
                                         </div>
                                         <div class="row links" style="margin-top: 25px;">
                                             <ul class="list-unstyled list-inline padding-top-20 hidden-xs pull-right" style="padding-right: 40px;">
-                                                <li class="margin-right-10"><a class="icon"
-                                                                               href="{{ route('raffles.follow',['raffleId' => $raffle->id]) }}">
+                                                <li class="margin-right-10">
+                                                    <a class="icon badge-container"
+                                                       href="{{ route('raffles.follow',['raffleId' => $raffle->id]) }}">
                                                     <span class="ti-face-smile texto-negrita colorV margin-right-5 texto16"
                                                           title="Seguir"></span>
                                                         @php($rFallowers = count($raffle->getFollowers))
