@@ -94,7 +94,7 @@
                             <li class="margin-right-10">
                                 <a @if(Auth::user() == null)data-toggle="modal" href="#loginModal"
                                    @else
-                                   href="" title="Comentarios" id="comenta"@endif>
+                                   href="#Comments" title="Comentarios" id="comenta"@endif>
                                     <span class="ti-comment colorV margin-right-5 dimenIconos"></span>
                                 </a>
                             </li>
@@ -111,8 +111,8 @@
                             @include('partials.front_modals.share_modal')
                         </ul>
                     </div>
-                    <div id="comentarios" style=" display:none" class="col-xs-12" >
-                        <strong class="colorN text-uppercase sinkinSans600SB">@lang('views.comments')</strong>
+                    <div id="comentarios" style=" display:none" class="section col-xs-12" >
+                        <strong class="colorN text-uppercase sinkinSans600SB"><a class="colorN text-uppercase sinkinSans600SB" name="Comments">@lang('views.comments')</a></strong>
                         <div class="comments">
                             @foreach($raffle->getComments as $comment)
                                 @if($comment->parent == null)
@@ -192,7 +192,7 @@
                             <form action="{{route('raffle.comment', $raffleId)}}" method="POST" role="form">
                                 {{ csrf_field() }}
                                 <div class="form-group">
-                                    <textarea class="form-control bg-gris" rows="5" name="text" id="text"></textarea>
+                                    <textarea maxlength="140" autofocus="true" class="form-control bg-gris"  rows="auto" cols="50" name="text" id="text" style="resize: none; height: 30px "></textarea>
                                 </div>
                                 <button class="btn btn-primary bg_green extraer sinkinSans700B text-uppercase"
                                         type="submit">@lang('views.send')

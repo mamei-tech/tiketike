@@ -821,7 +821,7 @@ div.checker, div.checker span, div.checker input {
     position: absolute;
     bottom: -30px;
     left: 50%;
-    z-index: 15;
+    z-index: 2;
     width: 60%;
     padding-left: 0;
     margin-left: -30%;
