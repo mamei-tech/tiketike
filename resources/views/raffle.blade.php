@@ -112,8 +112,8 @@
                         </ul>
                     </div>
                     <div id="comentarios" style=" display:none" class="section col-xs-12" >
-                        <strong class="colorN text-uppercase sinkinSans600SB"><a class="colorN text-uppercase sinkinSans600SB" name="Comments">@lang('views.comments')</a></strong>
-                        <div class="comments">
+                        <strong class="colorN text-uppercase sinkinSans600SB">@lang('views.comments')</strong>
+                        <div class="comments" id="commentContent">
                             @foreach($raffle->getComments as $comment)
                                 @if($comment->parent == null)
                                     <div class="media">
