@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Alex
- * Date: 3/16/2019
- * Time: 1:35 PM
- */
 
 return [
     'login' => 'Login',
