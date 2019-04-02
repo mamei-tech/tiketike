@@ -57,7 +57,7 @@
             </div>
         </div>
     </section>
-    <!-- Promo slider principal -->
+
     <div class="promo-block" id="promo-block">
         <div class="tp-banner-container">
             <div class="tp-banner">
@@ -98,19 +98,17 @@
             </div>
         </div>
     </div>
-    <!-- Promo block END -->
 
-    <!--menu-->
     <div id="menu" class="navbar-inverse bg_menu header ">
         <div class="container">
             @include('partials.frontend.content_menu')
         </div>
         <div class="morado-bottom"></div>
     </div>
-    <!--fin menu-->
+
 
     @include('partials.frontend.views.landing.almost_finished_raffles_section')
-    <!--usuariosTop-->
+
     @include('partials.frontend.views.landing.top_users_section')
 @stop
 @section('additional_scripts')

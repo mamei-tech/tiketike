@@ -137,7 +137,7 @@
                 </div>
                 <div class="bottomLIzquierdo hidden-xs"></div>
             </div>
-            <!--PANEL Solo visible en la vista movil-->
+
             <div class="col-xs-12 visible-xs paddingLeft0 padding-rigth-0 padding-bottom30">
                 <div class="paddingLeft0 ">
                     <div class="panel-body">
@@ -255,10 +255,10 @@
                         </div>
                     </div>
                 </div>
-                <!--FIN Solo visible en la vista movil-->
+
 
             </div>
-            <!--Contenido usuario-->
+
             <div class="col-xs-12 col-sm-7 col-md-8 col-lg-7 padding-top-50">
                 <div class="row">
                     <div class="col-xs-12">
@@ -491,7 +491,7 @@
 
                 </div>
             </div>
-            <!--FIN Contenido rifas-->
+
 
 
             @include('partials.frontend.promotions')

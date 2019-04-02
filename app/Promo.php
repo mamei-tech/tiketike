@@ -25,6 +25,10 @@ class Promo extends Model implements HasMedia
         return $this->belongsTo('App\PromoClient', 'client');
     }
 
+    public static function getSomePromos(){
+        return Promo::where('type', 1)->where('status', 1)->inRandomOrder()->take(4)->get();
+    }
+
     /* Only jpg or png files are allowed */
     public function registerMediaCollections()
     {

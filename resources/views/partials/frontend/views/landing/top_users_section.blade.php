@@ -18,7 +18,7 @@
                     </div>
                     <div class="col-md-12 borderBotDis hidden-xs"></div>
                 </div>
-                <!--TOP de ganadores visibles solo en vista movil-->
+
                 <div class="slick-vertical col-xs-12 paddingLeft0 padding-rigth-0 visible-xs padding-top-20" id="responsiveSlick">
                     <?php
                     $ordinals = ['1st', '2nd', '3rd', '4th', '5th', '6th', '7th', '8th', '9th', '10th'];
@@ -67,8 +67,7 @@
                         <span class="ti-angle-right texto16 colorN texto-negrita padding-top5"></span></a>
                 </div>
 
-                <!--FIN top de ganadores visibles solo en vista movil-->
-                <!--Usuarios Opinan-->
+
                 <div class="col-xs-12 userOpinan marginResponsive-5 padding-top-10 padding-left0">
                     <h4 class="text-uppercase padding-top-20 sinkinSans600SB texto18 centerR">Los Usuarios Opinan</h4>
                     <div class="col-md-12 borderBotDis hidden-lg"></div>
@@ -96,9 +95,9 @@
                         <?php $count++; ?>
                     @endforeach
                 </div>
-                <!--FIN Usuarios Opinan-->
+
             </div>
-            <!--TOP usuarios ganadores solo visible en desktop-->
+
 
             <div class=" slick-vertical col-sm-3 col-md-4 col-lg-3 user hidden-xs " id="normalSlick">
                 <?php
@@ -155,7 +154,7 @@
                     <span class="ti-angle-right texto16 colorN texto-negrita padding-top5"></span></a>
             </div>
         </div>
-        <!--FIN TOP usuarios ganadores solo visible en desktop-->
+
     </div>
 </section>
 

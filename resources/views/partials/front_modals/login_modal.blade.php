@@ -1,4 +1,4 @@
-<!-- Modal-->
+
 <div class="modal fade" id="loginModal" tabindex="-1" role="dialog"
      aria-labelledby="myModalLabel"
      aria-hidden="true">
@@ -63,10 +63,9 @@
                 </div>
             </div>
         </div>
-        <!-- /.modal-content -->
+
     </div>
-    <!-- /.modal-dialog -->
+
 </div>
 
 
-<!-- /.modal -->

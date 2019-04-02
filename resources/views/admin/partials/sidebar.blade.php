@@ -175,17 +175,17 @@
                     </p>
                 </a>
 
-                <div class="collapse @isset($div_showPromo) {{ $div_showPromo }} @endisset" id="payment_section">
+                <div class="collapse @isset($div_showPayments) {{ $div_showPayments }} @endisset" id="payment_section">
                     <ul class="nav">
 
-                        <li class="@isset($li_activePromoList) {{ $li_activePromoList }} @endisset">
+                        <li class="@isset($li_activeExecuted) {{ $li_activeExecuted }} @endisset">
                             <a href="{{ route('payment.executed') }}">
                                 <span class="sidebar-mini-icon"> E </span>
                                 <span class="sidebar-normal"> @lang('views.Executed') </span>
                             </a>
                         </li>
 
-                        <li class="@isset($li_activePromoClients) {{ $li_activePromoClients }} @endisset">
+                        <li class="@isset($li_activePending) {{ $li_activePending }} @endisset">
                             <a href="{{ route('payment.pending.list') }}">
                                 <span class="sidebar-mini-icon"> P </span>
                                 <span class="sidebar-normal"> @lang('views.Pending')  </span>

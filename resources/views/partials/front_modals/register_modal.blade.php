@@ -1,4 +1,4 @@
-<!-- Modal-->
+
 <div class="modal fade" id="registerModal" tabindex="-1" role="dialog"
      aria-labelledby="myModalLabel"
      aria-hidden="true">
@@ -59,8 +59,7 @@
                 </form>
             </div>
         </div>
-        <!-- /.modal-content -->
+
     </div>
-    <!-- /.modal-dialog -->
+
 </div>
-<!-- /.modal -->
