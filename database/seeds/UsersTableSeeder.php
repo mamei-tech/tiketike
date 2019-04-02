@@ -75,6 +75,16 @@ class UsersTableSeeder extends Seeder
         {
             $img = rand(0,1);
             $user->addMediaFromUrl('http://localhost/pics/front/'.$values[$img].'.jpg')->toMediaCollection('avatars','avatars');
+
+            $anotherusersset = \App\User::inRandomOrder()->take(5)->get();
+
+            foreach ($anotherusersset as $anotheruser)
+
+            DB::table('user_follow')->insert([
+                    'follow_id'     => $user->id,
+                    'follower_id'  => $anotheruser->id,
+                ]
+            );
         }
     }
 }

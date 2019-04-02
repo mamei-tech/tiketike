@@ -1,10 +1,10 @@
 <div class="sidebar" data-color="orange">
     <!-- Tip 1: You can change the color of the sidebar using: data-color="blue | green | orange | red | yellow" -->
     <div class="logo">
-        <a href="http://www.creative-tim.com" class="simple-text logo-mini">
+        <a href="{{url('/')}}" class="simple-text logo-mini">
             TK
         </a>
-        <a href="http://www.creative-tim.com" class="simple-text logo-normal">
+        <a href="{{url('/')}}" class="simple-text logo-normal">
             TikeTike
         </a>
         <div class="navbar-minimize">

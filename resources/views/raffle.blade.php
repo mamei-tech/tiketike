@@ -99,9 +99,16 @@
                                 </a>
                             </li>
                             <li class="margin-right-10">
-                                <a href="" title="Seguir">
-                                    <span class="ti-face-smile colorV margin-right-5 dimenIconos"></span>
-                                </a>
+                                <a class="icon badge-container"
+                                   href="{{ route('raffles.follow',['raffleId' => $raffle->id]) }}">
+                                                    <span class="ti-face-smile texto-negrita colorV margin-right-5 texto16"
+                                                          title="Seguir"></span>
+                                    @php($rFallowers = count($raffle->getFollowers))
+                                    @if($rFallowers > 0)
+                                        <span class="badge rbadge">{{ $rFallowers }}</span>
+                                    @endif
+                                    <span class="colorV sinkinSans600SB">Seguir</span>
+                                </a></li>
                             </li>
                             <li class="margin-right-10">
                                 <a data-toggle="modal" data-target="@if(\Auth::check())#{{$raffle->id}}-share_modal @else #loginModal @endif" href="" title="Compartir">
