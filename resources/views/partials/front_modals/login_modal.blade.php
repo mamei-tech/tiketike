@@ -6,7 +6,7 @@
         <div class="modal-content">
             <div class="modal-header form-signin padding-left-0">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                    <span class="ti-angle-right"></span>
+                    <span class="ti-angle-left"></span>
                 </button>
             </div>
             <div class="modal-body">
