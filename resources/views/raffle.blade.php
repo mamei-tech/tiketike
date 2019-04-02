@@ -56,8 +56,14 @@
 
                             <a class="icon" data-toggle="modal" href="#misCompras" title="Mis Tickets">
                                 <span class="ti-ticket colorV dimenIconos"></span>
-                                <span class="badge badge-default">@if(Auth::user() != null){{ count(Auth::user()->getTicketsByRaffle($raffle->id)) }} @else
-                                        0 @endif</span>
+                                @if(Auth::user() != null)
+                                @php($rMyTickets = count(Auth::user()->getTicketsByRaffle($raffle->id)))
+                                @if($rMyTickets > 0)
+                                    <span class="badge rbadge">{{ $rMyTickets }} @else
+                                        </span>
+                                @endif
+                                @endif
+
                             </a>
 
                             <div class="modal fullscreen-modal fade" id="misCompras" tabindex="-1" role="dialog"
@@ -111,8 +117,13 @@
                                 </a></li>
                             </li>
                             <li class="margin-right-10">
-                                <a data-toggle="modal" data-target="@if(\Auth::check())#{{$raffle->id}}-share_modal @else #loginModal @endif" href="" title="Compartir">
+                                <a class="icon badge-container" data-toggle="modal" data-target="@if(\Auth::check())#{{$raffle->id}}-share_modal @else #loginModal @endif" href="" title="Compartir">
                                     <span class="ti-share colorV margin-right-5 dimenIconos"></span>
+                                    @php($rShares = count($raffle->getReferrals))
+                                    @if($rShares > 0)
+                                        <span class="badge rbadge" style="left: -28% !important">{{ $rShares }}</span>
+                                    @endif
+
                                 </a>
                             </li>
                             @include('partials.front_modals.share_modal')
@@ -210,7 +221,7 @@
                 </div>
             </div>
 
-            <div class="col-xs-12 col-sm-5 col-sm-pull-7 col-lg-3 col-lg-pull-7 paddingLeft0 padding-rigth-0">
+            <div class="col-xs-12 col-sm-5 col-sm-pull-7 col-lg-3 col-lg-pull-7 paddingLeft0 padding-rigth-0" style="margin-top: 10px">
                 <div class="bg-gris paddingLateralGris">
                     <div class="borderTopDashed padding-bottom20 ">
                         <div class="pull-left padding-top-10 margin-bottom-20">
