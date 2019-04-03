@@ -166,11 +166,8 @@ class User extends Authenticatable implements HasMedia
 
     public function getSoldTicketsCount()
     {
-        $total = 0;
-        foreach ($this->getRaffles as $raffle) {
-            $total += $raffle->getTicketsSold();
-        }
-        return $total;
+        $query = $this->hasManyThrough(Ticket::class,Raffle::class,'owner','raffle','id','id')->where('sold','1')->count();
+        return $query;
     }
 
     public function getCountryCode()

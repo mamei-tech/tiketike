@@ -28,12 +28,30 @@ class UserController extends Controller
     public function getProfile($userid)
     {
         $current = User::findOrFail(intval($userid));
+        $currentProfile = $current->getProfile;
+        $rafflesCount = count($current->getRaffles);
+        $winnedRaffles = $current->WinnedRaffles();
+        $sharedRaffles = count($current->getReferralsBuys->groupBy('raffle_id'));
+        $soldTickets = $current->getSoldTicketsCount();
         $suggested = $this->raffleRepository->getSuggested();
+        $balance = $currentProfile->balance;
+        $raffleMoney = $current->getRaffleMoney();
+        $raferralMoney = $current->getReferralsMoney();
         $promos = Promo::getSomePromos();
+        $country = $currentProfile->getCity->country->name;
         return view('user', [
             'user' => $current,
             'suggested' => $suggested,
             'promos' => $promos,
+            'rafflesCount' => $rafflesCount,
+            'winnedRaffles' => $winnedRaffles,
+            'sharedRaffles' => $sharedRaffles,
+            'soldTickets' => $soldTickets,
+            'balance' => $balance,
+            'raffleMoney' => $raffleMoney,
+            'raferralMoney' => $raferralMoney,
+            'currentProfile' => $currentProfile,
+            'country' => $country
         ]);
     }
 

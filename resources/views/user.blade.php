@@ -21,7 +21,7 @@
                             @endif
                             <br>
 
-                            <span class="sinkinSans500MI texto16">{{$user->getProfile->getCity->country->name}}</span>
+                            <span class="sinkinSans500MI texto16">{{ $country }}</span>
                         </div>
                     </div>
                     <div class="row hidden-xs padding-top-20">
@@ -36,7 +36,7 @@
                                         :</span>
                                 </div>
                                 <div class="col-xs-3 col-sm-4 col-lg-5"><strong
-                                            class="colorN sinkinSans600SB">{{ count($user->getRaffles) }}</strong><br>
+                                            class="colorN sinkinSans600SB">{{ $rafflesCount }}</strong><br>
                                 </div>
                             </div>
                             <div class="padding-top-20">
@@ -44,7 +44,7 @@
                                         :</span>
                                 </div>
                                 <div class="col-xs-3 col-sm-4 col-lg-5"><strong
-                                            class="colorN sinkinSans600SB">{{ $user->WinnedRaffles() }}</strong><br>
+                                            class="colorN sinkinSans600SB">{{ $winnedRaffles }}</strong><br>
                                 </div>
                             </div>
                             <div class="padding-top-20">
@@ -52,7 +52,7 @@
                                         :</span>
                                 </div>
                                 <div class="col-xs-3 col-sm-4 col-lg-5"><strong
-                                            class="colorN sinkinSans600SB">{{ count($user->getReferralsBuys->groupBy('raffle_id')) }}</strong><br>
+                                            class="colorN sinkinSans600SB">{{ $sharedRaffles }}</strong><br>
                                 </div>
                             </div>
                             <div class="padding-top-20">
@@ -60,7 +60,7 @@
                                         :</span>
                                 </div>
                                 <div class="col-xs-3 col-sm-4 col-lg-5"><strong
-                                            class="colorN sinkinSans600SB">{{ $user->getSoldTicketsCount() }}</strong><br>
+                                            class="colorN sinkinSans600SB">{{ $soldTickets }}</strong><br>
                                 </div>
                             </div>
                         </div>
@@ -69,10 +69,10 @@
                                         class="ti-agenda texto14 padding-top5 margin-right-10"></span>@lang('views.contacts')
                             </h5>
 
-                            @if($user->getProfile->phone)
+                            @if($currentProfile->phone)
                                 <div class="phone sinkinSans500M padding-top-20">
                                     <span class="ti-mobile colorV"></span>
-                                    {{$user->getProfile->phone}}
+                                    {{$currentProfile->phone}}
                                 </div>
                             @endif
                             <div class="correo sinkinSans500M padding-top-20">
@@ -89,7 +89,7 @@
                                 <div class="margin-bottom-40 padding-top5">
                                     <div class="pull-left padding-top5">
                                         <span class="ti-money colorV margin-right5"></span>
-                                        <span class="borderDashed sinkinSans500M padding15">{{$user->getProfile->balance}}</span>
+                                        <span class="borderDashed sinkinSans500M padding15">{{ $balance }}</span>
                                     </div>
                                     <div class="pull-right">
                                         <button type="button"
@@ -108,7 +108,7 @@
                                                     <span class="colorV sinkinSans400I"> @lang('views.by_raffle')</span>
                                                 </div>
                                                 <div class="col-xs-5 padding-rigth-0 padding-left-0 borderBottomG">
-                                                    <span class="sinkinSans500M">{{ $user->getRaffleMoney() }}
+                                                    <span class="sinkinSans500M">{{ $raffleMoney }}
                                                         USD</span>
                                                 </div>
                                             </div>
@@ -118,7 +118,7 @@
                                                     <span class="colorV sinkinSans400I">@lang('views.by_commission')</span>
                                                 </div>
                                                 <div class="col-xs-4 padding-rigth-0 padding-left-0 borderBottomG">
-                                                    <span class="sinkinSans500M">{{ $user->getReferralsMoney() }}
+                                                    <span class="sinkinSans500M">{{ $raferralMoney }}
                                                         USD</span>
                                                 </div>
                                             </div>
@@ -161,37 +161,37 @@
                                                 :</span>
                                         </div>
                                         <div class="col-xs-6 col-sm-4"><strong
-                                                    class="colorN sinkinSans600SB">{{ count($user->getRaffles) }}</strong><br></div>
+                                                    class="colorN sinkinSans600SB">{{$rafflesCount }}</strong><br></div>
                                     </div>
                                     <div class="padding-top-20">
                                         <div class="col-xs-6 col-sm-8"><span class="colorV margin-right-20">@lang('views.winned_raffles')
                                                 :</span>
                                         </div>
                                         <div class="col-xs-6 col-sm-4"><strong
-                                                    class="colorN sinkinSans600SB">{{ $user->WinnedRaffles() }}</strong><br></div>
+                                                    class="colorN sinkinSans600SB">{{ $winnedRaffles }}</strong><br></div>
                                     </div>
                                     <div class="padding-top-20">
                                         <div class="col-xs-6 col-sm-8"><span class="colorV margin-right-20">@lang('views.shared_raffles')
                                                 :</span>
                                         </div>
                                         <div class="col-xs-6 col-sm-4"><strong
-                                                    class="colorN sinkinSans600SB">{{ count($user->getReferralsBuys->groupBy('raffle_id')) }}</strong><br></div>
+                                                    class="colorN sinkinSans600SB">{{ $sharedRaffles }}</strong><br></div>
                                     </div>
                                     <div class="padding-top-20">
                                         <div class="col-xs-6 col-sm-8"><span class="colorV margin-right-20">@lang('views.sold_tickets')
                                                 :</span>
                                         </div>
                                         <div class="col-xs-6 col-sm-4"><strong
-                                                    class="colorN sinkinSans600SB">{{ $user->getSoldTicketsCount() }}</strong><br></div>
+                                                    class="colorN sinkinSans600SB">{{ $soldTickets  }}</strong><br></div>
                                     </div>
                                 </div>
                             </div>
                             <div class="tab-pane " id="contactos">
                                 <div class="col-xs-12 sinkinSans300LI">
-                                    @if($user->getProfile->phone)
+                                    @if($currentProfile->phone)
                                     <div class="padding-top-20">
                                         <span class="ti-mobile colorV"></span>
-                                        {{$user->getProfile->phone}}
+                                        {{$currentProfile->phone}}
                                     </div>
                                     @endif
                                     <div class="padding-top-20">
@@ -207,7 +207,7 @@
                                     <div class="col-xs-12 padding-bottom20 padding-top5">
                                         <div class="col-xs-8 texto14  padding-top5">
                                             <span class="ti-money colorV margin-right5"></span>
-                                            <span class="borderDashed padding15">{{$user->getProfile->balance}}</span>
+                                            <span class="borderDashed padding15">{{ $balance }}</span>
                                         </div>
                                         <div class="col-xs-4">
                                             <button type="button"
@@ -226,7 +226,7 @@
                                                         <span class="colorV italic"> @lang('views.by_raffle')</span>
                                                     </div>
                                                     <div class="col-xs-5 padding-rigth-0 borderBottomG">
-                                                        <span class="texto14">{{ $user->getRaffleMoney() }} USD</span>
+                                                        <span class="texto14">{{ $raffleMoney }} USD</span>
                                                     </div>
                                                 </div>
                                                 <div class="row padding-top5">
@@ -235,7 +235,7 @@
                                                         <span class="colorV italic">@lang('views.by_commission')</span>
                                                     </div>
                                                     <div class="col-xs-5 padding-rigth-0 borderBottomG">
-                                                        <span class="texto14">{{ $user->getReferralsMoney() }}
+                                                        <span class="texto14">{{ $raferralMoney }}
                                                             USD</span>
                                                     </div>
                                                 </div>
@@ -285,68 +285,68 @@
                                     <li><a data-toggle="tab" class="ticket text-uppercase colorN" href="#siguiendo"
                                            aria-expanded="false">@lang('views.following')</a></li>
                                 </ul>
-                                <div class="tab-content">
-                                    <div class="tab-pane " id="todas">
+                                {{--<div class="tab-content">--}}
+                                    {{--<div class="tab-pane " id="todas">--}}
 
-                                    </div>
-                                    <div class="tab-pane active in" id="creadas">
-                                        @foreach($user->getRaffles as $raffle)
-                                            <div class="col-xs-6 col-lg-3 col-sm-4 padding-top-15">
-                                                <a href="{{ route('raffle.tickets.available',['raffleId' => $raffle->id]) }}">
-                                                    <img src="{{ $raffle->getMedia('raffles')->first()->getUrl() }}"
-                                                         class="imgRifas">
-                                                    <div class="porciento">
-                                                        <div class=" text-center">
-                                                <span class="chartB chart-porcientoR"
-                                                      data-percent="{{round($raffle->getProgress())}}">
-                                                    <span class="percentR">{{round($raffle->getProgress())}}%</span>
-                                                </span>
-                                                        </div>
-                                                    </div>
-                                                </a>
-                                            </div>
-                                        @endforeach
+                                    {{--</div>--}}
+                                    {{--<div class="tab-pane active in" id="creadas">--}}
+                                        {{--@foreach($user->getRaffles as $raffle)--}}
+                                            {{--<div class="col-xs-6 col-lg-3 col-sm-4 padding-top-15">--}}
+                                                {{--<a href="{{ route('raffle.tickets.available',['raffleId' => $raffle->id]) }}">--}}
+                                                    {{--<img src="{{ $raffle->getMedia('raffles')->first()->getUrl() }}"--}}
+                                                         {{--class="imgRifas">--}}
+                                                    {{--<div class="porciento">--}}
+                                                        {{--<div class=" text-center">--}}
+                                                {{--<span class="chartB chart-porcientoR"--}}
+                                                      {{--data-percent="{{round($raffle->getProgress())}}">--}}
+                                                    {{--<span class="percentR">{{round($raffle->getProgress())}}%</span>--}}
+                                                {{--</span>--}}
+                                                        {{--</div>--}}
+                                                    {{--</div>--}}
+                                                {{--</a>--}}
+                                            {{--</div>--}}
+                                        {{--@endforeach--}}
 
-                                    </div>
-                                    <div class="tab-pane" id="participo">
-                                        @foreach($user->getRafflesBuyed as $raffle)
-                                            <div class="col-xs-6 col-lg-3 col-sm-4 padding-top-15">
-                                                <a href="{{ route('raffle.tickets.available',['raffleId' => $raffle->id]) }}">
-                                                    <img src="{{ $raffle->getMedia('raffles')->first()->getUrl() }}"
-                                                         class="imgRifas">
-                                                    <div class="porciento">
-                                                        <div class=" text-center">
-                                                <span class="chartB chart-porcientoR"
-                                                      data-percent="{{round($raffle->getProgress())}}">
-                                                    <span class="percentR">{{round($raffle->getProgress())}}%</span>
-                                                </span>
-                                                        </div>
-                                                    </div>
-                                                </a>
-                                            </div>
-                                        @endforeach
+                                    {{--</div>--}}
+                                    {{--<div class="tab-pane" id="participo">--}}
+                                        {{--@foreach($user->getRafflesBuyed as $raffle)--}}
+                                            {{--<div class="col-xs-6 col-lg-3 col-sm-4 padding-top-15">--}}
+                                                {{--<a href="{{ route('raffle.tickets.available',['raffleId' => $raffle->id]) }}">--}}
+                                                    {{--<img src="{{ $raffle->getMedia('raffles')->first()->getUrl() }}"--}}
+                                                         {{--class="imgRifas">--}}
+                                                    {{--<div class="porciento">--}}
+                                                        {{--<div class=" text-center">--}}
+                                                {{--<span class="chartB chart-porcientoR"--}}
+                                                      {{--data-percent="{{round($raffle->getProgress())}}">--}}
+                                                    {{--<span class="percentR">{{round($raffle->getProgress())}}%</span>--}}
+                                                {{--</span>--}}
+                                                        {{--</div>--}}
+                                                    {{--</div>--}}
+                                                {{--</a>--}}
+                                            {{--</div>--}}
+                                        {{--@endforeach--}}
 
-                                    </div>
-                                    <div class="tab-pane" id="siguiendo">
-                                        @foreach($user->getRafflesFollowed as $raffle)
-                                            <div class="col-xs-6 col-lg-3 col-sm-4 padding-top-15">
-                                                <a href="{{ route('raffle.tickets.available',['raffleId' => $raffle->id]) }}">
-                                                    <img src="{{ $raffle->getMedia('raffles')->first()->getUrl() }}"
-                                                         class="imgRifas">
-                                                    <div class="porciento">
-                                                        <div class=" text-center">
-                                                <span class="chartB chart-porcientoR"
-                                                      data-percent="{{round($raffle->getProgress())}}">
-                                                    <span class="percentR">{{round($raffle->getProgress())}}%</span>
-                                                </span>
-                                                        </div>
-                                                    </div>
-                                                </a>
-                                            </div>
-                                        @endforeach
+                                    {{--</div>--}}
+                                    {{--<div class="tab-pane" id="siguiendo">--}}
+                                        {{--@foreach($user->getRafflesFollowed as $raffle)--}}
+                                            {{--<div class="col-xs-6 col-lg-3 col-sm-4 padding-top-15">--}}
+                                                {{--<a href="{{ route('raffle.tickets.available',['raffleId' => $raffle->id]) }}">--}}
+                                                    {{--<img src="{{ $raffle->getMedia('raffles')->first()->getUrl() }}"--}}
+                                                         {{--class="imgRifas">--}}
+                                                    {{--<div class="porciento">--}}
+                                                        {{--<div class=" text-center">--}}
+                                                {{--<span class="chartB chart-porcientoR"--}}
+                                                      {{--data-percent="{{round($raffle->getProgress())}}">--}}
+                                                    {{--<span class="percentR">{{round($raffle->getProgress())}}%</span>--}}
+                                                {{--</span>--}}
+                                                        {{--</div>--}}
+                                                    {{--</div>--}}
+                                                {{--</a>--}}
+                                            {{--</div>--}}
+                                        {{--@endforeach--}}
 
-                                    </div>
-                                </div>
+                                    {{--</div>--}}
+                                {{--</div>--}}
 
                             </div>
                         </div>
@@ -374,46 +374,46 @@
                                                     href="#comprados"
                                                     aria-expanded="false">@lang('views.purchased')</a></li>
                                 </ul>
-                                <div class="tab-content">
+                                {{--<div class="tab-content">--}}
 
-                                    <div class="tab-pane active in" id="vendidos">
-                                        @foreach($user->getRafflesSelled as $raffle)
-                                            <div class="col-xs-6 col-lg-3 col-sm-4 padding-top-15 paddingLeft0 padding-rigth-0">
-                                                <a href="{{ route('raffle.tickets.available',['raffleId' => $raffle->id]) }}">
-                                                    <div class="pull-left">
-                                                        @if(count($raffle->getMedia('raffles')) > 0)
-                                                            <img src="{{$raffle->getMedia('raffles')->first()->getUrl()}}"
-                                                                 class="imgTicket">
-                                                        @endif
-                                                    </div>
-                                                    <div class="pull-left bg-b colorV textoCenter">
-                                                        <h4 class="sinkinSans600SB">{{$raffle->getTicketsSold()}}</h4>
-                                                        <h5 class="text-uppercase texto10 sinkinSans300L">tickets</h5>
-                                                    </div>
-                                                </a>
-                                            </div>
+                                    {{--<div class="tab-pane active in" id="vendidos">--}}
+                                        {{--@foreach($user->getRafflesSelled as $raffle)--}}
+                                            {{--<div class="col-xs-6 col-lg-3 col-sm-4 padding-top-15 paddingLeft0 padding-rigth-0">--}}
+                                                {{--<a href="{{ route('raffle.tickets.available',['raffleId' => $raffle->id]) }}">--}}
+                                                    {{--<div class="pull-left">--}}
+                                                        {{--@if(count($raffle->getMedia('raffles')) > 0)--}}
+                                                            {{--<img src="{{$raffle->getMedia('raffles')->first()->getUrl()}}"--}}
+                                                                 {{--class="imgTicket">--}}
+                                                        {{--@endif--}}
+                                                    {{--</div>--}}
+                                                    {{--<div class="pull-left bg-b colorV textoCenter">--}}
+                                                        {{--<h4 class="sinkinSans600SB">{{$raffle->getTicketsSold()}}</h4>--}}
+                                                        {{--<h5 class="text-uppercase texto10 sinkinSans300L">tickets</h5>--}}
+                                                    {{--</div>--}}
+                                                {{--</a>--}}
+                                            {{--</div>--}}
 
-                                        @endforeach
-                                    </div>
-                                    <div class="tab-pane" id="comprados">
-                                        @foreach($user->getRafflesBuyed as $raffle)
-                                            <div class="col-xs-6 col-lg-3 col-sm-4 padding-top-15 paddingLeft0 padding-rigth-0">
-                                                <a href="{{ route('raffle.tickets.available',['raffleId' => $raffle->id]) }}">
-                                                    <div class="pull-left">
-                                                        @if(count($raffle->getMedia('raffles')) > 0)
-                                                            <img src="{{$raffle->getMedia('raffles')->first()->getUrl()}}"
-                                                                 class="imgTicket">
-                                                        @endif
-                                                    </div>
-                                                    <div class="pull-left bg-b colorV textoCenter">
-                                                        <h4 class="sinkinSans600SB">{{count($user->getTicketsByRaffle($raffle->id))}}</h4>
-                                                        <h5 class="text-uppercase texto10 sinkinSans300L">tickets</h5>
-                                                    </div>
-                                                </a>
-                                            </div>
-                                        @endforeach
-                                    </div>
-                                </div>
+                                        {{--@endforeach--}}
+                                    {{--</div>--}}
+                                    {{--<div class="tab-pane" id="comprados">--}}
+                                        {{--@foreach($user->getRafflesBuyed as $raffle)--}}
+                                            {{--<div class="col-xs-6 col-lg-3 col-sm-4 padding-top-15 paddingLeft0 padding-rigth-0">--}}
+                                                {{--<a href="{{ route('raffle.tickets.available',['raffleId' => $raffle->id]) }}">--}}
+                                                    {{--<div class="pull-left">--}}
+                                                        {{--@if(count($raffle->getMedia('raffles')) > 0)--}}
+                                                            {{--<img src="{{$raffle->getMedia('raffles')->first()->getUrl()}}"--}}
+                                                                 {{--class="imgTicket">--}}
+                                                        {{--@endif--}}
+                                                    {{--</div>--}}
+                                                    {{--<div class="pull-left bg-b colorV textoCenter">--}}
+                                                        {{--<h4 class="sinkinSans600SB">{{count($user->getTicketsByRaffle($raffle->id))}}</h4>--}}
+                                                        {{--<h5 class="text-uppercase texto10 sinkinSans300L">tickets</h5>--}}
+                                                    {{--</div>--}}
+                                                {{--</a>--}}
+                                            {{--</div>--}}
+                                        {{--@endforeach--}}
+                                    {{--</div>--}}
+                                {{--</div>--}}
 
                             </div>
                         </div>
@@ -443,48 +443,48 @@
                                                           aria-expanded="true">@lang('views.follow_me')</a></li>
                                 </ul>
 
-                                <div class="tab-content">
-                                    <div class="tab-pane " id="seguidos">
-                                        <div class="row">
-                                            <div class="col-md-12">
-                                                <div class="slickFollows" id="normalSlick-follows">
-                                                    @foreach($user->getFollows as $follow)
-                                                        <div class=" slick-list follow" id="{{$follow->id}}">
-                                                            <a href="{{ route('profile.info',$follow->id) }}">
-                                                                <img src="{{ $follow->getMedia('avatars')->first() ->getUrl()}}"
-                                                                     class="imgUsuario sombraImgUser2"
-                                                                     alt="imgUser">
-                                                            </a>
-                                                            <h6 class="hidden-xs sinkinSans600SB">{{ $follow->name }} {{ $follow->lastname }}</h6>
-                                                            <span class="texto10 sinkinSans500MI padding-left10 hidden-xs">{{ $follow->getProfile->getCity->country->name }}</span>
-                                                        </div>
-                                                    @endforeach
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="tab-pane active" id="mesiguen">
-                                        <div class="row">
-                                            <div class="col-md-12">
-                                                <div class="helper_for_followers" id="{{ count($user->getFollowers) }}"
-                                                     style="display: none"></div>
-                                                <div class="slickFollowers" id="normalSlick-followers">
-                                                    @foreach($user->getFollowers as $follower)
-                                                        <div class="slick-list follower" id="{{$follower->id}}">
-                                                            <a href="{{ route('profile.info',$follower->id) }}">
-                                                                <img src="{{ $follower->getMedia('avatars')->first() ->getUrl()}}"
-                                                                     class="imgUsuario sombraImgUser2"
-                                                                     alt="imgUser">
-                                                            </a>
-                                                            <h6 class="hidden-xs sinkinSans600SB">{{ $follower->name }} {{ $follower->lastname }}</h6>
-                                                            <span class="texto10 sinkinSans500MI padding-left10 hidden-xs">{{ $follower->getProfile->getCity->country->name }}</span>
-                                                        </div>
-                                                    @endforeach
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                {{--<div class="tab-content">--}}
+                                    {{--<div class="tab-pane " id="seguidos">--}}
+                                        {{--<div class="row">--}}
+                                            {{--<div class="col-md-12">--}}
+                                                {{--<div class="slickFollows" id="normalSlick-follows">--}}
+                                                    {{--@foreach($user->getFollows as $follow)--}}
+                                                        {{--<div class=" slick-list follow" id="{{$follow->id}}">--}}
+                                                            {{--<a href="{{ route('profile.info',$follow->id) }}">--}}
+                                                                {{--<img src="{{ $follow->getMedia('avatars')->first() ->getUrl()}}"--}}
+                                                                     {{--class="imgUsuario sombraImgUser2"--}}
+                                                                     {{--alt="imgUser">--}}
+                                                            {{--</a>--}}
+                                                            {{--<h6 class="hidden-xs sinkinSans600SB">{{ $follow->name }} {{ $follow->lastname }}</h6>--}}
+                                                            {{--<span class="texto10 sinkinSans500MI padding-left10 hidden-xs">{{ $follow->getProfile->getCity->country->name }}</span>--}}
+                                                        {{--</div>--}}
+                                                    {{--@endforeach--}}
+                                                {{--</div>--}}
+                                            {{--</div>--}}
+                                        {{--</div>--}}
+                                    {{--</div>--}}
+                                    {{--<div class="tab-pane active" id="mesiguen">--}}
+                                        {{--<div class="row">--}}
+                                            {{--<div class="col-md-12">--}}
+                                                {{--<div class="helper_for_followers" id="{{ count($user->getFollowers) }}"--}}
+                                                     {{--style="display: none"></div>--}}
+                                                {{--<div class="slickFollowers" id="normalSlick-followers">--}}
+                                                    {{--@foreach($user->getFollowers as $follower)--}}
+                                                        {{--<div class="slick-list follower" id="{{$follower->id}}">--}}
+                                                            {{--<a href="{{ route('profile.info',$follower->id) }}">--}}
+                                                                {{--<img src="{{ $follower->getMedia('avatars')->first() ->getUrl()}}"--}}
+                                                                     {{--class="imgUsuario sombraImgUser2"--}}
+                                                                     {{--alt="imgUser">--}}
+                                                            {{--</a>--}}
+                                                            {{--<h6 class="hidden-xs sinkinSans600SB">{{ $follower->name }} {{ $follower->lastname }}</h6>--}}
+                                                            {{--<span class="texto10 sinkinSans500MI padding-left10 hidden-xs">{{ $follower->getProfile->getCity->country->name }}</span>--}}
+                                                        {{--</div>--}}
+                                                    {{--@endforeach--}}
+                                                {{--</div>--}}
+                                            {{--</div>--}}
+                                        {{--</div>--}}
+                                    {{--</div>--}}
+                                {{--</div>--}}
                             </div>
                         </div>
                     </div>
