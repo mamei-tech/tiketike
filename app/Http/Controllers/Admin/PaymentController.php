@@ -29,7 +29,7 @@ class PaymentController extends Controller
         $this->middleware('permission:list_roles')                  ->  only(['executed']);
         $this->middleware('permission:pending_list_payments')       ->  only(['pending_list']);
         $this->middleware('permission:pending_details_payments')    ->  only(['pending_details']);
-        $this->middleware('permission:pending_execute')    ->  only(['pending_execute']);
+        $this->middleware('permission:pending_execute')             ->  only(['pending_execute']);
 
         $this->raffleRepository = $raffleRepository;
     }

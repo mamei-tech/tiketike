@@ -1,4 +1,4 @@
-<!--Columna sugerencias y publicidad-->
+
 <div class="col-lg-2 padding-top-50 visible-lg columnaLDerecha">
     <div class="sugerencias">
         <h6 class="text-uppercase sinkinSans600SB borderBottomV padding-bottom5">Sugerencias</h6>
@@ -31,4 +31,3 @@
     </div>
 
 </div>
-<!--FIN Columna sugerencias y publicidad-->

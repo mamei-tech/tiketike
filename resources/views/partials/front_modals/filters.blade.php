@@ -1,9 +1,9 @@
-<!--Modal para mostrar las categorias y el filtrar en la vista movil-->
+
 <div class="style">
     <div class="categoriasR hidden-lg visible-xs">
-        <!-- Button trigger modal -->
+
         <a data-toggle="modal" href="#myModal" class="btn btnCategoriasR colorB bg-categoriasR"></a>
-        <!-- Modal -->
+
         <div class="modal fullscreen-modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
              aria-hidden="true">
             <div class="modal-dialog">
@@ -22,14 +22,14 @@
                             </ul>
                         </div>
                     </div>
-                </div><!-- /.modal-content -->
-            </div><!-- /.modal-dialog -->
-        </div><!-- /.modal -->
+                </div>
+            </div>
+        </div>
     </div>
     <div class="filtrarR hidden-lg visible-xs">
-        <!-- Button trigger modal -->
+
         <a data-toggle="modal" href="#myModalFiltrar" class="btn btnFiltrarR bg-filtrarR colorB"></a>
-        <!-- Modal -->
+
         <div class="modal fullscreen-modal fade" id="myModalFiltrar" tabindex="-1" role="dialog"
              aria-labelledby="myModalLabel"
              aria-hidden="true">
@@ -86,9 +86,9 @@
                             </div>
                         </div>
                     </div>
-                </div><!-- /.modal-content -->
-            </div><!-- /.modal-dialog -->
-        </div><!-- /.modal -->
+                </div>
+            </div>
+        </div>
     </div>
     <div class="ordenarPorcientoR visible-xs">
         <a class="btn btnOrdenarPorcientoR colorB bg-ordenarPorcientoR texto18" id="percentR">%</a>
@@ -97,4 +97,3 @@
         <a class="btn btnOrdenarPorcientoR colorB bg-ordenarPorcientoR" id="priceR"><i class="fa fa-dollar texto18"></i></a>
     </div>
 </div>
-<!--FIN Modal para mostrar las categorias y el filtrar en la vista movil-->

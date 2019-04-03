@@ -867,9 +867,9 @@ input[type="radio"], input[type="checkbox"] {
     margin-bottom: 0px;
 }
 .costo {
-    height: 80px;
+    height: 85px;
     border: #000000 2px dashed;
-    border-radius: 7px;
+    border-radius: 25px;
     padding: 5px 30px;
 }
 .porcientoCompletado {
@@ -943,7 +943,7 @@ input[type="radio"], input[type="checkbox"] {
     height: 38px;
 }
 .borderBottomV{
-    border-bottom: #70438F 1px solid;
+    border-bottom: #70438F 2px solid;
 }
 .borderBottomG{
     border-bottom: #9D9D9D 1px solid;
@@ -1438,16 +1438,35 @@ section#vertical ul li.last {
     left: 28px;
     font-size: 11px
 }
+
+a.badge-container {
+    display: inline-block;
+    position: relative;
+}
+
+a > span.badge.rbadge {
+    font-family: "Open Sans", sans-serif;
+    position: absolute;
+    font-weight: 300;
+    padding: 3px;
+    /*border-radius: 2px;*/
+    background-color: #e22029;
+    left: 16%;
+    font-size: 11px;
+    bottom: 60%;
+}
+
+
 .links > ul > li > .icon > .badge {
     font-family: "Open Sans", sans-serif;
     position: absolute;
     font-weight: 300;
     padding: 3px;
-    border-radius: 2px;
+    /*border-radius: 2px;*/
     background-color: #e22029;
-    left: 38%;
+    left: 16%;
     font-size: 11px;
-    bottom: 15%;
+    bottom: 60%;
 }
 .close{
     float: left;

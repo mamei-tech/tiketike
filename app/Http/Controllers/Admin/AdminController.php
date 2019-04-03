@@ -19,6 +19,7 @@ class AdminController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+        $this->middleware('permission:enter_admin')          ->  only(['index']);
     }
 
     /**

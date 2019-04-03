@@ -29,7 +29,7 @@ class UserController extends Controller
     {
         $current = User::findOrFail(intval($userid));
         $suggested = $this->raffleRepository->getSuggested();
-        $promos = Promo::where('type', 1)->where('status', 1)->get();
+        $promos = Promo::getSomePromos();
         return view('user', [
             'user' => $current,
             'suggested' => $suggested,

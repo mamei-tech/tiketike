@@ -51,10 +51,10 @@ class RafflesController extends Controller
      */
     public function index()
     {
-        $suggested = $this->raffleRepository->getSuggested();
-        $promos = Promo::where('type', 1)->where('status', 1)->get();
-        $categories = RaffleCategory::all();
-        $raffles = Raffle::with('getStatus')
+        $suggested      = $this->raffleRepository->getSuggested();
+        $promos         = Promo::getSomePromos();
+        $categories     = RaffleCategory::all();
+        $raffles        = Raffle::with('getStatus')
             ->whereHas('getStatus', function (Builder $q) {
                 $q->where('status', 'Published');
                 $q->orWhere('status', 'Unpublished');
@@ -178,7 +178,7 @@ class RafflesController extends Controller
         $confirmation = RaffleConfirmation::where('raffle_id', $raffle->id)->first();
         $ticket = $raffle->getTickets->where('bingo', '1')->first();
         $suggested = $this->raffleRepository->getSuggested();
-        $promos = Promo::where('type', 1)->where('status', 1)->get();
+        $promos = Promo::getSomePromos();
         return view('finished_raffle', compact('raffle', 'ticket', 'confirmation', 'raffleId', 'suggested', 'promos'));
     }
 

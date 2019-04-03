@@ -1,4 +1,4 @@
-<!--Rifas por culminas-->
+
 <section class="rifasporculminar padding-top-60 padding-bottom20">
     <div class="container">
         <div class="row">
@@ -45,4 +45,4 @@
         </div>
     </div>
 </section>
-<!--Fin Rifas por culminas-->
+

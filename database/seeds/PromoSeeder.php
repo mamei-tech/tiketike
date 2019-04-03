@@ -35,7 +35,7 @@ class PromoSeeder extends Seeder
         DB::table('promos')->insert([
                 'name'          => 'Lezcano 01',
                 'type'          => 1,
-                'status'        => 0,
+                'status'        => 1,
                 'expdate'       => date(            // 1 Month Ahedad of today
                     'Y-m-d',
                     mktime(
@@ -103,6 +103,40 @@ class PromoSeeder extends Seeder
             ]
         );
 
+        DB::table('promos')->insert([
+                'name'          => 'Another Sec Promo',
+                'type'          => 1,
+                'status'        => 1,
+                'expdate'       => date(            // 1 Month Ahedad of today
+                    'Y-m-d',
+                    mktime(
+                        0, 0, 0,
+                        date("m")+1  , date("d"), date("Y")
+                    )),
+                'client'        => 3,
+                'image'         => 'iample.jpg',
+                'alternative'   => 'This image is very wonderfull',
+                'website'       => 'http://www.mamaei.com'
+            ]
+        );
+
+        DB::table('promos')->insert([
+                'name'          => 'Another Sec Promotion',
+                'type'          => 1,
+                'status'        => 1,
+                'expdate'       => date(            // 1 Month Ahedad of today
+                    'Y-m-d',
+                    mktime(
+                        0, 0, 0,
+                        date("m")+1  , date("d"), date("Y")
+                    )),
+                'client'        => 3,
+                'image'         => 'cample.jpg',
+                'alternative'   => 'This image is very wonderfull',
+                'website'       => 'http://www.mamaei.com'
+            ]
+        );
+
         // Main
         $promoa = \App\Promo::find(2);
         $promob = \App\Promo::find(3);
@@ -114,8 +148,13 @@ class PromoSeeder extends Seeder
         // Sec
         $promoc = \App\Promo::find(1);
         $promod = \App\Promo::find(4);
+        $promoz = \App\Promo::find(5);
+        $promox = \App\Promo::find(6);
 
         $promoc->addMediaFromUrl('http://localhost/pics/common/psample_3.jpg')->toMediaCollection('promos', 'promos');
         $promod->addMediaFromUrl('http://localhost/pics/common/psample_4.jpg')->toMediaCollection('promos', 'promos');
+        $promoz->addMediaFromUrl('http://localhost/pics/common/psample_5.jpg')->toMediaCollection('promos', 'promos');
+        $promox->addMediaFromUrl('http://localhost/pics/common/psample_6.jpg')->toMediaCollection('promos', 'promos');
+
     }
 }

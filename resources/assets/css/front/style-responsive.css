@@ -1089,7 +1089,7 @@
     .modal-header {
         height: 15px;
         /*border-bottom: #000000 2px dashed;*/
-        padding-bottom: 30px;
+        padding-bottom: 14%;
     }
     .style{
         z-index: 99999;
@@ -1512,7 +1512,7 @@
     .modal-header {
         height: 15px;
         /*border-bottom: #000000 2px dashed;*/
-        padding-bottom: 30px;
+        padding-bottom: 18%;
     }
     .style{
         z-index: 99999;
@@ -1925,7 +1925,7 @@
     .modal-header {
         height: 15px;
         /*border-bottom: #000000 2px dashed;*/
-        padding-bottom: 30px;
+        padding-bottom: 18%
     }
     .style{
         z-index: 99999;
@@ -2346,7 +2346,7 @@
     .modal-header {
         height: 15px;
         /*border-bottom: #000000 2px dashed;*/
-        padding-bottom: 30px;
+        padding-bottom: 20%;
     }
     .style{
         z-index: 99999;

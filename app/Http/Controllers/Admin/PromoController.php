@@ -132,16 +132,19 @@ class PromoController extends Controller
             $request->status == 1 ? $promo->status = $request->status : $promo->status = 0;
 
             // Working with image here
-            try {
+            if ($request->has('image') and $request->file('image')->isValid()) {
+                try {
 
-                $promo->addMediaFromRequest('image')->toMediaCollection('promos', 'promos');  // Second parameters is de defaul filesystem, optional
-                $promo->image = $request->image->getClientOriginalName();
+                    $promo->addMediaFromRequest('image')->toMediaCollection('promos', 'promos');  // Second parameters is de defaul filesystem, optional
+                    $promo->image = $request->image->getClientOriginalName();
 
-            } catch (Exception $e) {
+                } catch (Exception $e) {
 
-                $promo->delete();
-                return redirect()->back()->withErrors("Something went wrong uploading the image.");
+                    $promo->delete();
+                    return redirect()->back()->withErrors("Something went wrong uploading the image.");
+                }
             }
+
 
             $promo->save();
 

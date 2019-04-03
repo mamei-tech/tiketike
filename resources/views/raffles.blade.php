@@ -7,7 +7,7 @@
     @include('partials.front_modals.notification_modal')
     <div class="container contenido">
         <div class="row">
-            <!--categoria y rifas-->
+
             <div class="col-sm-4 col-lg-3 hidden-xs padding-rigth-0">
                 <div class="categoria">
                     <div class="listadoCategoriaN">
@@ -79,8 +79,7 @@
                     </div>
                 </div>
             </div>
-            <!--FIN categoria y rifas-->
-            <!--Contenido rifas-->
+
             <div class="col-xs-12 col-sm-8 col-lg-7 paddingRifas">
                 <div class="col-lg-12">
                     <div class="row padding-bottom20 ">
@@ -105,7 +104,7 @@
                                         </div>
                                         <div id="myCarousel{{ $raffle->id }}"
                                              class="carousel carouselRifas slide hidden-xs " data-ride="carousel">
-                                            <!-- Indicators -->
+
                                             <div class="carousel-inner" role="listbox">
                                                 <?php $count = 0;?>
                                                 @foreach($raffle->getMedia('raffles') as $media)
@@ -152,13 +151,17 @@
                                                         class="colorN sinkinSans600SB">${{ $raffle->tickets_price ? $raffle->tickets_price : 0 }}</span>
                                             </div>
                                         </div>
-                                        <div class="row links">
-                                            <ul class="list-unstyled list-inline padding-top-20 hidden-xs pull-right">
-                                                <li class="margin-right-10"><a class="icon"
-                                                                               href="{{ route('raffles.follow',['raffleId' => $raffle->id]) }}">
+                                        <div class="row links" style="margin-top: 25px;">
+                                            <ul class="list-unstyled list-inline padding-top-20 hidden-xs pull-right" style="padding-right: 40px;">
+                                                <li class="margin-right-10">
+                                                    <a class="icon badge-container"
+                                                       href="{{ route('raffles.follow',['raffleId' => $raffle->id]) }}">
                                                     <span class="ti-face-smile texto-negrita colorV margin-right-5 texto16"
                                                           title="Seguir"></span>
-                                                        <span class="badge badge-default">{{ count($raffle->getFollowers) }}</span>
+                                                        @php($rFallowers = count($raffle->getFollowers))
+                                                        @if($rFallowers > 0)
+                                                            <span class="badge">{{ $rFallowers }}</span>
+                                                        @endif
                                                         <span class="colorV sinkinSans600SB">Seguir</span>
                                                     </a></li>
                                                 <li class=" margin-right-10"><a data-toggle="modal"
@@ -184,11 +187,12 @@
                         @endif
                     </div>
                     <div class="col-md-12 text-center">
+                        {{----}}
                         {{ $raffles->links() }}
                     </div>
                 </div>
             </div>
-            <!--FIN Contenido rifas-->
+
             @include('partials.frontend.promotions',['suggested' => $suggested])
         </div>
     </div>
