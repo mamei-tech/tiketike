@@ -15,7 +15,7 @@ $(document).ready(function () {
             'height' : '550px',
             'overflow-y' : 'scroll'
         });
-        $('#commentContent').focus();
+        // $('#scrollContent').scrollTo('#commentContent');
     });
 
 

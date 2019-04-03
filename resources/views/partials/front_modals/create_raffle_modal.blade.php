@@ -70,7 +70,7 @@
                         </div>
                     </div>
 
-                    <div class="col-md-12">
+                    <div class="col-md-12 createRaffleModButt">
                         <div class="row padding-top-20">
                             <div class="col-xs-5">
                                 <button type="submit" class="btn btn-sm btn-primary">

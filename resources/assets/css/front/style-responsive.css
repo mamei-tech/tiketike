@@ -452,6 +452,11 @@
     }
 }
 @media (max-width: 767px) {
+
+    .createRaffleModButt{
+        padding-bottom: 200px;
+    }
+
     .preciosExtraer{
         border-top: #9D9D9D solid 1px;
         margin-left: 4px;
@@ -601,7 +606,7 @@
         position: absolute;
     }
     .bg-categoriasR{
-        background: url("../../pics/front/bg-categoriasR1.svg");
+        background: url("../../pics/front/bg-categoriasR1.png");
     }
     .bg-filtrarR{
         background: url("../../pics/front/bg-filtrarR1.svg");
@@ -640,6 +645,11 @@
 
 }
 @media (max-width: 600px) {
+
+    .createRaffleModButt{
+        padding-bottom: 200px;
+    }
+
     .preciosExtraer{
         border-top: #9D9D9D solid 1px;
         margin-left: 10px;
@@ -797,7 +807,7 @@
         top: 345px;
     }
     .bg-categoriasR{
-        background: url("../../pics/front/bg-categoriasR1.svg");
+        background: url("../../pics/front/bg-categoriasR1.png");
     }
     .bg-filtrarR{
         background: url("../../pics/front/bg-filtrarR1.svg");
@@ -864,6 +874,11 @@
 
 }
 @media (min-width: 481px)and (max-width: 500px){
+
+    .createRaffleModButt{
+        padding-bottom: 200px;
+    }
+
     .preciosExtraer{
         border-top: #9D9D9D solid 1px;
         margin-left: 13px;
@@ -1100,7 +1115,7 @@
         width: inherit;
     }
     .bg-categoriasR{
-        background: url("../../pics/front/bg-categoriasR1.svg");
+        background: url("../../pics/front/bg-categoriasR1.png");
     }
     .bg-filtrarR{
         background: url("../../pics/front/bg-filtrarR1.svg");
@@ -1305,6 +1320,10 @@
         border-top: #9D9D9D solid 1px;
         margin-left: 25px;
         width: 87%;
+    }
+
+    .createRaffleModButt{
+        padding-bottom: 200px;
     }
     div.contenido{
         margin-top: 15px;
@@ -1523,7 +1542,7 @@
         width: inherit;
     }
     .bg-categoriasR{
-        background: url("../../pics/front/bg-categoriasR1.svg");
+        background: url("../../pics/front/bg-categoriasR1.png");
     }
     .bg-filtrarR{
         background: url("../../pics/front/bg-filtrarR1.svg");
@@ -1726,6 +1745,10 @@
 
 }
 @media (max-width: 400px) {
+    .createRaffleModButt{
+        padding-bottom: 200px;
+    }
+
     div.contenido{
         margin-top: 15px;
     }
@@ -1936,7 +1959,7 @@
         width: inherit;
     }
     .bg-categoriasR{
-        background: url("../../pics/front/bg-categoriasR1.svg");
+        background: url("../../pics/front/bg-categoriasR1.png");
     }
     .bg-filtrarR{
         background: url("../../pics/front/bg-filtrarR1.svg");
@@ -2127,6 +2150,9 @@
 
 }
 @media (max-width: 320px) {
+    .createRaffleModButt{
+        padding-bottom: 200px;
+    }
     div.contenido{
         margin-top: 15px;
     }
@@ -2357,7 +2383,7 @@
         width: inherit;
     }
     .bg-categoriasR{
-        background: url("../../pics/front/bg-categoriasR1.svg");
+        background: url("../../pics/front/bg-categoriasR1.png");
     }
     .bg-filtrarR{
         background: url("../../pics/front/bg-filtrarR1.svg");

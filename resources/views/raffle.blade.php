@@ -287,6 +287,7 @@
     <script src="https://checkout.stripe.com/checkout.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
     <script type="text/javascript">
+
         $(document).ready(function () {
             var handler = StripeCheckout.configure({
                 key: '{{ config('services.stripe.key') }}',
@@ -335,38 +336,38 @@
         });
 
 
-        $('.slickVertical').slick({
-            autoplay: true,
-            vertical: true,
-            verticalSwiping: true,
-            swipeToSlide: true,
-            slidesToShow: 3,
-            slidesToScroll: 3,
-            arrows: false,
-            infinite: true,
-            centerMode: true,
-            centerPadding: '50% 4%',
-            responsive: [
-                {
-                    breakpoint: 768,
-                    settings: {
-                        arrows: false,
-                        centerMode: true,
-                        centerPadding: '40px',
-                        slidesToShow: 3
-                    }
-                },
-                {
-                    breakpoint: 480,
-                    settings: {
-                        arrows: false,
-                        centerMode: true,
-                        centerPadding: '40px',
-                        slidesToShow: 3
-                    }
-                }
-            ]
-        });
+        // $('.slickVertical').slick({
+        //     autoplay: true,
+        //     vertical: true,
+        //     verticalSwiping: true,
+        //     swipeToSlide: true,
+        //     slidesToShow: 3,
+        //     slidesToScroll: 3,
+        //     arrows: false,
+        //     infinite: true,
+        //     centerMode: true,
+        //     centerPadding: '50% 4%',
+        //     responsive: [
+        //         {
+        //             breakpoint: 768,
+        //             settings: {
+        //                 arrows: false,
+        //                 centerMode: true,
+        //                 centerPadding: '40px',
+        //                 slidesToShow: 3
+        //             }
+        //         },
+        //         {
+        //             breakpoint: 480,
+        //             settings: {
+        //                 arrows: false,
+        //                 centerMode: true,
+        //                 centerPadding: '40px',
+        //                 slidesToShow: 3
+        //             }
+        //         }
+        //     ]
+        // });
 
 
 
