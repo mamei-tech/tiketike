@@ -79,12 +79,16 @@ class UsersTableSeeder extends Seeder
             $anotherusersset = \App\User::inRandomOrder()->take(5)->get();
 
             foreach ($anotherusersset as $anotheruser)
+            {
+                if($user->id == $anotheruser->id) continue;
 
-            DB::table('user_follow')->insert([
-                    'follow_id'     => $user->id,
-                    'follower_id'  => $anotheruser->id,
-                ]
-            );
+                DB::table('user_follow')->insert([
+                        'follow_id'     => $user->id,
+                        'follower_id'  => $anotheruser->id,
+                    ]
+                );
+            }
+
         }
     }
 }
