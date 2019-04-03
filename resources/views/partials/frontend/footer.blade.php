@@ -1,4 +1,4 @@
-
+@include('partials.front_modals.terminos_y_condiciones_modal')
 
 <footer >
     <div class="piedepagina" >

@@ -981,7 +981,7 @@ demo = {
                     position: 'right',
                     labels : {
                         boxWidth: 15,
-                        padding: 55,
+                        padding: 40,
                     },
                 },
             }

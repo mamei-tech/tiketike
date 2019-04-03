@@ -56,8 +56,14 @@
 
                             <a class="icon" data-toggle="modal" href="#misCompras" title="Mis Tickets">
                                 <span class="ti-ticket colorV dimenIconos"></span>
-                                <span class="badge badge-default">@if(Auth::user() != null){{ count(Auth::user()->getTicketsByRaffle($raffle->id)) }} @else
-                                        0 @endif</span>
+                                @if(Auth::user() != null)
+                                @php($rMyTickets = count(Auth::user()->getTicketsByRaffle($raffle->id)))
+                                @if($rMyTickets > 0)
+                                    <span class="badge rbadge">{{ $rMyTickets }} @else
+                                        </span>
+                                @endif
+                                @endif
+
                             </a>
 
                             <div class="modal fullscreen-modal fade" id="misCompras" tabindex="-1" role="dialog"
@@ -99,13 +105,25 @@
                                 </a>
                             </li>
                             <li class="margin-right-10">
-                                <a href="" title="Seguir">
-                                    <span class="ti-face-smile colorV margin-right-5 dimenIconos"></span>
-                                </a>
+                                <a class="icon badge-container"
+                                   href="{{ route('raffles.follow',['raffleId' => $raffle->id]) }}">
+                                                    <span class="ti-face-smile texto-negrita colorV margin-right-5 texto16"
+                                                          title="Seguir"></span>
+                                    @php($rFallowers = count($raffle->getFollowers))
+                                    @if($rFallowers > 0)
+                                        <span class="badge rbadge">{{ $rFallowers }}</span>
+                                    @endif
+                                    <span class="colorV sinkinSans600SB">Seguir</span>
+                                </a></li>
                             </li>
                             <li class="margin-right-10">
-                                <a data-toggle="modal" data-target="@if(\Auth::check())#{{$raffle->id}}-share_modal @else #loginModal @endif" href="" title="Compartir">
+                                <a class="icon badge-container" data-toggle="modal" data-target="@if(\Auth::check())#{{$raffle->id}}-share_modal @else #loginModal @endif" href="" title="Compartir">
                                     <span class="ti-share colorV margin-right-5 dimenIconos"></span>
+                                    @php($rShares = count($raffle->getReferrals))
+                                    @if($rShares > 0)
+                                        <span class="badge rbadge" style="left: -28% !important">{{ $rShares }}</span>
+                                    @endif
+
                                 </a>
                             </li>
                             @include('partials.front_modals.share_modal')
@@ -203,7 +221,7 @@
                 </div>
             </div>
 
-            <div class="col-xs-12 col-sm-5 col-sm-pull-7 col-lg-3 col-lg-pull-7 paddingLeft0 padding-rigth-0">
+            <div class="col-xs-12 col-sm-5 col-sm-pull-7 col-lg-3 col-lg-pull-7 paddingLeft0 padding-rigth-0" style="margin-top: 10px">
                 <div class="bg-gris paddingLateralGris">
                     <div class="borderTopDashed padding-bottom20 ">
                         <div class="pull-left padding-top-10 margin-bottom-20">
@@ -269,6 +287,7 @@
     <script src="https://checkout.stripe.com/checkout.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
     <script type="text/javascript">
+
         $(document).ready(function () {
             var handler = StripeCheckout.configure({
                 key: '{{ config('services.stripe.key') }}',
@@ -317,38 +336,38 @@
         });
 
 
-        $('.slickVertical').slick({
-            autoplay: true,
-            vertical: true,
-            verticalSwiping: true,
-            swipeToSlide: true,
-            slidesToShow: 3,
-            slidesToScroll: 3,
-            arrows: false,
-            infinite: true,
-            centerMode: true,
-            centerPadding: '50% 4%',
-            responsive: [
-                {
-                    breakpoint: 768,
-                    settings: {
-                        arrows: false,
-                        centerMode: true,
-                        centerPadding: '40px',
-                        slidesToShow: 3
-                    }
-                },
-                {
-                    breakpoint: 480,
-                    settings: {
-                        arrows: false,
-                        centerMode: true,
-                        centerPadding: '40px',
-                        slidesToShow: 3
-                    }
-                }
-            ]
-        });
+        // $('.slickVertical').slick({
+        //     autoplay: true,
+        //     vertical: true,
+        //     verticalSwiping: true,
+        //     swipeToSlide: true,
+        //     slidesToShow: 3,
+        //     slidesToScroll: 3,
+        //     arrows: false,
+        //     infinite: true,
+        //     centerMode: true,
+        //     centerPadding: '50% 4%',
+        //     responsive: [
+        //         {
+        //             breakpoint: 768,
+        //             settings: {
+        //                 arrows: false,
+        //                 centerMode: true,
+        //                 centerPadding: '40px',
+        //                 slidesToShow: 3
+        //             }
+        //         },
+        //         {
+        //             breakpoint: 480,
+        //             settings: {
+        //                 arrows: false,
+        //                 centerMode: true,
+        //                 centerPadding: '40px',
+        //                 slidesToShow: 3
+        //             }
+        //         }
+        //     ]
+        // });
 
 
 

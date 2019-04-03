@@ -2,7 +2,7 @@
 <div class="modal fade" id="createRaffleModal" tabindex="-1" role="dialog"
      aria-labelledby="myModalLabel"
      aria-hidden="true">
-    <div class="modal-dialog" style="width: 60% !important;">
+    <div class="modal-dialog" style="width: 100% !important;">
         <div class="modal-content" style="width: 100% !important;">
             <div class="modal-header padding-left-0">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true" style="padding-left: 5%">
@@ -70,7 +70,7 @@
                         </div>
                     </div>
 
-                    <div class="col-md-12">
+                    <div class="col-md-12 createRaffleModButt">
                         <div class="row padding-top-20">
                             <div class="col-xs-5">
                                 <button type="submit" class="btn btn-sm btn-primary">

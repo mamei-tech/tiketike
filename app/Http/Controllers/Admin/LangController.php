@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Input;
 class LangController extends Controller
 {
 
-    public function localizator(){
+    public function localizator() {
         if (!Session::has('locale'))
             Session::put('locale', input::get('locale'));
         else
