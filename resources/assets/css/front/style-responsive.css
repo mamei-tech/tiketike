@@ -2606,6 +2606,18 @@
         margin-top: 0 !important;
     }
 
+
+    .slicklanding .itemImg {
+        position: relative;
+        padding: 0;
+        padding-right: 1%;
+        margin: 0;
+        margin-right: 0px;
+        overflow: hidden;
+        margin-top: 20px;
+
+    }
+
     .slicklanding .itemImg strong {
         font-size: 6px;
         display: block;
