@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\City;
 use App\Http\Requests\StoreUserprofileRequest;
+use App\Http\Resources\RaffleResource;
 use App\Promo;
 use App\Repositories\RaffleRepository;
 use App\User;
@@ -27,7 +28,9 @@ class UserController extends Controller
 
     public function getProfile($userid)
     {
-        $current = User::findOrFail(intval($userid));
+        $current = User::findOrFail((int)$userid);
+        $raffles =$current->getRaffles;
+        $rafflesBuyed = $current->getRafflesBuyed;
         $currentProfile = $current->getProfile;
         $rafflesCount = count($current->getRaffles);
         $winnedRaffles = $current->WinnedRaffles();
@@ -38,21 +41,25 @@ class UserController extends Controller
         $raffleMoney = $current->getRaffleMoney();
         $raferralMoney = $current->getReferralsMoney();
         $promos = Promo::getSomePromos();
+        $avatar = $current->getMedia('avatars')->first()->getUrl();
         $country = $currentProfile->getCity->country->name;
-        return view('user', [
-            'user' => $current,
-            'suggested' => $suggested,
-            'promos' => $promos,
-            'rafflesCount' => $rafflesCount,
-            'winnedRaffles' => $winnedRaffles,
-            'sharedRaffles' => $sharedRaffles,
-            'soldTickets' => $soldTickets,
-            'balance' => $balance,
-            'raffleMoney' => $raffleMoney,
-            'raferralMoney' => $raferralMoney,
-            'currentProfile' => $currentProfile,
-            'country' => $country
-        ]);
+        return view('user', compact(
+            'current',
+            'currentProfile',
+            'rafflesCount',
+            'winnedRaffles',
+            'sharedRaffles',
+            'soldTickets',
+            'suggested',
+            'balance',
+            'raffleMoney',
+            'raferralMoney',
+            'promos',
+            'avatar',
+            'country',
+            'raffles',
+            'rafflesBuyed'
+        ));
     }
 
 

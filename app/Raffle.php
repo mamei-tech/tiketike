@@ -6,6 +6,7 @@ use App\Http\TkTk\Cfg\CfgRaffles;
 use App\Http\TkTk\CodesGenerator;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use PhpParser\Node\Scalar\String_;
 use Psy\Util\Str;
@@ -345,5 +346,10 @@ class Raffle extends Model implements HasMedia
             ->where('raffles.id', '=', $raffle->id)
             ->groupBy('users.id')
             ->get();
+    }
+
+    public function getImage()
+    {
+        return $this->getMedia('raffles')->first()->getUrl();
     }
 }
