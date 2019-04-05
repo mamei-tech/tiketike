@@ -81,12 +81,6 @@ class URaffleController extends Controller
         // Getting the raffle
         $raffle = Raffle::findOrFail($request->id);
 
-        // esta parte son las notificaciones a los usuarios
-        $users = $raffle->getFollowers;
-        foreach ($users as $user) {
-            $user->notify(new RaffleUpdated($raffle,$user));
-        }
-
         // fin notificaciones
         // Getting & decripting the form data sended to the api
         $apiFormData = decrypt($_COOKIE['azeroth']);
@@ -108,6 +102,12 @@ class URaffleController extends Controller
             'user' => Auth::user()->id,
             'raffle'    => $raffle->id,
         ]);
+
+        // esta parte son las notificaciones a los usuarios
+        $users = $raffle->getFollowers;
+        foreach ($users as $user) {
+            $user->notify(new RaffleUpdated($raffle,$user));
+        }
 
         return redirect()->route('unpublished.index',
             [

@@ -1,13 +1,6 @@
 import axios from 'axios';
-
-
-
-
-
 /* On ready */
 $(document).ready(function () {
-
-
     $('#comenta').click(function (e) {
         e.preventDefault();
         $('#comentarios').fadeIn("300");
@@ -37,14 +30,6 @@ $(document).ready(function () {
 
     /*  SETTING UP AXIOS HEADERS  */
     axios.defaults.headers.common['Authorization'] = "Bearer " + $('meta[name=access-token]').attr('content');
-
-    uploadHBR.init({
-        "target": "#uploads",
-        "max": 3,
-        "textNew": "ADD",
-        "textTitle": "Click here or drag to upload an imagem",
-        "textTitleRemove": "Click here remove the imagem"
-    });
 
     $('input.tickets').on('change',function () {
         var amount = $('#countTickets').html();
