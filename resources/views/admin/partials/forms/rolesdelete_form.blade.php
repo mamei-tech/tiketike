@@ -2,6 +2,7 @@
       accept-charset="UTF-8" enctype="multipart/form-data">
     {{ csrf_field() }}
     <input name="_method" type="hidden" value="DELETE">
+    <input type="hidden" name="id" id="hidden_id">
 
     <div class="row">
         <label class="col-sm-3 col-form-label">Role Id</label>

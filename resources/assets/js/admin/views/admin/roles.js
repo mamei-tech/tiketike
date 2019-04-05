@@ -19,13 +19,14 @@ function popultDeleteForm(roleid, roleName, roleDescription) {
     let deleteForm = $('div#frm_deleteRole form');
 
     deleteForm.find('input#tb_id').val(roleid);
+    deleteForm.find('input#hidden_id').val(roleid);
     deleteForm.find('input#tb_name').val(roleName);
     deleteForm.find('input#tb_description').val(roleDescription);
 
     // Updating the id parameter in action attrib
     let currentFormAction = deleteForm.attr('action');
     /* that way we don't need isGood2ApendID method */
-    if (isGood2ApendID(currentFormAction))
+    // if (isGood2ApendID(currentFormAction))
         deleteForm.attr('action', currentFormAction + '/' + roleid);
 }
 

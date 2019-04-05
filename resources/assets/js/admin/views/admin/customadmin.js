@@ -1637,71 +1637,71 @@ demo = {
 
 
 
-        ctx = document.getElementById('emailsCampaignChart').getContext("2d");
+        // ctx = document.getElementById('emailsCampaignChart').getContext("2d");
+        //
+        // gradientStroke = ctx.createLinearGradient(500, 0, 100, 0);
+        // gradientStroke.addColorStop(0, '#18ce0f');
+        // gradientStroke.addColorStop(1, chartColor);
+        //
+        // gradientFill = ctx.createLinearGradient(0, 170, 0, 50);
+        // gradientFill.addColorStop(0, "rgba(128, 182, 244, 0)");
+        // gradientFill.addColorStop(1, hexToRGB('#18ce0f',0.4));
+        //
+        // myChart = new Chart(ctx, {
+        //     type: 'line',
+        //     data: {
+        //         labels: ["12pm,", "3pm", "6pm", "9pm", "12am", "3am", "6am", "9am"],
+        //         datasets: [{
+        //             label: "Email Stats",
+        //             borderColor: "#18ce0f",
+        //             pointBorderColor: "#FFF",
+        //             pointBackgroundColor: "#18ce0f",
+        //             pointBorderWidth: 2,
+        //             pointHoverRadius: 4,
+        //             pointHoverBorderWidth: 1,
+        //             pointRadius: 4,
+        //             fill: true,
+        //             backgroundColor: gradientFill,
+        //             borderWidth: 2,
+        //             data: [40, 500, 650, 700, 1200, 1250, 1300, 1900]
+        //         }]
+        //     },
+        //     options: gradientChartOptionsConfiguration
+        // });
 
-        gradientStroke = ctx.createLinearGradient(500, 0, 100, 0);
-        gradientStroke.addColorStop(0, '#18ce0f');
-        gradientStroke.addColorStop(1, chartColor);
-
-        gradientFill = ctx.createLinearGradient(0, 170, 0, 50);
-        gradientFill.addColorStop(0, "rgba(128, 182, 244, 0)");
-        gradientFill.addColorStop(1, hexToRGB('#18ce0f',0.4));
-
-        myChart = new Chart(ctx, {
-            type: 'line',
-            data: {
-                labels: ["12pm,", "3pm", "6pm", "9pm", "12am", "3am", "6am", "9am"],
-                datasets: [{
-                    label: "Email Stats",
-                    borderColor: "#18ce0f",
-                    pointBorderColor: "#FFF",
-                    pointBackgroundColor: "#18ce0f",
-                    pointBorderWidth: 2,
-                    pointHoverRadius: 4,
-                    pointHoverBorderWidth: 1,
-                    pointRadius: 4,
-                    fill: true,
-                    backgroundColor: gradientFill,
-                    borderWidth: 2,
-                    data: [40, 500, 650, 700, 1200, 1250, 1300, 1900]
-                }]
-            },
-            options: gradientChartOptionsConfiguration
-        });
-
-        var e = document.getElementById("activeCountries").getContext("2d");
-
-        gradientStroke = ctx.createLinearGradient(500, 0, 100, 0);
-        gradientStroke.addColorStop(0, '#2CA8FF');
-        gradientStroke.addColorStop(1, chartColor);
-
-        gradientFill = ctx.createLinearGradient(0, 170, 0, 50);
-        gradientFill.addColorStop(0, "rgba(128, 182, 244, 0)");
-        gradientFill.addColorStop(1, hexToRGB('#2CA8FF', 0.4));
-
-        var a =  {
-            type : "line",
-            data : {
-                labels : ["January","February","March","April","May","June","July","August","September","October"],
-                datasets: [{
-                    label: "Active Countries",
-                    backgroundColor: gradientFill,
-                    borderColor: "#2CA8FF",
-                    pointBorderColor: "#FFF",
-                    pointBackgroundColor: "#2CA8FF",
-                    pointBorderWidth: 2,
-                    pointHoverRadius: 4,
-                    pointHoverBorderWidth: 1,
-                    pointRadius: 4,
-                    fill: true,
-                    borderWidth: 2,
-                    data: [80,78,86,96,83,85,76,75,88,90]
-                }]
-            },
-            options: gradientChartOptionsConfiguration
-        };
-
-        var viewsChart = new Chart(e,a);
+        // var e = document.getElementById("activeCountries").getContext("2d");
+        //
+        // gradientStroke = ctx.createLinearGradient(500, 0, 100, 0);
+        // gradientStroke.addColorStop(0, '#2CA8FF');
+        // gradientStroke.addColorStop(1, chartColor);
+        //
+        // gradientFill = ctx.createLinearGradient(0, 170, 0, 50);
+        // gradientFill.addColorStop(0, "rgba(128, 182, 244, 0)");
+        // gradientFill.addColorStop(1, hexToRGB('#2CA8FF', 0.4));
+        //
+        // var a =  {
+        //     type : "line",
+        //     data : {
+        //         labels : ["January","February","March","April","May","June","July","August","September","October"],
+        //         datasets: [{
+        //             label: "Active Countries",
+        //             backgroundColor: gradientFill,
+        //             borderColor: "#2CA8FF",
+        //             pointBorderColor: "#FFF",
+        //             pointBackgroundColor: "#2CA8FF",
+        //             pointBorderWidth: 2,
+        //             pointHoverRadius: 4,
+        //             pointHoverBorderWidth: 1,
+        //             pointRadius: 4,
+        //             fill: true,
+        //             borderWidth: 2,
+        //             data: [80,78,86,96,83,85,76,75,88,90]
+        //         }]
+        //     },
+        //     options: gradientChartOptionsConfiguration
+        // };
+        //
+        // var viewsChart = new Chart(e,a);
 
 
         // Bar Charts
