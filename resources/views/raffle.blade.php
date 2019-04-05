@@ -233,7 +233,7 @@
                         </div>
                     </div>
                     <div class="col-xs-12 borderBottomDashed"></div>
-                    <div class="row padding-top-20 padding-left30">
+                    <div class="row padding-top-20 padding-left30 bg-large">
                         <div class="centerM slickVertical sinkinSans400R text-uppercase  ">
                             @foreach($raffle->getTicketsAvailable as $ticket)
                                 <div>
@@ -336,38 +336,38 @@
         });
 
 
-        // $('.slickVertical').slick({
-        //     autoplay: true,
-        //     vertical: true,
-        //     verticalSwiping: true,
-        //     swipeToSlide: true,
-        //     slidesToShow: 3,
-        //     slidesToScroll: 3,
-        //     arrows: false,
-        //     infinite: true,
-        //     centerMode: true,
-        //     centerPadding: '50% 4%',
-        //     responsive: [
-        //         {
-        //             breakpoint: 768,
-        //             settings: {
-        //                 arrows: false,
-        //                 centerMode: true,
-        //                 centerPadding: '40px',
-        //                 slidesToShow: 3
-        //             }
-        //         },
-        //         {
-        //             breakpoint: 480,
-        //             settings: {
-        //                 arrows: false,
-        //                 centerMode: true,
-        //                 centerPadding: '40px',
-        //                 slidesToShow: 3
-        //             }
-        //         }
-        //     ]
-        // });
+        $('.slickVertical').slick({
+            autoplay: true,
+            vertical: true,
+            verticalSwiping: true,
+            swipeToSlide: true,
+            slidesToShow: 3,
+            slidesToScroll: 3,
+            arrows: false,
+            infinite: true,
+            centerMode: true,
+            centerPadding: '50% 4%',
+            responsive: [
+                {
+                    breakpoint: 768,
+                    settings: {
+                        arrows: false,
+                        centerMode: true,
+                        centerPadding: '40px',
+                        slidesToShow: 3
+                    }
+                },
+                {
+                    breakpoint: 480,
+                    settings: {
+                        arrows: false,
+                        centerMode: true,
+                        centerPadding: '40px',
+                        slidesToShow: 3
+                    }
+                }
+            ]
+        });
 
 
 

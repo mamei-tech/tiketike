@@ -12,7 +12,7 @@ $(document).ready(function () {
         e.preventDefault();
         $('#comentarios').fadeIn("300");
         $('#scrollContent').css({
-            'height' : '550px',
+            'height' : '776px',
             'overflow-y' : 'scroll'
         });
         // $('#scrollContent').scrollTo('#commentContent');
