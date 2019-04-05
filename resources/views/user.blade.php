@@ -405,7 +405,7 @@
                                                              class="imgTicket">
                                                     </div>
                                                     <div class="pull-left bg-b colorV textoCenter">
-                                                        <h4 class="sinkinSans600SB">{{$current->getTicketsByRaffle($raffle->id)}}</h4>
+                                                        <h4 class="sinkinSans600SB">{{count($current->getTicketsByRaffle($raffle->id))}}</h4>
                                                         <h5 class="text-uppercase texto10 sinkinSans300L">tickets</h5>
                                                     </div>
                                                 </a>

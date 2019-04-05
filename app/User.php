@@ -97,7 +97,7 @@ class User extends Authenticatable implements HasMedia
         $tickets = Ticket::with('getBuyer')
             ->where('buyer',$this->id)
             ->where('raffle',$raffle_id)
-            ->count();
+            ->get();
         return $tickets;
     }
 
