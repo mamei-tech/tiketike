@@ -5,7 +5,7 @@
 
     {{-- Meta, title, CSS, favicons, etc. --}}
     @section('metas')
-        {{-- <link rel="icon" type="image/png" href="../assets/img/favicon.png"> --}}
+        <link rel="icon" href="{{ asset('pics/favicon.png') }}">
 
         <meta charset="utf-8">
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
