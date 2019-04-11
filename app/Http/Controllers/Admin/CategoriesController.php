@@ -51,8 +51,8 @@ class CategoriesController extends Controller
 
     public function update(Request $request)
     {
-        $category = $request->get('category');
-        $category = RaffleCategory::findOrFail($category);
+        $id = $request->get('id');
+        $category = RaffleCategory::findOrFail($id);
         $category->category = $request->get('category');
         $category->icon = $request->get('icon');
         $category->save();
@@ -65,5 +65,16 @@ class CategoriesController extends Controller
 
         return redirect()->route('categories.index')
             ->with('success', 'Category updated successfully');
+    }
+
+    public function destroy($id)
+    {
+        Log::log('INFO', trans('aLogs.adm_updated_delete'),
+            [
+                'user'      => Auth::user()->id,
+            ]);
+        RaffleCategory::destroy($id);
+        return redirect()->route('categories.index')
+            ->with('success', 'Category deleted successfully');
     }
 }

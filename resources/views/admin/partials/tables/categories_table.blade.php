@@ -26,10 +26,6 @@
             {{--Buttons --}}
             <td class="text-right">
 
-                <a class="btn btn-info btn-icon btn-sm" href="">
-                    <i class="now-ui-icons education_glasses"></i>
-                </a>
-
                 <a id="rpublish" class="btn btn-success btn-icon btn-sm" href="">
                     <i class="now-ui-icons arrows-1_cloud-upload-94"></i>
                 </a>

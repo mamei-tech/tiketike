@@ -310,7 +310,7 @@
                 var displayAmount = parseFloat(amountInCents / 100).toFixed(2);
                 var handler = StripeCheckout.configure({
                     key: '{{ config('services.stripe.key') }}',
-                    image: '{{ asset('pics/front/logonv.png') }}',
+                    image: '{{ asset('pics/favicon.png') }}',
                     token: function (token) {
                         $("#stripeToken").val(token.id);
                         $("#stripeEmail").val(token.email);
