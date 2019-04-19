@@ -1,4 +1,3 @@
-
 <div class="style">
     <div class="categoriasR hidden-lg visible-xs">
 
@@ -15,9 +14,11 @@
                     <div class="modal-body">
                         <div class="listadoCategoriaR text-center">
                             <ul class="nav sinkinSans400R">
-                                <li class="active"><a href="#" class="colorN text-uppercase" id="Rall">@lang('views.all')</a></li>
+                                <li class="active"><a href="#" class="colorN text-uppercase"
+                                                      id="Rall">@lang('views.all')</a></li>
                                 @foreach($categories as $category)
-                                    <li><a href="#" id="{{ $category->category }}" class="colorN text-uppercase filters">{{$category->category}}</a></li>
+                                    <li><a href="#" id="{{ $category->category }}"
+                                           class="colorN text-uppercase filters">{{$category->category}}</a></li>
                                 @endforeach
                             </ul>
                         </div>
@@ -48,15 +49,19 @@
                                         <div class="panel panel-default">
                                             <div class="panel-heading">
                                                 <h4 class="panel-title">
-                                                    <button class="btn btn-default text-left" style="width: 100%" data-toggle="collapse"
-                                                            data-target="#collapseR{{ $continent->id }}">{{ $continent->name }} <i class="fa fa-angle-down right"></i> </button>
+                                                    <button class="btn btn-default text-left" style="width: 100%"
+                                                            data-toggle="collapse"
+                                                            data-target="#collapseR{{ $continent->id }}">{{ $continent->name }}
+                                                        <i class="fa fa-angle-down right"></i></button>
                                                 </h4>
                                             </div>
                                             <div id="collapseR{{ $continent->id }}" class="panel-collapse collapse">
                                                 @foreach($continent->countries as $country)
-                                                    <div class="col-md-12 col-sm-12 col-xs-12 col-lg-{{strlen($country->name) > 20?'12':'6'}}" style="padding: 5px 5px 5px 0">
+                                                    <div class="col-md-12 col-sm-12 col-xs-12 col-lg-{{strlen($country->name) > 20?'12':'6'}}"
+                                                         style="padding: 5px 5px 5px 0">
                                                         <label for="countries">{{ $country->name }}</label>
-                                                        <input class="right" type="checkbox" name="countries" id="countries">
+                                                        <input class="right" type="checkbox" name="countries"
+                                                               id="countries">
                                                     </div>
                                                 @endforeach
                                             </div>

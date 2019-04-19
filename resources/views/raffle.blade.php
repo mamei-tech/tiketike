@@ -48,7 +48,7 @@
                         <span class="italic margin-right5">@lang('views.articles'):</span>
                         <strong class="colorN">1</strong>
                         <span class="ti-location-pin"></span>
-                        <span class=""><img class="flag-country" src="{{ asset('pics/countries/png100px/'.$raffle->getLocation->code.'.png') }}">{{ $raffle->getLocation->name }}</span>
+                        <span class=""><img class="flag-country" src="{{ asset('pics/countries/png100px/'.$raffle->getLocation->code.'.png') }}">  {{ $raffle->getLocation->name }}</span>
                         <p class="colorN">{{ $raffle->description }}</p>
                     </div>
                     <div class="col-xs-12">
