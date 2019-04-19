@@ -138,8 +138,8 @@
                                         </h4>
 
                                         <div class="hidden-lg texto8"><span
-                                                    class="sinkinSans300L ">@lang('views.cost'):</span><span
-                                                    class="sinkinSans600SB">{{ $raffle->tickets_price ? $raffle->tickets_price : 0  }}</span>
+                                                    class="texto16 colorN hidden-lg visible-xs pull-left margin-right-10 sinkinSans600SB ">@lang('views.cost'):</span><span
+                                                    class="texto16 colorV hidden-lg visible-xs pull-left margin-right-10 sinkinSans600SB">{{ $raffle->tickets_price ? $raffle->tickets_price : 0  }}</span>
                                         </div>
 
                                         <div class="costo hidden-xs">
