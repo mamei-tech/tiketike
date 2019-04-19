@@ -11,7 +11,7 @@
         <img src="{{ asset('pics/front/logonv.png') }}" class="navbar-log" alt="">
     </a>
 
-    <img class="styleBorderL padding-left30 hidden-xs" src="{{ asset('pics/front/borderLeft.svg') }}" alt="">
+    <img class="styleBorderL padding-left30 hidden-xs" src="{{ asset('pics/front/borderLeft.svg') }}" style="padding-left: 30px" alt="">
 
 </div>
 

@@ -5,7 +5,7 @@
     @include('partials.front_modals.login_modal')
     @include('partials.front_modals.mobile_suggest')
     @include('partials.front_modals.notification_modal')
-    <div class="container contenido">
+    <div class="container contenido" style="width: 100%">
         <div class="row">
 
             <div class="col-sm-4 col-lg-3 hidden-xs padding-rigth-0">
@@ -97,7 +97,7 @@
                         @if (count($raffles) > 0)
                             @foreach($raffles as $raffle)
                                 <div class="row padding20 bg-rifas1 center-block {{$raffle->id}}">
-                                    <div class="col-xs-4 col-md-6 raffle_carousel text-right">
+                                    <div class="col-xs-4 col-md-6 raffle_carousel text-right" style="padding-left: 0;padding-right: 0">
                                         <div class="hidden-lg visible-xs padding-top-10 padding-left-0">
                                             <a href="{{ route('raffle.tickets.available',['raffleId' => $raffle->id]) }}"><img src="@if(count($raffle->getMedia('raffles')) > 0){{ $raffle->getMedia('raffles')->first()->getUrl() }} @endif"
                                                  class="dimenImgCarouselR" alt=""></a>
@@ -134,7 +134,7 @@
                                                                                                   src="{{ asset('pics/countries/png100px/'.$raffle->getLocation->code.'.png') }}"></span>
                                         <h4 class=" text-uppercase sinkinSans400R textoR">
                                             <a class="colorN"
-                                               href="{{ route('raffle.tickets.available',['raffleId' => $raffle->id]) }}">{{ $raffle->title }}</a>
+                                               href="{{ route('raffle.tickets.available',['raffleId' => $raffle->id]) }}">{{ str_limit($raffle->title,13,'') }}</a>
                                         </h4>
 
                                         <div class="hidden-lg texto8"><span
