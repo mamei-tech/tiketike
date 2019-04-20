@@ -390,6 +390,9 @@
 }
 
 @media (max-width: 990px) {
+    .container {
+        width: 100%;
+    }
     .padding-left150 {
         padding-left: 0px;
     }
@@ -432,6 +435,9 @@
 }
 
 @media (max-width: 768px) {
+    .container {
+        width: 750px;
+    }
     .preciosExtraer {
         border-top: #9D9D9D solid 1px;
         margin-left: 4px;
@@ -565,6 +571,9 @@
 }
 
 @media (max-width: 767px) {
+    .container {
+        width: 100%;
+    }
 
     .createRaffleModButt {
         padding-bottom: 200px;

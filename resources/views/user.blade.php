@@ -448,7 +448,7 @@
                                             <div class="col-md-12">
                                                 <div class="slickFollows" id="normalSlick-follows">
                                                     @foreach($current->getFollows as $follow)
-                                                        <div class=" slick-list follow" id="{{$follow->id}}">
+                                                        <div class=" slick-list follow" id="{{$follow->id}}" style="overflow: auto">
                                                             <a href="{{ route('profile.info',$follow->id) }}">
                                                                 <img src="{{ $follow->getMedia('avatars')->first() ->getUrl()}}"
                                                                      class="imgUsuario sombraImgUser2"
@@ -470,7 +470,7 @@
                                                      style="display: none"></div>
                                                 <div class="slickFollowers" id="normalSlick-followers">
                                                     @foreach($current->getFollowers as $follower)
-                                                        <div class="slick-list follower" id="{{$follower->id}}">
+                                                        <div class="slick-list follower" id="{{$follower->id}}" style="overflow: auto">
                                                             <a href="{{ route('profile.info',$follower->id) }}">
                                                                 <img src="{{ $follower->getMedia('avatars')->first() ->getUrl()}}"
                                                                      class="imgUsuario sombraImgUser2"
