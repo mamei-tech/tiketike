@@ -1221,15 +1221,18 @@ input[type="radio"], input[type="checkbox"] {
 chart-porcientoB{
     height: 85px !important;
     width: 85px !important;
+
 }
 chart-porcientoR{
     height: 40px !important;
     width: 40px !important;
+
 }
 .chart .chartB{
     position: relative;
     display: inline-block;
     left: -10px;
+
 }
 .percent {
     display: inline-block;

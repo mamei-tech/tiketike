@@ -809,9 +809,9 @@ demo = {
             type: 'bar',
             data: {
                 labels: [
-                    "29", "28", "27", "26", "25", "24", "23", "22", "21", "20",
-                    "19", "18", "17", "16", "15", "14", "13", "12", "11", "10",
-                    "9",  "8",  "7",  "6",  "5",  "4",  "3",  "2",  "1",  "0",
+                    "30", "29", "28", "27", "26", "25", "24", "23", "22", "21",
+                    "20", "19", "18", "17", "16", "15", "14", "13", "12", "11",
+                    "10",  "9",  "8",  "7",  "6",  "5",  "4",  "3",  "2",  "1",
                 ],
                 datasets: [{
                     label: "Active Male Users",
@@ -1251,7 +1251,8 @@ demo = {
             type: 'doughnut',
             data: {
                 datasets: [{
-                    backgroundColor: ['rgba(255, 0, 0, 0.5)', 'rgba(0, 0, 255, 0.5)'],
+                    backgroundColor: ['rgba(255, 0, 0, 0.5)',
+                                      'rgba(0, 0, 255, 0.5)'],
                     borderWidth: [5, 5],
                     data: [],
                 }],
@@ -1268,20 +1269,20 @@ demo = {
                     fontStyle: 'normal',
                     fontColor: "rgba(0, 0, 0, 0.5)",
                 },
-                layout: {
-                    padding: {
-                        left: 20,
-                        right: 20,
-                        top: 0,
-                        bottom: 0
-                    }
-                },
+                // layout: {
+                //     padding: {
+                //         left: 20,
+                //         right: 20,
+                //         top: 0,
+                //         bottom: 0
+                //     }
+                // },
                 legend: {
                     display: true,
                     position: 'right',
                     labels : {
                         boxWidth: 15,
-                        padding: 55,
+                        padding: 15,
                     },
                 },
             }
