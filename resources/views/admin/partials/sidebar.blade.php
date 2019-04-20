@@ -5,7 +5,7 @@
             TK
         </a>
         <a href="{{url('/')}}" class="simple-text logo-normal">
-            TikeTike
+            TikeTikes
         </a>
         <div class="navbar-minimize">
             <button id="minimizeSidebar" class="btn btn-simple btn-icon btn-neutral btn-round">

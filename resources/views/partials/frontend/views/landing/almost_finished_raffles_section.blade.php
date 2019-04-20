@@ -33,7 +33,7 @@
                             </a>
                             <div class="porciento">
                                 <div class=" text-center">
-                                <span class="chartB chart-porcientoB" data-percent="{{ round($raffle->progress) }}">
+                                <span class="chartB chart-porcientoB" data-percent="{{ round($raffle->progress) }}" style="color: #0e76a8">
                                     <span class="percentB">{{ round($raffle->progress) }}%</span>
                                 </span>
                                 </div>
