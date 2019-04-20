@@ -24,24 +24,25 @@
                                 <input id="email" type="email"
                                        class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}"
                                        placeholder="Your Email..." name="email" value="{{ old('email') }}"
-                                       required autofocus>
+                                       required autofocus style="background-color: white; color: black">
                                 {{--<span class="now-ui-icons ui-1_email-85"></span>--}}
                                 @if ($errors->has('email'))
-                                    <div class="col-md-12"
-                                         style="padding-top: 20px!important;overflow-x: visible; overflow-y: visible; z-index: 2; height: 30px">
+                                    <div class="col-md-12 margin-bottom-20 margin-top20"
+                                         style="padding-top: 10px!important;overflow-x: visible; overflow-y: visible; z-index: 1; height: 30px; background-color: #ffbf00; border-radius: 20px; margin-top: 5px">
                                             <span class="invalid-feedback" style="display: block; width: 350px">
-                                        <strong style="color: rgba(255,61,71,0.89)">{{ $errors->first('email') }}</strong>
+                                        <strong style="color: white">{{ $errors->first('email') }}</strong>
                                             </span>
                                     </div>
+                                    <div class="clearfix"></div>
                                 @endif
                             </div>
-                            <div class="input-group form-control-lg">
+                            <div class="input-group form-control-lg @if ($errors->has('email')) mt-5 @endif">
                                 <input type="password" id="password" placeholder="Password.."
                                        class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}"
-                                       name="password" required>
+                                       name="password" required style="background-color: white; color: black">
                                 @if ($errors->has('password'))
                                     <div class="col-md-12"
-                                         style="margin: 5px!important;overflow-x: visible; overflow-y: visible; z-index: 2; height: 30px">
+                                         style="padding-top: 10px!important;overflow-x: visible; overflow-y: visible; z-index: 1; height: 30px; background-color: #ffbf00; border-radius: 20px; margin-top: 5px">
                                             <span class="invalid-feedback" style="display: block; width: 350px">
                                         <strong>{{ $errors->first('password') }}</strong>
                                         </span>
@@ -49,7 +50,7 @@
                                 @endif
                             </div>
                         </div>
-                        <div class="card-footer ">
+                        <div class="card-footer @if ($errors->has('password')) mt-5 @endif">
                             <button type="submit" class="btn btn-primary btn-round btn-lg btn-block mb-3">
                                 Login
                             </button>

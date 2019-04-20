@@ -62,10 +62,10 @@
                     </div>
                     <div class="row">
                         <div class="col-xs-12 col-md-12">
-                            <div class="col-md-12 col-lg-12 col-xs-12" id="columns">
+                            <div class="col-md-12 col-lg-12 col-xs-12 text-center" id="columns">
                                 <h3 class="form-label">Select the images</h3>
                                 <div class="desc"><p class="text-center">or drag to box</p></div>
-                                <div id="uploads"></div>
+                                <div id="uploads" style="width: 100%!important;padding-left: 30%"></div>
                             </div>
                         </div>
                     </div>
