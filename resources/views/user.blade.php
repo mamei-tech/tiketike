@@ -289,9 +289,6 @@
                                            aria-expanded="false">@lang('views.following')</a></li>
                                 </ul>
                                 <div class="tab-content">
-                                    <div class="tab-pane " id="todas">
-
-                                    </div>
                                     <div class="tab-pane active in" id="creadas">
                                         @foreach($raffles as $raffle)
                                             <div class="col-xs-6 col-lg-3 col-sm-4 padding-top-15">
@@ -381,7 +378,7 @@
 
                                     <div class="tab-pane active in" id="vendidos">
                                         @foreach($current->getRafflesSelled as $raffle)
-                                            <div class="col-xs-6 col-lg-3 col-sm-4 padding-top-15 paddingLeft0 padding-rigth-0">
+                                            <div class="col-xs-6 col-lg-3 col-sm-4 padding-top-15 ">
                                                 <a href="{{ route('raffle.tickets.available',['raffleId' => $raffle->id]) }}">
                                                     <div class="pull-left">
                                                         <img src="{{$raffle->getMedia('raffles')->first()->getUrl()}}"
@@ -398,7 +395,7 @@
                                     </div>
                                     <div class="tab-pane" id="comprados">
                                         @foreach($current->getRafflesBuyed as $raffle)
-                                            <div class="col-xs-6 col-lg-3 col-sm-4 padding-top-15 paddingLeft0 padding-rigth-0">
+                                            <div class="col-xs-6 col-lg-3 col-sm-4 padding-top-15 ">
                                                 <a href="{{ route('raffle.tickets.available',['raffleId' => $raffle->id]) }}">
                                                     <div class="pull-left">
                                                         <img src="{{$raffle->getMedia('raffles')->first()->getUrl()}}"
