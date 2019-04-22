@@ -448,7 +448,7 @@
                                             <div class="col-md-12">
                                                 <div class="slickFollows" id="normalSlick-follows">
                                                     @foreach($current->getFollows as $follow)
-                                                        <div class=" slick-list follow" id="{{$follow->id}}" style="overflow: auto">
+                                                        <div class="slick-list follow" id="{{$follow->id}}" style="overflow: auto">
                                                             <a href="{{ route('profile.info',$follow->id) }}">
                                                                 <img src="{{ $follow->getMedia('avatars')->first() ->getUrl()}}"
                                                                      class="imgUsuario sombraImgUser2"
@@ -523,7 +523,7 @@
             });
 
             $('.slickFollows').slick({
-                autoplay: true,
+                autoplay: false,
                 slidesToShow: 5,
                 slidesToScroll: 1,
                 infinite: true,
