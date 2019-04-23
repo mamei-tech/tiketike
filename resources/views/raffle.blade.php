@@ -60,6 +60,7 @@
                                 @php($rMyTickets = count(Auth::user()->getTicketsByRaffle($raffle->id)))
                                 @if($rMyTickets > 0)
                                     <span class="badge rbadge">{{ $rMyTickets }} @else
+
                                         </span>
                                 @endif
                                 @endif
@@ -236,14 +237,12 @@
                     <div class="row padding-top-20 padding-left30 bg-large">
                         <div class="centerM slickVertical sinkinSans400R text-uppercase  ">
                             @foreach($raffle->getTicketsAvailable as $ticket)
-                                <div>
-                                    <div class="  bg-prueba pull-left" style="text-align: center; padding-top: 10px; font-size: 26px">
-                                        <span class=" text-uppercase colorB margin-right-10">{{ $ticket->code }}</span>
-                                    </div>
-                                    <div class="padding-top-30" >
-                                        <input name="tickets" id="tickets" class="margin-left15 tickets"
-                                               value="{{ $ticket->code }}" type="checkbox">
-                                    </div>
+                                <div class="  bg-prueba pull-left" style="text-align: center; padding-top: 10px; font-size: 26px">
+                                    <span class=" text-uppercase colorB margin-right-10">{{ $ticket->code }}</span>
+                                </div>
+                                <div class="padding-top-30" >
+                                    <input name="tickets" id="tickets" class="margin-left15 tickets"
+                                           value="{{ $ticket->code }}" type="checkbox">
                                 </div>
                             @endforeach
                             <input type="hidden" id="raffle" value="{{ $raffle->id }}">
