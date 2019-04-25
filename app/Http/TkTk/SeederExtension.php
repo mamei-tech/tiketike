@@ -14,7 +14,7 @@ class SeederExtension {
         'PC', 
         'TV', 
         'Pulsera', 
-        'La Moto de Cuevas', 
+        'La Moto C',
         'Moto', 
         'Choimenea', 
         'Blumer', 
