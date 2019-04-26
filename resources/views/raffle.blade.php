@@ -235,18 +235,22 @@
                     </div>
                     <div class="col-xs-12 borderBottomDashed"></div>
                     <div class="row padding-top-20 padding-left30 bg-large">
-                        <div class="centerM slickVertical sinkinSans400R text-uppercase  ">
+                        <div class="centerM slickVerticalTickets sinkinSans400R text-uppercase  ">
                             @foreach($raffle->getTicketsAvailable as $ticket)
-                                <div class="  bg-prueba pull-left" style="text-align: center; padding-top: 10px; font-size: 26px">
-                                    <span class=" text-uppercase colorB margin-right-10">{{ $ticket->code }}</span>
+                                <div class="slide-ticket">
+                                    <div class="  bg-prueba pull-left" style="text-align: center; padding-top: 10px; font-size: 26px">
+                                        <span class=" text-uppercase colorB margin-right-10">{{ $ticket->code }}</span>
+                                    </div>
+                                    <div class="padding-top-30" >
+                                        <input name="tickets" id="tickets" class="margin-left15 tickets"
+                                               value="{{ $ticket->code }}" type="checkbox">
+                                    </div>
                                 </div>
-                                <div class="padding-top-30" >
-                                    <input name="tickets" id="tickets" class="margin-left15 tickets"
-                                           value="{{ $ticket->code }}" type="checkbox">
-                                </div>
+
                             @endforeach
                             <input type="hidden" id="raffle" value="{{ $raffle->id }}">
                         </div>
+{{--                        <div class="hidden-lg" style="width: 150px; height: 300px; position: absolute; left: 600px; top: 200px; z-index: 9000; "></div>--}}
                     </div>
                     <div class="borderTopDashed padding-bottom20">
                         <div class="pull-left">
@@ -335,50 +339,50 @@
         });
 
 
-        $('.slickVertical').slick({
-            autoplay: true,
+        // $('.slickVertical').slick({
+        //     autoplay: true,
+        //     vertical: true,
+        //     verticalSwiping: true,
+        //     swipeToSlide: true,
+        //     slidesToShow: 8,
+        //     slidesToScroll: 3,
+        //     arrows: false,
+        //     infinite: true,
+        //     centerMode: true,
+        //     centerPadding: '50% 4%',
+        //     responsive: [
+        //         {
+        //             breakpoint: 768,
+        //             settings: {
+        //                 arrows: false,
+        //                 centerMode: true,
+        //                 centerPadding: '40px',
+        //                 slidesToShow: 3
+        //             }
+        //         },
+        //         {
+        //             breakpoint: 480,
+        //             settings: {
+        //                 arrows: false,
+        //                 centerMode: true,
+        //                 centerPadding: '40px',
+        //                 slidesToShow: 3
+        //             }
+        //         }
+        //     ]
+        // });
+        $('.slickVerticalTickets').slick({
+            slidesToShow: 10,
+            autoplay:true,
+            slidesToScroll: 1,
+            arrows: false,
+            draggable:true,
+            infinite: true,
+            swipeToSlide: true,
             vertical: true,
             verticalSwiping: true,
-            swipeToSlide: true,
-            slidesToShow: 3,
-            slidesToScroll: 3,
-            arrows: false,
-            infinite: true,
-            centerMode: true,
-            centerPadding: '50% 4%',
-            responsive: [
-                {
-                    breakpoint: 768,
-                    settings: {
-                        arrows: false,
-                        centerMode: true,
-                        centerPadding: '40px',
-                        slidesToShow: 3
-                    }
-                },
-                {
-                    breakpoint: 480,
-                    settings: {
-                        arrows: false,
-                        centerMode: true,
-                        centerPadding: '40px',
-                        slidesToShow: 3
-                    }
-                }
-            ]
-        });
-        $('.slickVertical').slick({
-            autoplay: true,
-            vertical: true,
-            verticalSwiping: true,
-            swipeToSlide: true,
-            slidesToShow: 3,
-            slidesToScroll: 3,
-            arrows: false,
-            draggable: true,
-            infinite: true,
-            centerMode: true,
-            centerPadding: '50% 4%',
+            centerMode: false,
+
             responsive: [
                 {
                     breakpoint: 768,
@@ -412,7 +416,7 @@
 
         // replace getSlideCount and getNavigableIndexes without rehosting hack
 
-        $(".slickVertical").each(function() {
+        $(".slickVerticalTickets").each(function() {
             this.slick.getSlideCount = function() {
 
                 var _ = this,
@@ -422,6 +426,8 @@
                 centerOffset = _.options.centerMode === true ? _.slideWidth * Math.floor(_.options.slidesToShow / 2) : 0;
 
                 if (_.options.swipeToSlide === true) {
+
+
 
                     _.$slideTrack.find('.slick-slide').each(function(index, slide) {
                         var offsetPoint = slide.offsetLeft,
