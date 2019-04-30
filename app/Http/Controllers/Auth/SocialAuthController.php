@@ -22,7 +22,7 @@ class SocialAuthController extends Controller
     {
         // Aki obtengo los datos del usuario
 
-        $social_user = Socialite::driver($provider)->fields(['name','last_name','email'])->user();
+        $social_user = Socialite::driver($provider)->fields(['name','last_name','email','avatar'])->user();
         // Comprobamos si el usuario ya existe
         if ($user = User::where('email', $social_user->email)->first()) {
             return $this->authAndRedirect($user); // Login y redireccion
