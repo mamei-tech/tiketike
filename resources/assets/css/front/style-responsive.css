@@ -435,6 +435,7 @@
 }
 
 @media (max-width: 768px) {
+
     .container {
         width: 750px;
     }
@@ -1592,6 +1593,10 @@
 }
 
 @media (max-width: 480px) {
+
+    .slick-list, .draggable{
+        padding-left:30px ;
+    }
     .preciosExtraer {
         border-top: #9D9D9D solid 1px;
         margin-left: 25px;

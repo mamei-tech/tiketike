@@ -40,8 +40,8 @@ return [
 //    Social Networks Authentication
 
     'facebook' => [
-        'client_id' => '2089531807735327',
-        'client_secret' => 'b55790b08e57117371badaa2084f87df',
+        'client_id' => '318037698759358',
+        'client_secret' => '1f24165ca512f48a16b3afa84c09e2ca',
         'redirect' => env('APP_URL').'/auth/facebook/callback'
     ],
     'twitter' => [
