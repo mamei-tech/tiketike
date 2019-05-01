@@ -317,6 +317,97 @@ body {
 .margin-top20{
     margin-top: 20px;
 }
+
+.bg-categoriasR {
+    background: url("../../pics/front/categories.png") no-repeat;
+    background-size: 40px 30px;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    height: 25%;
+}
+
+.bg-filtersR {
+    background: url("../../pics/front/filters.png") no-repeat;
+    background-size: 40px 30px;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    height: 25%;
+}
+
+
+.bg-priceR {
+    background: url("../../pics/front/price.png") no-repeat;
+    background-size: 40px 30px;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    height: 25%;
+}
+
+.bg-percentR {
+    background: url("../../pics/front/percent.png") no-repeat;
+    background-size: 40px 30px;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    height: 25%;
+}
+
+.bg-categoriasR.activo {
+    background: url("../../pics/front/categories-a.png") no-repeat;
+    background-size: 40px 30px;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    height: 25%;
+}
+
+.bg-filtersR.activo {
+    background: url("../../pics/front/filters-a.png") no-repeat;
+    background-size: 40px 30px;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    height: 25%;
+}
+
+
+.bg-priceR.activo {
+    background: url("../../pics/front/price-a.png") no-repeat;
+    background-size: 40px 30px;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    height: 25%;
+}
+
+.bg-percentR.activo {
+    background: url("../../pics/front/percent-a.png") no-repeat !important;
+    background-size: 40px 30px !important;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    height: 25%;
+}
+
+.floating-menu {
+    width: 10%;
+    /*z-index: 100;*/
+    position: fixed;
+    top: 20%;
+    height: 10%;
+    right: 3%;
+}
+/*.floating-menu a,*/
+/*.floating-menu h3 {*/
+/*    font-size: 0.9em;*/
+/*    display: block;*/
+/*    margin: 0 0.5em;*/
+/*    color: white;*/
+/*}*/
+
 .padding10{
     padding: 10px!important;
 }
