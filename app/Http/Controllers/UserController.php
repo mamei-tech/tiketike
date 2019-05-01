@@ -8,6 +8,7 @@ use App\Http\Resources\RaffleResource;
 use App\Promo;
 use App\Repositories\RaffleRepository;
 use App\User;
+use App\UserProfile;
 use Illuminate\Database\Eloquent\Builder;
 use App\Country;
 use Illuminate\Support\Facades\Auth;
@@ -113,25 +114,34 @@ class UserController extends Controller
         $user->email = $request->get('email');
         $user->api_token = $user->getApiToken();
 
+        $userProfile = null;
+        if ($user->getProfile != null)
+            $userProfile = $user->getProfile;
+        else {
+            $userProfile = new UserProfile();
+            $userProfile->user = $user->id;
+        }
+
         if (isset($request->all()['birthdate']))
-            $user->getProfile->birthdate = date('Y-m-d', strtotime($request->get('birthdate')));
+            $userProfile->birthdate = date('Y-m-d', strtotime($request->get('birthdate')));
         if (isset($request->all()['gender']))
-            $user->getProfile->gender = $request->get('gender');
+            $userProfile->gender = $request->get('gender');
         if (isset($request->all()['city']))
-            $user->getProfile->city = $request->get('city');
+            $userProfile->city = $request->get('city');
         if (isset($request->all()['languaje']))
-            $user->getProfile->langcode = $request->get('languaje');
+            $userProfile->langcode = $request->get('languaje');
         if (isset($request->all()['bio']))
-            $user->getProfile->bio = $request->get('bio');
+            $userProfile->bio = $request->get('bio');
         if (isset($request->all()['address']))
-            $user->getProfile->addrss = $request->get('address');
+            $userProfile->addrss = $request->get('address');
         if (isset($request->all()['zipcode']))
-            $user->getProfile->zipcode = $request->get('zipcode');
+            $userProfile->zipcode = $request->get('zipcode');
         if (isset($request->all()['phone']))
-            $user->getProfile->phone = $request->get('phone');
+            $userProfile->phone = $request->get('phone');
+        $userProfile->username = $request->get('firstname');
 
         // Saving user and user's profile
-        $user->getProfile->save();
+        $userProfile->save();
         $user->save();
 
         // Logs the actions
