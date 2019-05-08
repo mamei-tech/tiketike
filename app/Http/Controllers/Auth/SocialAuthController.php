@@ -14,7 +14,7 @@ class SocialAuthController extends Controller
     // Metodo encargado de la redireccion a Facebook
     public function redirectToProvider($provider)
     {
-        return Socialite::driver($provider)->fields(['name','last_name','email','avatar'])->redirect();
+        return Socialite::driver($provider)->fields(['name','last_name','email','picture'])->redirect();
     }
 
     // Metodo encargado de obtener la información del usuario
@@ -22,7 +22,7 @@ class SocialAuthController extends Controller
     {
         // Aki obtengo los datos del usuario
 
-        $social_user = Socialite::driver($provider)->fields(['name','last_name','email'])->user();
+        $social_user = Socialite::driver($provider)->fields(['name','last_name','email','picture'])->user();
         // Comprobamos si el usuario ya existe
         if ($user = User::where('email', $social_user->email)->first()) {
             return $this->authAndRedirect($user); // Login y redireccion

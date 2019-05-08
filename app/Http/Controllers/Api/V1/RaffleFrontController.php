@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Controllers\Api\ApiController;
+use App\Http\Controllers\Controller;
 use App\Http\Requests\ChkRPublishRequest;
 use App\Http\TkTk\Cfg\CfgRaffles;
 use App\Raffle;
@@ -12,25 +13,9 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
-class RaffleFrontController extends ApiController
+class RaffleFrontController extends Controller
 {
-    private $raffleRepository;
-    private $cfghandler = null;                        // Raffle configs handler
 
-    public function __construct(RaffleRepository $raffleRepository)
-    {
-        /* -- The rest of the thing -- */
-        // Makin a new config handler
-        $this->cfghandler = new CfgRaffles();
-        $this->raffleRepository = $raffleRepository;
-    }
-
-    /**
-     * Compute the missing (tkcount or tkprice) values for publishing the raffle
-     *
-     * @param ChkRPublishRequest $request
-     * @return \Illuminate\Http\JsonResponse
-     */
     public function filterRaffles(Request $request)
     {
         $category = $request->get('category');

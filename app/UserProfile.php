@@ -62,6 +62,10 @@ class UserProfile extends Model implements HasMedia
                     return true;
             });
     }
+
+    public function getUsernameAttribute() {
+        return $this->attributes['username'] != null ? $this->attributes['username'] : $this->user->name;
+    }
 }
 
 

@@ -762,14 +762,6 @@
         position: absolute;
     }
 
-    .bg-categoriasR {
-        background: url("../../pics/front/fcategories.jpg");
-    }
-
-    .bg-filtrarR {
-        background: url("../../pics/front/filters.jpg");
-    }
-
     .btnCategoriasR {
         /*border-color: #FAEDF6;*/
         padding: 5px;
@@ -792,10 +784,6 @@
         margin-top: 0px;
         width: 40px;
         height: 30px;
-    }
-
-    .bg-ordenarPorcientoR {
-        background: url("../../pics/front/percent.jpg");
     }
 
     .btn:hover, .btn:focus, .btn.focus {
@@ -1002,14 +990,6 @@
         top: 345px;
     }
 
-    .bg-categoriasR {
-        background: url("../../pics/front/fcategories.jpg");
-    }
-
-    .bg-filtrarR {
-        background: url("../../pics/front/bg-filtrarR1.svg");
-    }
-
     .btnCategoriasR {
         /*border-color: #FAEDF6;*/
         padding: 5px;
@@ -1032,10 +1012,6 @@
         margin-top: 0px;
         width: 40px;
         height: 30px;
-    }
-
-    .bg-ordenarPorcientoR {
-        background: url("../../pics/front/price.jpg");
     }
 
     .btn:hover, .btn:focus, .btn.focus {
@@ -1377,14 +1353,6 @@
         width: inherit;
     }
 
-    .bg-categoriasR {
-        background: url("../../pics/front/fcategories.jpg");
-    }
-
-    .bg-filtrarR {
-        background: url("../../pics/front/bg-filtrarR1.svg");
-    }
-
     .btnCategoriasR {
         /*border-color: #FAEDF6;*/
         padding: 5px;
@@ -1407,10 +1375,6 @@
         margin-top: 0px;
         width: 40px;
         height: 30px;
-    }
-
-    .bg-ordenarPorcientoR {
-        background: url("../../pics/front/price.jpg");
     }
 
     .btn:hover, .btn:focus, .btn.focus {
@@ -1910,14 +1874,6 @@
         width: inherit;
     }
 
-    .bg-categoriasR {
-        background: url("../../pics/front/fcategories.jpg");
-    }
-
-    .bg-filtrarR {
-        background: url("../../pics/front/bg-filtrarR1.svg");
-    }
-
     .btnCategoriasR {
         /*border-color: #FAEDF6;*/
         padding: 5px;
@@ -1940,10 +1896,6 @@
         margin-top: 0px;
         width: 40px;
         height: 30px;
-    }
-
-    .bg-ordenarPorcientoR {
-        background: url("../../pics/front/price.jpg");
     }
 
     .btn:hover, .btn:focus, .btn.focus {
@@ -2424,14 +2376,6 @@
         width: inherit;
     }
 
-    .bg-categoriasR {
-        background: url("../../pics/front/fcategories.jpg");
-    }
-
-    .bg-filtrarR {
-        background: url("../../pics/front/bg-filtrarR1.svg");
-    }
-
     .btnCategoriasR {
         /*border-color: #FAEDF6;*/
         padding: 5px;
@@ -2454,10 +2398,6 @@
         margin-top: 0px;
         width: 40px;
         height: 30px;
-    }
-
-    .bg-ordenarPorcientoR {
-        background: url("../../pics/front/price.jpg");
     }
 
     .btn:hover, .btn:focus, .btn.focus {
@@ -2957,14 +2897,6 @@
         width: inherit;
     }
 
-    .bg-categoriasR {
-        background: url("../../pics/front/fcategories.jpg");
-    }
-
-    .bg-filtrarR {
-        background: url("../../pics/front/bg-filtrarR1.svg");
-    }
-
     .btnCategoriasR {
         /*border-color: #FAEDF6;*/
         padding: 5px;
@@ -2987,10 +2919,6 @@
         margin-top: 0px;
         width: 40px;
         height: 30px;
-    }
-
-    .bg-ordenarPorcientoR {
-        background: url("../../pics/front/price.jpg");
     }
 
     .ordenarPorcientoR {

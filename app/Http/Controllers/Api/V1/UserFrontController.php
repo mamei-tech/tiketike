@@ -14,35 +14,41 @@ class UserFrontController extends ApiController
     {
         $id = $request->get('userid');
         $user = User::with('getProfile')->findOrFail($id);
-        $name = $user->name.' '.$user->lastname;
+        $name = $user->name . ' ' . $user->lastname;
         $country = $user->getProfile->getCity->country->name;
         $createdraffles = count($user->getRaffles);
         $winnedRaffles = $user->WinnedRaffles();
         $soldtickets = $user->getSoldTicketsCount();
-        $route = route('profile.info',['userid'=>$id]);
+        $route = route('profile.info', ['userid' => $id]);
         $shared_raffles = count($user->getReferralsBuys->groupBy('raffle_id'));
         return new Response([
-            'route'=>$route,
-            'name'=>$name,
-            'country'=>$country,
+            'route' => $route,
+            'name' => $name,
+            'country' => $country,
             'created_raffles' => $createdraffles,
             'winned_raffles' => $winnedRaffles,
             'sold_tickets' => $soldtickets,
             'shared_raffles' => $shared_raffles
-        ],Response::HTTP_OK);
+        ], Response::HTTP_OK);
     }
 
     public function getcity(Request $request, $city_id, $user_id)
     {
-            $country    = Country::findOrFail($city_id);
-            $user       = User::findOrFail($user_id);
+        $country = Country::findOrFail($city_id);
+        $user = User::findOrFail($user_id);
 
-            $cities     = $country->cities()->get();
-            $selected   = $user->getProfile->getCity->id;
-
+        $cities = $country->cities()->get();
+        if ($user->getProfile != null and $user->getProfile->getCity != null) {
+            $selected = $user->getProfile->getCity->id;
+            return new Response([
+                'cities' => $cities,
+                'selected' => $selected,
+            ], Response::HTTP_OK);
+        }
         return new Response([
-            'cities'    => $cities,
-            'selected'  => $selected,
-        ],Response::HTTP_OK);
-    }
+        'cities' => $cities,
+            'selected' => null,
+        ], Response::HTTP_OK);
+        }
+
 }

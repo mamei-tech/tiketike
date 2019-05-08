@@ -16,7 +16,7 @@ $('document').ready(function () {
     $('.chartB').easyPieChart({
         easing: 'easeOutBounce',
         lineWidth: '8',
-        barColor: '#70438F',
+        barColor: '#ffffff',
         trackColor:"transparent",
         scaleColor:"transparent",
         onStep: function (from, to, percent) {
