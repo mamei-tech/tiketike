@@ -2192,8 +2192,8 @@
 
     .percentS {
         font-size: 11px;
-        margin-left: -82%;
-        top: 20px;
+        margin-left: -74%;
+        top: 15px;
     }
 
     .paddingR-5 {
@@ -2218,7 +2218,7 @@
     }
 
     .padding-left-0 {
-        padding-left: 0px;
+        padding-left: 0;
     }
 
     .padding-left650 {
@@ -2623,7 +2623,7 @@
     }
 
     .dimenImgCarouselR {
-        height: 100px !important;
+        height: 60px !important;
         width: 100%;
     }
 
