@@ -688,8 +688,8 @@
     }
 
     .dimenImgCarouselR {
-        height: 100px !important;
-        width: 270px;
+        height: 100% !important;
+        width: 100%;
     }
 
     .margin-top-70 {
@@ -1097,8 +1097,8 @@
     }
 
     .dimenImgCarouselR {
-        height: 90px !important;
-        width: 270px;
+        height: 100% !important;
+        width: 100%;
     }
 
     .chart-porcientoS canvas {
@@ -1643,8 +1643,8 @@
     }
 
     .dimenImgCarouselR {
-        height: 59px !important;
-        width: 90px;
+        height: 100% !important;
+        width: 100%;
     }
 
     .imgPublicidadR {
@@ -2565,7 +2565,7 @@
     }
 
     .dimenImgCarouselR {
-        height: 60px !important;
+        height: 100% !important;
         width: 100%;
     }
 
@@ -2598,8 +2598,8 @@
 
 @media (max-width: 399px) {
     .dimenImgCarouselR {
-        height: 49px !important;
-        width: 70px;
+        height: 100% !important;
+        width: 100%;
     }
 
     .chart-porcientoS canvas {
@@ -2826,8 +2826,8 @@
     }
 
     .dimenImgCarouselR {
-        height: 49px !important;
-        width: 70px;
+        height: 100% !important;
+        width: 100%;
     }
 
     .textoR {

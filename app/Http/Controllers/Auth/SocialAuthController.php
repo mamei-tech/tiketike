@@ -28,10 +28,14 @@ class SocialAuthController extends Controller
             return $this->authAndRedirect($user); // Login y redireccion
         } else {
             // En caso de que no exista creamos un nuevo usuario con sus datos.
+            //Validating that user has an email
+            $email = $social_user->email;
+            if ($email == '' or $email == null)
+                $email = $social_user->name."@tiketikes.com";
             $user = User::create([
                 'name' => $social_user->name,
                 'lastname'=>$social_user->user['last_name'],
-                'email' => $social_user->email,
+                'email' => $email,
             ]);
             $user->syncRoles(2);
             $user->addMediaFromUrl($social_user->avatar)->toMediaCollection('avatars','avatars');
