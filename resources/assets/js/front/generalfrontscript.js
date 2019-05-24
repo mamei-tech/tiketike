@@ -28,6 +28,7 @@ $(function () {
                     pauseOnHover: true,
 
                 }
+
             }
             // You can unslick at a given breakpoint now by adding:
             // settings: "unslick"
