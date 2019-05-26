@@ -41,7 +41,7 @@
                     </a>
                     @include('partials.front_modals.create_raffle_modal')
                     <div class="padding-top50 margin-left15">
-                        <a href="#" class="texto24 colorB padding10">
+                        <a href="{{ route('raffles.index') }}" class="texto24 colorB padding10">
                             <span class="margin-right-15 sinkinSans300L">@lang('views.take_part')</span>
                             <i aria-hidden="true" class="ti-angle-right styleFlechaD"></i>
                         </a>
