@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Continent;
+use App\Country;
 use App\Http\Requests\ConfirmRaffle;
 use App\Http\Requests\UpdateRaffleRequest;
 use App\Http\TkTk\CodesGenerator;
@@ -51,6 +52,7 @@ class RafflesController extends Controller
      */
     public function index()
     {
+        $countries = Country::all();
         $suggested      = $this->raffleRepository->getSuggested();
         $promos         = Promo::getSomePromos();
         $categories     = RaffleCategory::all();
@@ -63,7 +65,7 @@ class RafflesController extends Controller
             ->orderBy('activation_date', 'ASC')
             ->paginate(10);
         $continents = Continent::all();
-        return view('raffles', compact('raffles', 'suggested', 'promos', 'categories', 'continents'));
+        return view('raffles', compact('raffles', 'suggested', 'promos', 'categories', 'continents', 'countries'));
     }
 
     /**

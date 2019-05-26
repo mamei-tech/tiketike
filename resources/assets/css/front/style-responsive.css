@@ -435,6 +435,8 @@
 }
 
 @media (max-width: 768px) {
+
+
     .container {
         width: 750px;
     }
@@ -579,6 +581,19 @@
         padding-bottom: 200px;
     }
 
+    .bg-popover {
+        background: url("../../pics/front/popover.svg") no-repeat scroll top center;
+        background-size: 100% auto;
+        width: 100%;
+        height: 298px;
+        padding: 15px;
+        font-size: 10px;
+    }
+
+
+
+    /*Esto es una prueba para el gir*/
+
     .preciosExtraer {
         border-top: #9D9D9D solid 1px;
         margin-left: 4px;
@@ -612,13 +627,13 @@
 
     .percentS {
         font-size: 18px;
-        margin-left: -30px;
-        top: 0px;
+        margin-left: -42%;
+        top: -4px;
     }
 
     .chart-porcientoS canvas {
         margin-top: -30px;
-        margin-left: -60px;
+        margin-left: -72%;
         height: 100px !important;
         position: absolute;
         width: 100px !important;
@@ -1048,17 +1063,17 @@
     }
 
     .chart-porcientoS canvas {
-        margin-left: -90px;
+        margin-left: -85%;
     }
 
     .percentS {
-        margin-left: -60px;
+        margin-left: -60%;
     }
 
 
 }
 
-@media (min-width: 481px)and (max-width: 500px) {
+@media (min-width: 481px) and (max-width: 500px) {
 
     .createRaffleModButt {
         padding-bottom: 200px;
@@ -1101,7 +1116,7 @@
 
     .chart-porcientoS canvas {
         margin-top: -10px;
-        margin-left: -80px;
+        margin-left: -82%;
         height: 75px !important;
         position: absolute;
         width: 75px !important;
@@ -1115,7 +1130,7 @@
         position: absolute;
         color: #ffffff !important;
         font-family: sinkinSans600SB;
-        margin-left: -60px;
+        margin-left: -65%;
         top: 5px;
     }
 
@@ -1592,6 +1607,10 @@
 }
 
 @media (max-width: 480px) {
+
+    .slick-list, .draggable{
+        padding-left:0px ;
+    }
     .preciosExtraer {
         border-top: #9D9D9D solid 1px;
         margin-left: 25px;
@@ -2140,8 +2159,8 @@
 
     .percentS {
         font-size: 11px;
-        margin-left: -89px;
-        top: 15px;
+        margin-left: -82%;
+        top: 20px;
     }
 
     .paddingR-5 {
@@ -2588,6 +2607,21 @@
         position: absolute;
     }
 
+}
+
+@media (max-width: 399px) {
+    .dimenImgCarouselR {
+        height: 49px !important;
+        width: 70px;
+    }
+
+    .chart-porcientoS canvas {
+        margin-top: 18%;
+        margin-left: -110px;
+        height: 50px !important;
+        position: absolute;
+        width: 50px !important;
+    }
 }
 
 @media (max-width: 320px) {

@@ -4,6 +4,7 @@
     <div id="owl-demo2" class="bg-blancoR" style="padding:0 25px">
         <?php $count = 0; ?>
         @foreach($suggested as $item)
+                <a href="{{ route('raffle.tickets.available',['raffleId' => $item->id]) }}">
             <div class="item">
                 <div class="paddingImgCarousel">
                     <img src="@if (count($item->getMedia('raffles')) > 0){{ $item->getMedia('raffles')->first()->getUrl() }} @endif" class="dimenImgCarouselR" alt="Owl Image"/>
@@ -16,6 +17,7 @@
                     </div>
                 </div>
             </div>
+                </a>
             <?php $count++; ?>
         @endforeach
     </div>

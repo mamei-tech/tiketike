@@ -4,7 +4,7 @@
     {{--@include('partials.front_modals.mobile_suggest')--}}
     <div class=" container margin-top-70">
         @include('partials.front_modals.error_notification')
-        <form class="col-md-12 margin-top60" id="ftm_profileUpdate" action="{{ route('profile.update', $user->id) }}"
+        <form class="col-md-12 profileUpdate" id="ftm_profileUpdate" action="{{ route('profile.update', $user->id) }}"
               method="post" enctype="multipart/form-data">
             {{csrf_field()}}
             {{method_field('patch')}}
