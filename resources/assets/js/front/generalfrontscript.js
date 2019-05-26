@@ -1,3 +1,12 @@
+$('#view-password').on('change',function (e) {
+    var x = document.getElementById("inputPassword");
+    if (x.type === "password") {
+        x.type = "text";
+    } else {
+        x.type = "password";
+    }
+});
+
 
 /* On ready */
 $(function () {

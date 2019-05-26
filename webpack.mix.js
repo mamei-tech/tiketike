@@ -76,7 +76,8 @@ mix.styles([
         'resources/assets/css/front/themify-icons.css',
         'resources/assets/css/front/style_general.css',
         'resources/assets/css/front/style-responsive.css',
-        'resources/assets/css/front/vertikal_slide.css'
+        'resources/assets/css/front/vertikal_slide.css',
+        'resources/assets/css/front/themify-icons.css'
 
     ],
     'public/css/front/app.css').sourceMaps();

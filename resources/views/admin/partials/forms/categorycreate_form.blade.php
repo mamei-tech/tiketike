@@ -19,39 +19,69 @@
                 <div class="form-check form-check-radio" style="float: left">
                     <label class="form-check-label">
                         <input class="form-check-input" type="radio" name="icon" id="icon"
-                               value="arrows-1_cloud-download-93">
+                               value="ti-download">
                         <span class="form-check-sign"></span>
-                        <i class="now-ui-icons arrows-1_cloud-download-93"></i>
+                        <i class="ti-download"></i>
                     </label>
                     <label class="form-check-label">
                         <input class="form-check-input" type="radio" name="icon" id="icon"
-                               value="transportation_bus-front-12">
+                               value="ti-car">
                         <span class="form-check-sign"></span>
-                        <i class="now-ui-icons transportation_bus-front-12"></i>
+                        <i class="ti-car"></i>
                     </label>
                     <label class="form-check-label">
                         <input class="form-check-input" type="radio" name="icon" id="icon"
-                               value="tech_watch-time">
+                               value="ti-time">
                         <span class="form-check-sign"></span>
-                        <i class="now-ui-icons tech_watch-time"></i>
+                        <i class="ti-time"></i>
                     </label>
                     <label class="form-check-label">
                         <input class="form-check-input" type="radio" name="icon" id="icon"
-                               value="tech_laptop">
+                               value="ti-desktop">
                         <span class="form-check-sign"></span>
-                        <i class="now-ui-icons tech_laptop"></i>
+                        <i class="ti-desktop"></i>
                     </label>
                     <label class="form-check-label">
                         <input class="form-check-input" type="radio" name="icon" id="icon"
-                               value="tech_mobile">
+                               value="ti-mobile">
                         <span class="form-check-sign"></span>
-                        <i class="now-ui-icons tech_mobile"></i>
+                        <i class="ti-mobile"></i>
                     </label>
                     <label class="form-check-label">
                         <input class="form-check-input" type="radio" name="icon" id="icon"
-                               value="tech_tv">
+                               value="ti-blackboard">
                         <span class="form-check-sign"></span>
-                        <i class="now-ui-icons tech_tv"></i>
+                        <i class="ti-blackboard"></i>
+                    </label>
+                    <label class="form-check-label">
+                        <input class="form-check-input" type="radio" name="icon" id="icon"
+                               value="ti-camera">
+                        <span class="form-check-sign"></span>
+                        <i class="ti-camera"></i>
+                    </label>
+                    <label class="form-check-label">
+                        <input class="form-check-input" type="radio" name="icon" id="icon"
+                               value="ti-home">
+                        <span class="form-check-sign"></span>
+                        <i class="ti-home"></i>
+                    </label>
+                    <label class="form-check-label">
+                        <input class="form-check-input" type="radio" name="icon" id="icon"
+                               value="ti-money">
+                        <span class="form-check-sign"></span>
+                        <i class="ti-money"></i>
+                    </label>
+                    <label class="form-check-label">
+                        <input class="form-check-input" type="radio" name="icon" id="icon"
+                               value="ti-palette">
+                        <span class="form-check-sign"></span>
+                        <i class="ti-palette"></i>
+                    </label>
+                    <label class="form-check-label">
+                        <input class="form-check-input" type="radio" name="icon" id="icon"
+                               value="ti-game">
+                        <span class="form-check-sign"></span>
+                        <i class="ti-game"></i>
                     </label>
                 </div>
             </div>

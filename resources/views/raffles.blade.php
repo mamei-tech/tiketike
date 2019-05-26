@@ -12,12 +12,12 @@
                 <div class="categoria">
                     <div class="listadoCategoriaN">
                         <h4 class="text-uppercase sinkinSans600SB colorV">@lang('views.categories')</h4>
-                        <ul class="nav sinkinSans400R">
+                        <ul class="nav list-unstyled sinkinSans400R">
                             <li class="active"><a href="#" class="colorN text-uppercase" id="all">@lang('views.all')</a>
                             </li>
                             @foreach($categories as $category)
                                 <li><a href="#" id="{{ $category->category }}"
-                                       class="colorN text-uppercase filters"><i class="now-ui-icons {{ $category->icon }}"></i>{{$category->category}}</a></li>
+                                       class="colorN text-uppercase filters"><span class="{{ $category->icon }}"></span> {{$category->category}}</a></li>
                             @endforeach
                         </ul>
                     </div>

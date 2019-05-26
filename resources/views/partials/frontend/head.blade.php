@@ -11,8 +11,8 @@
 
     <link rel="stylesheet" href="{{ asset('css/front/app.css') }}">
 
-    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <script src="{{ asset('js/front/plugins/fileUploader/html5shiv.min.js') }}"></script>
+    <script src="{{ asset('js/front/plugins/fileUploader/respond.min.js') }}"></script>
 
     <link type="text/css" rel="stylesheet" href="{{ asset('js/front/plugins/fancybox/source/jquery.fancybox.css?v=2.1.2') }}">
     <link href="{{ asset('js/front/plugins/carousel-owl-carousel/owl-carousel/owl.carousel.css') }}" rel="stylesheet">

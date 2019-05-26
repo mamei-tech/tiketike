@@ -1,4 +1,3 @@
-
 <div class="modal fade" id="loginModal" tabindex="-1" role="dialog"
      aria-labelledby="myModalLabel"
      aria-hidden="true">
@@ -15,16 +14,25 @@
                     sesión</h5>
 
 
-
                 <form class="form-signin" action="login" method="POST">
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                    <label for="selector" class="colorN italic">Nombre</label>
-                    <input type="email" class="form-control form-control-new " id="inputEm"
-                           name="email">
-                    <label for="selector"
-                           class="colorN italic padding-top-20">Contraseña</label>
-                    <input type="password" class="form-control form-control-new "
-                           id="inputPassword" name="password">
+                    <div class="form-group has-feedback">
+                        <label for="selector" class="colorN italic">Nombre</label>
+                        <input type="email" class="form-control" id="inputEm"
+                               name="email">
+                        <span style="top:35px;" class="ti-user form-control-feedback"></span>
+                    </div>
+                    <div class="form-group has-feedback">
+                        <label for="inputPassword"
+                               class="colorN italic padding-top-20">Contraseña</label>
+                        <input type="password" class="form-control"
+                               id="inputPassword" name="password">
+                        <span style="top: 55px;" class="ti-eye form-control-feedback"></span>
+                    </div>
+                    <div class="form-group has-feedback">
+                        <label for="view-password">Mostrar contraseña</label>
+                        <input type="checkbox" id="view-password">
+                    </div>
                     {!! app('captcha')->display() !!}
                     <div class="g-recaptcha"
                          data-sitekey="{{env('NOCAPTCHA_SITEKEY')}}">
