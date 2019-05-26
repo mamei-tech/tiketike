@@ -52,14 +52,14 @@
                         <p class="colorN">{{ $raffle->description }}</p>
                     </div>
                     <div class="col-xs-12">
-                        <div class="pull-left padding-top-20 links">
+                        <div class="pull-left padding-top-20">
 
                             <a class="icon" data-toggle="modal" href="#misCompras" title="Mis Tickets">
                                 <span class="ti-ticket colorV dimenIconos"></span>
                                 @if(Auth::user() != null)
                                 @php($rMyTickets = count(Auth::user()->getTicketsByRaffle($raffle->id)))
                                 @if($rMyTickets > 0)
-                                    <span class="badge rbadge">{{ $rMyTickets }} @else
+                                    <span class="badge rbadge" style="left: 25px !important;">{{ $rMyTickets }} @else
 
                                         </span>
                                 @endif
@@ -122,7 +122,7 @@
                                     <span class="ti-share colorV margin-right-5 dimenIconos"></span>
                                     @php($rShares = count($raffle->getReferrals))
                                     @if($rShares > 0)
-                                        <span class="badge rbadge" style="left: -28% !important">{{ $rShares }}</span>
+                                        <span class="badge rbadge" style="left: 17px !important">{{ $rShares }}</span>
                                     @endif
 
                                 </a>

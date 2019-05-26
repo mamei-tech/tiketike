@@ -12,29 +12,28 @@ $(document).ready(function () {
     });
 
 
-    var clipboard = new ClipboardJS('.btncopy');
-
-    clipboard.on('success', function(e) {
-        console.info('Action:', e.action);
-        console.info('Text:', e.text);
-        console.info('Trigger:', e.trigger);
-
-        e.clearSelection();
-    });
-
-    clipboard.on('error', function(e) {
-        console.error('Action:', e.action);
-        console.error('Trigger:', e.trigger);
-    });
+    // var clipboard = new ClipboardJS('.btncopy');
+    //
+    // clipboard.on('success', function(e) {
+    //     console.info('Action:', e.action);
+    //     console.info('Text:', e.text);
+    //     console.info('Trigger:', e.trigger);
+    //
+    //     e.clearSelection();
+    // });
+    //
+    // clipboard.on('error', function(e) {
+    //     console.error('Action:', e.action);
+    //     console.error('Trigger:', e.trigger);
+    // });
 
 
     /*  SETTING UP AXIOS HEADERS  */
     axios.defaults.headers.common['Authorization'] = "Bearer " + $('meta[name=access-token]').attr('content');
 
     $('input.tickets').on('change',function () {
-        var amount = $('#countTickets').html();
-        var update = parseInt(amount) + 1;
-        $('#countTickets').html(update);
+        var amount = $('input.tickets:checked').length;
+        $('#countTickets').html(amount);
     });
 
     $('form[id="ftm_editRaffle"]').validate({

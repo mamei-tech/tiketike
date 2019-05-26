@@ -12,12 +12,12 @@
                 <div class="categoria">
                     <div class="listadoCategoriaN">
                         <h4 class="text-uppercase sinkinSans600SB colorV">@lang('views.categories')</h4>
-                        <ul class="nav sinkinSans400R">
+                        <ul class="nav list-unstyled sinkinSans400R">
                             <li class="active"><a href="#" class="colorN text-uppercase" id="all">@lang('views.all')</a>
                             </li>
                             @foreach($categories as $category)
                                 <li><a href="#" id="{{ $category->category }}"
-                                       class="colorN text-uppercase filters">{{$category->category}}</a></li>
+                                       class="colorN text-uppercase filters"><span class="{{ $category->icon }}"></span> {{$category->category}}</a></li>
                             @endforeach
                         </ul>
                     </div>
@@ -108,7 +108,7 @@
                             @foreach($raffles as $raffle)
                                 <div class="row padding20 bg-rifas1 center-block {{$raffle->id}}">
                                     <div class="col-xs-4 col-md-6 raffle_carousel text-right" style="padding-left: 0;padding-right: 0">
-                                        <div class="hidden-lg visible-xs padding-top-10 padding-left-0">
+                                        <div class="hidden-lg visible-xs padding-top-10 padding-left-0 padding-top-percentual">
                                             <a href="{{ route('raffle.tickets.available',['raffleId' => $raffle->id]) }}"><img src="@if(count($raffle->getMedia('raffles')) > 0){{ $raffle->getMedia('raffles')->first()->getUrl() }} @endif"
                                                  class="dimenImgCarouselR" alt=""></a>
                                         </div>
@@ -136,7 +136,7 @@
                                             </ol>
                                         </div>
                                     </div>
-                                    <div class="col-xs-8 col-md-6 padding-top10R padding-left20">
+                                    <div class="col-xs-8 col-md-6 padding-top10R padding-top-percentual-desc padding-left20">
                                         <span class="texto16 colorV hidden-lg visible-xs pull-left margin-right-10 sinkinSans600SB">{{ round($raffle->progress) }}%</span>
                                         <span class="texto14 colorN pull-left sinkinSans600SB texto14">{{ $raffle->getOwner->name }}</span>
                                         <span class="ti-location-pin texto16 colorN"></span>

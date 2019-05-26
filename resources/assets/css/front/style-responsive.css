@@ -701,8 +701,8 @@
     }
 
     .dimenImgCarouselR {
-        height: 100px !important;
-        width: 270px;
+        height: 100% !important;
+        width: 100%;
     }
 
     .margin-top-70 {
@@ -1110,8 +1110,8 @@
     }
 
     .dimenImgCarouselR {
-        height: 90px !important;
-        width: 270px;
+        height: 100% !important;
+        width: 100%;
     }
 
     .chart-porcientoS canvas {
@@ -1656,8 +1656,8 @@
     }
 
     .dimenImgCarouselR {
-        height: 59px !important;
-        width: 90px;
+        height: 100% !important;
+        width: 100%;
     }
 
     .imgPublicidadR {
@@ -2159,8 +2159,8 @@
 
     .percentS {
         font-size: 11px;
-        margin-left: -82%;
-        top: 20px;
+        margin-left: -74%;
+        top: 15px;
     }
 
     .paddingR-5 {
@@ -2185,7 +2185,7 @@
     }
 
     .padding-left-0 {
-        padding-left: 0px;
+        padding-left: 0;
     }
 
     .padding-left650 {
@@ -2578,7 +2578,7 @@
     }
 
     .dimenImgCarouselR {
-        height: 100px !important;
+        height: 100% !important;
         width: 100%;
     }
 
@@ -2611,8 +2611,8 @@
 
 @media (max-width: 399px) {
     .dimenImgCarouselR {
-        height: 49px !important;
-        width: 70px;
+        height: 100% !important;
+        width: 100%;
     }
 
     .chart-porcientoS canvas {
@@ -2839,8 +2839,8 @@
     }
 
     .dimenImgCarouselR {
-        height: 49px !important;
-        width: 70px;
+        height: 100% !important;
+        width: 100%;
     }
 
     .textoR {
@@ -3018,7 +3018,7 @@
     }
 
     .stylePanelU {
-        width: 106px;
+        width: 30%;
         text-align: center;
     }
 

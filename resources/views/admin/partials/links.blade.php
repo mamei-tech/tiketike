@@ -9,3 +9,4 @@
 
 {{-- CSS Files --}}
 <link href="{{ asset('css/admin/admin.css') }}" rel="stylesheet">
+<link rel="stylesheet" href="{{ asset('css/front/themify-icons.css') }}">
