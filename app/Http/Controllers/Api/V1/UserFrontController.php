@@ -36,13 +36,19 @@ class UserFrontController extends ApiController
     {
             $country    = Country::findOrFail($city_id);
             $user       = User::findOrFail($user_id);
-
             $cities     = $country->cities()->get();
-            $selected   = $user->getProfile->getCity->id;
+            if ($user->getProfile != null and $user->getProfile->getCity != null) {
+                $selected = $user->getProfile->getCity->id;
+
+                return new Response([
+                    'cities' => $cities,
+                    'selected' => $selected,
+                ], Response::HTTP_OK);
+            }
 
         return new Response([
-            'cities'    => $cities,
-            'selected'  => $selected,
-        ],Response::HTTP_OK);
+            'cities' => $cities,
+            'selected' => null,
+        ], Response::HTTP_OK);
     }
 }
