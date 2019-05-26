@@ -17,7 +17,7 @@
                             </li>
                             @foreach($categories as $category)
                                 <li><a href="#" id="{{ $category->category }}"
-                                       class="colorN text-uppercase filters">{{$category->category}}</a></li>
+                                       class="colorN text-uppercase filters"><i class="now-ui-icons {{ $category->icon }}"></i>{{$category->category}}</a></li>
                             @endforeach
                         </ul>
                     </div>
