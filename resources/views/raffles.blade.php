@@ -83,7 +83,17 @@
             <div class="col-xs-12 col-sm-8 col-lg-7 paddingRifas">
                 <div class="col-lg-12">
                     <div class="row padding-bottom20 ">
-                        <div class="floatRight padding-rigth80 sinkinSans600SB hidden-xs">
+                        <div class="col-lg-6 sinkinSans600SB hidden-xs">
+                        <a href="@if(Auth::check())#createRaffleModal @else #loginModal @endif" data-toggle="modal"
+                           class=" texto14 ">
+                            <span class=" colorV sinkinSans600SB">@lang('views.create_raffle')</span>
+                            <span aria-hidden="true" class="ti-angle-right colorV "></span>
+                        </a>
+                            @include('partials.front_modals.create_raffle_modal')
+                        </div>
+
+                        <div class="col-lg-6  floatRight padding-left150 sinkinSans600SB hidden-xs">
+
                             <span class=" text-uppercase pull-left margin-right-15">@lang('views.order_by'):</span>
                             <button id="percent" type="button" class="btn btn-info padding0 pull-left margin-right-15">
                                 <span>%</span>
