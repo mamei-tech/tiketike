@@ -47,6 +47,8 @@ $(function () {
 
 
 
+
+
     // Check screen size for fixing the navbar
     if(window.screen.width * window.devicePixelRatio <= 1199) {
         let $div = $('div#navdiv-rightcolum');

@@ -27,12 +27,6 @@ $(document).ready(function () {
 
 });
 
-smoothScroll.init({
-    speed: 1000, // Integer. How fast to complete the scroll in milliseconds
-    offset: 0, // Integer. How far to offset the scrolling anchor location in pixels
-
-});
-
 $('.slicklanding').slick({
     autoplay: true,
     dots: true,
@@ -42,7 +36,21 @@ $('.slicklanding').slick({
     rows: 2,
     responsive: [
         {
-            breakpoint: 400,
+            breakpoint: 769,
+            settings: {
+                slidesPerRow: 2
+            }
+
+        },
+        {
+            breakpoint: 601,
+            settings: {
+                slidesPerRow: 2
+            }
+
+        },
+        {
+            breakpoint: 550,
             settings: {
                 slidesPerRow: 2,
                 rows: 4,
@@ -57,31 +65,22 @@ $('.slicklanding').slick({
             }
 
         },
+
         {
-            breakpoint: 550,
+            breakpoint: 400,
             settings: {
-                slidesPerRow: 3,
+                slidesPerRow: 2,
                 rows: 4,
-            }
-
-        }
-        ,
-        {
-            breakpoint: 601,
-            settings: {
-                slidesPerRow: 3,
-                rows: 2,
-            }
-
-        }
-        ,
-        {
-            breakpoint: 769,
-            settings: {
-                slidesPerRow: 3,
-                rows: 2,
             }
 
         }
     ]
 });
+
+
+smoothScroll.init({
+    speed: 1000, // Integer. How fast to complete the scroll in milliseconds
+    offset: 0, // Integer. How far to offset the scrolling anchor location in pixels
+
+});
+

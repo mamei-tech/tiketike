@@ -104,7 +104,7 @@
             {
                 breakpoint: 550,
                 settings: {
-                    slidesPerRow: 3,
+                    slidesPerRow: 2,
                     rows: 4,
                 }
 
@@ -113,7 +113,7 @@
             {
                 breakpoint: 601,
                 settings: {
-                    slidesPerRow: 3,
+                    slidesPerRow: 2,
                     rows: 2,
                 }
 
@@ -121,6 +121,14 @@
             ,
             {
                 breakpoint: 769,
+                settings: {
+                    slidesPerRow: 2,
+                    rows: 2,
+                }
+
+            },
+            {
+                breakpoint: 1280,
                 settings: {
                     slidesPerRow: 3,
                     rows: 2,
