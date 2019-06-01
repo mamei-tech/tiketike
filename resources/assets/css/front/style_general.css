@@ -1701,9 +1701,6 @@ Full screen Modal
     max-height: 680px !important;
     position: relative;
 }
-.promo-block-inner{
-    height: 450px;
-}
 .pagination > li > a, .pagination > li > span {
     position: relative;
     float: left;

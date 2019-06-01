@@ -55,6 +55,7 @@ class RafflesController extends Controller
         $countries = Country::all();
         $suggested      = $this->raffleRepository->getSuggested();
         $promos         = Promo::getSomePromos();
+        $mainPromos     = Promo::where('type',0)->inRandomOrder()->get();
         $categories     = RaffleCategory::all();
         $raffles        = Raffle::with('getStatus')
             ->whereHas('getStatus', function (Builder $q) {
@@ -65,7 +66,7 @@ class RafflesController extends Controller
             ->orderBy('activation_date', 'ASC')
             ->paginate(10);
         $continents = Continent::all();
-        return view('raffles', compact('raffles', 'suggested', 'promos', 'categories', 'continents', 'countries'));
+        return view('raffles', compact('raffles', 'suggested', 'promos', 'categories', 'continents', 'countries','mainPromos'));
     }
 
     /**
