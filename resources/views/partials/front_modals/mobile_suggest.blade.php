@@ -25,10 +25,10 @@
 
 <div class="visible-xs">
     <div class="promo-block" id="promo-block">
-        <div class="tp-banner-container" style="height: 200px !important;">
+        <div class="tp-banner-container">
             <div class="tp-banner">
                 <ul>
-                    @foreach($promos as $promo)
+                    @foreach($mainPromos as $promo)
                         <li data-transition="fade" data-slotamount="5" data-masterspeed="700" data-delay="9400"
                             class="slider-item-1">
                             <img src="{{ $promo->getMedia('promos')->first()->getUrl() }}" alt="" data-bgfit="cover"
@@ -64,7 +64,4 @@
             </div>
         </div>
     </div>
-    {{--    <img src="{{ asset('pics/front/slide1.jpg') }}" class="margin-top-70" alt="">--}}
-    {{--    <div class="borderPublicidad"></div>--}}
-    {{--    <div class="text-center "><span class="text-uppercase colorV sinkinSans600SB">@lang('views.raffles')</span></div>--}}
 </div>
