@@ -3,29 +3,12 @@ import axios from 'axios';
 $(document).ready(function () {
     $('#comenta').click(function (e) {
         e.preventDefault();
-        $('#comentarios').fadeIn("300");
+        $('#comentarios').fadeIn("slow");
         $('#scrollContent').css({
             'height' : '776px',
             'overflow-y' : 'scroll'
         });
-        // $('#scrollContent').scrollTo('#commentContent');
     });
-
-
-    // var clipboard = new ClipboardJS('.btncopy');
-    //
-    // clipboard.on('success', function(e) {
-    //     console.info('Action:', e.action);
-    //     console.info('Text:', e.text);
-    //     console.info('Trigger:', e.trigger);
-    //
-    //     e.clearSelection();
-    // });
-    //
-    // clipboard.on('error', function(e) {
-    //     console.error('Action:', e.action);
-    //     console.error('Trigger:', e.trigger);
-    // });
 
 
     /*  SETTING UP AXIOS HEADERS  */

@@ -249,10 +249,10 @@
                 handler.close();
             });
         });
-        $('#comenta').click(function (e) {
-            e.preventDefault();
-            $('#comentarios').fadeIn("300");
-        });
+        // $('#comenta').click(function (e) {
+        //     e.preventDefault();
+        //     $('#comentarios').fadeIn("300");
+        // });
 
         $('.slickVertical').slick({
             autoplay: true,

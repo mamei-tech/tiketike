@@ -99,9 +99,14 @@
                         </div>
                         <ul class="list-unstyled pull-right list-inline padding-top-20 ">
                             <li class="margin-right-10">
-                                <a @if(Auth::user() == null)data-toggle="modal" href="#loginModal"
+
+
+                                <a style="cursor: pointer" @if(Auth::user() == null)data-toggle="modal" href="#loginModal"
                                    @else
-                                   href="#Comments" title="Comentarios" id="comenta"@endif>
+                                   data-toggle="collapse" data-target="#comentarios"
+                                   aria-expanded="false" aria-controls="comentarios"
+                                   id="comment"
+                                        @endif>
                                     <span class="ti-comment colorV margin-right-5 dimenIconos"></span>
                                 </a>
                             </li>
@@ -130,9 +135,9 @@
                             @include('partials.front_modals.share_modal')
                         </ul>
                     </div>
-                    <div id="comentarios" style=" display:none" class="section col-xs-12" >
+                    <div id="comentarios" class="section col-xs-12 collapse my-3" >
                         <strong class="colorN text-uppercase sinkinSans600SB">@lang('views.comments')</strong>
-                        <div class="comments" id="commentContent">
+                        <div class="comments" style="height:276px;overflow-y :scroll" id="commentContent">
                             @foreach($raffle->getComments as $comment)
                                 @if($comment->parent == null)
                                     <div class="media">
@@ -153,9 +158,9 @@
                                           @endif
 
 
-                                        <a data-toggle="collapse" data-target="#reply-{{$comment->id}}"
+                                        <a style="cursor: pointer" data-toggle="collapse" data-target="#reply-{{$comment->id}}"
                                            aria-expanded="false" aria-controls="reply-{{$comment->id}}"
-                                           id="answer_comment" href="#"
+                                           id="answer_comment"
                                            class="colorV texto8 sinkinSans400I pull-right margin-right-15">@lang('views.respond')...</a>
                                     </span>
                                                 <p class="texto10 sinkinSans300L">
@@ -186,9 +191,9 @@
                                                      @include('partials.front_modals.bad_comment_modal',['commentario'=>$child])
                                                  @endif
 
-                                                 <a data-toggle="collapse" data-target="#reply-{{$child->id}}"
+                                                 <a style="cursor: pointer" data-toggle="collapse" data-target="#reply-{{$child->id}}"
                                                     aria-expanded="false" aria-controls="reply-{{$child->id}}"
-                                                    id="answer_comment" href="#"
+                                                    id="answer_comment"
                                                     class="colorV texto8 sinkinSans400I pull-right margin-right-15">@lang('views.respond')...</a>
                                               </span>
                                                             <p class="texto10 sinkinSans300L">
