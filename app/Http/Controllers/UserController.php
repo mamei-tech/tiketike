@@ -41,6 +41,7 @@ class UserController extends Controller
         $raffleMoney = $current->getRaffleMoney();
         $raferralMoney = $current->getReferralsMoney();
         $promos = Promo::getSomePromos();
+        $mainPromos = Promo::where('type',0)->get();
         $avatar = $current->getMedia('avatars')->first()->getUrl();
         $country = $currentProfile->getCity->country->name;
         return view('user', compact(
@@ -58,7 +59,8 @@ class UserController extends Controller
             'avatar',
             'country',
             'raffles',
-            'rafflesBuyed'
+            'rafflesBuyed',
+            'mainPromos'
         ));
     }
 

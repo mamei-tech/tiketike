@@ -67,7 +67,7 @@ class PromoSeeder extends Seeder
             ]
         );
 
-        \App\Promo::find($lezcano)->addMediaFromUrl('http://localhost/pics/front/slide1.jpg')->toMediaCollection('promos','promos');
+        \App\Promo::find($lezcano)->addMediaFromUrl('http://www.tiketikes.site/pics/front/slide1.jpg')->toMediaCollection('promos','promos');
 
         DB::table('promos')->insert([
                 'name'          => 'Girls Pics',
@@ -141,8 +141,8 @@ class PromoSeeder extends Seeder
         $promoa = \App\Promo::find(2);
         $promob = \App\Promo::find(3);
 
-        $promoa->addMediaFromUrl('http://localhost/pics/common/psample_1.jpg')->toMediaCollection('promos', 'promos');
-        $promob->addMediaFromUrl('http://localhost/pics/common/psample_2.jpg')->toMediaCollection('promos', 'promos');
+        $promoa->addMediaFromUrl('http://www.tiketikes.site/pics/common/psample_1.jpg')->toMediaCollection('promos', 'promos');
+        $promob->addMediaFromUrl('http://www.tiketikes.site/pics/common/psample_2.jpg')->toMediaCollection('promos', 'promos');
 
 
         // Sec
@@ -151,10 +151,10 @@ class PromoSeeder extends Seeder
         $promoz = \App\Promo::find(5);
         $promox = \App\Promo::find(6);
 
-        $promoc->addMediaFromUrl('http://localhost/pics/common/psample_3.jpg')->toMediaCollection('promos', 'promos');
-        $promod->addMediaFromUrl('http://localhost/pics/common/psample_4.jpg')->toMediaCollection('promos', 'promos');
-        $promoz->addMediaFromUrl('http://localhost/pics/common/psample_5.jpg')->toMediaCollection('promos', 'promos');
-        $promox->addMediaFromUrl('http://localhost/pics/common/psample_6.jpg')->toMediaCollection('promos', 'promos');
+        $promoc->addMediaFromUrl('http://www.tiketikes.site/pics/common/psample_3.jpg')->toMediaCollection('promos', 'promos');
+        $promod->addMediaFromUrl('http://www.tiketikes.site/pics/common/psample_4.jpg')->toMediaCollection('promos', 'promos');
+        $promoz->addMediaFromUrl('http://www.tiketikes.site/pics/common/psample_5.jpg')->toMediaCollection('promos', 'promos');
+        $promox->addMediaFromUrl('http://www.tiketikes.site/pics/common/psample_6.jpg')->toMediaCollection('promos', 'promos');
 
     }
 }

@@ -2,7 +2,7 @@
 <section class="usuariostop">
     <div class="container">
         <div class="row dimenBorderBotDisc">
-            <div class="co-xs-12 col-sm-4 col-md-5 col-lg-5 margin-right-4percent">
+            <div class="co-xs-12 col-sm-4 col-md-5 col-lg-5">
                 <div class="row padding-top-30 centerR">
                     <div class="col-xs-12 col-md-1 padding-left-0 center-block">
                         <span class="ti-crown texto35 colorB"></span>
@@ -99,7 +99,7 @@
             </div>
 
 
-            <div class=" slick-vertical col-sm-3 col-md-4 col-lg-3 user hidden-xs " id="normalSlick">
+            <div class=" slick-vertical col-sm-3 col-md-3 col-lg-3 user hidden-xs " id="normalSlick">
                 <?php
                 $count = 1;
                 ?>

@@ -95,9 +95,9 @@ class RafflesSeeder extends Seeder
 
             shuffle($imgnum);shuffle($imgnum);
 
-            $raffle->addMediaFromUrl('http://localhost/pics/common/rsample_'.$imgnum[0].'.jpg')->toMediaCollection('raffles','raffles');
-            $raffle->addMediaFromUrl('http://localhost/pics/common/rsample_'.$imgnum[1].'.jpg')->toMediaCollection('raffles','raffles');
-            $raffle->addMediaFromUrl('http://localhost/pics/common/rsample_'.$imgnum[2].'.jpg')->toMediaCollection('raffles','raffles');
+            $raffle->addMediaFromUrl('http://www.tiketikes.site/pics/common/rsample_'.$imgnum[0].'.jpg')->toMediaCollection('raffles','raffles');
+            $raffle->addMediaFromUrl('http://www.tiketikes.site/pics/common/rsample_'.$imgnum[1].'.jpg')->toMediaCollection('raffles','raffles');
+            $raffle->addMediaFromUrl('http://www.tiketikes.site/pics/common/rsample_'.$imgnum[2].'.jpg')->toMediaCollection('raffles','raffles');
 
         }
 
