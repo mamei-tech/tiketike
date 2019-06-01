@@ -1698,7 +1698,6 @@ Full screen Modal
     height: auto;
     padding: 0px;
     z-index: 0;
-    max-height: 680px !important;
     position: relative;
 }
 .pagination > li > a, .pagination > li > span {
