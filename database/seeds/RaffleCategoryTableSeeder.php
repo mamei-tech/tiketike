@@ -13,27 +13,27 @@ class RaffleCategoryTableSeeder extends Seeder
     {
         DB::table('rafflecategories')->insert([
             'category'  => 'Computers',
-            'icon'      => 'tech_laptop'
+            'icon'      => 'ti-desktop'
         ]);
 
         DB::table('rafflecategories')->insert([
             'category'  => 'Phones',
-            'icon'      => 'tech_mobile'
+            'icon'      => 'ti-mobile'
         ]);
 
         DB::table('rafflecategories')->insert([
             'category'  => 'Cars',
-            'icon'      => 'transportation_bus-front-12'
+            'icon'      => 'ti-car'
         ]);
 
         DB::table('rafflecategories')->insert([
             'category'  => 'TVs',
-            'icon'      => 'tech_tv'
+            'icon'      => 'ti-blackboard'
         ]);
 
         DB::table('rafflecategories')->insert([
             'category'  => 'Clocks',
-            'icon'      => 'tech_watch-time'
+            'icon'      => 'ti-time'
         ]);
     }
 }

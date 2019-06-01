@@ -446,6 +446,14 @@
 @media (max-width: 768px) {
 
 
+    .hidden-xs {
+        display: none !important;
+    }
+
+    .visible-xs-f1 {
+        display: block !important;
+    }
+
     .container {
         width: 750px;
     }
@@ -585,8 +593,6 @@
     .container {
         width: 100%;
     }
-
-
 
     .createRaffleModButt {
         padding-bottom: 200px;
