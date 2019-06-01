@@ -211,7 +211,7 @@
                             <form action="{{route('raffle.comment', $raffleId)}}" method="POST" role="form">
                                 {{ csrf_field() }}
                                 <div class="form-group">
-                                    <textarea maxlength="140" autofocus="true" class="form-control bg-gris"  rows="auto" cols="50" name="text" id="text" style="resize: none; height: 30px "></textarea>
+                                    <textarea maxlength="140" required autofocus="true" class="form-control bg-gris"  rows="auto" cols="50" name="text" id="text" style="resize: none; height: 30px "></textarea>
                                 </div>
                                 <button class="btn btn-primary bg_green extraer sinkinSans700B text-uppercase"
                                         type="submit">@lang('views.send')

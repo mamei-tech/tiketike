@@ -1694,7 +1694,7 @@ Full screen Modal
     text-align: inherit;
 }
 .promo-block{
-    min-height: 600px;
+    min-height: 10px;
     height: auto;
     padding: 0px;
     z-index: 0;

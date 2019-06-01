@@ -19,6 +19,7 @@ website:   	http://www.themepunch.com
 
 .tp-banner-container{
 	width:100%;
+	height: 200px !important;
 	position:relative;
 	padding:0;
 
