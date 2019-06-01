@@ -14,9 +14,9 @@ $(document).ready(function () {
 
     });
     revapi = jQuery('.tp-banner').show().revolution({
-        delay: 1000,
+        delay: 6000,
         startwidth: 1170,
-        startheight: 500,
+        startheight: 200,
         hideThumbs: true,
         fullWidth: "on",
         fullScreen: "on",

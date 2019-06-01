@@ -4,7 +4,7 @@
         {{ csrf_field() }}
         <div class="form-group">
             <input  type="hidden" name="parent_id" value="{{$comment->id}}">
-            <textarea maxlength="100" autofocus="true" class="form-control bg-gris"  rows="auto" cols="50" name="text" id="text" style="resize: none; height: 30px ">@if($isSon){{ $answer_text->getUser->name }} {{ $answer_text->getUser->lastname }}@endif
+            <textarea maxlength="100" required autofocus="true" class="form-control bg-gris"  rows="auto" cols="50" name="text" id="text" style="resize: none; height: 30px ">@if($isSon){{ $answer_text->getUser->name }} {{ $answer_text->getUser->lastname }}@endif
             </textarea>
             <div>
                 {{ $errors->first('text') }}
