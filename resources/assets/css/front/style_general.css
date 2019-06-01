@@ -1695,7 +1695,7 @@ Full screen Modal
 }
 .promo-block{
     min-height: 10px;
-    height: auto;
+    height: 265px;
     padding: 0px;
     z-index: 0;
     position: relative;
