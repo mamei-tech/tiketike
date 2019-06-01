@@ -24,8 +24,8 @@
 </div>
 
 <div class="visible-xs">
-    <div class="promo-block" id="promo-block">
-        <div class="tp-banner-container" style="height: 200px !important;">
+    <div class="promo-block promo-block-inner" id="promo-block">
+        <div class="tp-banner-container" style="height: 680px !important;">
             <div class="tp-banner">
                 <ul>
                     @foreach($promos as $promo)
@@ -64,7 +64,4 @@
             </div>
         </div>
     </div>
-    {{--    <img src="{{ asset('pics/front/slide1.jpg') }}" class="margin-top-70" alt="">--}}
-    {{--    <div class="borderPublicidad"></div>--}}
-    {{--    <div class="text-center "><span class="text-uppercase colorV sinkinSans600SB">@lang('views.raffles')</span></div>--}}
 </div>

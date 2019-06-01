@@ -19,15 +19,17 @@ website:   	http://www.themepunch.com
 
 .tp-banner-container{
 	width:100%;
-	height: 200px !important;
+	height: 650px !important;
 	position:relative;
 	padding:0;
+	max-height: 680px !important;
 
 }
 
 .tp-banner{
 	width:100%;
 	position:relative;
+	max-height: 680px;
 }
 
 .tp-banner-fullscreen-container {

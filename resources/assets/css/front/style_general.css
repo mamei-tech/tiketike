@@ -1695,10 +1695,14 @@ Full screen Modal
 }
 .promo-block{
     min-height: 10px;
-    height: 265px;
+    height: auto;
     padding: 0px;
     z-index: 0;
+    max-height: 680px !important;
     position: relative;
+}
+.promo-block-inner{
+    height: 450px;
 }
 .pagination > li > a, .pagination > li > span {
     position: relative;
