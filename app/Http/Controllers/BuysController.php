@@ -39,9 +39,10 @@ abstract class BuysController extends Controller
         $countries = Country::all();
         $suggested = $raffleRepository->getSuggested();
         $raffle = Raffle::find($raffleId);
-        $promos = Promo::where('type',1)->where('status',1)->get();
+        $promos = Promo::getSomePromos();
+        $mainPromos = Promo::where('type',1)->where('status',1)->get();
         $categories = RaffleCategory::all();
-        return view('raffle', compact('countries','suggested','raffle','promos','categories','raffleId'));
+        return view('raffle', compact('countries','suggested','raffle','mainPromos','categories','raffleId','promos'));
     }
 
 
