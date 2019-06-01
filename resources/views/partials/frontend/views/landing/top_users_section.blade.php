@@ -2,7 +2,7 @@
 <section class="usuariostop">
     <div class="container">
         <div class="row dimenBorderBotDisc">
-            <div class="co-xs-12 col-sm-4 col-md-5 col-lg-5">
+            <div class="co-xs-12 col-sm-12 col-md-5 col-lg-5">
                 <div class="row padding-top-30 centerR">
                     <div class="col-xs-12 col-md-1 padding-left-0 center-block">
                         <span class="ti-crown texto35 colorB"></span>
@@ -99,7 +99,7 @@
             </div>
 
 
-            <div class=" slick-vertical col-sm-3 col-md-3 col-lg-3 user hidden-xs " id="normalSlick">
+            <div class=" slick-vertical col-sm-6 col-md-4 col-lg-3 user hidden-xs " id="normalSlick">
                 <?php
                 $count = 1;
                 ?>
@@ -121,7 +121,7 @@
                 @endforeach
 
             </div>
-            <div class="col-sm-5 col-md-4 col-lg-4 bg-popoverLanding padding-top-50 hidden-xs padding-left-0">
+            <div class="col-sm-6 col-md-4 col-lg-4 bg-popoverLanding padding-top-50 hidden-xs padding-left-0">
                 <span class="colorV text-uppercase sinkinSans600SB texto20" id="name">{{ $top_users->first()->name }} {{ $top_users->first()->lastname }}</span><br>
                 <span class="colorV sinkinSans300LI texto20" id="country">{{ $top_users->first()->getProfile->getCity->country->name }}</span><br>
                 <div class="row sinkinSans200L texto14 padding-top-20 paddingLeft0">
