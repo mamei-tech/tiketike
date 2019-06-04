@@ -4,11 +4,6 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="icon" href="{{ asset('pics/favicon.png') }}">
-
-    <title>TikeTike</title>
-
-
-
     <link rel="stylesheet" href="{{ asset('css/front/app.css') }}">
 
     <script src="{{ asset('js/front/plugins/fileUploader/html5shiv.min.js') }}"></script>
