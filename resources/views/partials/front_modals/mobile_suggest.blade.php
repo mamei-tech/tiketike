@@ -28,7 +28,7 @@
         <div class="tp-banner-container">
             <div class="tp-banner">
                 <ul>
-                    @foreach($mainPromos as $promo)
+                    @foreach($promos as $promo)
                         <li data-transition="fade" data-slotamount="5" data-masterspeed="700" data-delay="9400"
                             class="slider-item-1">
                             <img src="{{ $promo->getMedia('promos')->first()->getUrl() }}" alt="" data-bgfit="cover"
@@ -65,3 +65,6 @@
         </div>
     </div>
 </div>
+
+
+
