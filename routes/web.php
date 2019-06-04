@@ -72,7 +72,7 @@ Route::group([
     Route::post('/', 'LangController@localizator')->name('admin.lansw');
 
     // Users Management
-    Route::resource('/users', 'UserController', ['except' => ['show', 'store', 'create', 'destroy']]);
+    Route::resource('/users', 'UserController', ['except' => ['show', 'store', 'create']]);
     Route::put('/users.updateadmin/{userid}', 'UserController@updateadmin')->name('users.updateadmin');
 
     // Roles Management

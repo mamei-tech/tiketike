@@ -1350,7 +1350,7 @@ chart-porcientoR{
     position: absolute;
     color: #ffffff !important;
     font-family: sinkinSans600SB;
-    margin-left: -75px;
+    margin-left: -45%;
     top: 5px;
 }
 .percentB {
@@ -1377,7 +1377,7 @@ chart-porcientoR{
 }
 .chart-porcientoR canvas {
     margin-top: -5px;
-    margin-left: -90px;
+    margin-left: -60%;
     height: 66px !important;
     position: absolute;
     width: 66px !important;

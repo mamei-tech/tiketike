@@ -125,11 +125,6 @@ $(document).ready(function () {
         /*let $tr = $(this).closest('tr');
         table.row($tr).remove().draw();*/
     });
-
-    //Like record
-    table.on('click', '.like', function () {
-        alert('You clicked on Like button');
-    });
 });
 
 
