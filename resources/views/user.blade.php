@@ -157,33 +157,33 @@
                             <div class="tab-pane active in" id="estadisticas">
                                 <div class="col-xs-12 colorV sinkinSans300L">
                                     <div class="padding-top-10">
-                                        <div class="col-xs-6 col-sm-8"><span class="colorV margin-right-20">@lang('views.created_raffles')
+                                        <div class="col-xs-9 col-sm-8"><span class="colorV margin-right-20">@lang('views.created_raffles')
                                                 :</span>
                                         </div>
-                                        <div class="col-xs-6 col-sm-4"><strong
+                                        <div class="col-xs-3 col-sm-4"><strong
                                                     class="colorN sinkinSans600SB">{{$rafflesCount }}</strong><br></div>
                                     </div>
                                     <div class="padding-top-20">
-                                        <div class="col-xs-6 col-sm-8"><span class="colorV margin-right-20">@lang('views.winned_raffles')
+                                        <div class="col-xs-9 col-sm-8"><span class="colorV margin-right-20">@lang('views.winned_raffles')
                                                 :</span>
                                         </div>
-                                        <div class="col-xs-6 col-sm-4"><strong
+                                        <div class="col-xs-3 col-sm-4"><strong
                                                     class="colorN sinkinSans600SB">{{ $winnedRaffles }}</strong><br>
                                         </div>
                                     </div>
                                     <div class="padding-top-20">
-                                        <div class="col-xs-6 col-sm-8"><span class="colorV margin-right-20">@lang('views.shared_raffles')
+                                        <div class="col-xs-9 col-sm-8"><span class="colorV margin-right-20">@lang('views.shared_raffles')
                                                 :</span>
                                         </div>
-                                        <div class="col-xs-6 col-sm-4"><strong
+                                        <div class="col-xs-3 col-sm-4"><strong
                                                     class="colorN sinkinSans600SB">{{ $sharedRaffles }}</strong><br>
                                         </div>
                                     </div>
                                     <div class="padding-top-20">
-                                        <div class="col-xs-6 col-sm-8"><span class="colorV margin-right-20">@lang('views.sold_tickets')
+                                        <div class="col-xs-9 col-sm-8"><span class="colorV margin-right-20">@lang('views.sold_tickets')
                                                 :</span>
                                         </div>
-                                        <div class="col-xs-6 col-sm-4"><strong
+                                        <div class="col-xs-3 col-sm-4"><strong
                                                     class="colorN sinkinSans600SB">{{ $soldTickets  }}</strong><br>
                                         </div>
                                     </div>
@@ -504,7 +504,7 @@
                 slidesToScroll: 1,
                 infinite: true,
                 pauseOnHover: true,
-                autoplaySpeed: 2000,
+                swipeToSlide: true,
                 initialSlide: 0,
                 responsive: [
                     {
@@ -520,12 +520,12 @@
             });
 
             $('.slickFollows').slick({
-                autoplay: false,
+                autoplay: true,
                 slidesToShow: 5,
                 slidesToScroll: 1,
                 infinite: true,
                 pauseOnHover: true,
-                autoplaySpeed: 2000,
+                swipeToSlide: true,
                 initialSlide: 0,
                 responsive: [
                     {
