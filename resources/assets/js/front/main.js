@@ -132,7 +132,7 @@ $(document).ready(function () {
         delay: 1000,
         startwidth: 1170,
         startheight: 500,
-        hideThumbs: true,
+        hideThumbs: false,
         fullWidth: "on",
         fullScreen: "on",
         touchenabled: "on",                      // Enable Swipe Function : on/off
