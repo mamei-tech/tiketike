@@ -1,4 +1,5 @@
 @media (min-width: 1280px) {
+
     .padding-left30 {
         padding-left: 7%;
     }
@@ -38,6 +39,7 @@
 }
 
 @media (min-width: 1201px) and (max-width: 1279px) {
+
 
     .centerM {
         width: auto;
@@ -142,6 +144,8 @@
 }
 
 @media (min-width: 1025px) and (max-width: 1200px) {
+
+
 
     .bg-popoverU {
         background: url("../../pics/front/popover.svg") no-repeat scroll top center;
@@ -2088,6 +2092,8 @@
         top: 10px;
     }
 
+
+
     .chart-porcientoB canvas {
         height: 70px !important;
         width: 70px !important;
@@ -3125,13 +3131,7 @@
         top: 0px;
     }
 
-    .percentR {
-        top: -5px;
-    }
 
-    .chart-porcientoR canvas {
-        margin-top: -15px;
-    }
 
     .chart-porcientoB canvas {
         height: 70px !important;
