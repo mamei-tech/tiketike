@@ -33,7 +33,7 @@ class CreateTicketsTable extends Migration
             $table->foreign('buyer')
                 ->references('id')
                 ->on('users')
-                ->onDelete('restrict');
+                ->onDelete('cascade');
         });
 
         Schema::create('referralsbuys', function (Blueprint $table) {

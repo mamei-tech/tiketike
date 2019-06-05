@@ -627,13 +627,14 @@ $(document).ready(function () {
 
     jQuery('.tp-banner').show().revolution({
         delay: 1000,
-        startwidth: 1170,
-        startheight: 500,
+        responsiveLevels:[4096,1024,778,480],
+        gridwidth:[1140,800,750,540],
+        gridheight:[600,600,980,231],
         hideThumbs: true,
         fullWidth: "on",
         fullScreen: "off",
         touchenabled: "on",                      // Enable Swipe Function : on/off
         onHoverStop: "on",                       // Stop Banner Timet at Hover on Slide on/off
-        fullScreenOffsetContainer: ""
+        // fullScreenOffsetContainer: ""
     });
 });

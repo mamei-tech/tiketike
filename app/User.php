@@ -67,17 +67,17 @@ class User extends Authenticatable implements HasMedia
      */
     public function getRaffles()
     {
-        return $this->hasMany('App\Raffle', 'owner');
+        return $this->hasMany('App\Raffle', 'owner')->orderBy('progress','DESC');
     }
 
     public function getRafflesFollowed()
     {
-        return $this->belongsToMany(Raffle::class,'follow');
+        return $this->belongsToMany(Raffle::class,'follow')->orderBy('progress','DESC');
     }
 
     public function getRafflesBuyed()
     {
-       return $this->belongsToMany(Raffle::class,'tickets','buyer','raffle')->groupBy('raffles.id');
+       return $this->belongsToMany(Raffle::class,'tickets','buyer','raffle')->groupBy('raffles.id')->orderBy('progress','DESC');
     }
 
 

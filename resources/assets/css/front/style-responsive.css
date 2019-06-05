@@ -586,6 +586,14 @@
 
 
 
+    .hidden-xs {
+        display: none !important;
+    }
+
+    .visible-xs-f1 {
+        display: block !important;
+    }
+
     .container {
         width: 750px;
     }
@@ -2214,7 +2222,7 @@
     }
 
     .stylePanelU {
-        width: 150px;
+        width: 30%;
         text-align: center;
     }
 

@@ -61,7 +61,7 @@ class CreateRafflesTable extends Migration
             $table->foreign('owner')    //FK
             ->references('id')
                 ->on('users')
-                ->onDelete('restrict');
+                ->onDelete('cascade');
 
             $table->foreign('category') //FK
             ->references('id')
