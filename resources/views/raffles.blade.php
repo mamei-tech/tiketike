@@ -1,5 +1,5 @@
 @extends('layouts.base')
-@section('title','raffles')
+@section('title',@lang('views.raffles'))
 @section('content')
     @include('partials.frontend.header')
     @include('partials.front_modals.filters')

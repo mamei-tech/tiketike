@@ -74,5 +74,7 @@ return [
     'Executed' => 'Executed',
     'Pending' => 'Pending',
     'Dashboard' => 'Dashboard',
-    'My Profile' => 'My Profile'
+    'My Profile' => 'My Profile',
+    'home' => 'Home',
+    'profile' => 'Profile'
 ];
