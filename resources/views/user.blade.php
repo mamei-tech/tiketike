@@ -157,33 +157,33 @@
                             <div class="tab-pane active in" id="estadisticas">
                                 <div class="col-xs-12 colorV sinkinSans300L">
                                     <div class="padding-top-10">
-                                        <div class="col-xs-6 col-sm-8"><span class="colorV margin-right-20">@lang('views.created_raffles')
+                                        <div class="col-xs-9 col-sm-8"><span class="colorV margin-right-20">@lang('views.created_raffles')
                                                 :</span>
                                         </div>
-                                        <div class="col-xs-6 col-sm-4"><strong
+                                        <div class="col-xs-3 col-sm-4"><strong
                                                     class="colorN sinkinSans600SB">{{$rafflesCount }}</strong><br></div>
                                     </div>
                                     <div class="padding-top-20">
-                                        <div class="col-xs-6 col-sm-8"><span class="colorV margin-right-20">@lang('views.winned_raffles')
+                                        <div class="col-xs-9 col-sm-8"><span class="colorV margin-right-20">@lang('views.winned_raffles')
                                                 :</span>
                                         </div>
-                                        <div class="col-xs-6 col-sm-4"><strong
+                                        <div class="col-xs-3 col-sm-4"><strong
                                                     class="colorN sinkinSans600SB">{{ $winnedRaffles }}</strong><br>
                                         </div>
                                     </div>
                                     <div class="padding-top-20">
-                                        <div class="col-xs-6 col-sm-8"><span class="colorV margin-right-20">@lang('views.shared_raffles')
+                                        <div class="col-xs-9 col-sm-8"><span class="colorV margin-right-20">@lang('views.shared_raffles')
                                                 :</span>
                                         </div>
-                                        <div class="col-xs-6 col-sm-4"><strong
+                                        <div class="col-xs-3 col-sm-4"><strong
                                                     class="colorN sinkinSans600SB">{{ $sharedRaffles }}</strong><br>
                                         </div>
                                     </div>
                                     <div class="padding-top-20">
-                                        <div class="col-xs-6 col-sm-8"><span class="colorV margin-right-20">@lang('views.sold_tickets')
+                                        <div class="col-xs-9 col-sm-8"><span class="colorV margin-right-20">@lang('views.sold_tickets')
                                                 :</span>
                                         </div>
-                                        <div class="col-xs-6 col-sm-4"><strong
+                                        <div class="col-xs-3 col-sm-4"><strong
                                                     class="colorN sinkinSans600SB">{{ $soldTickets  }}</strong><br>
                                         </div>
                                     </div>
@@ -295,12 +295,13 @@
                                                 <a href="{{ route('raffle.tickets.available',['raffleId' => $raffle->id]) }}">
                                                     <img src="{{ $raffle->getMedia('raffles')->first()->getUrl() }}"
                                                          class="imgRifas">
+
+
                                                     <div class="porciento">
                                                         <div class=" text-center">
-                                                <span class="chartB chart-porcientoR"
-                                                      data-percent="{{round($raffle->progress)}}">
-                                                    <span class="percentR">{{round($raffle->progress)}}%</span>
-                                                </span>
+                                                          <span class="chartB chart-porcientoR" data-percent="{{round($raffle->progress)}}">
+                                                             <span class="percentR">{{round($raffle->progress)}}%</span>
+                                                          </span>
                                                         </div>
                                                     </div>
                                                 </a>
@@ -445,7 +446,8 @@
                                             <div class="col-md-12">
                                                 <div class="slickFollows" id="normalSlick-follows">
                                                     @foreach($current->getFollows as $follow)
-                                                        <div class="slick-list follow" id="{{$follow->id}}" style="overflow: auto">
+                                                        <div class="slick-list follow" id="{{$follow->id}}"
+                                                             style="overflow: auto">
                                                             <a href="{{ route('profile.info',$follow->id) }}">
                                                                 <img src="{{ $follow->getMedia('avatars')->first() ->getUrl()}}"
                                                                      class="imgUsuario sombraImgUser2"
@@ -467,7 +469,8 @@
                                                      style="display: none"></div>
                                                 <div class="slickFollowers" id="normalSlick-followers">
                                                     @foreach($current->getFollowers as $follower)
-                                                        <div class="slick-list follower" id="{{$follower->id}}" style="overflow: auto">
+                                                        <div class="slick-list follower" id="{{$follower->id}}"
+                                                             style="overflow: auto">
                                                             <a href="{{ route('profile.info',$follower->id) }}">
                                                                 <img src="{{ $follower->getMedia('avatars')->first() ->getUrl()}}"
                                                                      class="imgUsuario sombraImgUser2"
@@ -504,7 +507,7 @@
                 slidesToScroll: 1,
                 infinite: true,
                 pauseOnHover: true,
-                autoplaySpeed: 2000,
+                swipeToSlide: true,
                 initialSlide: 0,
                 responsive: [
                     {
@@ -520,12 +523,12 @@
             });
 
             $('.slickFollows').slick({
-                autoplay: false,
+                autoplay: true,
                 slidesToShow: 5,
                 slidesToScroll: 1,
                 infinite: true,
                 pauseOnHover: true,
-                autoplaySpeed: 2000,
+                swipeToSlide: true,
                 initialSlide: 0,
                 responsive: [
                     {
@@ -539,7 +542,6 @@
 
                 ]
             });
-
 
 
             revapi = jQuery('.tp-banner').show().revolution({

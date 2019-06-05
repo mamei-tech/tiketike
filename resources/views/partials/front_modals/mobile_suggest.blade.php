@@ -28,7 +28,7 @@
         <div class="tp-banner-container">
             <div class="tp-banner">
                 <ul>
-                    @foreach($mainPromos as $promo)
+                    @foreach($promos as $promo)
                         <li data-transition="fade" data-slotamount="5" data-masterspeed="700" data-delay="9400"
                             class="slider-item-1">
                             <img src="{{ $promo->getMedia('promos')->first()->getUrl() }}" alt="" data-bgfit="cover"
@@ -38,7 +38,7 @@
                                  data-x="center"
                                  data-hoffset="0"
                                  data-y="center"
-                                 data-voffset="0"
+                                 data-voffset="140"
                                  data-customin="x:0;y:0;z:0;rotationX:90;rotationY:0;rotationZ:0;scaleX:1;scaleY:1;skewX:0;skewY:0;opacity:0;transformPerspective:200;transformOrigin:50% 0%;"
                                  data-customout="x:0;y:0;z:0;rotationX:0;rotationY:0;rotationZ:0;scaleX:0.75;scaleY:0.75;skewX:0;skewY:0;opacity:0;transformPerspective:600;transformOrigin:50% 50%;"
                                  data-speed="1000"
@@ -49,7 +49,7 @@
                             <div class="tp-caption large_bold_white fade"
                                  data-x="center"
                                  data-y="center"
-                                 data-voffset="0"
+                                 data-voffset="-10"
                                  data-speed="300"
                                  data-start="1700"
                                  data-easing="Power4.easeOut"
@@ -65,4 +65,6 @@
         </div>
     </div>
 </div>
-<div class="clearfix"></div>
+
+
+
