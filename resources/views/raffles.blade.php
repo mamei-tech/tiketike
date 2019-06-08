@@ -84,7 +84,7 @@
             <div class="col-xs-12 col-sm-8 col-lg-7 paddingRifas">
                 <div class="col-lg-12">
                     <div class="row padding-bottom20 ">
-                        <div class="col-lg-6 sinkinSans600SB hidden-xs">
+                        <div class="col-lg-6 sinkinSans600SB">
                         <a href="@if(Auth::check())#createRaffleModal @else #loginModal @endif" data-toggle="modal"
                            class=" texto14 ">
                             <span class=" colorV sinkinSans600SB">@lang('views.create_raffle')</span>

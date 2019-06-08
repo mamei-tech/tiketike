@@ -989,6 +989,7 @@ demo = {
 
         function updateRegisteredUsers () {
             axios.get(route('v1.customadmin.registeredusers')).then(function (response) {
+
                 let maleCount   = response['data']['male'];
                 let femaleCount = response['data']['female'];
                 let total  = maleCount + femaleCount;
