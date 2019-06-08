@@ -15,5 +15,5 @@
     <link href="{{ asset('js/front/plugins/slider-revolution-slider/rs-plugin/css/settings.css') }}" rel="stylesheet">
     <link href="{{ asset('js/front/plugins/select2/select2.min.css') }}" rel="stylesheet">
     <link href="{{ asset('css/front/uploader/style.min.css') }}" rel="stylesheet">
-    <title> {{ config('app.name', 'TikeTike') }} | @yield('title', @lang('views.home')) </title>
+    <title> {{ config('app.name', 'TikeTikes') }} | @yield('title', trans('views.home')) </title>
 </head>

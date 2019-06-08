@@ -1,5 +1,5 @@
 @extends('layouts.base')
-@section('title',@lang('views.profile'))
+@section('title',trans('views.profile'))
 @section('content')
     @include('partials.frontend.header')
     @include('partials.front_modals.mobile_suggest')
