@@ -630,7 +630,7 @@ $(document).ready(function () {
         responsiveLevels:[4096,1024,778,480],
         gridwidth:[1140,800,750,540],
         gridheight:[600,600,980,231],
-        hideThumbs: true,
+        hideThumbs: false,
         fullWidth: "on",
         fullScreen: "off",
         touchenabled: "on",                      // Enable Swipe Function : on/off
