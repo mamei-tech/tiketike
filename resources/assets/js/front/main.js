@@ -75,9 +75,52 @@ $(document).ready(function () {
         "target": "#uploads",
         "max": 3,
         "textNew": "ADD",
-        "textTitle": "Click here or drag to upload an imagem",
-        "textTitleRemove": "Click here remove the imagem"
+        "textTitle": "Click here or drag to upload an image",
+        "textTitleRemove": "Click here remove the image",
     });
+
+    $('#hidden_0').on('change',function () {
+        if(this.files[0].size > 1572864){
+            var error = document.getElementById('error_size');
+            error.style['display'] = 'block';
+            uploadHBR.reset('#uploads');
+        }else {
+            var error = document.getElementById('error_size');
+            if (error.style['display'] === "block")
+            {
+                error.style['display'] = 'none';
+            }
+        }
+    });
+
+    $('#hidden_1').on('change',function () {
+        if(this.files[0].size > 1572864){
+            var error = document.getElementById('error_size');
+            error.style['display'] = 'block';
+            uploadHBR.reset('#uploads');
+        }else {
+            var error = document.getElementById('error_size');
+            if (error.style['display'] === "block")
+            {
+                error.style['display'] = 'none';
+            }
+        }
+    });
+
+    $('#hidden_2').on('change',function () {
+        if(this.files[0].size > 1572864){
+            var error = document.getElementById('error_size');
+            error.style['display'] = 'block';
+            uploadHBR.reset('#uploads');
+        }else {
+            var error = document.getElementById('error_size');
+            if (error.style['display'] === "block")
+            {
+                error.style['display'] = 'none';
+            }
+        }
+    });
+
     $('#reset').click(function () {
         uploadHBR.reset('#uploads');
     });

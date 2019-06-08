@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Http\Requests\CustomRules\Base64FileSize;
 use Illuminate\Foundation\Http\FormRequest;
 
 class StoreRaffleRequest extends FormRequest
@@ -29,6 +30,7 @@ class StoreRaffleRequest extends FormRequest
             'price' => 'required|numeric|min:1',
             'category' => 'required',
             'localization' => 'required',
+            'base' => [new Base64FileSize()]
         ];
     }
 }
