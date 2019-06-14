@@ -4,6 +4,10 @@ namespace App\Http\Controllers\Admin;
 
 use App\City;
 use App\Http\Requests\DeletingUserRequest;
+use App\Notifications\RaffleAnulled;
+use App\Notifications\RaffleDeleted;
+use App\Payment;
+use App\Raffle;
 use App\Role;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -181,6 +185,34 @@ class UserController extends Controller
      */
     public function destroy($user)
     {
+        $currentUser = User::findOrFail($user);
+        foreach ($currentUser->getRaffles as $raffle) {
+            foreach ($raffle->getFollowers as $user) {
+                $user->notify(new RaffleDeleted($raffle,$user));
+            }
+            $raffle->getOwner->notify(new RaffleAnulled($raffle,$raffle->getOwner));
+
+            $payback = new Payment();
+            $payback->name = "A raffle ".$raffle->title." was anulled";
+            $payback->description = "You have to pay back to all users that had buy a ticket on this raffle";
+            $payback->status = "Pending";
+            $payback->type = 'refund';
+            $payback->save();
+            $users = array();
+            foreach ($raffle->getTickets as $ticket) {
+                if ($ticket->sold == 1)
+                    array_push($users,$ticket->getBuyer->id);
+            }
+            $payback->getUser()->sync($users);
+            $payback->getRaffle()->save($raffle);
+            $raffle->anullate();
+            Raffle::destroy($raffle->id);
+
+            Log::log('INFO', trans('aLogs.adm_raffle_anullation'), [
+                'raffle_id' => $raffle->id,
+                'user'      => Auth::user()->id,
+            ]);
+        }
         User::destroy($user);
 
         Log::log('INFO', trans('aLogs.user_prof_deleted'), [

@@ -989,7 +989,7 @@ demo = {
 
         function updateRegisteredUsers () {
             axios.get(route('v1.customadmin.registeredusers')).then(function (response) {
-
+                console.log(response.data);
                 let maleCount   = response['data']['male'];
                 let femaleCount = response['data']['female'];
                 let total  = maleCount + femaleCount;
@@ -1565,6 +1565,7 @@ demo = {
 
         function updateCountriesUsers () {
             axios.get(route('v1.customadmin.countriesusers')).then(function (response) {
+                console.log(response.data);
                 let countriesCodes = response['data']['countries'];
                 let users = response['data']['users'];
                 countriesUsers = response['data']['countries_users'];
