@@ -114,7 +114,7 @@
                             <select name="languaje" class="selectpicker"
                                     data-style="btn btn-neutral btn-round"
                                     title="Languaje" tabindex="-98">
-                                <option class="bs-title-option" value="">Languaje</option>
+                                <option class="bs-title-option" disabled selected>Languaje</option>
 
                                 @foreach (\App\Facades\Loc::supported() as $lang)
                                     <option @if(!$first_time) value="{{ $lang }}" {{ $user->getProfile->langcode == $lang ? 'selected' : '' }}@endif>
@@ -131,7 +131,7 @@
                         <br>
                         <select id="contry-select" name="country" class="selectpicker" data-style="btn btn-neutral btn-round"
                                 title="Country" tabindex="-98">
-                            <option class="bs-title-option" value="">Country</option>
+                            <option class="bs-title-option" disabled selected value="">Country</option>
 
                             @foreach ($countries as $country)
                                 <option value="{{ $country->id }}" @if(!$first_time) {{ $country->name == $user->getProfile->getCity->country->name ? 'selected' : '' }}@endif>

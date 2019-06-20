@@ -3,12 +3,19 @@
 namespace App\Http\Controllers\Admin;
 
 use App\City;
+use App\Comment;
 use App\Http\Requests\DeletingUserRequest;
+use App\Http\Requests\RaffleConfigRequest;
 use App\Notifications\RaffleAnulled;
 use App\Notifications\RaffleDeleted;
 use App\Payment;
 use App\Raffle;
+use App\RaffleConfirmation;
+use App\RaffleItem;
+use App\RafflePicture;
 use App\Role;
+use App\Ticket;
+use App\UserProfile;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
@@ -29,11 +36,11 @@ class UserController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('permission:user_list')          ->  only(['index']);
-        $this->middleware('permission:user_update')        ->  only(['update']);
-        $this->middleware('permission:user_edit')          ->  only(['edit']);
-        $this->middleware('permission:user_destroy')       ->  only(['destroy']);
-        $this->middleware('permission:user_updateadmin')   ->  only(['updateadmin']);
+        $this->middleware('permission:user_list')->only(['index']);
+        $this->middleware('permission:user_update')->only(['update']);
+        $this->middleware('permission:user_edit')->only(['edit']);
+        $this->middleware('permission:user_destroy')->only(['destroy']);
+        $this->middleware('permission:user_updateadmin')->only(['updateadmin']);
     }
 
 
@@ -58,7 +65,7 @@ class UserController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int $userid
+     * @param int $userid
      * @return \Illuminate\Http\Response
      */
     public function edit($userid)
@@ -66,7 +73,7 @@ class UserController extends Controller
         $user = User::with('getProfile')->findOrFail($userid);
 
         $countries = Country::paginate(10);
-        $countrycities = City::where('country_id',$user->getProfile->getCity->country->id)->get();
+        $countrycities = City::where('country_id', $user->getProfile->getCity->country->id)->get();
 
 
         return view('admin.userprofile', [
@@ -80,7 +87,7 @@ class UserController extends Controller
      * Update the specified resource in storage.
      *
      * @param StoreUserprofileRequest $request
-     * @param  int $userid
+     * @param int $userid
      * @return \Illuminate\Http\Response
      */
     public function update(StoreUserprofileRequest $request, $userid)
@@ -136,7 +143,7 @@ class UserController extends Controller
 
         // Logs the actions
         Log::log('INFO', trans('aLogs.user_prof_updated'), [
-            'user'      => Auth::user()->id,
+            'user' => Auth::user()->id,
         ]);
 
         return redirect()->route('users.edit',
@@ -153,7 +160,7 @@ class UserController extends Controller
      * Update the specified resource in storage.
      *
      * @param Request $request
-     * @param  int $userid
+     * @param int $userid
      * @return \Illuminate\Http\Response
      */
     public function updateadmin(Request $request, $userid)
@@ -170,7 +177,7 @@ class UserController extends Controller
         $user->syncRoles($roles);
 
         Log::log('INFO', trans('aLogs.user_prof_updated'), [
-            'user'      => Auth::user()->id,
+            'user' => Auth::user()->id,
         ]);
 
         return redirect()->route('users.index')
@@ -187,36 +194,43 @@ class UserController extends Controller
     {
         $currentUser = User::findOrFail($user);
         foreach ($currentUser->getRaffles as $raffle) {
-            foreach ($raffle->getFollowers as $user) {
-                $user->notify(new RaffleDeleted($raffle,$user));
+//            foreach ($raffle->getFollowers as $user) {
+//                $user->notify(new RaffleDeleted($raffle, $user));
+//            }
+            if ($raffle->progress > 0) {
+                $payback = new Payment();
+                $payback->name = "A raffle " . $raffle->title . " was anulled";
+                $payback->description = "You have to pay back to all users that had buy a ticket on this raffle";
+                $payback->status = "Pending";
+                $payback->type = 'refund';
+                $payback->save();
+                $users = array();
+                foreach ($raffle->getTickets as $ticket) {
+                    if ($ticket->sold == 1)
+                        array_push($users, $ticket->getBuyer->id);
+                    var_dump("borrando tickets");
+                    $ticket->delete();
+                }
+                $payback->getUser()->sync($users);
             }
-            $raffle->getOwner->notify(new RaffleAnulled($raffle,$raffle->getOwner));
-
-            $payback = new Payment();
-            $payback->name = "A raffle ".$raffle->title." was anulled";
-            $payback->description = "You have to pay back to all users that had buy a ticket on this raffle";
-            $payback->status = "Pending";
-            $payback->type = 'refund';
-            $payback->save();
-            $users = array();
-            foreach ($raffle->getTickets as $ticket) {
-                if ($ticket->sold == 1)
-                    array_push($users,$ticket->getBuyer->id);
-            }
-            $payback->getUser()->sync($users);
-            $payback->getRaffle()->save($raffle);
-            $raffle->anullate();
-            Raffle::destroy($raffle->id);
+            Ticket::where('raffle',$raffle->id)->delete();
+            RaffleItem::where('raffle',$raffle->id)->delete();
+            Comment::where('raffle',$raffle->id)->delete();
+            RafflePicture::where('raffle',$raffle->id)->delete();
+            RaffleConfirmation::where('raffle_id',$raffle->id)->delete();
 
             Log::log('INFO', trans('aLogs.adm_raffle_anullation'), [
                 'raffle_id' => $raffle->id,
-                'user'      => Auth::user()->id,
+                'user' => Auth::user()->id,
             ]);
+            Raffle::destroy($raffle->id);
         }
+        UserProfile::where('user',$user)->delete();
+
         User::destroy($user);
 
         Log::log('INFO', trans('aLogs.user_prof_deleted'), [
-            'user'      => Auth::user()->id,
+            'user' => Auth::user()->id,
         ]);
 
         return redirect()->route('users.index')

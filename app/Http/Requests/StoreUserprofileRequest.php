@@ -5,6 +5,7 @@ namespace App\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use App\Http\Requests\CustomRules\StrongEvalR;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\Rule;
 
 class StoreUserprofileRequest extends FormRequest
 {
@@ -28,9 +29,10 @@ class StoreUserprofileRequest extends FormRequest
         return [
             'id' => 'same:'.Auth::user()->id,
             'email' => 'required|email|max:60',
-            'birthdate' => 'date_format:Y-m-d|max:10',
-            'gender' => 'required|not_in:0|min:1',
-            'languaje'=> 'required|not_in:0|min:1',
+            'birthdate' => 'nullable|date_format:Y-m-d|max:10',
+            'gender' => 'required',
+            'languaje'=> 'required',
+            'phone'=> 'required',
             'firstname'=> 'required|string|min:3|max:30',
             'lastname'=> 'required|string|min:6|max:30',
             'password' => ['nullable', 'string', 'confirmed', new StrongEvalR()],

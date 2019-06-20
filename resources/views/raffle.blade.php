@@ -314,6 +314,7 @@
                     return this.value;
                 }).get();
                 $('#ticketsarray').val(siChequeados);
+                console.log(siChequeados);
                 var price = $('#raffleprice').html();
                 var amountInCents = parseFloat(price).toFixed(2) * siChequeados.length * 100;
                 var displayAmount = parseFloat(amountInCents / 100).toFixed(2);
@@ -344,39 +345,6 @@
             });
         });
 
-
-        // $('.slickVertical').slick({
-        //     autoplay: true,
-        //     vertical: true,
-        //     verticalSwiping: true,
-        //     swipeToSlide: true,
-        //     slidesToShow: 8,
-        //     slidesToScroll: 3,
-        //     arrows: false,
-        //     infinite: true,
-        //     centerMode: true,
-        //     centerPadding: '50% 4%',
-        //     responsive: [
-        //         {
-        //             breakpoint: 768,
-        //             settings: {
-        //                 arrows: false,
-        //                 centerMode: true,
-        //                 centerPadding: '40px',
-        //                 slidesToShow: 3
-        //             }
-        //         },
-        //         {
-        //             breakpoint: 480,
-        //             settings: {
-        //                 arrows: false,
-        //                 centerMode: true,
-        //                 centerPadding: '40px',
-        //                 slidesToShow: 3
-        //             }
-        //         }
-        //     ]
-        // });
         $('.slickVerticalTickets').slick({
             slidesToShow: 10,
             autoplay:true,
