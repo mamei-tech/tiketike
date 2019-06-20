@@ -44,7 +44,7 @@
             <td>{{ $raffle->activation_date }}</td>
             {{--<td>???</td>--}}
             <td class="text-right">
-                @if($raffle->progress == 100)
+                @if($raffle->getTicketsSold() == count($raffle->getTickets))
                     <a id="rpublish" class="btn btn-info btn-icon btn-sm" href="{{ route('praffle.shuffle',['id'=> $raffle->id]) }}">
                         <i class="now-ui-icons loader_refresh"></i>
                     </a>
