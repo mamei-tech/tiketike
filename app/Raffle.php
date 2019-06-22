@@ -195,7 +195,9 @@ class Raffle extends Model implements HasMedia
             }
             $referralUser->getReferralsBuys()->saveMany($referralsBuys);
         }
-        $this->progress = $this->getProgress();
+        $solds_tickets = $this->getTicketsSold();
+        $progress = ($solds_tickets * 100) / $this->tickets_count;
+        $this->progress = $progress;
         $this->save();
 
         $this->getTickets()->saveMany($ticketsBuyed);

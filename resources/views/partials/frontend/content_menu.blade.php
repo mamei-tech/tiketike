@@ -46,7 +46,7 @@
                        title="Notificaciones">
                         <span class="ti-bell texto20"></span>
                         <span class="badge badge-default"
-                              id="notifications_count">{!! count(\Auth::user()->notifications) !!}</span>
+                              id="notifications_count">{!! count(\Auth::user()->unreadNotifications) !!}</span>
                     </a>
                 </li>
             @endif

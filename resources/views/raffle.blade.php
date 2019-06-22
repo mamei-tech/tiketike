@@ -3,7 +3,7 @@
 @section('content')
     @include('partials.frontend.header')
     @include('partials.front_modals.login_modal')
-    @include('partials.front_modals.edit_raffle_modal')
+{{--    @include('partials.front_modals.edit_raffle_modal',['raffle' => $raffle])--}}
     @include('partials.front_modals.mobile_suggest')
     @include('partials.front_modals.notification_modal')
     <div class="container margin-top60">

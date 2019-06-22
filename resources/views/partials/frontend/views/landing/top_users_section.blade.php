@@ -88,7 +88,7 @@
                             </div>
                             <div class="col-xs-8 col-sm-7 col-md-9 padding-left-0">
                                 <span class="pais sinkinSans400I texto14">{{$top_user->name}} / {{$top_user->getProfile->getCity->country->name}}</span><br>
-                                <span class="sinkinSans200LI texto14">{{$top_user->getComments->last()->text}}</span>
+                                @if(count($top_user->getComments) > 0)<span class="sinkinSans200LI texto14">{{$top_user->getComments->last()->text}}</span>@endif
                             </div>
                         </div>
                         <div class="col-md-12 borderBotDis hidden-lg padding-top-20"></div>

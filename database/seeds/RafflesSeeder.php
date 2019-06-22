@@ -19,70 +19,70 @@ class RafflesSeeder extends Seeder
      */
     public function run()
     {
-        $moreraffles2create = 60;
-        $totalr             = $moreraffles2create + 5;       // There are 5 raffles creation by default written her below so, ...
+        $moreraffles2create = 0;
+        $totalr             = $moreraffles2create + 0;       // There are 5 raffles creation by default written her below so, ...
         $rpostry            = new RaffleRepository();
 
         //Seeding raffles
-        DB::table('raffles')->insert([
-                'id'            => \App\Http\TkTk\CodesGenerator::newRaffleId(),
-                'owner'         => \App\User::all()->first()->id,
-                'category'      => \App\RaffleCategory::where('category', 'Phones')->first()->id,
-                'status'        => \App\RaffleStatus::where('status', 'Unpublished')->first()->id,
-                'title'         => 'Samsung S8',
-                'description'   => 'Samsung S8 nuevo en su caja. No se lo pierda',
-                'price'         => 600,
-                'location'      => Country::all()->first()->id,
-            ]
-        );
-
-        DB::table('raffles')->insert([
-                'id'            => \App\Http\TkTk\CodesGenerator::newRaffleId(),
-                'owner'         => \App\User::all()->first()->id,
-                'category'      => \App\RaffleCategory::where('category', 'Computers')->first()->id,
-                'status'        => \App\RaffleStatus::where('status', 'Unpublished')->first()->id,
-                'title'         => 'Laptop Dell',
-                'description'   => 'Dell core i7 7ma, 16GB ram, 2TB HDD, pantalla 17"',
-                'price'         => 700,
-                'location'      => Country::all()->first()->id,
-            ]
-        );
-
-        DB::table('raffles')->insert([
-                'id'            => \App\Http\TkTk\CodesGenerator::newRaffleId(),
-                'owner'         => \App\User::all()->first()->id,
-                'category'      => \App\RaffleCategory::where('category', 'Computers')->first()->id,
-                'status'        => \App\RaffleStatus::where('status', 'Unpublished')->first()->id,
-                'title'         => 'PC de escritorio',
-                'description'   => 'Core i3 de 4ta, chasis negro, 1TB HDD, 4GB ram, monitor led de 24"',
-                'price'         => 500,
-                'location'      => Country::all()->first()->id,
-            ]
-        );
-
-        DB::table('raffles')->insert([
-                'id'            => \App\Http\TkTk\CodesGenerator::newRaffleId(),
-                'owner'         => \App\User::all()->first()->id,
-                'category'      => \App\RaffleCategory::where('category', 'TVs')->first()->id,
-                'status'        => \App\RaffleStatus::where('status', 'Unpublished')->first()->id,
-                'title'         => 'Konka de 32"',
-                'description'   => 'Nuevo TV Konka de 32" en su caja. No se lo pierda',
-                'price'         => 220,
-                'location'      => Country::all()->first()->id,
-            ]
-        );
-
-        DB::table('raffles')->insert([
-                'id'            => \App\Http\TkTk\CodesGenerator::newRaffleId(),
-                'owner'         => \App\User::all()->first()->id,
-                'category'      => \App\RaffleCategory::where('category', 'TVs')->first()->id,
-                'status'        => \App\RaffleStatus::where('status', 'Unpublished')->first()->id,
-                'title'         => 'Atec-Panda',
-                'description'   => 'TV panda como nuevo, esta muy bien cuidado, mando nuevo',
-                'price'         => 100,
-                'location'      => Country::all()->first()->id,
-            ]
-        );
+//        DB::table('raffles')->insert([
+//                'id'            => \App\Http\TkTk\CodesGenerator::newRaffleId(),
+//                'owner'         => \App\User::all()->first()->id,
+//                'category'      => \App\RaffleCategory::where('category', 'Phones')->first()->id,
+//                'status'        => \App\RaffleStatus::where('status', 'Unpublished')->first()->id,
+//                'title'         => 'Samsung S8',
+//                'description'   => 'Samsung S8 nuevo en su caja. No se lo pierda',
+//                'price'         => 600,
+//                'location'      => Country::all()->first()->id,
+//            ]
+//        );
+//
+//        DB::table('raffles')->insert([
+//                'id'            => \App\Http\TkTk\CodesGenerator::newRaffleId(),
+//                'owner'         => \App\User::all()->first()->id,
+//                'category'      => \App\RaffleCategory::where('category', 'Computers')->first()->id,
+//                'status'        => \App\RaffleStatus::where('status', 'Unpublished')->first()->id,
+//                'title'         => 'Laptop Dell',
+//                'description'   => 'Dell core i7 7ma, 16GB ram, 2TB HDD, pantalla 17"',
+//                'price'         => 700,
+//                'location'      => Country::all()->first()->id,
+//            ]
+//        );
+//
+//        DB::table('raffles')->insert([
+//                'id'            => \App\Http\TkTk\CodesGenerator::newRaffleId(),
+//                'owner'         => \App\User::all()->first()->id,
+//                'category'      => \App\RaffleCategory::where('category', 'Computers')->first()->id,
+//                'status'        => \App\RaffleStatus::where('status', 'Unpublished')->first()->id,
+//                'title'         => 'PC de escritorio',
+//                'description'   => 'Core i3 de 4ta, chasis negro, 1TB HDD, 4GB ram, monitor led de 24"',
+//                'price'         => 500,
+//                'location'      => Country::all()->first()->id,
+//            ]
+//        );
+//
+//        DB::table('raffles')->insert([
+//                'id'            => \App\Http\TkTk\CodesGenerator::newRaffleId(),
+//                'owner'         => \App\User::all()->first()->id,
+//                'category'      => \App\RaffleCategory::where('category', 'TVs')->first()->id,
+//                'status'        => \App\RaffleStatus::where('status', 'Unpublished')->first()->id,
+//                'title'         => 'Konka de 32"',
+//                'description'   => 'Nuevo TV Konka de 32" en su caja. No se lo pierda',
+//                'price'         => 220,
+//                'location'      => Country::all()->first()->id,
+//            ]
+//        );
+//
+//        DB::table('raffles')->insert([
+//                'id'            => \App\Http\TkTk\CodesGenerator::newRaffleId(),
+//                'owner'         => \App\User::all()->first()->id,
+//                'category'      => \App\RaffleCategory::where('category', 'TVs')->first()->id,
+//                'status'        => \App\RaffleStatus::where('status', 'Unpublished')->first()->id,
+//                'title'         => 'Atec-Panda',
+//                'description'   => 'TV panda como nuevo, esta muy bien cuidado, mando nuevo',
+//                'price'         => 100,
+//                'location'      => Country::all()->first()->id,
+//            ]
+//        );
 
         factory(\App\Raffle::class, $moreraffles2create)->create();
 
@@ -95,9 +95,9 @@ class RafflesSeeder extends Seeder
 
             shuffle($imgnum);shuffle($imgnum);
 
-            $raffle->addMediaFromUrl('http://www.tiketikes.site/pics/common/rsample_'.$imgnum[0].'.jpg')->toMediaCollection('raffles','raffles');
-            $raffle->addMediaFromUrl('http://www.tiketikes.site/pics/common/rsample_'.$imgnum[1].'.jpg')->toMediaCollection('raffles','raffles');
-            $raffle->addMediaFromUrl('http://www.tiketikes.site/pics/common/rsample_'.$imgnum[2].'.jpg')->toMediaCollection('raffles','raffles');
+            $raffle->addMediaFromUrl('http://localhost/pics/common/rsample_'.$imgnum[0].'.jpg')->toMediaCollection('raffles','raffles');
+            $raffle->addMediaFromUrl('http://localhost/pics/common/rsample_'.$imgnum[1].'.jpg')->toMediaCollection('raffles','raffles');
+            $raffle->addMediaFromUrl('http://localhost/pics/common/rsample_'.$imgnum[2].'.jpg')->toMediaCollection('raffles','raffles');
 
         }
 

@@ -100,7 +100,7 @@ Route::group([
         Route::patch('/saveconfig', 'AdminConfigController@saveraffleconfig')->name('admin.raffle.saveconfig');
     });
 });
-
+Route::get('markasread','MainController@markAsRead')->name('mark.as.read');
 Route::get('auth/{provider}', 'Auth\SocialAuthController@redirectToProvider')->name('social.auth');
 Route::get('auth/{provider}/callback', 'Auth\SocialAuthController@handleProviderCallback');
 

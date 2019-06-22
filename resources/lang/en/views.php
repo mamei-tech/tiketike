@@ -76,5 +76,6 @@ return [
     'Dashboard' => 'Dashboard',
     'My Profile' => 'My Profile',
     'home' => 'Home',
-    'profile' => 'Profile'
+    'profile' => 'Profile',
+    'clean_notifications' => 'Clean notifications'
 ];

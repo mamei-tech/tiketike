@@ -82,10 +82,6 @@ return [
     'Dashboard' => 'Tablero',
     'My Profile' => 'Mi Perfil',
     'home' => 'Inicio',
-    'profile' => 'Profile'
-
-
-
-
-
+    'profile' => 'Profile',
+    'clean_notifications' => 'Limpiar notificaciones'
 ];
