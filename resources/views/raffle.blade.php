@@ -293,11 +293,13 @@
 @stop
 @section('additional_scripts')
     <script src="{{ asset('js/raffle.min.js') }}"></script>
+    <script src="{{asset('js/clipboard.min.js')}}"></script>
     <script src="https://checkout.stripe.com/checkout.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+
     <script type="text/javascript">
 
         $(document).ready(function () {
+
             var handler = StripeCheckout.configure({
                 key: '{{ config('services.stripe.key') }}',
                 image: '{{ asset('pics/front/logonv.png') }}',

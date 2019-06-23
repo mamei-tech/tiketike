@@ -1,6 +1,9 @@
 import axios from 'axios';
+import ClipboardJS from 'clipboard';
 /* On ready */
+
 $(document).ready(function () {
+    new ClipboardJS('.btncopy');
     $('#comenta').click(function (e) {
         e.preventDefault();
         $('#comentarios').fadeIn("slow");
