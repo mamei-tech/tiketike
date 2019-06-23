@@ -294,7 +294,7 @@
 @section('additional_scripts')
     <script src="{{ asset('js/raffle.min.js') }}"></script>
     <script src="https://checkout.stripe.com/checkout.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+{{--    <script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>--}}
     <script type="text/javascript">
 
         $(document).ready(function () {

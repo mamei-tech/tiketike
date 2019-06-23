@@ -12,7 +12,7 @@ $('#markAsRead').on('click',function (e) {
     e.preventDefault();
     axios.get(route('mark.as.read')).then(function (response) {
         if (response.status = 200) {
-            var notifications = notifications_wrapper.find('ul#notifications-list');
+            var notifications = $('ul#notifications-list');
             notifications.html("");
             $('#notifications_count').html(0);
         }
