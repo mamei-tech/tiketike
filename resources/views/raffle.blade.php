@@ -294,7 +294,6 @@
 @section('additional_scripts')
     <script src="{{ asset('js/raffle.min.js') }}"></script>
     <script src="https://checkout.stripe.com/checkout.js"></script>
-{{--    <script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>--}}
     <script type="text/javascript">
 
         $(document).ready(function () {
@@ -320,7 +319,7 @@
                 var displayAmount = parseFloat(amountInCents / 100).toFixed(2);
                 var handler = StripeCheckout.configure({
                     key: '{{ config('services.stripe.key') }}',
-                    image: '{{ asset('pics/favicon.png') }}',
+                    image: '{{ asset('pics/front/logonv.png') }}',
                     token: function (token) {
                         $("#stripeToken").val(token.id);
                         $("#stripeEmail").val(token.email);
@@ -388,7 +387,7 @@
             ]
         });
 
-        // replace getSlideCount and getNavigableIndexes without rehosting hack
+        //replace getSlideCount and getNavigableIndexes without rehosting hack
 
         $(".slickVerticalTickets").each(function() {
             this.slick.getSlideCount = function() {
@@ -451,9 +450,5 @@
 
             };
         });
-
-
-
-
     </script>
 @stop
