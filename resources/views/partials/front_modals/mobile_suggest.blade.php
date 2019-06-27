@@ -6,7 +6,7 @@
             <a href="{{ route('raffle.tickets.available',['raffleId' => $item->id]) }}">
                 <div class="item">
                     <div class="paddingImgCarousel">
-                        <img src="@if (count($item->getMedia('raffles')) > 0){{ $item->getMedia('raffles')->first()->getUrl() }} @endif"
+                        <img src="@if (count($item->getMedia('raffles')) > 0){{ $item->getMedia('raffles')->first()->getUrl('thumb') }} @endif"
                              class="dimenImgCarouselR" alt="Owl Image"/>
                         <div class="porciento">
                             <div class=" text-center">
@@ -31,7 +31,7 @@
                     @foreach($promos as $promo)
                         <li data-transition="fade" data-slotamount="5" data-masterspeed="700" data-delay="9400"
                             class="slider-item-1">
-                            <img src="{{ $promo->getMedia('promos')->first()->getUrl() }}" alt="" data-bgfit="cover"
+                            <img src="{{ $promo->getMedia('promos')->first()->getUrl('thumb') }}" alt="" data-bgfit="cover"
                                  style="opacity:0.4 !important;"
                                  data-bgposition="center center" data-bgrepeat="no-repeat">
                             <div class="tp-caption large_text customin customout start"
