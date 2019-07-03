@@ -31,7 +31,7 @@
                     @foreach($promos as $promo)
                         <li data-transition="fade" data-slotamount="5" data-masterspeed="700" data-delay="9400"
                             class="slider-item-1">
-                            <img src="{{ $promo->getMedia('promos')->first()->getUrl('thumb') }}" alt="" data-bgfit="cover"
+                            <img src="{{ $promo->getMedia('promos')->first()->getUrl() }}" alt="" data-bgfit="cover"
                                  style="opacity:0.4 !important;"
                                  data-bgposition="center center" data-bgrepeat="no-repeat">
                             <div class="tp-caption large_text customin customout start"

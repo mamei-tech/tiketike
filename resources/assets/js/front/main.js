@@ -107,19 +107,19 @@ $(document).ready(function () {
         }
     });
 
-    $('#hidden_2').on('change',function () {
-        if(this.files[0].size > 1572864){
-            var error = document.getElementById('error_size');
-            error.style['display'] = 'block';
-            uploadHBR.reset('#uploads');
-        }else {
-            var error = document.getElementById('error_size');
-            if (error.style['display'] === "block")
-            {
-                error.style['display'] = 'none';
-            }
-        }
-    });
+    // $('#hidden_2').on('change',function () {
+    //     if(this.files[0].size > 1572864){
+    //         var error = document.getElementById('error_size');
+    //         error.style['display'] = 'block';
+    //         uploadHBR.reset('#uploads');
+    //     }else {
+    //         var error = document.getElementById('error_size');
+    //         if (error.style['display'] === "block")
+    //         {
+    //             error.style['display'] = 'none';
+    //         }
+    //     }
+    // });
 
     $('#reset').click(function () {
         uploadHBR.reset('#uploads');
