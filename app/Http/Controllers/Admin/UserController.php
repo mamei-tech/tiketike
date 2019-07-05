@@ -225,6 +225,7 @@ class UserController extends Controller
             ]);
             Raffle::destroy($raffle->id);
         }
+        RaffleConfirmation::where('winner_id',$user)->orWhere('owner_id',$user)->delete();
         UserProfile::where('user',$user)->delete();
 
         User::destroy($user);
