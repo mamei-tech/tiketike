@@ -1,4 +1,5 @@
 <?php
+
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
@@ -31,7 +32,7 @@ class Country extends Model
      *
      * @var array
      */
-    protected $appends = ['local_name','local_full_name','local_alias', 'local_abbr', 'local_currency_name'];
+    protected $appends = ['local_name', 'local_full_name', 'local_alias', 'local_abbr', 'local_currency_name'];
 
     public function divisions()
     {
@@ -93,10 +94,11 @@ class Country extends Model
         }
         $localized = $this->getLocalized();
         if (!is_null($localized)) {
-            return !is_null($localized->currency_name) ? $localized->currency_name: $this->currency_name;
+            return !is_null($localized->currency_name) ? $localized->currency_name : $this->currency_name;
         }
         return $this->currency_name;
     }
+
     /**
      * Get country by name
      *
@@ -131,10 +133,12 @@ class Country extends Model
         $countryUsers = [];
         User::chunk(1000, function ($users) use (&$countryUsers) {
             foreach ($users as $u) {
-                if (array_key_exists($u->getCountryCode(), $countryUsers))
-                    $countryUsers[$u->getCountryCode()]++;
-                else
-                    $countryUsers[$u->getCountryCode()] = 1;
+                if ($u->getProfile != null) {
+                    if (array_key_exists($u->getCountryCode(), $countryUsers))
+                        $countryUsers[$u->getCountryCode()]++;
+                    else
+                        $countryUsers[$u->getCountryCode()] = 1;
+                }
             }
         });
         return $countryUsers;

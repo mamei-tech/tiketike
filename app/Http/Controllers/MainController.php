@@ -9,6 +9,7 @@ use App\RaffleCategory;
 use App\Repositories\RaffleRepository;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 
 class MainController extends Controller
@@ -34,5 +35,14 @@ class MainController extends Controller
         $countries = Country::all();
 
         return view('main',compact('raffles','top_users','promos','categories','countries'));
+    }
+
+    public function markAsRead() {
+        foreach (Auth::user()->unreadNotifications as $notification) {
+            $notification->markAsRead();
+        }
+        return response()->json([
+            'status' => 'Notifications mark as read'
+        ],200);
     }
 }

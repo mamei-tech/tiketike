@@ -73,14 +73,19 @@ class DashboardController extends ApiController
     public function registeredUsers() {
         $maleCount      = 0;
         $femaleCount    = 0;
-        User::chunk(1000, function ($users) use (&$maleCount, &$femaleCount){
-            foreach ($users as $u) {
-                if (strtolower($u->getProfile->gender) == 'male')
-                    $maleCount++;
-                else
-                    $femaleCount++;
-            }
-        });
+        try {
+            User::chunk(1000, function ($users) use (&$maleCount, &$femaleCount) {
+                foreach ($users as $u) {
+                    if (strtolower($u->getProfile->gender) == 'male')
+                        $maleCount++;
+                    else
+                        $femaleCount++;
+                }
+            });
+        }catch (\Exception $exception)
+        {
+            var_dump($exception->getMessage());
+        }
 
         return $this->respond([
             'status' => 'success',

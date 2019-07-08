@@ -10,6 +10,7 @@ use App\User;
 use App\UserProfile;
 use Illuminate\Database\Eloquent\Builder;
 use App\Country;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 
@@ -96,6 +97,8 @@ class UserController extends Controller
 
     public function update(StoreUserprofileRequest $request, $userid)
     {
+//        var_dump('asdads');
+//        die();
         // Get the user instance
         $user = User::with('getProfile')->findOrFail($userid);
 
@@ -151,8 +154,7 @@ class UserController extends Controller
             'request' => $request->all(),
         ]);
 
-        return redirect()->route('profile.info', ['userid' => $userid])
-            ->with('success', 'User "' . $user->getProfile->username . '" updated successfully');
+        return redirect()->route('profile.info', ['userid' => $userid]);
     }
 
     public function follow($id)

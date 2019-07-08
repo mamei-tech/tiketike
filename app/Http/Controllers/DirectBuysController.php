@@ -27,6 +27,7 @@ class DirectBuysController extends BuysController
      */
     public function buyTickets($raffleId, Request $request)
     {
+        $tickets = explode(',',$request->get('tickets')[0]);
         Stripe::setApiKey(env('STRIPE_SECRET'));
         $token = $request->get('stripeToken');
         $charge = Charge::create([
@@ -37,7 +38,7 @@ class DirectBuysController extends BuysController
         ]);
         if ($charge['paid'] == true) {
             $raffle = Raffle::findOrFail($raffleId);
-            $raffle->buyTickets(Auth::user(), $request->get('tickets'));
+            $raffle->buyTickets(Auth::user(), $tickets);
             $raffle_pay = new RafflePays();
             $raffle_pay->raffle_id = $raffleId;
             $raffle_pay->charge_id = $charge['id'];

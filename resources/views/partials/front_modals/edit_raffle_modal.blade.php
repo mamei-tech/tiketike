@@ -12,7 +12,7 @@
             </div>
             <div class="modal-body">
 
-                <form class="col-md-12" id="ftm_editRaffle" action="{{ route('raffles.update',$raffle->id) }}" method="POST" enctype="multipart/form-data">
+                <form class="col-md-12" id="ftm_editRaffle" action="{{ route('raffles.update',['raffleId' => $raffle->id]) }}" method="POST" enctype="multipart/form-data">
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
                     <div class="col-md-12">
                         {{-- FIRST NAME ¦ LASTNAME --}}

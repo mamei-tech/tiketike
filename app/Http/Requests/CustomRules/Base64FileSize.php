@@ -18,7 +18,7 @@ class Base64FileSize implements Rule
      */
     public function passes($attribute, $value)
     {
-        $size = '';
+        $size = 0;
         foreach ($value as $item) {
             $size += (int) strlen(base64_decode($item));
         }

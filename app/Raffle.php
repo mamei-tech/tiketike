@@ -10,10 +10,11 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use PhpParser\Node\Scalar\String_;
 use Psy\Util\Str;
+use Spatie\Image\Manipulations;
 use Spatie\MediaLibrary\HasMedia\HasMedia;
 use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 use Spatie\MediaLibrary\File;
-
+use Spatie\MediaLibrary\Models\Media;
 
 
 class Raffle extends Model implements HasMedia
@@ -195,10 +196,11 @@ class Raffle extends Model implements HasMedia
             }
             $referralUser->getReferralsBuys()->saveMany($referralsBuys);
         }
-        $this->progress = $this->getProgress();
-        $this->save();
 
         $this->getTickets()->saveMany($ticketsBuyed);
+        $solds_tickets = $this->getTicketsSold();
+        $progress = ($solds_tickets * 100) / $this->tickets_count;
+        $this->progress = $progress;
         $this->save();
 
         return true;
@@ -351,5 +353,12 @@ class Raffle extends Model implements HasMedia
     public function getImage()
     {
         return $this->getMedia('raffles')->first()->getUrl();
+    }
+
+    public function registerMediaConversions(Media $media = null)
+    {
+        $this->addMediaConversion('thumb')
+            ->crop(Manipulations::CROP_CENTER, 770,500)
+            ->nonQueued();
     }
 }

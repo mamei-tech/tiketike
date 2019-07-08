@@ -110,7 +110,7 @@
                                 <div class="row padding20 bg-rifas1 center-block {{$raffle->id}}">
                                     <div class="col-xs-4 col-md-6 raffle_carousel text-right" style="padding-left: 0;padding-right: 0">
                                         <div class="hidden-lg visible-xs padding-top-10 padding-left-0 padding-top-percentual">
-                                            <a href="{{ route('raffle.tickets.available',['raffleId' => $raffle->id]) }}"><img src="@if(count($raffle->getMedia('raffles')) > 0){{ $raffle->getMedia('raffles')->first()->getUrl() }} @endif"
+                                            <a href="{{ route('raffle.tickets.available',['raffleId' => $raffle->id]) }}"><img src="@if(count($raffle->getMedia('raffles')) > 0){{ $raffle->getMedia('raffles')->first()->getUrl('thumb') }} @endif"
                                                  class="dimenImgCarouselR" alt=""></a>
                                         </div>
                                         <div id="myCarousel{{ $raffle->id }}"
@@ -120,7 +120,7 @@
                                                 <?php $count = 0;?>
                                                 @foreach($raffle->getMedia('raffles') as $media)
                                                     <div class="item @if($count == 0) active @endif">
-                                                        <a href="{{ route('raffle.tickets.available',['raffleId' => $raffle->id]) }}"><img src="{{ $media->getUrl() }}" class="dimenImgCarouselR"
+                                                        <a href="{{ route('raffle.tickets.available',['raffleId' => $raffle->id]) }}"><img src="{{ $media->getUrl('thumb') }}" class="dimenImgCarouselR"
                                                                          alt="First slide"></a>
                                                     </div>
                                                     <?php $count++; ?>

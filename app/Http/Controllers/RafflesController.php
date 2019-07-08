@@ -108,7 +108,8 @@ class RafflesController extends Controller
         $raffle->save();
 
         foreach ($request->base as $item) {
-            $raffle->addMediaFromBase64($item)->usingFileName('filename.jpg')->toMediaCollection('raffles', 'raffles');
+            if ($item != null)
+                $raffle->addMediaFromBase64($item)->usingFileName('filename.jpg')->toMediaCollection('raffles', 'raffles');
         }
 
         Auth::user()->notify(new RaffleCreated($raffle, Auth::user()));

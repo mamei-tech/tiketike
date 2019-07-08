@@ -293,13 +293,11 @@
 @stop
 @section('additional_scripts')
     <script src="{{ asset('js/raffle.min.js') }}"></script>
-    <script src="{{asset('js/clipboard.min.js')}}"></script>
     <script src="https://checkout.stripe.com/checkout.js"></script>
-
+    <script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
     <script type="text/javascript">
 
         $(document).ready(function () {
-
             var handler = StripeCheckout.configure({
                 key: '{{ config('services.stripe.key') }}',
                 image: '{{ asset('pics/front/logonv.png') }}',
@@ -346,6 +344,39 @@
             });
         });
 
+
+        // $('.slickVertical').slick({
+        //     autoplay: true,
+        //     vertical: true,
+        //     verticalSwiping: true,
+        //     swipeToSlide: true,
+        //     slidesToShow: 8,
+        //     slidesToScroll: 3,
+        //     arrows: false,
+        //     infinite: true,
+        //     centerMode: true,
+        //     centerPadding: '50% 4%',
+        //     responsive: [
+        //         {
+        //             breakpoint: 768,
+        //             settings: {
+        //                 arrows: false,
+        //                 centerMode: true,
+        //                 centerPadding: '40px',
+        //                 slidesToShow: 3
+        //             }
+        //         },
+        //         {
+        //             breakpoint: 480,
+        //             settings: {
+        //                 arrows: false,
+        //                 centerMode: true,
+        //                 centerPadding: '40px',
+        //                 slidesToShow: 3
+        //             }
+        //         }
+        //     ]
+        // });
         $('.slickVerticalTickets').slick({
             slidesToShow: 10,
             autoplay:true,
@@ -356,7 +387,7 @@
             swipeToSlide: true,
             vertical: true,
             verticalSwiping: true,
-            centerMode: true,
+            centerMode: false,
 
             responsive: [
                 {
@@ -452,9 +483,5 @@
 
             };
         });
-
-
-
-
     </script>
 @stop

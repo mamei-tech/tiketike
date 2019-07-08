@@ -30,9 +30,9 @@ function populate_cities_select()
 
 $(document).ready(function () {
     // Getting the current time for datetimepicker inputs
-    var dtpicker = $('.datepicker');
-    let now = new Date();
-    dtpicker.val(now.getDay().to + '/' + now.getMonth() + '/' + now.getFullYear());
+    // var dtpicker = $('.datepicker');
+    // let now = new Date();
+    // dtpicker.val(now.getDay().to + '/' + now.getMonth() + '/' + now.getFullYear());
 
     axios.defaults.headers.common['Authorization'] = "Bearer " + $('meta[name=access-token]').attr('content');
 
@@ -100,22 +100,43 @@ $(document).ready(function () {
             },
             bio: {
                 maxlength: 116,
+            },
+            languaje: {
+                required: true
+            },
+            phone: {
+                required: true
+            },
+            country: {
+                required: true
+            },
+            city: {
+                required: true
             }
         },
         messages: {
             username: 'This field is required',
+            firstname: 'The first name field is required',
             lastname: 'This field is required',
             email: 'Enter a valid email',
             password: {
                 minlength: 'Password must be at least 8 characters long'
-            }
+            },
+            gender: 'Select a valid gender',
+            address: 'The address must have between 10 and 60 characters',
+            zipcode: 'The zipcode must be between 3 and 10 characters',
+            bio: 'Bio must have less than 116 characters',
+            languaje: 'The languaje field is required',
+            phone: 'The phone field is required',
+            country: 'Select your country in the list',
+            city: 'Slect your city in the list',
         },
         submitHandler: function(form) {
             form.submit();
         }
     });
 
-    populate_cities_select();
+    // populate_cities_select();
 
     /* ATACHING EVENTS */
     $("form#ftm_profileUpdate input#avatar").change(function () {

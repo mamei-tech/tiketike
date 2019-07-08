@@ -6,7 +6,7 @@
             <a href="{{ route('raffle.tickets.available',['raffleId' => $item->id]) }}">
                 <div class="item">
                     <div class="paddingImgCarousel">
-                        <img src="@if (count($item->getMedia('raffles')) > 0){{ $item->getMedia('raffles')->first()->getUrl() }} @endif"
+                        <img src="@if (count($item->getMedia('raffles')) > 0){{ $item->getMedia('raffles')->first()->getUrl('thumb') }} @endif"
                              class="dimenImgCarouselR" alt="Owl Image"/>
                         <div class="porciento">
                             <div class=" text-center">
