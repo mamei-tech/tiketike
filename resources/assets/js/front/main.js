@@ -69,61 +69,114 @@ $(document).ready(function () {
             console.log(error);
         })
     });
+    let token = document.head.querySelector('meta[name="csrf-token"]');
 
+    const Uppy = require('@uppy/core');
+    const Dashboard = require('@uppy/dashboard');
+    const Webcam = require('@uppy/webcam');
+    const Tus = require('@uppy/tus');
+    const XHRUpload = require('@uppy/xhr-upload');
 
-    uploadHBR.init({
-        "target": "#uploads",
-        "max": 3,
-        "textNew": "ADD",
-        "textTitle": "Click here or drag to upload an image",
-        "textTitleRemove": "Click here remove the image",
-    });
-
-    $('#hidden_0').on('change',function () {
-        if(this.files[0].size > 1572864){
-            var error = document.getElementById('error_size');
-            error.style['display'] = 'block';
-            uploadHBR.reset('#uploads');
-        }else {
-            var error = document.getElementById('error_size');
-            if (error.style['display'] === "block")
-            {
-                error.style['display'] = 'none';
-            }
+    const uppy = Uppy({
+        debug: true,
+        autoProceed: false,
+        restrictions: {
+            maxFileSize: 1000000,
+            maxNumberOfFiles: 3,
+            minNumberOfFiles: 1,
+            allowedFileTypes: ['image/*']
         }
+    })
+        .use(Dashboard, {
+            trigger: '.openUppyModal',
+            inline: false,
+            target: '.uploaderUppy',
+            replaceTargetContent: true,
+            showProgressDetails: true,
+            note: 'Images, 2–3 files, up to 1 MB',
+            height: 470,
+            metaFields: [
+                { id: 'name', name: 'Name', placeholder: 'file name' },
+                { id: 'caption', name: 'Caption', placeholder: 'describe what the image is about' }
+            ],
+            browserBackButtonClose: true
+        })
+        .use(Webcam, { target: Dashboard })
+        .use(XHRUpload, {
+            endpoint: 'http://www.tiketikes.site/raffles/add',
+            formData: true,
+            fieldName: 'files[]',
+            bundle: true
+        });
+
+    uppy.on('complete', result => {
+        console.log('successful files:', result.successful);
+        console.log('failed files:', result.failed);
     });
 
-    $('#hidden_1').on('change',function () {
-        if(this.files[0].size > 1572864){
-            var error = document.getElementById('error_size');
-            error.style['display'] = 'block';
-            uploadHBR.reset('#uploads');
-        }else {
-            var error = document.getElementById('error_size');
-            if (error.style['display'] === "block")
-            {
-                error.style['display'] = 'none';
-            }
-        }
-    });
 
-    // $('#hidden_2').on('change',function () {
-    //     if(this.files[0].size > 1572864){
+    // uploadHBR.init({
+    //     "target": "#uploads",
+    //     "max": 3,
+    //     "textNew": "ADD",
+    //     "textTitle": "Click here or drag to upload an image",
+    //     "textTitleRemove": "Click here remove the image",
+    // });
+    //
+    // $('#hidden_0').on('change',function () {
+    //     if(this.files[0].size > 1048576){
     //         var error = document.getElementById('error_size');
     //         error.style['display'] = 'block';
-    //         uploadHBR.reset('#uploads');
+    //         document.getElementById('create').disabled = true;
+    //         document.getElementById('hidden_2').parentNode.parentNode.style.border = "dashed red";
     //     }else {
     //         var error = document.getElementById('error_size');
     //         if (error.style['display'] === "block")
     //         {
     //             error.style['display'] = 'none';
     //         }
+    //         document.getElementById('create').disabled = false;
+    //         document.getElementById('hidden_2').parentNode.parentNode.style.border = "dashed #676465";
     //     }
     // });
-
-    $('#reset').click(function () {
-        uploadHBR.reset('#uploads');
-    });
+    //
+    // $('#hidden_1').on('change',function () {
+    //     if(this.files[0].size > 1048576){
+    //         var error = document.getElementById('error_size');
+    //         error.style['display'] = 'block';
+    //         document.getElementById('create').disabled = true;
+    //         document.getElementById('hidden_1').parentNode.parentNode.style.border = "dashed red";
+    //     }else {
+    //         var error = document.getElementById('error_size');
+    //         if (error.style['display'] === "block")
+    //         {
+    //             error.style['display'] = 'none';
+    //         }
+    //         document.getElementById('create').disabled = false;
+    //         document.getElementById('hidden_1').parentNode.parentNode.style.border = "dashed #676465";
+    //     }
+    // });
+    //
+    // $('#hidden_2').on('change',function () {
+    //     if(this.files[0].size > 1048576){
+    //         var error = document.getElementById('error_size');
+    //         error.style['display'] = 'block';
+    //         document.getElementById('create').disabled = true;
+    //         document.getElementById('hidden_2').parentNode.parentNode.style.border = "dashed red";
+    //     }else {
+    //         var error = document.getElementById('error_size');
+    //         if (error.style['display'] === "block")
+    //         {
+    //             error.style['display'] = 'none';
+    //         }
+    //         document.getElementById('create').disabled = false;
+    //         document.getElementById('hidden_2').parentNode.parentNode.style.border = "dashed #676465";
+    //     }
+    // });
+    //
+    // function resetUpload() {
+    //     uploadHBR.reset('#uploads');
+    // }
 
     $('form[id="ftm_createRaffle"]').validate({
         rules: {

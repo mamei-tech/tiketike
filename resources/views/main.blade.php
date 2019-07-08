@@ -1,4 +1,7 @@
 @extends('layouts.base')
+@section('additional_styles')
+    <link rel="stylesheet" href="{{ asset('js/front/plugins/uppyUploader/uppy.min.css') }}">
+@stop
 @section('content')
     @include('partials.front_modals.notification_modal')
     @include('partials.front_modals.terminos_y_condiciones_modal')
@@ -112,6 +115,7 @@
     @include('partials.frontend.views.landing.top_users_section')
 @stop
 @section('additional_scripts')
+    <script src="{{ asset('js/front/plugins/uppyUploader/uppy.min.js') }}"></script>
     <script src="//js.pusher.com/3.1/pusher.min.js"></script>
     {{--<script src='https://www.google.com/recaptcha/api.js'></script>--}}
     <script src="{{ asset('js/main.min.js') }}"></script>

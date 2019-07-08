@@ -63,10 +63,8 @@
                     <div class="row">
                         <div class="col-xs-12 col-md-12">
                             <div class="col-md-12 col-lg-12 col-xs-12 text-center" id="columns">
-                                <h3 class="form-label">Select the images</h3>
-                                <h4 id="error_size" style="display: none;color: red">@lang('validation.max.file',['attribute' => 'file', 'max' => '1536'])</h4>
-                                <div class="desc"><p class="text-center">or drag to box</p></div>
-                                <div id="uploads" style="width: 100%!important;padding-left: 30%"></div>
+                                <div class="uploaderUppy"></div>
+                                <button class="btn btn-primary openUppyModal">Select image</button>
                             </div>
                         </div>
                     </div>
@@ -74,7 +72,7 @@
                     <div class="col-md-12 createRaffleModButt">
                         <div class="row padding-top-20">
                             <div class="col-xs-5">
-                                <button type="submit" class="btn btn-sm btn-primary">
+                                <button type="submit" id="create" class="btn btn-sm btn-primary">
                                     Crear
                                 </button>
                             </div>

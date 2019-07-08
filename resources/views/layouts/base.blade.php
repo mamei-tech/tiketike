@@ -3,6 +3,7 @@
 
 @section('header')
     @include('partials.frontend.head')
+    @yield('additional_styles')
     @routes
 @show
 
