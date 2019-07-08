@@ -346,39 +346,6 @@
             });
         });
 
-
-        // $('.slickVertical').slick({
-        //     autoplay: true,
-        //     vertical: true,
-        //     verticalSwiping: true,
-        //     swipeToSlide: true,
-        //     slidesToShow: 8,
-        //     slidesToScroll: 3,
-        //     arrows: false,
-        //     infinite: true,
-        //     centerMode: true,
-        //     centerPadding: '50% 4%',
-        //     responsive: [
-        //         {
-        //             breakpoint: 768,
-        //             settings: {
-        //                 arrows: false,
-        //                 centerMode: true,
-        //                 centerPadding: '40px',
-        //                 slidesToShow: 3
-        //             }
-        //         },
-        //         {
-        //             breakpoint: 480,
-        //             settings: {
-        //                 arrows: false,
-        //                 centerMode: true,
-        //                 centerPadding: '40px',
-        //                 slidesToShow: 3
-        //             }
-        //         }
-        //     ]
-        // });
         $('.slickVerticalTickets').slick({
             slidesToShow: 10,
             autoplay:true,
@@ -389,7 +356,7 @@
             swipeToSlide: true,
             vertical: true,
             verticalSwiping: true,
-            centerMode: false,
+            centerMode: true,
 
             responsive: [
                 {
