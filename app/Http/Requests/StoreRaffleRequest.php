@@ -30,7 +30,14 @@ class StoreRaffleRequest extends FormRequest
             'price' => 'required|numeric|min:1',
             'category' => 'required',
             'localization' => 'required',
-            'base' => [new Base64FileSize()]
+            'files' => 'required'
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'files.required' => 'You have to insert at least one image.'
         ];
     }
 }

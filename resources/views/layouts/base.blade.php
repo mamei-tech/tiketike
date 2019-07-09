@@ -8,6 +8,7 @@
 @show
 
 <body>
+@include('partials.front_modals.error_notification')
 @yield('content')
 
 @section('footer')
@@ -19,6 +20,13 @@
 
 @section('footerScripts')
     <script src="{{ asset('js/generalfrontscript.min.js') }}"></script>
+    <script type="text/javascript" defer async>
+        $(document).ready(function () {
+            @if($errors->any())
+            $('#errorModal').modal('show');
+            @endif
+        });
+    </script>
 @show
 
 </html>

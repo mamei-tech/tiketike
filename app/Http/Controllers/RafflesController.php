@@ -14,6 +14,7 @@ use App\RaffleConfirmation;
 use App\RaffleStatus;
 use App\Repositories\RaffleRepository;
 use App\User;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 
@@ -107,9 +108,8 @@ class RafflesController extends Controller
 
         $raffle->save();
 
-        foreach ($request->base as $item) {
-            if ($item != null)
-                $raffle->addMediaFromBase64($item)->usingFileName('filename.jpg')->toMediaCollection('raffles', 'raffles');
+        foreach ($request->input('files', []) as $file) {
+            $raffle->addMedia(public_path('pics/raffles/' . $file))->toMediaCollection('raffles','raffles');
         }
 
         Auth::user()->notify(new RaffleCreated($raffle, Auth::user()));
@@ -210,5 +210,24 @@ class RafflesController extends Controller
         }
         return redirect()->back()
             ->with('success', 'Thanks for confirm the raffle. Soon you will have news about us.');
+    }
+
+    public function uploadfile(Request $request){
+        $path = public_path('pics/raffles');
+
+        if (!file_exists($path)) {
+            mkdir($path, 0777, true);
+        }
+
+        $file = $request->file('file');
+
+        $name = uniqid() . '_' . trim($file->getClientOriginalName());
+
+        $file->move($path, $name);
+
+        return response()->json([
+            'name'          => $name,
+            'original_name' => $file->getClientOriginalName(),
+        ]);
     }
 }

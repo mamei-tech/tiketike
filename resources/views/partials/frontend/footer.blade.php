@@ -11,7 +11,7 @@
 </footer>
 
 <script src="{{ asset('js/front/jquery-1.11.2.min.js') }}"></script>
-<script src="{{ asset('js/front/bootstrap.min.js') }}" async></script>
+<script src="{{ asset('js/front/bootstrap.min.js') }}"></script>
 <script src="{{ asset('js/front/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js') }}"></script>
 <script src="{{ asset('js/front/plugins/bootstrap-datepicker/js/locales/bootstrap-datepicker.es.js') }}"></script>
 <script src="{{ asset('js/front/plugins/bootbox/bootbox.min.js') }}"></script>

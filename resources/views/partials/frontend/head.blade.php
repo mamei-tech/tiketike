@@ -3,6 +3,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="icon" href="{{ asset('pics/favicon.png') }}">
     <link rel="stylesheet" href="{{ asset('css/front/app.css') }}">
 
@@ -14,6 +15,6 @@
     <link href="{{ asset('js/front/plugins/carousel-owl-carousel/owl-carousel/owl.theme.css') }}" rel="stylesheet">
     <link href="{{ asset('js/front/plugins/slider-revolution-slider/rs-plugin/css/settings.css') }}" rel="stylesheet">
     <link href="{{ asset('js/front/plugins/select2/select2.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/front/uploader/style.min.css') }}" rel="stylesheet">
+{{--    <link href="{{ asset('css/front/uploader/style.min.css') }}" rel="stylesheet">--}}
     <title> {{ config('app.name', 'TikeTike') }} | @yield('title', trans('views.home')) </title>
 </head>

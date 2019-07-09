@@ -40,6 +40,7 @@ Route::group(['prefix' => 'raffles',
     Route::post('/{raffleId}/tickets/buy/comment','CommentsController@store')->name('raffle.comment');
     Route::post('/comment/edit/{commentId}','CommentsController@edit')->name('comment.edit');
     Route::get('/comment/delete/{commentId}','CommentsController@delete')->name('comment.delete');
+    Route::post('/upload/images','RafflesController@uploadfile')->name('upload.images');
 });
 
 Route::group(['prefix' => 'payments',

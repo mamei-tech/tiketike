@@ -1,6 +1,6 @@
 @extends('layouts.base')
 @section('additional_styles')
-    <link rel="stylesheet" href="{{ asset('js/front/plugins/uppyUploader/uppy.min.css') }}">
+    <link href="{{ asset('css/front/dropzone.min.css') }}" rel="stylesheet" />
 @stop
 @section('content')
     @include('partials.front_modals.notification_modal')
@@ -115,7 +115,7 @@
     @include('partials.frontend.views.landing.top_users_section')
 @stop
 @section('additional_scripts')
-    <script src="{{ asset('js/front/plugins/uppyUploader/uppy.min.js') }}"></script>
+    <script src="{{ asset('js/front/dropzone.min.js') }}"></script>
     <script src="//js.pusher.com/3.1/pusher.min.js"></script>
     {{--<script src='https://www.google.com/recaptcha/api.js'></script>--}}
     <script src="{{ asset('js/main.min.js') }}"></script>
@@ -137,5 +137,35 @@
                 notif_count.html(new_count);
             });
         @endif
+    </script>
+    <script>
+        var uploadedDocumentMap = {};
+        Dropzone.options.documentDropzone = {
+            url: '{{ route('upload.images') }}',
+            maxFilesize: 0.4, // MB
+            maxFiles: 3,
+            addRemoveLinks: true,
+            acceptedFiles: ['image/*'],
+            clickable: true,
+            headers: {
+                'X-CSRF-TOKEN': "{{ csrf_token() }}"
+            },
+            success: function (file, response) {
+                $('form').append('<input type="hidden" name="files[]" value="' + response.name + '">');
+                uploadedDocumentMap[file.name] = response.name;
+            },
+            removedfile: function (file) {
+                file.previewElement.remove();
+                var name = '';
+                if (typeof file.file_name !== 'undefined') {
+                    name = file.file_name;
+                } else {
+                    name = uploadedDocumentMap[file.name];
+                }
+                $('form').find('input[name="files[]"][value="' + name + '"]').remove();
+            },
+            init: function () {
+            }
+        }
     </script>
 @stop
