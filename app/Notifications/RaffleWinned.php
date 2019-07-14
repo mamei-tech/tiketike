@@ -47,7 +47,7 @@ class RaffleWinned extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-                    ->line('Congrats!!! You have winned a raffle '.$this->raffle->title.'. Soon we will send you an interface for bla bla bla')
+                    ->line(trans('notifications.winned_intro').$this->raffle->title.trans('notifications.winned_end_body'))
                     ->action('Notification Action', route('raffle.finished.view',['raffleId' => $this->raffle->id]))
                     ->line('Again, congrats!!!');
     }
@@ -61,7 +61,7 @@ class RaffleWinned extends Notification
     public function toArray($notifiable)
     {
         return [
-            'data' => 'Congrats!!! You have winned a raffle '.$this->raffle->title.'. Soon we will send you an interface for bla bla bla',
+            'data' => trans('notifications.winned_intro').$this->raffle->title.trans('notifications.winned_end_body'),
             'url' => route('raffle.finished.view',['raffleId' => $this->raffle->id])
         ];
     }

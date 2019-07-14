@@ -48,7 +48,7 @@ class RaffleUpdated extends Notification implements ShouldQueue
     public function toMail($notifiable)
     {
         return (new MailMessage)
-                    ->line('Attention!! The raffle '.$this->raffle->title.' was modified.')
+                    ->line(trans('notifications.raffle_updated_intro').$this->raffle->title.trans('notifications.raffle_updated_endbody'))
                     ->action('You can review it here', route('raffle.tickets.available',['raffleId' => $this->raffle->id]))
                     ->line('Good luck!!');
     }
@@ -62,7 +62,7 @@ class RaffleUpdated extends Notification implements ShouldQueue
     public function toArray($notifiable)
     {
         return [
-            'data' => 'Attention!! The raffle '.$this->raffle->title.' was modified.',
+            'data' => trans('notifications.raffle_updated_intro').$this->raffle->title.trans('notifications.raffle_updated_endbody'),
             'url' => route('raffle.tickets.available',['raffleId' => $this->raffle->id])
         ];
     }

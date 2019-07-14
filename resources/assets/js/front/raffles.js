@@ -176,6 +176,9 @@ $(document).ready(function () {
             acountries[index] = element['dataset'].value;
         });
         var category = $(e.target).html();
+        var cat = category.split('<span class="');
+        var c = cat[1].split('"></span>');
+        var category = c[1].split(' ')[1];
         var categories = document.getElementById('categoriesR');
         categories.classList.add('activo');
         $('div.listadoCategoriaN ul li[class="active"]').removeClass('active');
