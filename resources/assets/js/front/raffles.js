@@ -320,7 +320,7 @@ $(document).ready(function () {
         });
     });
 
-    $('#price').on('click', function (e) {
+    $('#pricefilter').on('click', function (e) {
         e.preventDefault();
         acountries = [];
         var countries = $('input#countries:checked');

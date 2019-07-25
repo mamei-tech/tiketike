@@ -12,6 +12,8 @@ use App\Http\Resources\RaffleResource;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Notifications\Notification;
+use Illuminate\Support\Facades\DB;
 
 class RaffleFrontController extends Controller
 {
@@ -42,5 +44,12 @@ class RaffleFrontController extends Controller
         );
 
         return response()->json($json_data,200);
+    }
+
+    public function markAsRead(Request $request) {
+        DB::table('notifications')->where('id','=',$request->get('id'))->update(array(
+            'read_at' => date('now')
+        ));
+        return response()->json('Readed',200);
     }
 }

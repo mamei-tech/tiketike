@@ -31,8 +31,9 @@
                     <ul id="notifications-list">
                         @if(\Auth::user() != null)
                             @foreach(\Auth::user()->unreadNotifications as $notification)
-                                <li>
-                                    <a href="{{ $notification['data']['url'] }}">{!! $notification['data']['data'] !!}</a>
+                                <li id="notif-{{ $notification->id }}">
+                                    <a class="" href="{{ $notification['data']['url'] }}">{!! $notification['data']['data'] !!}</a>
+                                    <button type="button" id="mark" data-target="{{ $notification->id }}" class="btn btn-link"><i class="ti-brush"></i> </button>
                                 </li>
                             @endforeach
                         @endif

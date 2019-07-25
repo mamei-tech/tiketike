@@ -18,7 +18,7 @@ class RaffleResource extends JsonResource
         $medias = '';
         foreach ($this->getMedia('raffles') as $media)
         {
-            $medias.= $media->getUrl().';';
+            $medias.= $media->getUrl('thumb').';';
         }
         return [
             'id' => $this->id,

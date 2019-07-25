@@ -102,7 +102,7 @@
                             <button id="percent" type="button" class="btn btn-info padding0 pull-left margin-right-15">
                                 <span>%</span>
                             </button>
-                            <button id="price" type="button" class="btn btn-info padding0 pull-left"><span
+                            <button id="pricefilter" type="button" class="btn btn-info padding0 pull-left"><span
                                         class="ti-money"></span>
                             </button>
                         </div>

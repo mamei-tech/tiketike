@@ -1,5 +1,6 @@
 import axios from 'axios';
-$('#view-password').on('change',function (e) {
+
+$('#view-password').on('change', function (e) {
     var x = document.getElementById("inputPassword");
     if (x.type === "password") {
         x.type = "text";
@@ -8,7 +9,7 @@ $('#view-password').on('change',function (e) {
     }
 });
 
-$('#markAsRead').on('click',function (e) {
+$('#markAsRead').on('click', function (e) {
     e.preventDefault();
     axios.get(route('mark.as.read')).then(function (response) {
         if (response.status = 200) {
@@ -19,18 +20,30 @@ $('#markAsRead').on('click',function (e) {
     });
 });
 
+$('button#mark').on('click', function (e) {
+    e.preventDefault();
+    var element = e.target.parentElement.attributes[2].value;
+    axios.post(route('mark.read'), {
+        'id': element
+    }).then(function (response) {
+        if (response.status = 200) {
+            document.getElementById('notif-'+element).style.visibility = 'hidden';
+        }
+    });
+});
+
 
 /* On ready */
 $(function () {
     $('.slick-vertical').slick({
         infinite: true,
         slidesToShow: 3,
-        arrows:false,
+        arrows: false,
         verticalSwiping: true,
         swipeToSlide: true,
         slidesToScroll: 1,
         vertical: true,
-        autoplay:true,
+        autoplay: true,
         autoplaySpeed: 6000,
         pauseOnHover: true,
         initialSlide: 9,
@@ -42,9 +55,9 @@ $(function () {
                     slidesToScroll: 1,
                     initialSlide: 9,
                     infinite: true,
-                    arrows:false,
+                    arrows: false,
                     vertical: false,
-                    autoplay:true,
+                    autoplay: true,
                     autoplaySpeed: 6000,
                     pauseOnHover: true,
 
@@ -58,11 +71,8 @@ $(function () {
     });
 
 
-
-
-
     // Check screen size for fixing the navbar
-    if(window.screen.width * window.devicePixelRatio <= 1199) {
+    if (window.screen.width * window.devicePixelRatio <= 1199) {
         let $div = $('div#navdiv-rightcolum');
 
         if ($div.hasClass('col-md-5')) {
@@ -72,9 +82,9 @@ $(function () {
 
 
     // Check the event of resizing screen for fixing the navbar
-    $(window).resize(function() {
+    $(window).resize(function () {
 
-        if(window.screen.width * window.devicePixelRatio <= 1199) {
+        if (window.screen.width * window.devicePixelRatio <= 1199) {
             let $div = $('div#navdiv-rightcolum');
 
             if ($div.hasClass('col-md-5')) {
@@ -82,7 +92,7 @@ $(function () {
             }
         }
 
-        if(window.screen.width * window.devicePixelRatio > 1199) {
+        if (window.screen.width * window.devicePixelRatio > 1199) {
             let $div = $('div#navdiv-rightcolum');
 
             $div.removeClass();
@@ -96,10 +106,10 @@ var password = document.getElementById("password")
     , confirm_password = document.getElementById("confirm_password");
 
 function validatePassword() {
-    if(password.value != confirm_password.value) {
+    if (password.value != confirm_password.value) {
         confirm_password.setCustomValidity("Password Don't Match");
 
-    }else {
+    } else {
         confirm_password.setCustomValidity('');
     }
 
