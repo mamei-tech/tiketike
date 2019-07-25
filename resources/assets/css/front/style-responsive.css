@@ -28,9 +28,6 @@
         height: 800px;
     }
 
-    .bg-large {
-        margin-bottom: 270px;
-    }
 
     .centerM {
         width: auto;
@@ -2364,6 +2361,24 @@
 @media (max-width: 400px) {
 
 
+    .slickVerticalTickets{
+        padding-left: 5%
+    }
+
+    .bg-large{
+        padding-bottom: 50px!important;
+    }
+
+
+    .bg-prueba {
+        background: url(../../pics/front/prueba.png);
+        width: 197px !important;
+        height: 55px;
+        font-size: 20px;
+        text-align: center;
+    }
+
+
     .chart-porcientoR canvas {
         margin-top: -5px;
         margin-left: -80px;
@@ -2865,6 +2880,14 @@
 }
 
 @media (max-width: 399px) {
+
+    .slickVerticalTickets{
+        padding-left: 5%
+    }
+
+    .bg-large{
+        padding-bottom: 50px!important;
+    }
 
     .chart-porcientoR canvas {
         margin-top: -5px;

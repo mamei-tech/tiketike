@@ -81,8 +81,8 @@
                                                 @lang('views.my_tickets_buyed')</h6>
                                         </div>
                                         <div class="modal-body">
-                                            <div class="listadoTickets padding-left50">
-                                                <ul class="nav sinkinSans400R">
+                                            <div class="listadoTickets">
+                                                <ul class="nav sinkinSans400R" style="text-align: center; padding-left: 10%" >
                                                     @if(Auth::user() != null)
                                                         @foreach(Auth::user()->getTicketsByRaffle($raffle->id) as $ticket)
                                                             <li class="padding-top-15 margin-top5 bg-prueba">
@@ -403,9 +403,8 @@
                     breakpoint: 480,
                     settings: {
                         arrows: false,
-                        centerMode: true,
-                        centerPadding: '40px',
-                        slidesToShow: 3
+                        centerMode: false,
+                        slidesToShow: 4
                     }
                 },
                 {
