@@ -62,9 +62,11 @@
                     </div>
                     <div class="row">
                         <div class="col-xs-12 col-md-12">
-                            <div class="col-md-12 col-lg-12 col-xs-12 text-center" id="columns">
-                                <div class="uploaderUppy"></div>
-                                <button class="btn btn-primary openUppyModal">Select image</button>
+                            <div class="form-group">
+                                <label for="document">Images</label>
+                                <div class="needsclick dropzone" id="document-dropzone">
+
+                                </div>
                             </div>
                         </div>
                     </div>

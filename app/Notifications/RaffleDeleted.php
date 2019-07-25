@@ -47,7 +47,7 @@ class RaffleDeleted extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-                    ->line('Sorry fellow, you raffle '.$this->raffle->title.' has been deleted by administrator because no tickets was sold until today...')
+                    ->line(trans('notifications.raffle_deleted').$this->raffle->title.trans('notifications.raffle_deleted_endbody'))
                     ->line("don't get down, we hope to see you soon!!!!");
     }
 
@@ -60,7 +60,7 @@ class RaffleDeleted extends Notification
     public function toArray($notifiable)
     {
         return [
-            'data' => 'Sorry fellow, you raffle '.$this->raffle->title.' has been deleted by administrator because it dont sell..',
+            'data' => trans('notifications.raffle_deleted').$this->raffle->title.trans('notifications.raffle_deleted_endbody'),
             'url' => route('main')
         ];
     }

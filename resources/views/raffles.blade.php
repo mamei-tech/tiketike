@@ -1,4 +1,7 @@
 @extends('layouts.base')
+@section('additional_styles')
+    <link href="{{ asset('css/front/dropzone.min.css') }}" rel="stylesheet" />
+@stop
 @section('title',trans('views.raffles'))
 @section('content')
     @include('partials.frontend.header')
@@ -99,7 +102,7 @@
                             <button id="percent" type="button" class="btn btn-info padding0 pull-left margin-right-15">
                                 <span>%</span>
                             </button>
-                            <button id="price" type="button" class="btn btn-info padding0 pull-left"><span
+                            <button id="pricefilter" type="button" class="btn btn-info padding0 pull-left"><span
                                         class="ti-money"></span>
                             </button>
                         </div>
@@ -211,10 +214,41 @@
 
 @section('footerScripts')
     @parent
+    <script src="{{ asset('js/front/dropzone.min.js') }}"></script>
     <script src="{{ asset('js/raffles.min.js') }}" defer></script>
     <script type="text/javascript">
         $(document).ready(function () {
             $('.select2').select2();
         });
+    </script>
+    <script>
+        var uploadedDocumentMap = {};
+        Dropzone.options.documentDropzone = {
+            url: '{{ route('upload.images') }}',
+            maxFilesize: 0.4, // MB
+            maxFiles: 3,
+            addRemoveLinks: true,
+            acceptedFiles: ['image/*'],
+            clickable: true,
+            headers: {
+                'X-CSRF-TOKEN': "{{ csrf_token() }}"
+            },
+            success: function (file, response) {
+                $('form').append('<input type="hidden" name="files[]" value="' + response.name + '">');
+                uploadedDocumentMap[file.name] = response.name;
+            },
+            removedfile: function (file) {
+                file.previewElement.remove();
+                var name = '';
+                if (typeof file.file_name !== 'undefined') {
+                    name = file.file_name;
+                } else {
+                    name = uploadedDocumentMap[file.name];
+                }
+                $('form').find('input[name="files[]"][value="' + name + '"]').remove();
+            },
+            init: function () {
+            }
+        }
     </script>
 @endsection

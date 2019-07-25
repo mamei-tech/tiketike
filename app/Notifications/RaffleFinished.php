@@ -46,7 +46,7 @@ class RaffleFinished extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-                    ->line('Hey fellow, your raffle '.$this->raffle->title.' has sold all tickets')
+                    ->line(trans('notifications.raffle_finished_owner').$this->raffle->title.trans('notifications.raffle_finished_owner_endbody'))
                     ->action('Review it', route('raffle.finished.view',['raffleId' => $this->raffle->id]))
                     ->line('Congratulations!! We are very proud of you!!');
     }
@@ -60,7 +60,7 @@ class RaffleFinished extends Notification
     public function toArray($notifiable)
     {
         return [
-            'data' => 'Hey fellow, your raffle '.$this->raffle->title.' has sold all tickets',
+            'data' => trans('notifications.raffle_finished_owner').$this->raffle->title.trans('notifications.raffle_finished_owner_endbody'),
             'url' => route('raffle.finished.view',['raffleId' => $this->raffle->id])
         ];
     }

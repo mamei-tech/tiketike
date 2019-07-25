@@ -48,7 +48,7 @@ class RaffleAnulled extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-                    ->line('Sorry fellow, we have anulled your raffle '.$this->raffle->title)
+                    ->line(trans('notifications.raffle_anulled').$this->raffle->title)
                     ->action('Visit us', route('main'))
                     ->line('We hope to see you soon!!');
     }
@@ -62,7 +62,7 @@ class RaffleAnulled extends Notification
     public function toArray($notifiable)
     {
         return [
-            'data' => 'Sorry fellow, we have anulled your raffle '.$this->raffle->title,
+            'data' => trans('notifications.raffle_anulled').$this->raffle->title,
             'url' => route('main')
         ];
     }

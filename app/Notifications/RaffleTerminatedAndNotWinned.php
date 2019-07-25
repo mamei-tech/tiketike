@@ -55,7 +55,7 @@ class RaffleTerminatedAndNotWinned extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-                    ->line('The raffle '.$this->raffle->title.' was finished. You are not the winner, sorry fellow, but you can review it.')
+                    ->line(trans('notifications.terminated_not_w').$this->raffle->title.trans('notifications.terminated_not_w_endbody'))
                     ->action('Get a view', route('raffle.finished.view',['raffleId' => $this->raffle->id]))
                     ->line('We hope to see you soon!');
     }
@@ -69,7 +69,7 @@ class RaffleTerminatedAndNotWinned extends Notification
     public function toArray($notifiable)
     {
         return [
-            'data' => 'The raffle '.$this->raffle->title.' was finished. You are not the winner, sorry fellow, but you can review it.',
+            'data' => trans('notifications.terminated_not_w').$this->raffle->title.trans('notifications.terminated_not_w_endbody'),
             'url' => route('raffle.finished.view',['raffleId' => $this->raffle->id])
         ];
     }

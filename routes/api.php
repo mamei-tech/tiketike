@@ -34,6 +34,7 @@ Route::group([
 ],function () {
     Route::get('/filterRaffles', 'RaffleFrontController@filterRaffles')->name('filter.front.raffles');
     Route::post('/getUser', 'UserFrontController@getUser')->name('get.user');
+    Route::post('/markAsRead', 'RaffleFrontController@markAsRead')->name('mark.read');
     Route::get('/getcity/{country_id}/{user_id}', 'UserFrontController@getcity')->name('get.cities');
 });
 

@@ -49,7 +49,7 @@ class RaffleCreated extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-                    ->line('You have created a new raffle. You can see it clicking at the link bellow.')
+                    ->line(trans('notifications.raffle_created'))
                     ->action('See it', route('raffle.tickets.available',['raffleId' => sprintf('%.0f',$this->raffle->id)]) )
                     ->line('Awesome, you did it!!!');
     }
@@ -63,7 +63,7 @@ class RaffleCreated extends Notification
     public function toArray($notifiable)
     {
         return [
-            'data' => 'Hi, you have created a new raffle. You can see it clicking at this message.',
+            'data' => trans('notifications.raffle_created'),
             'url' => route('raffle.tickets.available',['raffleId' => sprintf('%.0f',$this->raffle->id)])
         ];
     }
