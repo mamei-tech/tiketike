@@ -4,6 +4,7 @@
     @include('partials.frontend.header')
     @include('partials.front_modals.mobile_suggest')
     @include('partials.front_modals.confirmation_modal')
+    @include('partials.front_modals.notification_modal')
     @include('partials.front_modals.error_notification')
     <div class="container margin-top60">
         <div class="row">

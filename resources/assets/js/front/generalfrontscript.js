@@ -28,6 +28,8 @@ $('button#mark').on('click', function (e) {
     }).then(function (response) {
         if (response.status = 200) {
             document.getElementById('notif-'+element).style.visibility = 'hidden';
+            var count = $('#notifications_count').html();
+            $('#notifications_count').html(count-1);
         }
     });
 });
