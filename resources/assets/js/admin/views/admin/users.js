@@ -95,6 +95,8 @@ $(document).ready(function () {
     // Edit record
     table.on('click', '.edit', function (e) {
         let $tr = $(this).closest('tr');
+        if ($tr.hasClass('child'))
+            $tr = $tr.siblings('.parent');
         let row = table.row($tr).data();
 
         // Call to populate the delete form
@@ -115,6 +117,8 @@ $(document).ready(function () {
         e.preventDefault();
 
         let $tr = $(this).closest('tr');
+        if ($tr.hasClass('child'))
+            $tr = $tr.siblings('.parent');
         let row = table.row($tr).data();
 
         // Call to populate the delete form

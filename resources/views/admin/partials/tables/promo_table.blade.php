@@ -30,7 +30,9 @@
     @foreach ($promos as $key => $promo)
         <tr>
             <td>{{$promo->id}}</td>
+
             <td>{{$promo->name}}</td>
+
             <td>
                 @if ($promo->type === 0)
                     Principal
@@ -45,7 +47,9 @@
                     <i class="now-ui-icons ui-1_simple-remove unable" id="unable"></i>
                 @endif
             </td>
+
             <td>{{$promo->expdate}}</td>
+
             <td>{{$promo->image}}</td>
 
             <td class="text-right">

@@ -329,7 +329,7 @@
                                         @endforeach
 
                                     </div>
-                                    <div class="tab-pane" id="siguiendo">F
+                                    <div class="tab-pane" id="siguiendo">
                                         @foreach($current->getRafflesFollowed as $raffle)
                                             <div class="col-xs-6 col-lg-3 col-sm-4 padding-top-15">
                                                 <a href="{{ route('raffle.tickets.available',['raffleId' => $raffle->id]) }}">

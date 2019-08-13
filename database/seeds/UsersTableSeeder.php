@@ -63,11 +63,11 @@ class UsersTableSeeder extends Seeder
             'created_at' => date('Y-m-d H:i:s'),
         ]);
 
-        //Seeding other users & usersprofiles
-//        (new Faker\Generator)->seed(123);
-//
-//        factory(\App\User::class, 30)->create();
-//        factory(\App\UserProfile::class, 30)->create();
+//        Seeding other users & usersprofiles
+        (new Faker\Generator)->seed(123);
+
+        factory(\App\User::class, 30)->create();
+        factory(\App\UserProfile::class, 30)->create();
 //
         $users = \App\User::all();
         $values = [0 => 'user', 1=> 'user2'];
@@ -76,18 +76,18 @@ class UsersTableSeeder extends Seeder
             $img = rand(0,1);
             $user->addMediaFromUrl('http://localhost/pics/front/'.$values[$img].'.jpg')->toMediaCollection('avatars','avatars');
 
-//            $anotherusersset = \App\User::inRandomOrder()->take(5)->get();
-//
-//            foreach ($anotherusersset as $anotheruser)
-//            {
-//                if($user->id == $anotheruser->id) continue;
-//
-//                DB::table('user_follow')->insert([
-//                        'follow_id'     => $user->id,
-//                        'follower_id'  => $anotheruser->id,
-//                    ]
-//                );
-//            }
+            $anotherusersset = \App\User::inRandomOrder()->take(5)->get();
+
+            foreach ($anotherusersset as $anotheruser)
+            {
+                if($user->id == $anotheruser->id) continue;
+
+                DB::table('user_follow')->insert([
+                        'follow_id'     => $user->id,
+                        'follower_id'  => $anotheruser->id,
+                    ]
+                );
+            }
         }
     }
 }

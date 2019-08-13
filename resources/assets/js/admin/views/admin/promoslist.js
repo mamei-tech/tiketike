@@ -233,8 +233,10 @@ $(document).ready(function () {
     // Edit record
     table.on('click', '.edit', function (e) {
 
-        let tr = $(this).closest('tr');
-        let row = table.row(tr).data();
+        let $tr = $(this).closest('tr');
+        if ($tr.hasClass('child'))
+            $tr = $tr.siblings('.parent');
+        let row = table.row($tr).data();
 
         // Call to populate the delete form
         popultEditForm(row[0], row[1], row[2], row[3], row[4]);
@@ -248,8 +250,10 @@ $(document).ready(function () {
     // Delete a record
     table.on('click', '.remove', function (e) {
 
-        let tr = $(this).closest('tr');
-        let row = table.row(tr).data();
+        let $tr = $(this).closest('tr');
+        if ($tr.hasClass('child'))
+            $tr = $tr.siblings('.parent');
+        let row = table.row($tr).data();
 
         // Call to populate the delete form
         popultDeleteForm(row[1]);
@@ -263,11 +267,16 @@ $(document).ready(function () {
     //Detail record
     table.on('click', '.like', function (e) {
 
-        let tr = $(this).closest('tr');
-        let row = table.row(tr).data();
+        let $tr = $(this).closest('tr');
+        if ($tr.hasClass('child'))
+            $tr = $tr.siblings('.parent');
+        let row = $('#table_promo').DataTable().row($tr).data();
 
-        // Call to populate the delete form
-        popultDetailsForm(row[1], row[2], row[3], row[4], originalDetailsLinkAction);
+
+        // let row =  table.row(tr).data();
+
+        // // Call to populate the delete form
+        popultDetailsForm(row[1],row[2],row[3],row[4], originalDetailsLinkAction);
 
         // Opnening the modal
         openDetailModal();
