@@ -72,9 +72,9 @@
                 <a href="#" class="text-uppercase colorB sinkinSans300L icon"><span
                             class="ti-search texto20 search-btn show-search-icon"></span></a>
                 <div class="search-box" style="display: none;">
-                    <form action="#">
+                    <form action="{{route('raffles.index.search')}}" method="get" onsubmit="return showLoad()">
                         <div class="input-group">
-                            <input placeholder="Search" class="form-control" type="text">
+                            <input name="busqueda" placeholder="Search" class="form-control" type="text">
                             <span class="input-group-btn">
                                     <button class="btn btn-search btn-primary" type="submit">Search</button>
                                 </span>

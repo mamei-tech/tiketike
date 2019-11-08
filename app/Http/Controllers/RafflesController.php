@@ -161,6 +161,30 @@ class RafflesController extends Controller
             ->with('success', 'Raffle updated successfully');
     }
 
+
+    public function busqueda(Request $request)
+    {
+
+        $countries = Country::all();
+        $suggested      = $this->raffleRepository->getSuggested();
+        $promos         = Promo::getSomePromos();
+        $mainPromos     = Promo::where('type',0)->inRandomOrder()->get();
+        $categories     = RaffleCategory::all();
+        $continents = Continent::all();
+
+        if($request->get('busqueda')){
+            $raffles = Raffle::where("title", "LIKE", "%{$request->get('busqueda')}%")
+                ->paginate(5);
+
+            return view('raffles.search_result',compact('raffles', 'suggested', 'promos', 'categories', 'continents', 'countries','mainPromos'));
+        }
+
+        return view('raffles.search_result');
+    }
+
+
+
+
     public function follow($id)
     {
         $raffle = Raffle::find($id);
