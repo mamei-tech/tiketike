@@ -14,8 +14,9 @@
                     sesión</h5>
 
 
-                <form class="form-signin" action="login" method="POST">
+                <form class="form-signin" action="{{route('login.modal')}}" method="POST">
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                    <input type="hidden" name="_url" value="{{ Request::url() }}">
                     <div class="form-group has-feedback">
                         <label for="selector" class="colorN italic">Nombre</label>
                         <input type="email" class="form-control" id="inputEm"

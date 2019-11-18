@@ -1,8 +1,12 @@
 @extends('layouts.base')
+@section('additional_styles')
+    <link href="{{ asset('css/front/dropzone.min.css') }}" rel="stylesheet" />
+@stop
 @section('title',trans('views.raffles'))
 @section('content')
     @include('partials.frontend.header')
     @include('partials.front_modals.login_modal')
+    @include('partials.front_modals.register_modal')
     @include('partials.front_modals.edit_raffle_modal')
     @include('partials.front_modals.mobile_suggest')
     @include('partials.front_modals.notification_modal')
@@ -46,8 +50,7 @@
                         </div>
                     </div>
                     <div class="col-xs-12 paddingR-5 sinkinSans600SB">
-                        <span class="italic margin-right5">@lang('views.articles'):</span>
-                        <strong class="colorN">1</strong>
+                        <span class="italic margin-right5">{{ $raffle->getCategory->category }}</span>
                         <span class="ti-location-pin"></span>
                         <span class=""><img class="flag-country" src="{{ asset('pics/countries/png100px/'.$raffle->getLocation->code.'.png') }}">  {{ $raffle->getLocation->name }}</span>
                         <p class="colorN">{{ $raffle->description }}</p>
@@ -124,7 +127,9 @@
                                 </a></li>
                             </li>
                             <li class="margin-right-10">
-                                <a class="icon badge-container" data-toggle="modal" data-target="@if(\Auth::check())#{{$raffle->id}}-share_modal @else #loginModal @endif" href="" title="Compartir">
+                                <a class="icon badge-container" data-toggle="modal"
+                                   data-target="@if(\Auth::check())#{{$raffle->id}}-share_modal @else  #loginModal @endif"
+                                   href="" title="Compartir">
                                     <span class="ti-share colorV margin-right-5 dimenIconos"></span>
                                     @php($rShares = count($raffle->getReferrals))
                                     @if($rShares > 0)

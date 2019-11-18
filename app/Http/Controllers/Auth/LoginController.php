@@ -80,7 +80,7 @@ class LoginController extends Controller
 
             /*End of mamei section code*/
 
-            if (!$this->guard()->user()->hasRole('User') && $this->guard()->user()->can('enter_admin'))
+            if ($this->guard()->user()->hasRole('Admon') )
             {
                 $sharedRaffles = Raffle::sharedRaffles();
 

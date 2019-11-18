@@ -7,6 +7,7 @@
     @include('partials.frontend.header')
     @include('partials.front_modals.filters')
     @include('partials.front_modals.login_modal')
+    @include('partials.front_modals.register_modal')
     @include('partials.front_modals.mobile_suggest')
     @include('partials.front_modals.notification_modal')
     @include('partials.front_modals.create_raffle_modal')
@@ -149,7 +150,7 @@
                                                                                                   src="{{ asset('pics/countries/png100px/'.$raffle->getLocation->code.'.png') }}"></span>
                                         <h4 class=" text-uppercase sinkinSans400R textoR">
                                             <a class="colorN"
-                                               href="{{ route('raffle.tickets.available',['raffleId' => $raffle->id]) }}">{{ str_limit($raffle->title,13,'') }}</a>
+                                               href="{{ route('raffle.tickets.available',['raffleId' => $raffle->id]) }}">{{ str_limit($raffle->title,13,'...') }}</a>
                                         </h4>
 
                                         <div class="hidden-lg texto8"><span
@@ -180,7 +181,7 @@
                                                         <span class="colorV sinkinSans600SB">Seguir</span>
                                                     </a></li>
                                                 <li class=" margin-right-10"><a data-toggle="modal"
-                                                                                data-target="@if(\Auth::check())#{{$raffle->id}}-share_modal @else #loginModal @endif"
+                                                                                data-target="@if(\Auth::check())#{{$raffle->id}}-share_modal @else  #loginModal @endif"
                                                                                 href="" title="Compartir">
                                                         <span class="ti-share texto-negrita colorV margin-right-5 texto16"></span><span
                                                                 class="colorV sinkinSans600SB"
