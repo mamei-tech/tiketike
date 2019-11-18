@@ -139,10 +139,10 @@
         @endif
     </script>
     <script>
-        // var uploadedDocumentMap = {};
+        var uploadedDocumentMap = {};
         Dropzone.options.documentDropzone = {
             url: '{{ route('upload.images') }}',
-            maxFilesize: 0.4, // MB
+            maxFilesize: 5, // MB
             maxFiles: 3,
             addRemoveLinks: true,
             acceptedFiles: 'image/*',
@@ -153,16 +153,9 @@
                 'X-CSRF-TOKEN': "{{ csrf_token() }}"
             },
             success: function (file, response) {
-
-                console.log(response);
-                $('#ftm_createRaffle').append('<input type="hidden" name="files[]" value="' + response.name +'">');
+                $('form').append('<input type="hidden" name="files[]" value="' + response.name + '">');
                 uploadedDocumentMap[file.name] = response.name;
             },
-            error: function(file, response){
-             return false;
-            },
-
-
             removedfile: function (file) {
                 file.previewElement.remove();
                 var name = '';
