@@ -112,7 +112,7 @@ class RafflesController extends Controller
             $raffle->addMedia(public_path('pics/raffles/' . $file))->toMediaCollection('raffles','raffles');
         }
 
-        Auth::user()->notify(new RaffleCreated($raffle, Auth::user()));
+//        Auth::user()->notify(new RaffleCreated($raffle, Auth::user()));
 
         Log::log('INFO', trans('aLogs.raffle_created'), [
             'user' => Auth::user()->id,
@@ -243,11 +243,17 @@ class RafflesController extends Controller
             mkdir($path, 0777, true);
         }
 
-        $file = $request->file('file');
+        $files = $request->file('file');
 
-        $name = uniqid() . '_' . trim($file->getClientOriginalName());
+        foreach ($files as $file){
+            $name = $file->getClientOriginalName();
+            $file->move($path, $name);
 
-        $file->move($path, $name);
+        }
+
+//        $name = uniqid() . '_' . trim($file->getClientOriginalName());
+
+
 
         return response()->json([
             'name'          => $name,

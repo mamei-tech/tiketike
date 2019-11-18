@@ -69,7 +69,7 @@
 
 
             <li class="colorB">
-                <a href="#" class="text-uppercase colorB sinkinSans300L icon"><span
+                <a class="text-uppercase colorB sinkinSans300L icon"><span
                             class="ti-search texto20 search-btn show-search-icon"></span></a>
                 <div class="search-box" style="display: none;">
                     <form action="{{route('raffles.index.search')}}" method="get" onsubmit="return showLoad()">

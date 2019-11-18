@@ -9,6 +9,7 @@
     @include('partials.front_modals.login_modal')
     @include('partials.front_modals.mobile_suggest')
     @include('partials.front_modals.notification_modal')
+    @include('partials.front_modals.create_raffle_modal')
     <div class="container contenido" style="width: 100%">
         <div class="row">
 
@@ -93,7 +94,7 @@
                             <span class=" colorV sinkinSans600SB">@lang('views.create_raffle')</span>
                             <span aria-hidden="true" class="ti-angle-right colorV "></span>
                         </a>
-                            @include('partials.front_modals.create_raffle_modal')
+
                         </div>
 
                         <div class="col-lg-6  floatRight padding-left150 sinkinSans600SB hidden-xs">
@@ -214,7 +215,7 @@
 
 @section('footerScripts')
     @parent
-    <script src="{{ asset('js/front/dropzone.min.js') }}"></script>
+    <script src="{{ asset('js/front/dropzone.js') }}"></script>
     <script src="{{ asset('js/raffles.min.js') }}" defer></script>
     <script type="text/javascript">
         $(document).ready(function () {
@@ -225,10 +226,12 @@
         var uploadedDocumentMap = {};
         Dropzone.options.documentDropzone = {
             url: '{{ route('upload.images') }}',
-            maxFilesize: 0.4, // MB
+            maxFilesize: 5, // MB
             maxFiles: 3,
             addRemoveLinks: true,
-            acceptedFiles: ['image/*'],
+            acceptedFiles: 'image/*',
+            uploadMultiple: true,
+            parallelUploads: 1,
             clickable: true,
             headers: {
                 'X-CSRF-TOKEN': "{{ csrf_token() }}"

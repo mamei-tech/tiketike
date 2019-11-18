@@ -115,7 +115,7 @@
     @include('partials.frontend.views.landing.top_users_section')
 @stop
 @section('additional_scripts')
-    <script src="{{ asset('js/front/dropzone.min.js') }}"></script>
+    <script src="{{ asset('js/front/dropzone.js') }}"></script>
     <script src="//js.pusher.com/3.1/pusher.min.js"></script>
     {{--<script src='https://www.google.com/recaptcha/api.js'></script>--}}
     <script src="{{ asset('js/main.min.js') }}"></script>
@@ -139,21 +139,30 @@
         @endif
     </script>
     <script>
-        var uploadedDocumentMap = {};
+        // var uploadedDocumentMap = {};
         Dropzone.options.documentDropzone = {
             url: '{{ route('upload.images') }}',
             maxFilesize: 0.4, // MB
             maxFiles: 3,
             addRemoveLinks: true,
-            acceptedFiles: ['image/*'],
+            acceptedFiles: 'image/*',
+            uploadMultiple: true,
+            parallelUploads: 1,
             clickable: true,
             headers: {
                 'X-CSRF-TOKEN': "{{ csrf_token() }}"
             },
             success: function (file, response) {
-                $('form').append('<input type="hidden" name="files[]" value="' + response.name + '">');
+
+                console.log(response);
+                $('#ftm_createRaffle').append('<input type="hidden" name="files[]" value="' + response.name +'">');
                 uploadedDocumentMap[file.name] = response.name;
             },
+            error: function(file, response){
+             return false;
+            },
+
+
             removedfile: function (file) {
                 file.previewElement.remove();
                 var name = '';

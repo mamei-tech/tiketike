@@ -12,7 +12,7 @@
             </div>
             <div class="modal-body">
 
-                <form class="col-md-12" id="ftm_createRaffle" action="{{ route('raffles.index.store') }}" method="POST" enctype="multipart/form-data">
+                <form class="col-md-12 form-drop" id="ftm_createRaffle" action="{{ route('raffles.index.store') }}" method="POST" enctype="multipart/form-data" >
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
                     <div class="col-md-12">
                         {{-- FIRST NAME ¦ LASTNAME --}}
@@ -64,11 +64,14 @@
                         <div class="col-xs-12 col-md-12">
                             <div class="form-group">
                                 <label for="document">Images</label>
-                                <div class="needsclick dropzone" id="document-dropzone">
 
+                                <div class="needsclick dropzone" id="document-dropzone" >
                                 </div>
                             </div>
                         </div>
+
+
+
                     </div>
 
                     <div class="col-md-12 createRaffleModButt">
