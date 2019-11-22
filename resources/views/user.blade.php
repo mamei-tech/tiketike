@@ -83,7 +83,6 @@
                         </div>
 
 
-
                         @if($current->id != \Auth::User()->id && !$isFollower)
                             <div class="pull-left padding-top-20">
                                 <a href="{{route('user.follow',['userid'=>$current->id])}}"

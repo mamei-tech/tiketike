@@ -33,12 +33,18 @@ class UserController extends Controller
     {
         $current = User::findOrFail((int)$userid);
 
+
+
         $isFollower = false;
 
         foreach ($current->getFollowers as $follower){
-            if ($follower->id == Auth::user()->id);
+            if ($follower->id == Auth::user()->id)
             $isFollower = true;
         }
+
+
+
+
 
 
         $raffles = $current->getRaffles;
