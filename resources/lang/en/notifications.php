@@ -11,5 +11,6 @@ return [
     'raffle_deleted' => 'Sorry fellow, you raffle ',
     'raffle_deleted_endbody' => ' has been deleted by administrator because no tickets was sold until today...',
     'raffle_created' => 'You have created a new raffle. You can see it clicking at the link bellow.',
+    'raffle_createdfor' => 'A new Raffle has been created for',
     'raffle_anulled' => 'Sorry fellow, we have anulled your raffle '
 ];

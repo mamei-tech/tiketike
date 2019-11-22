@@ -136,7 +136,7 @@ $(document).ready(function () {
         rules: {
             title: {
                 required: true,
-                maxlength: 30,
+                maxlength: 120,
             },
             description: {
                 required: true,
@@ -156,7 +156,7 @@ $(document).ready(function () {
         messages: {
             title: {
                 required: 'This field is required',
-                maxlength: 'The max length of this field is 30 characters'
+                maxlength: 'The max length of this field is 120 characters'
             },
             description: {
                 required: 'This field is required',

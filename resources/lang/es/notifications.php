@@ -11,5 +11,6 @@ return [
     'raffle_deleted' => 'Lo sentimos amigo, tu rifa ',
     'raffle_deleted_endbody' => ' ha sido eliminada debido a que ningín ticket se ha vendido hasta hoy...',
     'raffle_created' => 'Has creado una nueva rifa. Puedes revisarla accediendo a este enlace.',
+    'raffle_createdfor' => 'Una nueva rifa a sido creada por.',
     'raffle_anulled' => 'Lo sentimos amigo, hemos anulado tu rifa '
 ];

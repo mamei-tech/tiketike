@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\City;
 use App\Http\Requests\StoreUserprofileRequest;
+use App\Notifications\RaffleCreated;
+use App\Notifications\UserFollowed;
 use App\Promo;
 use App\Repositories\RaffleRepository;
 use App\User;
@@ -30,6 +32,15 @@ class UserController extends Controller
     public function getProfile($userid)
     {
         $current = User::findOrFail((int)$userid);
+
+        $isFollower = false;
+
+        foreach ($current->getFollowers as $follower){
+            if ($follower->id == Auth::user()->id);
+            $isFollower = true;
+        }
+
+
         $raffles = $current->getRaffles;
         $rafflesBuyed = $current->getRafflesBuyed;
         $currentProfile = $current->getProfile;
@@ -47,6 +58,7 @@ class UserController extends Controller
         $country = $currentProfile->getCity->country->name;
         return view('user', compact(
             'current',
+            'isFollower',
             'currentProfile',
             'rafflesCount',
             'winnedRaffles',
@@ -161,6 +173,9 @@ class UserController extends Controller
     {
         $user = User::findOrFail($id);
         $user->getFollowers()->syncWithoutDetaching(Auth::user());
+
+        $user->notify(new UserFollowed( Auth::user()));
+
 
         Log::log('INFO', trans('aLogs.new_fallower'), [
             'user' => $user->id,

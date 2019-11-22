@@ -120,5 +120,5 @@ Route::group(['prefix' => 'users',
     'middleware' => ['update_users']
 ], function () {
     Route::get('/profile/{userid}/', 'UserController@getProfile')->name('profile.info');
-    Route::get('user/{userid}/follow', 'UserController@follow')->name('user.follow');
+    Route::get('{userid}/follow', 'UserController@follow')->name('user.follow');
 });

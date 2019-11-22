@@ -8,6 +8,7 @@ use App\Http\Requests\ConfirmRaffle;
 use App\Http\Requests\UpdateRaffleRequest;
 use App\Http\TkTk\CodesGenerator;
 use App\Notifications\RaffleCreated;
+use App\Notifications\RaffleCreatedFor;
 use App\Notifications\RaffleUpdated;
 use App\Promo;
 use App\RaffleConfirmation;
@@ -112,7 +113,11 @@ class RafflesController extends Controller
             $raffle->addMedia(public_path('pics/raffles/' . $file))->toMediaCollection('raffles','raffles');
         }
 
-//        Auth::user()->notify(new RaffleCreated($raffle, Auth::user()));
+        foreach (Auth::user()->getFollowers as $follower) {
+            $follower->notify(new RaffleCreatedFor($raffle, Auth::user()));
+        }
+
+        Auth::user()->notify(new RaffleCreated($raffle, Auth::user()));
 
         Log::log('INFO', trans('aLogs.raffle_created'), [
             'user' => Auth::user()->id,

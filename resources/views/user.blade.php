@@ -81,6 +81,16 @@
                                 {{$current->email}}
                             </div>
                         </div>
+
+
+
+                        @if($current->id != \Auth::User()->id && !$isFollower)
+                            <div class="pull-left padding-top-20">
+                                <a href="{{route('user.follow',['userid'=>$current->id])}}"
+                                   class="btn btn-primary bg_green extraer sinkinSans700B text-uppercase" type="button">Seguir</a>
+                            </div>
+                        @endif
+
                         @if($current->id == \Auth::User()->id)
                             <div class="col-xs-12 padding-top-20">
                                 <h5 class="borderBottomG colorN sinkinSans600SB"><span
@@ -256,6 +266,17 @@
                                     </div>
                                 </div>
                             </div>
+
+
+                            @if($current->id != \Auth::User()->id && !$isFollower)
+                                <div class="center-textR" style="padding-top: 120px">
+                                    <a href="{{route('user.follow',['userid'=>$current->id])}}"
+                                       class="btn btn-primary bg_green extraer sinkinSans700B text-uppercase"
+                                       type="button">Seguir</a>
+                                </div>
+                            @endif
+
+
                         </div>
                     </div>
                 </div>
@@ -280,14 +301,15 @@
                             <div class="panel-body text-center">
                                 <ul class="nav nav-tabs sinkinSans600SB" id="myTab" style="display: inline-block">
 
-                                    <li class="active"><a data-toggle="tab" class="ticket text-uppercase colorN"
-                                                          href="#creadas"
-                                                          aria-expanded="true">@lang('views.created')</a></li>
+                                    <li class=""><a data-toggle="tab" class="ticket text-uppercase colorN"
+                                                    href="#creadas"
+                                                    aria-expanded="true">@lang('views.created')</a></li>
                                     <li class=""><a data-toggle="tab" class="ticket text-uppercase colorN"
                                                     href="#participo"
                                                     aria-expanded="false">@lang('views.participating')</a></li>
-                                    <li><a data-toggle="tab" class="ticket text-uppercase colorN" href="#siguiendo"
-                                           aria-expanded="false">@lang('views.following')</a></li>
+                                    <li class="active"><a data-toggle="tab" class="ticket text-uppercase colorN"
+                                                          href="#siguiendo"
+                                                          aria-expanded="false">@lang('views.following')</a></li>
                                 </ul>
                                 <div class="tab-content">
                                     <div class="tab-pane active in" id="creadas">
@@ -300,7 +322,8 @@
 
                                                     <div class="porciento">
                                                         <div class=" text-center">
-                                                          <span class="chartB chart-porcientoR" data-percent="{{round($raffle->progress)}}">
+                                                          <span class="chartB chart-porcientoR"
+                                                                data-percent="{{round($raffle->progress)}}">
                                                              <span class="percentR">{{round($raffle->progress)}}%</span>
                                                           </span>
                                                         </div>
@@ -424,19 +447,22 @@
                                 <span class="colorN text-uppercase sinkinSans600SB">@lang('views.users')</span>
                             </div>
                             <div class="tools pull-right">
-                                <a class="collapsed paddingCollapse" data-toggle="collapse" data-parent="#accordion"
-                                   href="#usuarios" aria-expanded="false" aria-controls="collapseThree"></a>
+                                <a id="openusers" class="collapsed paddingCollapse" data-toggle="collapse"
+                                   data-parent="#accordion"
+                                   href="#usuarios" aria-expanded="true" aria-controls="collapseThree"></a>
                             </div>
                         </div>
                         <div id="usuarios" class="panel-collapse collapse" role="tabpanel"
-                             aria-labelledby="headingThree" aria-expanded="false" style="">
+                             aria-labelledby="headingThree" aria-expanded="true" style="">
                             <div class="panel-body text-center">
                                 <ul class="nav nav-tabs sinkinSans600SB" id="myTab" style="display: inline-block">
 
-                                    <li class=""><a data-toggle="tab" class="ticket text-uppercase colorN"
+                                    <li class=""><a id="seguidosopen" data-toggle="tab"
+                                                    class="ticket text-uppercase colorN"
                                                     href="#seguidos"
                                                     aria-expanded="false">@lang('views.followed')</a></li>
-                                    <li class="active"><a data-toggle="tab" class="ticket text-uppercase colorN"
+                                    <li class="active"><a id="mesiguenopen" data-toggle="tab"
+                                                          class="ticket text-uppercase colorN"
                                                           href="#mesiguen"
                                                           aria-expanded="true">@lang('views.follow_me')</a></li>
                                 </ul>
@@ -445,7 +471,7 @@
                                     <div class="tab-pane " id="seguidos">
                                         <div class="row">
                                             <div class="col-md-12">
-                                                <div class="slickFollows" id="normalSlick-follows">
+                                                <div class="slickFollows" id="">
                                                     @foreach($current->getFollows as $follow)
                                                         <div class="slick-list follow" id="{{$follow->id}}"
                                                              style="overflow: auto">
@@ -502,11 +528,46 @@
 
     <script type="text/javascript">
         $(document).ready(function () {
+
+
             $('.slickFollowers').slick({
                 autoplay: true,
                 slidesToShow: 5,
                 slidesToScroll: 1,
                 infinite: true,
+                adaptativeHeight: true,
+                pauseOnHover: true,
+                swipeToSlide: true,
+                initialSlide: 0,
+                responsive: [
+                    {
+                        breakpoint: 1024,
+                        settings: {
+                            slidesToShow: 3,
+                            slidesToScroll: 1,
+                            infinite: true,
+                        }
+                    },
+
+                ]
+
+            });
+
+            $('#openusers').on('click', function () {
+                setTimeout(function() { $('.slickFollowers').slick('refresh'); }, 10);
+            });
+
+            $('#mesiguenopen').on('click', function () {
+                setTimeout(function() { $('.slickFollowers').slick('refresh'); }, 10);
+            });
+
+
+            $('.slickFollows').slick({
+                autoplay: true,
+                slidesToShow: 5,
+                slidesToScroll: 1,
+                infinite: true,
+                arrows: true,
                 pauseOnHover: true,
                 swipeToSlide: true,
                 initialSlide: 0,
@@ -523,25 +584,8 @@
                 ]
             });
 
-            $('.slickFollows').slick({
-                autoplay: true,
-                slidesToShow: 5,
-                slidesToScroll: 1,
-                infinite: true,
-                pauseOnHover: true,
-                swipeToSlide: true,
-                initialSlide: 0,
-                responsive: [
-                    {
-                        breakpoint: 1024,
-                        settings: {
-                            slidesToShow: 3,
-                            slidesToScroll: 1,
-                            infinite: true,
-                        }
-                    },
-
-                ]
+            $('#seguidosopen').on('click', function () {
+                setTimeout(function() { $('.slickFollows').slick('refresh'); }, 10);
             });
 
 

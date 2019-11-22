@@ -25,7 +25,7 @@ class StoreRaffleRequest extends FormRequest
     public function rules()
     {
         return [
-            'title' => 'required|string|max:30',
+            'title' => 'required|string|max:120',
             'description' => 'required|string|min:15',
             'price' => 'required|numeric|min:1',
             'category' => 'required',
