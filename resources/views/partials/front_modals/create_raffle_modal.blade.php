@@ -33,7 +33,7 @@
                         <div class="col-md-4 pr-1">
                             <label for="Price"
                                    class="colorN italic padding-top-20">Precio</label>
-                            <input type="number" class="form-control form-control-new " id="price"
+                            <input type="text" class="form-control form-control-new " id="price"
                                    name="price" placeholder="Raffle price">
                         </div>
 

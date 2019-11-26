@@ -37,7 +37,7 @@ class RaffleCreated extends Notification
      */
     public function via($notifiable)
     {
-        return ['mail','broadcast','database'];
+        return ['broadcast','database'];
     }
 
     /**
@@ -46,13 +46,13 @@ class RaffleCreated extends Notification
      * @param  mixed  $notifiable
      * @return \Illuminate\Notifications\Messages\MailMessage
      */
-    public function toMail($notifiable)
-    {
-        return (new MailMessage)
-                    ->line(trans('notifications.raffle_created'))
-                    ->action('See it', route('raffle.tickets.available',['raffleId' => sprintf('%.0f',$this->raffle->id)]) )
-                    ->line('Awesome, you did it!!!');
-    }
+//    public function toMail($notifiable)
+//    {
+//        return (new MailMessage)
+//                    ->line(trans('notifications.raffle_created'))
+//                    ->action('See it', route('raffle.tickets.available',['raffleId' => sprintf('%.0f',$this->raffle->id)]) )
+//                    ->line('Awesome, you did it!!!');
+//    }
 
     /**
      * Get the array representation of the notification.

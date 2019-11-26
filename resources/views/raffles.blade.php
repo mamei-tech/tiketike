@@ -96,6 +96,7 @@
                             <span aria-hidden="true" class="ti-angle-right colorV "></span>
                         </a>
 
+
                         </div>
 
                         <div class="col-lg-6  floatRight padding-left150 sinkinSans600SB hidden-xs">
