@@ -189,6 +189,28 @@ class UserController extends Controller
         ]);
 
         return redirect()->back()
+            ->with('success', 'User follow successfully');
+    }
+
+
+    public function unFollow($id)
+    {
+        $user = User::findOrFail($id);
+        $user->getFollowers()->detach(Auth::user());
+
+
+
+        $user->notify(new UserFollowed( Auth::user()));
+
+
+        Log::log('INFO', trans('aLogs.new_fallower'), [
+            'user' => $user->id,
+            'follower' => Auth::user()->id,
+        ]);
+
+        return redirect()->back()
             ->with('success', 'Raffle follow successfully');
     }
+
+
 }

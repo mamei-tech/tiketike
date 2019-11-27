@@ -83,11 +83,21 @@
                         </div>
 
 
-                        @if($current->id != \Auth::User()->id && !$isFollower)
-                            <div class="pull-left padding-top-20">
-                                <a href="{{route('user.follow',['userid'=>$current->id])}}"
-                                   class="btn btn-primary bg_green extraer sinkinSans700B text-uppercase" type="button">Seguir</a>
-                            </div>
+                        @if($current->id != \Auth::User()->id )
+                            @if(!$isFollower)
+                                <div class="pull-left padding-top-20">
+                                    <a href="{{route('user.follow',['userid'=>$current->id])}}"
+                                       class="btn btn-primary bg_green extraer sinkinSans700B text-uppercase"
+                                       type="button">Seguir</a>
+                                </div>
+                            @else
+                                <div class="pull-left padding-top-20">
+                                    <a href="{{route('user.unfollow',['userid'=>$current->id])}}"
+                                       class="btn btn-primary bg_green extraer sinkinSans700B text-uppercase"
+                                       type="button">Dejar de Seguir</a>
+                                </div>
+                            @endif
+
                         @endif
 
                         @if($current->id == \Auth::User()->id)
@@ -267,12 +277,23 @@
                             </div>
 
 
-                            @if($current->id != \Auth::User()->id && !$isFollower)
-                                <div class="center-textR" style="padding-top: 120px">
-                                    <a href="{{route('user.follow',['userid'=>$current->id])}}"
-                                       class="btn btn-primary bg_green extraer sinkinSans700B text-uppercase"
-                                       type="button">Seguir</a>
-                                </div>
+                            @if($current->id != \Auth::User()->id )
+                                @if(!$isFollower)
+                                    <div class="center-textR" style="padding-top: 120px">
+                                        <a href="{{route('user.follow',['userid'=>$current->id])}}"
+                                           class="btn btn-primary bg_green extraer sinkinSans700B text-uppercase"
+                                           type="button">Seguir</a>
+                                    </div>
+
+                                @else
+                                    <div class="center-textR" style="padding-top: 120px">
+                                        <a href="{{route('user.follow',['userid'=>$current->id])}}"
+                                           class="btn btn-primary bg_green extraer sinkinSans700B text-uppercase"
+                                           type="button">Dejar de seguir</a>
+                                    </div>
+                                @endif
+
+
                             @endif
 
 
@@ -479,7 +500,7 @@
                                                                      class="imgUsuario sombraImgUser2"
                                                                      alt="imgUser">
                                                             </a>
-                                                            <h6 class="hidden-xs sinkinSans600SB">{{ $follow->fullname }}</h6>
+                                                            <h6 class=" sinkinSans600SB">{{ $follow->fullname }}</h6>
                                                             <span class="texto10 sinkinSans500MI padding-left10 hidden-xs">{{ $follow->getProfile->getCity->country->name }}</span>
                                                         </div>
                                                     @endforeach
@@ -502,7 +523,7 @@
                                                                      class="imgUsuario sombraImgUser2"
                                                                      alt="imgUser">
                                                             </a>
-                                                            <h6 class="hidden-xs sinkinSans600SB">{{ $follower->fullname }}</h6>
+                                                            <h6 class="sinkinSans600SB">{{ $follower->fullname }}</h6>
                                                             <span class="texto10 sinkinSans500MI padding-left10 hidden-xs">{{ $follower->getProfile->getCity->country->name }}</span>
                                                         </div>
                                                     @endforeach
@@ -553,11 +574,15 @@
             });
 
             $('#openusers').on('click', function () {
-                setTimeout(function() { $('.slickFollowers').slick('refresh'); }, 10);
+                setTimeout(function () {
+                    $('.slickFollowers').slick('refresh');
+                }, 10);
             });
 
             $('#mesiguenopen').on('click', function () {
-                setTimeout(function() { $('.slickFollowers').slick('refresh'); }, 10);
+                setTimeout(function () {
+                    $('.slickFollowers').slick('refresh');
+                }, 10);
             });
 
 
@@ -584,7 +609,9 @@
             });
 
             $('#seguidosopen').on('click', function () {
-                setTimeout(function() { $('.slickFollows').slick('refresh'); }, 10);
+                setTimeout(function () {
+                    $('.slickFollows').slick('refresh');
+                }, 10);
             });
 
 
