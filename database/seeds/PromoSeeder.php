@@ -141,8 +141,8 @@ class PromoSeeder extends Seeder
         $promoa = \App\Promo::find(2);
         $promob = \App\Promo::find(3);
 
-        $promoa->addMediaFromUrl('http://localhost/pics/common/psample_1.jpg')->toMediaCollection('promos', 'promos');
-        $promob->addMediaFromUrl('http://localhost/pics/common/psample_2.jpg')->toMediaCollection('promos', 'promos');
+        $promoa->addMediaFromUrl(env('APP_URL').'/pics/common/psample_1.jpg')->toMediaCollection('promos', 'promos');
+        $promob->addMediaFromUrl(env('APP_URL').'/pics/common/psample_2.jpg')->toMediaCollection('promos', 'promos');
 
 
         // Sec
@@ -151,10 +151,10 @@ class PromoSeeder extends Seeder
         $promoz = \App\Promo::find(5);
         $promox = \App\Promo::find(6);
 
-        $promoc->addMediaFromUrl('http://localhost/pics/common/psample_3.jpg')->toMediaCollection('promos', 'promos');
-        $promod->addMediaFromUrl('http://localhost/pics/common/psample_4.jpg')->toMediaCollection('promos', 'promos');
-        $promoz->addMediaFromUrl('http://localhost/pics/common/psample_5.jpg')->toMediaCollection('promos', 'promos');
-        $promox->addMediaFromUrl('http://localhost/pics/common/psample_6.jpg')->toMediaCollection('promos', 'promos');
+        $promoc->addMediaFromUrl(env('APP_URL').'/pics/common/psample_3.jpg')->toMediaCollection('promos', 'promos');
+        $promod->addMediaFromUrl(env('APP_URL').'/pics/common/psample_4.jpg')->toMediaCollection('promos', 'promos');
+        $promoz->addMediaFromUrl(env('APP_URL').'/pics/common/psample_5.jpg')->toMediaCollection('promos', 'promos');
+        $promox->addMediaFromUrl(env('APP_URL').'/pics/common/psample_6.jpg')->toMediaCollection('promos', 'promos');
 
     }
 }
