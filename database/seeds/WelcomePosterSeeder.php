@@ -13,6 +13,7 @@ class WelcomePosterSeeder extends Seeder
     {
         // Promo Seeder
         DB::table('welcome_poster')->insert([
+                'id'             => 1,
                 'title'          => 'Este es el títuto de Bienvenida del sitio',
                 'subtitle'       => 'Este es el subtítuto de Bienvenida del sitio',
             ]
