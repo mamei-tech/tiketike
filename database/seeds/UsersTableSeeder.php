@@ -74,7 +74,7 @@ class UsersTableSeeder extends Seeder
         foreach ($users as $user)
         {
             $img = rand(0,1);
-            $user->addMediaFromUrl('http://localhost/pics/front/'.$values[$img].'.jpg')->toMediaCollection('avatars','avatars');
+            $user->addMediaFromUrl(env('APP_URL').'/pics/front/'.$values[$img].'.jpg')->toMediaCollection('avatars','avatars');
 
             $anotherusersset = \App\User::inRandomOrder()->take(5)->get();
 
