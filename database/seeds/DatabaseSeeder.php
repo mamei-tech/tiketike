@@ -22,7 +22,8 @@ class DatabaseSeeder extends Seeder
             FollowTableSeeder::class,               //followers
             PromoSeeder::class,                     //Promo & Ads and also Promo Clients
             ConfigsSeeder::class,                   //configs
-            PermissionsTableSeeder::class,
+            PermissionsTableSeeder::class,          //Permissions
+            WelcomePosterSeeder::class,             //Text Home
         ]);
     }
 }
