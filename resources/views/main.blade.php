@@ -32,9 +32,8 @@
             </div>
             <div class="row padding-left65">
                 <div class="col-md-9 padding-top-20 center-textR">
-                    <p class="colorB textoBienv ">Texto de bienvenida del sitio
-                        y de orientación al usuario</p>
-                    <span class="colorB texto24 sinkinSans300LI">Texto de bienvenida del sitio y de orientación al usuario</span>
+                    <p class="colorB textoBienv ">{{$welcome_title}}</p>
+                    <span class="colorB texto24 sinkinSans300LI">{{$welcome_subtitle}}</span>
                 </div>
                 <div class="col-md-3 padding-top-20 center-textR">
                     <a href="@if(Auth::check())#createRaffleModal @else #loginModal @endif" data-toggle="modal"

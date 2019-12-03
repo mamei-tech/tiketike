@@ -60,6 +60,7 @@ return [
     'logcreatedat'              => 'Creado',
     'logupdatedat'              => 'Actualizado',
     'logsheader'                => 'Cabecera',
+    'welcome_poster_updated'     => 'El cartel de bienvenida fue editado'
 
 
 ];

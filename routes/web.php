@@ -84,6 +84,10 @@ Route::group([
     Route::resource('/promos', 'PromoController', ['except' => ['edit', 'show']]);
     Route::resource('/pmclients', 'PromoClientController', ['except' => ['edit', 'create']]);
 
+
+
+    Route::patch('/{posterid}/update', 'AdminController@updatePoster')->name('poster.update');
+
     // Raffles Management
     Route::group([
         'prefix' => 'raffles',

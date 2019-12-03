@@ -60,5 +60,6 @@ return [
     'logcreatedat'              => 'Created at',
     'logupdatedat'              => 'Updated at',
     'logsheader'                => 'Header',
+    'welcome_poster_updated'    => 'Welcome poster was updated.',
 
 ];

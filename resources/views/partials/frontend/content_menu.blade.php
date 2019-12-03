@@ -56,7 +56,7 @@
             <li class="text-center">
                 <form action="{{ route('admin.lansw') }}" method="post">
                     {{ csrf_field() }}
-                    <button style="background: transparent;border: transparent" type="submit" class="text-uppercase colorB padding-top-20 sinkinSans300L icon">
+                    <button style="background: transparent;border: transparent; outline: none" type="submit" class="text-uppercase colorB padding-top-20 sinkinSans300L icon">
                         <?php
                         $currentLocale = app()->getLocale();
                         $otherLocale = $currentLocale == 'es' ? 'en' : 'es';
