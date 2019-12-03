@@ -67,7 +67,7 @@ class PromoSeeder extends Seeder
             ]
         );
 
-        \App\Promo::find($lezcano)->addMediaFromUrl('http://localhost/pics/front/slide1.jpg')->toMediaCollection('promos','promos');
+        \App\Promo::find($lezcano)->addMediaFromUrl(env('APP_URL').'/pics/front/slide1.jpg')->toMediaCollection('promos','promos');
 
         DB::table('promos')->insert([
                 'name'          => 'Girls Pics',
