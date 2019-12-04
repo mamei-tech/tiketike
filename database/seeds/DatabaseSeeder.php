@@ -23,7 +23,7 @@ class DatabaseSeeder extends Seeder
             PromoSeeder::class,                     //Promo & Ads and also Promo Clients
             ConfigsSeeder::class,                   //configs
             PermissionsTableSeeder::class,          //Permissions
-            WelcomePosterSeeder::class,             //Text Home
+            WelcomePosterTableSeeder::class,             //Text Home
         ]);
     }
 }
