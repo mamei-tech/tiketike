@@ -26,41 +26,8 @@ abstract class BuysController extends Controller
     }
 
 
-    /**
-     * Display available tickets.
-     *
-     * @param $raffleId         Raffle id.
-     * @param Request $request
-     * @param RaffleRepository $raffleRepository
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     */
-    public function availableTickets($raffleId, Request $request,RaffleRepository $raffleRepository)
-    {
-        $countries = Country::all();
-        $suggested = $raffleRepository->getSuggested();
-        $raffle = Raffle::find($raffleId);
-        $promos = Promo::getSomePromos();
-        $mainPromos = Promo::where('type',1)->where('status',1)->get();
-        $categories = RaffleCategory::all();
-        return view('raffle', compact('countries','suggested','raffle','mainPromos','categories','raffleId','promos'));
-    }
 
 
-    /**
-     * Display available tickets.
-     *
-     * @param $raffleId         Raffle id.
-     * @param Request $request
-     * @param RaffleRepository $raffleRepository
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     */
-    public function availableTicketsByReferral($raffleId,$referralId, $socialNetwork,RaffleRepository $raffleRepository)
-    {
-        $countries = Country::all();
-        $suggested = $raffleRepository->getSuggested();
-        $raffle = Raffle::find($raffleId);
-        $promos = Promo::where('type',1)->where('status',1)->get();
-        $categories = RaffleCategory::all();
-        return view('raffle', compact('countries','suggested','raffle','promos','categories','raffleId','referralId','socialNetwork'));
-    }
+
+
 }

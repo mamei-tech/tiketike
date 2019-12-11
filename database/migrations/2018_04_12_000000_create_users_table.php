@@ -19,6 +19,7 @@ class CreateUsersTable extends Migration
             $table->string('lastname', 40);
             $table->string('email', 35)->unique();
             $table->string('avatar')->nullable();
+            $table->string('shared_raffles')->nullable();
             $table->string('password')->nullable();
             $table->float('ranking')->nullable();
             $table->string('api_token', 60)->unique()->nullable();   // Auth purpose

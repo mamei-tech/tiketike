@@ -33,8 +33,6 @@ class UserController extends Controller
     {
         $current = User::findOrFail((int)$userid);
 
-
-
         $isFollower = false;
 
         foreach ($current->getFollowers as $follower){

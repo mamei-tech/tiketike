@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Country;
+use App\Promo;
 use App\Raffle;
+use App\RaffleCategory;
 use App\RafflePays;
+use App\Repositories\RaffleRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Stripe\Stripe;
@@ -55,5 +59,26 @@ class DirectBuysController extends BuysController
         }
 
         return redirect($request->fullUrl(), 303);
+    }
+
+
+    /**
+     * Display available tickets.
+     *
+     * @param $raffleId         Raffle id.
+     * @param Request $request
+     * @param RaffleRepository $raffleRepository
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function availableTickets($raffleId, Request $request,RaffleRepository $raffleRepository)
+    {
+        $countries = Country::all();
+        $suggested = $raffleRepository->getSuggested();
+        $raffle = Raffle::find($raffleId);
+        $promos = Promo::getSomePromos();
+        $mainPromos = Promo::where('type',1)->where('status',1)->get();
+        $categories = RaffleCategory::all();
+        $referido = false;
+        return view('raffle', compact('referido','countries','suggested','raffle','mainPromos','categories','raffleId','promos'));
     }
 }

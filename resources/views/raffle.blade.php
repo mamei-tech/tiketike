@@ -281,7 +281,7 @@
                                class="btn btn-primary bg_green extraer sinkinSans700B text-uppercase">@lang('views.buy')
                             </a>
                         </div>
-                        <form method="post" action="{{ route('raffle.tickets.buy',['raffleId' => $raffle->id]) }}"
+                        <form method="post" action="@if($referido){{ route('referrals.tickets.buy',['raffleId' => $raffle->id,'referralId'=>$referral_id,'socialNetwork'=>$socialNetwork]) }}@else{{ route('raffle.tickets.buy',['raffleId' => $raffle->id]) }}@endif"
                               id="payform">
                             {{ csrf_field() }}
                             <input type="hidden" id="stripeToken" name="stripeToken"/>

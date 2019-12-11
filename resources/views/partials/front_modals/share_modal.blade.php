@@ -16,7 +16,7 @@
                         <div class="row">
 
                             <div class="col-xs-4">
-                                <a class=" btn-facebook padding-left30"
+                                <a class=" btn-facebook padding-left30" target="_blank"
                                    href="https://www.facebook.com/sharer/sharer.php?u={{route('referrals.tickets.buy',[$raffle->id, Auth::user()->id,'socialNetworkId' => 1])}}">
                                     <span class="ti-facebook texto-negrita colorV margin-right-5 texto35"
                                   title="Facebook"></span>
@@ -24,14 +24,14 @@
                             </div>
 
                             <div class="col-xs-4">
-                                <a class=" btn-twitter padding-left30"
+                                <a class=" btn-twitter padding-left30" target="_blank"
                                    href="https://twitter.com/home?status={{route('referrals.tickets.buy',[$raffle->id, Auth::user()->id,'socialNetworkId' => 2])}}">
                                     <span class="ti-twitter texto-negrita colorV margin-right-5 texto35" title="Twitter"></span>
                                 </a>
                             </div>
 
                             <div class="col-xs-4">
-                                <a class=" padding-left30"
+                                <a class=" padding-left30" target="_blank"
                                    href="mailto:?&cc=&bcc=&subject=Good Raffle for you&body={{route('referrals.tickets.buy',[$raffle->id, Auth::user()->id,'socialNetworkId' => 3])}}">
                                     <span class="ti-email texto-negrita colorV margin-right-5 texto35" title="Email"></span>
                                 </a>

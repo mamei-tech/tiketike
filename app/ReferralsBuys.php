@@ -8,7 +8,9 @@ class ReferralsBuys extends Model
 {
     protected $table = 'referralsbuys';
     protected $primaryKey = 'id';
-    protected $fillable = [];
+    protected $fillable = ['comisionist', 'ticket', 'email', 'socialNetwork' , 'raffle_id'];
+
+
 
     /**
      * Get the sharer user.
