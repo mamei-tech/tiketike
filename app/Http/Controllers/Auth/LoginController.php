@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Repositories\ActiveUsersRepository;
+use App\Ticket;
+use App\WelcomePoster;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
@@ -83,12 +85,16 @@ class LoginController extends Controller
             if ($this->guard()->user()->hasRole('Admon') )
             {
                 $sharedRaffles = Raffle::sharedRaffles();
+                $welcome_poster = WelcomePoster::all()->first;
 
                 return view('admin.index',
                     [
+                        'title' => $welcome_poster->title->title,
+                        'subtitle' => $welcome_poster->subtitle->subtitle,
                         'li_activeDash' => 'active',
                         'netGain' => round(Raffle::rafflesNetGain(), 2),
                         'usersCount' => User::usersCount(),
+                        'ticketsCount' => Ticket::ticketsCount(),
                         'sharedRaffles' => $sharedRaffles,
                     ]);
             }
