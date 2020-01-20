@@ -93,13 +93,13 @@ class UserController extends Controller
         $user = User::with('getProfile')->findOrFail($userid);
         $countries = Country::all();
         $countrycities = null;
-        $first_time = true;
+        $first_time = 1;
         if ($user->getProfile()->exists()) {
             $countrycities = City::with('country')->whereHas('country', function (Builder $q) use ($user) {
                 $q->where('id', $user->getProfile->getCity->country->id);
             })
                 ->get();
-            $first_time = false;
+            $first_time = 0;
         }
 
         return view('front_profile', [

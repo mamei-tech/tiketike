@@ -7,7 +7,7 @@
         <span class="icon-bar"></span>
     </button>
 
-    <a href="{{ route('main') }}" class="padding-left">
+    <a id="logo_link" href="{{ route('main') }}" class="padding-left">
         <img src="{{ asset('pics/front/logonv.png') }}" class="navbar-log" alt="">
     </a>
 
@@ -17,7 +17,7 @@
 
 <nav id="main-menu" class="navbar-collapse bs-navbar-collapse collapse" role="navigation">
 
-    <div class="col-md-5">
+    <div id="raffle_link" class="col-md-5">
         <ul class="nav navbar-nav">
             <li>
                 <a href="{{ route('raffles.index') }}" class="text-uppercase colorB sinkinSans300L icon">
@@ -41,7 +41,7 @@
                 </li>
             @endif
             @if(\Auth::user() != null)
-                <li class="notifica">
+                <li id="notifications_link" class="notifica">
                     <a class="text-uppercase colorB sinkinSans300L icon" data-toggle="modal" href="#notificaciones"
                        title="Notificaciones">
                         <span class="ti-bell texto20"></span>
@@ -68,7 +68,7 @@
             </li>
 
 
-            <li class="colorB">
+            <li id="search_link" class="colorB">
                 <a class="text-uppercase colorB sinkinSans300L icon"><span
                             class="ti-search texto20 search-btn show-search-icon"></span></a>
                 <div class="search-box" style="display: none;">

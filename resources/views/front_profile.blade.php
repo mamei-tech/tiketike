@@ -10,6 +10,7 @@
             {{csrf_field()}}
             {{method_field('patch')}}
 
+            <input id="user_first_time" value="{{$first_time}}" name="user" type="text" hidden>
             <input id="user_id" value="{{ $user->id }}" name="user" type="text" hidden>
 
             <div class="col-md-4">
@@ -17,10 +18,11 @@
                 <div class="col-md-6 pr-1">
                     <div class="form-group basic">
                         <label>@lang('aUserprofile.firstname')</label>
-                        <input name="firstname" type="text" class="form-control" placeholder="Name"
+                        <input id="firstname" name="firstname" type="text" class="form-control" placeholder="Name"
                                value="{{$user->name}}">
                     </div>
                 </div>
+
                 <div class="col-md-6 ">
 
                     <div class="form-group basic">
@@ -146,8 +148,13 @@
                     <div class="form-group basic">
                         <label>@lang('aDashboard.city')</label>
                         <br>
-                        <select id="cities-select" name="city" class="selectpicker" data-style="btn btn-neutral btn-round"
-                                title="City" tabindex="-98">
+                        <select  id="cities-select" name="city" class="selectpicker" data-style="btn btn-neutral btn-round"
+                                title="City"  tabindex="-98">
+                            @if(!$first_time)
+                            <option selected="selected">
+                                {{ $user->getProfile->getCity->name }}</option>
+                                @else<option class="bs-title-option" disabled selected value="">City</option>
+                            @endif
                         </select>
 
                     </div>
@@ -206,4 +213,15 @@
 @stop
 @section('additional_scripts')
     <script src="{{asset('js/front_profile.min.js')}}"></script>
+    <script type="text/javascript">
+
+      if ($("#user_first_time").val()==="1"){
+          $("#raffle_link").hide();
+          $("#notifications_link").hide();
+          $("#logged-user-name").hide();
+          $("#search_link").hide();
+          $("#logo_link").attr('href','#');
+      }
+    </script>
+
 @stop
