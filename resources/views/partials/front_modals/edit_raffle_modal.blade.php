@@ -57,10 +57,10 @@
                     </div>
                     <div class="row">
                         <div class="col-xs-12 col-md-12">
-                            <div class="col-md-12 col-lg-12 col-xs-12" id="columns">
-                                <h3 class="form-label">Select the images</h3>
-                                <div class="desc"><p class="text-center">or drag to box</p></div>
-                                <div id="uploads"></div>
+                            <div class="form-group">
+                                <label for="document">Images</label>
+                                <div class="needsclick dropzone" id="document-dropzone" >
+                                </div>
                             </div>
                         </div>
                     </div>

@@ -480,11 +480,15 @@
                                     <li class=""><a id="seguidosopen" data-toggle="tab"
                                                     class="ticket text-uppercase colorN"
                                                     href="#seguidos"
-                                                    aria-expanded="false">@lang('views.followed')</a></li>
+                                                    aria-expanded="false">@lang('views.followed')@if(count($current->getFollows) > 0)
+                                                <span class="badge " style="background: #61316e">{{ count($current->getFollows) }}</span>
+                                            @endif</a></li>
                                     <li class="active"><a id="mesiguenopen" data-toggle="tab"
                                                           class="ticket text-uppercase colorN"
                                                           href="#mesiguen"
-                                                          aria-expanded="true">@lang('views.follow_me')</a></li>
+                                                          aria-expanded="true"> @lang('views.follow_me') @if(count($current->getFollowers) > 0)
+                                                <span class="badge"  style="background: #61316e">{{ count($current->getFollowers) }}</span>
+                                            @endif</a></li>
                                 </ul>
 
                                 <div class="tab-content">

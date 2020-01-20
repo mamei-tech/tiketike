@@ -57,8 +57,8 @@
                                     <div class="icon icon-danger">
                                         <i class="now-ui-icons objects_support-17"></i>
                                     </div>
-                                    <h3 class="info-title">353</h3>
-                                    <h6 class="stats-title">Support Requests</h6>
+                                    <h3 class="info-title">{{$ticketsCount}}</h3>
+                                    <h6 class="stats-title">Sold Tickets</h6>
                                 </div>
                             </div>
                         </div>
@@ -67,6 +67,10 @@
             </div>
         </div>
     </div>
+
+
+
+
 
     {{--<div class="card-body">--}}
     {{--<div class="chart-area">--}}
@@ -84,6 +88,58 @@
                 {{--<div class="stats">--}}
                 {{--<i id="refreshActUsers" class="now-ui-icons arrows-1_refresh-69"></i>--}}
                 {{--</div>--}}
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card card-stats card-raised">
+                <div class="card card-title" style="text-align: center"><h3>Welcome Poster</h3></div>
+                <div class="card-body">
+                    <form class="form-horizontal" method="post" action="{{ route('poster.update',['poster_id',''])}}"
+                          accept-charset="UTF-8" enctype="multipart/form-data">
+                        {{ csrf_field() }}
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group basicmodal">
+                                    <label for="title">Title</label>
+                                    <input id="title" value="{{$title}}" class="form-control" type="text" name="title"
+                                           placeholder="Poster Title"/>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        {{-- CLIENT | TYPE | STATUS --}}
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group basicmodal">
+                                    <label for="subtitle">Subtitle</label>
+                                    <input id="subtitle" value="{{$subtitle}}" class="form-control" type="text"
+                                           name="subtitle" placeholder="Poster Subtitle"/>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        {{-- IMGS --}}
+
+                        <br>
+
+                        <div class="row" style="padding-left: 50px">
+                            <button id="editBtn" class="btn btn-success btn-round" type="submit" value="edit">
+                                <b>
+                                    <i class="now-ui-icons ui-1_check"></i>
+                                    Update
+                                </b>
+                            </button>
+                        </div>
+
+                        <br>
+                    </form>
+                </div>
             </div>
         </div>
     </div>

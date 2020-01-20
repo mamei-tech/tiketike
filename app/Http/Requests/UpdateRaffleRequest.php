@@ -26,7 +26,7 @@ class UpdateRaffleRequest extends FormRequest
     public function rules()
     {
         return [
-            'title' => 'required|string|max:30',
+            'title' => 'required|string|max:300',
             'description' => 'required|string|min:15',
             'category' => 'required',
             'localization' => 'required',

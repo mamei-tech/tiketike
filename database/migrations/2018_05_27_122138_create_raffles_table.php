@@ -42,7 +42,7 @@ class CreateRafflesTable extends Migration
             $table->unsignedInteger('status');      //FK of status
             $table->unsignedInteger('location');    //FK of location
 
-            $table->string('title', 60);
+            $table->string('title');
             $table->text('description');
             $table->float('price');
             $table->float('progress')->default(0);

@@ -11,6 +11,17 @@ class Ticket extends Model
 
     protected $fillable     = ['raffle', 'code'];
 
+
+    public static function ticketsCount()
+    {
+        $ticketsCount = 0;
+        Ticket::chunk(1000, function ($ticket) use (&$ticketsCount) {
+            $ticketsCount += count($ticket);
+        });
+
+        return $ticketsCount;
+    }
+
     /**
      * Retrieve ticket's raffle.
      *

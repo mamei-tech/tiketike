@@ -166,15 +166,8 @@
             </li>
 
 
-           @include('admin.partials.modals.posteredit_modal')
-            <li class="">
-                <a class="" data-toggle="modal" href="#mdal_editPoster">
-                    <i class="now-ui-icons objects_diamond"></i>
-                    <p> Poster
-                        <b class="caret"></b>
-                    </p>
-                </a>
-            </li>
+
+
 
 
             {{--payments controll--}}

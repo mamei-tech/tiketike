@@ -136,6 +136,7 @@ class RafflesController extends Controller
      */
     public function update(UpdateRaffleRequest $request, $id)
     {
+
         $raffle = Raffle::find($id);
         $raffle->title = $request->get('title');
         $raffle->description = $request->get('description');

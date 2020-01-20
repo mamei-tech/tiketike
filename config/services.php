@@ -40,8 +40,8 @@ return [
 //    Social Networks Authentication
 
     'facebook' => [
-        'client_id' => '318037698759358',
-        'client_secret' => '1f24165ca512f48a16b3afa84c09e2ca',
+        'client_id' => '464238204247375',
+        'client_secret' => '34b2793c71bf74f201c04157448ce351',
         'redirect' => env('APP_URL').'/auth/facebook/callback'
     ],
     'twitter' => [
@@ -51,8 +51,8 @@ return [
     ],
 
     'google' => [
-        'client_id' => 'XXXXXXXXXXX',
-        'client_secret' => 'XXXXXXXXXXXXXX',
+        'client_id' => '289859094179-9bcb9c4l5t1v2oaaje1g4qqo03h6l268.apps.googleusercontent.com',
+        'client_secret' => 'xGquq2_KYVz0QkQQg4j1RLRB',
         'redirect' => env('APP_URL').'/auth/google/callback'
     ],
 
