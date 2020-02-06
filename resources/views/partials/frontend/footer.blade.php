@@ -1,13 +1,47 @@
 @include('partials.front_modals.terminos_y_condiciones_modal')
 
-<footer >
-    <div class="piedepagina" >
+<footer>
+    <div class="piedepagina">
 
-        <li class="margin-left-20 pull-right padding-top-20 ">
-            <a data-toggle="modal" href="#terminosModal" title="Términos y Condiciones"
-               class="colorB texto16 sinkinSans500M padding-top-40">Términos y Condiciones</a>
-        </li>
+        {{--        <li class="margin-left-20 pull-right padding-top-20 ">--}}
+        {{--            <a data-toggle="modal" href="#terminosModal" title="Términos y Condiciones"--}}
+        {{--               class="colorB texto16 sinkinSans500M padding-top-40">Términos y Condiciones</a>--}}
+        {{--        </li>--}}
+
+
+        <div class="col-lg-11 pull-right">
+            <div class="col-md-4 col-lg-4 col-xs-12 footer-tittle">
+                <h1 class="footer-tittle">ABOUT US</h1>
+                <p>Lorem ipsum es el texto que se usa habitualmente en diseño gráfico en demostraciones de tipografías o
+                    de borradores de diseño para probar el diseño visual antes de insertar el texto final.</p>
+            </div>
+
+            <div class="col-md-4 col-lg-4 col-xs-12 footer-tittle">
+                <h1 class="footer-tittle">QUICK LINKS</h1>
+                <ul class="fa-ul">
+                    <li class="footer-links"><span class="fa-li"><i class="ti-angle-right colorY texto-negrita padding-top5"></i></span><a
+                                href="#"><h4>ALERTS AND STUFF</h4></a></li>
+
+                    <li class="footer-links"><span class="fa-li"><i class="ti-angle-right colorY texto-negrita padding-top5"></i></span><a
+                                href="#"><h4>CUSTOM SHORTCODES</h4></a></li>
+                    <li class="footer-links"><span class="fa-li"><i class="ti-angle-right colorY texto-negrita padding-top5"></i></span><a
+                                href="#"><h4>PRICING PLANS</h4></a></li>
+                    <li class="footer-links"><span class="fa-li"><i class="ti-angle-right colorY texto-negrita padding-top5"></i></span><a
+                                href="#"><h4>TOOGLE ELEMENTS</h4></a>
+                    </li>
+                    <li class="footer-links"><span class="fa-li"><i class="ti-angle-right colorY texto-negrita padding-top5"></i></span><a
+                                href="#"><h4>TYPOGRAPHY</h4></a></li>
+                </ul>
+            </div>
+
+            <div class="col-md-4 col-lg-4 col-xs-12">
+                <h1 class="footer-tittle">GET IN TOUCH</h1>
+            </div>
+        </div>
+
     </div>
+
+
 </footer>
 
 <script src="{{ asset('js/front/jquery-1.11.2.min.js') }}"></script>

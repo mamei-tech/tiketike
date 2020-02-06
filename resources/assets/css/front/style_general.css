@@ -213,6 +213,10 @@ body {
 .colorA{
     color:#8DC2BC;
 }
+
+.colorY{
+    color:yellow;
+}
 .colorGreen{
     color:#A2C037;
 }
@@ -474,6 +478,14 @@ body {
     background: url(../../pics/front/bg_footer.png);
     height: 335px;
     margin-top: 50px;
+}
+.footer-tittle{
+    color: #ffffff
+}
+
+.footer-links{
+    border-bottom: #ffffff;
+
 }
 .usuariostop{
     background-color: #fcbe0b;
