@@ -203,6 +203,71 @@
         </div>
     </div>
 
+
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card card-stats card-raised">
+                <div class="card card-title" style="text-align: center"><h3>Footer</h3></div>
+                <div class="card-body">
+                    <form class="form-horizontal" method="post" action="{{ route('poster.update',['poster_id',''])}}"
+                          accept-charset="UTF-8" enctype="multipart/form-data">
+                        {{ csrf_field() }}
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group basicmodal">
+                                    <label for="about_us">About Us</label>
+                                    <input id="title" value="" class="form-control" type="text" name="title"
+                                           placeholder="About Us"/>
+                                </div>
+                            </div>
+
+
+                            <div class="col-md-4">
+                                <div class="form-group basicmodal">
+                                    <label for="subtitle">Address</label>
+                                    <input id="subtitle" value="" class="form-control" type="text"
+                                           name="subtitle" placeholder="Address"/>
+                                </div>
+
+                                <div class="form-group basicmodal">
+                                    <label for="subtitle">Phones</label>
+                                    <input id="subtitle" value="" class="form-control" type="text"
+                                           name="subtitle" placeholder="Phones"/>
+                                </div>
+
+                                <div class="form-group basicmodal">
+                                    <label for="subtitle">Email</label>
+                                    <input id="subtitle" value="" class="form-control" type="text"
+                                           name="subtitle" placeholder="Email"/>
+                                </div>
+
+                            </div>
+                        </div>
+
+
+
+
+                        {{-- IMGS --}}
+
+                        <br>
+
+                        <div class="row" style="padding-left: 50px">
+                            <button id="editBtn" class="btn btn-success btn-round" type="submit" value="edit">
+                                <b>
+                                    <i class="now-ui-icons ui-1_check"></i>
+                                    Update
+                                </b>
+                            </button>
+                        </div>
+
+                        <br>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
     {{--<div class="row">--}}
     {{--<div class="card data-section-midle-row data-section-full-row">--}}
     {{--<h3>Tickets Data</h3>--}}

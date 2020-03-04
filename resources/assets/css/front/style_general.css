@@ -226,6 +226,11 @@ body {
 .colorB{
     color: #FFFFFF;
 }
+
+.colorB:hover{
+    color: #FFFFFF;
+}
+
 .colorN{
     color:#373636;
 }
@@ -487,6 +492,8 @@ body {
     border-bottom: #ffffff;
 
 }
+
+
 .usuariostop{
     background-color: #fcbe0b;
     height: auto;
@@ -1837,5 +1844,55 @@ Full screen Modal
 .padding-top-percentual-desc {
     padding-top: 5% !important;
 }
+
+
+li.ico-footer-home{
+    /*list-style-image: url("../../pics/front/home.png");*/
+    list-style: none;
+
+    /** the image will be vertically aligned in the center **/
+    background: url(../../pics/front/home.png) left center no-repeat;
+
+    /** move the text to the right **/
+    padding-left: 60px;
+    padding-bottom: 10px;
+    vertical-align: bottom;
+
+ }
+
+
+
+li.ico-footer-telephone{
+    /*list-style-image: url("../../pics/front/telefono-01.png");*/
+    list-style: none;
+
+    /** the image will be vertically aligned in the center **/
+    background: url(../../pics/front/telefono-01.png) left center no-repeat;
+
+    /** move the text to the right **/
+    padding-left: 60px;
+    padding-bottom: 10px;
+}
+
+
+
+li.ico-footer-email{
+    /*list-style-image: url("../../pics/front/mail-01.png");*/
+    list-style: none;
+
+    /** the image will be vertically aligned in the center **/
+    background: url(../../pics/front/mail-01.png) left center no-repeat;
+
+    /** move the text to the right **/
+    padding-left: 60px;
+    padding-bottom: 10px;
+}
+
+
+
+
+
+
+
 
 

@@ -10,32 +10,40 @@
 
 
         <div class="col-lg-11 pull-right">
-            <div class="col-md-4 col-lg-4 col-xs-12 footer-tittle">
-                <h1 class="footer-tittle">ABOUT US</h1>
+            <div class="col-md-4 col-lg-4 col-xs-12 footer-tittle" style="padding: 40px">
+                <h1 class="footer-tittle" style="padding-bottom: 20px">ABOUT US</h1>
                 <p>Lorem ipsum es el texto que se usa habitualmente en diseño gráfico en demostraciones de tipografías o
                     de borradores de diseño para probar el diseño visual antes de insertar el texto final.</p>
             </div>
 
-            <div class="col-md-4 col-lg-4 col-xs-12 footer-tittle">
-                <h1 class="footer-tittle">QUICK LINKS</h1>
-                <ul class="fa-ul">
-                    <li class="footer-links"><span class="fa-li"><i class="ti-angle-right colorY texto-negrita padding-top5"></i></span><a
+            <div class="col-md-4 col-lg-4 col-xs-12 footer-tittle" style="padding: 40px">
+                <h1 class="footer-tittle" style="padding-bottom: 20px">QUICK LINKS</h1>
+                <ul class="fa-ul" >
+                    <li class="footer-links" style="border-bottom:solid #c9c9c9 1px;"><span class="fa-li"><i class="ti-angle-right colorY texto-negrita padding-top5"></i></span><a class="colorB"
                                 href="#"><h4>ALERTS AND STUFF</h4></a></li>
 
-                    <li class="footer-links"><span class="fa-li"><i class="ti-angle-right colorY texto-negrita padding-top5"></i></span><a
+                    <li class="footer-links"style="border-bottom:solid #c9c9c9 1px;"><span class="fa-li"><i class="ti-angle-right colorY texto-negrita padding-top5"></i></span><a class="colorB"
                                 href="#"><h4>CUSTOM SHORTCODES</h4></a></li>
-                    <li class="footer-links"><span class="fa-li"><i class="ti-angle-right colorY texto-negrita padding-top5"></i></span><a
+                    <li class="footer-links"style="border-bottom:solid #c9c9c9 1px;"><span class="fa-li"><i class="ti-angle-right colorY texto-negrita padding-top5"></i></span><a class="colorB"
                                 href="#"><h4>PRICING PLANS</h4></a></li>
-                    <li class="footer-links"><span class="fa-li"><i class="ti-angle-right colorY texto-negrita padding-top5"></i></span><a
+                    <li class="footer-links"style="border-bottom:solid #c9c9c9 1px;"><span class="fa-li"><i class="ti-angle-right colorY texto-negrita padding-top5"></i></span><a class="colorB"
                                 href="#"><h4>TOOGLE ELEMENTS</h4></a>
                     </li>
-                    <li class="footer-links"><span class="fa-li"><i class="ti-angle-right colorY texto-negrita padding-top5"></i></span><a
+                    <li class="footer-links"><span class="fa-li"><i class="ti-angle-right colorY texto-negrita padding-top5"></i></span><a class="colorB"
                                 href="#"><h4>TYPOGRAPHY</h4></a></li>
                 </ul>
             </div>
 
-            <div class="col-md-4 col-lg-4 col-xs-12">
-                <h1 class="footer-tittle">GET IN TOUCH</h1>
+            <div class="col-md-4 col-lg-4 col-xs-12" style="padding: 40px">
+                <h1 class="footer-tittle" style="padding-bottom: 20px">GET IN TOUCH</h1>
+                <ul class="fa-ul" >
+
+
+                    <li class="ico-footer-home" style="color: white"><h4>66 South Street Window 6 Wonderland</h4></li>
+                    <li class="ico-footer-telephone" style="color: white"><h4>+440 5454 86 4---OFFICE <br> +1 305 548 54 85----HOME</h4></li>
+                    <li class="ico-footer-email" style="color: white"><h4>tiketikes@gmail.com</h4></li>
+
+                </ul>
             </div>
         </div>
 
